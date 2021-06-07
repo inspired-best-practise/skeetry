@@ -9,7 +9,6 @@ export type HomeTabParamList = {
 export type rootStackParamList = {
   AuthStack: undefined;
   HomeTab: undefined;
-  StoryTaker: undefined;
   Direct: undefined;
 };
 
