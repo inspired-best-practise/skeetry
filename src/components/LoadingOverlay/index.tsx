@@ -7,7 +7,7 @@ import { s } from './styles';
 
 export const Loading = ({ isLocal }: { isLocal?: boolean }): JSX.Element | null => {
   // in the future we will take this from store
-  const loading = true;
+  const loading = false;
 
   return loading || isLocal ? (
     <Animated.View style={[s.wrapper]}>

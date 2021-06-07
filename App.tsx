@@ -13,12 +13,13 @@ import { StatusBar } from 'react-native';
 import { Provider } from 'mobx-react';
 import { stores } from '_app/store';
 import { LoadingOverlay } from '_app/components';
+import RootStackNavigation from '_app/navigations';
 
 const App = () => {
   return (
     <Provider {...stores}>
       <StatusBar barStyle="dark-content" animated translucent backgroundColor="rgba(0,0,0,0)" />
-      <AppNavigator />
+      <RootStackNavigation />
       <LoadingOverlay />
     </Provider>
   );
