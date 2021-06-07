@@ -12,6 +12,7 @@ import React from 'react';
 import { StatusBar } from 'react-native';
 import { Provider } from 'mobx-react';
 import { stores } from '_app/store';
+import { LoadingOverlay } from '_app/components';
 
 const App = () => {
   return (
