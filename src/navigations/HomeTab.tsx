@@ -104,8 +104,14 @@ const HomeTab = () => {
         name="Explore"
       />
       <Tab.Screen
+        listeners={({ navigation }) => ({
+          tabPress: e => {
+            e.preventDefault();
+            navigation.navigate('AddChooser');
+          },
+        })}
         options={{
-          tabBarIcon: ({ focused }) => <Icon.PlusCircleIcon size={30} color={focused ? '#000' : '#ddd'} />,
+          tabBarIcon: ({ focused }) => <Icon.PlusCircleIcon size={30} color={'#ddd'} />,
         }}
         component={AddStack}
         name="Add"
