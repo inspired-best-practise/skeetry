@@ -3,7 +3,6 @@ import {
   MaterialTopTabBarOptions,
   MaterialTopTabNavigationOptions,
 } from '@react-navigation/material-top-tabs';
-import { rootStackParamList } from 'declarations';
 import React from 'react';
 import { DirectScreen } from '_app/screens/Others';
 import AuthStack from './AuthStack';

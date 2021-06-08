@@ -1,4 +1,4 @@
-export type HomeTabParamList = {
+type HomeTabParamList = {
   HomeIndex: undefined;
   Explore: undefined;
   Add: undefined;
@@ -6,15 +6,15 @@ export type HomeTabParamList = {
   Account: undefined;
 };
 
-export type rootStackParamList = {
+type rootStackParamList = {
   AuthStack: undefined;
   HomeTab: undefined;
   Direct: undefined;
 };
 
-export type commonParamList = AuthStackParamList & HomeTabParamList & rootStackParamList;
+type commonParamList = AuthStackParamList & HomeTabParamList & rootStackParamList;
 
-export type AuthStackParamList = {
+type AuthStackParamList = {
   Login: undefined;
   Register: undefined;
   ForgotPassword: undefined;

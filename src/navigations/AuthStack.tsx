@@ -1,5 +1,4 @@
 import { createStackNavigator, StackNavigationOptions } from '@react-navigation/stack';
-import { AuthStackParamList } from 'declarations';
 import React from 'react';
 
 import { ForgotPasswordScreen, LoginScreen, RegisterScreen, WelcomeScreen } from '_app/screens/Auth';

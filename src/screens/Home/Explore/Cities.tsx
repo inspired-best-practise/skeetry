@@ -15,7 +15,7 @@ const Cities = () => {
   return (
     <ScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
       <View style={s.container}>
-        <Text>Countries!</Text>
+        <Text>Cities!</Text>
       </View>
     </ScrollView>
   );

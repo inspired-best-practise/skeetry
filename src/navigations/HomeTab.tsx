@@ -10,8 +10,6 @@ import { TabBarComponent } from '_app/components/BottomTabBar';
 
 import { HomeIndexScreen, AccountScreen, ActivityScreen, AddScreen, ExploreScreen } from '_app/screens/Home';
 
-import { HomeTabParamList } from 'declarations';
-
 const Stack = createStackNavigator();
 
 const AccountStack = () => {
