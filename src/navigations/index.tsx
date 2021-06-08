@@ -5,6 +5,9 @@ import React from 'react';
 import { navigationRef } from '_app/services/navigations';
 import RootTab from './RootTab';
 import { AddChooserScreen } from '_app/screens/Home/Add/AddChooser';
+import { enableScreens } from 'react-native-screens';
+
+enableScreens();
 
 // TODO: type when done
 const RootStack = createNativeStackNavigator();

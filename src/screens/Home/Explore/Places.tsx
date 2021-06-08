@@ -15,7 +15,7 @@ const Places = () => {
   }, []);
 
   // TODO: type item when done
-  const renderItem = ({ item }: any) => <Card title={item.title} />;
+  const renderItem = ({ item }: any) => <Card id={item.id} title={item.title} imageUrl={item.imageUrl} />;
 
   return (
     <ScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>

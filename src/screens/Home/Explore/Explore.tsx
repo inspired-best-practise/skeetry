@@ -10,10 +10,28 @@ import { StatesScreen } from './States';
 
 const Tab = createMaterialTopTabNavigator();
 
+// TODO: iOS Segment Control instead createMaterialTopTabNavigator
 const Explore = () => {
   return (
     <SafeAreaView style={s.safeAreaView}>
-      <Tab.Navigator>
+      <Tab.Navigator
+        tabBarOptions={{
+          activeTintColor: '#ffffff',
+          inactiveTintColor: 'black',
+          pressColor: '#9BC9E2',
+          indicatorStyle: {
+            height: '100%',
+            backgroundColor: 'black',
+            borderRadius: 8,
+          },
+          style: {
+            backgroundColor: '#ffffff',
+            borderRadius: 8,
+            margin: 16,
+          },
+          labelStyle: { fontSize: 10, fontWeight: '700' },
+        }}
+      >
         <Tab.Screen children={() => <PlacesScreen />} name="Places" />
         <Tab.Screen children={() => <CountriesScreen />} name="Countries" />
         <Tab.Screen children={() => <CitiesScreen />} name="Cities" />

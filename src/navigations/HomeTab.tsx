@@ -6,11 +6,22 @@ import {
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
 import * as Icon from 'react-native-heroicons/solid';
+import { createSharedElementStackNavigator } from 'react-navigation-shared-element';
 import { TabBarComponent } from '_app/components/BottomTabBar';
 
 import { HomeIndexScreen, AccountScreen, ActivityScreen, AddScreen, ExploreScreen } from '_app/screens/Home';
+import { CardScreen } from '_app/screens/Home/Explore/CardScreen';
 
 const Stack = createStackNavigator();
+const SharedElementStack = createSharedElementStackNavigator(
+  {
+    List: ExploreScreen,
+    Detail: CardScreen,
+  },
+  {
+    initialRouteName: 'List',
+  },
+);
 
 const AccountStack = () => {
   return (
@@ -40,14 +51,50 @@ const ActivityStack = () => {
 
 const ExploreStack = () => {
   return (
-    <Stack.Navigator
+    <SharedElementStack.Navigator
+      initialRouteName="Explore"
+      mode="modal"
       screenOptions={{
         headerShown: false,
         gestureEnabled: false,
       }}
     >
-      <Stack.Screen name="Explore" component={ExploreScreen} />
-    </Stack.Navigator>
+      <SharedElementStack.Screen name="Explore" component={ExploreScreen} />
+      <SharedElementStack.Screen
+        name="CardScreen"
+        component={CardScreen}
+        sharedElementsConfig={(route, otherRoute, showing) => {
+          const { id } = route.params;
+          if (route.name === 'CardScreen' && showing) {
+            // Open animation fades in image, title and description
+            return [
+              {
+                id,
+              },
+              {
+                id,
+                animation: 'fade',
+                resize: 'clip',
+                align: 'left-top',
+              },
+              // {
+              //   id: `item.${item.id}.description`,
+              //   animation: 'fade',
+              //   resize: 'clip',
+              //   align: 'left-top',
+              // },
+            ];
+          } else {
+            // Close animation only fades out image
+            return [
+              {
+                id,
+              },
+            ];
+          }
+        }}
+      />
+    </SharedElementStack.Navigator>
   );
 };
 
