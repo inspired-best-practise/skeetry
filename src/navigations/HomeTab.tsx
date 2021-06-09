@@ -56,7 +56,7 @@ const ExploreStack = () => {
       mode="modal"
       screenOptions={{
         headerShown: false,
-        gestureEnabled: false,
+        gestureEnabled: true,
       }}
     >
       <SharedElementStack.Screen name="Explore" component={ExploreScreen} />
