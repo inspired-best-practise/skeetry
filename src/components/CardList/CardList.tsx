@@ -17,9 +17,7 @@ export const List = ({ title, data, firstList = false }): JSX.Element => {
     wait(2000).then(() => setRefreshing(false));
   }, []);
 
-  const renderItem = ({ item }: any) => (
-    <Card id={item.id} title={item.title} imageUrl={item.imageUrl} size={firstList ? 'default' : 'small'} />
-  );
+  const renderItem = ({ item }: any) => <Card item={item} size={firstList ? 'default' : 'small'} />;
 
   return (
     <View>

@@ -1,6 +1,4 @@
 type CardProps = {
-  id: string;
-  title: string;
-  imageUrl: string;
+  item: any;
   size: 'default' | 'small';
 };

@@ -3,7 +3,7 @@ import {
   BottomTabNavigationOptions,
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
 import React from 'react';
 import * as Icon from 'react-native-heroicons/solid';
 import { createSharedElementStackNavigator } from 'react-navigation-shared-element';
@@ -12,16 +12,20 @@ import { TabBarComponent } from '_app/components/BottomTabBar';
 import { HomeIndexScreen, AccountScreen, ActivityScreen, AddScreen, ExploreScreen } from '_app/screens/Home';
 import { CardScreen } from '_app/screens/Home/Explore/CardScreen';
 
+export const iosTransitionSpec = {
+  animation: 'spring',
+  config: {
+    stiffness: 1000,
+    damping: 500,
+    mass: 3,
+    overshootClamping: true,
+    restDisplacementThreshold: 10,
+    restSpeedThreshold: 10,
+  },
+};
+
 const Stack = createStackNavigator();
-const SharedElementStack = createSharedElementStackNavigator(
-  {
-    List: ExploreScreen,
-    Detail: CardScreen,
-  },
-  {
-    initialRouteName: 'List',
-  },
-);
+const SharedElementStack = createSharedElementStackNavigator();
 
 const AccountStack = () => {
   return (
@@ -55,40 +59,54 @@ const ExploreStack = () => {
       initialRouteName="Explore"
       mode="modal"
       screenOptions={{
-        headerShown: false,
-        gestureEnabled: true,
+        useNativeDriver: true,
+        gestureResponseDistance: {
+          vertical: 300,
+        },
+        ...TransitionPresets.ModalSlideFromBottomIOS,
+        transitionSpec: {
+          open: iosTransitionSpec,
+          close: iosTransitionSpec,
+        },
+        // Opacity animation, you can also adjust this by playing with transform properties.
+        cardStyleInterpolator: ({ current: { progress } }) => ({
+          cardStyle: {
+            opacity: progress,
+          },
+        }),
       }}
+      headerMode="none"
     >
       <SharedElementStack.Screen name="Explore" component={ExploreScreen} />
       <SharedElementStack.Screen
         name="CardScreen"
         component={CardScreen}
         sharedElementsConfig={(route, otherRoute, showing) => {
-          const { id } = route.params;
+          const { item } = route.params;
           if (route.name === 'CardScreen' && showing) {
             // Open animation fades in image, title and description
             return [
               {
-                id,
+                id: `item.${item.id}.image`,
               },
               {
-                id,
+                id: `item.${item.id}.title`,
                 animation: 'fade',
                 resize: 'clip',
                 align: 'left-top',
               },
-              // {
-              //   id: `item.${item.id}.description`,
-              //   animation: 'fade',
-              //   resize: 'clip',
-              //   align: 'left-top',
-              // },
+              {
+                id: `item.${item.id}.description`,
+                animation: 'fade',
+                resize: 'clip',
+                align: 'left-top',
+              },
             ];
           } else {
             // Close animation only fades out image
             return [
               {
-                id,
+                id: `item.${item.id}.image`,
               },
             ];
           }

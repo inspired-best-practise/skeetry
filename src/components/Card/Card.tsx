@@ -6,23 +6,24 @@ import { SharedElement } from 'react-navigation-shared-element';
 import { navigation } from '_app/services/navigations';
 import { s } from './styles';
 
-const CardItem = ({ id, title, imageUrl, size }: CardProps) => {
+const CardItem = ({ item, size }: CardProps) => {
+  const { imageUrl, title, id } = item;
+
   return (
     <Pressable
-      key={id}
+      key={item.id}
       onPress={() =>
         navigation.push('CardScreen', {
-          id,
-          imageUrl,
+          item,
         })
       }
     >
       <View style={[size === 'default' ? s.item : s.itemSmall]}>
-        <SharedElement id={id}>
+        <SharedElement id={`item.${id}.image`}>
           <FastImage
             style={[size === 'default' ? s.itemImage : s.itemImageSmall]}
             source={{ uri: imageUrl, priority: FastImage.priority.normal }}
-            resizeMode={FastImage.resizeMode.cover}
+            resizeMode={FastImage.resizeMode.stretch}
           />
         </SharedElement>
         <Text style={s.title}>{title}</Text>
