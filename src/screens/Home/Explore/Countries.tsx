@@ -1,22 +1,14 @@
 import { observer } from 'mobx-react';
-import React, { useState } from 'react';
-import { View, Text, ScrollView, RefreshControl } from 'react-native';
-import { wait } from '_app/utils';
-import { s } from './styles';
+import React from 'react';
+import { ScrollView } from 'react-native';
+import { CardList } from '_app/components';
+import { mockDATA } from './mock';
 
 const Countries = () => {
-  const [refreshing, setRefreshing] = useState(false);
-
-  const onRefresh = React.useCallback(() => {
-    setRefreshing(true);
-    wait(2000).then(() => setRefreshing(false));
-  }, []);
-
   return (
-    <ScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
-      <View style={s.container}>
-        <Text>Countries!</Text>
-      </View>
+    <ScrollView>
+      <CardList title="Recommended" data={mockDATA} firstList />
+      <CardList title="For you" data={mockDATA} />
     </ScrollView>
   );
 };

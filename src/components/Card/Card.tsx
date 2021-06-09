@@ -6,7 +6,7 @@ import { SharedElement } from 'react-navigation-shared-element';
 import { navigation } from '_app/services/navigations';
 import { s } from './styles';
 
-const CardItem = ({ id, title, imageUrl }: CardProps) => {
+const CardItem = ({ id, title, imageUrl, size }: CardProps) => {
   return (
     <Pressable
       key={id}
@@ -17,7 +17,7 @@ const CardItem = ({ id, title, imageUrl }: CardProps) => {
         })
       }
     >
-      <View style={s.item}>
+      <View style={[size === 'default' ? s.item : s.itemSmall]}>
         <SharedElement id={id}>
           <FastImage
             style={{ width: 100, height: 100 }}
