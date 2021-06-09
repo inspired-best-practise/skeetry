@@ -1,8 +1,6 @@
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { observer } from 'mobx-react';
 import React from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { s } from './styles';
 import { CitiesScreen } from './Cities';
 import { CountriesScreen } from './Countries';
 import { PlacesScreen } from './Places';
@@ -24,7 +22,7 @@ const Explore = () => {
           borderRadius: 8,
         },
         style: {
-          backgroundColor: '#ffffff',
+          backgroundColor: '#eeeeee',
           borderRadius: 8,
           margin: 16,
         },

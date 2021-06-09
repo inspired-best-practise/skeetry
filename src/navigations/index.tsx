@@ -1,4 +1,4 @@
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { TransitionPresets } from '@react-navigation/stack';
 import { createNativeStackNavigator, NativeStackNavigationOptions } from 'react-native-screens/native-stack';
 import React from 'react';
@@ -9,6 +9,14 @@ import { enableScreens } from 'react-native-screens';
 
 enableScreens();
 
+const theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: '#ffffff',
+  },
+};
+
 // TODO: type when done
 const RootStack = createNativeStackNavigator();
 
@@ -17,7 +25,7 @@ const index = (): JSX.Element => {
     headerShown: false,
   };
   return (
-    <NavigationContainer ref={navigationRef}>
+    <NavigationContainer ref={navigationRef} theme={theme}>
       <RootStack.Navigator initialRouteName="RootTab">
         <RootStack.Screen name="Root Tab" component={RootTab} options={navigationOptions} />
         <RootStack.Screen

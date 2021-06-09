@@ -14,7 +14,7 @@ export const s = StyleSheet.create({
     marginTop: StatusBar.currentHeight || 0,
   },
   item: {
-    backgroundColor: '#dadada',
+    backgroundColor: '#eeeeee',
     padding: 6,
     marginVertical: CARD_SPACING,
     marginHorizontal: CARD_SPACING,
@@ -23,7 +23,7 @@ export const s = StyleSheet.create({
     borderRadius: 6,
   },
   itemSmall: {
-    backgroundColor: '#dadada',
+    backgroundColor: '#eeeeee',
     padding: 6,
     marginVertical: CARD_SPACING_SMALL,
     marginHorizontal: CARD_SPACING_SMALL,
