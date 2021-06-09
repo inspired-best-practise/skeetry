@@ -1,6 +1,7 @@
 import { observer } from 'mobx-react';
 import React, { useEffect, useRef } from 'react';
-import { View, Text, Image, SafeAreaView } from 'react-native';
+import { View, Text, SafeAreaView } from 'react-native';
+import FastImage from 'react-native-fast-image';
 import { Modalize } from 'react-native-modalize';
 import { SharedElement } from 'react-navigation-shared-element';
 import { s } from './styles';
@@ -22,7 +23,11 @@ const CardDetailScreen = ({ route, navigation }) => {
     <View style={s.container}>
       <Text>Card Detail!</Text>
       <SharedElement id={id}>
-        <Image style={{ width: 100, height: 100 }} source={{ uri: imageUrl }} />
+        <FastImage
+          style={{ width: 250, height: 300 }}
+          source={{ uri: imageUrl, priority: FastImage.priority.normal }}
+          resizeMode={FastImage.resizeMode.contain}
+        />
       </SharedElement>
       <Text onPress={() => navigation.goBack()}>Back</Text>
       <SafeAreaView />
