@@ -6,7 +6,4 @@ export const s = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  safeAreaView: {
-    flex: 1,
-  },
 });

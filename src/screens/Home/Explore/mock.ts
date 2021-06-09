@@ -1,47 +1,47 @@
 export const mockDATA = [
   {
     id: '1',
-    title: 'Item',
+    title: 'Canada',
     imageUrl: 'https://source.unsplash.com/WLUHO9A_xik/250x300',
   },
   {
     id: '2',
-    title: 'Item',
+    title: 'Japan',
     imageUrl: 'https://source.unsplash.com/WLUHO9A_xik/250x300',
   },
   {
     id: '3',
-    title: 'Item',
+    title: 'Germany',
     imageUrl: 'https://source.unsplash.com/WLUHO9A_xik/250x300',
   },
   {
     id: '4',
-    title: 'Item',
+    title: 'Switzerland',
     imageUrl: 'https://source.unsplash.com/WLUHO9A_xik/250x300',
   },
   {
     id: '5',
-    title: 'Item',
+    title: 'Australia',
     imageUrl: 'https://source.unsplash.com/WLUHO9A_xik/250x300',
   },
   {
     id: '6',
-    title: 'Item',
+    title: 'United States',
     imageUrl: 'https://source.unsplash.com/WLUHO9A_xik/250x300',
   },
   {
     id: '7',
-    title: 'Item',
+    title: 'New Zealand',
     imageUrl: 'https://source.unsplash.com/WLUHO9A_xik/250x300',
   },
   {
     id: '8',
-    title: 'Item',
+    title: 'United Kingdom',
     imageUrl: 'https://source.unsplash.com/WLUHO9A_xik/250x300',
   },
   {
     id: '9',
-    title: 'Item',
+    title: 'Sweden',
     imageUrl: 'https://source.unsplash.com/WLUHO9A_xik/250x300',
   },
 ];

@@ -29,7 +29,6 @@ const CardDetailScreen = ({ route, navigation }) => {
           resizeMode={FastImage.resizeMode.contain}
         />
       </SharedElement>
-      <Text onPress={() => navigation.goBack()}>Back</Text>
       <SafeAreaView />
       <Modalize
         ref={modalizeRef}
