@@ -1,0 +1,3 @@
+type CollectionProps = {
+  item: any;
+};
