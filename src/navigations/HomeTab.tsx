@@ -147,6 +147,10 @@ const Tab = createBottomTabNavigator<HomeTabParamList>();
 const HomeTab = () => {
   const tabBarOptions: BottomTabBarOptions = {
     showLabel: false,
+    style: {
+      borderTopColor: '#dddddd',
+      backgroundColor: 'transparent',
+    },
   };
   const navigationOptions: BottomTabNavigationOptions = {};
 
@@ -154,14 +158,14 @@ const HomeTab = () => {
     <Tab.Navigator tabBar={TabBarComponent} tabBarOptions={tabBarOptions} screenOptions={navigationOptions}>
       <Tab.Screen
         options={{
-          tabBarIcon: ({ focused }) => <Icon.HomeIcon size={30} color={focused ? '#000' : '#ddd'} />,
+          tabBarIcon: ({ focused }) => <Icon.HomeIcon size={30} color={focused ? '#777777' : '#bbbbbb'} />,
         }}
         component={HomeStack}
         name="HomeIndex"
       />
       <Tab.Screen
         options={{
-          tabBarIcon: ({ focused }) => <Icon.ViewGridIcon size={30} color={focused ? '#000' : '#ddd'} />,
+          tabBarIcon: ({ focused }) => <Icon.ViewGridIcon size={30} color={focused ? '#777777' : '#bbbbbb'} />,
         }}
         component={ExploreStack}
         name="Explore"
@@ -174,21 +178,21 @@ const HomeTab = () => {
           },
         })}
         options={{
-          tabBarIcon: ({ focused }) => <Icon.PlusCircleIcon size={30} color={'#ddd'} />,
+          tabBarIcon: ({ focused }) => <Icon.PlusCircleIcon size={30} color={'#bbbbbb'} />,
         }}
         component={AddStack}
         name="Add"
       />
       <Tab.Screen
         options={{
-          tabBarIcon: ({ focused }) => <Icon.HeartIcon size={30} color={focused ? '#000' : '#ddd'} />,
+          tabBarIcon: ({ focused }) => <Icon.HeartIcon size={30} color={focused ? '#777777' : '#bbbbbb'} />,
         }}
         component={ActivityStack}
         name="Activity"
       />
       <Tab.Screen
         options={{
-          tabBarIcon: ({ focused }) => <Icon.UserIcon size={30} color={focused ? '#000' : '#ddd'} />,
+          tabBarIcon: ({ focused }) => <Icon.UserIcon size={30} color={focused ? '#777777' : '#bbbbbb'} />,
         }}
         component={AccountStack}
         name="Account"

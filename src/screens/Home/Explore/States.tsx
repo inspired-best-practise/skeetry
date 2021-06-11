@@ -7,7 +7,7 @@ import { mockDATA } from './mock';
 const States = () => {
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
-      <CardList title="Recommended" data={mockDATA} firstList />
+      <CardList title="Popular" data={mockDATA} firstList />
       <CardList title="For you" data={mockDATA} />
     </ScrollView>
   );

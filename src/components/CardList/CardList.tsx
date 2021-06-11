@@ -24,6 +24,7 @@ export const List = ({ title, data, firstList = false }): JSX.Element => {
       <Text style={s.cardListTitle}>{title}</Text>
       <ScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
         <FlatList
+          contentContainerStyle={{ padding: 12 }}
           data={data}
           renderItem={renderItem}
           keyExtractor={item => item.id}

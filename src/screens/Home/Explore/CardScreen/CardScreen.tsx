@@ -26,7 +26,7 @@ const CardDetailScreen = ({ route, navigation }) => {
         <FastImage
           style={{ width: SCREEN_WIDTH - 60, height: normalize(500), borderRadius: 6, marginBottom: 180 }}
           source={{ uri: item.imageUrl, priority: FastImage.priority.normal }}
-          resizeMode={FastImage.resizeMode.stretch}
+          resizeMode={FastImage.resizeMode.cover}
         />
       </SharedElement>
       <SafeAreaView />

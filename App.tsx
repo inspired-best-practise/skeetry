@@ -25,13 +25,7 @@ const App = () => {
   return (
     <Provider {...stores}>
       <StatusBar barStyle="dark-content" animated translucent backgroundColor="rgba(0,0,0,0)" />
-      <SafeAreaView
-        style={{
-          flex: 1,
-        }}
-      >
-        <RootStackNavigation />
-      </SafeAreaView>
+      <RootStackNavigation />
       <LoadingOverlay />
     </Provider>
   );

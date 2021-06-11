@@ -29,10 +29,10 @@ const Explore = () => {
         labelStyle: { fontSize: 10, fontWeight: '700' },
       }}
     >
-      <Tab.Screen children={() => <PlacesScreen />} name="Places" />
       <Tab.Screen children={() => <CountriesScreen />} name="Countries" />
       <Tab.Screen children={() => <CitiesScreen />} name="Cities" />
-      <Tab.Screen children={() => <StatesScreen />} name="States" />
+      {/* <Tab.Screen children={() => <StatesScreen />} name="States" />
+      <Tab.Screen children={() => <PlacesScreen />} name="Places" /> */}
     </Tab.Navigator>
   );
 };

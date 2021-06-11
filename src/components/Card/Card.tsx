@@ -23,7 +23,7 @@ const CardItem = ({ item, size }: CardProps) => {
           <FastImage
             style={[size === 'default' ? s.itemImage : s.itemImageSmall]}
             source={{ uri: imageUrl, priority: FastImage.priority.normal }}
-            resizeMode={FastImage.resizeMode.stretch}
+            resizeMode={FastImage.resizeMode.cover}
           />
         </SharedElement>
         <Text style={s.title}>{title}</Text>

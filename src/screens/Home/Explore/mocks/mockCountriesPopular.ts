@@ -1,4 +1,4 @@
-export const mockDATA = [
+export const mockCountriesPopular = [
   {
     id: 'a',
     title: 'Canada',

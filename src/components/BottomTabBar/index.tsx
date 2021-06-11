@@ -1,6 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { BottomTabBar, BottomTabBarProps } from '@react-navigation/bottom-tabs';
+import { BlurView } from '@react-native-community/blur';
 
 // layout is stored as module variable
 let tabBarLayout = {
@@ -24,7 +25,19 @@ export function TabBarComponent(props: BottomTabBarProps) {
         tabBarLayout = event.nativeEvent.layout;
       }}
     >
-      <BottomTabBar {...props} />
+      <BlurView
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+        }}
+        blurType="chromeMaterial"
+        reducedTransparencyFallbackColor="white"
+        blurAmount={100}
+      >
+        <BottomTabBar {...props} />
+      </BlurView>
     </View>
   );
 }

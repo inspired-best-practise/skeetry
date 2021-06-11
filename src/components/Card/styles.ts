@@ -14,8 +14,6 @@ export const s = StyleSheet.create({
     marginTop: StatusBar.currentHeight || 0,
   },
   item: {
-    backgroundColor: '#eeeeee',
-    padding: 6,
     marginVertical: CARD_SPACING,
     marginHorizontal: CARD_SPACING,
     width: CARD_WIDTH,
@@ -23,8 +21,6 @@ export const s = StyleSheet.create({
     borderRadius: 6,
   },
   itemSmall: {
-    backgroundColor: '#eeeeee',
-    padding: 6,
     marginVertical: CARD_SPACING_SMALL,
     marginHorizontal: CARD_SPACING_SMALL,
     width: CARD_WIDTH_SMALL,
@@ -32,18 +28,17 @@ export const s = StyleSheet.create({
     borderRadius: 6,
   },
   itemImage: {
-    width: CARD_WIDTH - 12,
-    height: CARD_WIDTH - 22,
+    width: CARD_WIDTH,
+    height: CARD_WIDTH - 20,
     borderRadius: 6,
   },
   itemImageSmall: {
-    width: CARD_WIDTH_SMALL - 12,
-    height: CARD_WIDTH_SMALL - 22,
+    width: CARD_WIDTH_SMALL,
+    height: CARD_WIDTH_SMALL - 20,
     borderRadius: 6,
   },
   title: {
-    paddingVertical: 12,
-    paddingHorizontal: 6,
+    paddingVertical: 6 + CARD_SPACING,
     fontSize: 18,
     fontWeight: '600',
   },
