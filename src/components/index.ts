@@ -5,3 +5,5 @@ export * from './CardList';
 export * from './TopTabBar';
 export * from './Collection';
 export * from './CollectionList';
+export * from './Avatar';
+export * from './AccountStatsItem';
