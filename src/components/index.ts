@@ -7,3 +7,4 @@ export * from './Collection';
 export * from './CollectionList';
 export * from './Avatar';
 export * from './AccountStatsItem';
+export * from './CategoryCard';
