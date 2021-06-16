@@ -3,6 +3,7 @@ import {
   BottomTabNavigationOptions,
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
+import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
 import React from 'react';
 import * as Icon from 'react-native-heroicons/solid';
@@ -154,6 +155,17 @@ const HomeTab = () => {
   };
   const navigationOptions: BottomTabNavigationOptions = {};
 
+  function getTabBarVisible(route) {
+    const routeName = getFocusedRouteNameFromRoute(route);
+    const hideOnScreens = ['CardScreen'];
+
+    if (hideOnScreens.indexOf(routeName) > -1) {
+      return false;
+    }
+
+    return true;
+  }
+
   return (
     <Tab.Navigator tabBar={TabBarComponent} tabBarOptions={tabBarOptions} screenOptions={navigationOptions}>
       <Tab.Screen
@@ -164,9 +176,10 @@ const HomeTab = () => {
         name="HomeIndex"
       />
       <Tab.Screen
-        options={{
+        options={({ route }) => ({
+          tabBarVisible: getTabBarVisible(route),
           tabBarIcon: ({ focused }) => <Icon.ViewGridIcon size={30} color={focused ? '#777777' : '#bbbbbb'} />,
-        }}
+        })}
         component={ExploreStack}
         name="Explore"
       />

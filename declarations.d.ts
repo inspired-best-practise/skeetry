@@ -10,6 +10,7 @@ type rootStackParamList = {
   AuthStack: undefined;
   HomeTab: undefined;
   Direct: undefined;
+  CardScreen: undefined;
 };
 
 type commonParamList = AuthStackParamList & HomeTabParamList & rootStackParamList;
