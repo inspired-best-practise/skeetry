@@ -24,7 +24,7 @@ const CardDetailScreen = ({ route, navigation }) => {
     <View style={s.container}>
       <SharedElement id={`item.${item.id}.image`}>
         <FastImage
-          style={{ width: SCREEN_WIDTH - 60, height: normalize(500), borderRadius: 6, marginBottom: 180 }}
+          style={{ width: SCREEN_WIDTH - 18 * 2, height: normalize(500), borderRadius: 6, marginBottom: 180 }}
           source={{ uri: item.imageUrl, priority: FastImage.priority.normal }}
           resizeMode={FastImage.resizeMode.cover}
         />
@@ -33,7 +33,7 @@ const CardDetailScreen = ({ route, navigation }) => {
       <Modalize
         ref={modalizeRef}
         snapPoint={180}
-        modalTopOffset={90}
+        modalTopOffset={0}
         closeOnOverlayTap={false}
         withOverlay={false}
         closeSnapPointStraightEnabled={false}

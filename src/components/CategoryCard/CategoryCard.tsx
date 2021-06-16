@@ -4,11 +4,11 @@ import FastImage from 'react-native-fast-image';
 import { navigation } from '_app/services/navigations';
 import { s } from './styles';
 
-export const CategoryCard = ({ name, count, image, navigate }: CategoryCardProps) => {
+export const CategoryCard = ({ name, count, image, stack, screen }: CategoryCardProps) => {
   return (
     <Pressable
       onPress={() => {
-        navigation.navigate(navigate);
+        navigation.navigate(stack, { screen });
       }}
     >
       <View style={s.card}>

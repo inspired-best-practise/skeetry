@@ -10,8 +10,17 @@ import * as Icon from 'react-native-heroicons/solid';
 import { createSharedElementStackNavigator } from 'react-navigation-shared-element';
 import { TabBarComponent } from '_app/components/BottomTabBar';
 
-import { HomeIndexScreen, AccountScreen, ActivityScreen, AddScreen, ExploreScreen } from '_app/screens/Home';
-import { CardScreen } from '_app/screens/Home/Explore/CardScreen';
+import {
+  HomeIndexScreen,
+  AccountScreen,
+  ActivityScreen,
+  AddScreen,
+  ExploreScreen,
+  CountriesScreen,
+  CitiesScreen,
+  PlacesScreen,
+  CardScreen,
+} from '_app/screens/Home';
 
 export const iosTransitionSpec = {
   animation: 'spring',
@@ -62,7 +71,7 @@ const ExploreStack = () => {
       screenOptions={{
         useNativeDriver: true,
         gestureResponseDistance: {
-          vertical: 300,
+          vertical: 400,
         },
         ...TransitionPresets.ModalSlideFromBottomIOS,
         transitionSpec: {
@@ -76,9 +85,12 @@ const ExploreStack = () => {
           },
         }),
       }}
-      headerMode="none"
+      headerMode="float"
     >
       <SharedElementStack.Screen name="Explore" component={ExploreScreen} />
+      <SharedElementStack.Screen name="Countries" component={CountriesScreen} options={{ gestureEnabled: false }} />
+      <SharedElementStack.Screen name="Cities" component={CitiesScreen} options={{ gestureEnabled: false }} />
+      <SharedElementStack.Screen name="Places" component={PlacesScreen} options={{ gestureEnabled: false }} />
       <SharedElementStack.Screen
         name="CardScreen"
         component={CardScreen}
@@ -112,6 +124,7 @@ const ExploreStack = () => {
             ];
           }
         }}
+        options={{ headerShown: false }}
       />
     </SharedElementStack.Navigator>
   );

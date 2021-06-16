@@ -1,15 +1,15 @@
 import { observer } from 'mobx-react';
 import React from 'react';
-import { ScrollView } from 'react-native';
+import { SafeAreaView } from 'react-native';
 import { CardList } from '_app/components';
-import { mockDATA } from './mock';
+import { mockCountriesPopular } from './mocks/mockCountriesPopular';
 
 const Cities = () => {
   return (
-    <ScrollView showsVerticalScrollIndicator={false}>
-      <CardList title="Popular" data={mockDATA} firstList />
-      <CardList title="For you" data={mockDATA} />
-    </ScrollView>
+    <>
+      <SafeAreaView />
+      <CardList title="Popular" data={mockCountriesPopular} />
+    </>
   );
 };
 
