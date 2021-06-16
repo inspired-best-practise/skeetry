@@ -16,13 +16,13 @@ const Explore = () => {
     <>
       <SafeAreaView />
       <View style={s.categories}>
-        <Text style={s.categoriesTitle}>Some nice placeholder text for description this sections</Text>
+        <Text style={s.categoriesTitle}>Find where you want to go</Text>
       </View>
       <ScrollView style={s.categoryList}>
         <CategoryCard
           name="Countries"
           count="197"
-          image="https://images.unsplash.com/photo-1490806843957-31f4c9a91c65?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80/250x300"
+          image="https://images.unsplash.com/photo-1496614932623-0a3a9743552e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80/250x300"
         />
         <CategoryCard
           name="Cities"
@@ -32,7 +32,7 @@ const Explore = () => {
         <CategoryCard
           name="Places"
           count="999+"
-          image="https://images.unsplash.com/photo-1486299267070-83823f5448dd?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80/250x300"
+          image="https://images.unsplash.com/photo-1503614472-8c93d56e92ce?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1299&q=80/250x300"
         />
       </ScrollView>
     </>

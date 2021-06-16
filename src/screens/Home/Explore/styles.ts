@@ -12,8 +12,9 @@ export const s = StyleSheet.create({
     paddingHorizontal: normalize(18),
   },
   categoriesTitle: {
-    fontSize: normalize(18),
-    fontWeight: '600',
+    paddingBottom: normalize(16),
+    fontSize: normalize(20),
+    fontWeight: '500',
   },
   categoryList: {
     paddingHorizontal: normalize(18),

@@ -15,17 +15,19 @@ export const s = StyleSheet.create({
     right: 6,
     zIndex: 10,
     padding: 6,
-    backgroundColor: '#ffffff',
     borderRadius: 4,
     width: normalize(200),
   },
   cardName: {
-    fontWeight: '600',
-    fontSize: normalize(18),
+    fontWeight: '700',
+    fontSize: normalize(24),
     paddingBottom: normalize(6),
+    color: '#ffffff',
   },
   cardCount: {
-    fontWeight: '500',
+    fontWeight: '600',
+    color: '#ffffff',
+    fontSize: normalize(20),
   },
   cardImage: {
     width: '100%',
