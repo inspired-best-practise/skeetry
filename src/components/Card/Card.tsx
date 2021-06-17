@@ -25,7 +25,6 @@ const CardItem = ({ item }: CardProps) => {
 
   return (
     <View key={id}>
-      <Text style={s.title}>{title}</Text>
       <View style={s.item}>
         <ScrollView
           onScroll={({ nativeEvent }) => change(nativeEvent)}
@@ -60,6 +59,7 @@ const CardItem = ({ item }: CardProps) => {
           ))}
         </View>
       </View>
+      <Text style={s.title}>{title}</Text>
     </View>
   );
 };
