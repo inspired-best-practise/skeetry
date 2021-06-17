@@ -3,12 +3,13 @@ import React, { useState } from 'react';
 import { Text, Pressable, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { ScrollView } from 'react-native-gesture-handler';
+import * as Icon from 'react-native-heroicons/solid';
 import { SharedElement } from 'react-navigation-shared-element';
 import { navigation } from '_app/services/navigations';
 import { s } from './styles';
 
 const CardItem = ({ item }: CardProps) => {
-  const { images, title, id } = item;
+  const { images, title, id, rating } = item;
   const [active, setActive] = useState(images[0].id);
 
   const changeItem = nativeEvent => {
@@ -25,6 +26,7 @@ const CardItem = ({ item }: CardProps) => {
     <View key={id}>
       <View style={s.item}>
         <ScrollView
+          scrollEventThrottle={6}
           onScroll={({ nativeEvent }) => changeItem(nativeEvent)}
           pagingEnabled
           horizontal
@@ -56,6 +58,11 @@ const CardItem = ({ item }: CardProps) => {
             </Text>
           ))}
         </View>
+      </View>
+      <View style={s.rating}>
+        <Icon.StarIcon size={16} color={'black'} />
+        <Text style={s.ratingNumber}>{rating.number}</Text>
+        <Text style={s.ratingCount}>({rating.count})</Text>
       </View>
       <Text style={s.title}>{title}</Text>
     </View>

@@ -19,10 +19,9 @@ export const s = StyleSheet.create({
     borderRadius: 6,
   },
   title: {
-    paddingTop: 6 + CARD_SPACING,
+    paddingTop: 4 + CARD_SPACING,
     paddingBottom: 18 + CARD_SPACING,
     fontSize: 18,
-    fontWeight: '600',
   },
   dot: {
     margin: 2,
@@ -39,5 +38,17 @@ export const s = StyleSheet.create({
     bottom: 10,
     flexDirection: 'row',
     alignSelf: 'center',
+  },
+  rating: {
+    display: 'flex',
+    flexDirection: 'row',
+    marginTop: 12,
+    alignItems: 'flex-start',
+  },
+  ratingNumber: {
+    marginHorizontal: 2,
+  },
+  ratingCount: {
+    color: '#777',
   },
 });
