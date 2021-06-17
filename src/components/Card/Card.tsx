@@ -11,11 +11,9 @@ const CardItem = ({ item }: CardProps) => {
   const { images, title, id } = item;
   const [active, setActive] = useState(images[0].id);
 
-  const change = nativeEvent => {
+  const changeItem = nativeEvent => {
     if (nativeEvent) {
       const slide = Math.ceil(nativeEvent.contentOffset.x / nativeEvent.layoutMeasurement.width);
-      console.log('slide', slide);
-      console.log('active', active);
 
       if (slide !== active) {
         setActive(slide);
@@ -27,7 +25,7 @@ const CardItem = ({ item }: CardProps) => {
     <View key={id}>
       <View style={s.item}>
         <ScrollView
-          onScroll={({ nativeEvent }) => change(nativeEvent)}
+          onScroll={({ nativeEvent }) => changeItem(nativeEvent)}
           pagingEnabled
           horizontal
           showsHorizontalScrollIndicator={false}
