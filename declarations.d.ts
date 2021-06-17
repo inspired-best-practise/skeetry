@@ -9,7 +9,6 @@ type HomeTabParamList = {
 type rootStackParamList = {
   AuthStack: undefined;
   HomeTab: undefined;
-  Direct: undefined;
   CardScreen: undefined;
 };
 

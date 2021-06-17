@@ -4,7 +4,6 @@ import {
   MaterialTopTabNavigationOptions,
 } from '@react-navigation/material-top-tabs';
 import React from 'react';
-import { DirectScreen } from '_app/screens/Others';
 import AuthStack from './AuthStack';
 import HomeTab from './HomeTab';
 
@@ -33,7 +32,6 @@ const index = (): JSX.Element => {
       {logined && (
         <>
           <RootTab.Screen name="HomeTab" component={HomeTab} />
-          <RootTab.Screen name="Direct" component={DirectScreen} />
         </>
       )}
     </RootTab.Navigator>

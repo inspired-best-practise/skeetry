@@ -10,7 +10,7 @@ import { s } from './styles';
 
 const CardItem = ({ item }: CardProps) => {
   const { images, title, id, rating } = item;
-  const [active, setActive] = useState(images[0].id);
+  const [active, setActive] = useState(0);
 
   const changeItem = nativeEvent => {
     if (nativeEvent) {

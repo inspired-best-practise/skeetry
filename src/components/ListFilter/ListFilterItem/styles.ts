@@ -7,6 +7,7 @@ export const s = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 12,
     marginHorizontal: 6,
+    height: 40,
   },
   filterItemTitle: {
     fontSize: 14,
