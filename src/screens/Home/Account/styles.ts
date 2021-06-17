@@ -6,7 +6,7 @@ export const s = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: normalize(18),
+    paddingHorizontal: normalize(20),
   },
   accountHeader: {
     display: 'flex',

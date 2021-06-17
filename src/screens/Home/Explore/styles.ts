@@ -9,7 +9,7 @@ export const s = StyleSheet.create({
   },
   categories: {
     paddingTop: normalize(18),
-    paddingHorizontal: normalize(18),
+    paddingHorizontal: normalize(20),
   },
   categoriesTitle: {
     textAlign: 'center',
@@ -17,6 +17,6 @@ export const s = StyleSheet.create({
     fontWeight: '500',
   },
   categoryList: {
-    paddingHorizontal: normalize(18),
+    paddingHorizontal: normalize(20),
   },
 });

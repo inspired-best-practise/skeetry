@@ -9,7 +9,7 @@
  */
 
 import React, { useEffect } from 'react';
-import { SafeAreaView, StatusBar } from 'react-native';
+import { StatusBar } from 'react-native';
 import { Provider } from 'mobx-react';
 import SplashScreen from 'react-native-splash-screen';
 

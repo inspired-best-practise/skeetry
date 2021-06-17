@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { RefreshControl, FlatList, View } from 'react-native';
+import { RefreshControl, FlatList } from 'react-native';
 import { observer } from 'mobx-react';
-// import { LIST_FULL_SIZE } from '_app/constants';
 import { wait } from '_app/utils';
 import { Card } from '_app/components';
+import { s } from './styles';
 
 // TODO: type item when done
 
@@ -18,19 +18,15 @@ export const List = ({ title, data }): JSX.Element => {
   const renderItem = ({ item }: any) => <Card item={item} />;
 
   return (
-    <View>
-      {/* <Text style={s.cardListTitle}>{title}</Text> */}
-      <FlatList
-        contentContainerStyle={{ padding: 18 }}
-        data={data}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-        showsVerticalScrollIndicator={false}
-        // snapToInterval={LIST_FULL_SIZE}
-        decelerationRate="fast"
-        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
-      />
-    </View>
+    <FlatList
+      contentContainerStyle={s.list}
+      data={data}
+      renderItem={renderItem}
+      keyExtractor={item => item.id}
+      showsVerticalScrollIndicator={false}
+      decelerationRate="fast"
+      refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+    />
   );
 };
 

@@ -1,20 +1,12 @@
-// import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { observer } from 'mobx-react';
 import React from 'react';
-import { View, Text, SafeAreaView, ScrollView } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 import { CategoryCard } from '_app/components';
 import { s } from './styles';
-// import { CitiesScreen } from './Cities';
-// import { CountriesScreen } from './Countries';
-// import { PlacesScreen } from './Places';
-// import { StatesScreen } from './States';
-
-// const Tab = createMaterialTopTabNavigator();
 
 const Explore = () => {
   return (
     <>
-      <SafeAreaView />
       <View style={s.categories}>
         <Text style={s.categoriesTitle}>Find where you want to go</Text>
       </View>
@@ -42,33 +34,6 @@ const Explore = () => {
         />
       </ScrollView>
     </>
-
-    // <>
-    //   <SafeAreaView />
-    //   <Tab.Navigator
-    //     tabBarOptions={{
-    //       activeTintColor: '#ffffff',
-    //       inactiveTintColor: 'black',
-    //       pressColor: '#9BC9E2',
-    //       indicatorStyle: {
-    //         height: '100%',
-    //         backgroundColor: 'black',
-    //         borderRadius: 8,
-    //       },
-    //       style: {
-    //         backgroundColor: '#eeeeee',
-    //         borderRadius: 8,
-    //         margin: 16,
-    //       },
-    //       labelStyle: { fontSize: 10, fontWeight: '700' },
-    //     }}
-    //   >
-    //     <Tab.Screen children={() => <CountriesScreen />} name="Countries" />
-    //     <Tab.Screen children={() => <CitiesScreen />} name="Cities" />
-    //     <Tab.Screen children={() => <StatesScreen />} name="States" />
-    //     <Tab.Screen children={() => <PlacesScreen />} name="Places" />
-    //   </Tab.Navigator>
-    // </>
   );
 };
 

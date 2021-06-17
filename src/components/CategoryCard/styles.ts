@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 export const s = StyleSheet.create({
   card: {
     width: '100%',
-    paddingTop: normalize(18),
+    paddingTop: normalize(20),
     position: 'relative',
     borderRadius: 6,
   },

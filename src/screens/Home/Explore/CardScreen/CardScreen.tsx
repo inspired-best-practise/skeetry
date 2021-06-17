@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react';
 import React, { useEffect, useRef } from 'react';
-import { View, Text, SafeAreaView } from 'react-native';
+import { View, Text } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { Modalize } from 'react-native-modalize';
 import { SharedElement } from 'react-navigation-shared-element';
@@ -29,7 +29,6 @@ const CardDetailScreen = ({ route, navigation }) => {
           resizeMode={FastImage.resizeMode.cover}
         />
       </SharedElement>
-      <SafeAreaView />
       <Modalize
         ref={modalizeRef}
         snapPoint={180}
