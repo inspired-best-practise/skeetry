@@ -16,7 +16,7 @@ const CardDetailScreen = ({ route, navigation }) => {
       </SharedElement>
       <View style={s.content}>
         <View style={s.section}>
-          <Text style={s.name}>{item.title}</Text>
+          <Text style={s.name}>{item.flag + ' ' + item.title}</Text>
           <View style={s.rating}>
             <Icon.StarIcon size={16} color={'black'} />
             <Text style={s.ratingNumber}>{item.rating.number}</Text>

@@ -151,13 +151,14 @@ const ExploreStack = () => {
             ];
           }
         }}
-        options={{
+        options={({ route }) => ({
           headerTintColor: '#000',
           gestureEnabled: false,
           cardStyle: {
             backgroundColor: '#fff',
           },
-        }}
+          title: route.params.item.title,
+        })}
       />
     </SharedElementStack.Navigator>
   );

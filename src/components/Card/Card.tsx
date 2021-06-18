@@ -11,7 +11,7 @@ import { s } from './styles';
 const AnimatedImage = Animated.createAnimatedComponent(FastImage);
 
 const CardItem = ({ item }: CardProps) => {
-  const { images, title, id, rating } = item;
+  const { images, title, id, rating, flag } = item;
   const [active, setActive] = useState(0);
 
   const changeItem = nativeEvent => {
@@ -66,7 +66,7 @@ const CardItem = ({ item }: CardProps) => {
         <Text style={s.ratingNumber}>{rating.number}</Text>
         <Text style={s.ratingCount}>({rating.count})</Text>
       </View>
-      <Text style={s.title}>{title}</Text>
+      <Text style={s.title}>{flag + ' ' + title}</Text>
     </View>
   );
 };
