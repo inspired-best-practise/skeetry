@@ -1,53 +1,54 @@
 import { observer } from 'mobx-react';
-import React, { useEffect, useRef } from 'react';
-import { View, Text } from 'react-native';
-import FastImage from 'react-native-fast-image';
-import { Modalize } from 'react-native-modalize';
+import React from 'react';
+import { View, Text, Image } from 'react-native';
 import { SharedElement } from 'react-navigation-shared-element';
-import { normalize, SCREEN_WIDTH } from '_app/utils/getDimensions';
+import { SCREEN_WIDTH } from '_app/utils/getDimensions';
 import { s } from './styles';
+import * as Icon from 'react-native-heroicons/solid';
 
 const CardDetailScreen = ({ route, navigation }) => {
-  const modalizeRef = useRef<Modalize>(null);
-
-  const onOpen = () => {
-    modalizeRef.current?.open();
-  };
-
-  useEffect(() => {
-    onOpen();
-  }, []);
-
   const { item } = route.params;
 
   return (
     <View style={s.container}>
       <SharedElement id={`item.${item.id}.image`}>
-        <FastImage
-          style={{ width: SCREEN_WIDTH - 18 * 2, height: normalize(500), borderRadius: 6, marginBottom: 180 }}
-          source={{ uri: item.imageUrl, priority: FastImage.priority.normal }}
-          resizeMode={FastImage.resizeMode.cover}
-        />
+        <Image style={{ width: SCREEN_WIDTH, height: 300 }} source={{ uri: item.images[2].src }} resizeMode="cover" />
       </SharedElement>
-      <Modalize
-        ref={modalizeRef}
-        snapPoint={180}
-        modalTopOffset={0}
-        closeOnOverlayTap={false}
-        withOverlay={false}
-        closeSnapPointStraightEnabled={false}
-        alwaysOpen={180}
-        disableScrollIfPossible
-        HeaderComponent={
-          <View>
-            <Text>Header</Text>
+      <View style={s.content}>
+        <View style={s.section}>
+          <Text style={s.name}>{item.title}</Text>
+          <View style={s.rating}>
+            <Icon.StarIcon size={16} color={'black'} />
+            <Text style={s.ratingNumber}>{item.rating.number}</Text>
+            <Text style={s.ratingCount}>({item.rating.count})</Text>
           </View>
-        }
-        withHandle={false}
-      >
-        <Text>...your content</Text>
-      </Modalize>
+        </View>
+        <View style={s.section}>
+          <Text style={s.sectionTitle}>Where you'll be</Text>
+          <Text>Google map</Text>
+        </View>
+
+        <View style={s.section}>
+          <Text style={s.sectionTitle}>Where you'll be</Text>
+          <Text>
+            <Text style={s.sectionMainText}>National language:</Text> English
+          </Text>
+          <Text>
+            <Text style={s.sectionMainText}>Currency:</Text> USD
+          </Text>
+          <Text>
+            <Text style={s.sectionMainText}>Driving side:</Text> Left
+          </Text>
+        </View>
+
+        <Text>Reviews list</Text>
+
+        <Text>Cities list</Text>
+
+        <Text>Buttons: want, visited</Text>
+      </View>
     </View>
   );
 };
+
 export const CardScreen = observer(CardDetailScreen);

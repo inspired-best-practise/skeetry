@@ -70,15 +70,12 @@ const ExploreStack = () => {
       mode="modal"
       screenOptions={{
         useNativeDriver: true,
-        gestureResponseDistance: {
-          vertical: 400,
-        },
+        gestureEnabled: false,
         ...TransitionPresets.ModalSlideFromBottomIOS,
         transitionSpec: {
           open: iosTransitionSpec,
           close: iosTransitionSpec,
         },
-        // Opacity animation, you can also adjust this by playing with transform properties.
         cardStyleInterpolator: ({ current: { progress } }) => ({
           cardStyle: {
             opacity: progress,
@@ -88,9 +85,39 @@ const ExploreStack = () => {
       headerMode="float"
     >
       <SharedElementStack.Screen name="Explore" component={ExploreScreen} />
-      <SharedElementStack.Screen name="Countries" component={CountriesScreen} options={{ gestureEnabled: false }} />
-      <SharedElementStack.Screen name="Cities" component={CitiesScreen} options={{ gestureEnabled: false }} />
-      <SharedElementStack.Screen name="Places" component={PlacesScreen} options={{ gestureEnabled: false }} />
+      <SharedElementStack.Screen
+        name="Countries"
+        component={CountriesScreen}
+        options={{
+          headerTintColor: '#000',
+          gestureEnabled: false,
+          cardStyle: {
+            backgroundColor: '#fff',
+          },
+        }}
+      />
+      <SharedElementStack.Screen
+        name="Cities"
+        component={CitiesScreen}
+        options={{
+          headerTintColor: '#000',
+          gestureEnabled: false,
+          cardStyle: {
+            backgroundColor: '#fff',
+          },
+        }}
+      />
+      <SharedElementStack.Screen
+        name="Places"
+        component={PlacesScreen}
+        options={{
+          headerTintColor: '#000',
+          gestureEnabled: false,
+          cardStyle: {
+            backgroundColor: '#fff',
+          },
+        }}
+      />
       <SharedElementStack.Screen
         name="CardScreen"
         component={CardScreen}
@@ -124,7 +151,13 @@ const ExploreStack = () => {
             ];
           }
         }}
-        options={{ headerShown: false }}
+        options={{
+          headerTintColor: '#000',
+          gestureEnabled: false,
+          cardStyle: {
+            backgroundColor: '#fff',
+          },
+        }}
       />
     </SharedElementStack.Navigator>
   );

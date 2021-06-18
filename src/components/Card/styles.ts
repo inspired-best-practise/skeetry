@@ -18,6 +18,13 @@ export const s = StyleSheet.create({
     height: CARD_HEIGHT - 20,
     borderRadius: 6,
   },
+  focalPoint: {
+    ...StyleSheet.absoluteFillObject,
+    width: 20,
+    height: 20,
+    backgroundColor: 'blue',
+    borderRadius: 10,
+  },
   title: {
     paddingTop: 4 + CARD_SPACING,
     paddingBottom: 18 + CARD_SPACING,
