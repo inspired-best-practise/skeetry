@@ -15,6 +15,10 @@
 		55543C2DC7EEE9B7799B6F02 /* libPods-travel-travelTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7D02270D516D1B80B9938B /* libPods-travel-travelTests.a */; };
 		5D677E2B267135550026BA6D /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D677E2A267135550026BA6D /* splash.png */; };
 		5DB0052D26712DF200E91AFC /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DB0052C26712DF200E91AFC /* Launch Screen.storyboard */; };
+		5DBC1792267CE6B00010BFEE /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DBC1791267CE6B00010BFEE /* GoogleMaps.framework */; };
+		5DBC1793267CE6B00010BFEE /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DBC1791267CE6B00010BFEE /* GoogleMaps.framework */; };
+		5DBC1795267CE7EF0010BFEE /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC1794267CE7EF0010BFEE /* GoogleMaps.bundle */; };
+		5DBC1796267CE7EF0010BFEE /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC1794267CE7EF0010BFEE /* GoogleMaps.bundle */; };
 		5DFA5705266E8909001CFB4D /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DFA56F7266E8908001CFB4D /* FontAwesome.ttf */; };
 		5DFA5706266E8909001CFB4D /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DFA56F8266E8908001CFB4D /* Entypo.ttf */; };
 		5DFA5707266E8909001CFB4D /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DFA56F9266E8908001CFB4D /* Octicons.ttf */; };
@@ -58,6 +62,8 @@
 		5DAC1A66266E87D20043AA6A /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
 		5DAC1A69266E883A0043AA6A /* Zocial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Zocial.ttf; sourceTree = "<group>"; };
 		5DB0052C26712DF200E91AFC /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		5DBC1791267CE6B00010BFEE /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMaps.framework; sourceTree = "<group>"; };
+		5DBC1794267CE7EF0010BFEE /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = GoogleMaps.framework/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		5DFA56F7266E8908001CFB4D /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.ttf; path = ../assets/fonts/FontAwesome.ttf; sourceTree = "<group>"; };
 		5DFA56F8266E8908001CFB4D /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Entypo.ttf; path = ../assets/fonts/Entypo.ttf; sourceTree = "<group>"; };
 		5DFA56F9266E8908001CFB4D /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Octicons.ttf; path = ../assets/fonts/Octicons.ttf; sourceTree = "<group>"; };
@@ -85,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DBC1793267CE6B00010BFEE /* GoogleMaps.framework in Frameworks */,
 				55543C2DC7EEE9B7799B6F02 /* libPods-travel-travelTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -93,6 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DBC1792267CE6B00010BFEE /* GoogleMaps.framework in Frameworks */,
 				348B8AFE8DBBFE69A6B4C389 /* libPods-travel.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -134,9 +142,11 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5DBC1794267CE7EF0010BFEE /* GoogleMaps.bundle */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				B07F2F4312BD2297B5987D04 /* libPods-travel.a */,
 				FD7D02270D516D1B80B9938B /* libPods-travel-travelTests.a */,
+				5DBC1791267CE6B00010BFEE /* GoogleMaps.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -295,6 +305,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DBC1796267CE7EF0010BFEE /* GoogleMaps.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,6 +316,7 @@
 				5DFA570F266E8909001CFB4D /* AntDesign.ttf in Resources */,
 				5DFA5707266E8909001CFB4D /* Octicons.ttf in Resources */,
 				5DB0052D26712DF200E91AFC /* Launch Screen.storyboard in Resources */,
+				5DBC1795267CE7EF0010BFEE /* GoogleMaps.bundle in Resources */,
 				5DFA5712266E8909001CFB4D /* FontAwesome5_Regular.ttf in Resources */,
 				5DFA570D266E8909001CFB4D /* MaterialCommunityIcons.ttf in Resources */,
 				5DFA570E266E8909001CFB4D /* Ionicons.ttf in Resources */,
@@ -508,6 +520,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -537,6 +553,10 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = travelTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -564,6 +584,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7GHML95B3Z;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = travel/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -590,6 +614,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7GHML95B3Z;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = travel/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
