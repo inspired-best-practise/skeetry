@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { View, Text, FlatList, RefreshControl } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { AccountStatsItem, Avatar } from '_app/components';
+import { AccountStatsItem, Avatar, AccountFilter } from '_app/components';
 import { wait } from '_app/utils';
 import { mockCountriesPopular } from '../Explore/mocks/mockCountriesPopular';
 import { s } from './styles';
@@ -40,9 +40,11 @@ const Account = () => {
         <AccountStatsItem name="Visited" number="20" />
         <AccountStatsItem name="Gallery" number="120" />
       </View>
+      <AccountFilter />
       <FlatList
         numColumns={2}
         bounces={false}
+        contentContainerStyle={{ paddingBottom: 6 }}
         columnWrapperStyle={s.cardList}
         data={mockCountriesPopular}
         renderItem={renderItem}

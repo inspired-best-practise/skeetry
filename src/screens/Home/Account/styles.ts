@@ -9,7 +9,7 @@ export const s = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     // paddingHorizontal: normalize(20),
-    paddingBottom: 100,
+    paddingBottom: 80,
   },
   accountHeader: {
     display: 'flex',

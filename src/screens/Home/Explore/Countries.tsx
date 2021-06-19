@@ -11,7 +11,9 @@ import { mockCountriesPopular } from './mocks/mockCountriesPopular';
 const Countries = () => {
   return (
     <View style={{ marginTop: 20 }}>
-      <ListFilter />
+      <View style={{ paddingHorizontal: 4 }}>
+        <ListFilter />
+      </View>
       <CardList title="Popular" data={mockCountriesPopular} />
     </View>
   );
