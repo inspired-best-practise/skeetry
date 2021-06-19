@@ -13,7 +13,7 @@ import { TabBarComponent } from '_app/components/BottomTabBar';
 import {
   HomeIndexScreen,
   AccountScreen,
-  ActivityScreen,
+  // ActivityScreen,
   AddScreen,
   ExploreScreen,
   CountriesScreen,
@@ -50,18 +50,18 @@ const AccountStack = () => {
   );
 };
 
-const ActivityStack = () => {
-  return (
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: false,
-        gestureEnabled: false,
-      }}
-    >
-      <Stack.Screen name="ActiviyIndex" component={ActivityScreen} />
-    </Stack.Navigator>
-  );
-};
+// const ActivityStack = () => {
+//   return (
+//     <Stack.Navigator
+//       screenOptions={{
+//         headerShown: false,
+//         gestureEnabled: false,
+//       }}
+//     >
+//       <Stack.Screen name="ActiviyIndex" component={ActivityScreen} />
+//     </Stack.Navigator>
+//   );
+// };
 
 const ExploreStack = () => {
   return (
@@ -238,18 +238,18 @@ const HomeTab = () => {
           },
         })}
         options={{
-          tabBarIcon: ({ focused }) => <Icon.PlusCircleIcon size={30} color={'#bbbbbb'} />,
+          tabBarIcon: ({ focused }) => <Icon.SearchIcon size={30} color={'#bbbbbb'} />,
         }}
         component={AddStack}
         name="Add"
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         options={{
           tabBarIcon: ({ focused }) => <Icon.HeartIcon size={30} color={focused ? '#777777' : '#bbbbbb'} />,
         }}
         component={ActivityStack}
         name="Activity"
-      />
+      /> */}
       <Tab.Screen
         options={{
           tabBarIcon: ({ focused }) => <Icon.UserIcon size={30} color={focused ? '#777777' : '#bbbbbb'} />,

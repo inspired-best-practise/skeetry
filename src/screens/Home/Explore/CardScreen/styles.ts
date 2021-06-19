@@ -78,6 +78,21 @@ export const s = StyleSheet.create({
   sectionMainText: {
     fontWeight: '500',
   },
+  cardButtons: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
+  },
+  button: {
+    backgroundColor: '#eee',
+    paddingHorizontal: 50,
+    paddingVertical: 12,
+    borderRadius: 6,
+  },
+  buttonText: {
+    fontWeight: '600',
+  },
   name: {
     fontSize: 24,
     fontWeight: '500',

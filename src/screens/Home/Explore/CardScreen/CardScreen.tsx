@@ -1,10 +1,11 @@
 import { observer } from 'mobx-react';
 import React from 'react';
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, TouchableHighlight, ScrollView } from 'react-native';
 import { SharedElement } from 'react-navigation-shared-element';
 import { SCREEN_WIDTH } from '_app/utils/getDimensions';
 import { s } from './styles';
 import * as Icon from 'react-native-heroicons/solid';
+// import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
 const CardDetailScreen = ({ route, navigation }) => {
   const { item } = route.params;
@@ -14,18 +15,41 @@ const CardDetailScreen = ({ route, navigation }) => {
       <SharedElement id={`item.${item.id}.image`}>
         <Image style={{ width: SCREEN_WIDTH, height: 300 }} source={{ uri: item.images[2].src }} resizeMode="cover" />
       </SharedElement>
-      <View style={s.content}>
+      <ScrollView style={s.content}>
         <View style={s.section}>
           <Text style={s.name}>{item.flag + ' ' + item.title}</Text>
-          <View style={s.rating}>
+          {/* <View style={s.rating}>
             <Icon.StarIcon size={16} color={'black'} />
             <Text style={s.ratingNumber}>{item.rating.number}</Text>
             <Text style={s.ratingCount}>({item.rating.count})</Text>
+          </View> */}
+        </View>
+        <View style={s.section}>
+          <View style={s.cardButtons}>
+            <TouchableHighlight underlayColor="#DDDDDD" style={s.button} onPress={() => {}}>
+              <Text style={s.buttonText}>Want</Text>
+            </TouchableHighlight>
+            <TouchableHighlight underlayColor="#DDDDDD" style={s.button} onPress={() => {}}>
+              <Text style={s.buttonText}>Visited</Text>
+            </TouchableHighlight>
           </View>
         </View>
         <View style={s.section}>
           <Text style={s.sectionTitle}>Where you'll be</Text>
           <Text>Google map</Text>
+          {/* <MapView
+            style={{
+              flex: 1,
+              width: '100%',
+            }}
+            provider={PROVIDER_GOOGLE}
+            initialRegion={{
+              latitude: 37.78825,
+              longitude: -122.4324,
+              latitudeDelta: 0.0922,
+              longitudeDelta: 0.0421,
+            }}
+          /> */}
         </View>
 
         <View style={s.section}>
@@ -41,12 +65,10 @@ const CardDetailScreen = ({ route, navigation }) => {
           </Text>
         </View>
 
-        <Text>Reviews list</Text>
+        {/* <Text>Reviews list</Text> */}
 
-        <Text>Cities list</Text>
-
-        <Text>Buttons: want, visited</Text>
-      </View>
+        {/* <Text>Cities list</Text> */}
+      </ScrollView>
     </View>
   );
 };

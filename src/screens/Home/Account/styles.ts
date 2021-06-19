@@ -1,12 +1,15 @@
-import { normalize } from '_app/utils/getDimensions';
+import { normalize, SCREEN_WIDTH } from '_app/utils/getDimensions';
 import { StyleSheet } from 'react-native';
+
+const itemWidth = SCREEN_WIDTH / 2 - 20;
 
 export const s = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: normalize(20),
+    // paddingHorizontal: normalize(20),
+    paddingBottom: 100,
   },
   accountHeader: {
     display: 'flex',
@@ -18,6 +21,7 @@ export const s = StyleSheet.create({
     marginBottom: normalize(20),
     borderBottomColor: '#eee',
     borderBottomWidth: 1,
+    paddingHorizontal: normalize(20),
   },
   name: {
     fontWeight: '700',
@@ -34,5 +38,21 @@ export const s = StyleSheet.create({
     marginBottom: normalize(20),
     borderBottomColor: '#eee',
     borderBottomWidth: 1,
+    paddingHorizontal: normalize(20),
+  },
+  card: {
+    minWidth: itemWidth,
+    maxWidth: itemWidth,
+    marginVertical: 6,
+    marginHorizontal: 6,
+  },
+  cardList: {
+    flex: 1,
+    justifyContent: 'flex-start',
+  },
+  cardImage: {
+    width: itemWidth,
+    height: 150,
+    borderRadius: 6,
   },
 });
