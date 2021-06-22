@@ -6,7 +6,7 @@ import { navigationRef } from '_app/services/navigations';
 import RootTab from './RootTab';
 import { AddChooserScreen } from '_app/screens/Home/Add/AddChooser';
 import { enableScreens } from 'react-native-screens';
-import { LoginOrSignup } from '_app/screens/Others';
+import { LoginOrSignup, Offline } from '_app/screens/Others';
 
 enableScreens();
 
@@ -21,10 +21,11 @@ const theme = {
 // TODO: type when done
 const RootStack = createNativeStackNavigator();
 
-const index = (): JSX.Element => {
+const Index = (): JSX.Element => {
   const navigationOptions: NativeStackNavigationOptions = {
     headerShown: false,
   };
+
   return (
     <NavigationContainer ref={navigationRef} theme={theme}>
       <RootStack.Navigator initialRouteName="RootTab">
@@ -45,8 +46,18 @@ const index = (): JSX.Element => {
           name="LoginOrSignup"
           component={LoginOrSignup}
         />
+        <RootStack.Screen
+          options={{
+            ...TransitionPresets.ModalTransition,
+            headerShown: false,
+            stackPresentation: 'push',
+          }}
+          name="Offline"
+          component={Offline}
+        />
       </RootStack.Navigator>
     </NavigationContainer>
   );
 };
-export default index;
+
+export default Index;
