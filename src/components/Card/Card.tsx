@@ -10,7 +10,7 @@ import { s } from './styles';
 
 const AnimatedImage = Animated.createAnimatedComponent(FastImage);
 
-const CardItem = ({ item }: CardProps) => {
+const CardItem = ({ item }: TCardProps) => {
   const { images, title, id, rating, flag } = item;
   const [active, setActive] = useState(0);
 

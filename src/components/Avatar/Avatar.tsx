@@ -3,7 +3,7 @@ import React from 'react';
 import FastImage from 'react-native-fast-image';
 import { s } from './styles';
 
-const CAvatar = ({ src, nickname }: AvatarProps) => {
+const CAvatar = ({ src, nickname }: TAvatarProps) => {
   const placeholderImageMock = `https://eu.ui-avatars.com/api/?length=1&name=${nickname}`;
 
   if (!src) {

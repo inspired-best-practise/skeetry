@@ -4,7 +4,7 @@ import { View, Text, Pressable } from 'react-native';
 import { navigation } from '_app/services/navigations';
 import { s } from './styles';
 
-const CollectionItem = ({ item }: CollectionProps) => {
+const CollectionItem = ({ item }: TCollectionProps) => {
   const { title } = item;
 
   return (

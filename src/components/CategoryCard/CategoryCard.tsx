@@ -4,7 +4,7 @@ import FastImage from 'react-native-fast-image';
 import { navigation } from '_app/services/navigations';
 import { s } from './styles';
 
-export const CategoryCard = ({ name, count, image, stack, screen }: CategoryCardProps) => {
+export const CategoryCard = ({ name, count, image, stack, screen }: TCategoryCardProps) => {
   return (
     <Pressable
       onPress={() => {

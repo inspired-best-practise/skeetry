@@ -37,6 +37,8 @@ export const iosTransitionSpec = {
 const Stack = createStackNavigator();
 const SharedElementStack = createSharedElementStackNavigator();
 
+const isAuth = false;
+
 const AccountStack = () => {
   return (
     <Stack.Navigator
@@ -251,6 +253,15 @@ const HomeTab = () => {
         name="Activity"
       /> */}
       <Tab.Screen
+        listeners={({ navigation }) => ({
+          tabPress: e => {
+            if (!isAuth) {
+              e.preventDefault();
+              return navigation.navigate('LoginOrSignup');
+            }
+            return navigation.navigate('Account');
+          },
+        })}
         options={{
           tabBarIcon: ({ focused }) => <Icon.UserIcon size={30} color={focused ? '#777777' : '#bbbbbb'} />,
         }}

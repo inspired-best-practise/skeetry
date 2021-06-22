@@ -35,7 +35,7 @@ const Account = () => {
         <Avatar src={avatarSrcMock} nickname="mike" />
       </View>
       <View style={s.accountStats}>
-        <AccountStatsItem name="Place" number="5512" isPlace />
+        <AccountStatsItem name="Place" number="5512" />
         <AccountStatsItem name="Want" number="45" />
         <AccountStatsItem name="Visited" number="20" />
         <AccountStatsItem name="Gallery" number="120" />

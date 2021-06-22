@@ -1,3 +1,3 @@
-type CardProps = {
+type TCardProps = {
   item: any;
 };

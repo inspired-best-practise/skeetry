@@ -1,3 +1,3 @@
-type CollectionProps = {
+type TCollectionProps = {
   item: any;
 };

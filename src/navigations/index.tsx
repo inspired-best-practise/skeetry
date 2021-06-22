@@ -6,6 +6,7 @@ import { navigationRef } from '_app/services/navigations';
 import RootTab from './RootTab';
 import { AddChooserScreen } from '_app/screens/Home/Add/AddChooser';
 import { enableScreens } from 'react-native-screens';
+import { LoginOrSignup } from '_app/screens/Others';
 
 enableScreens();
 
@@ -35,6 +36,14 @@ const index = (): JSX.Element => {
           }}
           name="AddChooser"
           component={AddChooserScreen}
+        />
+        <RootStack.Screen
+          options={{
+            ...TransitionPresets.ModalTransition,
+            stackPresentation: 'formSheet',
+          }}
+          name="LoginOrSignup"
+          component={LoginOrSignup}
         />
       </RootStack.Navigator>
     </NavigationContainer>

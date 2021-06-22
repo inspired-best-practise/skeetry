@@ -1,4 +1,4 @@
-type AccountStatsItemProps = {
+type TAccountStatsItemProps = {
   name: string;
   number: string;
 };

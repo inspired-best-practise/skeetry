@@ -1,4 +1,4 @@
-type AvatarProps = {
+type TAvatarProps = {
   src?: string;
   nickname: string;
 };

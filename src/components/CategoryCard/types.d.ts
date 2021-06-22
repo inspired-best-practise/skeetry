@@ -1,4 +1,4 @@
-type CategoryCardProps = {
+type TCategoryCardProps = {
   name: string;
   count: string;
   image: string;
