@@ -16,17 +16,20 @@ import SplashScreen from 'react-native-splash-screen';
 import { stores } from '_app/store';
 import { LoadingOverlay } from '_app/components';
 import RootStackNavigation from '_app/navigations';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-const App = () => {
+const App: React.FC = () => {
   useEffect(() => {
     SplashScreen.hide();
   }, []);
 
   return (
     <Provider {...stores}>
-      <StatusBar barStyle="dark-content" animated translucent backgroundColor="rgba(0,0,0,0)" />
-      <RootStackNavigation />
-      <LoadingOverlay />
+      <SafeAreaProvider>
+        <StatusBar barStyle="dark-content" animated translucent backgroundColor="rgba(0,0,0,0)" />
+        <RootStackNavigation />
+        <LoadingOverlay />
+      </SafeAreaProvider>
     </Provider>
   );
 };

@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { paragraph } from '_app/constants';
 import { normalize } from '_app/utils/getDimensions';
 
 export const s = StyleSheet.create({
@@ -13,8 +14,7 @@ export const s = StyleSheet.create({
   },
   categoriesTitle: {
     textAlign: 'center',
-    fontSize: normalize(18),
-    fontWeight: '500',
+    ...paragraph,
   },
   categoryList: {
     paddingHorizontal: normalize(20),
