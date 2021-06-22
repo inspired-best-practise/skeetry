@@ -37,18 +37,80 @@ export const iosTransitionSpec = {
 const Stack = createStackNavigator();
 const SharedElementStack = createSharedElementStackNavigator();
 
-const isAuth = false;
+const isAuth = true;
 
 const AccountStack = () => {
   return (
-    <Stack.Navigator
+    <SharedElementStack.Navigator
+      initialRouteName="Explore"
+      mode="modal"
       screenOptions={{
-        headerShown: false,
+        useNativeDriver: true,
         gestureEnabled: false,
+        ...TransitionPresets.ModalSlideFromBottomIOS,
+        transitionSpec: {
+          open: iosTransitionSpec,
+          close: iosTransitionSpec,
+        },
+        cardStyleInterpolator: ({ current: { progress } }) => ({
+          cardStyle: {
+            opacity: progress,
+          },
+        }),
       }}
+      headerMode="float"
     >
-      <Stack.Screen component={AccountScreen} name="AccountIndex" />
-    </Stack.Navigator>
+      <SharedElementStack.Screen
+        component={AccountScreen}
+        name="AccountIndex"
+        options={({ route }) => ({
+          headerShown: false,
+          headerTitle: 'Account',
+        })}
+      />
+      <SharedElementStack.Screen
+        name="CardScreen"
+        component={CardScreen}
+        sharedElementsConfig={(route, otherRoute, showing) => {
+          const { item } = route.params;
+          if (route.name === 'CardScreen' && showing) {
+            // Open animation fades in image, title and description
+            return [
+              {
+                id: `item.${item.id}.image`,
+              },
+              {
+                id: `item.${item.id}.title`,
+                animation: 'fade',
+                resize: 'clip',
+                align: 'left-top',
+              },
+              {
+                id: `item.${item.id}.description`,
+                animation: 'fade',
+                resize: 'clip',
+                align: 'left-top',
+              },
+            ];
+          } else {
+            // Close animation only fades out image
+            return [
+              {
+                id: `item.${item.id}.image`,
+              },
+            ];
+          }
+        }}
+        options={({ route }) => ({
+          headerTintColor: '#000',
+          gestureEnabled: false,
+          cardStyle: {
+            backgroundColor: '#fff',
+          },
+          title: route.params.item.title,
+        })}
+      />
+    </SharedElementStack.Navigator>
   );
 };
 
@@ -262,9 +324,10 @@ const HomeTab = () => {
             return navigation.navigate('Account');
           },
         })}
-        options={{
+        options={({ route }) => ({
+          tabBarVisible: getTabBarVisible(route),
           tabBarIcon: ({ focused }) => <Icon.UserIcon size={30} color={focused ? '#777777' : '#bbbbbb'} />,
-        }}
+        })}
         component={AccountStack}
         name="Account"
       />

@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react';
 import React from 'react';
-import { View, Text, Image, TouchableHighlight, ScrollView } from 'react-native';
+import { View, Text, Image, TouchableHighlight, ScrollView, Pressable } from 'react-native';
 import { SharedElement } from 'react-navigation-shared-element';
 import { SCREEN_WIDTH } from '_app/utils/getDimensions';
 import { s } from './styles';
@@ -13,7 +13,7 @@ const CardDetailScreen = ({ route, navigation }) => {
   return (
     <View style={s.container}>
       <SharedElement id={`item.${item.id}.image`}>
-        <Image style={{ width: SCREEN_WIDTH, height: 300 }} source={{ uri: item.images[2].src }} resizeMode="cover" />
+        <Image style={{ width: SCREEN_WIDTH, height: 300 }} source={{ uri: item.images[0].src }} resizeMode="cover" />
       </SharedElement>
       <ScrollView style={s.content}>
         <View style={s.section}>

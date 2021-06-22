@@ -1,21 +1,27 @@
 import { observer } from 'mobx-react';
 import React, { useState } from 'react';
-import { View, Text, FlatList, RefreshControl } from 'react-native';
+import { View, Text, FlatList, RefreshControl, Pressable } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { SharedElement } from 'react-navigation-shared-element';
 import { AccountStatsItem, Avatar, AccountFilter } from '_app/components';
+import { navigation } from '_app/services/navigations';
 import { wait } from '_app/utils';
 import { mockCountriesPopular } from '../Explore/mocks/mockCountriesPopular';
 import { s } from './styles';
 
 const renderItem = ({ item }: any) => (
-  <View key={item.id} style={s.card}>
-    <FastImage
-      style={s.cardImage}
-      source={{ uri: item.imageUrl, priority: FastImage.priority.normal }}
-      resizeMode={FastImage.resizeMode.cover}
-    />
-  </View>
+  <Pressable onPress={() => navigation.navigate('CardScreen', { item })}>
+    <View key={item.id} style={s.card}>
+      <SharedElement id={`item.${item.id}.image`}>
+        <FastImage
+          style={s.cardImage}
+          source={{ uri: item.imageUrl, priority: FastImage.priority.normal }}
+          resizeMode={FastImage.resizeMode.cover}
+        />
+      </SharedElement>
+    </View>
+  </Pressable>
 );
 
 const Account = () => {
@@ -43,7 +49,6 @@ const Account = () => {
       <AccountFilter />
       <FlatList
         numColumns={2}
-        bounces={false}
         contentContainerStyle={{ paddingBottom: 6 }}
         columnWrapperStyle={s.cardList}
         data={mockCountriesPopular}
