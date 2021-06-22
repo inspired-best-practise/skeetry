@@ -4,8 +4,8 @@ import { View, Text, Image, TouchableHighlight, ScrollView, Pressable } from 're
 import { SharedElement } from 'react-navigation-shared-element';
 import { SCREEN_WIDTH } from '_app/utils/getDimensions';
 import { s } from './styles';
-import * as Icon from 'react-native-heroicons/solid';
-// import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import { mapGfxStyle, radius } from '_app/constants';
 
 const CardDetailScreen = ({ route, navigation }) => {
   const { item } = route.params;
@@ -13,7 +13,7 @@ const CardDetailScreen = ({ route, navigation }) => {
   return (
     <View style={s.container}>
       <SharedElement id={`item.${item.id}.image`}>
-        <Image style={{ width: SCREEN_WIDTH, height: 300 }} source={{ uri: item.images[0].src }} resizeMode="cover" />
+        <Image style={{ width: SCREEN_WIDTH, height: 300 }} source={{ uri: item.images[2].src }} resizeMode="cover" />
       </SharedElement>
       <ScrollView style={s.content}>
         <View style={s.section}>
@@ -36,20 +36,33 @@ const CardDetailScreen = ({ route, navigation }) => {
         </View>
         <View style={s.section}>
           <Text style={s.sectionTitle}>Where you'll be</Text>
-          <Text>Google map</Text>
-          {/* <MapView
-            style={{
-              flex: 1,
-              width: '100%',
-            }}
-            provider={PROVIDER_GOOGLE}
-            initialRegion={{
-              latitude: 37.78825,
-              longitude: -122.4324,
-              latitudeDelta: 0.0922,
-              longitudeDelta: 0.0421,
-            }}
-          /> */}
+          <Pressable onPress={() => navigation.navigate('AddChooser')}>
+            <MapView
+              style={{
+                flex: 1,
+                width: '100%',
+                height: 200,
+                borderRadius: radius.s,
+                marginTop: 14,
+              }}
+              pitchEnabled={false}
+              scrollEnabled={false}
+              zoomControlEnabled={false}
+              zoomEnabled={false}
+              rotateEnabled={false}
+              provider={PROVIDER_GOOGLE}
+              mapType="standard"
+              moveOnMarkerPress={false}
+              pointerEvents="none"
+              customMapStyle={mapGfxStyle}
+              initialRegion={{
+                latitude: 37.78825,
+                longitude: -122.4324,
+                latitudeDelta: 0.09,
+                longitudeDelta: 0.04,
+              }}
+            />
+          </Pressable>
         </View>
 
         <View style={s.section}>
