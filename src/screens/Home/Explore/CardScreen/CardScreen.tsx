@@ -12,7 +12,6 @@ import {
   ActionSheetIOS,
 } from 'react-native';
 import { SharedElement } from 'react-navigation-shared-element';
-import { SCREEN_WIDTH } from '_app/utils/getDimensions';
 import { s } from './styles';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import { mapGfxStyle } from '_app/constants';
