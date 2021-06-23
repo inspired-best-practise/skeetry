@@ -114,8 +114,22 @@ export const s = StyleSheet.create({
     paddingVertical: 12,
     borderRadius: 6,
   },
+  buttonFull: {
+    width: '100%',
+    paddingRight: 20,
+  },
+  buttonWithIcon: {
+    flexDirection: 'row',
+  },
+  buttonWithIconText: {
+    paddingRight: 20,
+    flex: 1,
+  },
+  buttonIcon: {},
   buttonText: {
     fontWeight: '600',
+    textTransform: 'capitalize',
+    textAlign: 'center',
   },
   name: {
     fontSize: 24,

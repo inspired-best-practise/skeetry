@@ -20,6 +20,7 @@ export const mockCountriesPopular = [
       },
     ],
     rating: { number: '4.76', count: '143' },
+    status: 'NONE',
   },
   {
     id: 'b',
@@ -42,6 +43,7 @@ export const mockCountriesPopular = [
       },
     ],
     rating: { number: '4.51', count: '58' },
+    status: 'VISITED',
   },
   {
     id: 'c',
@@ -64,6 +66,7 @@ export const mockCountriesPopular = [
       },
     ],
     rating: { number: '4.49', count: '43' },
+    status: 'WANT',
   },
   {
     id: 'e',
@@ -86,6 +89,7 @@ export const mockCountriesPopular = [
       },
     ],
     rating: { number: '4.44', count: '42' },
+    status: 'NONE',
   },
   {
     id: 'f',
@@ -108,6 +112,7 @@ export const mockCountriesPopular = [
       },
     ],
     rating: { number: '4.43', count: '40' },
+    status: 'NONE',
   },
   {
     id: 'g',
@@ -130,6 +135,7 @@ export const mockCountriesPopular = [
       },
     ],
     rating: { number: '4.39', count: '25' },
+    status: 'NONE',
   },
   {
     id: 't',
@@ -152,6 +158,7 @@ export const mockCountriesPopular = [
       },
     ],
     rating: { number: '4.38', count: '24' },
+    status: 'NONE',
   },
   {
     id: 'h',
@@ -174,6 +181,7 @@ export const mockCountriesPopular = [
       },
     ],
     rating: { number: '4.37', count: '20' },
+    status: 'NONE',
   },
   {
     id: 'd',
@@ -196,5 +204,6 @@ export const mockCountriesPopular = [
       },
     ],
     rating: { number: '4.55', count: '76' },
+    status: 'NONE',
   },
 ];

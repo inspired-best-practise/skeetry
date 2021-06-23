@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
   View,
   Text,
@@ -18,9 +18,18 @@ import { mapGfxStyle } from '_app/constants';
 import BottomSheet from 'reanimated-bottom-sheet';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import * as Icon from 'react-native-heroicons/solid';
+import { wait } from '_app/utils';
 
 const CardDetailScreen = ({ route, navigation }) => {
   const { item } = route.params;
+  const [loading, setLoading] = useState(false);
+  const [itemStatus, setItemStatus] = useState(item.status);
+
+  const onPress = (name: string) => {
+    setLoading(true);
+    wait(2000).then(() => setLoading(false));
+    setItemStatus(name);
+  };
 
   const renderContent = () => (
     <Animated.View style={[s.content]}>
@@ -34,12 +43,29 @@ const CardDetailScreen = ({ route, navigation }) => {
       </View>
       <View style={s.section}>
         <View style={s.cardButtons}>
-          <TouchableHighlight underlayColor="#DDDDDD" style={s.button} onPress={() => {}}>
-            <Text style={s.buttonText}>Want</Text>
-          </TouchableHighlight>
-          <TouchableHighlight underlayColor="#DDDDDD" style={s.button} onPress={() => {}}>
-            <Text style={s.buttonText}>Visited</Text>
-          </TouchableHighlight>
+          {itemStatus === 'NONE' && !loading ? (
+            <>
+              <TouchableHighlight underlayColor="#DDDDDD" style={s.button} onPress={() => onPress('WANT')}>
+                <Text style={s.buttonText}>Want</Text>
+              </TouchableHighlight>
+              <TouchableHighlight underlayColor="#DDDDDD" style={s.button} onPress={() => onPress('VISITED')}>
+                <Text style={s.buttonText}>Visited</Text>
+              </TouchableHighlight>
+            </>
+          ) : (
+            <TouchableHighlight
+              underlayColor="#DDDDDD"
+              style={[s.button, (itemStatus !== 'NONE' || loading) && s.buttonFull]}
+              onPress={() => {}}
+            >
+              <View style={[s.buttonWithIcon]}>
+                <Text style={[s.buttonText, (itemStatus !== 'NONE' || loading) && s.buttonWithIconText]}>
+                  {loading ? 'loading' : itemStatus}
+                </Text>
+                <Icon.DotsHorizontalIcon style={s.buttonIcon} size={18} color={'black'} />
+              </View>
+            </TouchableHighlight>
+          )}
         </View>
       </View>
       <View style={s.section}>
