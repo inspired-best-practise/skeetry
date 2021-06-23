@@ -11,6 +11,16 @@ export const s = StyleSheet.create({
     // paddingHorizontal: normalize(20),
     paddingBottom: 80,
   },
+  accountPanel: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '100%',
+    paddingBottom: normalize(10),
+    marginBottom: normalize(10),
+    paddingHorizontal: normalize(20),
+  },
   accountHeader: {
     display: 'flex',
     flexDirection: 'row',

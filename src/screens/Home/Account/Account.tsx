@@ -8,6 +8,7 @@ import { AccountStatsItem, Avatar, AccountFilter } from '_app/components';
 import { navigation } from '_app/services/navigations';
 import { wait } from '_app/utils';
 import { mockCountriesPopular } from '../Explore/mocks/mockCountriesPopular';
+import * as Icon from 'react-native-heroicons/solid';
 import { s } from './styles';
 
 const renderItem = ({ item }: any) => (
@@ -36,8 +37,20 @@ const Account = () => {
   return (
     <View style={s.container}>
       <SafeAreaView />
+      <View style={s.accountPanel}>
+        <Icon.CogIcon onPress={() => navigation.navigate('AddChooser')} size={20} color={'#777'} />
+        <View style={{ flexDirection: 'row' }}>
+          <Icon.ChartBarIcon
+            style={{ marginRight: 12 }}
+            onPress={() => navigation.navigate('AddChooser')}
+            size={20}
+            color={'#777'}
+          />
+          <Icon.ShareIcon onPress={() => navigation.navigate('AddChooser')} size={20} color={'#777'} />
+        </View>
+      </View>
       <View style={s.accountHeader}>
-        <Text style={s.name}>Mike</Text>
+        <Text style={s.name}>Mike Bond</Text>
         <Avatar src={avatarSrcMock} nickname="mike" />
       </View>
       <View style={s.accountStats}>

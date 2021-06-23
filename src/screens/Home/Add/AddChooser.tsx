@@ -12,15 +12,15 @@ const tagsMock = [
   { id: '15', title: '🧗🏼‍♂️ Rock climbing' },
   { id: '5', title: '🌋 Volcano' },
   { id: '6', title: '🏄🏻‍♂️ Surfing' },
-  { id: '7', title: '🧗🏼‍♂️ Food' },
+  { id: '7', title: '🐦 Birding' },
   { id: '8', title: '🌊 Sea' },
-  { id: '9', title: '🥾 Hiking' },
-  { id: '10', title: '🛶 Kayaking' },
+  { id: '9', title: '⛷️ Skiing' },
+  { id: '10', title: '🏌️ Golf' },
   { id: '11', title: '🏜️ Desert' },
   { id: '12', title: '⛵ Sail' },
   { id: '13', title: '🌳 Nature' },
-  { id: '14', title: '🏄🏻‍♂️ Surfing' },
-  { id: '16', title: '🌊 Sea' },
+  { id: '14', title: '🎣 Fishing' },
+  { id: '16', title: '🔭 Star Gazing' },
 ];
 
 const AddChooser = () => {
