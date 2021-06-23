@@ -1,4 +1,3 @@
-import { SCREEN_WIDTH } from '_app/utils/getDimensions';
 import { StyleSheet } from 'react-native';
 
 export const s = StyleSheet.create({
@@ -7,10 +6,13 @@ export const s = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  containerList: {
-    flexDirection: 'row',
+  containerWrap: {
+    marginTop: 90,
+  },
+  contentContainer: {
     flexWrap: 'wrap',
     marginHorizontal: 12,
+    width: 800,
   },
   title: {
     color: '#777',
