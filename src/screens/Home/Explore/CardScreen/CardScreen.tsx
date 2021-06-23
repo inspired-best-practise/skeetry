@@ -1,18 +1,29 @@
 import { observer } from 'mobx-react';
-import React from 'react';
-import { View, Text, Image, TouchableHighlight, TouchableWithoutFeedback } from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import {
+  View,
+  Text,
+  Image,
+  TouchableHighlight,
+  TouchableWithoutFeedback,
+  StatusBar,
+  Animated,
+  Pressable,
+} from 'react-native';
 import { SharedElement } from 'react-navigation-shared-element';
 import { SCREEN_WIDTH } from '_app/utils/getDimensions';
 import { s } from './styles';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
-import { mapGfxStyle, radius } from '_app/constants';
+import { mapGfxStyle } from '_app/constants';
 import BottomSheet from 'reanimated-bottom-sheet';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import * as Icon from 'react-native-heroicons/solid';
 
 const CardDetailScreen = ({ route, navigation }) => {
   const { item } = route.params;
 
   const renderContent = () => (
-    <View style={s.content}>
+    <Animated.View style={[s.content]}>
       <View style={s.section}>
         <Text style={s.name}>{item.flag + ' ' + item.title}</Text>
         {/* <View style={s.rating}>
@@ -33,18 +44,9 @@ const CardDetailScreen = ({ route, navigation }) => {
       </View>
       <View style={s.section}>
         <Text style={s.sectionTitle}>Where you'll be</Text>
-        <TouchableWithoutFeedback onPress={() => navigation.navigate('AddChooser')}>
-          <View>
-            <Text>Google map doesn't show in Bottom Sheet :/</Text>
-          </View>
-          {/* <MapView
-            style={{
-              flex: 1,
-              width: 100,
-              height: 200,
-              borderRadius: radius.s,
-              marginTop: 14,
-            }}
+        <Pressable onPress={() => navigation.navigate('AddChooser')}>
+          <MapView
+            style={s.minimap}
             pitchEnabled={false}
             scrollEnabled={false}
             zoomControlEnabled={false}
@@ -61,8 +63,8 @@ const CardDetailScreen = ({ route, navigation }) => {
               latitudeDelta: 0.09,
               longitudeDelta: 0.04,
             }}
-          /> */}
-        </TouchableWithoutFeedback>
+          />
+        </Pressable>
       </View>
 
       <View style={s.section}>
@@ -81,16 +83,33 @@ const CardDetailScreen = ({ route, navigation }) => {
       {/* <Text>Reviews list</Text> */}
 
       {/* <Text>Cities list</Text> */}
-    </View>
+    </Animated.View>
   );
 
   const sheetRef = React.useRef(null);
 
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 1100,
+      useNativeDriver: true,
+    }).start();
+  }, [fadeAnim]);
+
   return (
     <View style={s.container}>
+      <SafeAreaView />
+      <StatusBar barStyle="light-content" animated translucent backgroundColor="rgba(255,255,255,100)" />
       <SharedElement id={`item.${item.id}.image`}>
-        <Image style={{ width: SCREEN_WIDTH, height: 300 }} source={{ uri: item.images[2].src }} resizeMode="cover" />
+        <Image style={s.cardImage} source={{ uri: item.images[2].src }} resizeMode="cover" />
       </SharedElement>
+      <TouchableWithoutFeedback onPress={() => navigation.goBack()}>
+        <Animated.View style={[s.backIcon, { opacity: fadeAnim }]}>
+          <Icon.XIcon size={18} color={'black'} />
+        </Animated.View>
+      </TouchableWithoutFeedback>
       <BottomSheet
         ref={sheetRef}
         snapPoints={[700, 450]}

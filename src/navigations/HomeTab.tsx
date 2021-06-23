@@ -9,6 +9,7 @@ import React from 'react';
 import * as Icon from 'react-native-heroicons/solid';
 import { createSharedElementStackNavigator } from 'react-navigation-shared-element';
 import { TabBarComponent } from '_app/components/BottomTabBar';
+import { View, Text, TouchableWithoutFeedback } from 'react-native';
 
 import {
   HomeIndexScreen,
@@ -21,6 +22,7 @@ import {
   PlacesScreen,
   CardScreen,
 } from '_app/screens/Home';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export const iosTransitionSpec = {
   animation: 'spring',
@@ -81,13 +83,13 @@ const AccountStack = () => {
               },
               {
                 id: `item.${item.id}.title`,
-                animation: 'fade',
+                animation: 'move',
                 resize: 'clip',
                 align: 'left-top',
               },
               {
                 id: `item.${item.id}.description`,
-                animation: 'fade',
+                animation: 'move',
                 resize: 'clip',
                 align: 'left-top',
               },
@@ -102,8 +104,8 @@ const AccountStack = () => {
           }
         }}
         options={({ route }) => ({
-          headerTintColor: '#000',
-          gestureEnabled: false,
+          headerShown: false,
+          gestureEnabled: true,
           cardStyle: {
             backgroundColor: '#fff',
           },
@@ -216,7 +218,7 @@ const ExploreStack = () => {
           }
         }}
         options={({ route }) => ({
-          headerTintColor: '#000',
+          headerShown: false,
           gestureEnabled: false,
           cardStyle: {
             backgroundColor: '#fff',

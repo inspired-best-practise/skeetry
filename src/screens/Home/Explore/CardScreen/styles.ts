@@ -1,12 +1,29 @@
 import { SCREEN_WIDTH } from '_app/utils/getDimensions';
 import { Dimensions, StyleSheet } from 'react-native';
+import { radius } from '_app/constants';
 
 const { width } = Dimensions.get('window');
 
 export const s = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'lightblue',
+    backgroundColor: '#fff',
+  },
+  backIcon: {
+    backgroundColor: '#fff',
+    borderRadius: 100,
+    width: 30,
+    marginLeft: 16,
+    alignItems: 'center',
+    paddingVertical: 6,
+    top: -20,
+  },
+  cardImage: {
+    width: SCREEN_WIDTH,
+    height: 470,
+    position: 'absolute',
+    zIndex: 1,
+    top: -85,
   },
   itemImage: {
     width: SCREEN_WIDTH,
@@ -63,13 +80,19 @@ export const s = StyleSheet.create({
   content: {
     backgroundColor: 'white',
     padding: 16,
-    height: 1000,
+    height: '100%',
   },
   section: {
     paddingBottom: 20,
     borderColor: '#eee',
     borderBottomWidth: 1,
     marginBottom: 20,
+  },
+  minimap: {
+    width: '100%',
+    height: 200,
+    borderRadius: radius.s,
+    marginTop: 14,
   },
   sectionTitle: {
     fontSize: 20,

@@ -47,7 +47,7 @@
     "react-native-vector-icons": "^8.1.0",
     "react-navigation-hooks": "^1.1.0",
     "react-navigation-shared-element": "^5.0.0-alpha1",
-    "reanimated-bottom-sheet": "^1.0.0-alpha.22",
+    "reanimated-bottom-sheet": "^1.0.0-alpha.20",
     "use-memo-one": "^1.1.2"
   },
   "devDependencies": {
