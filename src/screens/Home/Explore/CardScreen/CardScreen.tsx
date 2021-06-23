@@ -82,7 +82,7 @@ const CardDetailScreen = ({ route, navigation }) => {
             <TouchableHighlight
               underlayColor="#DDDDDD"
               style={[s.button, (itemStatus !== 'NONE' || loading) && s.buttonFull]}
-              onPress={() => onPressSheet()}
+              onPress={() => !loading && onPressSheet()}
             >
               <View style={[s.buttonWithIcon]}>
                 <Text style={[s.buttonText, (itemStatus !== 'NONE' || loading) && s.buttonWithIconText]}>
