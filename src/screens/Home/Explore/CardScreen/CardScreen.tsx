@@ -9,6 +9,7 @@ import {
   StatusBar,
   Animated,
   Pressable,
+  ActionSheetIOS,
 } from 'react-native';
 import { SharedElement } from 'react-navigation-shared-element';
 import { SCREEN_WIDTH } from '_app/utils/getDimensions';
@@ -30,6 +31,31 @@ const CardDetailScreen = ({ route, navigation }) => {
     wait(2000).then(() => setLoading(false));
     setItemStatus(name);
   };
+
+  const onPressSheet = () =>
+    ActionSheetIOS.showActionSheetWithOptions(
+      {
+        options: [
+          'Cancel',
+          `Move to ${itemStatus === 'WANT' ? 'Visited' : 'Want'}`,
+          `Remove from ${itemStatus === 'WANT' ? 'Want' : 'Visited'}`,
+        ],
+        destructiveButtonIndex: 2,
+        cancelButtonIndex: 0,
+        userInterfaceStyle: 'light',
+      },
+      buttonIndex => {
+        if (buttonIndex === 0) {
+          // cancel action
+        } else if (buttonIndex === 1) {
+          setLoading(true);
+          wait(2000).then(() => setLoading(false));
+          setItemStatus(itemStatus === 'WANT' ? 'VISITED' : 'WANT');
+        } else if (buttonIndex === 2) {
+          setItemStatus('NONE');
+        }
+      },
+    );
 
   const renderContent = () => (
     <Animated.View style={[s.content]}>
@@ -56,7 +82,7 @@ const CardDetailScreen = ({ route, navigation }) => {
             <TouchableHighlight
               underlayColor="#DDDDDD"
               style={[s.button, (itemStatus !== 'NONE' || loading) && s.buttonFull]}
-              onPress={() => {}}
+              onPress={() => onPressSheet()}
             >
               <View style={[s.buttonWithIcon]}>
                 <Text style={[s.buttonText, (itemStatus !== 'NONE' || loading) && s.buttonWithIconText]}>
