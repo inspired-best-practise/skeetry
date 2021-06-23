@@ -1,4 +1,3 @@
-import { WelcomeScreen } from './../../../Auth/Welcome/Welcome';
 import { SCREEN_WIDTH } from '_app/utils/getDimensions';
 import { Dimensions, StyleSheet } from 'react-native';
 
@@ -7,7 +6,7 @@ const { width } = Dimensions.get('window');
 export const s = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'lightblue',
   },
   itemImage: {
     width: SCREEN_WIDTH,
@@ -62,7 +61,9 @@ export const s = StyleSheet.create({
   },
 
   content: {
-    padding: 20,
+    backgroundColor: 'white',
+    padding: 16,
+    height: 1000,
   },
   section: {
     paddingBottom: 20,
