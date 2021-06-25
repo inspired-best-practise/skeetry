@@ -1,5 +1,6 @@
 import React from 'react';
 import { TouchableHighlight, Text, Pressable } from 'react-native';
+
 import { s } from './styles';
 
 export const AccountFilterItem = ({ name, icon }: TListFilterItemProps) => {

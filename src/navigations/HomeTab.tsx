@@ -39,7 +39,7 @@ export const iosTransitionSpec = {
 const Stack = createStackNavigator();
 const SharedElementStack = createSharedElementStackNavigator();
 
-const isAuth = true;
+const isAuth = false;
 
 const AccountStack = () => {
   return (

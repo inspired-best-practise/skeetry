@@ -2,13 +2,15 @@ import { observer } from 'mobx-react';
 import React, { useState } from 'react';
 import { View, Text, FlatList, RefreshControl, Pressable } from 'react-native';
 import FastImage from 'react-native-fast-image';
+import * as Icon from 'react-native-heroicons/solid';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { SharedElement } from 'react-navigation-shared-element';
+
 import { AccountStatsItem, Avatar, AccountFilter } from '_app/components';
 import { navigation } from '_app/services/navigations';
 import { wait } from '_app/utils';
+
 import { mockCountriesPopular } from '../Explore/mocks/mockCountriesPopular';
-import * as Icon from 'react-native-heroicons/solid';
 import { s } from './styles';
 
 const renderItem = ({ item }: any) => (
