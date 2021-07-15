@@ -7,16 +7,15 @@
  *
  * @format
  */
-
+import { Provider } from 'mobx-react';
 import React, { useEffect } from 'react';
 import { StatusBar } from 'react-native';
-import { Provider } from 'mobx-react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import SplashScreen from 'react-native-splash-screen';
 
-import { stores } from '_app/store';
 import { LoadingOverlay } from '_app/components';
 import RootStackNavigation from '_app/navigations';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { stores } from '_app/store';
 
 const App: React.FC = () => {
   useEffect(() => {

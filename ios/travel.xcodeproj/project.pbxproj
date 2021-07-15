@@ -14,7 +14,6 @@
 		348B8AFE8DBBFE69A6B4C389 /* libPods-travel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B07F2F4312BD2297B5987D04 /* libPods-travel.a */; };
 		55543C2DC7EEE9B7799B6F02 /* libPods-travel-travelTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7D02270D516D1B80B9938B /* libPods-travel-travelTests.a */; };
 		5D677E2B267135550026BA6D /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D677E2A267135550026BA6D /* splash.png */; };
-		5DB0052D26712DF200E91AFC /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DB0052C26712DF200E91AFC /* Launch Screen.storyboard */; };
 		5DB7CD1A26824D7E00B6C51E /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DB7CD1126824D7E00B6C51E /* Inter-SemiBold.ttf */; };
 		5DB7CD1B26824D7E00B6C51E /* Inter-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DB7CD1226824D7E00B6C51E /* Inter-Black.ttf */; };
 		5DB7CD1C26824D7E00B6C51E /* Inter-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DB7CD1326824D7E00B6C51E /* Inter-ExtraLight.ttf */; };
@@ -70,7 +69,6 @@
 		5D677E2A267135550026BA6D /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = splash.png; path = ../assets/splash/splash.png; sourceTree = "<group>"; };
 		5DAC1A66266E87D20043AA6A /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
 		5DAC1A69266E883A0043AA6A /* Zocial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Zocial.ttf; sourceTree = "<group>"; };
-		5DB0052C26712DF200E91AFC /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		5DB7CD1126824D7E00B6C51E /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inter-SemiBold.ttf"; path = "../assets/fonts/Inter-SemiBold.ttf"; sourceTree = "<group>"; };
 		5DB7CD1226824D7E00B6C51E /* Inter-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inter-Black.ttf"; path = "../assets/fonts/Inter-Black.ttf"; sourceTree = "<group>"; };
 		5DB7CD1326824D7E00B6C51E /* Inter-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inter-ExtraLight.ttf"; path = "../assets/fonts/Inter-ExtraLight.ttf"; sourceTree = "<group>"; };
@@ -149,7 +147,6 @@
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
-				5DB0052C26712DF200E91AFC /* Launch Screen.storyboard */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
@@ -345,7 +342,6 @@
 				5DFA5707266E8909001CFB4D /* Octicons.ttf in Resources */,
 				5DB7CD2126824D7E00B6C51E /* Inter-Bold.ttf in Resources */,
 				5DB7CD2226824D7E00B6C51E /* Inter-Medium.ttf in Resources */,
-				5DB0052D26712DF200E91AFC /* Launch Screen.storyboard in Resources */,
 				5DBC1795267CE7EF0010BFEE /* GoogleMaps.bundle in Resources */,
 				5DFA5712266E8909001CFB4D /* FontAwesome5_Regular.ttf in Resources */,
 				5DFA570D266E8909001CFB4D /* MaterialCommunityIcons.ttf in Resources */,
