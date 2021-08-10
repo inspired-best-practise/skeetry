@@ -6,15 +6,15 @@ import {
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
 import React from 'react';
-import * as Icon from 'react-native-heroicons/solid';
-import { createSharedElementStackNavigator } from 'react-navigation-shared-element';
-import { TabBarComponent } from '_app/components/BottomTabBar';
 import { View, Text, TouchableWithoutFeedback } from 'react-native';
+import * as Icon from 'react-native-heroicons/solid';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { createSharedElementStackNavigator } from 'react-navigation-shared-element';
 
+import { TabBarComponent } from '_app/components/BottomTabBar';
 import {
   HomeIndexScreen,
-  AccountScreen,
-  // ActivityScreen,
+  AccountScreen, // ActivityScreen,
   AddScreen,
   ExploreScreen,
   CountriesScreen,
@@ -22,7 +22,6 @@ import {
   PlacesScreen,
   CardScreen,
 } from '_app/screens/Home';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 export const iosTransitionSpec = {
   animation: 'spring',
