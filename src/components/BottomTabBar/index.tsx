@@ -3,6 +3,10 @@ import { BottomTabBar, BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import React from 'react';
 import { View } from 'react-native';
 
+import { PLATFORM } from '_app/constants';
+
+const { IS_IOS } = PLATFORM;
+
 // layout is stored as module variable
 let tabBarLayout = {
   x: 0,
@@ -25,19 +29,30 @@ export function TabBarComponent(props: BottomTabBarProps) {
         tabBarLayout = event.nativeEvent.layout;
       }}
     >
-      <BlurView
-        style={{
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          right: 0,
-        }}
-        blurType="chromeMaterial"
-        reducedTransparencyFallbackColor="white"
-        blurAmount={100}
-      >
-        <BottomTabBar {...props} />
-      </BlurView>
+      {IS_IOS ? (
+        <BlurView
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            right: 0,
+          }}
+          blurType="chromeMaterial"
+          reducedTransparencyFallbackColor="white"
+          blurAmount={100}
+        ></BlurView>
+      ) : (
+        <View
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            right: 0,
+          }}
+        >
+          <BottomTabBar {...props} />
+        </View>
+      )}
     </View>
   );
 }
