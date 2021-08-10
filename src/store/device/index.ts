@@ -1,5 +1,7 @@
 import { action, observable } from 'mobx';
+
 import { DEVICE_ID, DEVICE_NAME, IS_DEVICE, DEVICE_PLATFORM } from '_app/constants';
+
 import { BaseStore } from '../BaseStore';
 
 export class DeviceStore extends BaseStore {
