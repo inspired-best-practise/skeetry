@@ -292,7 +292,7 @@ PODS:
     - React-Core
   - react-native-netinfo (6.0.0):
     - React-Core
-  - react-native-pager-view (5.2.0):
+  - react-native-pager-view (5.4.0):
     - React-Core
   - react-native-safe-area-context (3.2.0):
     - React-Core
@@ -643,7 +643,7 @@ SPEC CHECKSUMS:
   react-native-google-maps: 46dea4aa4acb7300beff508f64d9f8c84e9fb106
   react-native-maps: 2d405b4e8cee0282e4c02bac434d81450dfea877
   react-native-netinfo: e849fc21ca2f4128a5726c801a82fc6f4a6db50d
-  react-native-pager-view: b72d689fb81435f2cab3d556136c83ed124426b0
+  react-native-pager-view: 54970cc27fdef14db2dcfedadb091d711e88065d
   react-native-safe-area-context: f0906bf8bc9835ac9a9d3f97e8bde2a997d8da79
   react-native-segmented-control: 65df6cd0619b780b3843d574a72d4c7cec396097
   react-native-splash-screen: 200d11d188e2e78cea3ad319964f6142b6384865
