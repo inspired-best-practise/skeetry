@@ -40,16 +40,11 @@ export function TabBarComponent(props: BottomTabBarProps) {
           blurType="chromeMaterial"
           reducedTransparencyFallbackColor="white"
           blurAmount={100}
-        ></BlurView>
-      ) : (
-        <View
-          style={{
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-            right: 0,
-          }}
         >
+          <BottomTabBar {...props} />
+        </BlurView>
+      ) : (
+        <View>
           <BottomTabBar {...props} />
         </View>
       )}
