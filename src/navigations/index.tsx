@@ -1,12 +1,14 @@
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { TransitionPresets } from '@react-navigation/stack';
-import { createNativeStackNavigator, NativeStackNavigationOptions } from 'react-native-screens/native-stack';
 import React from 'react';
-import { navigationRef } from '_app/services/navigations';
-import RootTab from './RootTab';
-import { AddChooserScreen } from '_app/screens/Home/Add/AddChooser';
 import { enableScreens } from 'react-native-screens';
+import { createNativeStackNavigator, NativeStackNavigationOptions } from 'react-native-screens/native-stack';
+
+import { AddChooserScreen } from '_app/screens/Home/Add/AddChooser';
 import { LoginOrSignup, Offline } from '_app/screens/Others';
+import { navigationRef } from '_app/services/navigations';
+
+import RootTab from './RootTab';
 
 enableScreens();
 
@@ -41,7 +43,9 @@ const Index = (): JSX.Element => {
         <RootStack.Screen
           options={{
             ...TransitionPresets.ModalTransition,
-            stackPresentation: 'formSheet',
+            stackPresentation: 'push',
+            headerTitle: 'Log in or sign up',
+            headerTintColor: '#000',
           }}
           name="LoginOrSignup"
           component={LoginOrSignup}
