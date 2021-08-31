@@ -253,6 +253,7 @@ const Tab = createBottomTabNavigator<HomeTabParamList>();
 
 const HomeTab = () => {
   const screenOptions: BottomTabNavigationOptions = {
+    headerShown: false,
     tabBarShowLabel: false,
     tabBarStyle: {
       borderTopColor: '#dddddd',
@@ -282,7 +283,9 @@ const HomeTab = () => {
       />
       <Tab.Screen
         options={({ route }) => ({
-          tabBarVisible: getTabBarVisible(route),
+          tabBarStyle: {
+            display: getTabBarVisible(route) ? 'flex' : 'none',
+          },
           tabBarIcon: ({ focused }) => <Icon.ViewGridIcon size={30} color={focused ? '#777777' : '#bbbbbb'} />,
         })}
         component={ExploreStack}

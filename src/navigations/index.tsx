@@ -35,6 +35,7 @@ const Index = (): JSX.Element => {
         <RootStack.Screen
           options={{
             ...TransitionPresets.ModalTransition,
+            headerShown: false,
             presentation: 'formSheet',
           }}
           name="AddChooser"
