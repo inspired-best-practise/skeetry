@@ -1,8 +1,8 @@
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
+import { createNativeStackNavigator, NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import { TransitionPresets } from '@react-navigation/stack';
 import React from 'react';
 import { enableScreens } from 'react-native-screens';
-import { createNativeStackNavigator, NativeStackNavigationOptions } from 'react-native-screens/native-stack';
 
 import { AddChooserScreen } from '_app/screens/Home/Add/AddChooser';
 import { LoginOrSignup, Offline } from '_app/screens/Others';
@@ -35,7 +35,7 @@ const Index = (): JSX.Element => {
         <RootStack.Screen
           options={{
             ...TransitionPresets.ModalTransition,
-            stackPresentation: 'formSheet',
+            presentation: 'formSheet',
           }}
           name="AddChooser"
           component={AddChooserScreen}
@@ -43,7 +43,7 @@ const Index = (): JSX.Element => {
         <RootStack.Screen
           options={{
             ...TransitionPresets.ModalTransition,
-            stackPresentation: 'push',
+            presentation: 'card',
             headerTitle: 'Log in or sign up',
             headerTintColor: '#000',
           }}
@@ -54,7 +54,7 @@ const Index = (): JSX.Element => {
           options={{
             ...TransitionPresets.ModalTransition,
             headerShown: false,
-            stackPresentation: 'push',
+            presentation: 'card',
           }}
           name="Offline"
           component={Offline}

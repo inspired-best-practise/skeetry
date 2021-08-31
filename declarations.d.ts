@@ -1,9 +1,9 @@
 type HomeTabParamList = {
-  HomeIndex: undefined;
-  Explore: undefined;
-  Add: undefined;
-  Activity: undefined;
-  Account: undefined;
+  HomeIndexPage: undefined;
+  ExplorePage: undefined;
+  AddPage: undefined;
+  ActivityPage: undefined;
+  AccountPage: undefined;
 };
 
 type rootStackParamList = {

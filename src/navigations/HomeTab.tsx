@@ -66,7 +66,7 @@ const AccountStack = () => {
       <SharedElementStack.Screen
         name="CardScreen"
         component={CardScreen}
-        sharedElementsConfig={(route, otherRoute, showing) => {
+        sharedElements={(route, otherRoute, showing) => {
           const { item } = route.params;
           if (route.name === 'CardScreen' && showing) {
             // Open animation fades in image, title and description
@@ -180,7 +180,7 @@ const ExploreStack = () => {
       <SharedElementStack.Screen
         name="CardScreen"
         component={CardScreen}
-        sharedElementsConfig={(route, otherRoute, showing) => {
+        sharedElements={(route, otherRoute, showing) => {
           const { item } = route.params;
           if (route.name === 'CardScreen' && showing) {
             // Open animation fades in image, title and description
@@ -244,7 +244,7 @@ const HomeStack = () => {
         gestureEnabled: false,
       }}
     >
-      <Stack.Screen component={HomeIndexScreen} name="HomeIndex" />
+      <Stack.Screen component={HomeIndexScreen} name="HomeIndexScreen" />
     </Stack.Navigator>
   );
 };
@@ -278,7 +278,7 @@ const HomeTab = () => {
           tabBarIcon: ({ focused }) => <Icon.HomeIcon size={30} color={focused ? '#777777' : '#bbbbbb'} />,
         }}
         component={HomeStack}
-        name="HomeIndex"
+        name="HomeIndexPage"
       />
       <Tab.Screen
         options={({ route }) => ({
@@ -286,7 +286,7 @@ const HomeTab = () => {
           tabBarIcon: ({ focused }) => <Icon.ViewGridIcon size={30} color={focused ? '#777777' : '#bbbbbb'} />,
         })}
         component={ExploreStack}
-        name="Explore"
+        name="ExplorePage"
       />
       <Tab.Screen
         listeners={({ navigation }) => ({
@@ -299,7 +299,7 @@ const HomeTab = () => {
           tabBarIcon: ({ focused }) => <Icon.SearchIcon size={30} color={'#bbbbbb'} />,
         }}
         component={AddStack}
-        name="Add"
+        name="AddPage"
       />
       {/* <Tab.Screen
         options={{
@@ -323,7 +323,7 @@ const HomeTab = () => {
           tabBarIcon: ({ focused }) => <Icon.UserIcon size={30} color={focused ? '#777777' : '#bbbbbb'} />,
         })}
         component={AccountStack}
-        name="Account"
+        name="AccountPage"
       />
     </Tab.Navigator>
   );
