@@ -1,4 +1,3 @@
-import { observer } from 'mobx-react';
 import React, { useState } from 'react';
 import { View, Text, FlatList, RefreshControl, Pressable } from 'react-native';
 import FastImage from 'react-native-fast-image';
@@ -27,7 +26,7 @@ const renderItem = ({ item }: any) => (
   </Pressable>
 );
 
-const Account = () => {
+export const AccountScreen = () => {
   const avatarSrcMock = 'https://tinyfac.es/data/avatars/BA0CB1F2-8C79-4376-B13B-DD5FB8772537-500w.jpeg';
   const [refreshing, setRefreshing] = useState(false);
 
@@ -76,5 +75,3 @@ const Account = () => {
     </View>
   );
 };
-
-export const AccountScreen = observer(Account);

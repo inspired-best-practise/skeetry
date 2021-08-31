@@ -1,4 +1,3 @@
-import { observer } from 'mobx-react';
 import React, { useEffect, useRef, useState } from 'react';
 import {
   View,
@@ -11,16 +10,18 @@ import {
   Pressable,
   ActionSheetIOS,
 } from 'react-native';
-import { SharedElement } from 'react-navigation-shared-element';
-import { s } from './styles';
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
-import { mapGfxStyle } from '_app/constants';
-import BottomSheet from 'reanimated-bottom-sheet';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import * as Icon from 'react-native-heroicons/solid';
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { SharedElement } from 'react-navigation-shared-element';
+import BottomSheet from 'reanimated-bottom-sheet';
+
+import { mapGfxStyle } from '_app/constants';
 import { wait } from '_app/utils';
 
-const CardDetailScreen = ({ route, navigation }) => {
+import { s } from './styles';
+
+export const CardScreen = ({ route, navigation }) => {
   const { item } = route.params;
   const [loading, setLoading] = useState(false);
   const [itemStatus, setItemStatus] = useState(item.status);
@@ -177,5 +178,3 @@ const CardDetailScreen = ({ route, navigation }) => {
     </View>
   );
 };
-
-export const CardScreen = observer(CardDetailScreen);

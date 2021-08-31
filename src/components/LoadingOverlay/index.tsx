@@ -1,11 +1,10 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import Animated from 'react-native-reanimated';
-import { observer } from 'mobx-react';
 
 import { s } from './styles';
 
-export const Loading = ({ isLocal }: { isLocal?: boolean }): JSX.Element | null => {
+export const LoadingOverlay = ({ isLocal }: { isLocal?: boolean }): JSX.Element | null => {
   // in the future we will take this from store
   const loading = false;
 
@@ -18,5 +17,3 @@ export const Loading = ({ isLocal }: { isLocal?: boolean }): JSX.Element | null 
     </Animated.View>
   ) : null;
 };
-
-export const LoadingOverlay = observer(Loading);

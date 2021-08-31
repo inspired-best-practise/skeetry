@@ -1,16 +1,17 @@
-import { observer } from 'mobx-react';
 import React, { useState } from 'react';
 import { Text, Pressable, View, Animated } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { ScrollView } from 'react-native-gesture-handler';
 import * as Icon from 'react-native-heroicons/solid';
 import { SharedElement } from 'react-navigation-shared-element';
+
 import { navigation } from '_app/services/navigations';
+
 import { s } from './styles';
 
 const AnimatedImage = Animated.createAnimatedComponent(FastImage);
 
-const CardItem = ({ item }: TCardProps) => {
+export const Card = ({ item }: TCardProps) => {
   const { images, title, id, rating, flag } = item;
   const [active, setActive] = useState(0);
 
@@ -70,5 +71,3 @@ const CardItem = ({ item }: TCardProps) => {
     </View>
   );
 };
-
-export const Card = observer(CardItem);

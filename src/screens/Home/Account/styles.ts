@@ -1,5 +1,6 @@
-import { normalize, SCREEN_WIDTH } from '_app/utils/getDimensions';
 import { StyleSheet } from 'react-native';
+
+import { normalize, SCREEN_WIDTH } from '_app/utils/getDimensions';
 
 const itemWidth = SCREEN_WIDTH / 2 - 20;
 

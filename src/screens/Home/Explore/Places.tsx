@@ -1,10 +1,11 @@
-import { observer } from 'mobx-react';
 import React from 'react';
 import { View } from 'react-native';
+
 import { CardList, ListFilter } from '_app/components';
+
 import { mockCountriesPopular } from './mocks/mockCountriesPopular';
 
-const Places = () => {
+export const PlacesScreen = () => {
   return (
     <View style={{ marginTop: 20 }}>
       <ListFilter />
@@ -12,5 +13,3 @@ const Places = () => {
     </View>
   );
 };
-
-export const PlacesScreen = observer(Places);

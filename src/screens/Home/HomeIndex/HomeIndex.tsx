@@ -1,8 +1,7 @@
-import { observer } from 'mobx-react';
 import React from 'react';
 import { View, Text } from 'react-native';
 
-const HomeIndex = () => {
+export const HomeIndexScreen = () => {
   return (
     <>
       <View
@@ -18,5 +17,3 @@ const HomeIndex = () => {
     </>
   );
 };
-
-export const HomeIndexScreen = observer(HomeIndex);

@@ -1,4 +1,3 @@
-import { observer } from 'mobx-react';
 import React from 'react';
 import { View, Text, ScrollView } from 'react-native';
 
@@ -6,7 +5,7 @@ import { CategoryCard } from '_app/components';
 
 import { s } from './styles';
 
-const Explore = () => {
+export const ExploreScreen = () => {
   return (
     <>
       <View style={s.categories}>
@@ -38,5 +37,3 @@ const Explore = () => {
     </>
   );
 };
-
-export const ExploreScreen = observer(Explore);

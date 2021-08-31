@@ -1,7 +1,8 @@
-import { observer } from 'mobx-react';
 import React from 'react';
 import { View, Text, StatusBar, TouchableHighlight, ScrollView } from 'react-native';
+
 import { ModalControl } from '_app/components';
+
 import { s } from './styles';
 
 const tagsMock = [
@@ -23,7 +24,7 @@ const tagsMock = [
   { id: '16', title: '🔭 Star Gazing' },
 ];
 
-const AddChooser = () => {
+export const AddChooserScreen = () => {
   return (
     <View style={s.container}>
       <StatusBar barStyle="light-content" animated translucent backgroundColor="rgba(255,255,255,100)" />
@@ -43,5 +44,3 @@ const AddChooser = () => {
     </View>
   );
 };
-
-export const AddChooserScreen = observer(AddChooser);

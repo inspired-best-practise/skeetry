@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { RefreshControl, FlatList } from 'react-native';
-import { observer } from 'mobx-react';
-import { wait } from '_app/utils';
+
 import { Card } from '_app/components';
+import { wait } from '_app/utils';
+
 import { s } from './styles';
 
 // TODO: type item when done
 
-export const List = ({ title, data }): JSX.Element => {
+export const CardList = ({ title, data }): JSX.Element => {
   const [refreshing, setRefreshing] = useState(false);
 
   const onRefresh = React.useCallback(() => {
@@ -29,5 +30,3 @@ export const List = ({ title, data }): JSX.Element => {
     />
   );
 };
-
-export const CardList = observer(List);

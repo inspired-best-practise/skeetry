@@ -1,9 +1,9 @@
-import { observer } from 'mobx-react';
 import React from 'react';
 import { View, Text } from 'react-native';
+
 import { s } from './styles';
 
-const CAccountStatsItem = ({ name, number }: TAccountStatsItemProps) => {
+export const AccountStatsItem = ({ name, number }: TAccountStatsItemProps) => {
   return (
     <View style={s.item}>
       <Text style={s.number}>{number}</Text>
@@ -11,5 +11,3 @@ const CAccountStatsItem = ({ name, number }: TAccountStatsItemProps) => {
     </View>
   );
 };
-
-export const AccountStatsItem = observer(CAccountStatsItem);

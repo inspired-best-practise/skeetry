@@ -7,7 +7,6 @@
  *
  * @format
  */
-import { Provider } from 'mobx-react';
 import React, { useEffect } from 'react';
 import { StatusBar } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -15,7 +14,6 @@ import SplashScreen from 'react-native-splash-screen';
 
 import { LoadingOverlay } from '_app/components';
 import RootStackNavigation from '_app/navigations';
-import { stores } from '_app/store';
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -23,13 +21,11 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <Provider {...stores}>
-      <SafeAreaProvider>
-        <StatusBar barStyle="dark-content" animated translucent backgroundColor="rgba(0,0,0,0)" />
-        <RootStackNavigation />
-        <LoadingOverlay />
-      </SafeAreaProvider>
-    </Provider>
+    <SafeAreaProvider>
+      <StatusBar barStyle="dark-content" animated translucent backgroundColor="rgba(0,0,0,0)" />
+      <RootStackNavigation />
+      <LoadingOverlay />
+    </SafeAreaProvider>
   );
 };
 
