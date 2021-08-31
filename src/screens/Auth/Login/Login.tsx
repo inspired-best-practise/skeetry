@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, SafeAreaView } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 
-import { s } from '_app/components/LoadingOverlay/styles';
+import { navigation } from '_app/services/navigations';
+
+import { s } from './styles';
 
 export const LoginScreen = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -12,44 +14,44 @@ export const LoginScreen = () => {
   const [password, setPassword] = useState<string>('');
 
   return (
-    <View style={s.container}>
-      {/* <Text>Sign in page - just for now</Text> */}
+    <SafeAreaView style={s.container}>
+      <View style={s.centerContainer}>
+        <View style={s.loginForm}>
+          <View style={s.textInputWrapper}>
+            <TextInput autoCapitalize="none" placeholder="Username" style={s.input} />
+          </View>
+          <View style={s.textInputWrapper}>
+            <TextInput secureTextEntry autoCapitalize="none" placeholder="Password" style={s.input} />
+          </View>
+          <TouchableOpacity
+            onPress={() => navigation.push('ForgotPassword')}
+            style={s.forgotPassword}
+            activeOpacity={1}
+          >
+            <Text style={s.forgotPasswordText}>Forgot your password?</Text>
+          </TouchableOpacity>
 
-      {/* <Text>Logo (img)</Text> */}
-      <TextInput placeholder="Username" />
-      {/* TODO: add show/hide switch with icons */}
-      <TextInput placeholder="Password" />
-      <Text>Forgot your password?</Text>
-
-      <TouchableOpacity
-        onPress={() => {
-          console.log('onLogin');
-        }}
-        disabled={!allowLogin && !loading}
-        activeOpacity={0.6}
-        style={{
-          marginTop: 7.5,
-          width: '100%',
-          height: 44,
-          borderRadius: 5,
-          backgroundColor: '#318bfb',
-          justifyContent: 'center',
-          alignItems: 'center',
-          opacity: allowLogin ? 1 : 0.6,
-        }}
-      >
-        <Text
-          style={{
-            fontSize: 16,
-            color: '#fff',
-            fontWeight: '500',
-          }}
-        >
-          {!loading ? 'Login' : 'Loading...'}
+          <TouchableOpacity
+            onPress={() => {
+              console.log('onLogin');
+            }}
+            disabled={!allowLogin && !loading}
+            activeOpacity={0.6}
+            // eslint-disable-next-line react-native/no-inline-styles
+            style={{
+              ...s.btnLogin,
+              opacity: allowLogin ? 1 : 0.6,
+            }}
+          >
+            <Text style={s.btnLoginText}>{!loading ? 'Login' : 'Loading...'}</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+      <TouchableOpacity onPress={() => navigation.push('Register')} activeOpacity={1} style={s.registerWrapper}>
+        <Text style={s.registerWrapperText}>
+          <Text style={s.registerWrapperTextBold}>Don't have account?</Text> Register now.
         </Text>
       </TouchableOpacity>
-
-      <Text>Don't have an account? (text) Register (link)</Text>
-    </View>
+    </SafeAreaView>
   );
 };

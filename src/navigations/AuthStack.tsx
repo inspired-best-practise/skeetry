@@ -13,8 +13,23 @@ const AuthStack = () => {
   return (
     <Stack.Navigator screenOptions={navigationOptions}>
       <Stack.Screen component={LoginScreen} name="Login" />
-      <Stack.Screen component={RegisterScreen} name="Register" />
-      <Stack.Screen component={ForgotPasswordScreen} name="ForgotPassword" />
+      <Stack.Screen
+        component={RegisterScreen}
+        name="Register"
+        options={{
+          headerShown: true,
+          headerTintColor: '#000',
+        }}
+      />
+      <Stack.Screen
+        component={ForgotPasswordScreen}
+        name="ForgotPassword"
+        options={{
+          headerShown: true,
+          headerTintColor: '#000',
+          headerTitle: 'Forgot Pasword',
+        }}
+      />
       <Stack.Screen component={WelcomeScreen} name="Welcome" />
     </Stack.Navigator>
   );
