@@ -1,20 +1,14 @@
-import {
-  BottomTabBarOptions,
-  BottomTabNavigationOptions,
-  createBottomTabNavigator,
-} from '@react-navigation/bottom-tabs';
+import { BottomTabNavigationOptions, createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
 import React from 'react';
-import { View, Text, TouchableWithoutFeedback } from 'react-native';
 import * as Icon from 'react-native-heroicons/solid';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { createSharedElementStackNavigator } from 'react-navigation-shared-element';
 
 import { TabBarComponent } from '_app/components/BottomTabBar';
 import {
   HomeIndexScreen,
-  AccountScreen, // ActivityScreen,
+  AccountScreen,
   AddScreen,
   ExploreScreen,
   CountriesScreen,
@@ -258,14 +252,13 @@ const HomeStack = () => {
 const Tab = createBottomTabNavigator<HomeTabParamList>();
 
 const HomeTab = () => {
-  const tabBarOptions: BottomTabBarOptions = {
-    showLabel: false,
-    style: {
+  const screenOptions: BottomTabNavigationOptions = {
+    tabBarShowLabel: false,
+    tabBarStyle: {
       borderTopColor: '#dddddd',
       backgroundColor: 'transparent',
     },
   };
-  const navigationOptions: BottomTabNavigationOptions = {};
 
   function getTabBarVisible(route) {
     const routeName = getFocusedRouteNameFromRoute(route);
@@ -279,7 +272,7 @@ const HomeTab = () => {
   }
 
   return (
-    <Tab.Navigator tabBar={TabBarComponent} tabBarOptions={tabBarOptions} screenOptions={navigationOptions}>
+    <Tab.Navigator tabBar={TabBarComponent} screenOptions={screenOptions}>
       <Tab.Screen
         options={{
           tabBarIcon: ({ focused }) => <Icon.HomeIcon size={30} color={focused ? '#777777' : '#bbbbbb'} />,
