@@ -314,10 +314,6 @@ const HomeTab = () => {
       <Tab.Screen
         listeners={({ navigation }) => ({
           tabPress: e => {
-            if (!isAuth) {
-              e.preventDefault();
-              return navigation.navigate('LoginOrSignup');
-            }
             return navigation.navigate('Account');
           },
         })}

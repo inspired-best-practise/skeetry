@@ -1,6 +1,8 @@
 import { createMaterialTopTabNavigator, MaterialTopTabNavigationOptions } from '@react-navigation/material-top-tabs';
 import React from 'react';
 
+import { authStore } from '_app/stores';
+
 import AuthStack from './AuthStack';
 import HomeTab from './HomeTab';
 
@@ -16,7 +18,7 @@ const index = (): JSX.Element => {
     },
   };
 
-  const logined = false;
+  const logined = authStore(state => state.logined);
 
   return (
     <RootTab.Navigator initialRouteName={logined ? 'HomeTab' : 'AuthStack'} screenOptions={screenOptions}>
