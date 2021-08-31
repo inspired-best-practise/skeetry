@@ -6,7 +6,7 @@ import { s } from '_app/components/LoadingOverlay/styles';
 export const ForgotPasswordScreen = () => {
   return (
     <View style={s.container}>
-      <Text>ForgotPassword!</Text>
+      <Text>Forgot Password!</Text>
     </View>
   );
 };

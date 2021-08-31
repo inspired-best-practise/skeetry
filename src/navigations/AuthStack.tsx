@@ -9,6 +9,7 @@ const AuthStack = () => {
     headerShown: false,
     gestureEnabled: false,
   };
+
   return (
     <Stack.Navigator screenOptions={navigationOptions}>
       <Stack.Screen component={LoginScreen} name="Login" />

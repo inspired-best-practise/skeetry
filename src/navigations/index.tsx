@@ -5,7 +5,7 @@ import React from 'react';
 import { enableScreens } from 'react-native-screens';
 
 import { AddChooserScreen } from '_app/screens/Home/Add/AddChooser';
-import { LoginOrSignup, Offline } from '_app/screens/Others';
+import { Offline } from '_app/screens/Others';
 import { navigationRef } from '_app/services/navigations';
 
 import RootTab from './RootTab';
@@ -40,16 +40,6 @@ const Index = (): JSX.Element => {
           }}
           name="AddChooser"
           component={AddChooserScreen}
-        />
-        <RootStack.Screen
-          options={{
-            ...TransitionPresets.ModalTransition,
-            presentation: 'card',
-            headerTitle: 'Log in or sign up',
-            headerTintColor: '#000',
-          }}
-          name="LoginOrSignup"
-          component={LoginOrSignup}
         />
         <RootStack.Screen
           options={{
