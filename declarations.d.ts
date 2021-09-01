@@ -1,4 +1,4 @@
-type HomeTabParamList = {
+export type THomeTabParamList = {
   HomeIndexPage: undefined;
   ExplorePage: undefined;
   AddPage: undefined;
@@ -6,17 +6,19 @@ type HomeTabParamList = {
   AccountPage: undefined;
 };
 
-type rootStackParamList = {
+export type TRootStackParamList = {
   AuthStack: undefined;
   HomeTab: undefined;
   CardScreen: undefined;
 };
 
-type commonParamList = AuthStackParamList & HomeTabParamList & rootStackParamList;
-
-type AuthStackParamList = {
+export type TAuthStackParamList = {
   Login: undefined;
-  Register: undefined;
+  Phone: undefined;
+  Code: undefined;
+  Credentials: undefined;
   ForgotPassword: undefined;
-  Welcome: WelcomePropsRouteParams;
+  Welcome: undefined;
 };
+
+export type TCommonParamList = TAuthStackParamList & THomeTabParamList & TRootStackParamList;

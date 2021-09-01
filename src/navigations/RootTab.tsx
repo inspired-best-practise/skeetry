@@ -6,7 +6,7 @@ import { authStore } from '_app/stores';
 import AuthStack from './AuthStack';
 import HomeTab from './HomeTab';
 
-const RootTab = createMaterialTopTabNavigator<rootStackParamList>();
+const RootTab = createMaterialTopTabNavigator<TRootStackParamList>();
 
 const index = (): JSX.Element => {
   const screenOptions: MaterialTopTabNavigationOptions = {

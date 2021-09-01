@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-import { s } from '_app/components/LoadingOverlay/styles';
+import { s } from './styles';
 
 export const AddScreen = () => {
   return (

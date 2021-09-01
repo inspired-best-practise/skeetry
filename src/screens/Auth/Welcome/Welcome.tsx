@@ -1,12 +1,20 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 
-import { s } from '_app/components/LoadingOverlay/styles';
+import { authStore } from '_app/stores';
+
+import { s } from './styles';
 
 export const WelcomeScreen = () => {
+  const setLogin = authStore(state => state.setLogin);
+
   return (
     <View style={s.container}>
       <Text>Welcome!</Text>
+
+      <TouchableOpacity onPress={() => setLogin()} activeOpacity={1}>
+        <Text>Login</Text>
+      </TouchableOpacity>
     </View>
   );
 };

@@ -47,7 +47,7 @@ export const LoginScreen = () => {
           </TouchableOpacity>
         </View>
       </View>
-      <TouchableOpacity onPress={() => navigation.push('Register')} activeOpacity={1} style={s.registerWrapper}>
+      <TouchableOpacity onPress={() => navigation.push('Phone')} activeOpacity={1} style={s.registerWrapper}>
         <Text style={s.registerWrapperText}>
           <Text style={s.registerWrapperTextBold}>Don't have account?</Text> Register now.
         </Text>

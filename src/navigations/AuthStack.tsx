@@ -1,9 +1,16 @@
 import { createStackNavigator, StackNavigationOptions } from '@react-navigation/stack';
 import React from 'react';
 
-import { ForgotPasswordScreen, LoginScreen, RegisterScreen, WelcomeScreen } from '_app/screens/Auth';
+import {
+  ForgotPasswordScreen,
+  LoginScreen,
+  PhoneScreen,
+  CodeScreen,
+  CredentialsScreen,
+  WelcomeScreen,
+} from '_app/screens/Auth';
 
-const Stack = createStackNavigator<AuthStackParamList>();
+const Stack = createStackNavigator<TAuthStackParamList>();
 const AuthStack = () => {
   const navigationOptions: StackNavigationOptions = {
     headerShown: false,
@@ -14,11 +21,26 @@ const AuthStack = () => {
     <Stack.Navigator screenOptions={navigationOptions}>
       <Stack.Screen component={LoginScreen} name="Login" />
       <Stack.Screen
-        component={RegisterScreen}
-        name="Register"
+        component={PhoneScreen}
+        name="Phone"
         options={{
           headerShown: true,
           headerTintColor: '#000',
+        }}
+      />
+      <Stack.Screen
+        component={CodeScreen}
+        name="Code"
+        options={{
+          headerShown: true,
+          headerTintColor: '#000',
+        }}
+      />
+      <Stack.Screen
+        component={CredentialsScreen}
+        name="Credentials"
+        options={{
+          headerShown: false,
         }}
       />
       <Stack.Screen
@@ -30,7 +52,13 @@ const AuthStack = () => {
           headerTitle: 'Forgot Pasword',
         }}
       />
-      <Stack.Screen component={WelcomeScreen} name="Welcome" />
+      <Stack.Screen
+        component={WelcomeScreen}
+        name="Welcome"
+        options={{
+          headerShown: false,
+        }}
+      />
     </Stack.Navigator>
   );
 };

@@ -32,8 +32,6 @@ export const iosTransitionSpec = {
 const Stack = createStackNavigator();
 const SharedElementStack = createSharedElementStackNavigator();
 
-const isAuth = false;
-
 const AccountStack = () => {
   return (
     <SharedElementStack.Navigator
@@ -249,7 +247,7 @@ const HomeStack = () => {
   );
 };
 
-const Tab = createBottomTabNavigator<HomeTabParamList>();
+const Tab = createBottomTabNavigator<THomeTabParamList>();
 
 const HomeTab = () => {
   const screenOptions: BottomTabNavigationOptions = {
@@ -312,11 +310,6 @@ const HomeTab = () => {
         name="Activity"
       /> */}
       <Tab.Screen
-        listeners={({ navigation }) => ({
-          tabPress: e => {
-            return navigation.navigate('Account');
-          },
-        })}
         options={({ route }) => ({
           tabBarVisible: getTabBarVisible(route),
           tabBarIcon: ({ focused }) => <Icon.UserIcon size={30} color={focused ? '#777777' : '#bbbbbb'} />,
