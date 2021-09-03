@@ -25,8 +25,6 @@ export const LoginScreen = () => {
   });
 
   useEffect(() => {
-    console.log(username.length);
-    console.log(password.length);
     if (username.length !== 0 && password.length !== 0) {
       return setAllowLogin(true);
     }
@@ -42,8 +40,6 @@ export const LoginScreen = () => {
     if (data) {
       const { accessToken, refreshToken } = data.login;
       const { id, phone, username: name, createdAt, updatedAt } = data.login.user;
-
-      console.log('login tokens', accessToken, refreshToken);
 
       setTokens(accessToken, refreshToken);
       setUser(id, phone, name, createdAt, updatedAt);
