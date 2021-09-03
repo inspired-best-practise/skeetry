@@ -10,9 +10,11 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint-staged": "lint-staged",
     "prettier:write": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'",
-    "u": "yarn upgrade-interactive --latest"
+    "u": "yarn upgrade-interactive --latest",
+    "codegen": "graphql-codegen --config codegen.yml"
   },
   "dependencies": {
+    "@apollo/client": "^3.4.10",
     "@babel/plugin-proposal-decorators": "^7.14.5",
     "@babel/preset-react": "^7.14.5",
     "@react-native-community/async-storage": "^1.12.1",
@@ -29,6 +31,7 @@
     "@trivago/prettier-plugin-sort-imports": "^2.0.4",
     "dayjs": "^1.10.6",
     "eslint-config-prettier": "^8.3.0",
+    "graphql": "^15.5.2",
     "husky": "^7.0.2",
     "lint-staged": "^11.1.2",
     "react": "17.0.2",
@@ -62,6 +65,8 @@
   "devDependencies": {
     "@babel/core": "^7.15.0",
     "@babel/runtime": "^7.15.3",
+    "@graphql-codegen/cli": "2.1.1",
+    "@graphql-codegen/typescript": "2.1.2",
     "@react-native-community/eslint-config": "^3.0.0",
     "@types/jest": "^27.0.1",
     "@types/react-native": "^0.64.13",
@@ -73,7 +78,10 @@
     "jest": "^27.1.0",
     "metro-react-native-babel-preset": "^0.66.2",
     "react-test-renderer": "17.0.2",
-    "typescript": "^4.4.2"
+    "typescript": "^4.4.2",
+    "@graphql-codegen/typescript-react-apollo": "3.1.2",
+    "@graphql-codegen/typescript-operations": "2.1.2",
+    "@graphql-codegen/introspection": "2.1.0"
   },
   "resolutions": {
     "@types/react": "^17"
