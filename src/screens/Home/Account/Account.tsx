@@ -7,6 +7,7 @@ import { SharedElement } from 'react-navigation-shared-element';
 
 import { AccountStatsItem, Avatar, AccountFilter } from '_app/components';
 import { navigation } from '_app/services/navigations';
+import { authStore } from '_app/stores';
 import { wait } from '_app/utils';
 
 import { mockCountriesPopular } from '../Explore/mocks/mockCountriesPopular';
@@ -35,11 +36,14 @@ export const AccountScreen = () => {
     wait(2000).then(() => setRefreshing(false));
   }, []);
 
+  const user = authStore(state => state.user);
+  const toggleIsAuthenticated = authStore(state => state.toggleIsAuthenticated);
+
   return (
     <View style={s.container}>
       <SafeAreaView />
       <View style={s.accountPanel}>
-        <Icon.CogIcon onPress={() => navigation.navigate('AddChooser')} size={20} color={'#777'} />
+        <Icon.CogIcon onPress={() => toggleIsAuthenticated()} size={20} color={'#777'} />
         <View style={{ flexDirection: 'row' }}>
           <Icon.ChartBarIcon
             style={{ marginRight: 12 }}
@@ -51,7 +55,7 @@ export const AccountScreen = () => {
         </View>
       </View>
       <View style={s.accountHeader}>
-        <Text style={s.name}>Mike Bond</Text>
+        <Text style={s.name}>{user.username}</Text>
         <Avatar src={avatarSrcMock} nickname="mike" />
       </View>
       <View style={s.accountStats}>

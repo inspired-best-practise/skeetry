@@ -18,7 +18,7 @@ const index = (): JSX.Element => {
     },
   };
 
-  const logined = authStore(state => state.logined);
+  const logined = authStore(state => state.isAuthenticated);
 
   return (
     <RootTab.Navigator initialRouteName={logined ? 'HomeTab' : 'AuthStack'} screenOptions={screenOptions}>

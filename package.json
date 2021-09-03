@@ -17,6 +17,7 @@
     "@apollo/client": "^3.4.10",
     "@babel/plugin-proposal-decorators": "^7.14.5",
     "@babel/preset-react": "^7.14.5",
+    "@react-native-async-storage/async-storage": "^1.15.7",
     "@react-native-community/async-storage": "^1.12.1",
     "@react-native-community/blur": "^3.6.0",
     "@react-native-community/masked-view": "^0.1.11",
@@ -43,7 +44,6 @@
     "react-native-heroicons": "^2.0.1",
     "react-native-image-header-scroll-view": "^1.0.0",
     "react-native-maps": "^0.28.0",
-    "react-native-mmkv-storage": "^0.6.0",
     "react-native-modalize": "^2.0.8",
     "react-native-pager-view": "^5.4.1",
     "react-native-reanimated": "^2.2.0",
@@ -66,7 +66,10 @@
     "@babel/core": "^7.15.0",
     "@babel/runtime": "^7.15.3",
     "@graphql-codegen/cli": "2.1.1",
+    "@graphql-codegen/introspection": "2.1.0",
     "@graphql-codegen/typescript": "2.1.2",
+    "@graphql-codegen/typescript-operations": "2.1.2",
+    "@graphql-codegen/typescript-react-apollo": "3.1.2",
     "@react-native-community/eslint-config": "^3.0.0",
     "@types/jest": "^27.0.1",
     "@types/react-native": "^0.64.13",
@@ -78,10 +81,7 @@
     "jest": "^27.1.0",
     "metro-react-native-babel-preset": "^0.66.2",
     "react-test-renderer": "17.0.2",
-    "typescript": "^4.4.2",
-    "@graphql-codegen/typescript-react-apollo": "3.1.2",
-    "@graphql-codegen/typescript-operations": "2.1.2",
-    "@graphql-codegen/introspection": "2.1.0"
+    "typescript": "^4.4.2"
   },
   "resolutions": {
     "@types/react": "^17"

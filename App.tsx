@@ -7,6 +7,7 @@
  *
  * @format
  */
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import React, { useEffect } from 'react';
 import { StatusBar } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -20,12 +21,22 @@ const App: React.FC = () => {
     SplashScreen.hide();
   }, []);
 
+  const cache = new InMemoryCache();
+
+  const client = new ApolloClient({
+    uri: 'http://localhost:3000/graphql',
+    cache,
+    defaultOptions: { watchQuery: { fetchPolicy: 'cache-and-network' } },
+  });
+
   return (
-    <SafeAreaProvider>
-      <StatusBar barStyle="dark-content" animated translucent backgroundColor="rgba(0,0,0,0)" />
-      <RootStackNavigation />
-      <LoadingOverlay />
-    </SafeAreaProvider>
+    <ApolloProvider client={client}>
+      <SafeAreaProvider>
+        <StatusBar barStyle="dark-content" animated translucent backgroundColor="rgba(0,0,0,0)" />
+        <RootStackNavigation />
+        <LoadingOverlay />
+      </SafeAreaProvider>
+    </ApolloProvider>
   );
 };
 

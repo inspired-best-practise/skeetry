@@ -1,7 +1,11 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
+import { authStore } from '_app/stores';
+
 export const HomeIndexScreen = () => {
+  const user = authStore(state => state.user);
+
   return (
     <>
       <View
@@ -12,7 +16,7 @@ export const HomeIndexScreen = () => {
           justifyContent: 'center',
         }}
       >
-        <Text>Welcome, Mike</Text>
+        <Text>Welcome, {user.username}</Text>
       </View>
     </>
   );

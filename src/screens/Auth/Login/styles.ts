@@ -69,4 +69,9 @@ export const s = StyleSheet.create({
     fontWeight: '500',
     color: '#333',
   },
+  errorLogin: {
+    color: 'red',
+    marginTop: 20,
+    textAlign: 'center',
+  },
 });
