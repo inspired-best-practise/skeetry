@@ -28,7 +28,8 @@ const renderItem = ({ item }: any) => (
 );
 
 export const AccountScreen = () => {
-  const avatarSrcMock = 'https://tinyfac.es/data/avatars/BA0CB1F2-8C79-4376-B13B-DD5FB8772537-500w.jpeg';
+  const avatarSrcMock =
+    'https://images.generated.photos/ope_mySxrArKmYZ-husaCGy-cn6x9I4QZ3gsatsNYwc/rs:fit:512:512/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/ODI0NjMyLmpwZw.jpg';
   const [refreshing, setRefreshing] = useState(false);
 
   const onRefresh = React.useCallback(() => {
