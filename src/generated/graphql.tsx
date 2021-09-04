@@ -30,7 +30,6 @@ export type CreateItemInput = {
   exampleField: Scalars['Int'];
 };
 
-
 export type Item = {
   __typename?: 'Item';
   /** Identifies the date and time when the object was created. */
