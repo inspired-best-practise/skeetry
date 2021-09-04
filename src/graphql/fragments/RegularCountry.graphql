@@ -1,0 +1,5 @@
+fragment RegularCountry on Item {
+  id
+  name
+  flag
+}

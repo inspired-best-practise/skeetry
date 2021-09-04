@@ -1,4 +1,5 @@
 import { StatusBar, StyleSheet } from 'react-native';
+
 import { CARD_HEIGHT, CARD_SPACING } from '_app/constants';
 import { SCREEN_WIDTH } from '_app/utils/getDimensions';
 

@@ -17,9 +17,17 @@ export const authStore = create(
         createdAt: null,
         updatedAt: null,
       },
-      toggleIsAuthenticated: () =>
+      setLogin: () =>
         set(() => ({
-          isAuthenticated: !get().isAuthenticated,
+          isAuthenticated: true,
+        })),
+      setLogout: () =>
+        set(() => ({
+          isAuthenticated: false,
+          tokens: {
+            accessToken: null,
+            refreshToken: null,
+          },
         })),
       setTokens: (accessToken, refreshToken) =>
         set(() => ({

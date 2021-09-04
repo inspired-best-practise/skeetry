@@ -18,7 +18,7 @@ export const LoginScreen = () => {
 
   const setTokens = authStore(state => state.setTokens);
   const setUser = authStore(state => state.setUser);
-  const toggleIsAuthenticated = authStore(state => state.toggleIsAuthenticated);
+  const setLogin = authStore(state => state.setLogin);
 
   const [login, { loading, data, error }] = useLoginMutation({
     variables: { input: { username, password } },
@@ -43,7 +43,7 @@ export const LoginScreen = () => {
 
       setTokens(accessToken, refreshToken);
       setUser(id, phone, name, createdAt, updatedAt);
-      toggleIsAuthenticated();
+      setLogin();
     }
   }, [data]);
 

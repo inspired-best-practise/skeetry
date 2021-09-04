@@ -10,8 +10,7 @@ export const AccountFilter = () => {
       showsHorizontalScrollIndicator={false}
       contentContainerStyle={{
         paddingHorizontal: 9,
-        marginBottom: 20,
-        paddingBottom: 30,
+        marginBottom: 15,
       }}
     >
       <AccountFilterItem name="Want" />

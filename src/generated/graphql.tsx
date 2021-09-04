@@ -25,6 +25,39 @@ export type Auth = {
   user: User;
 };
 
+export type CreateItemInput = {
+  /** Example field (placeholder) */
+  exampleField: Scalars['Int'];
+};
+
+
+export type Item = {
+  __typename?: 'Item';
+  /** Identifies the date and time when the object was created. */
+  createdAt: Scalars['DateTime'];
+  description: Scalars['String'];
+  flag?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+  latitude: Scalars['String'];
+  longitude: Scalars['String'];
+  name: Scalars['String'];
+  photos: Scalars['String'];
+  tags: ItemTag;
+  type: Scalars['String'];
+  /** Identifies the date and time when the object was last updated. */
+  updatedAt: Scalars['DateTime'];
+};
+
+export type ItemTag = {
+  __typename?: 'ItemTag';
+  /** Identifies the date and time when the object was created. */
+  createdAt: Scalars['DateTime'];
+  emoji: Scalars['String'];
+  id: Scalars['ID'];
+  name: Scalars['String'];
+  /** Identifies the date and time when the object was last updated. */
+  updatedAt: Scalars['DateTime'];
+};
 
 export type LoginInput = {
   password: Scalars['String'];
@@ -33,9 +66,17 @@ export type LoginInput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  createItem: Item;
   login: Auth;
   refreshToken: Token;
+  removeItem: Item;
   signup: Auth;
+  updateItem: Item;
+};
+
+
+export type MutationCreateItemArgs = {
+  createItemInput: CreateItemInput;
 };
 
 
@@ -44,13 +85,31 @@ export type MutationLoginArgs = {
 };
 
 
+export type MutationRemoveItemArgs = {
+  id: Scalars['Int'];
+};
+
+
 export type MutationSignupArgs = {
   input: SignupInput;
 };
 
+
+export type MutationUpdateItemArgs = {
+  updateItemInput: UpdateItemInput;
+};
+
 export type Query = {
   __typename?: 'Query';
+  countries: Array<Item>;
+  item: Item;
+  items: Array<Item>;
   me: User;
+};
+
+
+export type QueryItemArgs = {
+  id: Scalars['Int'];
 };
 
 export type SignupInput = {
@@ -67,6 +126,12 @@ export type Token = {
   refreshToken: Scalars['String'];
 };
 
+export type UpdateItemInput = {
+  /** Example field (placeholder) */
+  exampleField?: Maybe<Scalars['Int']>;
+  id: Scalars['Int'];
+};
+
 export type User = {
   __typename?: 'User';
   /** Identifies the date and time when the object was created. */
@@ -77,6 +142,8 @@ export type User = {
   updatedAt: Scalars['DateTime'];
   username: Scalars['String'];
 };
+
+export type RegularCountryFragment = { __typename?: 'Item', id: string, name: string, flag?: Maybe<string> };
 
 export type RegularUserFragment = { __typename?: 'User', id: string, phone: string, username: string, createdAt: any, updatedAt: any };
 
@@ -99,11 +166,23 @@ export type SignupMutationVariables = Exact<{
 
 export type SignupMutation = { __typename?: 'Mutation', signup: { __typename?: 'Auth', accessToken: string, refreshToken: string, user: { __typename?: 'User', id: string, phone: string, username: string, createdAt: any, updatedAt: any } } };
 
+export type CountriesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type CountriesQuery = { __typename?: 'Query', countries: Array<{ __typename?: 'Item', id: string, name: string, flag?: Maybe<string> }> };
+
 export type MeQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type MeQuery = { __typename?: 'Query', me: { __typename?: 'User', id: string, phone: string, username: string, createdAt: any, updatedAt: any } };
 
+export const RegularCountryFragmentDoc = gql`
+    fragment RegularCountry on Item {
+  id
+  name
+  flag
+}
+    `;
 export const RegularUserFragmentDoc = gql`
     fragment RegularUser on User {
   id
@@ -220,6 +299,40 @@ export function useSignupMutation(baseOptions?: Apollo.MutationHookOptions<Signu
 export type SignupMutationHookResult = ReturnType<typeof useSignupMutation>;
 export type SignupMutationResult = Apollo.MutationResult<SignupMutation>;
 export type SignupMutationOptions = Apollo.BaseMutationOptions<SignupMutation, SignupMutationVariables>;
+export const CountriesDocument = gql`
+    query Countries {
+  countries {
+    ...RegularCountry
+  }
+}
+    ${RegularCountryFragmentDoc}`;
+
+/**
+ * __useCountriesQuery__
+ *
+ * To run a query within a React component, call `useCountriesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCountriesQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useCountriesQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useCountriesQuery(baseOptions?: Apollo.QueryHookOptions<CountriesQuery, CountriesQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<CountriesQuery, CountriesQueryVariables>(CountriesDocument, options);
+      }
+export function useCountriesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CountriesQuery, CountriesQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<CountriesQuery, CountriesQueryVariables>(CountriesDocument, options);
+        }
+export type CountriesQueryHookResult = ReturnType<typeof useCountriesQuery>;
+export type CountriesLazyQueryHookResult = ReturnType<typeof useCountriesLazyQuery>;
+export type CountriesQueryResult = Apollo.QueryResult<CountriesQuery, CountriesQueryVariables>;
 export const MeDocument = gql`
     query Me {
   me {

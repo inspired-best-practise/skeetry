@@ -60,6 +60,7 @@ export const s = StyleSheet.create({
   cardList: {
     flex: 1,
     justifyContent: 'flex-start',
+    paddingHorizontal: normalize(10),
   },
   cardImage: {
     width: itemWidth,

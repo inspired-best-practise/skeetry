@@ -24,7 +24,7 @@ import { s } from './styles';
 export const CardScreen = ({ route, navigation }) => {
   const { item } = route.params;
   const [loading, setLoading] = useState(false);
-  const [itemStatus, setItemStatus] = useState(item.status);
+  const [itemStatus, setItemStatus] = useState(item.status ? item.status : 'NONE');
 
   const onPress = (name: string) => {
     setLoading(true);
@@ -60,7 +60,7 @@ export const CardScreen = ({ route, navigation }) => {
   const renderContent = () => (
     <Animated.View style={[s.content]}>
       <View style={s.section}>
-        <Text style={s.name}>{item.flag + ' ' + item.title}</Text>
+        <Text style={s.name}>{item.flag + ' ' + item.name}</Text>
         {/* <View style={s.rating}>
             <Icon.StarIcon size={16} color={'black'} />
             <Text style={s.ratingNumber}>{item.rating.number}</Text>
@@ -155,7 +155,15 @@ export const CardScreen = ({ route, navigation }) => {
       <SafeAreaView />
       <StatusBar barStyle="light-content" animated translucent backgroundColor="rgba(255,255,255,100)" />
       <SharedElement id={`item.${item.id}.image`}>
-        <Image style={s.cardImage} source={{ uri: item.images[2].src }} resizeMode="cover" />
+        <Image
+          style={s.cardImage}
+          source={{
+            uri: item.images
+              ? item.images[2].src
+              : 'https://images.unsplash.com/photo-1503614472-8c93d56e92ce?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1299&q=80/250x300',
+          }}
+          resizeMode="cover"
+        />
       </SharedElement>
       <TouchableWithoutFeedback onPress={() => navigation.goBack()}>
         <Animated.View style={[s.backIcon, { opacity: fadeAnim }]}>

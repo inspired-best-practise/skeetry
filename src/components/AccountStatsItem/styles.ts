@@ -1,5 +1,6 @@
-import { normalize } from '_app/utils/getDimensions';
 import { StyleSheet } from 'react-native';
+
+import { normalize } from '_app/utils/getDimensions';
 
 export const s = StyleSheet.create({
   item: {

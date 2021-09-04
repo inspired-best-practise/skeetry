@@ -12,7 +12,7 @@ import { s } from './styles';
 const AnimatedImage = Animated.createAnimatedComponent(FastImage);
 
 export const Card = ({ item }: TCardProps) => {
-  const { images, title, id, rating, flag } = item;
+  const { images, name, id, rating, flag } = item;
   const [active, setActive] = useState(0);
 
   const changeItem = nativeEvent => {
@@ -35,9 +35,28 @@ export const Card = ({ item }: TCardProps) => {
           horizontal
           showsHorizontalScrollIndicator={false}
         >
-          {images.map(i => (
+          {images ? (
+            images.map(i => (
+              <Pressable
+                key={i.id}
+                onPress={() =>
+                  navigation.push('CardScreen', {
+                    item,
+                  })
+                }
+              >
+                <SharedElement id={`item.${id}.image`}>
+                  <AnimatedImage
+                    style={s.itemImage}
+                    source={{ uri: i.src, priority: FastImage.priority.normal }}
+                    resizeMode={FastImage.resizeMode.cover}
+                  />
+                </SharedElement>
+              </Pressable>
+            ))
+          ) : (
             <Pressable
-              key={i.id}
+              key={'key'}
               onPress={() =>
                 navigation.push('CardScreen', {
                   item,
@@ -47,27 +66,31 @@ export const Card = ({ item }: TCardProps) => {
               <SharedElement id={`item.${id}.image`}>
                 <AnimatedImage
                   style={s.itemImage}
-                  source={{ uri: i.src, priority: FastImage.priority.normal }}
+                  source={{
+                    uri: 'https://images.unsplash.com/photo-1503614472-8c93d56e92ce?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1299&q=80/250x300',
+                    priority: FastImage.priority.normal,
+                  }}
                   resizeMode={FastImage.resizeMode.cover}
                 />
               </SharedElement>
             </Pressable>
-          ))}
+          )}
         </ScrollView>
         <View style={s.wrapDot}>
-          {images.map((i, index) => (
-            <Text key={i.id} style={active === index ? s.dotActive : s.dot}>
-              ●
-            </Text>
-          ))}
+          {images &&
+            images.map((i, index) => (
+              <Text key={i.id} style={active === index ? s.dotActive : s.dot}>
+                ●
+              </Text>
+            ))}
         </View>
       </View>
       <View style={s.rating}>
         <Icon.StarIcon size={16} color={'black'} />
-        <Text style={s.ratingNumber}>{rating.number}</Text>
-        <Text style={s.ratingCount}>({rating.count})</Text>
+        <Text style={s.ratingNumber}>{rating ? rating.number : 0}</Text>
+        <Text style={s.ratingCount}>{rating ? rating.count : 0}</Text>
       </View>
-      <Text style={s.title}>{flag + ' ' + title}</Text>
+      <Text style={s.title}>{flag + ' ' + name}</Text>
     </View>
   );
 };

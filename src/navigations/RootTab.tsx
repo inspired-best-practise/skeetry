@@ -1,5 +1,6 @@
 import { createMaterialTopTabNavigator, MaterialTopTabNavigationOptions } from '@react-navigation/material-top-tabs';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Text, SafeAreaView } from 'react-native';
 
 import { authStore } from '_app/stores';
 
@@ -8,7 +9,7 @@ import HomeTab from './HomeTab';
 
 const RootTab = createMaterialTopTabNavigator<TRootStackParamList>();
 
-const index = (): JSX.Element => {
+const Index = (): JSX.Element => {
   const screenOptions: MaterialTopTabNavigationOptions = {
     tabBarIndicatorContainerStyle: {
       display: 'none',
@@ -19,6 +20,14 @@ const index = (): JSX.Element => {
   };
 
   const logined = authStore(state => state.isAuthenticated);
+
+  // if (!logined) {
+  //   return (
+  //     <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+  //       <Text>Loading...</Text>
+  //     </SafeAreaView>
+  //   );
+  // }
 
   return (
     <RootTab.Navigator initialRouteName={logined ? 'HomeTab' : 'AuthStack'} screenOptions={screenOptions}>
@@ -32,4 +41,4 @@ const index = (): JSX.Element => {
     </RootTab.Navigator>
   );
 };
-export default index;
+export default Index;

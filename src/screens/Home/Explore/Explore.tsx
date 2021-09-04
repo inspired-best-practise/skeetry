@@ -8,10 +8,11 @@ import { s } from './styles';
 export const ExploreScreen = () => {
   return (
     <>
-      <View style={s.categories}>
-        <Text style={s.categoriesTitle}>Find where you want to go</Text>
-      </View>
       <ScrollView style={s.categoryList}>
+        <View style={s.categories}>
+          <Text style={s.categoriesTitle}>Find where you want to go</Text>
+        </View>
+
         <CategoryCard
           name="Countries"
           count="197"

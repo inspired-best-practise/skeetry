@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, FlatList, RefreshControl, Pressable } from 'react-native';
+import { View, Text, FlatList, RefreshControl, Pressable, ScrollView } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import * as Icon from 'react-native-heroicons/solid';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -38,37 +38,41 @@ export const AccountScreen = () => {
   }, []);
 
   const user = authStore(state => state.user);
-  const toggleIsAuthenticated = authStore(state => state.toggleIsAuthenticated);
+  const setLogout = authStore(state => state.setLogout);
 
   return (
-    <View style={s.container}>
-      <SafeAreaView />
-      <View style={s.accountPanel}>
-        <Icon.CogIcon onPress={() => toggleIsAuthenticated()} size={20} color={'#777'} />
-        <View style={{ flexDirection: 'row' }}>
-          <Icon.ChartBarIcon
-            style={{ marginRight: 12 }}
-            onPress={() => navigation.navigate('AddChooser')}
-            size={20}
-            color={'#777'}
-          />
-          <Icon.ShareIcon onPress={() => navigation.navigate('AddChooser')} size={20} color={'#777'} />
-        </View>
-      </View>
-      <View style={s.accountHeader}>
-        <Text style={s.name}>{user.username}</Text>
-        <Avatar src={avatarSrcMock} nickname="mike" />
-      </View>
-      <View style={s.accountStats}>
-        <AccountStatsItem name="Place" number="5512" />
-        <AccountStatsItem name="Want" number="45" />
-        <AccountStatsItem name="Visited" number="20" />
-        <AccountStatsItem name="Gallery" number="120" />
-      </View>
-      <AccountFilter />
+    <>
+      <View style={{ height: 45, backgroundColor: '#fff' }} />
       <FlatList
+        ListHeaderComponent={() => (
+          <View>
+            <View style={s.accountPanel}>
+              <Icon.CogIcon onPress={() => setLogout()} size={20} color={'#777'} />
+              <View style={{ flexDirection: 'row' }}>
+                <Icon.ChartBarIcon
+                  style={{ marginRight: 12 }}
+                  onPress={() => navigation.navigate('AddChooser')}
+                  size={20}
+                  color={'#777'}
+                />
+                <Icon.ShareIcon onPress={() => navigation.navigate('AddChooser')} size={20} color={'#777'} />
+              </View>
+            </View>
+            <View style={s.accountHeader}>
+              <Text style={s.name}>{user.username}</Text>
+              <Avatar src={avatarSrcMock} nickname="mike" />
+            </View>
+            <View style={s.accountStats}>
+              <AccountStatsItem name="Place" number="5512" />
+              <AccountStatsItem name="Want" number="45" />
+              <AccountStatsItem name="Visited" number="20" />
+              <AccountStatsItem name="Gallery" number="120" />
+            </View>
+            <AccountFilter />
+          </View>
+        )}
         numColumns={2}
-        contentContainerStyle={{ paddingBottom: 6 }}
+        contentContainerStyle={{ paddingBottom: 100, marginTop: 10 }}
         columnWrapperStyle={s.cardList}
         data={mockCountriesPopular}
         renderItem={renderItem}
@@ -77,6 +81,6 @@ export const AccountScreen = () => {
         decelerationRate="fast"
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
       />
-    </View>
+    </>
   );
 };
