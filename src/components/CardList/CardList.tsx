@@ -18,8 +18,6 @@ export const CardList = ({ title, data, loading }): JSX.Element => {
 
   const renderItem = ({ item }: any) => <Card item={item} />;
 
-  console.log('l', loading);
-
   return !loading ? (
     <FlatList
       contentContainerStyle={s.list}
