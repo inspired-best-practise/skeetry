@@ -29,6 +29,8 @@ const Index = (): JSX.Element => {
   //   );
   // }
 
+  // TODO: Fix blink login screen when isAuthenticated
+
   return (
     <RootTab.Navigator initialRouteName={logined ? 'HomeTab' : 'AuthStack'} screenOptions={screenOptions}>
       {!logined && <RootTab.Screen name="AuthStack" component={AuthStack} />}
