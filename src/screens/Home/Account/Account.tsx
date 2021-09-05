@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useScrollToTop } from '@react-navigation/native';
+import React, { useCallback, useRef, useState } from 'react';
 import { View, Text, FlatList, RefreshControl, Pressable } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import * as Icon from 'react-native-heroicons/solid';
@@ -26,7 +27,7 @@ const renderItem = ({ item }: any) => (
   </Pressable>
 );
 
-const renderHeader = (avatarSrcMock: string, user: TUser, setLogout: () => void) => (
+const renderHeader = (user: TUser, setLogout: () => void) => (
   <View>
     <View style={s.accountPanel}>
       <Icon.CogIcon onPress={() => setLogout()} size={20} color={'#777'} />
@@ -42,7 +43,7 @@ const renderHeader = (avatarSrcMock: string, user: TUser, setLogout: () => void)
     </View>
     <View style={s.accountHeader}>
       <Text style={s.name}>{user.username}</Text>
-      <Avatar src={avatarSrcMock} nickname="mike" />
+      <Avatar src={user.avatar} nickname={user.username} />
     </View>
     <View style={s.accountStats}>
       <AccountStatsItem name="Place" number="5512" />
@@ -55,11 +56,10 @@ const renderHeader = (avatarSrcMock: string, user: TUser, setLogout: () => void)
 );
 
 export const AccountScreen = () => {
-  const avatarSrcMock =
-    'https://images.generated.photos/ope_mySxrArKmYZ-husaCGy-cn6x9I4QZ3gsatsNYwc/rs:fit:512:512/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/ODI0NjMyLmpwZw.jpg';
+  const ref = useRef(null);
   const [refreshing, setRefreshing] = useState(false);
 
-  const onRefresh = React.useCallback(() => {
+  const onRefresh = useCallback(() => {
     setRefreshing(true);
     wait(2000).then(() => setRefreshing(false));
   }, []);
@@ -67,11 +67,14 @@ export const AccountScreen = () => {
   const user = authStore(state => state.user);
   const setLogout = authStore(state => state.setLogout);
 
+  useScrollToTop(ref);
+
   return (
     <>
       <View style={{ height: 45, backgroundColor: '#fff' }} />
       <FlatList
-        ListHeaderComponent={renderHeader(avatarSrcMock, user, setLogout)}
+        ref={ref}
+        ListHeaderComponent={renderHeader(user, setLogout)}
         numColumns={2}
         contentContainerStyle={{ paddingBottom: 100, marginTop: 10 }}
         columnWrapperStyle={s.cardList}

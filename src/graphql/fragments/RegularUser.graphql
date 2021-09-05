@@ -2,6 +2,7 @@ fragment RegularUser on User {
   id
   phone
   username
+  avatar
   createdAt
   updatedAt
 }

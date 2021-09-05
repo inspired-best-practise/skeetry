@@ -33,6 +33,7 @@ type TUser = {
   id: string;
   username: string;
   phone: string;
+  avatar: string;
   createdAt: string;
   updatedAt: string;
 };

@@ -6,6 +6,8 @@ import { s } from './styles';
 export const Avatar = ({ src, nickname }: TAvatarProps) => {
   const placeholderImageMock = `https://eu.ui-avatars.com/api/?length=1&name=${nickname}`;
 
+  console.log('src', src);
+
   if (!src) {
     return (
       <FastImage
@@ -18,6 +20,7 @@ export const Avatar = ({ src, nickname }: TAvatarProps) => {
       />
     );
   }
+
   return (
     <FastImage
       style={s.avatarImage}

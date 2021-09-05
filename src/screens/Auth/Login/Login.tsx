@@ -39,10 +39,10 @@ export const LoginScreen = () => {
   useEffect(() => {
     if (data) {
       const { accessToken, refreshToken } = data.login;
-      const { id, phone, username: name, createdAt, updatedAt } = data.login.user;
+      const { id, phone, username: name, avatar, createdAt, updatedAt } = data.login.user;
 
       setTokens(accessToken, refreshToken);
-      setUser(id, phone, name, createdAt, updatedAt);
+      setUser(id, phone, name, avatar, createdAt, updatedAt);
       setLogin();
     }
   }, [data]);

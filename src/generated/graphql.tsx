@@ -133,6 +133,7 @@ export type UpdateItemInput = {
 
 export type User = {
   __typename?: 'User';
+  avatar: Scalars['String'];
   /** Identifies the date and time when the object was created. */
   createdAt: Scalars['DateTime'];
   id: Scalars['ID'];
@@ -144,14 +145,14 @@ export type User = {
 
 export type RegularCountryFragment = { __typename?: 'Item', id: string, name: string, flag?: Maybe<string> };
 
-export type RegularUserFragment = { __typename?: 'User', id: string, phone: string, username: string, createdAt: any, updatedAt: any };
+export type RegularUserFragment = { __typename?: 'User', id: string, phone: string, username: string, avatar: string, createdAt: any, updatedAt: any };
 
 export type LoginMutationVariables = Exact<{
   input: LoginInput;
 }>;
 
 
-export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'Auth', accessToken: string, refreshToken: string, user: { __typename?: 'User', id: string, phone: string, username: string, createdAt: any, updatedAt: any } } };
+export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'Auth', accessToken: string, refreshToken: string, user: { __typename?: 'User', id: string, phone: string, username: string, avatar: string, createdAt: any, updatedAt: any } } };
 
 export type RefreshTokenMutationVariables = Exact<{ [key: string]: never; }>;
 
@@ -163,7 +164,7 @@ export type SignupMutationVariables = Exact<{
 }>;
 
 
-export type SignupMutation = { __typename?: 'Mutation', signup: { __typename?: 'Auth', accessToken: string, refreshToken: string, user: { __typename?: 'User', id: string, phone: string, username: string, createdAt: any, updatedAt: any } } };
+export type SignupMutation = { __typename?: 'Mutation', signup: { __typename?: 'Auth', accessToken: string, refreshToken: string, user: { __typename?: 'User', id: string, phone: string, username: string, avatar: string, createdAt: any, updatedAt: any } } };
 
 export type CountriesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -173,7 +174,7 @@ export type CountriesQuery = { __typename?: 'Query', countries: Array<{ __typena
 export type MeQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type MeQuery = { __typename?: 'Query', me: { __typename?: 'User', id: string, phone: string, username: string, createdAt: any, updatedAt: any } };
+export type MeQuery = { __typename?: 'Query', me: { __typename?: 'User', id: string, phone: string, username: string, avatar: string, createdAt: any, updatedAt: any } };
 
 export const RegularCountryFragmentDoc = gql`
     fragment RegularCountry on Item {
@@ -187,6 +188,7 @@ export const RegularUserFragmentDoc = gql`
   id
   phone
   username
+  avatar
   createdAt
   updatedAt
 }
