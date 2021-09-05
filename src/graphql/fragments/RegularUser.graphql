@@ -3,6 +3,8 @@ fragment RegularUser on User {
   phone
   username
   avatar
+  wantedCount
+  visitedCount
   createdAt
   updatedAt
 }

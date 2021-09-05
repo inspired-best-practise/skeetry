@@ -46,10 +46,10 @@ const renderHeader = (user: TUser, setLogout: () => void) => (
       <Avatar src={user.avatar} nickname={user.username} />
     </View>
     <View style={s.accountStats}>
-      <AccountStatsItem name="Place" number="5512" />
-      <AccountStatsItem name="Want" number="45" />
-      <AccountStatsItem name="Visited" number="20" />
-      <AccountStatsItem name="Gallery" number="120" />
+      <AccountStatsItem name="Place" number={0} />
+      <AccountStatsItem name="Want" number={user.wantedCount} />
+      <AccountStatsItem name="Visited" number={user.visitedCount} />
+      <AccountStatsItem name="Gallery" number={0} />
     </View>
     <AccountFilter />
   </View>

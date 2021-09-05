@@ -15,6 +15,8 @@ export const authStore = create(
         phone: null,
         username: null,
         avatar: null,
+        wantedCount: null,
+        visitedCount: null,
         createdAt: null,
         updatedAt: null,
       },
@@ -34,13 +36,15 @@ export const authStore = create(
         set(() => ({
           tokens: { accessToken, refreshToken },
         })),
-      setUser: (id, phone, username, avatar, createdAt, updatedAt) =>
+      setUser: (id, phone, username, avatar, wantedCount, visitedCount, createdAt, updatedAt) =>
         set(() => ({
           user: {
             id,
             phone,
             username,
             avatar,
+            wantedCount,
+            visitedCount,
             createdAt,
             updatedAt,
           },

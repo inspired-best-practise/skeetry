@@ -34,6 +34,8 @@ type TUser = {
   username: string;
   phone: string;
   avatar: string;
+  wantedCount: number;
+  visitedCount: number;
   createdAt: string;
   updatedAt: string;
 };
