@@ -1,6 +1,6 @@
 import { useScrollToTop } from '@react-navigation/native';
 import React, { useCallback, useRef, useState } from 'react';
-import { View, Text, FlatList, RefreshControl, Pressable } from 'react-native';
+import { View, Text, FlatList, RefreshControl, Pressable, SafeAreaView } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import * as Icon from 'react-native-heroicons/solid';
 import { SharedElement } from 'react-navigation-shared-element';
@@ -73,17 +73,17 @@ export const AccountScreen = () => {
 
   if (loading) {
     return (
-      <View>
+      <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>Loading...</Text>
-      </View>
+      </SafeAreaView>
     );
   }
 
   if (error) {
     return (
-      <View>
+      <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>Error: {error.message}. Try later...</Text>
-      </View>
+      </SafeAreaView>
     );
   }
 
