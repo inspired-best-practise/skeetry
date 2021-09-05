@@ -6,6 +6,7 @@ import * as Icon from 'react-native-heroicons/solid';
 import { SharedElement } from 'react-navigation-shared-element';
 
 import { AccountStatsItem, Avatar, AccountFilter } from '_app/components';
+import { useMeQuery } from '_app/generated/graphql';
 import { navigation } from '_app/services/navigations';
 import { authStore } from '_app/stores';
 import { wait } from '_app/utils';
@@ -58,16 +59,35 @@ const renderHeader = (user: TUser, setLogout: () => void) => (
 export const AccountScreen = () => {
   const ref = useRef(null);
   const [refreshing, setRefreshing] = useState(false);
+  const { loading, data, error, refetch } = useMeQuery({ fetchPolicy: 'no-cache' });
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
-    wait(2000).then(() => setRefreshing(false));
-  }, []);
+    refetch();
+    wait(500).then(() => setRefreshing(false));
+  }, [refetch]);
 
-  const user = authStore(state => state.user);
   const setLogout = authStore(state => state.setLogout);
 
   useScrollToTop(ref);
+
+  if (loading) {
+    return (
+      <View>
+        <Text>Loading...</Text>
+      </View>
+    );
+  }
+
+  if (error) {
+    return (
+      <View>
+        <Text>Error: {error.message}. Try later...</Text>
+      </View>
+    );
+  }
+
+  const user = data!.me;
 
   return (
     <>

@@ -10,8 +10,6 @@ import { useCountriesQuery } from '_app/generated/graphql';
 export const CountriesScreen = () => {
   const { data, loading, error } = useCountriesQuery();
 
-  console.log('error', error);
-
   return (
     <View style={{ marginTop: 20 }}>
       <View style={{ paddingHorizontal: 4 }}>

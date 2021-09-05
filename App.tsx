@@ -7,7 +7,8 @@
  *
  * @format
  */
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 import React, { useEffect } from 'react';
 import { StatusBar } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -15,16 +16,33 @@ import SplashScreen from 'react-native-splash-screen';
 
 import { LoadingOverlay } from '_app/components';
 import RootStackNavigation from '_app/navigations';
+import { authStore } from '_app/stores';
 
 const App: React.FC = () => {
   useEffect(() => {
     SplashScreen.hide();
   }, []);
 
+  const token = authStore(state => state.tokens.accessToken);
+
   const cache = new InMemoryCache();
 
-  const client = new ApolloClient({
+  const httpLink = createHttpLink({
     uri: 'http://localhost:3000/graphql',
+  });
+
+  const authLink = setContext((_, { headers }) => {
+    // return the headers to the context so httpLink can read them
+    return {
+      headers: {
+        ...headers,
+        authorization: token ? `Bearer ${token}` : '',
+      },
+    };
+  });
+
+  const client = new ApolloClient({
+    link: authLink.concat(httpLink),
     cache,
     defaultOptions: { watchQuery: { fetchPolicy: 'cache-and-network' } },
   });
