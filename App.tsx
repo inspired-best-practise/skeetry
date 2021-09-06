@@ -29,6 +29,7 @@ const App: React.FC = () => {
 
   const httpLink = createHttpLink({
     uri: 'http://localhost:3000/graphql',
+    // uri: 'https://travel-api-production.up.railway.app/graphql',
   });
 
   const authLink = setContext((_, { headers }) => {
