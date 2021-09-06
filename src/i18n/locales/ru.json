@@ -1,0 +1,14 @@
+{
+  "Home": {
+    "welcome": "Добро пожаловать"
+  },
+  "Account": {
+    "place": "Рейтинг",
+    "want": "Хочу",
+    "visited": "Посетил",
+    "gallery": "Галерея",
+    "countries": "Страны",
+    "cities": "Города",
+    "places": "Места"
+  }
+}

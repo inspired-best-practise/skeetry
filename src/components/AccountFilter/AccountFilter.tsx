@@ -1,9 +1,12 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import { AccountFilterItem } from '_app/components';
 
 export const AccountFilter = () => {
+  const { t } = useTranslation();
+
   return (
     <ScrollView
       horizontal
@@ -13,11 +16,11 @@ export const AccountFilter = () => {
         marginBottom: 15,
       }}
     >
-      <AccountFilterItem name="Want" />
-      <AccountFilterItem name="Visited" />
-      <AccountFilterItem name="Countries" />
-      <AccountFilterItem name="Cities" />
-      <AccountFilterItem name="Places" />
+      <AccountFilterItem name={`${t('Account:want')}`} />
+      <AccountFilterItem name={`${t('Account:visited')}`} />
+      <AccountFilterItem name={`${t('Account:countries')}`} />
+      <AccountFilterItem name={`${t('Account:cities')}`} />
+      <AccountFilterItem name={`${t('Account:places')}`} />
     </ScrollView>
   );
 };

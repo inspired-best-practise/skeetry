@@ -1,9 +1,12 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { View, Text } from 'react-native';
 
 import { authStore } from '_app/stores';
 
 export const HomeIndexScreen = () => {
+  const { t } = useTranslation();
+
   const user = authStore(state => state.user);
 
   return (
@@ -16,7 +19,9 @@ export const HomeIndexScreen = () => {
           justifyContent: 'center',
         }}
       >
-        <Text>Welcome, {user.username}</Text>
+        <Text>
+          {`${t('Home:welcome')}`}, {user.username}
+        </Text>
       </View>
     </>
   );

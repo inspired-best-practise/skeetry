@@ -15,6 +15,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import SplashScreen from 'react-native-splash-screen';
 
 import { LoadingOverlay } from '_app/components';
+import '_app/i18n';
 import RootStackNavigation from '_app/navigations';
 import { authStore } from '_app/stores';
 import { deviceLanguage } from '_app/utils/deviceLanguage';

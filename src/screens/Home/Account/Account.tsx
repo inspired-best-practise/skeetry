@@ -1,5 +1,6 @@
 import { useScrollToTop } from '@react-navigation/native';
 import React, { useCallback, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { View, Text, FlatList, RefreshControl, Pressable, SafeAreaView } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import * as Icon from 'react-native-heroicons/solid';
@@ -28,7 +29,7 @@ const renderItem = ({ item }: any) => (
   </Pressable>
 );
 
-const renderHeader = (user: TUser, setLogout: () => void) => (
+const renderHeader = (user: TUser, setLogout: () => void, t) => (
   <View>
     <View style={s.accountPanel}>
       <Icon.CogIcon onPress={() => setLogout()} size={20} color={'#777'} />
@@ -47,10 +48,10 @@ const renderHeader = (user: TUser, setLogout: () => void) => (
       <Avatar src={user.avatar} nickname={user.username} />
     </View>
     <View style={s.accountStats}>
-      <AccountStatsItem name="Place" number={0} />
-      <AccountStatsItem name="Want" number={user.wantedCount} />
-      <AccountStatsItem name="Visited" number={user.visitedCount} />
-      <AccountStatsItem name="Gallery" number={0} />
+      <AccountStatsItem name={`${t('Account:place')}`} number={0} />
+      <AccountStatsItem name={`${t('Account:want')}`} number={user.wantedCount} />
+      <AccountStatsItem name={`${t('Account:visited')}`} number={user.visitedCount} />
+      <AccountStatsItem name={`${t('Account:gallery')}`} number={0} />
     </View>
     <AccountFilter />
   </View>
@@ -58,6 +59,7 @@ const renderHeader = (user: TUser, setLogout: () => void) => (
 
 export const AccountScreen = () => {
   const ref = useRef(null);
+  const { t } = useTranslation();
   const [refreshing, setRefreshing] = useState(false);
   const { loading, data, error, refetch } = useMeQuery({ fetchPolicy: 'no-cache' });
 
@@ -94,7 +96,7 @@ export const AccountScreen = () => {
       <View style={{ height: 45, backgroundColor: '#fff' }} />
       <FlatList
         ref={ref}
-        ListHeaderComponent={renderHeader(user, setLogout)}
+        ListHeaderComponent={renderHeader(user, setLogout, t)}
         numColumns={2}
         contentContainerStyle={{ paddingBottom: 100, marginTop: 10 }}
         columnWrapperStyle={s.cardList}

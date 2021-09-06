@@ -1,0 +1,14 @@
+{
+  "Home": {
+    "welcome": "Welcome"
+  },
+  "Account": {
+    "place": "Place",
+    "want": "Want",
+    "visited": "Visited",
+    "gallery": "Gallery",
+    "countries": "Сountries",
+    "cities": "Сities",
+    "places": "Places"
+  }
+}
