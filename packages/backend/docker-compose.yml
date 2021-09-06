@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  postgres:
+    restart: unless-stopped
+    container_name: 'travel-postgres'
+    image: 'postgres:11'
+    ports:
+      - '127.0.0.1:5432:5432'
+    volumes:
+      - 'pgdata:/var/lib/postgresql/data/'
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: travel
+
+  redis:
+    container_name: 'travel-redis'
+    image: 'redis'
+    ports:
+      - '127.0.0.1:6379:6379'
+    volumes:
+      - 'redisdata:/data'
+
+  api:
+    container_name: 'travel-api'
+    image: node:lts
+    command: yarn start
+    ports:
+      - '127.0.0.1:3000:3000'
+    volumes:
+      - .:/srv/api:rw
+      - /srv/backend/node_modules/bcrypt/
+    working_dir: /srv/api
+    env_file:
+      - .env
+    depends_on:
+      - redis
+      - postgres
+
+volumes:
+  pgdata: {}
+  redisdata: {}

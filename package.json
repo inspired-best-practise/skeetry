@@ -1,117 +1,12 @@
 {
-  "name": "travel",
-  "version": "0.0.1",
+  "name": "@travel/monorepo",
+  "repository": "git@github.com:alekseytsvetkov/travel.git",
+  "author": "Aleksey Tsvetkov <code.aleksey@icloud.com>",
+  "workspaces": [
+    "packages/*"
+  ],
+  "license": "SEE LICENSE IN LICENSE.MD",
   "private": true,
-  "scripts": {
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
-    "start": "react-native start",
-    "test": "jest",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "lint-staged": "lint-staged",
-    "prettier:write": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'",
-    "u": "yarn upgrade-interactive --latest",
-    "codegen": "graphql-codegen --config codegen.yml"
-  },
-  "dependencies": {
-    "@apollo/client": "^3.4.10",
-    "@babel/plugin-proposal-decorators": "^7.15.4",
-    "@babel/preset-react": "^7.14.5",
-    "@react-native-async-storage/async-storage": "^1.15.7",
-    "@react-native-community/async-storage": "^1.12.1",
-    "@react-native-community/blur": "^3.6.0",
-    "@react-native-community/masked-view": "^0.1.11",
-    "@react-native-community/netinfo": "^6.0.2",
-    "@react-native-community/segmented-control": "^2.2.2",
-    "@react-navigation/bottom-tabs": "^6.0.5",
-    "@react-navigation/material-bottom-tabs": "^6.0.5",
-    "@react-navigation/material-top-tabs": "^6.0.2",
-    "@react-navigation/native": "^6.0.2",
-    "@react-navigation/native-stack": "^6.1.0",
-    "@react-navigation/stack": "^6.0.7",
-    "@trivago/prettier-plugin-sort-imports": "^2.0.4",
-    "appcenter": "4.2.0",
-    "appcenter-analytics": "4.2.0",
-    "appcenter-crashes": "4.2.0",
-    "dayjs": "^1.10.6",
-    "eslint-config-prettier": "^8.3.0",
-    "graphql": "^15.5.2",
-    "husky": "^7.0.2",
-    "i18next": "^20.6.0",
-    "lint-staged": "^11.1.2",
-    "react": "17.0.2",
-    "react-i18next": "^11.11.4",
-    "react-native": "0.65.1",
-    "react-native-codegen": "^0.0.7",
-    "react-native-device-info": "^8.3.1",
-    "react-native-fast-image": "^8.3.7",
-    "react-native-gesture-handler": "^1.10.3",
-    "react-native-heroicons": "^2.0.1",
-    "react-native-image-header-scroll-view": "^1.0.0",
-    "react-native-localize": "^2.1.4",
-    "react-native-maps": "^0.29.3",
-    "react-native-modalize": "^2.0.8",
-    "react-native-pager-view": "^5.4.1",
-    "react-native-reanimated": "^2.2.0",
-    "react-native-redash": "^16.2.2",
-    "react-native-safe-area-context": "^3.3.2",
-    "react-native-screens": "^3.6.0",
-    "react-native-shared-element": "^0.8.2",
-    "react-native-splash-screen": "^3.2.0",
-    "react-native-status-bar-height": "^2.6.0",
-    "react-native-svg": "^12.1.1",
-    "react-native-tab-view": "^3.1.1",
-    "react-native-vector-icons": "^8.1.0",
-    "react-navigation-hooks": "^1.1.0",
-    "react-navigation-shared-element": "^3.1.3",
-    "reanimated-bottom-sheet": "^1.0.0-alpha.20",
-    "use-memo-one": "^1.1.2",
-    "zustand": "^3.5.10"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.15.5",
-    "@babel/runtime": "^7.15.4",
-    "@graphql-codegen/cli": "^2.1.1",
-    "@graphql-codegen/introspection": "^2.1.0",
-    "@graphql-codegen/typescript": "^2.2.0",
-    "@graphql-codegen/typescript-operations": "^2.1.3",
-    "@graphql-codegen/typescript-react-apollo": "^3.1.3",
-    "@react-native-community/eslint-config": "^3.0.1",
-    "@types/jest": "^27.0.1",
-    "@types/react-native": "^0.64.13",
-    "@types/react-native-vector-icons": "^6.4.8",
-    "@types/react-test-renderer": "^17.0.1",
-    "babel-jest": "^27.1.0",
-    "babel-plugin-module-resolver": "^4.1.0",
-    "eslint": "^7.32.0",
-    "jest": "^27.1.0",
-    "metro-react-native-babel-preset": "^0.66.2",
-    "react-test-renderer": "17.0.2",
-    "typescript": "^4.4.2"
-  },
-  "resolutions": {
-    "@types/react": "^17"
-  },
-  "jest": {
-    "preset": "react-native",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run lint-staged --scripts-prepend-node-path"
-    }
-  },
-  "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx}": [
-      "eslint --quiet",
-      "prettier --write"
-    ]
-  }
+  "dependencies": {},
+  "devDependencies": {}
 }

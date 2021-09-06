@@ -8,7 +8,8 @@ node_modules/
 
 # production
 /build
-public/
+/dist
+dist/*
 lib/
 
 # misc
@@ -22,6 +23,7 @@ ngrok.yml
 .vscode/
 .next/
 .cache/
+.todo
 dist/
 
 npm-debug.log*

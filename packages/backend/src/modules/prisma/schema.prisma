@@ -1,0 +1,74 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "postgresql"
+  url      = env("PG_URL")
+}
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["linux-arm-openssl-1.1.x", "native"]
+}
+
+model User {
+  id             String   @id @default(cuid())
+  username       String   @unique
+  name           String?
+  avatar         String?
+  bio            String?
+  phone          String   @unique
+  verified       Boolean  @default(false)
+  wanted         Item[]   @relation("WantedItem")
+  visited        Item[]   @relation("VisitedItem")
+  wantedCount    Int      @default(0)
+  visitedCount   Int      @default(0)
+  followersCount Int      @default(0)
+  followingCount Int      @default(0)
+  youFollow      Boolean  @default(false)
+  followsYou     Boolean  @default(false)
+  rating         Int?
+  password       String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @default(now()) @updatedAt
+}
+
+model Item {
+  id           String       @id @default(cuid())
+  type         ItemType
+  name         String       @unique
+  overview     String?
+  wantedCount  Int          @default(0)
+  visitedCount Int          @default(0)
+  reviewsCount Int          @default(0)
+  photos       String[]
+  latitude     String
+  longitude    String
+  tags         ItemTag[]
+  flag         String?
+  userWanted   User[]       @relation("WantedItem")
+  userVisited  User[]       @relation("VisitedItem")
+  itemReview   ItemReview[]
+}
+
+model ItemTag {
+  id    String @id @default(cuid())
+  name  String @unique
+  emoji String
+  Item  Item[]
+}
+
+model ItemReview {
+  id         String   @id @default(cuid())
+  body       String
+  reviewedAt DateTime @default(now())
+  item       Item     @relation(fields: [itemId], references: [id])
+  itemId     String
+}
+
+enum ItemType {
+  COUNTRY
+  CITY
+  PLACE
+  SIGHT
+}
