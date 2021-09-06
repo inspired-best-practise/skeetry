@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { RefreshControl, FlatList, View, Text } from 'react-native';
 
 import { Card } from '_app/components';
-import { wait } from '_app/utils';
+import { wait } from '_app/utils/helpers';
 
 import { s } from './styles';
 

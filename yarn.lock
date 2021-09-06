@@ -7817,6 +7817,11 @@ react-native-image-header-scroll-view@^1.0.0:
   resolved "https://registry.yarnpkg.com/react-native-image-header-scroll-view/-/react-native-image-header-scroll-view-1.0.0.tgz#1b8a9de1c17821646138c3292bce0395254d0feb"
   integrity sha512-34r9pc9DWQaB9fbgZkK+BPFDGv2UBvtMRQG+Ovr4z5GRVdLtelGWd1VrhjEv4JIw2ufJ3EE6DPyKecuDA22z6w==
 
+react-native-localize@^2.1.4:
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/react-native-localize/-/react-native-localize-2.1.4.tgz#d4a41d9e03908c739e436dba9499b9e761b4e2f6"
+  integrity sha512-Cvow7TSUsyIPj6ddxqT2GnKexQ//Q2Ur6KAQSXIcrjvE2K7KzbbveMpGsBK0oKvF9X+5DcVVED3EVdZXcrEoBw==
+
 react-native-maps@^0.29.3:
   version "0.29.3"
   resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-0.29.3.tgz#ab873fa5e7301c29f07886df5f3cbef667d46cca"

@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { SCREEN_HEIGHT, SCREEN_WIDTH, STATUS_BAR_HEIGHT } from '_app/utils/getDimensions';
+import { SCREEN_HEIGHT, SCREEN_WIDTH, STATUS_BAR_HEIGHT } from '_app/utils/dimensions';
 
 export const s = StyleSheet.create({
   container: {

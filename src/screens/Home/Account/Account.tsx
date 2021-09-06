@@ -9,7 +9,7 @@ import { AccountStatsItem, Avatar, AccountFilter } from '_app/components';
 import { useMeQuery } from '_app/generated/graphql';
 import { navigation } from '_app/services/navigations';
 import { authStore } from '_app/stores';
-import { wait } from '_app/utils';
+import { wait } from '_app/utils/helpers';
 
 import { mockCountriesPopular } from '../Explore/mocks/mockCountriesPopular';
 import { s } from './styles';

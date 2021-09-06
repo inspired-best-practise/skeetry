@@ -1,6 +1,7 @@
 import { StyleSheet } from 'react-native';
+
 import { paragraph } from '_app/constants';
-import { normalize } from '_app/utils/getDimensions';
+import { normalize } from '_app/utils/dimensions';
 
 export const s = StyleSheet.create({
   container: {

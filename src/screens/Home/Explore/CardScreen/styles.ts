@@ -1,6 +1,7 @@
-import { SCREEN_WIDTH } from '_app/utils/getDimensions';
 import { Dimensions, StyleSheet } from 'react-native';
+
 import { radius } from '_app/constants';
+import { SCREEN_WIDTH } from '_app/utils/dimensions';
 
 const { width } = Dimensions.get('window');
 

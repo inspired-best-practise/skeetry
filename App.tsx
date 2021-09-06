@@ -17,6 +17,7 @@ import SplashScreen from 'react-native-splash-screen';
 import { LoadingOverlay } from '_app/components';
 import RootStackNavigation from '_app/navigations';
 import { authStore } from '_app/stores';
+import { deviceLanguage } from '_app/utils/deviceLanguage';
 
 const App: React.FC = () => {
   useEffect(() => {
@@ -47,6 +48,8 @@ const App: React.FC = () => {
     cache,
     defaultOptions: { watchQuery: { fetchPolicy: 'cache-and-network' } },
   });
+
+  console.log(deviceLanguage);
 
   return (
     <ApolloProvider client={client}>

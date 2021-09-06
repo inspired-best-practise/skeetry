@@ -17,7 +17,7 @@ import { SharedElement } from 'react-navigation-shared-element';
 import BottomSheet from 'reanimated-bottom-sheet';
 
 import { mapGfxStyle } from '_app/constants';
-import { wait } from '_app/utils';
+import { wait } from '_app/utils/helpers';
 
 import { s } from './styles';
 
