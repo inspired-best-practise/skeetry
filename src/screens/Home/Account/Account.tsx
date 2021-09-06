@@ -1,3 +1,4 @@
+import { BlurView } from '@react-native-community/blur';
 import { useScrollToTop } from '@react-navigation/native';
 import React, { useCallback, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -25,6 +26,32 @@ const renderItem = ({ item }: any) => (
           resizeMode={FastImage.resizeMode.cover}
         />
       </SharedElement>
+      <BlurView
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          padding: 10,
+          width: '100%',
+          borderRadius: 4,
+          minHeight: 55,
+          maxHeight: 55,
+          justifyContent: 'center',
+        }}
+        blurType="light"
+        blurAmount={25}
+      >
+        <Text
+          numberOfLines={2}
+          style={{
+            display: 'flex',
+            fontWeight: '700',
+            color: '#fff',
+            textAlign: 'left',
+          }}
+        >
+          A very large title in two lines and something
+        </Text>
+      </BlurView>
     </View>
   </Pressable>
 );

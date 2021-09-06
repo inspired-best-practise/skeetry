@@ -56,6 +56,7 @@ export const s = StyleSheet.create({
     maxWidth: itemWidth,
     marginVertical: 6,
     marginHorizontal: 6,
+    position: 'relative',
   },
   cardList: {
     flex: 1,
