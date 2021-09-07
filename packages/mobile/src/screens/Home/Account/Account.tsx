@@ -1,88 +1,15 @@
-import { BlurView } from '@react-native-community/blur';
 import { useScrollToTop } from '@react-navigation/native';
 import React, { useCallback, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, Text, FlatList, RefreshControl, Pressable, SafeAreaView } from 'react-native';
-import FastImage from 'react-native-fast-image';
-import * as Icon from 'react-native-heroicons/solid';
-import { SharedElement } from 'react-navigation-shared-element';
+import { View, Text, FlatList, RefreshControl, SafeAreaView } from 'react-native';
 
-import { AccountStatsItem, Avatar, AccountFilter } from '_app/components';
 import { useMeQuery } from '_app/generated/graphql';
-import { navigation } from '_app/services/navigations';
 import { authStore } from '_app/stores';
 import { wait } from '_app/utils/helpers';
 
 import { mockCountriesPopular } from '../Explore/mocks/mockCountriesPopular';
+import { renderEmpty, renderItem, renderHeader } from './elements';
 import { s } from './styles';
-
-const renderItem = ({ item }: any) => (
-  <Pressable onPress={() => navigation.navigate('CardScreen', { item })}>
-    <View key={item.id} style={s.card}>
-      <SharedElement id={`item.${item.id}.image`}>
-        <FastImage
-          style={s.cardImage}
-          source={{ uri: item.imageUrl, priority: FastImage.priority.normal }}
-          resizeMode={FastImage.resizeMode.cover}
-        />
-      </SharedElement>
-      <BlurView
-        style={{
-          position: 'absolute',
-          bottom: 0,
-          padding: 10,
-          width: '100%',
-          borderRadius: 4,
-          minHeight: 55,
-          maxHeight: 55,
-          justifyContent: 'center',
-        }}
-        blurType="light"
-        blurAmount={25}
-      >
-        <Text
-          numberOfLines={2}
-          style={{
-            display: 'flex',
-            fontWeight: '700',
-            color: '#fff',
-            textAlign: 'left',
-          }}
-        >
-          A very large title in two lines and something
-        </Text>
-      </BlurView>
-    </View>
-  </Pressable>
-);
-
-const renderHeader = (user: TUser, setLogout: () => void, t) => (
-  <View>
-    <View style={s.accountPanel}>
-      <Icon.CogIcon onPress={() => setLogout()} size={20} color={'#777'} />
-      <View style={{ flexDirection: 'row' }}>
-        <Icon.ChartBarIcon
-          style={{ marginRight: 12 }}
-          onPress={() => navigation.navigate('AddChooser')}
-          size={20}
-          color={'#777'}
-        />
-        <Icon.ShareIcon onPress={() => navigation.navigate('AddChooser')} size={20} color={'#777'} />
-      </View>
-    </View>
-    <View style={s.accountHeader}>
-      <Text style={s.name}>{user.username}</Text>
-      <Avatar src={user.avatar} nickname={user.username} />
-    </View>
-    <View style={s.accountStats}>
-      <AccountStatsItem name={`${t('Account:place')}`} number={0} />
-      <AccountStatsItem name={`${t('Account:want')}`} number={user.wantedCount} />
-      <AccountStatsItem name={`${t('Account:visited')}`} number={user.visitedCount} />
-      <AccountStatsItem name={`${t('Account:gallery')}`} number={0} />
-    </View>
-    <AccountFilter />
-  </View>
-);
 
 export const AccountScreen = () => {
   const ref = useRef(null);
@@ -124,6 +51,7 @@ export const AccountScreen = () => {
       <FlatList
         ref={ref}
         ListHeaderComponent={renderHeader(user, setLogout, t)}
+        ListEmptyComponent={renderEmpty}
         numColumns={2}
         contentContainerStyle={{ paddingBottom: 100, marginTop: 10 }}
         columnWrapperStyle={s.cardList}
