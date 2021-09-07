@@ -13,6 +13,7 @@ import { ItemModule } from './modules/item/item.module';
     GraphQLModule.forRootAsync({
       useFactory: async (configService: ConfigService) => {
         const graphqlConfig = configService.get<GraphqlConfig>('graphql');
+        // TODO: add introspection for production
         return {
           installSubscriptionHandlers:
             graphqlConfig.installSubscriptionHandlers,
@@ -20,7 +21,6 @@ import { ItemModule } from './modules/item/item.module';
             numberScalarMode: 'integer',
           },
           sortSchema: graphqlConfig.sortSchema,
-          introspection: process.env.NODE_ENV === 'prod' ? true : false,
           autoSchemaFile: graphqlConfig.autoSchemaFile || './schema.graphql',
           debug: graphqlConfig.debug,
           playground: graphqlConfig.playgroundEnabled,
