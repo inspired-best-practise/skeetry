@@ -1,5 +1,6 @@
 Features:
   ☐ Log service
+  ☐ Updated Item schema (photos: https://source.unsplash.com/300x250/?france)
 
 Deploy:
   ☐ Fix bcrypt error (only in Docker)
