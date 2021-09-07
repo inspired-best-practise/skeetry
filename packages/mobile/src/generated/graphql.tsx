@@ -34,28 +34,19 @@ export type Item = {
   __typename?: 'Item';
   /** Identifies the date and time when the object was created. */
   createdAt: Scalars['DateTime'];
-  description: Scalars['String'];
   flag?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   latitude: Scalars['String'];
   longitude: Scalars['String'];
   name: Scalars['String'];
-  photos: Scalars['String'];
-  tags: ItemTag;
+  overview?: Maybe<Scalars['String']>;
+  photos: Array<Scalars['String']>;
+  reviewsCount: Scalars['Int'];
   type: Scalars['String'];
   /** Identifies the date and time when the object was last updated. */
   updatedAt: Scalars['DateTime'];
-};
-
-export type ItemTag = {
-  __typename?: 'ItemTag';
-  /** Identifies the date and time when the object was created. */
-  createdAt: Scalars['DateTime'];
-  emoji: Scalars['String'];
-  id: Scalars['ID'];
-  name: Scalars['String'];
-  /** Identifies the date and time when the object was last updated. */
-  updatedAt: Scalars['DateTime'];
+  visitedCount: Scalars['Int'];
+  wantedCount: Scalars['Int'];
 };
 
 export type LoginInput = {
@@ -104,6 +95,8 @@ export type Query = {
   item: Item;
   items: Array<Item>;
   me: User;
+  visited: Array<Item>;
+  wanted: Array<Item>;
 };
 
 
@@ -147,6 +140,8 @@ export type User = {
 
 export type RegularCountryFragment = { __typename?: 'Item', id: string, name: string, flag?: Maybe<string> };
 
+export type RegularItemFragment = { __typename?: 'Item', id: string, type: string, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, reviewsCount: number, photos: Array<string>, latitude: string, longitude: string, flag?: Maybe<string> };
+
 export type RegularUserFragment = { __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any };
 
 export type LoginMutationVariables = Exact<{
@@ -178,10 +173,35 @@ export type MeQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type MeQuery = { __typename?: 'Query', me: { __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any } };
 
+export type VisitedQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type VisitedQuery = { __typename?: 'Query', visited: Array<{ __typename?: 'Item', id: string, type: string, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, reviewsCount: number, photos: Array<string>, latitude: string, longitude: string, flag?: Maybe<string> }> };
+
+export type WantedQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type WantedQuery = { __typename?: 'Query', wanted: Array<{ __typename?: 'Item', id: string, type: string, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, reviewsCount: number, photos: Array<string>, latitude: string, longitude: string, flag?: Maybe<string> }> };
+
 export const RegularCountryFragmentDoc = gql`
     fragment RegularCountry on Item {
   id
   name
+  flag
+}
+    `;
+export const RegularItemFragmentDoc = gql`
+    fragment RegularItem on Item {
+  id
+  type
+  name
+  overview
+  wantedCount
+  visitedCount
+  reviewsCount
+  photos
+  latitude
+  longitude
   flag
 }
     `;
@@ -372,3 +392,71 @@ export function useMeLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MeQuery
 export type MeQueryHookResult = ReturnType<typeof useMeQuery>;
 export type MeLazyQueryHookResult = ReturnType<typeof useMeLazyQuery>;
 export type MeQueryResult = Apollo.QueryResult<MeQuery, MeQueryVariables>;
+export const VisitedDocument = gql`
+    query Visited {
+  visited {
+    ...RegularItem
+  }
+}
+    ${RegularItemFragmentDoc}`;
+
+/**
+ * __useVisitedQuery__
+ *
+ * To run a query within a React component, call `useVisitedQuery` and pass it any options that fit your needs.
+ * When your component renders, `useVisitedQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useVisitedQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useVisitedQuery(baseOptions?: Apollo.QueryHookOptions<VisitedQuery, VisitedQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<VisitedQuery, VisitedQueryVariables>(VisitedDocument, options);
+      }
+export function useVisitedLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<VisitedQuery, VisitedQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<VisitedQuery, VisitedQueryVariables>(VisitedDocument, options);
+        }
+export type VisitedQueryHookResult = ReturnType<typeof useVisitedQuery>;
+export type VisitedLazyQueryHookResult = ReturnType<typeof useVisitedLazyQuery>;
+export type VisitedQueryResult = Apollo.QueryResult<VisitedQuery, VisitedQueryVariables>;
+export const WantedDocument = gql`
+    query Wanted {
+  wanted {
+    ...RegularItem
+  }
+}
+    ${RegularItemFragmentDoc}`;
+
+/**
+ * __useWantedQuery__
+ *
+ * To run a query within a React component, call `useWantedQuery` and pass it any options that fit your needs.
+ * When your component renders, `useWantedQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useWantedQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useWantedQuery(baseOptions?: Apollo.QueryHookOptions<WantedQuery, WantedQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<WantedQuery, WantedQueryVariables>(WantedDocument, options);
+      }
+export function useWantedLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<WantedQuery, WantedQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<WantedQuery, WantedQueryVariables>(WantedDocument, options);
+        }
+export type WantedQueryHookResult = ReturnType<typeof useWantedQuery>;
+export type WantedLazyQueryHookResult = ReturnType<typeof useWantedLazyQuery>;
+export type WantedQueryResult = Apollo.QueryResult<WantedQuery, WantedQueryVariables>;

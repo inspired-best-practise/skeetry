@@ -4,10 +4,9 @@ import { useTranslation } from 'react-i18next';
 import { View, Text, FlatList, RefreshControl } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { useMeQuery } from '_app/generated/graphql';
+import { useMeQuery, useWantedQuery } from '_app/generated/graphql';
 import { wait } from '_app/utils/helpers';
 
-import { mockCountriesPopular } from '../Explore/mocks/mockCountriesPopular';
 import { renderEmpty, renderItem, renderHeader } from './elements';
 import { s } from './styles';
 
@@ -15,8 +14,8 @@ export const AccountScreen = () => {
   const ref = useRef(null);
   const { t } = useTranslation();
   const [refreshing, setRefreshing] = useState(false);
-  const [segmentIndex, setSegmentIndex] = useState(0);
-  const { loading, data, error, refetch } = useMeQuery({ fetchPolicy: 'no-cache' });
+  const { loading, data, error, refetch } = useMeQuery();
+  const { data: dataWanted, loading: loadingWanted, error: errorWanted } = useWantedQuery();
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
@@ -26,7 +25,7 @@ export const AccountScreen = () => {
 
   useScrollToTop(ref);
 
-  if (loading) {
+  if (loading || loadingWanted) {
     return (
       <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>Loading...</Text>
@@ -34,15 +33,16 @@ export const AccountScreen = () => {
     );
   }
 
-  if (error) {
+  if (error || errorWanted) {
     return (
       <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Error: {error.message}. Try later...</Text>
+        <Text>Error: {error ? error.message : errorWanted?.message}. Try later...</Text>
       </SafeAreaView>
     );
   }
 
   const user = data!.me;
+  const wanted = dataWanted!.wanted;
 
   return (
     <>
@@ -54,7 +54,7 @@ export const AccountScreen = () => {
         numColumns={2}
         contentContainerStyle={{ paddingBottom: 100, marginTop: 10 }}
         columnWrapperStyle={s.cardList}
-        data={mockCountriesPopular}
+        data={wanted}
         renderItem={renderItem}
         keyExtractor={item => item.id}
         showsVerticalScrollIndicator={false}

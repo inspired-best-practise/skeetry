@@ -1,6 +1,5 @@
 import { Field, ObjectType, registerEnumType } from '@nestjs/graphql';
 import { BaseModel } from '../../common/base.model';
-import { ItemTag } from './itemTag.model';
 
 export enum ItemType {
   COUNTRY = 'COUNTRY',
@@ -21,20 +20,26 @@ export class Item extends BaseModel {
   @Field()
   name: string;
 
-  @Field()
-  description: string;
+  @Field({ nullable: true })
+  overview: string;
 
-  @Field()
-  photos: string;
+  @Field({ defaultValue: 0 })
+  wantedCount: number;
+
+  @Field({ defaultValue: 0 })
+  visitedCount: number;
+
+  @Field({ defaultValue: 0 })
+  reviewsCount: number;
+
+  @Field(() => [String])
+  photos: [String];
 
   @Field()
   latitude: string;
 
   @Field()
   longitude: string;
-
-  @Field()
-  tags: ItemTag;
 
   @Field({ nullable: true })
   flag?: string;

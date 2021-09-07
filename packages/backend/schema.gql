@@ -24,29 +24,20 @@ scalar DateTime
 type Item {
   """Identifies the date and time when the object was created."""
   createdAt: DateTime!
-  description: String!
   flag: String
   id: ID!
   latitude: String!
   longitude: String!
   name: String!
-  photos: String!
-  tags: ItemTag!
+  overview: String
+  photos: [String!]!
+  reviewsCount: Int!
   type: String!
 
   """Identifies the date and time when the object was last updated."""
   updatedAt: DateTime!
-}
-
-type ItemTag {
-  """Identifies the date and time when the object was created."""
-  createdAt: DateTime!
-  emoji: String!
-  id: ID!
-  name: String!
-
-  """Identifies the date and time when the object was last updated."""
-  updatedAt: DateTime!
+  visitedCount: Int!
+  wantedCount: Int!
 }
 
 input LoginInput {
@@ -68,6 +59,8 @@ type Query {
   item(id: Int!): Item!
   items: [Item!]!
   me: User!
+  visited: [Item!]!
+  wanted: [Item!]!
 }
 
 input SignupInput {

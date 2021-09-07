@@ -1,0 +1,13 @@
+fragment RegularItem on Item {
+  id   
+  type         
+  name         
+  overview     
+  wantedCount  
+  visitedCount 
+  reviewsCount 
+  photos       
+  latitude     
+  longitude
+  flag
+}
