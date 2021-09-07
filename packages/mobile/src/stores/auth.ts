@@ -56,3 +56,7 @@ export const authStore = create(
     },
   ),
 );
+
+export function getAccessToken() {
+  return authStore.getState().tokens.accessToken;
+}
