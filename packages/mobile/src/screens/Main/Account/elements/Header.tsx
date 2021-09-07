@@ -26,10 +26,10 @@ export const renderHeader = (user: TUser, setLogout: () => void, t) => (
       <Avatar src={user.avatar} nickname={user.username} />
     </View>
     <View style={s.accountStats}>
-      <AccountStatsItem name={`${t('Account:place')}`} number={0} />
-      <AccountStatsItem name={`${t('Account:want')}`} number={user.wantedCount} />
-      <AccountStatsItem name={`${t('Account:visited')}`} number={user.visitedCount} />
-      <AccountStatsItem name={`${t('Account:gallery')}`} number={0} />
+      <AccountStatsItem name={`${t('account:place')}`} number={0} />
+      <AccountStatsItem name={`${t('account:want')}`} number={user.wantedCount} />
+      <AccountStatsItem name={`${t('account:visited')}`} number={user.visitedCount} />
+      <AccountStatsItem name={`${t('account:gallery')}`} number={0} />
     </View>
     <AccountFilter />
   </View>

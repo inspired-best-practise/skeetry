@@ -16,11 +16,11 @@ export const AccountFilter = () => {
         marginBottom: 15,
       }}
     >
-      <AccountFilterItem name={`${t('Account:want')}`} />
-      <AccountFilterItem name={`${t('Account:visited')}`} />
-      <AccountFilterItem name={`${t('Account:countries')}`} />
-      <AccountFilterItem name={`${t('Account:cities')}`} />
-      <AccountFilterItem name={`${t('Account:places')}`} />
+      <AccountFilterItem name={`${t('account:want')}`} />
+      <AccountFilterItem name={`${t('account:visited')}`} />
+      <AccountFilterItem name={`${t('account:countries')}`} />
+      <AccountFilterItem name={`${t('account:cities')}`} />
+      <AccountFilterItem name={`${t('account:places')}`} />
     </ScrollView>
   );
 };

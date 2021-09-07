@@ -4,7 +4,7 @@ import { View, Text } from 'react-native';
 
 import { authStore } from '_app/stores';
 
-export const HomeIndexScreen = () => {
+export const HomeScreen = () => {
   const { t } = useTranslation();
 
   const user = authStore(state => state.user);
@@ -20,7 +20,7 @@ export const HomeIndexScreen = () => {
         }}
       >
         <Text>
-          {`${t('Home:welcome')}`}, {user.username}
+          {`${t('home:welcome')}`}, {user.username}
         </Text>
       </View>
     </>

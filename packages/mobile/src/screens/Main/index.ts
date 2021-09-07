@@ -1,4 +1,4 @@
-export * from './HomeIndex';
+export * from './Home';
 export * from './Account';
 export * from './Activity';
 export * from './Add';

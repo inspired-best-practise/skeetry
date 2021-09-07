@@ -1,8 +1,8 @@
 {
-  "Home": {
+  "home": {
     "welcome": "Добро пожаловать"
   },
-  "Account": {
+  "account": {
     "place": "Рейтинг",
     "want": "Хочу",
     "visited": "Посещены",

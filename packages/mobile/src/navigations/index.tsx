@@ -4,7 +4,7 @@ import { TransitionPresets } from '@react-navigation/stack';
 import React from 'react';
 import { enableScreens } from 'react-native-screens';
 
-import { AddChooserScreen } from '_app/screens/Home/Add/AddChooser';
+import { AddChooserScreen } from '_app/screens/Main/Add/AddChooser';
 import { Offline } from '_app/screens/Others';
 import { navigationRef } from '_app/services/navigations';
 

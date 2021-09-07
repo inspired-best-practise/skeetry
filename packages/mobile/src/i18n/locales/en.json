@@ -1,8 +1,8 @@
 {
-  "Home": {
+  "home": {
     "welcome": "Welcome"
   },
-  "Account": {
+  "account": {
     "place": "Place",
     "want": "Want",
     "visited": "Visited",

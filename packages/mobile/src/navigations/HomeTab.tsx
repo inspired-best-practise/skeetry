@@ -8,7 +8,7 @@ import { createSharedElementStackNavigator } from 'react-navigation-shared-eleme
 
 import { TabBarComponent } from '_app/components/BottomTabBar';
 import {
-  HomeIndexScreen,
+  HomeScreen,
   AccountScreen,
   AddScreen,
   ExploreScreen,
@@ -16,7 +16,7 @@ import {
   CitiesScreen,
   PlacesScreen,
   CardScreen,
-} from '_app/screens/Home';
+} from '_app/screens/Main';
 
 export const iosTransitionSpec = {
   animation: 'spring',
@@ -232,7 +232,7 @@ const HomeStack = () => {
         gestureEnabled: true,
       }}
     >
-      <Stack.Screen component={HomeIndexScreen} name="HomeIndexScreen" />
+      <Stack.Screen component={HomeScreen} name="HomeScreen" />
     </Stack.Navigator>
   );
 };
@@ -267,7 +267,7 @@ const HomeTab = () => {
           tabBarIcon: ({ focused }) => <Icon.HomeIcon size={30} color={focused ? '#777777' : '#bbbbbb'} />,
         }}
         component={HomeStack}
-        name="HomeIndexPage"
+        name="HomePage"
       />
       <Tab.Screen
         options={({ route }) => ({
