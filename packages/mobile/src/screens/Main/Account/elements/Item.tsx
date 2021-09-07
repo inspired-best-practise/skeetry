@@ -35,7 +35,7 @@ export const renderItem = ({ item }: any) => (
           justifyContent: 'center',
         }}
         blurType="light"
-        blurAmount={25}
+        blurAmount={8}
       >
         <Text
           numberOfLines={2}

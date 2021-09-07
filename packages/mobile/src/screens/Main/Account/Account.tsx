@@ -5,7 +5,6 @@ import { View, Text, FlatList, RefreshControl } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useMeQuery, useWantedQuery } from '_app/generated/graphql';
-import { wait } from '_app/utils/helpers';
 
 import { renderEmpty, renderItem, renderHeader } from './elements';
 import { s } from './styles';
@@ -15,13 +14,14 @@ export const AccountScreen = () => {
   const { t } = useTranslation();
   const [refreshing, setRefreshing] = useState(false);
   const { loading, data, error, refetch } = useMeQuery();
-  const { data: dataWanted, loading: loadingWanted, error: errorWanted } = useWantedQuery();
+  const { data: dataWanted, loading: loadingWanted, error: errorWanted, refetch: refetchWanted } = useWantedQuery();
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
     refetch();
-    wait(500).then(() => setRefreshing(false));
-  }, [refetch]);
+    refetchWanted();
+    setRefreshing(false);
+  }, [refetch, refetchWanted]);
 
   useScrollToTop(ref);
 
@@ -48,6 +48,7 @@ export const AccountScreen = () => {
     <>
       <View style={{ height: 45, backgroundColor: '#fff' }} />
       <FlatList
+        refreshing={loadingWanted}
         ref={ref}
         ListHeaderComponent={renderHeader(user, t)}
         ListEmptyComponent={renderEmpty}
