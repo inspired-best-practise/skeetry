@@ -23,7 +23,6 @@ ngrok.yml
 .vscode/
 .next/
 .cache/
-.todo
 dist/
 
 npm-debug.log*

@@ -1,0 +1,25 @@
+Features:
+  ✔ Get device language @done(21-09-06 16:42)
+  ✔ Change the localization depending on the device language @done(21-09-07 11:24)
+  ✔ Disable rotation @done(21-09-06 19:09)
+  ☐ Add offline mode
+  ☐ Update theme constants
+
+Bugs:
+   ☐ Fix open animation react-navigation-shared-element with react-native-safe-area-context (https://github.com/IjzerenHein/react-navigation-shared-element/issues/187)
+   ☐ Fix close animation react-navigation-shared-element if used in two stacks (Explore and Account)
+   ☐ Fix SplashScreen
+
+Home: 
+   ☐ Delete this page
+
+Explore: 
+   ☐ Rethink this page
+
+Login: 
+  ☐ Add KeyboardAvoidingView
+  ☐ Fix blink login screen when isAuthenticated (zustand persist gate?)
+
+Deploy:
+  ☐ Create apple developer account
+  ☐ Set up the build in appcenter
