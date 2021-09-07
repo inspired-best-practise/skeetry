@@ -4,6 +4,7 @@ import { TransitionPresets } from '@react-navigation/stack';
 import React from 'react';
 import { enableScreens } from 'react-native-screens';
 
+import { AccountSettingsScreen } from '_app/screens/Main';
 import { AddChooserScreen } from '_app/screens/Main/Add/AddChooser';
 import { Offline } from '_app/screens/Others';
 import { navigationRef } from '_app/services/navigations';
@@ -40,6 +41,15 @@ const Index = (): JSX.Element => {
           }}
           name="AddChooser"
           component={AddChooserScreen}
+        />
+        <RootStack.Screen
+          options={{
+            ...TransitionPresets.ModalTransition,
+            headerShown: false,
+            presentation: 'formSheet',
+          }}
+          name="AccountSettings"
+          component={AccountSettingsScreen}
         />
         <RootStack.Screen
           options={{

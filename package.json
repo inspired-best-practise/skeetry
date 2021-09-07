@@ -2,9 +2,15 @@
   "name": "@travel/monorepo",
   "repository": "git@github.com:alekseytsvetkov/travel.git",
   "author": "Aleksey Tsvetkov <code.aleksey@icloud.com>",
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": {
+    "packages": [
+      "backend",
+      "mobile"
+    ],
+    "nohoist": [
+      "**"
+    ]
+},
   "license": "SEE LICENSE IN LICENSE.MD",
   "private": true,
   "dependencies": {},

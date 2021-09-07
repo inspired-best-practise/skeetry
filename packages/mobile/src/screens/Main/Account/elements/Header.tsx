@@ -7,10 +7,11 @@ import { navigation } from '_app/services/navigations';
 
 import { s } from '../styles';
 
-export const renderHeader = (user: TUser, setLogout: () => void, t) => (
+export const renderHeader = (user: TUser, t) => (
   <View>
     <View style={s.accountPanel}>
-      <Icon.CogIcon onPress={() => setLogout()} size={20} color={'#777'} />
+      <Icon.CogIcon onPress={() => navigation.navigate('AccountSettings')} size={20} color={'#777'} />
+
       <View style={{ flexDirection: 'row' }}>
         <Icon.ChartBarIcon
           style={{ marginRight: 12 }}

@@ -1,10 +1,10 @@
 import { useScrollToTop } from '@react-navigation/native';
 import React, { useCallback, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, Text, FlatList, RefreshControl, SafeAreaView } from 'react-native';
+import { View, Text, FlatList, RefreshControl } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useMeQuery } from '_app/generated/graphql';
-import { authStore } from '_app/stores';
 import { wait } from '_app/utils/helpers';
 
 import { mockCountriesPopular } from '../Explore/mocks/mockCountriesPopular';
@@ -15,6 +15,7 @@ export const AccountScreen = () => {
   const ref = useRef(null);
   const { t } = useTranslation();
   const [refreshing, setRefreshing] = useState(false);
+  const [segmentIndex, setSegmentIndex] = useState(0);
   const { loading, data, error, refetch } = useMeQuery({ fetchPolicy: 'no-cache' });
 
   const onRefresh = useCallback(() => {
@@ -22,8 +23,6 @@ export const AccountScreen = () => {
     refetch();
     wait(500).then(() => setRefreshing(false));
   }, [refetch]);
-
-  const setLogout = authStore(state => state.setLogout);
 
   useScrollToTop(ref);
 
@@ -50,7 +49,7 @@ export const AccountScreen = () => {
       <View style={{ height: 45, backgroundColor: '#fff' }} />
       <FlatList
         ref={ref}
-        ListHeaderComponent={renderHeader(user, setLogout, t)}
+        ListHeaderComponent={renderHeader(user, t)}
         ListEmptyComponent={renderEmpty}
         numColumns={2}
         contentContainerStyle={{ paddingBottom: 100, marginTop: 10 }}

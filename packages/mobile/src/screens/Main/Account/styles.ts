@@ -7,7 +7,6 @@ const itemWidth = SCREEN_WIDTH / 2 - 20;
 export const s = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
     // paddingHorizontal: normalize(20),
     paddingBottom: 80,
@@ -67,5 +66,11 @@ export const s = StyleSheet.create({
     width: itemWidth,
     height: 150,
     borderRadius: 6,
+  },
+  containerWrap: {
+    marginTop: 40,
+    width: '100%',
+    justifyContent: 'flex-start',
+    paddingHorizontal: 20,
   },
 });
