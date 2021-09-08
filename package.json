@@ -5,8 +5,7 @@
   "workspaces": {
     "packages": [
       "backend",
-      "mobile",
-      "mobile-ios"
+      "mobile"
     ],
     "nohoist": [
       "**"
