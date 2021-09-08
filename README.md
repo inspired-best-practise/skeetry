@@ -2,6 +2,9 @@
   <strong>Social network for travel hunters</strong>
 </p>
 
+## Status
+**Project is in progress now. Please wait for release version.**
+
 ## Structure
 
 | Codebase              |      Description          |
