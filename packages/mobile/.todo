@@ -13,15 +13,18 @@ Bugs:
    ☐ Fix SplashScreen
    ☐ Fix refetch animation on Account screen
 
+Login: 
+   ☐ Add KeyboardAvoidingView
+   ☐ Fix blink login screen when isAuthenticated (zustand persist gate?)
+
 Home: 
    ☐ Delete this page
 
 Explore: 
    ☐ Rethink this page
 
-Login: 
-  ☐ Add KeyboardAvoidingView
-  ☐ Fix blink login screen when isAuthenticated (zustand persist gate?)
+Account: 
+   ☐ Statistics screen: Countries statistic like Asia 5%, Europa 10%
 
 Deploy:
   ☐ Create apple developer account

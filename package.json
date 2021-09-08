@@ -5,12 +5,13 @@
   "workspaces": {
     "packages": [
       "backend",
-      "mobile"
+      "mobile",
+      "mobile-ios"
     ],
     "nohoist": [
       "**"
     ]
-},
+  },
   "license": "SEE LICENSE IN LICENSE.MD",
   "private": true,
   "dependencies": {},
