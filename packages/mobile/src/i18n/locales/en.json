@@ -1,6 +1,8 @@
 {
   "home": {
-    "welcome": "Welcome"
+    "welcome": "Welcome",
+    "categories": "Categories",
+    "nearby": "Nearby"
   },
   "account": {
     "place": "Place",

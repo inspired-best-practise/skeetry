@@ -1,6 +1,8 @@
 {
   "home": {
-    "welcome": "Добро пожаловать"
+    "welcome": "Добро пожаловать",
+    "categories": "Категории",
+    "nearby": "Рядом"
   },
   "account": {
     "place": "Рейтинг",

@@ -27,7 +27,7 @@ export const stories = [
   {
     id: '6',
     url: 'https://images.unsplash.com/photo-1630936856598-c2b2cf5a6171?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=564&q=80',
-    viewed: false,
+    viewed: true,
   },
   {
     id: '7',

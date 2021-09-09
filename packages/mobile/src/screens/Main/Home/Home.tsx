@@ -1,9 +1,9 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Text, SafeAreaView } from 'react-native';
+import { Text, SafeAreaView, View } from 'react-native';
 
 import { Stories } from '_app/components/Stories';
-import { colors, h4 } from '_app/constants';
+import { colors, h3, h4 } from '_app/constants';
 import { authStore } from '_app/stores';
 
 import { s } from './styles';
@@ -15,10 +15,20 @@ export const HomeScreen = () => {
 
   return (
     <SafeAreaView style={s.container}>
-      <Text style={[h4, { color: colors.primary600 }]}>
-        {`${t('home:welcome')}`}, {user.username}
-      </Text>
+      <View style={{ marginHorizontal: 20, maxWidth: 300 }}>
+        <Text style={[h3, { color: colors.primary600, marginTop: 10 }]}>
+          {`${t('home:welcome')}`}, {user.username} 👋
+        </Text>
+      </View>
       <Stories />
+
+      <View style={{ marginHorizontal: 20 }}>
+        <Text style={[h4, { color: colors.primary600 }]}>{`${t('home:categories')}`}</Text>
+      </View>
+
+      {/* <View style={{ marginHorizontal: 20 }}>
+        <Text style={[h4, { color: colors.primary600 }]}>{`${t('home:nearby')}`}</Text>
+      </View> */}
     </SafeAreaView>
   );
 };
