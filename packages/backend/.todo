@@ -1,6 +1,7 @@
 Features:
   ☐ Log service
   ☐ Updated Item schema (photos: https://source.unsplash.com/300x250/?france)
+  ☐ Change webpack-hmr to nest watch mode
 
 Deploy:
   ☐ Fix bcrypt error (only in Docker)
