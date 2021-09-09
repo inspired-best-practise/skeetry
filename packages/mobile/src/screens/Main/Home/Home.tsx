@@ -1,8 +1,12 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, Text } from 'react-native';
+import { Text, SafeAreaView } from 'react-native';
 
+import { Stories } from '_app/components/Stories';
+import { colors, h4 } from '_app/constants';
 import { authStore } from '_app/stores';
+
+import { s } from './styles';
 
 export const HomeScreen = () => {
   const { t } = useTranslation();
@@ -10,19 +14,11 @@ export const HomeScreen = () => {
   const user = authStore(state => state.user);
 
   return (
-    <>
-      <View
-        style={{
-          flex: 1,
-          backgroundColor: 'white',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <Text>
-          {`${t('home:welcome')}`}, {user.username}
-        </Text>
-      </View>
-    </>
+    <SafeAreaView style={s.container}>
+      <Text style={[h4, { color: colors.primary600 }]}>
+        {`${t('home:welcome')}`}, {user.username}
+      </Text>
+      <Stories />
+    </SafeAreaView>
   );
 };
