@@ -5,6 +5,7 @@ import { persist } from 'zustand/middleware';
 export const authStore = create(
   persist(
     (set, get) => ({
+      _hasHydrated: false,
       isAuthenticated: false,
       tokens: {
         accessToken: null,
@@ -53,6 +54,9 @@ export const authStore = create(
     {
       name: 'auth-storage',
       getStorage: () => AsyncStorage,
+      onRehydrateStorage: () => () => {
+        authStore.setState({ _hasHydrated: true });
+      },
     },
   ),
 );

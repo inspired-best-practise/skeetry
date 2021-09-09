@@ -7,6 +7,7 @@ export const s = StyleSheet.create({
     left: 0,
     right: 0,
     height: '100%',
+    backgroundColor: '#fff',
   },
   container: {
     flex: 1,

@@ -15,7 +15,7 @@ Bugs:
 
 Login: 
    ☐ Add KeyboardAvoidingView
-   ☐ Fix blink login screen when isAuthenticated (zustand persist gate?)
+   ✔ Fix blink screen when isAuthenticated @done(21-09-09 15:30)
 
 Home: 
    ☐ Delete this page
