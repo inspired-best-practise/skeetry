@@ -7,6 +7,7 @@ Features:
   ☐ Implement refresh token when accessToken is expired (codegen hooks problem)
   ✔ Add GraphQL service @done(21-09-07 15:31)
   ☐ Add dark mode
+  ☐ Add new screen with swipe cards
   
 Bugs:
    ☐ Fix open animation react-navigation-shared-element with react-native-safe-area-context (https://github.com/IjzerenHein/react-navigation-shared-element/issues/187)

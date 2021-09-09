@@ -2,6 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Text, SafeAreaView, View } from 'react-native';
 
+import { Categories } from '_app/components/Categories';
 import { Stories } from '_app/components/Stories';
 import { colors, h3, h4 } from '_app/constants';
 import { authStore } from '_app/stores';
@@ -21,14 +22,10 @@ export const HomeScreen = () => {
         </Text>
       </View>
       <Stories />
-
+      <Categories />
       <View style={{ marginHorizontal: 20 }}>
-        <Text style={[h4, { color: colors.primary600 }]}>{`${t('home:categories')}`}</Text>
-      </View>
-
-      {/* <View style={{ marginHorizontal: 20 }}>
         <Text style={[h4, { color: colors.primary600 }]}>{`${t('home:nearby')}`}</Text>
-      </View> */}
+      </View>
     </SafeAreaView>
   );
 };
