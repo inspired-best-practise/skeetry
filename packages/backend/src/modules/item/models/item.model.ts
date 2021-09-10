@@ -1,5 +1,6 @@
 import { Field, ObjectType, registerEnumType } from '@nestjs/graphql';
 import { BaseModel } from '../../common/base.model';
+import { ItemLocalization } from './itemLocalization.model';
 
 export enum ItemType {
   COUNTRY = 'COUNTRY',
@@ -8,8 +9,17 @@ export enum ItemType {
   SIGHT = 'SIGHT',
 }
 
+export enum Locale {
+  EN = 'EN',
+  RU = 'RU',
+}
+
 registerEnumType(ItemType, {
   name: 'ItemType',
+});
+
+registerEnumType(Locale, {
+  name: 'Locale',
 });
 
 @ObjectType()
@@ -33,7 +43,7 @@ export class Item extends BaseModel {
   reviewsCount: number;
 
   @Field(() => [String])
-  photos: [String];
+  photos: String[];
 
   @Field()
   latitude: string;
@@ -43,4 +53,10 @@ export class Item extends BaseModel {
 
   @Field({ nullable: true })
   flag?: string;
+
+  @Field(() => Locale)
+  locale: Locale;
+
+  @Field(() => [ItemLocalization], { nullable: true })
+  localizations?: ItemLocalization[];
 }

@@ -34,36 +34,67 @@ model User {
 }
 
 model Item {
-  id           String       @id @default(cuid())
-  type         ItemType
-  name         String       @unique
-  overview     String?
-  wantedCount  Int          @default(0)
-  visitedCount Int          @default(0)
-  reviewsCount Int          @default(0)
-  photos       String[]
-  latitude     String
-  longitude    String
-  tags         ItemTag[]
-  flag         String?
-  userWanted   User[]       @relation("WantedItem")
-  userVisited  User[]       @relation("VisitedItem")
-  itemReview   ItemReview[]
+  id            String             @id @default(cuid())
+  type          ItemType
+  name          String             @unique
+  overview      String?
+  wantedCount   Int                @default(0)
+  visitedCount  Int                @default(0)
+  reviewsCount  Int                @default(0)
+  photos        String[]
+  latitude      String
+  longitude     String
+  tags          ItemTag[]
+  flag          String?
+  userWanted    User[]             @relation("WantedItem")
+  userVisited   User[]             @relation("VisitedItem")
+  itemReview    ItemReview[]
+  locale        Locale             @default(EN)
+  localizations ItemLocalization[]
+}
+
+model ItemLocalization {
+  id       String  @id @default(cuid())
+  locale   Locale
+  name     String
+  overview String?
+  item     Item?   @relation(fields: [itemId], references: [id])
+  itemId   String?
 }
 
 model ItemTag {
-  id    String @id @default(cuid())
-  name  String @unique
-  emoji String
-  Item  Item[]
+  id            String                @id @default(cuid())
+  name          String                @unique
+  emoji         String
+  locale        Locale                @default(EN)
+  localizations ItemTagLocalization[]
+  item          Item[]
+}
+
+model ItemTagLocalization {
+  id        String   @id @default(cuid())
+  locale    Locale
+  name      String
+  itemTag   ItemTag? @relation(fields: [itemTagId], references: [id])
+  itemTagId String?
 }
 
 model ItemReview {
-  id         String   @id @default(cuid())
-  body       String
-  reviewedAt DateTime @default(now())
-  item       Item     @relation(fields: [itemId], references: [id])
-  itemId     String
+  id            String                   @id @default(cuid())
+  body          String
+  reviewedAt    DateTime                 @default(now())
+  item          Item                     @relation(fields: [itemId], references: [id])
+  itemId        String
+  locale        Locale
+  localizations ItemReviewLocalization[]
+}
+
+model ItemReviewLocalization {
+  id           String      @id @default(cuid())
+  locale       Locale
+  body         String
+  itemReview   ItemReview? @relation(fields: [itemReviewId], references: [id])
+  itemReviewId String?
 }
 
 enum ItemType {
@@ -71,4 +102,9 @@ enum ItemType {
   CITY
   PLACE
   SIGHT
+}
+
+enum Locale {
+  EN
+  RU
 }

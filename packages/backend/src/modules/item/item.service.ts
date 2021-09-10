@@ -9,18 +9,25 @@ import { User } from '.prisma/client';
 export class ItemService {
   constructor(private prisma: PrismaService) {}
 
-  create(createItemInput: CreateItemInput) {
-    return 'This action adds a new item';
-  }
+  // create(createItemInput: CreateItemInput) {
+  //   return 'This action adds a new item';
+  // }
 
   async findAll() {
-    const items = await this.prisma.item.findMany();
+    const items = await this.prisma.item.findMany({
+      include: {
+        localizations: true,
+      },
+    });
 
     return items;
   }
 
   async findWanted(user: User) {
     const items = await this.prisma.item.findMany({
+      include: {
+        localizations: true,
+      },
       where: {
         userWanted: {
           some: {
@@ -35,6 +42,9 @@ export class ItemService {
 
   async findVisited(user: User) {
     const items = await this.prisma.item.findMany({
+      include: {
+        localizations: true,
+      },
       where: {
         userVisited: {
           some: {
@@ -49,6 +59,9 @@ export class ItemService {
 
   async findAllCountries() {
     const countries = await this.prisma.item.findMany({
+      include: {
+        localizations: true,
+      },
       where: {
         type: 'COUNTRY',
       },
@@ -57,15 +70,25 @@ export class ItemService {
     return countries;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} item`;
-  }
+  // findOne(id: string) {
+  //   return `This action returns a #${id} item`;
+  // }
 
-  update(id: number, updateItemInput: UpdateItemInput) {
-    return `This action updates a #${id} item`;
-  }
+  // update(id: string, updateItemInput: UpdateItemInput) {
+  //   return `This action updates a #${id} item`;
+  // }
 
-  remove(id: number) {
-    return `This action removes a #${id} item`;
-  }
+  // remove(id: string) {
+  //   return `This action removes a #${id} item`;
+  // }
+
+  // async getLocalizations(id: string) {
+  //   const localizations = await this.prisma.itemLocalization.findMany({
+  //     where: {
+  //       itemId: id,
+  //     },
+  //   });
+
+  //   return localizations;
+  // }
 }
