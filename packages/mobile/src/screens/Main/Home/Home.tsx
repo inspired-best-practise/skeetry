@@ -3,8 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { Text, SafeAreaView, View } from 'react-native';
 
 import { Categories } from '_app/components/Categories';
+import { Nearby } from '_app/components/Nearby';
 import { Stories } from '_app/components/Stories';
-import { colors, h3, h4 } from '_app/constants';
+import { colors, h3 } from '_app/constants';
 import { authStore } from '_app/stores';
 
 import { s } from './styles';
@@ -23,9 +24,7 @@ export const HomeScreen = () => {
       </View>
       <Stories />
       <Categories />
-      <View style={{ marginHorizontal: 20 }}>
-        <Text style={[h4, { color: colors.primary600 }]}>{`${t('home:nearby')}`}</Text>
-      </View>
+      <Nearby />
     </SafeAreaView>
   );
 };
