@@ -1,8 +1,10 @@
 import { StyleSheet } from 'react-native';
 
+import { colors } from '_app/constants';
+
 export const s = StyleSheet.create({
   filterItem: {
-    backgroundColor: '#eee',
+    backgroundColor: colors.gray100,
     borderRadius: 6,
     paddingHorizontal: 20,
     paddingVertical: 12,

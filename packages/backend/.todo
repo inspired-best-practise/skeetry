@@ -1,6 +1,6 @@
 Features:
   ☐ Log service
-  ☐ Updated Item schema (photos: https://source.unsplash.com/300x250/?france)
+  ✔ Updated Item schema @done(21-09-10 20:30)
   ✔ Change webpack-hmr to nest watch mode @done(21-09-09 14:14)
   ☐ Implement push notifications
 
