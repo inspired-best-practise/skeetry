@@ -6,3 +6,4 @@ Features:
 Deploy:
   ☐ Fix bcrypt error (only in Docker)
   ✔ Fix railway build @done(21-09-06 12:40)
+  ☐ Set up a github CI to deploy to hetzner

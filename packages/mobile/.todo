@@ -1,5 +1,6 @@
 Refactoring:
    ☐ Move all inline styles into the files
+   ☐ Normalize everything
   
 Global bugs:
    ☐ Fix open animation react-navigation-shared-element with react-native-safe-area-context (https://github.com/IjzerenHein/react-navigation-shared-element/issues/187)
