@@ -8,7 +8,7 @@ import { s } from './styles';
 
 export const Story = ({ url, viewed }: TStoryProps) => {
   return (
-    <View style={[s.story, viewed && { borderColor: colors.primary100 }]}>
+    <View style={[s.story, viewed && { borderColor: colors.gray200 }]}>
       <FastImage
         style={s.storyImage}
         source={{

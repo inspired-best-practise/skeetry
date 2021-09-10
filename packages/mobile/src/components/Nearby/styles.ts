@@ -20,12 +20,7 @@ export const s = StyleSheet.create({
     borderRadius: 16,
   },
   slider: {
-    marginTop: 10,
     overflow: 'visible',
     paddingHorizontal: 20,
-  },
-
-  sliderContentContainer: {
-    paddingVertical: 5,
   },
 });

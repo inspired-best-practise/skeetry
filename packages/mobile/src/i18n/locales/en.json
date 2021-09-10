@@ -2,7 +2,8 @@
   "home": {
     "welcome": "Welcome",
     "categories": "Categories",
-    "nearby": "Nearby"
+    "nearby": "Nearby",
+    "popular": "Popular"
   },
   "account": {
     "place": "Place",

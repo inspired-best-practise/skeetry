@@ -5,16 +5,16 @@ import FastImage from 'react-native-fast-image';
 import Carousel from 'react-native-snap-carousel';
 
 import { h4, colors } from '_app/constants';
+import { normalize } from '_app/utils/dimensions';
 
-import { nearby } from './nearby.mock';
 import { itemWidth, s, sliderWidth } from './styles';
 
-export const Nearby = () => {
+export const Nearby = ({ title, data }) => {
   const { t } = useTranslation();
 
   const renderItem = ({ item, index }) => {
     return (
-      <View style={{ position: 'relative' }}>
+      <View style={{ position: 'relative', marginVertical: normalize(20) }}>
         <FastImage
           style={s.nearbyImage}
           source={{
@@ -44,10 +44,10 @@ export const Nearby = () => {
   return (
     <View>
       <View style={{ marginHorizontal: 20 }}>
-        <Text style={[h4, { color: colors.primary600 }]}>{`${t('home:nearby')}`}</Text>
+        <Text style={[h4, { color: colors.primary600 }]}>{title}</Text>
       </View>
       <Carousel
-        data={nearby}
+        data={data}
         renderItem={renderItem}
         sliderWidth={sliderWidth}
         itemWidth={itemWidth}
@@ -55,7 +55,7 @@ export const Nearby = () => {
         inactiveSlideOpacity={1}
         activeSlideAlignment={'start'}
         containerCustomStyle={s.slider}
-        contentContainerCustomStyle={s.sliderContentContainer}
+        // contentContainerCustomStyle={s.sliderContentContainer}
         // activeAnimationType={'spring'}
       />
     </View>

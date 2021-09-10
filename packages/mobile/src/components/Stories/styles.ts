@@ -9,7 +9,7 @@ export const s = StyleSheet.create({
     width: normalize(82),
     marginHorizontal: normalize(6),
     borderRadius: normalize(26),
-    borderColor: colors.primary300,
+    borderColor: colors.gray500,
     borderWidth: 2,
     borderStyle: 'solid',
     alignItems: 'center',

@@ -2,7 +2,8 @@
   "home": {
     "welcome": "Добро пожаловать",
     "categories": "Категории",
-    "nearby": "Рядом"
+    "nearby": "Рядом",
+    "popular": "Популярное"
   },
   "account": {
     "place": "Рейтинг",

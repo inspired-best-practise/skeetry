@@ -5,7 +5,7 @@ import { normalize } from '_app/utils/dimensions';
 
 export const s = StyleSheet.create({
   categoryWrapper: {
-    marginVertical: normalize(10),
+    marginVertical: normalize(14),
     marginHorizontal: normalize(14),
     paddingRight: normalize(20),
   },
@@ -13,14 +13,14 @@ export const s = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.primary100,
+    backgroundColor: colors.gray100,
     padding: normalize(12),
     borderRadius: 14,
-    margin: normalize(6),
+    marginHorizontal: normalize(6),
     minWidth: normalize(150),
   },
   categoryEmoji: {
-    backgroundColor: colors.primary200,
+    backgroundColor: colors.gray200,
     borderRadius: 10,
     padding: normalize(12),
     marginRight: normalize(10),
