@@ -14,11 +14,11 @@
   "private": true,
   "dependencies": {},
   "devDependencies": {
-    "@commitlint/cli": "^12.1.1",
-    "@commitlint/config-conventional": "^12.1.1",
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0",
     "commitizen": "^4.2.3",
     "cz-conventional-changelog": "^3.3.0",
-    "husky": "^6.0.0"
+    "husky": "^7.0.2"
   },
   "config": {
     "commitizen": {
@@ -30,6 +30,7 @@
     "prepare": "husky install",
     "commit": "cz",
     "commit:signed": "cz -S",
+    "u": "yarn upgrade-interactive --latest",
     "backend": "yarn workspace backend start:debug",
     "ios": "yarn workspace mobile ios",
     "android": "yarn workspace mobile android"
