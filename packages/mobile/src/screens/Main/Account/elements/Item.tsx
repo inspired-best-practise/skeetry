@@ -4,59 +4,71 @@ import FastImage from 'react-native-fast-image';
 import { SharedElement } from 'react-navigation-shared-element';
 
 import { paragraph } from '_app/constants';
+import { detectedLocale } from '_app/i18n/languageDetector';
 import { navigation } from '_app/services/navigations';
+import { compareLocale } from '_app/utils/helpers';
 
 import { s } from '../styles';
 
-export const renderItem = ({ item }: any) => (
-  <Pressable onPress={() => navigation.navigate('CardScreen', { item })}>
-    <View key={item.id} style={s.card}>
-      <SharedElement id={`item.${item.id}.image`}>
-        <FastImage
-          style={s.cardImage}
-          source={{
-            uri: item.photos[0]
-              ? item.photos[0]
-              : 'https://images.unsplash.com/photo-1503614472-8c93d56e92ce?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1299&q=80/250x300',
-            priority: FastImage.priority.normal,
+// TODO: refactor
+export const renderItem = ({ item }: any) => {
+  const languageTag = detectedLocale?.languageTag;
+  const { locale } = item;
+
+  const hasLocalization = languageTag ? item.localizations.find(l => l.locale === languageTag.toUpperCase()) : null;
+
+  const sameLocale = languageTag ? compareLocale(languageTag, locale) : null;
+
+  return (
+    <Pressable onPress={() => navigation.navigate('CardScreen', { item })}>
+      <View key={item.id} style={s.card}>
+        <SharedElement id={`item.${item.id}.image`}>
+          <FastImage
+            style={s.cardImage}
+            source={{
+              uri: item.photos[0]
+                ? item.photos[0]
+                : 'https://images.unsplash.com/photo-1503614472-8c93d56e92ce?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1299&q=80/250x300',
+              priority: FastImage.priority.normal,
+            }}
+            resizeMode={FastImage.resizeMode.cover}
+          />
+        </SharedElement>
+        <View
+          style={{
+            height: '100%',
+            width: '100%',
+            borderRadius: 4,
+            position: 'absolute',
+            backgroundColor: 'rgba(0,0,0,0.3)',
           }}
-          resizeMode={FastImage.resizeMode.cover}
         />
-      </SharedElement>
-      <View
-        style={{
-          height: '100%',
-          width: '100%',
-          borderRadius: 4,
-          position: 'absolute',
-          backgroundColor: 'rgba(0,0,0,0.3)',
-        }}
-      />
-      <View
-        style={{
-          position: 'absolute',
-          top: 0,
-          padding: 10,
-          width: '100%',
-          borderRadius: 4,
-          justifyContent: 'center',
-        }}
-      >
-        <Text
-          numberOfLines={2}
-          style={[
-            paragraph,
-            {
-              display: 'flex',
-              fontWeight: '700',
-              color: '#fff',
-              textAlign: 'left',
-            },
-          ]}
+        <View
+          style={{
+            position: 'absolute',
+            top: 0,
+            padding: 10,
+            width: '100%',
+            borderRadius: 4,
+            justifyContent: 'center',
+          }}
         >
-          {item.name}
-        </Text>
+          <Text
+            numberOfLines={2}
+            style={[
+              paragraph,
+              {
+                display: 'flex',
+                fontWeight: '700',
+                color: '#fff',
+                textAlign: 'left',
+              },
+            ]}
+          >
+            {!hasLocalization || sameLocale ? item.name : hasLocalization.name}
+          </Text>
+        </View>
       </View>
-    </View>
-  </Pressable>
-);
+    </Pressable>
+  );
+};
