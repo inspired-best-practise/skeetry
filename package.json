@@ -4,8 +4,7 @@
   "author": "Aleksey Tsvetkov <code.aleksey@icloud.com>",
   "workspaces": {
     "packages": [
-      "backend",
-      "mobile"
+      "packages/*"
     ],
     "nohoist": [
       "**"
@@ -30,6 +29,9 @@
   "scripts": {
     "prepare": "husky install",
     "commit": "cz",
-    "commit:signed": "cz -S"
+    "commit:signed": "cz -S",
+    "backend": "yarn workspace backend start:debug",
+    "ios": "yarn workspace mobile ios",
+    "android": "yarn workspace mobile android"
   }
 }
