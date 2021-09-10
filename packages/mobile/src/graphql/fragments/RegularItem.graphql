@@ -10,4 +10,8 @@ fragment RegularItem on Item {
   latitude     
   longitude
   flag
+  locale
+  localizations {
+    ...RegularItemLocalization
+  }
 }

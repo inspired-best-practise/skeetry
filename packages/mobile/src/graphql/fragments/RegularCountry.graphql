@@ -2,4 +2,8 @@ fragment RegularCountry on Item {
   id
   name
   flag
+  locale
+  localizations {
+    ...RegularItemLocalization
+  }
 }

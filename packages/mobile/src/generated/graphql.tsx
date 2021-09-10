@@ -25,11 +25,6 @@ export type Auth = {
   user: User;
 };
 
-export type CreateItemInput = {
-  /** Example field (placeholder) */
-  exampleField: Scalars['Int'];
-};
-
 export type Item = {
   __typename?: 'Item';
   /** Identifies the date and time when the object was created. */
@@ -37,6 +32,8 @@ export type Item = {
   flag?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
   latitude: Scalars['String'];
+  locale: Locale;
+  localizations?: Maybe<Array<ItemLocalization>>;
   longitude: Scalars['String'];
   name: Scalars['String'];
   overview?: Maybe<Scalars['String']>;
@@ -49,6 +46,23 @@ export type Item = {
   wantedCount: Scalars['Int'];
 };
 
+export type ItemLocalization = {
+  __typename?: 'ItemLocalization';
+  /** Identifies the date and time when the object was created. */
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ID'];
+  locale: Locale;
+  name: Scalars['String'];
+  overview?: Maybe<Scalars['String']>;
+  /** Identifies the date and time when the object was last updated. */
+  updatedAt: Scalars['DateTime'];
+};
+
+export enum Locale {
+  En = 'EN',
+  Ru = 'RU'
+}
+
 export type LoginInput = {
   password: Scalars['String'];
   username: Scalars['String'];
@@ -56,17 +70,9 @@ export type LoginInput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  createItem: Item;
   login: Auth;
   refreshToken: Token;
-  removeItem: Item;
   signup: Auth;
-  updateItem: Item;
-};
-
-
-export type MutationCreateItemArgs = {
-  createItemInput: CreateItemInput;
 };
 
 
@@ -75,33 +81,17 @@ export type MutationLoginArgs = {
 };
 
 
-export type MutationRemoveItemArgs = {
-  id: Scalars['Int'];
-};
-
-
 export type MutationSignupArgs = {
   input: SignupInput;
-};
-
-
-export type MutationUpdateItemArgs = {
-  updateItemInput: UpdateItemInput;
 };
 
 export type Query = {
   __typename?: 'Query';
   countries: Array<Item>;
-  item: Item;
   items: Array<Item>;
   me: User;
   visited: Array<Item>;
   wanted: Array<Item>;
-};
-
-
-export type QueryItemArgs = {
-  id: Scalars['Int'];
 };
 
 export type SignupInput = {
@@ -118,12 +108,6 @@ export type Token = {
   refreshToken: Scalars['String'];
 };
 
-export type UpdateItemInput = {
-  /** Example field (placeholder) */
-  exampleField?: Maybe<Scalars['Int']>;
-  id: Scalars['Int'];
-};
-
 export type User = {
   __typename?: 'User';
   avatar?: Maybe<Scalars['String']>;
@@ -138,9 +122,11 @@ export type User = {
   wantedCount: Scalars['Int'];
 };
 
-export type RegularCountryFragment = { __typename?: 'Item', id: string, name: string, flag?: Maybe<string> };
+export type RegularCountryFragment = { __typename?: 'Item', id: string, name: string, flag?: Maybe<string>, locale: Locale, localizations?: Maybe<Array<{ __typename?: 'ItemLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> };
 
-export type RegularItemFragment = { __typename?: 'Item', id: string, type: string, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, reviewsCount: number, photos: Array<string>, latitude: string, longitude: string, flag?: Maybe<string> };
+export type RegularItemFragment = { __typename?: 'Item', id: string, type: string, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, reviewsCount: number, photos: Array<string>, latitude: string, longitude: string, flag?: Maybe<string>, locale: Locale, localizations?: Maybe<Array<{ __typename?: 'ItemLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> };
+
+export type RegularItemLocalizationFragment = { __typename?: 'ItemLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> };
 
 export type RegularUserFragment = { __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any };
 
@@ -166,7 +152,7 @@ export type SignupMutation = { __typename?: 'Mutation', signup: { __typename?: '
 export type CountriesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type CountriesQuery = { __typename?: 'Query', countries: Array<{ __typename?: 'Item', id: string, name: string, flag?: Maybe<string> }> };
+export type CountriesQuery = { __typename?: 'Query', countries: Array<{ __typename?: 'Item', id: string, name: string, flag?: Maybe<string>, locale: Locale, localizations?: Maybe<Array<{ __typename?: 'ItemLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> }> };
 
 export type MeQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -176,20 +162,32 @@ export type MeQuery = { __typename?: 'Query', me: { __typename?: 'User', id: str
 export type VisitedQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type VisitedQuery = { __typename?: 'Query', visited: Array<{ __typename?: 'Item', id: string, type: string, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, reviewsCount: number, photos: Array<string>, latitude: string, longitude: string, flag?: Maybe<string> }> };
+export type VisitedQuery = { __typename?: 'Query', visited: Array<{ __typename?: 'Item', id: string, type: string, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, reviewsCount: number, photos: Array<string>, latitude: string, longitude: string, flag?: Maybe<string>, locale: Locale, localizations?: Maybe<Array<{ __typename?: 'ItemLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> }> };
 
 export type WantedQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type WantedQuery = { __typename?: 'Query', wanted: Array<{ __typename?: 'Item', id: string, type: string, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, reviewsCount: number, photos: Array<string>, latitude: string, longitude: string, flag?: Maybe<string> }> };
+export type WantedQuery = { __typename?: 'Query', wanted: Array<{ __typename?: 'Item', id: string, type: string, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, reviewsCount: number, photos: Array<string>, latitude: string, longitude: string, flag?: Maybe<string>, locale: Locale, localizations?: Maybe<Array<{ __typename?: 'ItemLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> }> };
 
+export const RegularItemLocalizationFragmentDoc = gql`
+    fragment RegularItemLocalization on ItemLocalization {
+  id
+  locale
+  name
+  overview
+}
+    `;
 export const RegularCountryFragmentDoc = gql`
     fragment RegularCountry on Item {
   id
   name
   flag
+  locale
+  localizations {
+    ...RegularItemLocalization
+  }
 }
-    `;
+    ${RegularItemLocalizationFragmentDoc}`;
 export const RegularItemFragmentDoc = gql`
     fragment RegularItem on Item {
   id
@@ -203,8 +201,12 @@ export const RegularItemFragmentDoc = gql`
   latitude
   longitude
   flag
+  locale
+  localizations {
+    ...RegularItemLocalization
+  }
 }
-    `;
+    ${RegularItemLocalizationFragmentDoc}`;
 export const RegularUserFragmentDoc = gql`
     fragment RegularUser on User {
   id

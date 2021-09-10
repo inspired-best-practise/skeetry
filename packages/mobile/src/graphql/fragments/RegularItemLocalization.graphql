@@ -1,0 +1,6 @@
+fragment RegularItemLocalization on ItemLocalization {
+  id
+  locale
+  name
+  overview
+}
