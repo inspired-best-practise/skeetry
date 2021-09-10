@@ -1,6 +1,7 @@
 type THomeTabParamList = {
   HomePage: undefined;
   ExplorePage: undefined;
+  SwipesPage: undefined;
   AddPage: undefined;
   ActivityPage: undefined;
   AccountPage: undefined;

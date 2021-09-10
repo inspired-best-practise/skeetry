@@ -1,9 +1,9 @@
-import { BlurView } from '@react-native-community/blur';
 import React from 'react';
 import { View, Text, Pressable } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { SharedElement } from 'react-navigation-shared-element';
 
+import { paragraph } from '_app/constants';
 import { navigation } from '_app/services/navigations';
 
 import { s } from '../styles';
@@ -23,32 +23,40 @@ export const renderItem = ({ item }: any) => (
           resizeMode={FastImage.resizeMode.cover}
         />
       </SharedElement>
-      <BlurView
+      <View
+        style={{
+          height: '100%',
+          width: '100%',
+          borderRadius: 4,
+          position: 'absolute',
+          backgroundColor: 'rgba(0,0,0,0.3)',
+        }}
+      />
+      <View
         style={{
           position: 'absolute',
-          bottom: 0,
+          top: 0,
           padding: 10,
           width: '100%',
           borderRadius: 4,
-          minHeight: 55,
-          maxHeight: 55,
           justifyContent: 'center',
         }}
-        blurType="light"
-        blurAmount={8}
       >
         <Text
           numberOfLines={2}
-          style={{
-            display: 'flex',
-            fontWeight: '700',
-            color: '#fff',
-            textAlign: 'left',
-          }}
+          style={[
+            paragraph,
+            {
+              display: 'flex',
+              fontWeight: '700',
+              color: '#fff',
+              textAlign: 'left',
+            },
+          ]}
         >
           {item.name}
         </Text>
-      </BlurView>
+      </View>
     </View>
   </Pressable>
 );

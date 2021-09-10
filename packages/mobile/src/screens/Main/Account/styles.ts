@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 import { normalize, SCREEN_WIDTH } from '_app/utils/dimensions';
 
-const itemWidth = SCREEN_WIDTH / 2 - 20;
+export const itemWidth = SCREEN_WIDTH / 2 - 20;
 
 export const s = StyleSheet.create({
   container: {

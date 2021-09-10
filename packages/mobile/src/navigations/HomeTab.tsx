@@ -16,7 +16,9 @@ import {
   CitiesScreen,
   PlacesScreen,
   CardScreen,
+  ActivityScreen,
 } from '_app/screens/Main';
+import { SwipesScreen } from '_app/screens/Main/Swipes';
 
 export const iosTransitionSpec = {
   animation: 'spring',
@@ -211,6 +213,19 @@ const ExploreStack = () => {
   );
 };
 
+const SwipesStack = () => {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+        gestureEnabled: true,
+      }}
+    >
+      <Stack.Screen name="Swipes" component={SwipesScreen} />
+    </Stack.Navigator>
+  );
+};
+
 const AddStack = () => {
   return (
     <Stack.Navigator
@@ -292,12 +307,19 @@ const HomeTab = () => {
         component={AddStack}
         name="AddPage"
       />
+      <Tab.Screen
+        options={({ route }) => ({
+          tabBarIcon: ({ focused }) => <Icon.CollectionIcon size={30} color={focused ? '#777777' : '#bbbbbb'} />,
+        })}
+        component={SwipesStack}
+        name="SwipesPage"
+      />
       {/* <Tab.Screen
-        options={{
+        options={({ route }) => ({
           tabBarIcon: ({ focused }) => <Icon.HeartIcon size={30} color={focused ? '#777777' : '#bbbbbb'} />,
-        }}
+        })}
         component={ActivityStack}
-        name="Activity"
+        name="ActivityPage"
       /> */}
       <Tab.Screen
         options={({ route }) => ({
