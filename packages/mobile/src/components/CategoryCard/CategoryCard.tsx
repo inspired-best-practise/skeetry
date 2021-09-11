@@ -1,7 +1,9 @@
 import React from 'react';
 import { View, Text, Pressable } from 'react-native';
 import FastImage from 'react-native-fast-image';
+
 import { navigation } from '_app/services/navigations';
+
 import { s } from './styles';
 
 export const CategoryCard = ({ name, count, image, stack, screen }: TCategoryCardProps) => {

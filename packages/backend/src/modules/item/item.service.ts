@@ -190,6 +190,8 @@ export class ItemService {
     const items = await this.prisma.item.findMany({
       include: {
         localizations: true,
+        userVisited: true,
+        userWanted: true,
       },
     });
 
@@ -200,6 +202,7 @@ export class ItemService {
     const items = await this.prisma.item.findMany({
       include: {
         localizations: true,
+        userWanted: true,
       },
       where: {
         userWanted: {
@@ -217,6 +220,7 @@ export class ItemService {
     const items = await this.prisma.item.findMany({
       include: {
         localizations: true,
+        userVisited: true,
       },
       where: {
         userVisited: {
@@ -234,6 +238,8 @@ export class ItemService {
     const countries = await this.prisma.item.findMany({
       include: {
         localizations: true,
+        userVisited: true,
+        userWanted: true,
       },
       where: {
         type: 'COUNTRY',
@@ -242,26 +248,4 @@ export class ItemService {
 
     return countries;
   }
-
-  // findOne(id: string) {
-  //   return `This action returns a #${id} item`;
-  // }
-
-  // update(id: string, updateItemInput: UpdateItemInput) {
-  //   return `This action updates a #${id} item`;
-  // }
-
-  // remove(id: string) {
-  //   return `This action removes a #${id} item`;
-  // }
-
-  // async getLocalizations(id: string) {
-  //   const localizations = await this.prisma.itemLocalization.findMany({
-  //     where: {
-  //       itemId: id,
-  //     },
-  //   });
-
-  //   return localizations;
-  // }
 }

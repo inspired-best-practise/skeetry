@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
   View,
   Text,
@@ -17,28 +17,92 @@ import { SharedElement } from 'react-navigation-shared-element';
 import BottomSheet from 'reanimated-bottom-sheet';
 
 import { mapGfxStyle } from '_app/constants';
-import { wait } from '_app/utils/helpers';
+import { useAddItemMutation, useMoveItemMutation, useRemoveItemMutation } from '_app/generated/graphql';
+import { authStore } from '_app/stores';
 
 import { s } from './styles';
 
+// TODO: refactor mutations and conditions, split into different components and files
 export const CardScreen = ({ route, navigation }) => {
   const { item } = route.params;
-  const [loading, setLoading] = useState(false);
-  const [itemStatus, setItemStatus] = useState(item.status ? item.status : 'NONE');
+  const user = authStore(state => state.user);
 
-  const onPress = (name: string) => {
-    setLoading(true);
-    wait(2000).then(() => setLoading(false));
-    setItemStatus(name);
+  const [want, { loading: loadingWant }] = useAddItemMutation({
+    variables: {
+      input: {
+        id: item.id,
+        type: 'WANT',
+      },
+    },
+  });
+
+  const [visited, { loading: loadingVisited }] = useAddItemMutation({
+    variables: {
+      input: {
+        id: item.id,
+        type: 'VISITED',
+      },
+    },
+  });
+
+  const [removeWant, { loading: loadingRemoveWant }] = useRemoveItemMutation({
+    variables: {
+      input: {
+        id: item.id,
+        type: 'WANT',
+      },
+    },
+  });
+
+  const [removeVisited, { loading: loadingRemoveVisited }] = useRemoveItemMutation({
+    variables: {
+      input: {
+        id: item.id,
+        type: 'VISITED',
+      },
+    },
+  });
+
+  const [moveWant, { loading: loadingMoveWant }] = useMoveItemMutation({
+    variables: {
+      input: {
+        id: item.id,
+        type: 'WANT',
+      },
+    },
+  });
+
+  const [moveVisited, { loading: loadingMoveVisited }] = useMoveItemMutation({
+    variables: {
+      input: {
+        id: item.id,
+        type: 'VISITED',
+      },
+    },
+  });
+
+  const handlePress = (name: string) => {
+    if (name === 'want') {
+      want();
+    }
+    if (name === 'visited') {
+      visited();
+    }
   };
+
+  const alreadyWanted = item.userWanted && item.userWanted.find(u => u.id === user.id);
+  const alreadyVisited = item.userVisited && item.userVisited.find(u => u.id === user.id);
+
+  const loading =
+    loadingWant || loadingVisited || loadingRemoveWant || loadingRemoveVisited || loadingMoveWant || loadingMoveVisited;
 
   const onPressSheet = () =>
     ActionSheetIOS.showActionSheetWithOptions(
       {
         options: [
           'Cancel',
-          `Move to ${itemStatus === 'WANT' ? 'Visited' : 'Want'}`,
-          `Remove from ${itemStatus === 'WANT' ? 'Want' : 'Visited'}`,
+          `Move to ${alreadyWanted ? 'Visited' : 'Want'}`,
+          `Remove from ${alreadyWanted ? 'Want' : 'Visited'}`,
         ],
         destructiveButtonIndex: 2,
         cancelButtonIndex: 0,
@@ -48,11 +112,9 @@ export const CardScreen = ({ route, navigation }) => {
         if (buttonIndex === 0) {
           // cancel action
         } else if (buttonIndex === 1) {
-          setLoading(true);
-          wait(2000).then(() => setLoading(false));
-          setItemStatus(itemStatus === 'WANT' ? 'VISITED' : 'WANT');
+          alreadyWanted ? moveWant() : moveVisited();
         } else if (buttonIndex === 2) {
-          setItemStatus('NONE');
+          alreadyWanted ? removeWant() : removeVisited();
         }
       },
     );
@@ -61,32 +123,27 @@ export const CardScreen = ({ route, navigation }) => {
     <Animated.View style={[s.content]}>
       <View style={s.section}>
         <Text style={s.name}>{item.flag + ' ' + item.name}</Text>
-        {/* <View style={s.rating}>
-            <Icon.StarIcon size={16} color={'black'} />
-            <Text style={s.ratingNumber}>{item.rating.number}</Text>
-            <Text style={s.ratingCount}>({item.rating.count})</Text>
-          </View> */}
       </View>
       <View style={s.section}>
         <View style={s.cardButtons}>
-          {itemStatus === 'NONE' && !loading ? (
+          {!alreadyWanted && !alreadyVisited && !loading ? (
             <>
-              <TouchableHighlight underlayColor="#DDDDDD" style={s.button} onPress={() => onPress('WANT')}>
+              <TouchableHighlight underlayColor="#DDDDDD" style={s.button} onPress={() => handlePress('want')}>
                 <Text style={s.buttonText}>Want</Text>
               </TouchableHighlight>
-              <TouchableHighlight underlayColor="#DDDDDD" style={s.button} onPress={() => onPress('VISITED')}>
+              <TouchableHighlight underlayColor="#DDDDDD" style={s.button} onPress={() => handlePress('visited')}>
                 <Text style={s.buttonText}>Visited</Text>
               </TouchableHighlight>
             </>
           ) : (
             <TouchableHighlight
               underlayColor="#DDDDDD"
-              style={[s.button, (itemStatus !== 'NONE' || loading) && s.buttonFull]}
+              style={[s.button, (alreadyWanted || alreadyVisited || loading) && s.buttonFull]}
               onPress={() => !loading && onPressSheet()}
             >
               <View style={[s.buttonWithIcon]}>
-                <Text style={[s.buttonText, (itemStatus !== 'NONE' || loading) && s.buttonWithIconText]}>
-                  {loading ? 'loading' : itemStatus}
+                <Text style={[s.buttonText, (alreadyWanted || alreadyVisited || loading) && s.buttonWithIconText]}>
+                  {loading ? 'loading' : alreadyWanted ? 'Want' : 'Visited'}
                 </Text>
                 <Icon.DotsHorizontalIcon style={s.buttonIcon} size={18} color={'black'} />
               </View>
@@ -131,10 +188,6 @@ export const CardScreen = ({ route, navigation }) => {
           <Text style={s.sectionMainText}>Driving side:</Text> Left
         </Text>
       </View>
-
-      {/* <Text>Reviews list</Text> */}
-
-      {/* <Text>Cities list</Text> */}
     </Animated.View>
   );
 

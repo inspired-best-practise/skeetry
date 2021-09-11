@@ -1,4 +1,5 @@
 import { Field, ObjectType, registerEnumType } from '@nestjs/graphql';
+import { User } from '../../user/models/user.model';
 import { BaseModel } from '../../common/base.model';
 import { ItemLocalization } from './itemLocalization.model';
 
@@ -53,6 +54,12 @@ export class Item extends BaseModel {
 
   @Field({ nullable: true })
   flag?: string;
+
+  @Field(() => [User], { nullable: true })
+  userWanted: User[];
+
+  @Field(() => [User], { nullable: true })
+  userVisited: User[];
 
   @Field(() => Locale)
   locale: Locale;

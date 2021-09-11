@@ -3,6 +3,12 @@ fragment RegularCountry on Item {
   name
   flag
   locale
+  userWanted {
+    ...RegularUser
+  }
+  userVisited {
+    ...RegularUser
+  }
   localizations {
     ...RegularItemLocalization
   }

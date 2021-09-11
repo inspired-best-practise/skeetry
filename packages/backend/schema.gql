@@ -38,6 +38,8 @@ type Item {
 
   """Identifies the date and time when the object was last updated."""
   updatedAt: DateTime!
+  userVisited: [User!]
+  userWanted: [User!]
   visitedCount: Int!
   wantedCount: Int!
 }
