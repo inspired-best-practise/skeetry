@@ -1,0 +1,5 @@
+mutation addItem($input: ActionItemInput!) {
+  addItem(input: $input) {
+    ...RegularItem
+  }
+}

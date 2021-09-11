@@ -16,6 +16,11 @@ export type Scalars = {
   DateTime: any;
 };
 
+export type ActionItemInput = {
+  id: Scalars['ID'];
+  type: Scalars['String'];
+};
+
 export type Auth = {
   __typename?: 'Auth';
   /** JWT access token */
@@ -70,14 +75,32 @@ export type LoginInput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  addItem: Item;
   login: Auth;
+  moveItem: Item;
   refreshToken: Token;
+  removeItem: Item;
   signup: Auth;
+};
+
+
+export type MutationAddItemArgs = {
+  input: ActionItemInput;
 };
 
 
 export type MutationLoginArgs = {
   input: LoginInput;
+};
+
+
+export type MutationMoveItemArgs = {
+  input: ActionItemInput;
+};
+
+
+export type MutationRemoveItemArgs = {
+  input: ActionItemInput;
 };
 
 
@@ -130,6 +153,13 @@ export type RegularItemLocalizationFragment = { __typename?: 'ItemLocalization',
 
 export type RegularUserFragment = { __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any };
 
+export type AddItemMutationVariables = Exact<{
+  input: ActionItemInput;
+}>;
+
+
+export type AddItemMutation = { __typename?: 'Mutation', addItem: { __typename?: 'Item', id: string, type: string, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, reviewsCount: number, photos: Array<string>, latitude: string, longitude: string, flag?: Maybe<string>, locale: Locale, localizations?: Maybe<Array<{ __typename?: 'ItemLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> } };
+
 export type LoginMutationVariables = Exact<{
   input: LoginInput;
 }>;
@@ -137,10 +167,24 @@ export type LoginMutationVariables = Exact<{
 
 export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'Auth', accessToken: string, refreshToken: string, user: { __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any } } };
 
+export type MoveItemMutationVariables = Exact<{
+  input: ActionItemInput;
+}>;
+
+
+export type MoveItemMutation = { __typename?: 'Mutation', moveItem: { __typename?: 'Item', id: string, type: string, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, reviewsCount: number, photos: Array<string>, latitude: string, longitude: string, flag?: Maybe<string>, locale: Locale, localizations?: Maybe<Array<{ __typename?: 'ItemLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> } };
+
 export type RefreshTokenMutationVariables = Exact<{ [key: string]: never; }>;
 
 
 export type RefreshTokenMutation = { __typename?: 'Mutation', refreshToken: { __typename?: 'Token', accessToken: string, refreshToken: string } };
+
+export type RemoveItemMutationVariables = Exact<{
+  input: ActionItemInput;
+}>;
+
+
+export type RemoveItemMutation = { __typename?: 'Mutation', removeItem: { __typename?: 'Item', id: string, type: string, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, reviewsCount: number, photos: Array<string>, latitude: string, longitude: string, flag?: Maybe<string>, locale: Locale, localizations?: Maybe<Array<{ __typename?: 'ItemLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> } };
 
 export type SignupMutationVariables = Exact<{
   input: SignupInput;
@@ -219,6 +263,39 @@ export const RegularUserFragmentDoc = gql`
   updatedAt
 }
     `;
+export const AddItemDocument = gql`
+    mutation addItem($input: ActionItemInput!) {
+  addItem(input: $input) {
+    ...RegularItem
+  }
+}
+    ${RegularItemFragmentDoc}`;
+export type AddItemMutationFn = Apollo.MutationFunction<AddItemMutation, AddItemMutationVariables>;
+
+/**
+ * __useAddItemMutation__
+ *
+ * To run a mutation, you first call `useAddItemMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAddItemMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [addItemMutation, { data, loading, error }] = useAddItemMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useAddItemMutation(baseOptions?: Apollo.MutationHookOptions<AddItemMutation, AddItemMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<AddItemMutation, AddItemMutationVariables>(AddItemDocument, options);
+      }
+export type AddItemMutationHookResult = ReturnType<typeof useAddItemMutation>;
+export type AddItemMutationResult = Apollo.MutationResult<AddItemMutation>;
+export type AddItemMutationOptions = Apollo.BaseMutationOptions<AddItemMutation, AddItemMutationVariables>;
 export const LoginDocument = gql`
     mutation login($input: LoginInput!) {
   login(input: $input) {
@@ -256,6 +333,39 @@ export function useLoginMutation(baseOptions?: Apollo.MutationHookOptions<LoginM
 export type LoginMutationHookResult = ReturnType<typeof useLoginMutation>;
 export type LoginMutationResult = Apollo.MutationResult<LoginMutation>;
 export type LoginMutationOptions = Apollo.BaseMutationOptions<LoginMutation, LoginMutationVariables>;
+export const MoveItemDocument = gql`
+    mutation moveItem($input: ActionItemInput!) {
+  moveItem(input: $input) {
+    ...RegularItem
+  }
+}
+    ${RegularItemFragmentDoc}`;
+export type MoveItemMutationFn = Apollo.MutationFunction<MoveItemMutation, MoveItemMutationVariables>;
+
+/**
+ * __useMoveItemMutation__
+ *
+ * To run a mutation, you first call `useMoveItemMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useMoveItemMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [moveItemMutation, { data, loading, error }] = useMoveItemMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useMoveItemMutation(baseOptions?: Apollo.MutationHookOptions<MoveItemMutation, MoveItemMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<MoveItemMutation, MoveItemMutationVariables>(MoveItemDocument, options);
+      }
+export type MoveItemMutationHookResult = ReturnType<typeof useMoveItemMutation>;
+export type MoveItemMutationResult = Apollo.MutationResult<MoveItemMutation>;
+export type MoveItemMutationOptions = Apollo.BaseMutationOptions<MoveItemMutation, MoveItemMutationVariables>;
 export const RefreshTokenDocument = gql`
     mutation refreshToken {
   refreshToken {
@@ -289,6 +399,39 @@ export function useRefreshTokenMutation(baseOptions?: Apollo.MutationHookOptions
 export type RefreshTokenMutationHookResult = ReturnType<typeof useRefreshTokenMutation>;
 export type RefreshTokenMutationResult = Apollo.MutationResult<RefreshTokenMutation>;
 export type RefreshTokenMutationOptions = Apollo.BaseMutationOptions<RefreshTokenMutation, RefreshTokenMutationVariables>;
+export const RemoveItemDocument = gql`
+    mutation removeItem($input: ActionItemInput!) {
+  removeItem(input: $input) {
+    ...RegularItem
+  }
+}
+    ${RegularItemFragmentDoc}`;
+export type RemoveItemMutationFn = Apollo.MutationFunction<RemoveItemMutation, RemoveItemMutationVariables>;
+
+/**
+ * __useRemoveItemMutation__
+ *
+ * To run a mutation, you first call `useRemoveItemMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useRemoveItemMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [removeItemMutation, { data, loading, error }] = useRemoveItemMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useRemoveItemMutation(baseOptions?: Apollo.MutationHookOptions<RemoveItemMutation, RemoveItemMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<RemoveItemMutation, RemoveItemMutationVariables>(RemoveItemDocument, options);
+      }
+export type RemoveItemMutationHookResult = ReturnType<typeof useRemoveItemMutation>;
+export type RemoveItemMutationResult = Apollo.MutationResult<RemoveItemMutation>;
+export type RemoveItemMutationOptions = Apollo.BaseMutationOptions<RemoveItemMutation, RemoveItemMutationVariables>;
 export const SignupDocument = gql`
     mutation signup($input: SignupInput!) {
   signup(input: $input) {

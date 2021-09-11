@@ -1,0 +1,5 @@
+mutation removeItem($input: ActionItemInput!) {
+  removeItem(input: $input) {
+    ...RegularItem
+  }
+}
