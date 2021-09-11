@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import * as Icon from 'react-native-heroicons/solid';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { SharedElement } from 'react-navigation-shared-element';
 import BottomSheet from 'reanimated-bottom-sheet';
 
@@ -191,7 +191,7 @@ export const CardScreen = ({ route, navigation }) => {
     </Animated.View>
   );
 
-  const sheetRef = React.useRef(null);
+  const sheetRef = useRef(null);
 
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
@@ -203,9 +203,18 @@ export const CardScreen = ({ route, navigation }) => {
     }).start();
   }, [fadeAnim]);
 
+  const insets = useSafeAreaInsets();
+
   return (
-    <View style={s.container}>
-      <SafeAreaView />
+    <View
+      style={{
+        flex: 1,
+        paddingTop: insets.top,
+        paddingLeft: insets.left,
+        paddingRight: insets.right,
+        paddingBottom: insets.bottom,
+      }}
+    >
       <StatusBar barStyle="light-content" animated translucent backgroundColor="rgba(255,255,255,100)" />
       <SharedElement id={`item.${item.id}.image`}>
         <Image
@@ -225,14 +234,14 @@ export const CardScreen = ({ route, navigation }) => {
       </TouchableWithoutFeedback>
       <BottomSheet
         ref={sheetRef}
-        snapPoints={[700, 450]}
+        snapPoints={[650, 400]}
         initialSnap={1}
-        enabledContentTapInteraction={true}
-        enabledBottomInitialAnimation={true}
-        enabledGestureInteraction={true}
-        enabledContentGestureInteraction={true}
+        // enabledContentTapInteraction={true}
+        // enabledBottomInitialAnimation={true}
+        // enabledGestureInteraction={true}
+        // enabledContentGestureInteraction={true}
         renderContent={renderContent}
-        overdragResistanceFactor={0} // ?
+        // overdragResistanceFactor={0} // ?
         enabledBottomClamp={true}
         borderRadius={10}
       />

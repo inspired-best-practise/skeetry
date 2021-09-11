@@ -3,7 +3,7 @@ Refactoring:
    ☐ Normalize everything
   
 Global bugs:
-   ☐ Fix open animation react-navigation-shared-element with react-native-safe-area-context (https://github.com/IjzerenHein/react-navigation-shared-element/issues/187)
+   ✔ Fix open animation react-navigation-shared-element with react-native-safe-area-context (https://github.com/IjzerenHein/react-navigation-shared-element/issues/187) @done(21-09-11 15:18)
    ☐ Fix close animation react-navigation-shared-element if used in two stacks (Explore and Account)
    ☐ Fix SplashScreen
    ☐ Fix refetch animation on Account screen
@@ -25,6 +25,9 @@ Features:
 Login: 
    ☐ Add KeyboardAvoidingView
    ✔ Fix blink screen when isAuthenticated @done(21-09-09 15:30)
+
+Registration:
+   ☐ Implement module
 
 Home: 
    ☐ Delete this page

@@ -17,7 +17,6 @@ export const s = StyleSheet.create({
     marginLeft: 16,
     alignItems: 'center',
     paddingVertical: 6,
-    top: -20,
   },
   cardImage: {
     width: SCREEN_WIDTH,
@@ -82,7 +81,7 @@ export const s = StyleSheet.create({
     backgroundColor: 'white',
     padding: 16,
     height: '100%',
-    zIndex: 100,
+    zIndex: 10000,
   },
   section: {
     paddingBottom: 20,

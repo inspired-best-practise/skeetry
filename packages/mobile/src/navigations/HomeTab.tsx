@@ -15,8 +15,7 @@ import {
   CountriesScreen,
   CitiesScreen,
   PlacesScreen,
-  CardScreen,
-  ActivityScreen,
+  CardScreen, // ActivityScreen,
 } from '_app/screens/Main';
 import { SwipesScreen } from '_app/screens/Main/Swipes';
 
@@ -71,23 +70,23 @@ const AccountStack = () => {
           const { item } = route.params;
           if (route.name === 'CardScreen' && showing) {
             // Open animation fades in image, title and description
-            // return [
-            //   {
-            //     id: `item.${item.id}.image`,
-            //   },
-            //   {
-            //     id: `item.${item.id}.title`,
-            //     animation: 'move',
-            //     resize: 'clip',
-            //     align: 'left-top',
-            //   },
-            //   {
-            //     id: `item.${item.id}.description`,
-            //     animation: 'move',
-            //     resize: 'clip',
-            //     align: 'left-top',
-            //   },
-            // ];
+            return [
+              {
+                id: `item.${item.id}.image`,
+              },
+              {
+                id: `item.${item.id}.title`,
+                animation: 'move',
+                resize: 'clip',
+                align: 'left-top',
+              },
+              {
+                id: `item.${item.id}.description`,
+                animation: 'move',
+                resize: 'clip',
+                align: 'left-top',
+              },
+            ];
           } else {
             // Close animation only fades out image
             return [
@@ -186,11 +185,11 @@ const ExploreStack = () => {
           const { item } = route.params;
           if (route.name === 'CardScreen' && showing) {
             // Open animation fades in image, title and description
-            // return [
-            //   {
-            //     id: `item.${item.id}.image`,
-            //   },
-            // ];
+            return [
+              {
+                id: `item.${item.id}.image`,
+              },
+            ];
           } else {
             // Close animation only fades out image
             return [
