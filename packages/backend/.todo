@@ -3,6 +3,7 @@ Features:
   ✔ Updated Item schema @done(21-09-10 20:30)
   ✔ Change webpack-hmr to nest watch mode @done(21-09-09 14:14)
   ☐ Implement push notifications
+  ☐ Implement Sentry
 
 Deploy:
   ☐ Fix bcrypt error (only in Docker)

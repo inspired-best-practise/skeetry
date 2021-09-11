@@ -21,6 +21,7 @@ Features:
    ☐ Add new screen with swipe cards
    ☐ Type storage
    ☐ Implement push notifications
+   ☐ Implement Sentry
 
 Login: 
    ☐ Add KeyboardAvoidingView
