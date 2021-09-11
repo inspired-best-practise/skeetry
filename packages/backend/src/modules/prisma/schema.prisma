@@ -97,6 +97,23 @@ model ItemReviewLocalization {
   itemReviewId String?
 }
 
+model Story {
+  id            String              @id @default(cuid())
+  title         String
+  description   String
+  locale        Locale
+  localizations StoryLocalization[]
+}
+
+model StoryLocalization {
+  id          String  @id @default(cuid())
+  locale      Locale
+  title       String
+  description String
+  story       Story?  @relation(fields: [storyId], references: [id])
+  storyId     String?
+}
+
 enum ItemType {
   COUNTRY
   CITY
