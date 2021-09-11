@@ -8,8 +8,10 @@
  * @format
  */
 import { ApolloProvider } from '@apollo/client';
+import * as Sentry from '@sentry/react-native';
 import React, { useEffect } from 'react';
-import { StatusBar } from 'react-native';
+import { LogBox, StatusBar } from 'react-native';
+import Config from 'react-native-config';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import SplashScreen from 'react-native-splash-screen';
 
@@ -17,6 +19,14 @@ import { LoadingOverlay } from '_app/components';
 import '_app/i18n';
 import RootStackNavigation from '_app/navigations';
 import { client } from '_app/services/graphql';
+
+LogBox.ignoreLogs(['Require cycle:']);
+
+if (Config.NODE_ENV !== 'dev') {
+  Sentry.init({
+    dsn: Config.DSN,
+  });
+}
 
 const App: React.FC = () => {
   useEffect(() => {
