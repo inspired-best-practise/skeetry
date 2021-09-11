@@ -2,7 +2,7 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-input AddItemInput {
+input ActionItemInput {
   id: ID!
   type: String!
 }
@@ -65,9 +65,11 @@ input LoginInput {
 }
 
 type Mutation {
-  addItem(input: AddItemInput!): Item!
+  addItem(input: ActionItemInput!): Item!
   login(input: LoginInput!): Auth!
+  moveItem(input: ActionItemInput!): Item!
   refreshToken: Token!
+  removeItem(input: ActionItemInput!): Item!
   signup(input: SignupInput!): Auth!
 }
 

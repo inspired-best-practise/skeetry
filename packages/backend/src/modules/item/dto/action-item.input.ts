@@ -10,7 +10,7 @@ registerEnumType(AddItemInputType, {
 });
 
 @InputType()
-export class AddItemInput {
+export class ActionItemInput {
   @Field(() => ID)
   id: string;
 
