@@ -25,7 +25,11 @@ LogBox.ignoreLogs(['Require cycle:']);
 if (Config.NODE_ENV !== 'dev') {
   Sentry.init({
     dsn: Config.DSN,
+    environment: Config.NODE_ENV,
   });
+
+  // TODO: Identify Users
+  // Sentry.setUser({ id: '1', username: 'user' });
 }
 
 const App: React.FC = () => {
@@ -44,4 +48,4 @@ const App: React.FC = () => {
   );
 };
 
-export default App;
+export default Sentry.wrap(App);
