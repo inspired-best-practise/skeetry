@@ -1,17 +1,65 @@
-import { countries } from './../prisma/countries';
+import { AddItemInput } from './dto/add-item.input';
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
-import { CreateItemInput } from './dto/create-item.input';
-import { UpdateItemInput } from './dto/update-item.input';
-import { User } from '.prisma/client';
+import { User } from '../user/models/user.model';
 
 @Injectable()
 export class ItemService {
   constructor(private prisma: PrismaService) {}
 
-  // create(createItemInput: CreateItemInput) {
-  //   return 'This action adds a new item';
-  // }
+  async addItem(user: User, input: AddItemInput) {
+    const { id, type } = input;
+
+    const item = await this.prisma.item.findUnique({
+      include: {
+        userWanted: true,
+        userVisited: true,
+      },
+      where: {
+        id,
+      },
+    });
+
+    const alreadyWanted = item.userWanted.find((u) => u.id === user.id);
+    const alreadyVisited = item.userVisited.find((u) => u.id === user.id);
+
+    if (
+      (type === 'WANT' && alreadyWanted) ||
+      (type === 'VISITED' && alreadyVisited)
+    ) {
+      throw new Error('The element is already in the list');
+    }
+
+    await this.prisma.user.update({
+      where: {
+        id: user.id,
+      },
+      data:
+        type === 'WANT'
+          ? {
+              wantedCount: {
+                increment: 1,
+              },
+              wanted: {
+                connect: {
+                  id: item.id,
+                },
+              },
+            }
+          : {
+              visitedCount: {
+                increment: 1,
+              },
+              visited: {
+                connect: {
+                  id: item.id,
+                },
+              },
+            },
+    });
+
+    return item;
+  }
 
   async findAll() {
     const items = await this.prisma.item.findMany({

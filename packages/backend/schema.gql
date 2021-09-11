@@ -2,6 +2,11 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input AddItemInput {
+  id: ID!
+  type: String!
+}
+
 type Auth {
   """JWT access token"""
   accessToken: String!
@@ -60,6 +65,7 @@ input LoginInput {
 }
 
 type Mutation {
+  addItem(input: AddItemInput!): Item!
   login(input: LoginInput!): Auth!
   refreshToken: Token!
   signup(input: SignupInput!): Auth!
