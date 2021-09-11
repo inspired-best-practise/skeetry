@@ -56,6 +56,17 @@ type ItemLocalization {
   updatedAt: DateTime!
 }
 
+type ItemTag {
+  """Identifies the date and time when the object was created."""
+  createdAt: DateTime!
+  emoji: String!
+  id: ID!
+  name: String!
+
+  """Identifies the date and time when the object was last updated."""
+  updatedAt: DateTime!
+}
+
 enum Locale {
   EN
   RU
@@ -77,8 +88,10 @@ type Mutation {
 
 type Query {
   countries: [Item!]!
+  itemTags: [ItemTag!]!
   items: [Item!]!
   me: User!
+  stories: [Story!]!
   visited: [Item!]!
   wanted: [Item!]!
 }
@@ -87,6 +100,17 @@ input SignupInput {
   password: String!
   phone: String!
   username: String!
+}
+
+type Story {
+  """Identifies the date and time when the object was created."""
+  createdAt: DateTime!
+  description: String!
+  id: ID!
+  title: String!
+
+  """Identifies the date and time when the object was last updated."""
+  updatedAt: DateTime!
 }
 
 type Token {

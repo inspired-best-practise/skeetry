@@ -1,13 +1,13 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 
 import { s } from './styles';
 
-export const AccountStatsItem = ({ name, number }: TAccountStatsItemProps) => {
+export const AccountStatsItem = ({ name, number, action }: TAccountStatsItemProps) => {
   return (
-    <View style={s.item}>
+    <TouchableOpacity activeOpacity={0.6} onPress={action} style={s.item}>
       <Text style={s.number}>{number}</Text>
       <Text style={s.name}>{name}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };

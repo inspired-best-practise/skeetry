@@ -26,6 +26,7 @@ export const AccountScreen = () => {
   } = useVisitedQuery();
 
   const selected = profileStore(state => state.selected);
+  const setSelected = profileStore(state => state.setSelected);
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
@@ -75,7 +76,7 @@ export const AccountScreen = () => {
       <FlatList
         refreshing={loadingWanted}
         ref={ref}
-        ListHeaderComponent={renderHeader(user, t)}
+        ListHeaderComponent={renderHeader(user, t, setSelected)}
         ListEmptyComponent={renderEmpty}
         numColumns={2}
         contentContainerStyle={{ paddingBottom: 100, marginTop: 10 }}

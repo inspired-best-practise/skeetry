@@ -6,6 +6,8 @@ import config from './config';
 import { GraphqlConfig } from './config/config.interface';
 import { AuthModule } from './modules/auth/auth.module';
 import { ItemModule } from './modules/item/item.module';
+import { ItemTagModule } from './modules/item-tag/item-tag.module';
+import { StoryModule } from './modules/story/story.module';
 
 @Module({
   imports: [
@@ -32,6 +34,8 @@ import { ItemModule } from './modules/item/item.module';
     AuthModule,
     UserModule,
     ItemModule,
+    ItemTagModule,
+    StoryModule,
   ],
   controllers: [],
   providers: [],
