@@ -4,6 +4,7 @@ Features:
   ✔ Change webpack-hmr to nest watch mode @done(21-09-09 14:14)
   ☐ Implement push notifications
   ☐ Implement Sentry
+  ☐ Get nearby sights, places, cities, countries by user geolocation
 
 Deploy:
   ☐ Fix bcrypt error (only in Docker)

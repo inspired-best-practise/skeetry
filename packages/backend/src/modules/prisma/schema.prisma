@@ -33,11 +33,20 @@ model User {
   updatedAt      DateTime @default(now()) @updatedAt
 }
 
+model Country {
+  id        String    @id @default(cuid())
+  name      String    @unique
+  overview  String?
+  continent Continent
+  item      Item[]
+}
+
 model Item {
   id            String             @id @default(cuid())
   type          ItemType
   name          String             @unique
   overview      String?
+  country       Country            @relation(fields: [countryId], references: [id])
   wantedCount   Int                @default(0)
   visitedCount  Int                @default(0)
   reviewsCount  Int                @default(0)
@@ -51,6 +60,7 @@ model Item {
   itemReview    ItemReview[]
   locale        Locale             @default(EN)
   localizations ItemLocalization[]
+  countryId     String
 }
 
 model ItemLocalization {
@@ -134,8 +144,17 @@ model StoryStepLocalization {
   storyStepId String?
 }
 
+enum Continent {
+  ASIA
+  AFRICA
+  NORTH_AMERICA
+  SOUTH_AMERICA
+  ANTARCTICA
+  EUROPE
+  AUSTRALIA
+}
+
 enum ItemType {
-  COUNTRY
   CITY
   PLACE
   SIGHT

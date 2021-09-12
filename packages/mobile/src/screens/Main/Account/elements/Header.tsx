@@ -36,7 +36,7 @@ export const renderHeader = (user: TUser, t, setSelected) => {
           number={user.visitedCount}
           action={() => setSelected('visited')}
         />
-        <AccountStatsItem name={`${t('account:gallery')}`} number={0} />
+        <AccountStatsItem name={`${t('account:trips')}`} number={0} />
       </View>
       <AccountFilter />
     </View>
