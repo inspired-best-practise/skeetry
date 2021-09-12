@@ -104,7 +104,6 @@ type Mutation {
 }
 
 type Query {
-  countries: [Item!]!
   itemTags: [ItemTag!]!
   items(input: ItemsInput): [Item!]!
   me: User!

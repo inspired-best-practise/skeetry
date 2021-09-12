@@ -265,19 +265,4 @@ export class ItemService {
 
     return items;
   }
-
-  async findAllCountries() {
-    const countries = await this.prisma.item.findMany({
-      include: {
-        localizations: true,
-        userVisited: true,
-        userWanted: true,
-      },
-      where: {
-        type: 'COUNTRY',
-      },
-    });
-
-    return countries;
-  }
 }

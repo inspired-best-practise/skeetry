@@ -47,10 +47,4 @@ export class ItemResolver {
   async visited(@UserEntity() user: User) {
     return this.item.findVisited(user);
   }
-
-  @UseGuards(GqlAuthGuard)
-  @Query(() => [Item], { name: 'countries' })
-  findAllCountries() {
-    return this.item.findAllCountries();
-  }
 }
