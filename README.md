@@ -20,7 +20,6 @@
 ## Branches
 
 - staging -> pr this branch for everything
-- production -> don't touch, this is what will work in the production
 
 ## Contributions
 
