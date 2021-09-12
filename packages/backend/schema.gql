@@ -61,6 +61,19 @@ type ItemTag {
   createdAt: DateTime!
   emoji: String!
   id: ID!
+  locale: String!
+  localizations: [ItemTagLocalization!]
+  name: String!
+
+  """Identifies the date and time when the object was last updated."""
+  updatedAt: DateTime!
+}
+
+type ItemTagLocalization {
+  """Identifies the date and time when the object was created."""
+  createdAt: DateTime!
+  id: ID!
+  locale: Locale!
   name: String!
 
   """Identifies the date and time when the object was last updated."""

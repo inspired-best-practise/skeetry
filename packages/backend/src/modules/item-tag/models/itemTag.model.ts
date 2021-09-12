@@ -1,5 +1,6 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { BaseModel } from '../../common/base.model';
+import { BaseModel, Locale } from '../../common/base.model';
+import { ItemTagLocalization } from './itemTagLocalization.model';
 
 @ObjectType()
 export class ItemTag extends BaseModel {
@@ -8,4 +9,10 @@ export class ItemTag extends BaseModel {
 
   @Field()
   emoji: string;
+
+  @Field()
+  locale: Locale;
+
+  @Field(() => [ItemTagLocalization], { nullable: true })
+  localizations?: ItemTagLocalization[];
 }

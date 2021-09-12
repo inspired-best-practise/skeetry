@@ -1,6 +1,6 @@
 import { Field, ObjectType, registerEnumType } from '@nestjs/graphql';
 import { User } from '../../user/models/user.model';
-import { BaseModel } from '../../common/base.model';
+import { BaseModel, Locale } from '../../common/base.model';
 import { ItemLocalization } from './itemLocalization.model';
 
 export enum ItemType {
@@ -10,17 +10,8 @@ export enum ItemType {
   SIGHT = 'SIGHT',
 }
 
-export enum Locale {
-  EN = 'EN',
-  RU = 'RU',
-}
-
 registerEnumType(ItemType, {
   name: 'ItemType',
-});
-
-registerEnumType(Locale, {
-  name: 'Locale',
 });
 
 @ObjectType()
