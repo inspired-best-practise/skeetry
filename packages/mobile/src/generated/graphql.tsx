@@ -140,7 +140,6 @@ export type MutationSignupArgs = {
 
 export type Query = {
   __typename?: 'Query';
-  countries: Array<Item>;
   itemTags: Array<ItemTag>;
   items: Array<Item>;
   me: User;
@@ -193,8 +192,6 @@ export type User = {
   wantedCount: Scalars['Int'];
 };
 
-export type RegularCountryFragment = { __typename?: 'Item', id: string, name: string, flag?: Maybe<string>, locale: Locale, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'ItemLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> };
-
 export type RegularItemFragment = { __typename?: 'Item', id: string, type: string, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, reviewsCount: number, photos: Array<string>, latitude: string, longitude: string, flag?: Maybe<string>, locale: Locale, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'ItemLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> };
 
 export type RegularItemLocalizationFragment = { __typename?: 'ItemLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> };
@@ -245,11 +242,6 @@ export type SignupMutationVariables = Exact<{
 
 export type SignupMutation = { __typename?: 'Mutation', signup: { __typename?: 'Auth', accessToken: string, refreshToken: string, user: { __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any } } };
 
-export type CountriesQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type CountriesQuery = { __typename?: 'Query', countries: Array<{ __typename?: 'Item', id: string, name: string, flag?: Maybe<string>, locale: Locale, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'ItemLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> }> };
-
 export type ItemTagsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -297,24 +289,6 @@ export const RegularItemLocalizationFragmentDoc = gql`
   overview
 }
     `;
-export const RegularCountryFragmentDoc = gql`
-    fragment RegularCountry on Item {
-  id
-  name
-  flag
-  locale
-  userWanted {
-    ...RegularUser
-  }
-  userVisited {
-    ...RegularUser
-  }
-  localizations {
-    ...RegularItemLocalization
-  }
-}
-    ${RegularUserFragmentDoc}
-${RegularItemLocalizationFragmentDoc}`;
 export const RegularItemFragmentDoc = gql`
     fragment RegularItem on Item {
   id
@@ -565,40 +539,6 @@ export function useSignupMutation(baseOptions?: Apollo.MutationHookOptions<Signu
 export type SignupMutationHookResult = ReturnType<typeof useSignupMutation>;
 export type SignupMutationResult = Apollo.MutationResult<SignupMutation>;
 export type SignupMutationOptions = Apollo.BaseMutationOptions<SignupMutation, SignupMutationVariables>;
-export const CountriesDocument = gql`
-    query Countries {
-  countries {
-    ...RegularCountry
-  }
-}
-    ${RegularCountryFragmentDoc}`;
-
-/**
- * __useCountriesQuery__
- *
- * To run a query within a React component, call `useCountriesQuery` and pass it any options that fit your needs.
- * When your component renders, `useCountriesQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useCountriesQuery({
- *   variables: {
- *   },
- * });
- */
-export function useCountriesQuery(baseOptions?: Apollo.QueryHookOptions<CountriesQuery, CountriesQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<CountriesQuery, CountriesQueryVariables>(CountriesDocument, options);
-      }
-export function useCountriesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CountriesQuery, CountriesQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<CountriesQuery, CountriesQueryVariables>(CountriesDocument, options);
-        }
-export type CountriesQueryHookResult = ReturnType<typeof useCountriesQuery>;
-export type CountriesLazyQueryHookResult = ReturnType<typeof useCountriesLazyQuery>;
-export type CountriesQueryResult = Apollo.QueryResult<CountriesQuery, CountriesQueryVariables>;
 export const ItemTagsDocument = gql`
     query ItemTags {
   itemTags {

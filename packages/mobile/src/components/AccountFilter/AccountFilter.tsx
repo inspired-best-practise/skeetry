@@ -21,7 +21,6 @@ export const AccountFilter = () => {
     >
       <AccountFilterItem selected={selected} name="want" title={`${t('account:want')}`} />
       <AccountFilterItem selected={selected} name="visited" title={`${t('account:visited')}`} />
-      <AccountFilterItem selected={selected} name="countries" title={`${t('account:countries')}`} />
       <AccountFilterItem selected={selected} name="cities" title={`${t('account:cities')}`} />
       <AccountFilterItem selected={selected} name="places" title={`${t('account:places')}`} />
     </ScrollView>

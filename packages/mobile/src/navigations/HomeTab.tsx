@@ -12,7 +12,6 @@ import {
   AccountScreen,
   AddScreen,
   ExploreScreen,
-  CountriesScreen,
   CitiesScreen,
   PlacesScreen,
   CardScreen, // ActivityScreen,
@@ -145,17 +144,6 @@ const ExploreStack = () => {
       headerMode="float"
     >
       <SharedElementStack.Screen name="Explore" component={ExploreScreen} />
-      <SharedElementStack.Screen
-        name="Countries"
-        component={CountriesScreen}
-        options={{
-          headerTintColor: '#000',
-          gestureEnabled: false,
-          cardStyle: {
-            backgroundColor: '#fff',
-          },
-        }}
-      />
       <SharedElementStack.Screen
         name="Cities"
         component={CitiesScreen}

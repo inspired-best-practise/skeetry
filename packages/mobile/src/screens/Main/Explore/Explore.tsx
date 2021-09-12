@@ -12,14 +12,6 @@ export const ExploreScreen = () => {
         <View style={s.categories}>
           <Text style={s.categoriesTitle}>Find where you want to go</Text>
         </View>
-
-        <CategoryCard
-          name="Countries"
-          count="197"
-          image="https://images.unsplash.com/photo-1496614932623-0a3a9743552e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80/250x300"
-          stack="Countries"
-          screen="CountriesScreen"
-        />
         <CategoryCard
           name="Cities"
           count="999+"
