@@ -99,19 +99,39 @@ model ItemReviewLocalization {
 
 model Story {
   id            String              @id @default(cuid())
-  title         String
-  description   String
+  previewTitle  String
+  previewImage  String
+  steps         StoryStep[]
   locale        Locale
   localizations StoryLocalization[]
 }
 
 model StoryLocalization {
-  id          String  @id @default(cuid())
+  id           String  @id @default(cuid())
+  locale       Locale
+  previewTitle String
+  story        Story?  @relation(fields: [storyId], references: [id])
+  storyId      String?
+}
+
+model StoryStep {
+  id            String                  @id @default(cuid())
+  title         String
+  description   String
+  image         String
+  story         Story?                  @relation(fields: [storyId], references: [id])
+  storyId       String?
+  locale        Locale
+  localizations StoryStepLocalization[]
+}
+
+model StoryStepLocalization {
+  id          String     @id @default(cuid())
   locale      Locale
   title       String
   description String
-  story       Story?  @relation(fields: [storyId], references: [id])
-  storyId     String?
+  StoryStep   StoryStep? @relation(fields: [storyStepId], references: [id])
+  storyStepId String?
 }
 
 enum ItemType {

@@ -9,3 +9,7 @@ Deploy:
   ☐ Fix bcrypt error (only in Docker)
   ✔ Fix railway build @done(21-09-06 12:40)
   ☐ Set up a github CI to deploy to hetzner
+
+Story module:
+  ☐ Add show date to story model (is this a normal solution?)
+  ☐ Save "saw" field to storage or database (where is the best place to store it?)
