@@ -8,7 +8,7 @@ import { s } from './styles';
 
 // TODO: type item when done
 
-export const CardList = ({ title, data, loading }): JSX.Element => {
+export const CardList = ({ data, loading }): JSX.Element => {
   const [refreshing, setRefreshing] = useState(false);
 
   const onRefresh = React.useCallback(() => {

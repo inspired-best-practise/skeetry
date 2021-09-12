@@ -6,7 +6,7 @@ import { enableScreens } from 'react-native-screens';
 
 import { AccountSettingsScreen } from '_app/screens/Main';
 import { AddChooserScreen } from '_app/screens/Main/Add/AddChooser';
-import { ItemTagDetailScreen } from '_app/screens/Main/Home/ItemTags';
+import { ItemsByTagScreen } from '_app/screens/Main/Home/ItemsByTag';
 import { Offline } from '_app/screens/Others';
 import { navigationRef } from '_app/services/navigations';
 
@@ -49,8 +49,8 @@ const Index = (): JSX.Element => {
             headerShown: false,
             presentation: 'formSheet',
           }}
-          name="ItemTagDetail"
-          component={ItemTagDetailScreen}
+          name="ItemsByTag"
+          component={ItemsByTagScreen}
         />
         <RootStack.Screen
           options={{

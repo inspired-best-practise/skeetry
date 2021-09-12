@@ -1,0 +1,5 @@
+query Items($input: ItemsInput) {
+  items(input: $input) {
+    ...RegularItem
+  }
+}

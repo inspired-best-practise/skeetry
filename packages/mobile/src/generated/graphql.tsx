@@ -89,6 +89,10 @@ export type ItemTagLocalization = {
   updatedAt: Scalars['DateTime'];
 };
 
+export type ItemsInput = {
+  itemTagId: Scalars['ID'];
+};
+
 export enum Locale {
   En = 'EN',
   Ru = 'RU'
@@ -143,6 +147,11 @@ export type Query = {
   stories: Array<Story>;
   visited: Array<Item>;
   wanted: Array<Item>;
+};
+
+
+export type QueryItemsArgs = {
+  input?: Maybe<ItemsInput>;
 };
 
 export type SignupInput = {
@@ -245,6 +254,13 @@ export type ItemTagsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type ItemTagsQuery = { __typename?: 'Query', itemTags: Array<{ __typename?: 'ItemTag', id: string, name: string, emoji: string, locale: string, localizations?: Maybe<Array<{ __typename?: 'ItemTagLocalization', id: string, name: string, locale: Locale }>> }> };
+
+export type ItemsQueryVariables = Exact<{
+  input?: Maybe<ItemsInput>;
+}>;
+
+
+export type ItemsQuery = { __typename?: 'Query', items: Array<{ __typename?: 'Item', id: string, type: string, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, reviewsCount: number, photos: Array<string>, latitude: string, longitude: string, flag?: Maybe<string>, locale: Locale, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'ItemLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> }> };
 
 export type MeQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -617,6 +633,41 @@ export function useItemTagsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<I
 export type ItemTagsQueryHookResult = ReturnType<typeof useItemTagsQuery>;
 export type ItemTagsLazyQueryHookResult = ReturnType<typeof useItemTagsLazyQuery>;
 export type ItemTagsQueryResult = Apollo.QueryResult<ItemTagsQuery, ItemTagsQueryVariables>;
+export const ItemsDocument = gql`
+    query Items($input: ItemsInput) {
+  items(input: $input) {
+    ...RegularItem
+  }
+}
+    ${RegularItemFragmentDoc}`;
+
+/**
+ * __useItemsQuery__
+ *
+ * To run a query within a React component, call `useItemsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useItemsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useItemsQuery({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useItemsQuery(baseOptions?: Apollo.QueryHookOptions<ItemsQuery, ItemsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<ItemsQuery, ItemsQueryVariables>(ItemsDocument, options);
+      }
+export function useItemsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ItemsQuery, ItemsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<ItemsQuery, ItemsQueryVariables>(ItemsDocument, options);
+        }
+export type ItemsQueryHookResult = ReturnType<typeof useItemsQuery>;
+export type ItemsLazyQueryHookResult = ReturnType<typeof useItemsLazyQuery>;
+export type ItemsQueryResult = Apollo.QueryResult<ItemsQuery, ItemsQueryVariables>;
 export const MeDocument = gql`
     query Me {
   me {
