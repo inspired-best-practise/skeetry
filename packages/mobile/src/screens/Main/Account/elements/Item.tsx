@@ -4,20 +4,14 @@ import FastImage from 'react-native-fast-image';
 import { SharedElement } from 'react-navigation-shared-element';
 
 import { paragraph } from '_app/constants';
-import { detectedLocale } from '_app/i18n/languageDetector';
 import { navigation } from '_app/services/navigations';
-import { compareLocale } from '_app/utils/helpers';
+import { withLocalization } from '_app/utils/helpers';
 
 import { s } from '../styles';
 
 // TODO: refactor
 export const renderItem = ({ item }: any) => {
-  const languageTag = detectedLocale?.languageTag;
-  const { locale } = item;
-
-  const hasLocalization = languageTag ? item.localizations.find(l => l.locale === languageTag.toUpperCase()) : null;
-
-  const sameLocale = languageTag ? compareLocale(languageTag, locale) : null;
+  const { name, locale, localizations } = item;
 
   return (
     <Pressable onPress={() => navigation.navigate('CardScreen', { item })}>
@@ -65,7 +59,7 @@ export const renderItem = ({ item }: any) => {
               },
             ]}
           >
-            {!hasLocalization || sameLocale ? item.name : hasLocalization.name}
+            {withLocalization('name', name, locale, localizations)}
           </Text>
         </View>
       </View>

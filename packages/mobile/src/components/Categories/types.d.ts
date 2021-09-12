@@ -1,4 +1,3 @@
 type TCategoryProps = {
-  emoji: string;
-  title: string;
+  item: any;
 };
