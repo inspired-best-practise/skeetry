@@ -6,6 +6,7 @@ import { UseGuards } from '@nestjs/common';
 import { UserEntity } from '../user/user.decorator';
 import { User } from '../user/models/user.model';
 import { ActionItemInput } from './dto/action-item.input';
+import { ItemsInput } from './dto/items.input';
 
 @Resolver(() => Item)
 export class ItemResolver {
@@ -31,8 +32,8 @@ export class ItemResolver {
 
   @UseGuards(GqlAuthGuard)
   @Query(() => [Item], { name: 'items' })
-  findAll() {
-    return this.item.findAll();
+  findAll(@Args('input', { nullable: true }) input: ItemsInput) {
+    return this.item.findAll(input);
   }
 
   @UseGuards(GqlAuthGuard)

@@ -12,9 +12,9 @@ export class AuthResolver {
   constructor(private readonly auth: AuthService) {}
 
   @Mutation(() => Auth)
-  async signup(@Args('input') data: SignupInput) {
-    data.username = data.username.toLowerCase();
-    const { accessToken, refreshToken } = await this.auth.createUser(data);
+  async signup(@Args('input') input: SignupInput) {
+    input.username = input.username.toLowerCase();
+    const { accessToken, refreshToken } = await this.auth.createUser(input);
     return {
       accessToken,
       refreshToken,

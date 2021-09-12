@@ -80,6 +80,10 @@ type ItemTagLocalization {
   updatedAt: DateTime!
 }
 
+input ItemsInput {
+  itemTagId: ID!
+}
+
 enum Locale {
   EN
   RU
@@ -102,7 +106,7 @@ type Mutation {
 type Query {
   countries: [Item!]!
   itemTags: [ItemTag!]!
-  items: [Item!]!
+  items(input: ItemsInput): [Item!]!
   me: User!
   stories: [Story!]!
   visited: [Item!]!

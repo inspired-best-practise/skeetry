@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { User } from '../user/models/user.model';
 import { ActionItemInput } from './dto/action-item.input';
+import { ItemsInput } from './dto/items.input';
 
 // TODO: refactor addItem, removeItem, moveItem
 @Injectable()
@@ -186,12 +187,43 @@ export class ItemService {
     return item;
   }
 
-  async findAll() {
+  async findAll(input: ItemsInput) {
+    if (!input) {
+      const items = await this.prisma.item.findMany({
+        include: {
+          localizations: true,
+          userVisited: true,
+          userWanted: true,
+        },
+      });
+
+      return items;
+    }
+
+    const { itemTagId } = input;
+
+    const tagExist = await this.prisma.itemTag.findUnique({
+      where: {
+        id: itemTagId,
+      },
+    });
+
+    if (!tagExist) {
+      throw new Error("This tag doesn't exist");
+    }
+
     const items = await this.prisma.item.findMany({
       include: {
         localizations: true,
         userVisited: true,
         userWanted: true,
+      },
+      where: {
+        tags: {
+          some: {
+            id: itemTagId,
+          },
+        },
       },
     });
 
