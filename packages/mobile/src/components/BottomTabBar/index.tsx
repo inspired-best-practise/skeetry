@@ -30,19 +30,9 @@ export function TabBarComponent(props: BottomTabBarProps) {
       }}
     >
       {IS_IOS ? (
-        <BlurView
-          style={{
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-            right: 0,
-          }}
-          blurType="chromeMaterial"
-          reducedTransparencyFallbackColor="white"
-          blurAmount={100}
-        >
+        <View>
           <BottomTabBar {...props} />
-        </BlurView>
+        </View>
       ) : (
         <View>
           <BottomTabBar {...props} />

@@ -42,6 +42,7 @@
     "i18next": "^20.6.0",
     "lint-staged": "^11.1.2",
     "react": "17.0.2",
+    "react-feather": "^2.0.9",
     "react-i18next": "^11.11.4",
     "react-native": "0.65.1",
     "react-native-codegen": "^0.0.7",

@@ -7,7 +7,7 @@ const wp = percentage => {
   return Math.round(value);
 };
 
-const slideWidth = wp(74);
+const slideWidth = wp(68);
 const itemHorizontalMargin = wp(2);
 
 export const sliderWidth = viewportWidth;
@@ -15,9 +15,9 @@ export const itemWidth = slideWidth + itemHorizontalMargin * 2;
 
 export const s = StyleSheet.create({
   nearbyImage: {
-    height: 310,
-    width: 280,
-    borderRadius: 16,
+    height: 160,
+    width: 260,
+    borderRadius: 12,
   },
   slider: {
     overflow: 'visible',

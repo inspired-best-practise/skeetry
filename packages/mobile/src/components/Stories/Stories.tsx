@@ -9,7 +9,7 @@ export const Stories = () => {
     <ScrollView
       horizontal
       showsHorizontalScrollIndicator={false}
-      contentContainerStyle={{ marginVertical: 20, marginHorizontal: 12, paddingRight: 20 }}
+      contentContainerStyle={{ marginTop: 10, marginBottom: 20, marginHorizontal: 12, paddingRight: 20 }}
     >
       {stories.map(story => (
         <Story key={story.id} url={story.url} viewed={story.viewed} />

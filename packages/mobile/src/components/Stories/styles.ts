@@ -8,7 +8,7 @@ export const s = StyleSheet.create({
     height: normalize(82),
     width: normalize(82),
     marginHorizontal: normalize(6),
-    borderRadius: normalize(26),
+    borderRadius: normalize(18),
     borderColor: colors.gray500,
     borderWidth: 2,
     borderStyle: 'solid',
@@ -18,6 +18,6 @@ export const s = StyleSheet.create({
   storyImage: {
     height: normalize(70),
     width: normalize(70),
-    borderRadius: normalize(20),
+    borderRadius: normalize(12),
   },
 });

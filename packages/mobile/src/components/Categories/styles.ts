@@ -15,7 +15,7 @@ export const s = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: colors.gray100,
     padding: normalize(12),
-    borderRadius: 14,
+    borderRadius: 12,
     marginHorizontal: normalize(6),
     minWidth: normalize(150),
   },

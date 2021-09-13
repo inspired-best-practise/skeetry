@@ -3,10 +3,12 @@ import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
 import React from 'react';
 import { Platform } from 'react-native';
-import * as Icon from 'react-native-heroicons/solid';
+// import * as Icon from 'react-native-heroicons/outline';
+import Icon from 'react-native-vector-icons/Feather';
 import { createSharedElementStackNavigator } from 'react-navigation-shared-element';
 
 import { TabBarComponent } from '_app/components/BottomTabBar';
+import { colors } from '_app/constants';
 import {
   HomeScreen,
   AccountScreen,
@@ -266,7 +268,7 @@ const HomeTab = () => {
     <Tab.Navigator tabBar={TabBarComponent} screenOptions={screenOptions}>
       <Tab.Screen
         options={{
-          tabBarIcon: ({ focused }) => <Icon.HomeIcon size={30} color={focused ? '#777777' : '#bbbbbb'} />,
+          tabBarIcon: ({ focused }) => <Icon name="home" size={26} color={focused ? colors.gray900 : colors.gray300} />,
         }}
         component={HomeStack}
         name="HomePage"
@@ -276,7 +278,9 @@ const HomeTab = () => {
           tabBarStyle: {
             display: getTabBarVisible(route) ? 'flex' : 'none',
           },
-          tabBarIcon: ({ focused }) => <Icon.ViewGridIcon size={30} color={focused ? '#777777' : '#bbbbbb'} />,
+          tabBarIcon: ({ focused }) => (
+            <Icon name="compass" size={26} color={focused ? colors.gray900 : colors.gray300} />
+          ),
         })}
         component={ExploreStack}
         name="ExplorePage"
@@ -289,21 +293,25 @@ const HomeTab = () => {
           },
         })}
         options={{
-          tabBarIcon: ({ focused }) => <Icon.SearchIcon size={30} color={'#bbbbbb'} />,
+          tabBarIcon: ({ focused }) => (
+            <Icon name="search" size={26} color={focused ? colors.gray900 : colors.gray300} />
+          ),
         }}
         component={AddStack}
         name="AddPage"
       />
       <Tab.Screen
         options={({ route }) => ({
-          tabBarIcon: ({ focused }) => <Icon.CollectionIcon size={30} color={focused ? '#777777' : '#bbbbbb'} />,
+          tabBarIcon: ({ focused }) => (
+            <Icon name="globe" size={26} color={focused ? colors.gray900 : colors.gray300} />
+          ),
         })}
         component={SwipesStack}
         name="SwipesPage"
       />
       {/* <Tab.Screen
         options={({ route }) => ({
-          tabBarIcon: ({ focused }) => <Icon.HeartIcon size={30} color={focused ? '#777777' : '#bbbbbb'} />,
+          tabBarIcon: ({ focused }) => <Icon.HeartIcon size={26} color={focused ? colors.gray900 : colors.gray300} />,
         })}
         component={ActivityStack}
         name="ActivityPage"
@@ -311,7 +319,7 @@ const HomeTab = () => {
       <Tab.Screen
         options={({ route }) => ({
           tabBarVisible: getTabBarVisible(route),
-          tabBarIcon: ({ focused }) => <Icon.UserIcon size={30} color={focused ? '#777777' : '#bbbbbb'} />,
+          tabBarIcon: ({ focused }) => <Icon name="user" size={26} color={focused ? colors.gray900 : colors.gray300} />,
         })}
         component={AccountStack}
         name="AccountPage"

@@ -1,10 +1,10 @@
 Global tasks:
   ☐ Add "How to run locally" section to README.md
   ☐ Choose between Google Maps / Mapbox / Yandex Maps
-  ☐ Think of a name for the app
+  ✔ Think of a name for the app @done(21-09-13 18:50)
   ☐ Make a design for the app
   ☐ Make a design for the landing
-  ☐ Buy domain (.com + .ru)
+  ✔ Buy domain (.com + .ru) @done(21-09-13 18:50)
   ☐ Buy CX21 hetzner server for Rancher
   ☐ Buy CPX41 hetzner server for Cluster
   ☐ Set up Rancher + Cluster (Deploy backend)

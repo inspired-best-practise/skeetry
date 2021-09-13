@@ -2,9 +2,11 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { View, Text } from 'react-native';
 import FastImage from 'react-native-fast-image';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 import Carousel from 'react-native-snap-carousel';
+import Icon from 'react-native-vector-icons/Feather';
 
-import { h4, colors } from '_app/constants';
+import { h4, colors, paragraph } from '_app/constants';
 import { normalize } from '_app/utils/dimensions';
 
 import { itemWidth, s, sliderWidth } from './styles';
@@ -14,7 +16,7 @@ export const Nearby = ({ title, data }) => {
 
   const renderItem = ({ item, index }) => {
     return (
-      <View style={{ position: 'relative', marginVertical: normalize(20) }}>
+      <View style={{ marginVertical: normalize(20) }}>
         <FastImage
           style={s.nearbyImage}
           source={{
@@ -23,18 +25,7 @@ export const Nearby = ({ title, data }) => {
           }}
           resizeMode={FastImage.resizeMode.cover}
         />
-        <View
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: 280,
-            height: 310,
-            backgroundColor: 'rgba(0,0,0,0.3)',
-            borderRadius: 16,
-          }}
-        />
-        <Text style={[h4, { position: 'absolute', left: 20, top: 20, color: 'white', width: 280 - 40 }]}>
+        <Text style={[paragraph, { marginTop: 10, width: 280 - 40, color: colors.gray800, fontWeight: '600' }]}>
           {item.title}
         </Text>
       </View>
@@ -43,8 +34,19 @@ export const Nearby = ({ title, data }) => {
 
   return (
     <View>
-      <View style={{ marginHorizontal: 20 }}>
+      <View
+        style={{
+          marginHorizontal: 20,
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
+      >
         <Text style={[h4, { color: colors.primary600 }]}>{title}</Text>
+        <TouchableOpacity activeOpacity={0.7}>
+          <Icon name="chevron-right" size={22} color={colors.primary600} />
+        </TouchableOpacity>
       </View>
       <Carousel
         data={data}
