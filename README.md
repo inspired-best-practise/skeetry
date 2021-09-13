@@ -1,3 +1,6 @@
+<a href="https://dogehouse.tv"><p align="center">
+<img height=100 src="https://raw.githubusercontent.com/alekseytsvetkov/skeetry/staging/assets/skeetry.svg"/>
+
 <p align="center">
   <strong>Social network for travel hunters</strong>
 </p>
