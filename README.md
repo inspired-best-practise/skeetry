@@ -19,6 +19,7 @@
 | Codebase              |      Description          |
 | :-------------------- | :-----------------------: |
 | [backend](packages/backend)        |      Node.js API           |
+| [frontend](packages/frontend)        |      Next.js           |
 | [mobile](packages/mobile)  |     React Native App          |
 
 ## Branches
