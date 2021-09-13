@@ -3,7 +3,7 @@
 </p>
 
 <h3 align="center">
-  <a href="https://github.com/alekseytsvetkov/travel/blob/staging/CONTRIBUTING.md">Contribute</a>
+  <a href="https://github.com/alekseytsvetkov/skeetry/blob/staging/CONTRIBUTING.md">Contribute</a>
 </h3>
 
 
@@ -23,8 +23,8 @@
 
 ## Contributions
 
-Please read [CONTRIBUTING.md](https://github.com/alekseytsvetkov/travel/blob/staging/CONTRIBUTING.md) for details on this project.
+Please read [CONTRIBUTING.md](https://github.com/alekseytsvetkov/skeetry/blob/staging/CONTRIBUTING.md) for details on this project.
 
 ## Code of Conduct
 
-Please read [CODE_OF_CONDUCT.md](https://github.com/alekseytsvetkov/travel/blob/staging/CODE_OF_CONDUCT.md) for details on our code of conduct.
+Please read [CODE_OF_CONDUCT.md](https://github.com/alekseytsvetkov/skeetry/blob/staging/CODE_OF_CONDUCT.md) for details on our code of conduct.

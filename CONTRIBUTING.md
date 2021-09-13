@@ -1,4 +1,4 @@
-# Contributing to travel
+# Contributing to Skeetry
 
 We love your input! We want to make contributing to this project as easy and transparent as possible, whether it's:
 - Reporting an issue
@@ -10,7 +10,7 @@ We love your input! We want to make contributing to this project as easy and tra
 The code of conduct is described in [`CODE_OF_CONDUCT.md`](CODE_OF_CONDUCT.md).
 
 ## Our Development Process
-All changes happen through pull requests. Pull requests are the best way to propose changes. We actively welcome your pull requests and invite you to submit pull requests directly [here](https://github.com/alekseytsvetkov/travel/pulls), and after review, these can be merged into the project.
+All changes happen through pull requests. Pull requests are the best way to propose changes. We actively welcome your pull requests and invite you to submit pull requests directly [here](https://github.com/alekseytsvetkov/skeetry/pulls), and after review, these can be merged into the project.
 
 ## Using the Project's Standard Commit Messages
 This project is using the [conventional commits](https://www.conventionalcommits.org/en/v1.0.0-beta.2/) standard. Please follow these steps to ensure your
@@ -34,7 +34,7 @@ commit messages are standardized:
 
 ## Issues
 We use GitHub issues to track public bugs. Please ensure your description is
-clear and has sufficient instructions to be able to reproduce the issue. Report a bug by <a href="https://github.com/alekseytsvetkov/travel/issues">opening a new issue</a>; it's that easy!
+clear and has sufficient instructions to be able to reproduce the issue. Report a bug by <a href="https://github.com/alekseytsvetkov/skeetry/issues">opening a new issue</a>; it's that easy!
 
 ## Feature Request
 Great Feature Requests tend to have:
@@ -44,5 +44,5 @@ Great Feature Requests tend to have:
 - Additional context like images, links to resources to implement the feature etc, etc.
 
 ## License
-By contributing to travel, you agree that your contributions will be licensed
+By contributing to skeetry, you agree that your contributions will be licensed
 under the [LICENSE file](LICENSE).

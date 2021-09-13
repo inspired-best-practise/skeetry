@@ -1,6 +1,6 @@
 {
-  "name": "@travel/monorepo",
-  "repository": "git@github.com:alekseytsvetkov/travel.git",
+  "name": "@skeetry/monorepo",
+  "repository": "git@github.com:alekseytsvetkov/skeetry.git",
   "author": "Aleksey Tsvetkov <code.aleksey@icloud.com>",
   "workspaces": {
     "packages": [
