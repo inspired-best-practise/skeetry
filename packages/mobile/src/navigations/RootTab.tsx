@@ -1,6 +1,5 @@
 import { createMaterialTopTabNavigator, MaterialTopTabNavigationOptions } from '@react-navigation/material-top-tabs';
-import React, { useEffect, useState } from 'react';
-import { Text, SafeAreaView } from 'react-native';
+import React from 'react';
 
 import { authStore } from '_app/stores';
 
@@ -20,16 +19,6 @@ const Index = (): JSX.Element => {
   };
 
   const logined = authStore(state => state.isAuthenticated);
-
-  // if (!logined) {
-  //   return (
-  //     <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-  //       <Text>Loading...</Text>
-  //     </SafeAreaView>
-  //   );
-  // }
-
-  // TODO: Fix blink login screen when isAuthenticated
 
   return (
     <RootTab.Navigator initialRouteName={logined ? 'HomeTab' : 'AuthStack'} screenOptions={screenOptions}>

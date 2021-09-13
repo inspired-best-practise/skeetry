@@ -99,7 +99,7 @@ const AccountStack = () => {
         }}
         options={({ route }) => ({
           headerShown: false,
-          gestureEnabled: true,
+          gestureEnabled: false,
           cardStyle: {
             backgroundColor: '#fff',
           },
@@ -319,6 +319,9 @@ const HomeTab = () => {
       <Tab.Screen
         options={({ route }) => ({
           tabBarVisible: getTabBarVisible(route),
+          tabBarStyle: {
+            display: getTabBarVisible(route) ? 'flex' : 'none',
+          },
           tabBarIcon: ({ focused }) => <Icon name="user" size={26} color={focused ? colors.gray900 : colors.gray300} />,
         })}
         component={AccountStack}

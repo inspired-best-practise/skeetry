@@ -234,7 +234,7 @@ export const CardScreen = ({ route, navigation }) => {
       </TouchableWithoutFeedback>
       <BottomSheet
         ref={sheetRef}
-        snapPoints={[650, 400]}
+        snapPoints={[650, 450]}
         initialSnap={1}
         // enabledContentTapInteraction={true}
         // enabledBottomInitialAnimation={true}

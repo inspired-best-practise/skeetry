@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* travelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* travelTests.m */; };
+		00E356F31AD99517003FC87E /* skeetryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* skeetryTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		348B8AFE8DBBFE69A6B4C389 /* libPods-travel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B07F2F4312BD2297B5987D04 /* libPods-travel.a */; };
-		55543C2DC7EEE9B7799B6F02 /* libPods-travel-travelTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7D02270D516D1B80B9938B /* libPods-travel-travelTests.a */; };
+		348B8AFE8DBBFE69A6B4C389 /* libPods-skeetry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B07F2F4312BD2297B5987D04 /* libPods-skeetry.a */; };
+		55543C2DC7EEE9B7799B6F02 /* libPods-skeetry-skeetryTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD7D02270D516D1B80B9938B /* libPods-skeetry-skeetryTests.a */; };
 		5D3419F626C2D4E300A7D6D3 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3419F526C2D4E300A7D6D3 /* File.swift */; };
 		5D4C172426E402F800C62EA1 /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5D4C172326E402F800C62EA1 /* AppCenter-Config.plist */; };
 		5D677E2B267135550026BA6D /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D677E2A267135550026BA6D /* splash.png */; };
@@ -52,25 +52,25 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = travel;
+			remoteInfo = skeetry;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00E356EE1AD99517003FC87E /* travelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = travelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* skeetryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = skeetryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* travelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = travelTests.m; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* travel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = travel.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = travel/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = travel/AppDelegate.m; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = travel/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = travel/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = travel/main.m; sourceTree = "<group>"; };
-		38C1983463C1E21F9DCE0659 /* Pods-travel.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-travel.release.xcconfig"; path = "Target Support Files/Pods-travel/Pods-travel.release.xcconfig"; sourceTree = "<group>"; };
-		3B85BD29AEEF88D33ABE6C27 /* Pods-travel.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-travel.debug.xcconfig"; path = "Target Support Files/Pods-travel/Pods-travel.debug.xcconfig"; sourceTree = "<group>"; };
-		5D3419F426C2D4E300A7D6D3 /* travel-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "travel-Bridging-Header.h"; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* skeetryTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = skeetryTests.m; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* skeetry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = skeetry.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = skeetry/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = skeetry/AppDelegate.m; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = skeetry/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = skeetry/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = skeetry/main.m; sourceTree = "<group>"; };
+		38C1983463C1E21F9DCE0659 /* Pods-skeetry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-skeetry.release.xcconfig"; path = "Target Support Files/Pods-skeetry/Pods-skeetry.release.xcconfig"; sourceTree = "<group>"; };
+		3B85BD29AEEF88D33ABE6C27 /* Pods-skeetry.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-skeetry.debug.xcconfig"; path = "Target Support Files/Pods-skeetry/Pods-skeetry.debug.xcconfig"; sourceTree = "<group>"; };
+		5D3419F426C2D4E300A7D6D3 /* skeetry-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "skeetry-Bridging-Header.h"; sourceTree = "<group>"; };
 		5D3419F526C2D4E300A7D6D3 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
-		5D4C172326E402F800C62EA1 /* AppCenter-Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "AppCenter-Config.plist"; path = "travel/AppCenter-Config.plist"; sourceTree = "<group>"; };
+		5D4C172326E402F800C62EA1 /* AppCenter-Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "AppCenter-Config.plist"; path = "skeetry/AppCenter-Config.plist"; sourceTree = "<group>"; };
 		5D677E2A267135550026BA6D /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = splash.png; path = ../assets/splash/splash.png; sourceTree = "<group>"; };
 		5DAC1A66266E87D20043AA6A /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
 		5DAC1A69266E883A0043AA6A /* Zocial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Zocial.ttf; sourceTree = "<group>"; };
@@ -100,11 +100,11 @@
 		5DFA5702266E8909001CFB4D /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome5_Solid.ttf; path = ../assets/fonts/FontAwesome5_Solid.ttf; sourceTree = "<group>"; };
 		5DFA5703266E8909001CFB4D /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Fontisto.ttf; path = ../assets/fonts/Fontisto.ttf; sourceTree = "<group>"; };
 		5DFA5704266E8909001CFB4D /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome5_Regular.ttf; path = ../assets/fonts/FontAwesome5_Regular.ttf; sourceTree = "<group>"; };
-		B07F2F4312BD2297B5987D04 /* libPods-travel.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-travel.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		BBFFB92C1DA5E75F9215745D /* Pods-travel-travelTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-travel-travelTests.release.xcconfig"; path = "Target Support Files/Pods-travel-travelTests/Pods-travel-travelTests.release.xcconfig"; sourceTree = "<group>"; };
+		B07F2F4312BD2297B5987D04 /* libPods-skeetry.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-skeetry.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BBFFB92C1DA5E75F9215745D /* Pods-skeetry-skeetryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-skeetry-skeetryTests.release.xcconfig"; path = "Target Support Files/Pods-skeetry-skeetryTests/Pods-skeetry-skeetryTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		F5AB4A1FE81CE96A8399B0E3 /* Pods-travel-travelTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-travel-travelTests.debug.xcconfig"; path = "Target Support Files/Pods-travel-travelTests/Pods-travel-travelTests.debug.xcconfig"; sourceTree = "<group>"; };
-		FD7D02270D516D1B80B9938B /* libPods-travel-travelTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-travel-travelTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5AB4A1FE81CE96A8399B0E3 /* Pods-skeetry-skeetryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-skeetry-skeetryTests.debug.xcconfig"; path = "Target Support Files/Pods-skeetry-skeetryTests/Pods-skeetry-skeetryTests.debug.xcconfig"; sourceTree = "<group>"; };
+		FD7D02270D516D1B80B9938B /* libPods-skeetry-skeetryTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-skeetry-skeetryTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,7 +113,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5DBC1793267CE6B00010BFEE /* GoogleMaps.framework in Frameworks */,
-				55543C2DC7EEE9B7799B6F02 /* libPods-travel-travelTests.a in Frameworks */,
+				55543C2DC7EEE9B7799B6F02 /* libPods-skeetry-skeetryTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,20 +122,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				5DBC1792267CE6B00010BFEE /* GoogleMaps.framework in Frameworks */,
-				348B8AFE8DBBFE69A6B4C389 /* libPods-travel.a in Frameworks */,
+				348B8AFE8DBBFE69A6B4C389 /* libPods-skeetry.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* travelTests */ = {
+		00E356EF1AD99517003FC87E /* skeetryTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* travelTests.m */,
+				00E356F21AD99517003FC87E /* skeetryTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = travelTests;
+			path = skeetryTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -146,7 +146,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* travel */ = {
+		13B07FAE1A68108700A75B9A /* skeetry */ = {
 			isa = PBXGroup;
 			children = (
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -156,10 +156,10 @@
 				13B07FB71A68108700A75B9A /* main.m */,
 				5DE3A57426A07A150056E822 /* Launch Screen.storyboard */,
 				5D3419F526C2D4E300A7D6D3 /* File.swift */,
-				5D3419F426C2D4E300A7D6D3 /* travel-Bridging-Header.h */,
+				5D3419F426C2D4E300A7D6D3 /* skeetry-Bridging-Header.h */,
 				5D4C172326E402F800C62EA1 /* AppCenter-Config.plist */,
 			);
-			name = travel;
+			name = skeetry;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -167,8 +167,8 @@
 			children = (
 				5DBC1794267CE7EF0010BFEE /* GoogleMaps.bundle */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				B07F2F4312BD2297B5987D04 /* libPods-travel.a */,
-				FD7D02270D516D1B80B9938B /* libPods-travel-travelTests.a */,
+				B07F2F4312BD2297B5987D04 /* libPods-skeetry.a */,
+				FD7D02270D516D1B80B9938B /* libPods-skeetry-skeetryTests.a */,
 				5DBC1791267CE6B00010BFEE /* GoogleMaps.framework */,
 			);
 			name = Frameworks;
@@ -184,9 +184,9 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				13B07FAE1A68108700A75B9A /* travel */,
+				13B07FAE1A68108700A75B9A /* skeetry */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* travelTests */,
+				00E356EF1AD99517003FC87E /* skeetryTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				CB24116857E771A96E9AFDF1 /* Pods */,
@@ -200,8 +200,8 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* travel.app */,
-				00E356EE1AD99517003FC87E /* travelTests.xctest */,
+				13B07F961A680F5B00A75B9A /* skeetry.app */,
+				00E356EE1AD99517003FC87E /* skeetryTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -211,10 +211,10 @@
 			children = (
 				5DAC1A69266E883A0043AA6A /* Zocial.ttf */,
 				5DAC1A66266E87D20043AA6A /* MaterialIcons.ttf */,
-				3B85BD29AEEF88D33ABE6C27 /* Pods-travel.debug.xcconfig */,
-				38C1983463C1E21F9DCE0659 /* Pods-travel.release.xcconfig */,
-				F5AB4A1FE81CE96A8399B0E3 /* Pods-travel-travelTests.debug.xcconfig */,
-				BBFFB92C1DA5E75F9215745D /* Pods-travel-travelTests.release.xcconfig */,
+				3B85BD29AEEF88D33ABE6C27 /* Pods-skeetry.debug.xcconfig */,
+				38C1983463C1E21F9DCE0659 /* Pods-skeetry.release.xcconfig */,
+				F5AB4A1FE81CE96A8399B0E3 /* Pods-skeetry-skeetryTests.debug.xcconfig */,
+				BBFFB92C1DA5E75F9215745D /* Pods-skeetry-skeetryTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -253,9 +253,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* travelTests */ = {
+		00E356ED1AD99517003FC87E /* skeetryTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "travelTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "skeetryTests" */;
 			buildPhases = (
 				C64123BD81F188D421AB8AA1 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
@@ -269,14 +269,14 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = travelTests;
-			productName = travelTests;
-			productReference = 00E356EE1AD99517003FC87E /* travelTests.xctest */;
+			name = skeetryTests;
+			productName = skeetryTests;
+			productReference = 00E356EE1AD99517003FC87E /* skeetryTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* travel */ = {
+		13B07F861A680F5B00A75B9A /* skeetry */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "travel" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "skeetry" */;
 			buildPhases = (
 				A45179C2807D4BA13BF62131 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
@@ -291,9 +291,9 @@
 			);
 			dependencies = (
 			);
-			name = travel;
-			productName = travel;
-			productReference = 13B07F961A680F5B00A75B9A /* travel.app */;
+			name = skeetry;
+			productName = skeetry;
+			productReference = 13B07F961A680F5B00A75B9A /* skeetry.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -313,7 +313,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "travel" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "skeetry" */;
 			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -326,8 +326,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* travel */,
-				00E356ED1AD99517003FC87E /* travelTests */,
+				13B07F861A680F5B00A75B9A /* skeetry */,
+				00E356ED1AD99517003FC87E /* skeetryTests */,
 			);
 		};
 /* End PBXProject section */
@@ -399,15 +399,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-travel-travelTests/Pods-travel-travelTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-skeetry-skeetryTests/Pods-skeetry-skeetryTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-travel-travelTests/Pods-travel-travelTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-skeetry-skeetryTests/Pods-skeetry-skeetryTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-travel-travelTests/Pods-travel-travelTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-skeetry-skeetryTests/Pods-skeetry-skeetryTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4A62077BBDA3F7CFA400F891 /* [CP] Copy Pods Resources */ = {
@@ -416,15 +416,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-travel/Pods-travel-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-skeetry/Pods-skeetry-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-travel/Pods-travel-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-skeetry/Pods-skeetry-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-travel/Pods-travel-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-skeetry/Pods-skeetry-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6A12D16ECB23D2C099AFEDF7 /* [CP] Copy Pods Resources */ = {
@@ -433,15 +433,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-travel-travelTests/Pods-travel-travelTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-skeetry-skeetryTests/Pods-skeetry-skeetryTests-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-travel-travelTests/Pods-travel-travelTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-skeetry-skeetryTests/Pods-skeetry-skeetryTests-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-travel-travelTests/Pods-travel-travelTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-skeetry-skeetryTests/Pods-skeetry-skeetryTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A45179C2807D4BA13BF62131 /* [CP] Check Pods Manifest.lock */ = {
@@ -459,7 +459,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-travel-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-skeetry-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -481,7 +481,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-travel-travelTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-skeetry-skeetryTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -494,15 +494,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-travel/Pods-travel-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-skeetry/Pods-skeetry-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-travel/Pods-travel-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-skeetry/Pods-skeetry-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-travel/Pods-travel-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-skeetry/Pods-skeetry-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -531,7 +531,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* travelTests.m in Sources */,
+				00E356F31AD99517003FC87E /* skeetryTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -550,7 +550,7 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* travel */;
+			target = 13B07F861A680F5B00A75B9A /* skeetry */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -558,7 +558,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F5AB4A1FE81CE96A8399B0E3 /* Pods-travel-travelTests.debug.xcconfig */;
+			baseConfigurationReference = F5AB4A1FE81CE96A8399B0E3 /* Pods-skeetry-skeetryTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -570,7 +570,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = travelTests/Info.plist;
+				INFOPLIST_FILE = skeetryTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -584,13 +584,13 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/travel.app/travel";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/skeetry.app/skeetry";
 			};
 			name = Debug;
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BBFFB92C1DA5E75F9215745D /* Pods-travel-travelTests.release.xcconfig */;
+			baseConfigurationReference = BBFFB92C1DA5E75F9215745D /* Pods-skeetry-skeetryTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -599,7 +599,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				INFOPLIST_FILE = travelTests/Info.plist;
+				INFOPLIST_FILE = skeetryTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -613,18 +613,18 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/travel.app/travel";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/skeetry.app/skeetry";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B85BD29AEEF88D33ABE6C27 /* Pods-travel.debug.xcconfig */;
+			baseConfigurationReference = 3B85BD29AEEF88D33ABE6C27 /* Pods-skeetry.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7GHML95B3Z;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -695,7 +695,7 @@
 					"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)",
 					"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
 				);
-				INFOPLIST_FILE = travel/Info.plist;
+				INFOPLIST_FILE = skeetry/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -706,8 +706,8 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = travel;
-				SWIFT_OBJC_BRIDGING_HEADER = "travel-Bridging-Header.h";
+				PRODUCT_NAME = skeetry;
+				SWIFT_OBJC_BRIDGING_HEADER = "skeetry-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -716,12 +716,12 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 38C1983463C1E21F9DCE0659 /* Pods-travel.release.xcconfig */;
+			baseConfigurationReference = 38C1983463C1E21F9DCE0659 /* Pods-skeetry.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 7GHML95B3Z;
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -791,7 +791,7 @@
 					"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)",
 					"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",
 				);
-				INFOPLIST_FILE = travel/Info.plist;
+				INFOPLIST_FILE = skeetry/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -802,8 +802,8 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = travel;
-				SWIFT_OBJC_BRIDGING_HEADER = "travel-Bridging-Header.h";
+				PRODUCT_NAME = skeetry;
+				SWIFT_OBJC_BRIDGING_HEADER = "skeetry-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -936,7 +936,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "travelTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "skeetryTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -945,7 +945,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "travel" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "skeetry" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -954,7 +954,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "travel" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "skeetry" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
