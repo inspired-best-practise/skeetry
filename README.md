@@ -14,6 +14,8 @@
 ## Status
 **Project is in progress now. Please wait for release version.**
 
+**Desgin progress: [Figma](https://www.figma.com/file/apvodGovgRQ0QHaki2rdGq/Skeetry)**
+
 ## Structure
 
 | Codebase              |      Description          |
