@@ -1,18 +1,20 @@
 import { StyleSheet } from 'react-native';
 
-import { radius } from '_app/constants';
+import { colors, radius } from '_app/constants';
 import { normalize, SCREEN_WIDTH } from '_app/utils/dimensions';
-
-import { STATUS_BAR_HEIGHT } from './../../../utils/dimensions';
 
 export const itemWidth = SCREEN_WIDTH / 2 - 20;
 
 export const s = StyleSheet.create({
+  headerArea: {
+    height: normalize(50),
+    backgroundColor: colors.white,
+  },
   container: {
     flex: 1,
     alignItems: 'center',
     // paddingHorizontal: normalize(20),
-    paddingBottom: 80,
+    paddingBottom: normalize(80),
   },
   profilePanel: {
     display: 'flex',
@@ -56,8 +58,8 @@ export const s = StyleSheet.create({
   card: {
     minWidth: itemWidth,
     maxWidth: itemWidth,
-    marginVertical: 6,
-    marginHorizontal: 6,
+    marginVertical: normalize(6),
+    marginHorizontal: normalize(6),
     position: 'relative',
   },
   cardImage: {
@@ -66,14 +68,14 @@ export const s = StyleSheet.create({
     borderRadius: radius.base,
   },
   containerWrap: {
-    marginTop: 40,
+    marginTop: normalize(40),
     width: '100%',
     justifyContent: 'flex-start',
-    paddingHorizontal: 20,
+    paddingHorizontal: normalize(20),
   },
   listWrapper: {
     justifyContent: 'space-between',
-    marginHorizontal: 20,
+    marginHorizontal: normalize(20),
   },
   listContainer: {},
 });

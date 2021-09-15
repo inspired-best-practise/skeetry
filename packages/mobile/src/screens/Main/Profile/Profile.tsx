@@ -72,7 +72,7 @@ export const ProfileScreen = () => {
 
   return (
     <>
-      <View style={{ height: 45, backgroundColor: '#fff' }} />
+      <View style={s.headerArea} />
       <FlatList
         ref={ref}
         refreshing={loadingWanted}

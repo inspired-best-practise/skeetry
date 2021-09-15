@@ -8333,15 +8333,15 @@ react-native-config@^1.4.4:
   resolved "https://registry.yarnpkg.com/react-native-config/-/react-native-config-1.4.4.tgz#e0e10802d1e61ef051040c84dfd19f85a5984620"
   integrity sha512-bu47sJHn/HrB7COAWBI8DieAhrbFLINHFE2HBCcVkDu0Y5ScrMs6vL+jhIm+pMSgxouseLhXG8h7xYYpxE38PA==
 
-react-native-device-info@^8.3.1:
-  version "8.3.1"
-  resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-8.3.1.tgz#f32cbb22a74e51b05b896c03649fcbfd0a0da513"
-  integrity sha512-tEJlyECZeFVZcEJVSZIN8OGghnlrZmSy0J8PGU4mCNk4KMTvx3tHpHMc6c7afl3lS2vOBP3jslzHzRMDgh42cA==
+react-native-device-info@^8.3.2:
+  version "8.3.2"
+  resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-8.3.2.tgz#6039746adced97593b5b3b105c90f743bc1ce855"
+  integrity sha512-TgCrA2Pk+DC+IBhN8kH+x1wTFRSFW9q9UC70rAxf1Qe0q0Fwoxx8szYnGs+kD1TK3yn/5MIZnNNvzUl82INhZQ==
 
-react-native-fast-image@^8.3.7:
-  version "8.3.7"
-  resolved "https://registry.yarnpkg.com/react-native-fast-image/-/react-native-fast-image-8.3.7.tgz#c4877de17903101f6d94b6736a4f7e5d7b019224"
-  integrity sha512-J++Ad04PTUe4YgjyGv63gfgV8Fz1gZKAgQHpblf8Z87D9dxfc8UfXHTPv9VLGdTJU4IzdTnQqzoFgDtWdsvBsQ==
+react-native-fast-image@^8.5.5:
+  version "8.5.5"
+  resolved "https://registry.yarnpkg.com/react-native-fast-image/-/react-native-fast-image-8.5.5.tgz#2ebbe08868e74c8f29d401541de41ae01125c772"
+  integrity sha512-6OHZD6UPkopWMjZMd2v7Nl+dKnwpw2NdluL+vvQJNUibnB6HldCQgytNQy/0lqMbG1XcjqiHbE7X+50MJD99bQ==
 
 react-native-gesture-handler@^1.10.3:
   version "1.10.3"
@@ -8386,10 +8386,10 @@ react-native-pager-view@^5.4.4:
   resolved "https://registry.yarnpkg.com/react-native-pager-view/-/react-native-pager-view-5.4.4.tgz#83a873a82748440696ca0e0fd07a77477b854a78"
   integrity sha512-5zyol+FZ9X4N4OEz92IyaFFROR3KtgAgTmgqlUvG59Eigf+f6aWs5fvcbWwzuz/AlLZbrxIDrnLmSpMUOK57ww==
 
-react-native-reanimated@^2.2.1:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-2.2.1.tgz#e9109aa2482c893266c5c0c546aebf1b764bf233"
-  integrity sha512-uyAlqFZCcriL3hPXq5zJ4KqAjxBoeinYoJogTIpwlEhmYfsP6oRNktq3PyYCu6/Dj5dXp7MXUcZInXyVSi/c9Q==
+react-native-reanimated@^2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-2.2.2.tgz#8bc81c7ee93d599991507bb826050a5eeee1e7f2"
+  integrity sha512-Lfv4ogbNLU9x3DqhXUFza9pnzyTvPrw5xGC1wWA6aGXqZgyaikNLgC5dNWzxVbfEwRdOuLPFsai3LAcIM92TCg==
   dependencies:
     "@babel/plugin-transform-object-assign" "^7.10.4"
     fbjs "^3.0.0"
