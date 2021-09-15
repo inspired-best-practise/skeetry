@@ -29,9 +29,11 @@ Features:
    ☐ Add "custom trip creator"
    ☐ Implement bootsplash
    ☐ Implement skeleton
+   ☐ Update bottomsheet (@gorhom/bottom-sheet@^4)
+   ☐ Implement blurhash (woltapp/blurhash)
 
 Login: 
-   ☐ Add KeyboardAvoidingView
+   ✔ Add KeyboardAvoidingView @done(21-09-15 16:49)
    ✔ Fix blink screen when isAuthenticated @done(21-09-09 15:30)
 
 Registration:

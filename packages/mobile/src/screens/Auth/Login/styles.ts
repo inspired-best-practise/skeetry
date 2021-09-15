@@ -1,6 +1,9 @@
 import { StyleSheet } from 'react-native';
 
-import { SCREEN_HEIGHT, SCREEN_WIDTH, STATUS_BAR_HEIGHT } from '_app/utils/dimensions';
+import { colors, radius, tInput, tSmall } from '_app/constants';
+import { normalize, SCREEN_HEIGHT, SCREEN_WIDTH, STATUS_BAR_HEIGHT } from '_app/utils/dimensions';
+
+import { tButton, tSmallSemibold } from './../../../constants/globalStyle';
 
 export const s = StyleSheet.create({
   container: {
@@ -10,48 +13,50 @@ export const s = StyleSheet.create({
     width: SCREEN_WIDTH * 0.9,
   },
   btnLogin: {
-    marginTop: 7.5,
+    marginTop: normalize(10),
     width: '100%',
-    height: 44,
-    borderRadius: 5,
-    backgroundColor: '#000',
+    height: normalize(45),
+    borderRadius: radius.base,
+    backgroundColor: colors.black,
     justifyContent: 'center',
     alignItems: 'center',
   },
   btnLoginText: {
-    fontSize: 16,
-    color: '#fff',
+    ...tButton,
+    color: colors.white,
     fontWeight: '500',
   },
   textInputWrapper: {
     position: 'relative',
     width: '100%',
-    height: 44,
-    borderRadius: 5,
-    borderColor: '#ddd',
-    borderWidth: 1,
-    marginVertical: 7.5,
+    height: normalize(45),
+    backgroundColor: colors.lightGray,
+    marginVertical: normalize(10),
+    color: colors.baseGray,
+    borderRadius: radius.base,
   },
   input: {
     width: '100%',
     height: '100%',
-    paddingHorizontal: 15,
+    paddingHorizontal: normalize(15),
+    ...tInput,
   },
   forgotPassword: {
-    width: SCREEN_WIDTH * 0.9,
-    marginVertical: 15,
+    width: 'auto',
+    marginVertical: normalize(20),
     justifyContent: 'flex-end',
     alignItems: 'flex-end',
+    ...tSmall,
   },
   forgotPasswordText: {
-    fontSize: 12,
-    fontWeight: '600',
+    ...tSmall,
   },
   registerWrapper: {
-    height: 50,
+    flex: 2,
+    height: normalize(50),
     justifyContent: 'center',
     alignItems: 'center',
-    borderTopColor: '#ddd',
+    borderTopColor: colors.lineGray,
     borderTopWidth: 1,
   },
   centerContainer: {
@@ -62,16 +67,14 @@ export const s = StyleSheet.create({
   },
   registerWrapperText: {
     textAlign: 'center',
-    fontSize: 12,
-    fontWeight: '600',
+    ...tSmallSemibold,
   },
   registerWrapperTextBold: {
-    fontWeight: '500',
-    color: '#333',
+    ...tSmall,
   },
   errorLogin: {
     color: 'red',
-    marginTop: 20,
+    marginTop: normalize(20),
     textAlign: 'center',
   },
 });

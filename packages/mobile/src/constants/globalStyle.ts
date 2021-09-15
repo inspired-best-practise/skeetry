@@ -2,9 +2,9 @@ import { TextStyle } from 'react-native';
 import { MapStyleElement } from 'react-native-maps';
 
 export const radius = {
-  s: 6,
-  m: 8,
-  l: 16,
+  s: 10,
+  base: 12,
+  l: 18,
 };
 
 export const fontFamily = {
@@ -20,18 +20,25 @@ export const fontFamily = {
 };
 
 export const fontSize = {
-  h1: 56,
-  h2: 40,
-  h3: 28,
-  h4: 20,
-  h5: 16,
-  paragraph: 14,
-  small: 12,
-  xs: 10,
+  xxxl: 30,
+  xxl: 24,
+  xl: 20,
+  lg: 18,
+  base: 16,
+  sm: 14,
+  xs: 12,
 };
 
+// TODO: add green, red, yellow colors
 export const colors = {
+  white: '#fff',
+  black: '#000',
   text: '#000',
+  lineGray: '#F2F2F2',
+  lightGray: '#F7F7F7',
+  mainGray: '#EEEEEE',
+  mediumGray: '#595959',
+  baseGray: '#C6C6C6',
   gray50: '#F9FAFB',
   gray100: '#F3F4F6',
   gray200: '#E5E7EB',
@@ -42,19 +49,6 @@ export const colors = {
   gray700: '#374151',
   gray800: '#1F2937',
   gray900: '#111827',
-  primary100: '#dee3ea',
-  primary200: '#b2bdcd',
-  primary300: '#5d7290',
-  primary600: '#323d4d',
-  primary700: '#242c37',
-  primary800: '#151a21',
-  primary900: '#0b0e11',
-  secondary: '#5575e7',
-  secondaryWashedOut: '#879eed',
-  accent: '#fd4d4d',
-  accentHover: '#fd6868',
-  accentDisabled: '#f5bfbf',
-  black: '#000',
 };
 
 const textBase: TextStyle = {
@@ -62,68 +56,72 @@ const textBase: TextStyle = {
   color: colors.text,
 };
 
-export const h1: TextStyle = {
+export const tSplash: TextStyle = {
   ...textBase,
-  lineHeight: 90,
-  fontSize: fontSize.h1,
+  lineHeight: 36,
+  fontSize: fontSize.xxxl,
   fontWeight: '700',
 };
 
-export const h2: TextStyle = {
+export const tLogo: TextStyle = {
   ...textBase,
-  lineHeight: 64,
-  fontSize: fontSize.h2,
+  lineHeight: 30,
+  fontSize: fontSize.xxl,
   fontWeight: '700',
 };
 
-export const h3: TextStyle = {
+export const tHStep: TextStyle = {
   ...textBase,
-  lineHeight: 45,
-  fontSize: fontSize.h3,
-  fontWeight: '700',
+  lineHeight: 22,
+  fontSize: fontSize.lg,
+  fontWeight: '400',
 };
 
-export const h4: TextStyle = {
+export const tDStep: TextStyle = {
   ...textBase,
-  lineHeight: 32,
-  fontSize: fontSize.h4,
-  fontWeight: '700',
+  lineHeight: 18,
+  fontSize: fontSize.sm,
+  fontWeight: '400',
 };
 
-export const paragraph: TextStyle = {
+export const tButton: TextStyle = {
+  ...textBase,
+  fontWeight: '600',
+  fontSize: fontSize.sm,
+  lineHeight: 18,
+};
+
+export const tInput: TextStyle = {
   ...textBase,
   fontWeight: '500',
-  fontSize: fontSize.paragraph,
-  lineHeight: 22,
+  fontSize: fontSize.sm,
+  lineHeight: 18,
 };
 
-export const paragraphBold: TextStyle = {
-  ...paragraph,
-  fontWeight: '700',
-};
-
-export const small: TextStyle = {
+export const tBase: TextStyle = {
   ...textBase,
-  fontWeight: '500',
-  fontSize: fontSize.small,
-  lineHeight: 22,
+  fontWeight: '600',
+  fontSize: fontSize.sm,
+  lineHeight: 18,
 };
 
-export const smallBold: TextStyle = {
-  ...small,
+export const tTitle: TextStyle = {
+  ...textBase,
   fontWeight: '700',
+  fontSize: fontSize.xl,
+  lineHeight: 24,
 };
 
-export const xsmall: TextStyle = {
+export const tSmall: TextStyle = {
   ...textBase,
   fontWeight: '500',
   fontSize: fontSize.xs,
   lineHeight: 16,
 };
 
-export const xsmallBold: TextStyle = {
-  ...xsmall,
-  fontWeight: '700',
+export const tSmallSemibold: TextStyle = {
+  ...tSmall,
+  fontWeight: '600',
 };
 
 export const mapGfxStyle: MapStyleElement[] = [
