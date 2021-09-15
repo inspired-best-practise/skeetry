@@ -1,5 +1,5 @@
 <p align="center">
-  <img height=100 src="https://raw.githubusercontent.com/alekseytsvetkov/skeetry/staging/assets/skeetry.svg"/>
+  <img height=100 src="https://raw.githubusercontent.com/alekseytsvetkov/skeetry/staging/.assets/skeetry.svg"/>
 </p>
 
 <p align="center">
