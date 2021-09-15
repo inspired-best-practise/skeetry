@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
-import { paragraph } from '_app/constants';
+import { tBase } from '_app/constants';
 import { navigation } from '_app/services/navigations';
 import { withLocalization } from '_app/utils/helpers';
 
@@ -24,7 +24,7 @@ export const Category = ({ item }: TCategoryProps) => {
       <View style={s.categoryEmoji}>
         <Text>{emoji}</Text>
       </View>
-      <Text style={paragraph}>{withLocalization('name', name, locale, localizations)}</Text>
+      <Text style={tBase}>{withLocalization('name', name, locale, localizations)}</Text>
     </TouchableOpacity>
   );
 };

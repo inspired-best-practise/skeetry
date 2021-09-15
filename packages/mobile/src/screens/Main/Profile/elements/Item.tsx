@@ -3,7 +3,7 @@ import { View, Text, Pressable } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { SharedElement } from 'react-navigation-shared-element';
 
-import { paragraph } from '_app/constants';
+import { colors, tBase } from '_app/constants';
 import { navigation } from '_app/services/navigations';
 import { withLocalization } from '_app/utils/helpers';
 
@@ -28,40 +28,20 @@ export const renderItem = ({ item }: any) => {
             resizeMode={FastImage.resizeMode.cover}
           />
         </SharedElement>
-        <View
-          style={{
-            height: '100%',
-            width: '100%',
-            borderRadius: 4,
-            position: 'absolute',
-            backgroundColor: 'rgba(0,0,0,0.3)',
-          }}
-        />
-        <View
-          style={{
-            position: 'absolute',
-            top: 0,
-            padding: 10,
-            width: '100%',
-            borderRadius: 4,
-            justifyContent: 'center',
-          }}
+        <Text
+          numberOfLines={2}
+          style={[
+            {
+              display: 'flex',
+              fontWeight: '700',
+              color: colors.black,
+              textAlign: 'left',
+              ...tBase,
+            },
+          ]}
         >
-          <Text
-            numberOfLines={2}
-            style={[
-              paragraph,
-              {
-                display: 'flex',
-                fontWeight: '700',
-                color: '#fff',
-                textAlign: 'left',
-              },
-            ]}
-          >
-            {withLocalization('name', name, locale, localizations)}
-          </Text>
-        </View>
+          {withLocalization('name', name, locale, localizations)}
+        </Text>
       </View>
     </Pressable>
   );

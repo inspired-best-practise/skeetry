@@ -4,7 +4,6 @@ import * as Icon from 'react-native-heroicons/solid';
 
 import { ProfileStatsItem, Avatar, ProfileFilter } from '_app/components';
 import { navigation } from '_app/services/navigations';
-import { profileStore } from '_app/stores';
 
 import { s } from '../styles';
 

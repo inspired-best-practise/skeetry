@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ScrollView, View, Text } from 'react-native';
 
-import { colors, h4 } from '_app/constants';
+import { tTitle } from '_app/constants';
 import { useItemTagsQuery } from '_app/generated/graphql';
 
 import { Category } from './Category';
@@ -18,7 +18,7 @@ export const Categories = () => {
   return !error && categories && categories.length !== 0 ? (
     <View>
       <View style={{ marginHorizontal: 20 }}>
-        <Text style={[h4, { color: colors.primary600 }]}>{`${t('home:categories')}`}</Text>
+        <Text style={tTitle}>{`${t('home:categories')}`}</Text>
       </View>
       {/* TODO: add skeleton instead of text when loading  */}
       {loading ? (

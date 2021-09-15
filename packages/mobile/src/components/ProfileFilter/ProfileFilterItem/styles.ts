@@ -1,18 +1,17 @@
 import { StyleSheet } from 'react-native';
 
-import { colors } from '_app/constants';
+import { colors, radius, tBase } from '_app/constants';
+import { normalize } from '_app/utils/dimensions';
 
 export const s = StyleSheet.create({
   filterItem: {
     backgroundColor: colors.gray100,
-    borderRadius: 6,
-    paddingHorizontal: 20,
-    paddingVertical: 12,
-    marginHorizontal: 6,
-    height: 40,
+    borderRadius: radius.base,
+    paddingHorizontal: normalize(32),
+    paddingVertical: normalize(14),
+    marginHorizontal: normalize(5),
   },
   filterItemTitle: {
-    fontSize: 14,
-    fontWeight: '600',
+    ...tBase,
   },
 });

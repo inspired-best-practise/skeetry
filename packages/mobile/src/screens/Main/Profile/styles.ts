@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 
+import { radius } from '_app/constants';
 import { normalize, SCREEN_WIDTH } from '_app/utils/dimensions';
 
 export const itemWidth = SCREEN_WIDTH / 2 - 20;
@@ -64,8 +65,8 @@ export const s = StyleSheet.create({
   },
   cardImage: {
     width: itemWidth,
-    height: 150,
-    borderRadius: 6,
+    height: normalize(150),
+    borderRadius: radius.base,
   },
   containerWrap: {
     marginTop: 40,
