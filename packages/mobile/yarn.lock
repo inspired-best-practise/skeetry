@@ -1714,10 +1714,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@react-native-async-storage/async-storage@^1.15.7":
-  version "1.15.7"
-  resolved "https://registry.yarnpkg.com/@react-native-async-storage/async-storage/-/async-storage-1.15.7.tgz#736ac5cfe211b081e70389e80c237398d1451f08"
-  integrity sha512-ctD51BxjBxSSZ/3xCxQ//e10nP3rWFuOABsOGCGCqCXO4ypznK+fcWONHI6fIZubfV5KdyBJnNXcKtXRjocE5Q==
+"@react-native-async-storage/async-storage@^1.15.8":
+  version "1.15.8"
+  resolved "https://registry.yarnpkg.com/@react-native-async-storage/async-storage/-/async-storage-1.15.8.tgz#c2263646b7261803125b555cf1bbd48b72dedafc"
+  integrity sha512-SIpsnmUt2Af8f/In7wu/HMeIiWBx9+T14GL4VrwtZv8+RceMejPtOwRMP8kc6xifkgg0gxwwHJ5+pEG/cEt1Mw==
   dependencies:
     merge-options "^3.0.4"
 
@@ -2052,10 +2052,10 @@
     "@sentry/types" "6.12.0"
     tslib "^1.9.3"
 
-"@sentry/react-native@^3.0.3":
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/@sentry/react-native/-/react-native-3.0.3.tgz#ef53556260ce26c756611f45d6efd30ebc4feeed"
-  integrity sha512-eafA8GyVFSqDyd5er8Q2+QLsN2URG5sncnU7b58yCZ6vthg9+dC/BqRKFMYijMxFQ4NcOfLAVEOqqJkg5cFS0A==
+"@sentry/react-native@^3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@sentry/react-native/-/react-native-3.1.0.tgz#a665ed2562b4d4be999088f974cb439685350b78"
+  integrity sha512-3XDPxNOCQoYCAgzPlGB45AIAdTCt8OVxKvkG8vbQ04IUFZY2pV4NCA10jYe8X8tW1GpjxTFqYfA0OZtaaMb9hg==
   dependencies:
     "@sentry/browser" "6.12.0"
     "@sentry/cli" "^1.68.0"
@@ -8410,10 +8410,10 @@ react-native-safe-area-context@^3.3.2:
   resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-3.3.2.tgz#9549a2ce580f2374edb05e49d661258d1b8bcaed"
   integrity sha512-yOwiiPJ1rk+/nfK13eafbpW6sKW0jOnsRem2C1LPJjM3tfTof6hlvV5eWHATye3XOpu2cJ7N+HdkUvUDGwFD2Q==
 
-react-native-screens@^3.7.1:
-  version "3.7.1"
-  resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-3.7.1.tgz#eedde380185768696041fe94d94d36816dbb3bf0"
-  integrity sha512-QZdE8ZaQ6e9wuwSkBWX49G4hlosr351v368RaMUn2y/RFAYedFtDtaCI8ychUCFThrg0pT9uKJF03nNtkXqWcg==
+react-native-screens@^3.7.2:
+  version "3.7.2"
+  resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-3.7.2.tgz#933cb0b6564b84a624a1e6ee0481e81415030ea9"
+  integrity sha512-TUmCE2ZIr6SFCUqsUqLsYQZ7EWo+tKyxSVFj3G5BCkGFOl3MwXEPgT/ihNCnL1aUAgr6TEMWVHg+awLkkQgYyQ==
   dependencies:
     warn-once "^0.1.0"
 
