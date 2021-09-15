@@ -3,6 +3,7 @@ Refactoring:
    ☐ Normalize everything
    ☐ Refactor navigation
    ☐ Add wrapper for formSheet screens with StatusBar and ModalControl
+   ☐ Update design
   
 Global bugs:
    ✔ Fix open animation react-navigation-shared-element with react-native-safe-area-context (https://github.com/IjzerenHein/react-navigation-shared-element/issues/187) @done(21-09-11 15:18)
@@ -16,7 +17,7 @@ Features:
    ✔ Change the localization depending on the device language @done(21-09-07 11:24)
    ✔ Disable rotation @done(21-09-06 19:09)
    ☐ Add offline mode
-   ☐ Update theme constants
+   ✔ Update theme constants @done(21-09-15 17:04)
    ☐ Implement refresh token when accessToken is expired (codegen hooks problem)
    ✔ Add GraphQL service @done(21-09-07 15:31)
    ☐ Add dark mode
