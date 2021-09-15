@@ -3,6 +3,7 @@ import { ConfigService } from '@nestjs/config';
 
 import { bcrypt, bcryptVerify } from 'hash-wasm';
 
+import { randomBytes } from 'crypto';
 @Injectable()
 export class PasswordService {
   constructor(private configService: ConfigService) {}
@@ -20,8 +21,7 @@ export class PasswordService {
   }
 
   async hashPassword(password: string): Promise<string> {
-    const salt = new Uint8Array(16);
-    window.crypto.getRandomValues(salt);
+    let salt = randomBytes(16);
 
     const key = await bcrypt({
       password,
