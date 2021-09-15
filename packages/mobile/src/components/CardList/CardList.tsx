@@ -16,7 +16,11 @@ export const CardList = ({ data, loading }): JSX.Element => {
     wait(2000).then(() => setRefreshing(false));
   }, []);
 
-  const renderItem = ({ item }: any) => <Card item={item} />;
+  const renderItem = ({ item }: any) => (
+    <View key={item.id} style={{ marginBottom: 20 }}>
+      <Card key={item.id} item={item} size="full" />
+    </View>
+  );
 
   return !loading ? (
     <FlatList

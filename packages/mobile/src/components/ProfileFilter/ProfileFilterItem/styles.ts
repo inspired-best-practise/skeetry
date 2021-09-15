@@ -9,7 +9,7 @@ export const s = StyleSheet.create({
     borderRadius: radius.base,
     paddingHorizontal: normalize(32),
     paddingVertical: normalize(14),
-    marginHorizontal: normalize(5),
+    marginHorizontal: normalize(10),
   },
   filterItemTitle: {
     ...tBase,

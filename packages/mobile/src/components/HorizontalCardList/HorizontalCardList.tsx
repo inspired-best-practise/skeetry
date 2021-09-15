@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import FastImage from 'react-native-fast-image';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Carousel from 'react-native-snap-carousel';
 import Icon from 'react-native-vector-icons/Feather';
@@ -8,27 +7,31 @@ import Icon from 'react-native-vector-icons/Feather';
 import { colors, tTitle } from '_app/constants';
 import { normalize } from '_app/utils/dimensions';
 
+import { Card } from '../Card';
 import { itemWidth, s, sliderWidth } from './styles';
 
 export const HorizontalCardList = ({ title, data }) => {
   const renderItem = ({ item, index }) => {
     return (
-      <View style={{ marginVertical: normalize(20) }}>
-        <FastImage
-          style={s.nearbyImage}
-          source={{
-            uri: item.illustration,
-            priority: FastImage.priority.normal,
-          }}
-          resizeMode={FastImage.resizeMode.cover}
-        />
-        <Text numberOfLines={1} style={s.itemTitle}>
-          {item.title}
-        </Text>
-        <Text numberOfLines={1} style={s.itemDesc}>
-          {item.title}
-        </Text>
+      <View key={item.id} style={{ marginVertical: normalize(20) }}>
+        <Card item={item} size="wide" />
       </View>
+      // <View style={{ marginVertical: normalize(20) }}>
+      //   <FastImage
+      //     style={s.nearbyImage}
+      //     source={{
+      //       uri: item.illustration,
+      //       priority: FastImage.priority.normal,
+      //     }}
+      //     resizeMode={FastImage.resizeMode.cover}
+      //   />
+      //   <Text numberOfLines={1} style={s.itemTitle}>
+      //     {item.title}
+      //   </Text>
+      //   <Text numberOfLines={1} style={s.itemDesc}>
+      //     {item.title}
+      //   </Text>
+      // </View>
     );
   };
 

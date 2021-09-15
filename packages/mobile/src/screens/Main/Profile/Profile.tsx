@@ -74,14 +74,15 @@ export const ProfileScreen = () => {
     <>
       <View style={{ height: 45, backgroundColor: '#fff' }} />
       <FlatList
-        refreshing={loadingWanted}
         ref={ref}
+        refreshing={loadingWanted}
         ListHeaderComponent={renderHeader(user, t, setSelected)}
         ListEmptyComponent={renderEmpty}
         numColumns={2}
-        contentContainerStyle={{ paddingBottom: 100, marginTop: 10 }}
-        columnWrapperStyle={s.cardList}
+        horizontal={false}
         data={getData()}
+        columnWrapperStyle={s.listWrapper}
+        contentContainerStyle={s.listContainer}
         renderItem={renderItem}
         keyExtractor={item => item.id}
         showsVerticalScrollIndicator={false}

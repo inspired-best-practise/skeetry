@@ -3,6 +3,8 @@ import { StyleSheet } from 'react-native';
 import { radius } from '_app/constants';
 import { normalize, SCREEN_WIDTH } from '_app/utils/dimensions';
 
+import { STATUS_BAR_HEIGHT } from './../../../utils/dimensions';
+
 export const itemWidth = SCREEN_WIDTH / 2 - 20;
 
 export const s = StyleSheet.create({
@@ -58,11 +60,6 @@ export const s = StyleSheet.create({
     marginHorizontal: 6,
     position: 'relative',
   },
-  cardList: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    paddingHorizontal: normalize(10),
-  },
   cardImage: {
     width: itemWidth,
     height: normalize(150),
@@ -74,4 +71,9 @@ export const s = StyleSheet.create({
     justifyContent: 'flex-start',
     paddingHorizontal: 20,
   },
+  listWrapper: {
+    justifyContent: 'space-between',
+    marginHorizontal: 20,
+  },
+  listContainer: {},
 });

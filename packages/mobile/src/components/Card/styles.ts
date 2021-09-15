@@ -1,7 +1,9 @@
-import { StatusBar, StyleSheet } from 'react-native';
+import { Dimensions, StatusBar, StyleSheet } from 'react-native';
 
-import { CARD_HEIGHT, CARD_SPACING } from '_app/constants';
-import { SCREEN_WIDTH } from '_app/utils/dimensions';
+import { CARD_HEIGHT, CARD_SPACING, colors, radius, tBase, tSmallRegular } from '_app/constants';
+import { normalize, SCREEN_WIDTH } from '_app/utils/dimensions';
+
+const itemBaseWidth = Dimensions.get('window').width / 2 - 30;
 
 export const s = StyleSheet.create({
   container: {
@@ -9,15 +11,27 @@ export const s = StyleSheet.create({
     marginTop: StatusBar.currentHeight || 0,
   },
   item: {
-    backgroundColor: '#ddd',
-    width: SCREEN_WIDTH - 40,
-    height: CARD_HEIGHT - 20,
-    borderRadius: 6,
+    backgroundColor: colors.mainGray,
+    borderRadius: radius.base,
   },
   itemImage: {
+    borderRadius: radius.base,
+  },
+  itemSizeFull: {
     width: SCREEN_WIDTH - 40,
     height: CARD_HEIGHT - 20,
-    borderRadius: 6,
+  },
+  itemSizeWide: {
+    height: normalize(150),
+    width: normalize(240),
+  },
+  itemSizeBase: {
+    height: itemBaseWidth - 10,
+    width: itemBaseWidth,
+  },
+  itemSizeSmall: {
+    height: normalize(110),
+    width: normalize(115),
   },
   focalPoint: {
     ...StyleSheet.absoluteFillObject,
@@ -58,5 +72,15 @@ export const s = StyleSheet.create({
   },
   ratingCount: {
     color: '#777',
+  },
+  itemTitle: {
+    marginTop: normalize(10),
+    width: normalize(240 - 40),
+    ...tBase,
+  },
+  itemDesc: {
+    marginTop: normalize(2),
+    width: normalize(240),
+    ...tSmallRegular,
   },
 });

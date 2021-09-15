@@ -2,7 +2,7 @@ import React from 'react';
 import { SafeAreaView, View, Text, StatusBar } from 'react-native';
 
 import { CardList, ModalControl } from '_app/components';
-import { paragraph } from '_app/constants';
+import { tBase } from '_app/constants';
 import { useItemsQuery } from '_app/generated/graphql';
 import { withLocalization } from '_app/utils/helpers';
 
@@ -37,7 +37,7 @@ export const ItemsByTagScreen = ({ route }) => {
         <View>
           <Text>{emoji}</Text>
         </View>
-        <Text style={paragraph}>{withLocalization('name', name, locale, localizations)}</Text>
+        <Text style={tBase}>{withLocalization('name', name, locale, localizations)}</Text>
       </View>
       <View style={{ paddingTop: 20 }}>
         {items && items.length !== 0 && !error ? (

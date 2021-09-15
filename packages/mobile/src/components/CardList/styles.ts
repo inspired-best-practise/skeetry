@@ -1,10 +1,11 @@
 import { StyleSheet } from 'react-native';
 
+import { colors } from '_app/constants';
+import { normalize } from '_app/utils/dimensions';
+
 export const s = StyleSheet.create({
   list: {
-    backgroundColor: '#fff',
-    padding: 20,
-    paddingTop: 0,
-    paddingBottom: 140,
+    backgroundColor: colors.white,
+    paddingHorizontal: normalize(20),
   },
 });

@@ -17,8 +17,8 @@ export const ProfileFilter = () => {
       horizontal
       showsHorizontalScrollIndicator={false}
       contentContainerStyle={{
-        paddingHorizontal: 9,
         marginBottom: 15,
+        paddingHorizontal: 10,
       }}
     >
       <ProfileFilterItem selected={selected} name="want" title={`${t('profile:want')}`} />

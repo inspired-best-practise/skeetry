@@ -6,6 +6,10 @@ export const wait = (timeout: number) => {
 
 // TODO: type locale
 export const compareLocale = (languageTag: string, locale: any) => {
+  if (!locale) {
+    return false;
+  }
+
   return languageTag === locale.toLowerCase();
 };
 
