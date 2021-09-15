@@ -14,8 +14,6 @@ import {
   ProfileScreen,
   AddScreen,
   ExploreScreen,
-  CitiesScreen,
-  PlacesScreen,
   CardScreen, // ActivityScreen,
 } from '_app/screens/Main';
 import { SwipesScreen } from '_app/screens/Main/Swipes';
@@ -146,28 +144,6 @@ const ExploreStack = () => {
       headerMode="float"
     >
       <SharedElementStack.Screen name="Explore" component={ExploreScreen} />
-      <SharedElementStack.Screen
-        name="Cities"
-        component={CitiesScreen}
-        options={{
-          headerTintColor: '#000',
-          gestureEnabled: false,
-          cardStyle: {
-            backgroundColor: '#fff',
-          },
-        }}
-      />
-      <SharedElementStack.Screen
-        name="Places"
-        component={PlacesScreen}
-        options={{
-          headerTintColor: '#000',
-          gestureEnabled: false,
-          cardStyle: {
-            backgroundColor: '#fff',
-          },
-        }}
-      />
       <SharedElementStack.Screen
         name="CardScreen"
         component={CardScreen}

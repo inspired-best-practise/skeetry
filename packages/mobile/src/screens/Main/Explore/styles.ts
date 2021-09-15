@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { paragraph } from '_app/constants';
+import { tBase } from '_app/constants';
 import { normalize } from '_app/utils/dimensions';
 
 export const s = StyleSheet.create({
@@ -15,7 +15,7 @@ export const s = StyleSheet.create({
   },
   categoriesTitle: {
     textAlign: 'center',
-    ...paragraph,
+    ...tBase,
   },
   categoryList: {
     paddingHorizontal: normalize(20),

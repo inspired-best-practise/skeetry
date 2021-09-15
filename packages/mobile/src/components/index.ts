@@ -7,7 +7,6 @@ export * from './Collection';
 export * from './CollectionList';
 export * from './Avatar';
 export * from './ProfileStatsItem';
-export * from './CategoryCard';
 export * from './ListFilter';
 export * from './ListFilter/ListFilterItem';
 export * from './ProfileFilter';
