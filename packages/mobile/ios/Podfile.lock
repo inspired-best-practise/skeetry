@@ -319,7 +319,7 @@ PODS:
     - React-Core
   - react-native-netinfo (6.0.2):
     - React-Core
-  - react-native-pager-view (5.4.1):
+  - react-native-pager-view (5.4.4):
     - React-Core
   - react-native-safe-area-context (3.3.2):
     - React-Core
@@ -434,7 +434,7 @@ PODS:
     - React-RCTVibration
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNScreens (3.7.0):
+  - RNScreens (3.7.1):
     - React-Core
     - React-RCTImage
   - RNSentry (3.0.3):
@@ -734,7 +734,7 @@ SPEC CHECKSUMS:
   react-native-google-maps: d6a30377b40a338bd09d6ad36ce48dc5d12b5792
   react-native-maps: 41d01d8e0afcebe32bec9eea3bd945adc1b18f7a
   react-native-netinfo: 92e6e4476eb8bf6fc2d7c0a6ca0a1406f663d73a
-  react-native-pager-view: 43f51f45f37ec9715f6c188e4af46ccdf79872e8
+  react-native-pager-view: 5ab4d0b4b44d89f77310cb3eb8129745f274ce55
   react-native-safe-area-context: 584dc04881deb49474363f3be89e4ca0e854c057
   react-native-segmented-control: 65df6cd0619b780b3843d574a72d4c7cec396097
   react-native-splash-screen: 200d11d188e2e78cea3ad319964f6142b6384865
@@ -757,7 +757,7 @@ SPEC CHECKSUMS:
   RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
   RNLocalize: 7f1e5792b65a839af55a9552d05b3558b66d017e
   RNReanimated: d29057cf85e771be4f0180ba1d00a7185e423a7d
-  RNScreens: 2a71d74b4e530f051f5684c8111d7591176722cf
+  RNScreens: e5139736fcf67f4ddaa849d13a8adccbb0cedf81
   RNSentry: bb7db0d29123fa7e1848f4fe91cc8407aabb2195
   RNShare: 072f63d19c2b90da3742adac614396d805e7ae22
   RNSharedElement: 87baf6d04da5b068f000dd8c953d28a1196999c0

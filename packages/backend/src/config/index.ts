@@ -19,7 +19,6 @@ const config: Config = {
   security: {
     expiresIn: '2d',
     refreshIn: '7d',
-    bcryptSaltOrRound: 10,
   },
 };
 

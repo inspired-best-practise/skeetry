@@ -27,6 +27,8 @@ Features:
    ☐ Get user geolocation
    ☐ Get nearby sights, places, cities, countries by user geolocation
    ☐ Add "custom trip creator"
+   ☐ Implement bootsplash
+   ☐ Implement skeleton
 
 Login: 
    ☐ Add KeyboardAvoidingView

@@ -22,22 +22,20 @@ services:
     volumes:
       - 'redisdata:/data'
 
-  # TODO: Fix bcrypt error (only in Docker)
-  # api:
-  #   container_name: 'skeetry-api'
-  #   image: node:lts
-  #   command: yarn start
-  #   ports:
-  #     - '127.0.0.1:3000:3000'
-  #   volumes:
-  #     - .:/srv/api:rw
-  #     - /srv/backend/node_modules/bcrypt/
-  #   working_dir: /srv/api
-  #   env_file:
-  #     - .env
-  #   depends_on:
-  #     - redis
-  #     - postgres
+  api:
+    container_name: 'skeetry-api'
+    image: node:lts
+    command: yarn start:debug
+    ports:
+      - '127.0.0.1:3000:3000'
+    volumes:
+      - .:/srv/api:rw
+    working_dir: /srv/api
+    env_file:
+      - .env
+    depends_on:
+      - redis
+      - postgres
 
 volumes:
   pgdata: {}

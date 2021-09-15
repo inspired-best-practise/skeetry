@@ -1,26 +1,35 @@
 import { Injectable } from '@nestjs/common';
-import { hash, compare } from 'bcrypt';
 import { ConfigService } from '@nestjs/config';
-import { SecurityConfig } from '../../config/config.interface';
+
+import { bcrypt, bcryptVerify } from 'hash-wasm';
 
 @Injectable()
 export class PasswordService {
-  get bcryptSaltRounds(): string | number {
-    const securityConfig = this.configService.get<SecurityConfig>('security');
-    const saltOrRounds = securityConfig.bcryptSaltOrRound;
-
-    return Number.isInteger(Number(saltOrRounds))
-      ? Number(saltOrRounds)
-      : saltOrRounds;
-  }
-
   constructor(private configService: ConfigService) {}
 
-  validatePassword(password: string, hashedPassword: string): Promise<boolean> {
-    return compare(password, hashedPassword);
+  async validatePassword(
+    password: string,
+    hashedPassword: string,
+  ): Promise<boolean> {
+    const isValid = await bcryptVerify({
+      password,
+      hash: hashedPassword,
+    });
+
+    return isValid;
   }
 
-  hashPassword(password: string): Promise<string> {
-    return hash(password, this.bcryptSaltRounds);
+  async hashPassword(password: string): Promise<string> {
+    const salt = new Uint8Array(16);
+    window.crypto.getRandomValues(salt);
+
+    const key = await bcrypt({
+      password,
+      salt,
+      costFactor: 11,
+      outputType: 'encoded',
+    });
+
+    return key;
   }
 }
