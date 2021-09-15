@@ -10,7 +10,7 @@ import { normalize } from '_app/utils/dimensions';
 
 import { itemWidth, s, sliderWidth } from './styles';
 
-export const Nearby = ({ title, data }) => {
+export const HorizontalCardList = ({ title, data }) => {
   const renderItem = ({ item, index }) => {
     return (
       <View style={{ marginVertical: normalize(20) }}>

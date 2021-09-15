@@ -6,7 +6,7 @@ import { profileStore } from '_app/stores';
 
 import { s } from './styles';
 
-export const AccountFilterItem = ({ selected, name, title, icon }: TListFilterItemProps) => {
+export const ProfileFilterItem = ({ selected, name, title, icon }: TListFilterItemProps) => {
   const setSelected = profileStore(state => state.setSelected);
 
   return (

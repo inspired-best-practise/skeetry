@@ -11,7 +11,7 @@ export const s = StyleSheet.create({
     // paddingHorizontal: normalize(20),
     paddingBottom: 80,
   },
-  accountPanel: {
+  profilePanel: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -21,7 +21,7 @@ export const s = StyleSheet.create({
     marginBottom: normalize(10),
     paddingHorizontal: normalize(20),
   },
-  accountHeader: {
+  profileHeader: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -38,7 +38,7 @@ export const s = StyleSheet.create({
     fontSize: normalize(22),
     color: '#000000',
   },
-  accountStats: {
+  profileStats: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',

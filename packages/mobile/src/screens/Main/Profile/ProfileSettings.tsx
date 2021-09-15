@@ -8,7 +8,7 @@ import { authStore } from '_app/stores';
 
 import { s } from './styles';
 
-export const AccountSettingsScreen = () => {
+export const ProfileSettingsScreen = () => {
   const setLogout = authStore(state => state.setLogout);
 
   const logout = () => {

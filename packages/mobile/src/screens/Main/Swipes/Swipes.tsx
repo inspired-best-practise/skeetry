@@ -1,7 +1,7 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native';
 
-import { nearby } from '_app/components/Nearby/nearby.mock';
+import { nearby } from '_app/components/HorizontalCardList/nearby.mock';
 import { Stack } from '_app/components/Stack';
 
 import { s } from './styles';

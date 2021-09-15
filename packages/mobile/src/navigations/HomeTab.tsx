@@ -11,7 +11,7 @@ import { TabBarComponent } from '_app/components/BottomTabBar';
 import { colors } from '_app/constants';
 import {
   HomeScreen,
-  AccountScreen,
+  ProfileScreen,
   AddScreen,
   ExploreScreen,
   CitiesScreen,
@@ -35,7 +35,7 @@ export const iosTransitionSpec = {
 const Stack = createStackNavigator();
 const SharedElementStack = createSharedElementStackNavigator();
 
-const AccountStack = () => {
+const ProfileStack = () => {
   return (
     <SharedElementStack.Navigator
       initialRouteName="Explore"
@@ -57,11 +57,11 @@ const AccountStack = () => {
       headerMode="float"
     >
       <SharedElementStack.Screen
-        component={AccountScreen}
-        name="AccountIndex"
+        component={ProfileScreen}
+        name="ProfileIndex"
         options={({ route }) => ({
           headerShown: false,
-          headerTitle: 'Account',
+          headerTitle: 'Profile',
         })}
       />
       <SharedElementStack.Screen
@@ -324,8 +324,8 @@ const HomeTab = () => {
           },
           tabBarIcon: ({ focused }) => <Icon name="user" size={26} color={focused ? colors.gray900 : colors.gray300} />,
         })}
-        component={AccountStack}
-        name="AccountPage"
+        component={ProfileStack}
+        name="ProfilePage"
       />
     </Tab.Navigator>
   );

@@ -2,10 +2,10 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ScrollView } from 'react-native-gesture-handler';
 
-import { AccountFilterItem } from '_app/components';
+import { ProfileFilterItem } from '_app/components';
 import { profileStore } from '_app/stores';
 
-export const AccountFilter = () => {
+export const ProfileFilter = () => {
   const { t } = useTranslation();
 
   const selected = profileStore(state => state.selected);
@@ -19,10 +19,10 @@ export const AccountFilter = () => {
         marginBottom: 15,
       }}
     >
-      <AccountFilterItem selected={selected} name="want" title={`${t('account:want')}`} />
-      <AccountFilterItem selected={selected} name="visited" title={`${t('account:visited')}`} />
-      <AccountFilterItem selected={selected} name="cities" title={`${t('account:cities')}`} />
-      <AccountFilterItem selected={selected} name="places" title={`${t('account:places')}`} />
+      <ProfileFilterItem selected={selected} name="want" title={`${t('profile:want')}`} />
+      <ProfileFilterItem selected={selected} name="visited" title={`${t('profile:visited')}`} />
+      <ProfileFilterItem selected={selected} name="cities" title={`${t('profile:cities')}`} />
+      <ProfileFilterItem selected={selected} name="places" title={`${t('profile:places')}`} />
     </ScrollView>
   );
 };

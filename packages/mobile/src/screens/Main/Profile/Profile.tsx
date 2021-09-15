@@ -10,7 +10,7 @@ import { profileStore } from '_app/stores';
 import { renderEmpty, renderItem, renderHeader } from './elements';
 import { s } from './styles';
 
-export const AccountScreen = () => {
+export const ProfileScreen = () => {
   const ref = useRef(null);
   const { t } = useTranslation();
 

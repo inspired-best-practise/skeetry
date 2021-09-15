@@ -4,7 +4,7 @@ type THomeTabParamList = {
   SwipesPage: undefined;
   AddPage: undefined;
   ActivityPage: undefined;
-  AccountPage: undefined;
+  ProfilePage: undefined;
 };
 
 type TRootStackParamList = {
