@@ -119,6 +119,13 @@ export const tSmall: TextStyle = {
   lineHeight: 16,
 };
 
+export const tSmallRegular: TextStyle = {
+  ...textBase,
+  fontWeight: '400',
+  fontSize: fontSize.xs,
+  lineHeight: 16,
+};
+
 export const tSmallSemibold: TextStyle = {
   ...tSmall,
   fontWeight: '600',

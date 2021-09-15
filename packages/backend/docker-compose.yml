@@ -37,6 +37,15 @@ services:
       - redis
       - postgres
 
+  prisma-studio:
+    container_name: prisma-studio
+    image: timothyjmiller/prisma-studio:latest
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - ${PRISMA_STUDIO_PORT}:5555
+
 volumes:
   pgdata: {}
   redisdata: {}

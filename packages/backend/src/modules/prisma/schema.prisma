@@ -3,7 +3,7 @@
 
 datasource db {
   provider = "postgresql"
-  url      = env("PG_URL")
+  url      = env("POSTGRES_URL")
 }
 
 generator client {
@@ -37,6 +37,7 @@ model Country {
   id            String                @id @default(cuid())
   name          String                @unique
   overview      String?
+  flag          String
   continent     Continent
   locale        Locale
   localizations CountryLocalization[]
@@ -65,7 +66,6 @@ model Item {
   latitude      String
   longitude     String
   tags          ItemTag[]
-  flag          String?
   userWanted    User[]             @relation("WantedItem")
   userVisited   User[]             @relation("VisitedItem")
   itemReview    ItemReview[]
