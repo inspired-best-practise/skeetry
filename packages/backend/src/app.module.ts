@@ -8,6 +8,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { ItemModule } from './modules/item/item.module';
 import { ItemTagModule } from './modules/item-tag/item-tag.module';
 import { StoryModule } from './modules/story/story.module';
+import { CountryModule } from './modules/country/country.module';
 
 @Module({
   imports: [
@@ -36,6 +37,7 @@ import { StoryModule } from './modules/story/story.module';
     ItemModule,
     ItemTagModule,
     StoryModule,
+    CountryModule,
   ],
   controllers: [],
   providers: [],

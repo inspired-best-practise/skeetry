@@ -2,6 +2,7 @@ import { Field, ObjectType, registerEnumType } from '@nestjs/graphql';
 import { User } from '../../user/models/user.model';
 import { BaseModel, Locale } from '../../common/base.model';
 import { ItemLocalization } from './itemLocalization.model';
+import { Country } from '../../../modules/country/models/country.models';
 
 export enum ItemType {
   COUNTRY = 'COUNTRY',
@@ -51,6 +52,9 @@ export class Item extends BaseModel {
 
   @Field(() => [User], { nullable: true })
   userVisited: User[];
+
+  @Field(() => Country)
+  country: Country;
 
   @Field(() => Locale)
   locale: Locale;

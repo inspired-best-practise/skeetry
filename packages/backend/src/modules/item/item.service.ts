@@ -16,6 +16,7 @@ export class ItemService {
       include: {
         userWanted: true,
         userVisited: true,
+        country: true,
       },
       where: {
         id,
@@ -70,6 +71,7 @@ export class ItemService {
       include: {
         userWanted: true,
         userVisited: true,
+        country: true,
       },
       where: {
         id,
@@ -124,6 +126,7 @@ export class ItemService {
       include: {
         userWanted: true,
         userVisited: true,
+        country: true,
       },
       where: {
         id,
@@ -194,6 +197,7 @@ export class ItemService {
           localizations: true,
           userVisited: true,
           userWanted: true,
+          country: true,
         },
       });
 
@@ -217,6 +221,7 @@ export class ItemService {
         localizations: true,
         userVisited: true,
         userWanted: true,
+        country: true,
       },
       where: {
         tags: {
@@ -235,6 +240,7 @@ export class ItemService {
       include: {
         localizations: true,
         userWanted: true,
+        country: true,
       },
       where: {
         userWanted: {
@@ -253,6 +259,7 @@ export class ItemService {
       include: {
         localizations: true,
         userVisited: true,
+        country: true,
       },
       where: {
         userVisited: {
