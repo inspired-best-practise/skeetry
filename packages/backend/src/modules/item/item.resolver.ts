@@ -47,4 +47,16 @@ export class ItemResolver {
   async visited(@UserEntity() user: User) {
     return this.item.findVisited(user);
   }
+
+  @UseGuards(GqlAuthGuard)
+  @Query(() => [Item], { name: 'nearby' })
+  async nearby() {
+    return this.item.findNearby();
+  }
+
+  @UseGuards(GqlAuthGuard)
+  @Query(() => [Item], { name: 'popular' })
+  async popular() {
+    return this.item.findPopular();
+  }
 }

@@ -272,4 +272,30 @@ export class ItemService {
 
     return items;
   }
+
+  // TODO: just items now
+  async findNearby() {
+    const items = await this.prisma.item.findMany({
+      include: {
+        localizations: true,
+        userVisited: true,
+        country: true,
+      },
+    });
+
+    return items;
+  }
+
+  // TODO: just items now
+  async findPopular() {
+    const items = await this.prisma.item.findMany({
+      include: {
+        localizations: true,
+        userVisited: true,
+        country: true,
+      },
+    });
+
+    return items;
+  }
 }

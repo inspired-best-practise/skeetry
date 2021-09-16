@@ -140,6 +140,8 @@ type Query {
   itemTags: [ItemTag!]!
   items(input: ItemsInput): [Item!]!
   me: User!
+  nearby: [Item!]!
+  popular: [Item!]!
   stories: [Story!]!
   visited: [Item!]!
   wanted: [Item!]!
