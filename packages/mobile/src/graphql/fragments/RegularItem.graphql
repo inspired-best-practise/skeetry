@@ -9,13 +9,15 @@ fragment RegularItem on Item {
   photos       
   latitude     
   longitude
-  flag
   locale
   userWanted {
     ...RegularUser
   }
   userVisited {
     ...RegularUser
+  }
+  country {
+    ...RegularCountry
   }
   localizations {
     ...RegularItemLocalization

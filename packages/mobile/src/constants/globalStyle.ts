@@ -5,6 +5,7 @@ export const radius = {
   s: 10,
   base: 12,
   l: 18,
+  full: 100,
 };
 
 export const fontFamily = {

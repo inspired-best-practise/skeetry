@@ -16,22 +16,6 @@ export const HorizontalCardList = ({ title, data }) => {
       <View key={item.id} style={{ marginVertical: normalize(20) }}>
         <Card item={item} size="wide" />
       </View>
-      // <View style={{ marginVertical: normalize(20) }}>
-      //   <FastImage
-      //     style={s.nearbyImage}
-      //     source={{
-      //       uri: item.illustration,
-      //       priority: FastImage.priority.normal,
-      //     }}
-      //     resizeMode={FastImage.resizeMode.cover}
-      //   />
-      //   <Text numberOfLines={1} style={s.itemTitle}>
-      //     {item.title}
-      //   </Text>
-      //   <Text numberOfLines={1} style={s.itemDesc}>
-      //     {item.title}
-      //   </Text>
-      // </View>
     );
   };
 

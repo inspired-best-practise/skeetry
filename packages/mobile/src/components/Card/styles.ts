@@ -11,13 +11,14 @@ export const s = StyleSheet.create({
     marginTop: StatusBar.currentHeight || 0,
   },
   item: {
-    backgroundColor: colors.mainGray,
+    position: 'relative',
     borderRadius: radius.base,
   },
   itemImage: {
     borderRadius: radius.base,
   },
   itemSizeFull: {
+    backgroundColor: colors.mainGray,
     width: SCREEN_WIDTH - 40,
     height: CARD_HEIGHT - 20,
   },
@@ -35,8 +36,8 @@ export const s = StyleSheet.create({
   },
   focalPoint: {
     ...StyleSheet.absoluteFillObject,
-    width: 20,
-    height: 20,
+    width: normalize(20),
+    height: normalize(20),
     backgroundColor: 'blue',
     borderRadius: 10,
   },
@@ -46,25 +47,46 @@ export const s = StyleSheet.create({
     fontSize: 18,
   },
   dot: {
-    margin: 2,
+    margin: normalize(2),
     fontSize: 10,
     color: 'rgba(255,255,255,.6)',
   },
   dotActive: {
-    margin: 2,
+    margin: normalize(2),
     fontSize: 10,
     color: 'rgba(255,255,255,.9)',
   },
   wrapDot: {
     position: 'absolute',
-    bottom: 10,
+    bottom: normalize(10),
     flexDirection: 'row',
     alignSelf: 'center',
+  },
+  flag: {
+    top: normalize(10),
+    right: normalize(10),
+    position: 'absolute',
+    backgroundColor: colors.white,
+    height: normalize(34),
+    width: normalize(34),
+    borderRadius: radius.full,
+    justifyContent: 'center',
+    alignItems: 'center',
+    shadowOffset: {
+      width: normalize(0),
+      height: normalize(4),
+    },
+    shadowColor: colors.black,
+    shadowOpacity: 0.1,
+    textAlign: 'center',
+  },
+  flagText: {
+    fontSize: 18,
   },
   rating: {
     display: 'flex',
     flexDirection: 'row',
-    marginTop: 12,
+    marginTop: normalize(12),
     alignItems: 'flex-start',
   },
   ratingNumber: {

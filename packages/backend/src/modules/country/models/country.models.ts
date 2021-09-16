@@ -36,7 +36,4 @@ export class Country extends BaseModel {
 
   @Field(() => [CountryLocalization], { nullable: true })
   localizations?: CountryLocalization[];
-
-  @Field(() => [Item], { nullable: true })
-  item?: Item[];
 }

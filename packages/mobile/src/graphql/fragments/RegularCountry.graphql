@@ -1,0 +1,11 @@
+fragment RegularCountry on Country {
+  id           
+  name         
+  overview    
+  continent
+  flag
+  locale
+  localizations {
+    ...RegularCountryLocalization
+  }
+}

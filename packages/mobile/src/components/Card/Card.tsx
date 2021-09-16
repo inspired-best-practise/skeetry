@@ -12,8 +12,10 @@ import { s } from './styles';
 
 // TODO: refactor
 export const Card = ({ item, size }: TCardProps) => {
-  const { photos, name, id, rating, locale, localizations } = item;
+  const { photos, name, id, rating, country, locale, localizations } = item;
   const [active, setActive] = useState(0);
+
+  console.log('country', country);
 
   const changeItem = nativeEvent => {
     if (nativeEvent) {
@@ -26,16 +28,7 @@ export const Card = ({ item, size }: TCardProps) => {
   };
 
   return (
-    <View
-      key={id}
-      style={[
-        s.item,
-        size === 'full' && s.itemSizeFull,
-        size === 'wide' && s.itemSizeWide,
-        size === 'base' && s.itemSizeBase,
-        size === 'small' && s.itemSizeSmall,
-      ]}
-    >
+    <View style={[s.item, size === 'base' && s.itemSizeBase]}>
       <View
         style={[
           s.item,
@@ -117,6 +110,7 @@ export const Card = ({ item, size }: TCardProps) => {
                   >
                     <SharedElement id={`item.${index}.image`}>
                       <FastImage
+                        key={index}
                         style={[s.itemImage, s.itemSizeFull]}
                         source={{ uri: i, priority: FastImage.priority.normal }}
                         resizeMode={FastImage.resizeMode.cover}
@@ -135,13 +129,7 @@ export const Card = ({ item, size }: TCardProps) => {
                 >
                   <SharedElement id={`item.${id}.image`}>
                     <FastImage
-                      style={[
-                        s.itemImage,
-                        size === 'full' && s.itemSizeFull,
-                        size === 'wide' && s.itemSizeWide,
-                        size === 'base' && s.itemSizeBase,
-                        size === 'small' && s.itemSizeSmall,
-                      ]}
+                      style={[s.itemImage, size === 'full' && s.itemSizeFull]}
                       source={{
                         uri: 'https://images.unsplash.com/photo-1503614472-8c93d56e92ce?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1299&q=80/250x300',
                         priority: FastImage.priority.normal,
@@ -155,13 +143,16 @@ export const Card = ({ item, size }: TCardProps) => {
             <View style={s.wrapDot}>
               {photos &&
                 photos.map((i, index) => (
-                  <Text key={i.id} style={active === index ? s.dotActive : s.dot}>
+                  <Text key={index} style={active === index ? s.dotActive : s.dot}>
                     ●
                   </Text>
                 ))}
             </View>
           </View>
         )}
+        <View style={s.flag}>
+          <Text style={s.flagText}>{country && country.flag}</Text>
+        </View>
       </View>
       <View style={s.rating}>
         <Icon.StarIcon size={16} color="black" />

@@ -17,8 +17,8 @@ export const CardList = ({ data, loading }): JSX.Element => {
   }, []);
 
   const renderItem = ({ item }: any) => (
-    <View key={item.id} style={{ marginBottom: 20 }}>
-      <Card key={item.id} item={item} size="full" />
+    <View style={{ marginBottom: 20 }}>
+      <Card item={item} size="full" />
     </View>
   );
 

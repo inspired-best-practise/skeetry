@@ -23,7 +23,6 @@ type Country {
   createdAt: DateTime!
   flag: String
   id: ID!
-  item: [Item!]
   locale: Locale!
   localizations: [CountryLocalization!]
   name: String!
