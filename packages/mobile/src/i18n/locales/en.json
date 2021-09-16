@@ -12,5 +12,16 @@
     "trips": "Trips",
     "cities": "Сities",
     "places": "Places"
+  },
+  "explore": {
+    "popular": "Popular",
+    "forYou": "For you",
+    "europe": "Europe",
+    "asia": "Asia",
+    "australia": "Australia",
+    "antarctica": "Antarctica",
+    "north_america": "North America",
+    "south_america": "South America",
+    "africa": "Africa"
   }
 }

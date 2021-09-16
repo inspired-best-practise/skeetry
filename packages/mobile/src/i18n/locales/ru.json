@@ -12,5 +12,16 @@
     "trips": "Трипы",
     "cities": "Города",
     "places": "Места"
+  },
+  "explore": {
+    "popular": "Популярное",
+    "forYou": "Для вас",
+    "europe": "Европа",
+    "asia": "Азия",
+    "australia": "Австралия",
+    "antarctica": "Антарктида",
+    "north_america": "Северная Америка",
+    "south_america": "Южная Америка",
+    "africa": "Африка"
   }
 }

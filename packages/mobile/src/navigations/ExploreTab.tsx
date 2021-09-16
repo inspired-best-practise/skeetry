@@ -10,7 +10,7 @@ const Tab = createMaterialTopTabNavigator();
 
 function MyTabBar({ state, descriptors, navigation, position }) {
   return (
-    <View style={{ flexDirection: 'row', marginHorizontal: 20 }}>
+    <View style={{ flexDirection: 'row', marginHorizontal: 20, marginTop: normalize(10), marginBottom: normalize(20) }}>
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
         const label =
@@ -50,13 +50,14 @@ function MyTabBar({ state, descriptors, navigation, position }) {
 
         return (
           <TouchableOpacity
+            key={index}
             accessibilityRole="button"
             accessibilityState={isFocused ? { selected: true } : {}}
             accessibilityLabel={options.tabBarAccessibilityLabel}
             testID={options.tabBarTestID}
             onPress={onPress}
             onLongPress={onLongPress}
-            style={{ marginRight: normalize(20), marginTop: normalize(10) }}
+            style={{ marginRight: normalize(20) }}
           >
             <Animated.Text style={{ ...tTitle, opacity }}>{label}</Animated.Text>
           </TouchableOpacity>

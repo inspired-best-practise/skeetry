@@ -8,16 +8,26 @@ import { colors, tTitle } from '_app/constants';
 import { normalize } from '_app/utils/dimensions';
 
 import { Card } from '../Card';
-import { itemWidth, s, sliderWidth } from './styles';
+import { itemWidthBase, itemWidthFull, itemWidthSmall, itemWidthWide, s, sliderWidth } from './styles';
 
-export const HorizontalCardList = ({ title, data }) => {
-  const renderItem = ({ item, index }) => {
+export const HorizontalCardList = ({ title, data, size }) => {
+  const renderItem = ({ item }) => {
     return (
       <View key={item.id} style={{ marginVertical: normalize(20) }}>
-        <Card item={item} size="wide" />
+        <Card item={item} size={size} />
       </View>
     );
   };
+
+  let itemWidth = itemWidthBase;
+
+  if (size === 'wide') {
+    itemWidth = itemWidthWide;
+  }
+
+  if (size === 'small') {
+    itemWidth = itemWidthSmall;
+  }
 
   return (
     <View>

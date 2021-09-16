@@ -10,11 +10,19 @@ const wp = percentage => {
   return Math.round(value);
 };
 
-const slideWidth = wp(59);
+const slideWidthFull = wp(59);
+const slideWidthWide = wp(59);
+const slideWidthBase = wp(59);
+const slideWidthSmall = wp(29);
+
 const itemHorizontalMargin = wp(2);
 
 export const sliderWidth = viewportWidth;
-export const itemWidth = slideWidth + itemHorizontalMargin * 2;
+
+export const itemWidthFull = slideWidthFull + itemHorizontalMargin * 2;
+export const itemWidthWide = slideWidthWide + itemHorizontalMargin * 2;
+export const itemWidthBase = slideWidthBase + itemHorizontalMargin * 2;
+export const itemWidthSmall = slideWidthSmall + itemHorizontalMargin * 2;
 
 export const s = StyleSheet.create({
   nearbyImage: {

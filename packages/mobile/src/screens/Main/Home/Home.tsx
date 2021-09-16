@@ -31,8 +31,12 @@ export const HomeScreen = () => {
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={s.main} ref={ref} scrollsToTop={true}>
         <Stories />
         <Categories />
-        {!loadingNearby && !errorNearby && <HorizontalCardList title={`${t('home:nearby')}`} data={nearby} />}
-        {!loadingPopular && !errorPopular && <HorizontalCardList title={`${t('home:popular')}`} data={popular} />}
+        {!loadingNearby && !errorNearby && (
+          <HorizontalCardList title={`${t('home:nearby')}`} data={nearby} size="wide" />
+        )}
+        {!loadingPopular && !errorPopular && (
+          <HorizontalCardList title={`${t('home:popular')}`} data={popular} size="wide" />
+        )}
       </ScrollView>
     </SafeAreaView>
   );
