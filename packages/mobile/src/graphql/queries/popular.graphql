@@ -1,0 +1,5 @@
+query Popular {
+  popular {
+    ...RegularItem
+  }
+}

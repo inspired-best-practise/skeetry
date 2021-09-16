@@ -30,8 +30,37 @@ export type Auth = {
   user: User;
 };
 
+export type Country = {
+  __typename?: 'Country';
+  continent: Scalars['String'];
+  /** Identifies the date and time when the object was created. */
+  createdAt: Scalars['DateTime'];
+  flag?: Maybe<Scalars['String']>;
+  id: Scalars['ID'];
+  item?: Maybe<Array<Item>>;
+  locale: Locale;
+  localizations?: Maybe<Array<CountryLocalization>>;
+  name: Scalars['String'];
+  overview?: Maybe<Scalars['String']>;
+  /** Identifies the date and time when the object was last updated. */
+  updatedAt: Scalars['DateTime'];
+};
+
+export type CountryLocalization = {
+  __typename?: 'CountryLocalization';
+  /** Identifies the date and time when the object was created. */
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ID'];
+  locale: Locale;
+  name: Scalars['String'];
+  overview?: Maybe<Scalars['String']>;
+  /** Identifies the date and time when the object was last updated. */
+  updatedAt: Scalars['DateTime'];
+};
+
 export type Item = {
   __typename?: 'Item';
+  country: Country;
   /** Identifies the date and time when the object was created. */
   createdAt: Scalars['DateTime'];
   flag?: Maybe<Scalars['String']>;
@@ -140,12 +169,21 @@ export type MutationSignupArgs = {
 
 export type Query = {
   __typename?: 'Query';
+  countries: Array<Country>;
+  country: Country;
   itemTags: Array<ItemTag>;
   items: Array<Item>;
   me: User;
+  nearby: Array<Item>;
+  popular: Array<Item>;
   stories: Array<Story>;
   visited: Array<Item>;
   wanted: Array<Item>;
+};
+
+
+export type QueryCountryArgs = {
+  id: Scalars['Int'];
 };
 
 
@@ -258,6 +296,16 @@ export type MeQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type MeQuery = { __typename?: 'Query', me: { __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any } };
+
+export type NearbyQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type NearbyQuery = { __typename?: 'Query', nearby: Array<{ __typename?: 'Item', id: string, type: string, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, reviewsCount: number, photos: Array<string>, latitude: string, longitude: string, flag?: Maybe<string>, locale: Locale, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'ItemLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> }> };
+
+export type PopularQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type PopularQuery = { __typename?: 'Query', popular: Array<{ __typename?: 'Item', id: string, type: string, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, reviewsCount: number, photos: Array<string>, latitude: string, longitude: string, flag?: Maybe<string>, locale: Locale, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'ItemLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> }> };
 
 export type VisitedQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -642,6 +690,74 @@ export function useMeLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MeQuery
 export type MeQueryHookResult = ReturnType<typeof useMeQuery>;
 export type MeLazyQueryHookResult = ReturnType<typeof useMeLazyQuery>;
 export type MeQueryResult = Apollo.QueryResult<MeQuery, MeQueryVariables>;
+export const NearbyDocument = gql`
+    query Nearby {
+  nearby {
+    ...RegularItem
+  }
+}
+    ${RegularItemFragmentDoc}`;
+
+/**
+ * __useNearbyQuery__
+ *
+ * To run a query within a React component, call `useNearbyQuery` and pass it any options that fit your needs.
+ * When your component renders, `useNearbyQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useNearbyQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useNearbyQuery(baseOptions?: Apollo.QueryHookOptions<NearbyQuery, NearbyQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<NearbyQuery, NearbyQueryVariables>(NearbyDocument, options);
+      }
+export function useNearbyLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<NearbyQuery, NearbyQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<NearbyQuery, NearbyQueryVariables>(NearbyDocument, options);
+        }
+export type NearbyQueryHookResult = ReturnType<typeof useNearbyQuery>;
+export type NearbyLazyQueryHookResult = ReturnType<typeof useNearbyLazyQuery>;
+export type NearbyQueryResult = Apollo.QueryResult<NearbyQuery, NearbyQueryVariables>;
+export const PopularDocument = gql`
+    query Popular {
+  popular {
+    ...RegularItem
+  }
+}
+    ${RegularItemFragmentDoc}`;
+
+/**
+ * __usePopularQuery__
+ *
+ * To run a query within a React component, call `usePopularQuery` and pass it any options that fit your needs.
+ * When your component renders, `usePopularQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = usePopularQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function usePopularQuery(baseOptions?: Apollo.QueryHookOptions<PopularQuery, PopularQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<PopularQuery, PopularQueryVariables>(PopularDocument, options);
+      }
+export function usePopularLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PopularQuery, PopularQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<PopularQuery, PopularQueryVariables>(PopularDocument, options);
+        }
+export type PopularQueryHookResult = ReturnType<typeof usePopularQuery>;
+export type PopularLazyQueryHookResult = ReturnType<typeof usePopularLazyQuery>;
+export type PopularQueryResult = Apollo.QueryResult<PopularQuery, PopularQueryVariables>;
 export const VisitedDocument = gql`
     query Visited {
   visited {
