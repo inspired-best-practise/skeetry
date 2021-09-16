@@ -34,10 +34,10 @@ export const ItemsByTagScreen = ({ route }) => {
       <StatusBar barStyle="light-content" animated translucent backgroundColor="rgba(255,255,255,100)" />
       <ModalControl />
       <View style={{ paddingTop: 100, display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-        <View style={{ marginRight: 5 }}>
+        <Text style={tTitle}>{withLocalization('name', name, locale, localizations)}</Text>
+        <View style={{ marginLeft: 5 }}>
           <Text>{emoji}</Text>
         </View>
-        <Text style={tTitle}>{withLocalization('name', name, locale, localizations)}</Text>
       </View>
       <View style={{ paddingTop: 20 }}>
         {items && items.length !== 0 && !error ? (

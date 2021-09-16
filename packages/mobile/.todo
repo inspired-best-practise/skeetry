@@ -4,6 +4,8 @@ Refactoring:
    ☐ Refactor navigation
    ☐ Add wrapper for formSheet screens with StatusBar and ModalControl
    ☐ Update design
+   ☐ Small cards from Carousel to ScrollView
+   ☐ Auth: delete duplicated styles
   
 Global bugs:
    ✔ Fix open animation react-navigation-shared-element with react-native-safe-area-context (https://github.com/IjzerenHein/react-navigation-shared-element/issues/187) @done(21-09-11 15:18)
@@ -32,11 +34,16 @@ Features:
    ☐ Implement skeleton
    ☐ Update bottomsheet (@gorhom/bottom-sheet@^4)
    ☐ Implement blurhash (woltapp/blurhash)
+   ☐ Create activities and have other travellers joining your adventure*
+
+Auth:
+   ☐ Form with yup + react-hook-form / formik
+   ☐ Add form wrapper with SafeAreaView + KeyboardAvoidingView + TouchableWithoutFeedback 
 
 Login: 
    ✔ Add KeyboardAvoidingView @done(21-09-15 16:49)
    ✔ Fix blink screen when isAuthenticated @done(21-09-09 15:30)
-
+   
 Registration:
    ☐ Implement module
 
@@ -46,6 +53,7 @@ Home:
 
 Explore: 
    ✔ Rethink this page @done(21-09-16 12:11)
+   ☐ Add "Must see" section
 
 Card: 
    ☐ Fix bottom sheet blink
