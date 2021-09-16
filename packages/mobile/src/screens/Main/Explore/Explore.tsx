@@ -1,14 +1,14 @@
 import React from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { SafeAreaView } from 'react-native';
+import 'react-native-safe-area-context';
 
-import { s } from './styles';
+import ExploreTabs from '_app/navigations/ExploreTab';
 
 export const ExploreScreen = () => {
   return (
-    <ScrollView style={s.categoryList}>
-      <View style={s.categories}>
-        <Text style={s.categoriesTitle}>Find where you want to go</Text>
-      </View>
-    </ScrollView>
+    <>
+      <SafeAreaView />
+      <ExploreTabs />
+    </>
   );
 };

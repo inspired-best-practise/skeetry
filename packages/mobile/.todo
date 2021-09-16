@@ -21,7 +21,7 @@ Features:
    ☐ Implement refresh token when accessToken is expired (codegen hooks problem)
    ✔ Add GraphQL service @done(21-09-07 15:31)
    ☐ Add dark mode
-   ☐ Add new screen with swipe cards
+   ✘ Add new screen with swipe cards @cancelled(21-09-16 12:11)
    ☐ Type storage
    ☐ Implement push notifications
    ✔ Implement Sentry @done(21-09-11 23:07)
@@ -45,7 +45,7 @@ Home:
    ☐ Add "Popular itineraries" section
 
 Explore: 
-   ☐ Rethink this page
+   ✔ Rethink this page @done(21-09-16 12:11)
 
 Card: 
    ☐ Fix bottom sheet blink

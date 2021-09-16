@@ -32,4 +32,5 @@ const Index = (): JSX.Element => {
     </RootTab.Navigator>
   );
 };
+
 export default Index;

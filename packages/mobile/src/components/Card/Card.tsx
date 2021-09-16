@@ -15,8 +15,6 @@ export const Card = ({ item, size }: TCardProps) => {
   const { photos, name, id, rating, country, locale, localizations } = item;
   const [active, setActive] = useState(0);
 
-  console.log('country', country);
-
   const changeItem = nativeEvent => {
     if (nativeEvent) {
       const slide = Math.ceil(nativeEvent.contentOffset.x / nativeEvent.layoutMeasurement.width);
@@ -163,7 +161,7 @@ export const Card = ({ item, size }: TCardProps) => {
         {withLocalization('name', name, locale, localizations)}
       </Text>
       <Text numberOfLines={1} style={s.itemDesc}>
-        {withLocalization('name', name, locale, localizations)}
+        {withLocalization('country.name', country.name, locale, localizations)}
       </Text>
     </View>
   );

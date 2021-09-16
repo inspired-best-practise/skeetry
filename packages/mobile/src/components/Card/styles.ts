@@ -67,8 +67,8 @@ export const s = StyleSheet.create({
     right: normalize(10),
     position: 'absolute',
     backgroundColor: colors.white,
-    height: normalize(34),
-    width: normalize(34),
+    height: normalize(30),
+    width: normalize(30),
     borderRadius: radius.full,
     justifyContent: 'center',
     alignItems: 'center',
@@ -81,7 +81,7 @@ export const s = StyleSheet.create({
     textAlign: 'center',
   },
   flagText: {
-    fontSize: 18,
+    fontSize: 16,
   },
   rating: {
     display: 'flex',
@@ -104,5 +104,7 @@ export const s = StyleSheet.create({
     marginTop: normalize(2),
     width: normalize(240),
     ...tSmallRegular,
+    // TODO: color from constants
+    color: 'rgba(0,0,0,.5)',
   },
 });

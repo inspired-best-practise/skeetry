@@ -2,7 +2,7 @@ import React from 'react';
 import { SafeAreaView, View, Text, StatusBar } from 'react-native';
 
 import { CardList, ModalControl } from '_app/components';
-import { tBase } from '_app/constants';
+import { tTitle } from '_app/constants';
 import { useItemsQuery } from '_app/generated/graphql';
 import { withLocalization } from '_app/utils/helpers';
 
@@ -33,11 +33,11 @@ export const ItemsByTagScreen = ({ route }) => {
     <SafeAreaView style={s.container}>
       <StatusBar barStyle="light-content" animated translucent backgroundColor="rgba(255,255,255,100)" />
       <ModalControl />
-      <View style={{ paddingTop: 100 }}>
-        <View>
+      <View style={{ paddingTop: 100, display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+        <View style={{ marginRight: 5 }}>
           <Text>{emoji}</Text>
         </View>
-        <Text style={tBase}>{withLocalization('name', name, locale, localizations)}</Text>
+        <Text style={tTitle}>{withLocalization('name', name, locale, localizations)}</Text>
       </View>
       <View style={{ paddingTop: 20 }}>
         {items && items.length !== 0 && !error ? (

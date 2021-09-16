@@ -3,7 +3,6 @@ import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
 import React from 'react';
 import { Platform } from 'react-native';
-// import * as Icon from 'react-native-heroicons/outline';
 import Icon from 'react-native-vector-icons/Feather';
 import { createSharedElementStackNavigator } from 'react-navigation-shared-element';
 
@@ -143,7 +142,13 @@ const ExploreStack = () => {
       }}
       headerMode="float"
     >
-      <SharedElementStack.Screen name="Explore" component={ExploreScreen} />
+      <SharedElementStack.Screen
+        name="Explore"
+        component={ExploreScreen}
+        options={({ route }) => ({
+          headerShown: false,
+        })}
+      />
       <SharedElementStack.Screen
         name="CardScreen"
         component={CardScreen}
