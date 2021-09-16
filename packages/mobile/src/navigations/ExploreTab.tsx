@@ -8,6 +8,7 @@ import { normalize } from '_app/utils/dimensions';
 
 const Tab = createMaterialTopTabNavigator();
 
+// TODO: move to components
 function MyTabBar({ state, descriptors, navigation, position }) {
   return (
     <View style={{ flexDirection: 'row', marginHorizontal: 20, marginTop: normalize(10), marginBottom: normalize(20) }}>
