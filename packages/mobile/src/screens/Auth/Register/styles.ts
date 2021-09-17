@@ -36,4 +36,10 @@ export const s = StyleSheet.create({
     paddingHorizontal: normalize(15),
     ...tInput,
   },
+  errorLogin: {
+    color: 'red',
+    marginVertical: normalize(10),
+    width: '100%',
+    alignItems: 'center',
+  },
 });
