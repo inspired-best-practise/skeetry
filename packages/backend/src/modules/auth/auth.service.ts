@@ -32,7 +32,7 @@ export class AuthService {
     await twilioClient.messages
       .create({
         body: `${code}`,
-        from: '+14246108734',
+        from: process.env.TWILIO_PHONE,
         to: `+${phone}`,
       })
       .then((message) => console.log(message.sid))
