@@ -1,19 +1,16 @@
 import { StyleSheet } from 'react-native';
 
 import { colors, radius, tInput, tSmall } from '_app/constants';
-import { normalize, SCREEN_HEIGHT, SCREEN_WIDTH, STATUS_BAR_HEIGHT } from '_app/utils/dimensions';
+import { normalize } from '_app/utils/dimensions';
 
 import { tButton, tSmallSemibold } from './../../../constants/globalStyle';
 
 export const s = StyleSheet.create({
-  container: {
-    height: SCREEN_HEIGHT,
-  },
   formTitle: {
     marginBottom: normalize(30),
   },
   btnLogin: {
-    marginTop: normalize(10),
+    marginVertical: normalize(10),
     width: '100%',
     height: normalize(45),
     borderRadius: radius.base,
@@ -42,9 +39,8 @@ export const s = StyleSheet.create({
     ...tInput,
   },
   forgotPassword: {
-    width: 'auto',
+    width: '100%',
     marginVertical: normalize(20),
-    justifyContent: 'flex-end',
     alignItems: 'flex-end',
     ...tSmall,
   },
@@ -52,12 +48,12 @@ export const s = StyleSheet.create({
     ...tSmall,
   },
   registerWrapper: {
-    flex: 2,
     height: normalize(50),
     justifyContent: 'center',
     alignItems: 'center',
     borderTopColor: colors.lineGray,
     borderTopWidth: 1,
+    marginTop: 'auto',
   },
   registerWrapperText: {
     textAlign: 'center',
@@ -68,7 +64,8 @@ export const s = StyleSheet.create({
   },
   errorLogin: {
     color: 'red',
-    marginTop: normalize(20),
-    textAlign: 'center',
+    marginVertical: normalize(10),
+    width: '100%',
+    alignItems: 'center',
   },
 });

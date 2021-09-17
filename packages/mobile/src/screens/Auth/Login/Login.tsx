@@ -1,5 +1,6 @@
 import { ApolloError } from '@apollo/client';
 import React, { useEffect, useState } from 'react';
+import { useForm, Controller } from 'react-hook-form';
 import { View, Text, TouchableOpacity, SafeAreaView } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 
@@ -12,27 +13,29 @@ import { authStore } from '_app/stores';
 import { s } from './styles';
 
 export const LoginScreen = () => {
-  const [allowLogin, setAllowLogin] = useState(false);
   const [hidePassword, setHidePassword] = useState(true);
-  const [username, onChangeUsername] = useState<string>('');
-  const [password, onChangePasword] = useState<string>('');
   const [errorLogin, setErrorLogin] = useState<ApolloError>();
 
   const setTokens = authStore(state => state.setTokens);
   const setUser = authStore(state => state.setUser);
   const setLogin = authStore(state => state.setLogin);
 
-  const [login, { loading, data, error }] = useLoginMutation({
-    variables: { input: { username, password } },
-  });
+  const [login, { loading, data, error }] = useLoginMutation();
 
-  useEffect(() => {
-    if (username.length !== 0 && password.length !== 0) {
-      return setAllowLogin(true);
-    }
-
-    return setAllowLogin(false);
-  }, [username, password]);
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = ({ username, password }) =>
+    login({
+      variables: {
+        input: {
+          username,
+          password,
+        },
+      },
+    });
 
   useEffect(() => {
     setErrorLogin(error);
@@ -50,36 +53,60 @@ export const LoginScreen = () => {
   }, [data]);
 
   return (
-    <SafeAreaView style={s.container}>
-      <FormWrapper>
+    <SafeAreaView>
+      <FormWrapper verticalOffset={-40}>
         <Text style={[tLogo, s.formTitle]}>Skeetry</Text>
-        <View style={s.textInputWrapper}>
-          <TextInput
-            autoCapitalize="none"
-            placeholder="Username"
-            onChangeText={onChangeUsername}
-            style={s.input}
-            spellCheck={false}
-          />
-        </View>
-        <View style={s.textInputWrapper}>
-          <TextInput
-            secureTextEntry
-            autoCapitalize="none"
-            placeholder="Password"
-            onChangeText={onChangePasword}
-            style={s.input}
-            spellCheck={false}
-          />
-        </View>
+        <Controller
+          control={control}
+          rules={{
+            required: true,
+          }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <View style={s.textInputWrapper}>
+              <TextInput
+                style={s.input}
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
+                autoCapitalize="none"
+                placeholder="Username"
+                spellCheck={false}
+              />
+            </View>
+          )}
+          name="username"
+          defaultValue=""
+        />
+        {errors.username && <Text style={s.errorLogin}>Username is required.</Text>}
+        <Controller
+          control={control}
+          rules={{
+            required: true,
+          }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <View style={s.textInputWrapper}>
+              <TextInput
+                style={s.input}
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
+                autoCapitalize="none"
+                placeholder="Password"
+                spellCheck={false}
+                secureTextEntry
+              />
+            </View>
+          )}
+          name="password"
+          defaultValue=""
+        />
+        {errors.password && <Text style={s.errorLogin}>Password is required.</Text>}
         <TouchableOpacity onPress={() => navigation.push('ForgotPassword')} style={s.forgotPassword} activeOpacity={1}>
           <Text style={s.forgotPasswordText}>Forgot your password?</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => {
-            login();
-          }}
-          disabled={!allowLogin && !loading}
+          onPress={handleSubmit(onSubmit)}
+          disabled={loading}
           activeOpacity={0.6}
           // eslint-disable-next-line react-native/no-inline-styles
           style={{
@@ -89,7 +116,7 @@ export const LoginScreen = () => {
         >
           <Text style={s.btnLoginText}>{!loading ? 'Login' : 'Loading...'}</Text>
         </TouchableOpacity>
-        <Text style={[s.errorLogin, errorLogin ? { opacity: 1 } : { opacity: 0 }]}>
+        <Text style={[s.errorLogin, errorLogin ? { opacity: 1, textAlign: 'center' } : { opacity: 0 }]}>
           {errorLogin && errorLogin.message}
         </Text>
       </FormWrapper>
