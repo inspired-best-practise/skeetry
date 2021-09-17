@@ -6,11 +6,16 @@ Features:
   ☐ Implement Sentry
   ☐ Get nearby sights, places, cities, countries by user geolocation
   ☐ Implement graphql-upload
+  ✔ Implement twilio @done(21-09-17 17:45)
 
 Deploy:
   ✔ Fix bcrypt error - only in Docker (Solution: hash-wasm) @done(21-09-15 10:12)
   ✔ Fix railway build @done(21-09-06 12:40)
   ☐ Set up a github CI to deploy to hetzner
+
+Auth module:
+  ✔ Implement login @done(21-09-17 19:04)
+  ✔ Implement signup @done(21-09-17 19:04)
 
 Story module:
   ☐ Add show date to story model (is this a normal solution?)

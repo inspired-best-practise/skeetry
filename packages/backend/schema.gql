@@ -126,10 +126,12 @@ input LoginInput {
 
 type Mutation {
   addItem(input: ActionItemInput!): Item!
+  confirmSmsCode(code: String!, phone: String!): Boolean!
   login(input: LoginInput!): Auth!
   moveItem(input: ActionItemInput!): Item!
   refreshToken: Token!
   removeItem(input: ActionItemInput!): Item!
+  sendSmsCode(phone: String!): Boolean!
   signup(input: SignupInput!): Auth!
 }
 
@@ -147,6 +149,7 @@ type Query {
 }
 
 input SignupInput {
+  code: String!
   password: String!
   phone: String!
   username: String!

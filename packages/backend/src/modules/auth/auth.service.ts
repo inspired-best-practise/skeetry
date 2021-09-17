@@ -13,6 +13,7 @@ import { Token } from './models/token.model';
 import { ConfigService } from '@nestjs/config';
 import { SecurityConfig } from '../../config/config.interface';
 import { PrismaService } from '../prisma/prisma.service';
+import { generateSmsCode, twilioClient } from '../../utils';
 
 @Injectable()
 export class AuthService {
@@ -23,13 +24,105 @@ export class AuthService {
     private readonly config: ConfigService,
   ) {}
 
-  async createUser(payload: SignupInput): Promise<Token> {
-    const hashedPassword = await this.password.hashPassword(payload.password);
+  async sendSmsCode(phone: string) {
+    const code = generateSmsCode();
+
+    let hasError = null;
+
+    await twilioClient.messages
+      .create({
+        body: `${code}`,
+        from: '+14246108734',
+        to: `+${phone}`,
+      })
+      .then((message) => console.log(message.sid))
+      .catch((error) => (hasError = error));
+
+    if (hasError) {
+      return false;
+    }
+
+    const sms = await this.prisma.sms.create({
+      data: {
+        phone,
+        code: `${code}`,
+      },
+    });
+
+    if (!sms) {
+      return false;
+    }
+
+    return true;
+  }
+
+  async confirmSmsCode(phone: string, code: string) {
+    const sms = await this.prisma.sms.findFirst({
+      where: {
+        phone,
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+
+    if (!sms || sms.code !== `${code}`) {
+      return false;
+    }
+
+    const smsConfirmed = await this.prisma.sms.update({
+      where: {
+        id: sms.id,
+      },
+      data: {
+        confirmed: true,
+      },
+    });
+
+    if (!smsConfirmed) {
+      return false;
+    }
+
+    return true;
+  }
+
+  async signup(input: SignupInput): Promise<Token> {
+    const { phone, username, code, password } = input;
+
+    const phoneConfirmed = await this.prisma.sms.findFirst({
+      where: {
+        AND: [
+          {
+            code,
+          },
+          {
+            confirmed: true,
+          },
+        ],
+      },
+    });
+
+    if (!phoneConfirmed) {
+      throw new Error('This phone is not confirmed');
+    }
+
+    const phoneAlreadyUsed = await this.prisma.user.findFirst({
+      where: {
+        phone,
+      },
+    });
+
+    if (phoneAlreadyUsed) {
+      throw new Error('This phone is already in use.');
+    }
+
+    const hashedPassword = await this.password.hashPassword(password);
 
     try {
       const user = await this.prisma.user.create({
         data: {
-          ...payload,
+          phone,
+          username,
           password: hashedPassword,
         },
       });
@@ -42,9 +135,7 @@ export class AuthService {
         e instanceof Prisma.PrismaClientKnownRequestError &&
         e.code === 'P2002'
       ) {
-        throw new ConflictException(
-          `Username ${payload.username} already used.`,
-        );
+        throw new ConflictException(`This username is already in use.`);
       } else {
         throw new Error(e);
       }

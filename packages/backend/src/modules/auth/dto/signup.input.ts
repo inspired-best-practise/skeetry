@@ -15,4 +15,10 @@ export class SignupInput {
   @IsNotEmpty()
   @MinLength(8)
   password: string;
+
+  @Field()
+  @IsNotEmpty()
+  @MinLength(4)
+  @MaxLength(4)
+  code: string;
 }

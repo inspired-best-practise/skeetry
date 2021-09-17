@@ -11,10 +11,23 @@ import { RefreshTokenInput } from './dto/refresh-token.input';
 export class AuthResolver {
   constructor(private readonly auth: AuthService) {}
 
+  @Mutation(() => Boolean)
+  async sendSmsCode(@Args('phone') phone: string) {
+    return this.auth.sendSmsCode(phone);
+  }
+
+  @Mutation(() => Boolean)
+  async confirmSmsCode(
+    @Args('phone') phone: string,
+    @Args('code') code: string,
+  ) {
+    return this.auth.confirmSmsCode(phone, code);
+  }
+
   @Mutation(() => Auth)
   async signup(@Args('input') input: SignupInput) {
     input.username = input.username.toLowerCase();
-    const { accessToken, refreshToken } = await this.auth.createUser(input);
+    const { accessToken, refreshToken } = await this.auth.signup(input);
     return {
       accessToken,
       refreshToken,
