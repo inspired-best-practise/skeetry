@@ -9,8 +9,8 @@ export const s = StyleSheet.create({
   container: {
     height: SCREEN_HEIGHT,
   },
-  loginForm: {
-    width: SCREEN_WIDTH * 0.9,
+  formTitle: {
+    marginBottom: normalize(30),
   },
   btnLogin: {
     marginTop: normalize(10),
@@ -58,12 +58,6 @@ export const s = StyleSheet.create({
     alignItems: 'center',
     borderTopColor: colors.lineGray,
     borderTopWidth: 1,
-  },
-  centerContainer: {
-    height: SCREEN_HEIGHT - 50 - 40 - STATUS_BAR_HEIGHT,
-    width: SCREEN_WIDTH,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   registerWrapperText: {
     textAlign: 'center',

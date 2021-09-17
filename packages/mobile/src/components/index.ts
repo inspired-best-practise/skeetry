@@ -13,3 +13,4 @@ export * from './ProfileFilter';
 export * from './ProfileFilter/ProfileFilterItem';
 export * from './Button';
 export * from './HorizontalCardList';
+export * from './FormWrapper';

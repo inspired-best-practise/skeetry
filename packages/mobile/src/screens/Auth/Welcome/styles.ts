@@ -1,16 +1,14 @@
 import { StyleSheet } from 'react-native';
 
 import { radius, colors, tButton } from '_app/constants';
-import { SCREEN_WIDTH, normalize } from '_app/utils/dimensions';
+import { normalize } from '_app/utils/dimensions';
 
 export const s = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  loginForm: {
-    width: SCREEN_WIDTH * 0.9,
+    paddingHorizontal: normalize(20),
   },
   btnLogin: {
     marginTop: normalize(10),
