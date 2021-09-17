@@ -15,7 +15,6 @@ export const CredentialsScreen = () => {
   } = useForm();
   const onSubmit = ({ username, password }) => {
     console.log('username', username);
-    console.log('password', password);
     return navigation.push('Welcome');
   };
 
