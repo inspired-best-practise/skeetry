@@ -8,7 +8,7 @@ import { colors, tTitle } from '_app/constants';
 import { normalize } from '_app/utils/dimensions';
 
 import { Card } from '../Card';
-import { itemWidthBase, itemWidthFull, itemWidthSmall, itemWidthWide, s, sliderWidth } from './styles';
+import { itemWidthBase, itemWidthSmall, itemWidthWide, s, sliderWidth } from './styles';
 
 export const HorizontalCardList = ({ title, data, size }) => {
   const renderItem = ({ item }) => {

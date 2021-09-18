@@ -9,13 +9,7 @@ import { THomeTabParamList } from 'types';
 
 import { TabBarComponent } from '_app/components/BottomTabBar';
 import { colors } from '_app/constants';
-import {
-  HomeScreen,
-  ProfileScreen,
-  AddScreen,
-  ExploreScreen,
-  CardScreen, // ActivityScreen,
-} from '_app/screens/Main';
+import { HomeScreen, ProfileScreen, AddScreen, ExploreScreen, CardScreen } from '_app/screens/Main';
 import { SwipesScreen } from '_app/screens/Main/Swipes';
 
 export const iosTransitionSpec = {
@@ -107,19 +101,6 @@ const ProfileStack = () => {
     </SharedElementStack.Navigator>
   );
 };
-
-// const ActivityStack = () => {
-//   return (
-//     <Stack.Navigator
-//       screenOptions={{
-//         headerShown: false,
-//         gestureEnabled: false,
-//       }}
-//     >
-//       <Stack.Screen name="ActiviyIndex" component={ActivityScreen} />
-//     </Stack.Navigator>
-//   );
-// };
 
 const ExploreStack = () => {
   return (
@@ -291,13 +272,6 @@ const HomeTab = () => {
         component={SwipesStack}
         name="SwipesPage"
       />
-      {/* <Tab.Screen
-        options={({ route }) => ({
-          tabBarIcon: ({ focused }) => <Icon.HeartIcon size={26} color={focused ? colors.gray900 : colors.gray300} />,
-        })}
-        component={ActivityStack}
-        name="ActivityPage"
-      /> */}
       <Tab.Screen
         options={({ route }) => ({
           tabBarVisible: getTabBarVisible(route),

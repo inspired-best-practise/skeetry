@@ -13,6 +13,7 @@ Global bugs:
    ☐ Fix SplashScreen
    ☐ Fix refetch animation on Profile screen
    ☐ Fix tsconfig/eslint for normal editor highlighting
+   ☐ Fix Podfile
 
 Features:
    ✔ Get device language @done(21-09-06 16:42)
@@ -32,13 +33,13 @@ Features:
    ☐ Add "custom trip creator"
    ☐ Implement bootsplash
    ☐ Implement skeleton
-   ☐ Update bottomsheet (@gorhom/bottom-sheet@^4)
+   ✔ Update bottomsheet (@gorhom/bottom-sheet@^4) @done(21-09-18 20:13)
    ☐ Implement blurhash (woltapp/blurhash)
    ☐ Create activities and have other travellers joining your adventure*
    ☐ Show/Hide password
 
 Auth:
-   ☐ Form with yup + react-hook-form / formik
+   ✔ Form with yup + react-hook-form / formik @done(21-09-18 20:23)
    ✔ Add form wrapper with KeyboardAvoidingView + TouchableWithoutFeedback @done(21-09-17 13:42)
 
 Login: 

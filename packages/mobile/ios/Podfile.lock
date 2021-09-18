@@ -405,7 +405,7 @@ PODS:
     - React-Core
   - RNLocalize (2.1.4):
     - React-Core
-  - RNReanimated (2.0.0):
+  - RNReanimated (2.2.2):
     - DoubleConversion
     - FBLazyVector
     - FBReactNativeSpec
@@ -756,7 +756,7 @@ SPEC CHECKSUMS:
   RNFastImage: adef7f9c9a7aeca0141807ee5a8be8a3eb240dd8
   RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
   RNLocalize: 7f1e5792b65a839af55a9552d05b3558b66d017e
-  RNReanimated: 836ef66d2a5cb96b957eceb4b8462fdf8c5e9f19
+  RNReanimated: ad24db8af24e3fe1b5c462785bc3db8d5baae2ee
   RNScreens: 0591543e343c7444ea1756b6265d81a4295922c9
   RNSentry: a3c522c9f17f191e4972c3e4d6065aba253b593e
   RNShare: 072f63d19c2b90da3742adac614396d805e7ae22

@@ -122,7 +122,7 @@ export const CardScreen = ({ route, navigation }) => {
   const renderContent = () => (
     <Animated.View style={[s.content]}>
       <View style={s.section}>
-        <Text style={s.name}>{item.flag + ' ' + item.name}</Text>
+        <Text style={s.name}>{item.country.flag + ' ' + item.name}</Text>
       </View>
       <View style={s.section}>
         <View style={s.cardButtons}>
@@ -220,12 +220,12 @@ export const CardScreen = ({ route, navigation }) => {
       }}
     >
       <StatusBar barStyle="light-content" animated translucent backgroundColor="rgba(255,255,255,100)" />
-      <SharedElement id={`item.${item.id}.image`}>
+      <SharedElement id={`item.${item.id}.photo`}>
         <Image
           style={s.cardImage}
           source={{
-            uri: item.images
-              ? item.images[2].src
+            uri: item.photos
+              ? item.photos[0]
               : 'https://images.unsplash.com/photo-1503614472-8c93d56e92ce?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1299&q=80/250x300',
           }}
           resizeMode="cover"
