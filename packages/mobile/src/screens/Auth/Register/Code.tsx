@@ -1,22 +1,43 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { View, Text, TouchableOpacity, SafeAreaView, TextInput } from 'react-native';
 
 import { FormWrapper } from '_app/components';
+import { useConfirmSmsCodeMutation } from '_app/generated/graphql';
 import { navigation } from '_app/services/navigations';
+import { regStore } from '_app/stores';
 
 import { s } from './styles';
 
 export const CodeScreen = () => {
+  const [confirmSmsCodeMutation, { data, loading, error }] = useConfirmSmsCodeMutation();
+
+  const phone = regStore(state => state.phone);
+  const setCode = regStore(state => state.setCode);
+
   const {
     control,
     handleSubmit,
     formState: { errors },
+    getValues,
   } = useForm();
   const onSubmit = ({ code }) => {
-    console.log('code', code);
-    return navigation.push('Credentials');
+    confirmSmsCodeMutation({
+      variables: {
+        phone,
+        code,
+      },
+    });
   };
+
+  useEffect(() => {
+    if (data && data.confirmSmsCode === true) {
+      setCode(getValues().code);
+      return navigation.push('Credentials');
+    }
+  }, [data]);
+
+  // TODO: handle data.confirmSmsCode === false
 
   return (
     <SafeAreaView style={s.container}>
@@ -44,14 +65,16 @@ export const CodeScreen = () => {
         <TouchableOpacity
           onPress={handleSubmit(onSubmit)}
           activeOpacity={0.6}
+          disabled={loading}
           // eslint-disable-next-line react-native/no-inline-styles
           style={{
             ...s.btnLogin,
             opacity: 1,
           }}
         >
-          <Text style={s.btnLoginText}>Next</Text>
+          <Text style={s.btnLoginText}>{!loading ? 'Next' : 'Loading...'}</Text>
         </TouchableOpacity>
+        {error && <Text style={[s.errorLogin, { textAlign: 'center' }]}>{error.message}</Text>}
       </FormWrapper>
     </SafeAreaView>
   );

@@ -25,6 +25,16 @@ export class AuthService {
   ) {}
 
   async sendSmsCode(phone: string) {
+    const phoneAlreadyUsed = await this.prisma.user.findFirst({
+      where: {
+        phone,
+      },
+    });
+
+    if (phoneAlreadyUsed) {
+      throw new Error('This phone is already in use.');
+    }
+
     const code = generateSmsCode();
 
     let hasError = null;
@@ -104,16 +114,6 @@ export class AuthService {
 
     if (!phoneConfirmed) {
       throw new Error('This phone is not confirmed');
-    }
-
-    const phoneAlreadyUsed = await this.prisma.user.findFirst({
-      where: {
-        phone,
-      },
-    });
-
-    if (phoneAlreadyUsed) {
-      throw new Error('This phone is already in use.');
     }
 
     const hashedPassword = await this.password.hashPassword(password);
