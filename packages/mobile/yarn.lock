@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@apollo/client@^3.4.11":
-  version "3.4.11"
-  resolved "https://registry.yarnpkg.com/@apollo/client/-/client-3.4.11.tgz#19cc27abe59d0cdcc1d357b30a89ebec8bb2b072"
-  integrity sha512-+A0z/Vy7sDg1uyijv3t9w1U0ybxn0bSpMUZHpsb2cLg/zM8fEHQ217226buzJ+cPUA1GVfJ8n6JsiN26RchvNA==
+"@apollo/client@^3.4.12":
+  version "3.4.12"
+  resolved "https://registry.yarnpkg.com/@apollo/client/-/client-3.4.12.tgz#7f1f5ff0988ccd736ea666cdc54eb4e62e860b5d"
+  integrity sha512-k4Hsl+4zhqruKnI7iFIYzi7JGZgodrUEF/XF9gXde3blxMwID2zKj+pKB8vQ8MWEbfRMeuEno+PZkatR2nE8Mw==
   dependencies:
     "@graphql-typed-document-node/core" "^3.0.0"
     "@wry/context" "^0.6.0"
@@ -8338,15 +8338,15 @@ react-native-config@^1.4.4:
   resolved "https://registry.yarnpkg.com/react-native-config/-/react-native-config-1.4.4.tgz#e0e10802d1e61ef051040c84dfd19f85a5984620"
   integrity sha512-bu47sJHn/HrB7COAWBI8DieAhrbFLINHFE2HBCcVkDu0Y5ScrMs6vL+jhIm+pMSgxouseLhXG8h7xYYpxE38PA==
 
-react-native-device-info@^8.3.2:
-  version "8.3.2"
-  resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-8.3.2.tgz#6039746adced97593b5b3b105c90f743bc1ce855"
-  integrity sha512-TgCrA2Pk+DC+IBhN8kH+x1wTFRSFW9q9UC70rAxf1Qe0q0Fwoxx8szYnGs+kD1TK3yn/5MIZnNNvzUl82INhZQ==
+react-native-device-info@^8.3.3:
+  version "8.3.3"
+  resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-8.3.3.tgz#05c1900602d174b58c6ac927d748a785d76d0898"
+  integrity sha512-l8/3MHq6O9PRWSrKwy63WvDCnt8IXOce86AEkJFVVtKR9cAGLLaFyXUGyqIc5T/kpCyOqofOattVDjZGUn/zAQ==
 
-react-native-fast-image@^8.5.5:
-  version "8.5.5"
-  resolved "https://registry.yarnpkg.com/react-native-fast-image/-/react-native-fast-image-8.5.5.tgz#2ebbe08868e74c8f29d401541de41ae01125c772"
-  integrity sha512-6OHZD6UPkopWMjZMd2v7Nl+dKnwpw2NdluL+vvQJNUibnB6HldCQgytNQy/0lqMbG1XcjqiHbE7X+50MJD99bQ==
+react-native-fast-image@^8.5.8:
+  version "8.5.8"
+  resolved "https://registry.yarnpkg.com/react-native-fast-image/-/react-native-fast-image-8.5.8.tgz#6f685ecbff5d8f74f33fc3c6b38c4eea9b33a6fd"
+  integrity sha512-yVVKKPIbk6HrFwC+RynJluGb23Vy8TVQ4gN/Y9LyGaohDoRaxbwZzWdUA4CuT63ILImf5IqOmokypuTVQAD99w==
 
 react-native-gesture-handler@^1.10.3:
   version "1.10.3"
