@@ -749,7 +749,6 @@
 					"\"${PODS_ROOT}/Headers/Public/RNDeviceInfo\"",
 					"\"${PODS_ROOT}/Headers/Public/RNFastImage\"",
 					"\"${PODS_ROOT}/Headers/Public/RNGestureHandler\"",
-					"\"${PODS_ROOT}/Headers/Public/RNReanimated\"",
 					"\"${PODS_ROOT}/Headers/Public/RNSVG\"",
 					"\"${PODS_ROOT}/Headers/Public/RNScreens\"",
 					"\"${PODS_ROOT}/Headers/Public/RNSharedElement\"",

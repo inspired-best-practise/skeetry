@@ -12,7 +12,7 @@ Global bugs:
    ☐ Fix close animation react-navigation-shared-element if used in two stacks (Explore and Profile)
    ☐ Fix SplashScreen
    ☐ Fix refetch animation on Profile screen
-   ☐ Fix tsconfig for normal editor highlighting
+   ☐ Fix tsconfig/eslint for normal editor highlighting
 
 Features:
    ✔ Get device language @done(21-09-06 16:42)
@@ -35,6 +35,7 @@ Features:
    ☐ Update bottomsheet (@gorhom/bottom-sheet@^4)
    ☐ Implement blurhash (woltapp/blurhash)
    ☐ Create activities and have other travellers joining your adventure*
+   ☐ Show/Hide password
 
 Auth:
    ☐ Form with yup + react-hook-form / formik
@@ -61,6 +62,12 @@ Card:
 
 Profile: 
    ☐ Statistics screen: Countries statistic like Asia 5%, Europa 10%
+
+Search:
+   ☐ Add "Search" input
+   ☐ Add "Recommened" section
+   ☐ Update "Categories" section
+   ☐ Add "Travelers" section
 
 Deploy:
   ☐ Create apple developer account

@@ -1,5 +1,6 @@
 import { createMaterialTopTabNavigator, MaterialTopTabNavigationOptions } from '@react-navigation/material-top-tabs';
 import React from 'react';
+import { TRootStackParamList } from 'types';
 
 import { authStore } from '_app/stores';
 

@@ -1,5 +1,6 @@
 import { createStackNavigator, StackNavigationOptions } from '@react-navigation/stack';
 import React from 'react';
+import { TAuthStackParamList } from 'types';
 
 import {
   ForgotPasswordScreen,

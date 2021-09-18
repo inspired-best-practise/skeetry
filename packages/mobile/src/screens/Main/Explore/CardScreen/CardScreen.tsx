@@ -1,4 +1,5 @@
-import React, { useEffect, useRef } from 'react';
+import BottomSheet from '@gorhom/bottom-sheet';
+import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 import {
   View,
   Text,
@@ -14,7 +15,6 @@ import * as Icon from 'react-native-heroicons/solid';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { SharedElement } from 'react-navigation-shared-element';
-import BottomSheet from 'reanimated-bottom-sheet';
 
 import { mapGfxStyle } from '_app/constants';
 import { useAddItemMutation, useMoveItemMutation, useRemoveItemMutation } from '_app/generated/graphql';
@@ -191,7 +191,11 @@ export const CardScreen = ({ route, navigation }) => {
     </Animated.View>
   );
 
-  const sheetRef = useRef(null);
+  const bottomSheetRef = useRef<BottomSheet>(null);
+  const snapPoints = useMemo(() => [650, 450], []);
+  const handleSheetChanges = useCallback((index: number) => {
+    console.log('handleSheetChanges', index);
+  }, []);
 
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
@@ -232,19 +236,9 @@ export const CardScreen = ({ route, navigation }) => {
           <Icon.XIcon size={18} color={'black'} />
         </Animated.View>
       </TouchableWithoutFeedback>
-      <BottomSheet
-        ref={sheetRef}
-        snapPoints={[650, 450]}
-        initialSnap={1}
-        // enabledContentTapInteraction={true}
-        // enabledBottomInitialAnimation={true}
-        // enabledGestureInteraction={true}
-        // enabledContentGestureInteraction={true}
-        renderContent={renderContent}
-        // overdragResistanceFactor={0} // ?
-        enabledBottomClamp={true}
-        borderRadius={10}
-      />
+      <BottomSheet ref={bottomSheetRef} index={1} snapPoints={snapPoints} onChange={handleSheetChanges}>
+        {renderContent}
+      </BottomSheet>
     </View>
   );
 };

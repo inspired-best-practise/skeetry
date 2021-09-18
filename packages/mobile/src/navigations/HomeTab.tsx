@@ -5,6 +5,7 @@ import React from 'react';
 import { Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import { createSharedElementStackNavigator } from 'react-navigation-shared-element';
+import { THomeTabParamList } from 'types';
 
 import { TabBarComponent } from '_app/components/BottomTabBar';
 import { colors } from '_app/constants';

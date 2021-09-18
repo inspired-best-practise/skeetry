@@ -1,4 +1,4 @@
-type THomeTabParamList = {
+export type THomeTabParamList = {
   HomePage: undefined;
   ExplorePage: undefined;
   SwipesPage: undefined;
@@ -7,13 +7,13 @@ type THomeTabParamList = {
   ProfilePage: undefined;
 };
 
-type TRootStackParamList = {
+export type TRootStackParamList = {
   AuthStack: undefined;
   HomeTab: undefined;
   CardScreen: undefined;
 };
 
-type TAuthStackParamList = {
+export type TAuthStackParamList = {
   Login: undefined;
   Phone: undefined;
   Code: undefined;
@@ -22,15 +22,15 @@ type TAuthStackParamList = {
   Welcome: undefined;
 };
 
-type TCommonParamList = TAuthStackParamList & THomeTabParamList & TRootStackParamList;
+export type TCommonParamList = TAuthStackParamList & THomeTabParamList & TRootStackParamList;
 
-type TUserAuth = {
+export type TUserAuth = {
   user: TUser;
   accessToken: string;
   refreshToken: string;
 };
 
-type TUser = {
+export type TUser = {
   id: string;
   username: string;
   phone: string;
