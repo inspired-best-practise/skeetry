@@ -134,16 +134,24 @@ export type LoginInput = {
 export type Mutation = {
   __typename?: 'Mutation';
   addItem: Item;
+  confirmSmsCode: Scalars['Boolean'];
   login: Auth;
   moveItem: Item;
   refreshToken: Token;
   removeItem: Item;
+  sendSmsCode: Scalars['Boolean'];
   signup: Auth;
 };
 
 
 export type MutationAddItemArgs = {
   input: ActionItemInput;
+};
+
+
+export type MutationConfirmSmsCodeArgs = {
+  code: Scalars['String'];
+  phone: Scalars['String'];
 };
 
 
@@ -159,6 +167,11 @@ export type MutationMoveItemArgs = {
 
 export type MutationRemoveItemArgs = {
   input: ActionItemInput;
+};
+
+
+export type MutationSendSmsCodeArgs = {
+  phone: Scalars['String'];
 };
 
 
@@ -191,6 +204,7 @@ export type QueryItemsArgs = {
 };
 
 export type SignupInput = {
+  code: Scalars['String'];
   password: Scalars['String'];
   phone: Scalars['String'];
   username: Scalars['String'];
@@ -250,6 +264,14 @@ export type AddItemMutationVariables = Exact<{
 
 export type AddItemMutation = { __typename?: 'Mutation', addItem: { __typename?: 'Item', id: string, type: string, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, reviewsCount: number, photos: Array<string>, latitude: string, longitude: string, locale: Locale, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, country: { __typename?: 'Country', id: string, name: string, overview?: Maybe<string>, continent: string, flag?: Maybe<string>, locale: Locale, localizations?: Maybe<Array<{ __typename?: 'CountryLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> }, localizations?: Maybe<Array<{ __typename?: 'ItemLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> } };
 
+export type ConfirmSmsCodeMutationVariables = Exact<{
+  phone: Scalars['String'];
+  code: Scalars['String'];
+}>;
+
+
+export type ConfirmSmsCodeMutation = { __typename?: 'Mutation', confirmSmsCode: boolean };
+
 export type LoginMutationVariables = Exact<{
   input: LoginInput;
 }>;
@@ -275,6 +297,13 @@ export type RemoveItemMutationVariables = Exact<{
 
 
 export type RemoveItemMutation = { __typename?: 'Mutation', removeItem: { __typename?: 'Item', id: string, type: string, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, reviewsCount: number, photos: Array<string>, latitude: string, longitude: string, locale: Locale, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, country: { __typename?: 'Country', id: string, name: string, overview?: Maybe<string>, continent: string, flag?: Maybe<string>, locale: Locale, localizations?: Maybe<Array<{ __typename?: 'CountryLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> }, localizations?: Maybe<Array<{ __typename?: 'ItemLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> } };
+
+export type SendSmsCodeMutationVariables = Exact<{
+  phone: Scalars['String'];
+}>;
+
+
+export type SendSmsCodeMutation = { __typename?: 'Mutation', sendSmsCode: boolean };
 
 export type SignupMutationVariables = Exact<{
   input: SignupInput;
@@ -441,6 +470,38 @@ export function useAddItemMutation(baseOptions?: Apollo.MutationHookOptions<AddI
 export type AddItemMutationHookResult = ReturnType<typeof useAddItemMutation>;
 export type AddItemMutationResult = Apollo.MutationResult<AddItemMutation>;
 export type AddItemMutationOptions = Apollo.BaseMutationOptions<AddItemMutation, AddItemMutationVariables>;
+export const ConfirmSmsCodeDocument = gql`
+    mutation confirmSmsCode($phone: String!, $code: String!) {
+  confirmSmsCode(phone: $phone, code: $code)
+}
+    `;
+export type ConfirmSmsCodeMutationFn = Apollo.MutationFunction<ConfirmSmsCodeMutation, ConfirmSmsCodeMutationVariables>;
+
+/**
+ * __useConfirmSmsCodeMutation__
+ *
+ * To run a mutation, you first call `useConfirmSmsCodeMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useConfirmSmsCodeMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [confirmSmsCodeMutation, { data, loading, error }] = useConfirmSmsCodeMutation({
+ *   variables: {
+ *      phone: // value for 'phone'
+ *      code: // value for 'code'
+ *   },
+ * });
+ */
+export function useConfirmSmsCodeMutation(baseOptions?: Apollo.MutationHookOptions<ConfirmSmsCodeMutation, ConfirmSmsCodeMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<ConfirmSmsCodeMutation, ConfirmSmsCodeMutationVariables>(ConfirmSmsCodeDocument, options);
+      }
+export type ConfirmSmsCodeMutationHookResult = ReturnType<typeof useConfirmSmsCodeMutation>;
+export type ConfirmSmsCodeMutationResult = Apollo.MutationResult<ConfirmSmsCodeMutation>;
+export type ConfirmSmsCodeMutationOptions = Apollo.BaseMutationOptions<ConfirmSmsCodeMutation, ConfirmSmsCodeMutationVariables>;
 export const LoginDocument = gql`
     mutation login($input: LoginInput!) {
   login(input: $input) {
@@ -577,6 +638,37 @@ export function useRemoveItemMutation(baseOptions?: Apollo.MutationHookOptions<R
 export type RemoveItemMutationHookResult = ReturnType<typeof useRemoveItemMutation>;
 export type RemoveItemMutationResult = Apollo.MutationResult<RemoveItemMutation>;
 export type RemoveItemMutationOptions = Apollo.BaseMutationOptions<RemoveItemMutation, RemoveItemMutationVariables>;
+export const SendSmsCodeDocument = gql`
+    mutation sendSmsCode($phone: String!) {
+  sendSmsCode(phone: $phone)
+}
+    `;
+export type SendSmsCodeMutationFn = Apollo.MutationFunction<SendSmsCodeMutation, SendSmsCodeMutationVariables>;
+
+/**
+ * __useSendSmsCodeMutation__
+ *
+ * To run a mutation, you first call `useSendSmsCodeMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useSendSmsCodeMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [sendSmsCodeMutation, { data, loading, error }] = useSendSmsCodeMutation({
+ *   variables: {
+ *      phone: // value for 'phone'
+ *   },
+ * });
+ */
+export function useSendSmsCodeMutation(baseOptions?: Apollo.MutationHookOptions<SendSmsCodeMutation, SendSmsCodeMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<SendSmsCodeMutation, SendSmsCodeMutationVariables>(SendSmsCodeDocument, options);
+      }
+export type SendSmsCodeMutationHookResult = ReturnType<typeof useSendSmsCodeMutation>;
+export type SendSmsCodeMutationResult = Apollo.MutationResult<SendSmsCodeMutation>;
+export type SendSmsCodeMutationOptions = Apollo.BaseMutationOptions<SendSmsCodeMutation, SendSmsCodeMutationVariables>;
 export const SignupDocument = gql`
     mutation signup($input: SignupInput!) {
   signup(input: $input) {
