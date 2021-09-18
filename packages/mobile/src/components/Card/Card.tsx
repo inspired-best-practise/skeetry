@@ -46,7 +46,7 @@ export const Card = ({ item, size }: TCardProps) => {
                   })
                 }
               >
-                <SharedElement id={`item.${1}.image`}>
+                <SharedElement id={`item.${item.id}.image`}>
                   <FastImage
                     style={[
                       s.itemImage,
@@ -68,7 +68,7 @@ export const Card = ({ item, size }: TCardProps) => {
                   })
                 }
               >
-                <SharedElement id={`item.${id}.image`}>
+                <SharedElement id={`item.${item.id}.image`}>
                   <FastImage
                     style={[
                       s.itemImage,
@@ -106,7 +106,7 @@ export const Card = ({ item, size }: TCardProps) => {
                       })
                     }
                   >
-                    <SharedElement id={`item.${index}.image`}>
+                    <SharedElement id={`item.${item.id}.image`}>
                       <FastImage
                         key={index}
                         style={[s.itemImage, s.itemSizeFull]}
@@ -125,7 +125,7 @@ export const Card = ({ item, size }: TCardProps) => {
                     })
                   }
                 >
-                  <SharedElement id={`item.${id}.image`}>
+                  <SharedElement id={`item.${item.id}.image`}>
                     <FastImage
                       style={[s.itemImage, size === 'full' && s.itemSizeFull]}
                       source={{

@@ -2,7 +2,6 @@ import { BottomTabNavigationOptions, createBottomTabNavigator } from '@react-nav
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
 import React from 'react';
-import { Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import { createSharedElementStackNavigator } from 'react-navigation-shared-element';
 import { THomeTabParamList } from 'types';
@@ -25,38 +24,39 @@ export const iosTransitionSpec = {
 };
 
 const Stack = createStackNavigator();
-const SharedElementStack = createSharedElementStackNavigator();
+const SharedStack = createSharedElementStackNavigator();
 
 const ProfileStack = () => {
   return (
-    <SharedElementStack.Navigator
+    <SharedStack.Navigator
       initialRouteName="Profile"
-      mode="modal"
+      // mode="modal"
       screenOptions={{
-        useNativeDriver: true,
-        gestureEnabled: true,
-        ...TransitionPresets.ModalSlideFromBottomIOS,
-        transitionSpec: {
-          open: iosTransitionSpec,
-          close: iosTransitionSpec,
-        },
+        // useNativeDriver: true,
+        // gestureEnabled: true,
+        headerShown: false,
+        ...TransitionPresets.ModalFadeTransition,
+        // transitionSpec: {
+        //   open: iosTransitionSpec,
+        //   close: iosTransitionSpec,
+        // },
         cardStyleInterpolator: ({ current: { progress } }) => ({
           cardStyle: {
             opacity: progress,
           },
         }),
       }}
-      headerMode="float"
+      // headerMode="float"
     >
-      <SharedElementStack.Screen
+      <SharedStack.Screen
         component={ProfileScreen}
-        name="ProfileIndex"
+        name="Profile"
         options={({ route }) => ({
           headerShown: false,
-          headerTitle: 'Profile',
+          headerTitle: 'Home',
         })}
       />
-      <SharedElementStack.Screen
+      <SharedStack.Screen
         name="CardScreen"
         component={CardScreen}
         sharedElements={(route, otherRoute, showing) => {
@@ -66,18 +66,6 @@ const ProfileStack = () => {
             return [
               {
                 id: `item.${item.id}.image`,
-              },
-              {
-                id: `item.${item.id}.title`,
-                animation: 'move',
-                resize: 'clip',
-                align: 'left-top',
-              },
-              {
-                id: `item.${item.id}.description`,
-                animation: 'move',
-                resize: 'clip',
-                align: 'left-top',
               },
             ];
           } else {
@@ -92,46 +80,42 @@ const ProfileStack = () => {
         options={({ route }) => ({
           headerShown: false,
           gestureEnabled: false,
-          cardStyle: {
-            backgroundColor: '#fff',
-          },
-          title: route.params.item.title,
         })}
       />
-    </SharedElementStack.Navigator>
+    </SharedStack.Navigator>
   );
 };
 
 const ExploreStack = () => {
   return (
-    <SharedElementStack.Navigator
-      detachInactiveScreens={Platform.OS !== 'android'}
+    <SharedStack.Navigator
       initialRouteName="Explore"
-      mode="modal"
+      // mode="modal"
       screenOptions={{
-        useNativeDriver: true,
-        gestureEnabled: true,
-        ...TransitionPresets.ModalSlideFromBottomIOS,
-        transitionSpec: {
-          open: iosTransitionSpec,
-          close: iosTransitionSpec,
-        },
+        // useNativeDriver: true,
+        // gestureEnabled: true,
+        headerShown: false,
+        ...TransitionPresets.ModalFadeTransition,
+        // transitionSpec: {
+        //   open: iosTransitionSpec,
+        //   close: iosTransitionSpec,
+        // },
         cardStyleInterpolator: ({ current: { progress } }) => ({
           cardStyle: {
             opacity: progress,
           },
         }),
       }}
-      headerMode="float"
+      // headerMode="float"
     >
-      <SharedElementStack.Screen
-        name="Explore"
+      <SharedStack.Screen
         component={ExploreScreen}
+        name="Explore"
         options={({ route }) => ({
           headerShown: false,
         })}
       />
-      <SharedElementStack.Screen
+      <SharedStack.Screen
         name="CardScreen"
         component={CardScreen}
         sharedElements={(route, otherRoute, showing) => {
@@ -155,13 +139,9 @@ const ExploreStack = () => {
         options={({ route }) => ({
           headerShown: false,
           gestureEnabled: false,
-          cardStyle: {
-            backgroundColor: '#fff',
-          },
-          title: route.params.item.title,
         })}
       />
-    </SharedElementStack.Navigator>
+    </SharedStack.Navigator>
   );
 };
 
@@ -193,34 +173,34 @@ const AddStack = () => {
 
 const HomeStack = () => {
   return (
-    <SharedElementStack.Navigator
+    <SharedStack.Navigator
       initialRouteName="Home"
-      mode="modal"
+      // mode="modal"
       screenOptions={{
-        useNativeDriver: true,
-        gestureEnabled: true,
-        ...TransitionPresets.ModalSlideFromBottomIOS,
-        transitionSpec: {
-          open: iosTransitionSpec,
-          close: iosTransitionSpec,
-        },
+        // useNativeDriver: true,
+        // gestureEnabled: true,
+        headerShown: false,
+        ...TransitionPresets.ModalFadeTransition,
+        // transitionSpec: {
+        //   open: iosTransitionSpec,
+        //   close: iosTransitionSpec,
+        // },
         cardStyleInterpolator: ({ current: { progress } }) => ({
           cardStyle: {
             opacity: progress,
           },
         }),
       }}
-      headerMode="float"
+      // headerMode="float"
     >
-      <SharedElementStack.Screen
+      <SharedStack.Screen
         component={HomeScreen}
         name="HomeScreen"
         options={({ route }) => ({
           headerShown: false,
-          headerTitle: 'Home',
         })}
       />
-      <SharedElementStack.Screen
+      <SharedStack.Screen
         name="CardScreen"
         component={CardScreen}
         sharedElements={(route, otherRoute, showing) => {
@@ -230,18 +210,6 @@ const HomeStack = () => {
             return [
               {
                 id: `item.${item.id}.image`,
-              },
-              {
-                id: `item.${item.id}.title`,
-                animation: 'move',
-                resize: 'clip',
-                align: 'left-top',
-              },
-              {
-                id: `item.${item.id}.description`,
-                animation: 'move',
-                resize: 'clip',
-                align: 'left-top',
               },
             ];
           } else {
@@ -256,13 +224,9 @@ const HomeStack = () => {
         options={({ route }) => ({
           headerShown: false,
           gestureEnabled: false,
-          cardStyle: {
-            backgroundColor: '#fff',
-          },
-          title: route.params.item.title,
         })}
       />
-    </SharedElementStack.Navigator>
+    </SharedStack.Navigator>
   );
 };
 
@@ -292,9 +256,12 @@ const HomeTab = () => {
   return (
     <Tab.Navigator tabBar={TabBarComponent} screenOptions={screenOptions}>
       <Tab.Screen
-        options={{
+        options={({ route }) => ({
+          tabBarStyle: {
+            display: getTabBarVisible(route) ? 'flex' : 'none',
+          },
           tabBarIcon: ({ focused }) => <Icon name="home" size={26} color={focused ? colors.gray900 : colors.gray300} />,
-        }}
+        })}
         component={HomeStack}
         name="HomePage"
       />
