@@ -220,7 +220,7 @@ export const CardScreen = ({ route, navigation }) => {
       }}
     >
       <StatusBar barStyle="light-content" animated translucent backgroundColor="rgba(255,255,255,100)" />
-      <SharedElement id={`item.${item.id}.photo`}>
+      <SharedElement id={`item.${item.id}.image`}>
         <Image
           style={s.cardImage}
           source={{

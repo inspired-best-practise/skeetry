@@ -14,6 +14,7 @@ Global bugs:
    ☐ Fix refetch animation on Profile screen
    ☐ Fix tsconfig/eslint for normal editor highlighting
    ☐ Fix Podfile
+   ☐ Fix react-navigation-shared-element transition
 
 Features:
    ✔ Get device language @done(21-09-06 16:42)

@@ -30,7 +30,7 @@ const SharedElementStack = createSharedElementStackNavigator();
 const ProfileStack = () => {
   return (
     <SharedElementStack.Navigator
-      initialRouteName="Explore"
+      initialRouteName="Profile"
       mode="modal"
       screenOptions={{
         useNativeDriver: true,
@@ -193,14 +193,76 @@ const AddStack = () => {
 
 const HomeStack = () => {
   return (
-    <Stack.Navigator
+    <SharedElementStack.Navigator
+      initialRouteName="Home"
+      mode="modal"
       screenOptions={{
-        headerShown: false,
+        useNativeDriver: true,
         gestureEnabled: true,
+        ...TransitionPresets.ModalSlideFromBottomIOS,
+        transitionSpec: {
+          open: iosTransitionSpec,
+          close: iosTransitionSpec,
+        },
+        cardStyleInterpolator: ({ current: { progress } }) => ({
+          cardStyle: {
+            opacity: progress,
+          },
+        }),
       }}
+      headerMode="float"
     >
-      <Stack.Screen component={HomeScreen} name="HomeScreen" />
-    </Stack.Navigator>
+      <SharedElementStack.Screen
+        component={HomeScreen}
+        name="HomeScreen"
+        options={({ route }) => ({
+          headerShown: false,
+          headerTitle: 'Home',
+        })}
+      />
+      <SharedElementStack.Screen
+        name="CardScreen"
+        component={CardScreen}
+        sharedElements={(route, otherRoute, showing) => {
+          const { item } = route.params;
+          if (route.name === 'CardScreen' && showing) {
+            // Open animation fades in image, title and description
+            return [
+              {
+                id: `item.${item.id}.image`,
+              },
+              {
+                id: `item.${item.id}.title`,
+                animation: 'move',
+                resize: 'clip',
+                align: 'left-top',
+              },
+              {
+                id: `item.${item.id}.description`,
+                animation: 'move',
+                resize: 'clip',
+                align: 'left-top',
+              },
+            ];
+          } else {
+            // Close animation only fades out image
+            return [
+              {
+                id: `item.${item.id}.image`,
+              },
+            ];
+          }
+        }}
+        options={({ route }) => ({
+          headerShown: false,
+          gestureEnabled: false,
+          cardStyle: {
+            backgroundColor: '#fff',
+          },
+          title: route.params.item.title,
+        })}
+      />
+    </SharedElementStack.Navigator>
   );
 };
 
