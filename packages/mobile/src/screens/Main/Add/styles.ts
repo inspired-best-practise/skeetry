@@ -1,18 +1,22 @@
 import { StyleSheet } from 'react-native';
 
+import { colors, radius, tInput } from '_app/constants';
+import { normalize } from '_app/utils/dimensions';
+
 export const s = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    flexDirection: 'row',
   },
   containerWrap: {
-    marginTop: 90,
+    marginTop: normalize(20),
   },
   contentContainer: {
     flexWrap: 'wrap',
-    marginHorizontal: 12,
-    width: 800,
+    maxWidth: normalize(800),
+    paddingHorizontal: normalize(12),
   },
   title: {
     color: '#777',
@@ -21,9 +25,24 @@ export const s = StyleSheet.create({
   },
   tag: {
     backgroundColor: '#eee',
-    paddingHorizontal: 14,
-    paddingVertical: 10,
-    borderRadius: 100,
-    margin: 6,
+    paddingHorizontal: normalize(14),
+    paddingVertical: normalize(10),
+    borderRadius: radius.full,
+    margin: normalize(6),
+  },
+  textInputWrapper: {
+    position: 'relative',
+    width: '100%',
+    height: normalize(45),
+    backgroundColor: colors.lightGray,
+    marginVertical: normalize(10),
+    color: colors.baseGray,
+    borderRadius: radius.base,
+  },
+  input: {
+    width: '100%',
+    height: '100%',
+    paddingHorizontal: normalize(15),
+    ...tInput,
   },
 });

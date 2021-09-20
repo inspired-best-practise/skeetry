@@ -23,5 +23,8 @@
     "north_america": "Северная Америка",
     "south_america": "Южная Америка",
     "africa": "Африка"
+  },
+  "search": {
+    "recommended": "Рекомендуется"
   }
 }

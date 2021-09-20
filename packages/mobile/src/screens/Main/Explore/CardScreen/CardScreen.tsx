@@ -34,6 +34,9 @@ export const CardScreen = ({ route, navigation }) => {
         type: 'WANT',
       },
     },
+    update: cache => {
+      cache.evict({});
+    },
   });
 
   const [visited, { loading: loadingVisited }] = useAddItemMutation({
@@ -42,6 +45,9 @@ export const CardScreen = ({ route, navigation }) => {
         id: item.id,
         type: 'VISITED',
       },
+    },
+    update: cache => {
+      cache.evict({});
     },
   });
 
@@ -52,6 +58,9 @@ export const CardScreen = ({ route, navigation }) => {
         type: 'WANT',
       },
     },
+    update: cache => {
+      cache.evict({});
+    },
   });
 
   const [removeVisited, { loading: loadingRemoveVisited }] = useRemoveItemMutation({
@@ -60,6 +69,9 @@ export const CardScreen = ({ route, navigation }) => {
         id: item.id,
         type: 'VISITED',
       },
+    },
+    update: cache => {
+      cache.evict({});
     },
   });
 
@@ -70,6 +82,9 @@ export const CardScreen = ({ route, navigation }) => {
         type: 'WANT',
       },
     },
+    update: cache => {
+      cache.evict({});
+    },
   });
 
   const [moveVisited, { loading: loadingMoveVisited }] = useMoveItemMutation({
@@ -78,6 +93,9 @@ export const CardScreen = ({ route, navigation }) => {
         id: item.id,
         type: 'VISITED',
       },
+    },
+    update: cache => {
+      cache.evict({});
     },
   });
 

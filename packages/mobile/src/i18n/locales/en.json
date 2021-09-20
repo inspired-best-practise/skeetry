@@ -23,5 +23,8 @@
     "north_america": "North America",
     "south_america": "South America",
     "africa": "Africa"
+  },
+  "search": {
+    "recommended": "Recommended"
   }
 }
