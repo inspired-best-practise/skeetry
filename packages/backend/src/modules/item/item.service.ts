@@ -85,7 +85,7 @@ export class ItemService {
       (type === 'WANT' && !existInWanted) ||
       (type === 'VISITED' && !existInVisited)
     ) {
-      throw new Error('This item is not on the list');
+      throw new Error('Item is not on the list');
     }
 
     await this.prisma.user.update({
@@ -190,6 +190,26 @@ export class ItemService {
     return item;
   }
 
+  async findOne(id: string) {
+    const item = await this.prisma.item.findUnique({
+      include: {
+        localizations: true,
+        userVisited: true,
+        userWanted: true,
+        country: true,
+      },
+      where: {
+        id,
+      },
+    });
+
+    if (!item) {
+      throw new Error('Item does not exist');
+    }
+
+    return item;
+  }
+
   async findAll(input: ItemsInput) {
     if (!input) {
       const items = await this.prisma.item.findMany({
@@ -213,7 +233,7 @@ export class ItemService {
     });
 
     if (!tagExist) {
-      throw new Error("This tag doesn't exist");
+      throw new Error("Tag doesn't exist");
     }
 
     const items = await this.prisma.item.findMany({

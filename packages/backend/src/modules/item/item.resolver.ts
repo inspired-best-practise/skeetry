@@ -31,6 +31,12 @@ export class ItemResolver {
   }
 
   @UseGuards(GqlAuthGuard)
+  @Query(() => Item, { name: 'item' })
+  findOne(@Args('id') id: string) {
+    return this.item.findOne(id);
+  }
+
+  @UseGuards(GqlAuthGuard)
   @Query(() => [Item], { name: 'items' })
   findAll(@Args('input', { nullable: true }) input: ItemsInput) {
     return this.item.findAll(input);
