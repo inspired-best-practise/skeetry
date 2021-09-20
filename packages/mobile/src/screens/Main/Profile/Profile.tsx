@@ -82,7 +82,7 @@ export const ProfileScreen = () => {
         horizontal={false}
         data={getData()}
         columnWrapperStyle={s.listWrapper}
-        contentContainerStyle={s.listContainer}
+        contentContainerStyle={{}}
         renderItem={renderItem}
         keyExtractor={item => item.id}
         showsVerticalScrollIndicator={false}

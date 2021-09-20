@@ -9,6 +9,7 @@ Refactoring:
    ☐ Create Input component from TextInput
    ☐ Refactoring Card component
    ☐ Refactoring Card screen
+   ☐ Type storage
   
 Global bugs:
    ✔ Fix open animation react-navigation-shared-element with react-native-safe-area-context (https://github.com/IjzerenHein/react-navigation-shared-element/issues/187) @done(21-09-11 15:18)
@@ -29,7 +30,6 @@ Features:
    ✔ Add GraphQL service @done(21-09-07 15:31)
    ☐ Add dark mode
    ✘ Add new screen with swipe cards @cancelled(21-09-16 12:11)
-   ☐ Type storage
    ☐ Implement push notifications
    ✔ Implement Sentry @done(21-09-11 23:07)
    ☐ Get user geolocation
@@ -42,6 +42,7 @@ Features:
    ☐ Create activities and have other travellers joining your adventure*
    ☐ Show/Hide password
    ☐ Apollo Cache
+   ☐ Picture of the day*
 
 Auth:
    ✔ Form with yup + react-hook-form / formik @done(21-09-18 20:23)

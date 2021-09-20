@@ -1,5 +1,5 @@
 import BottomSheet from '@gorhom/bottom-sheet';
-import React, { useCallback, useEffect, useMemo, useRef } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   View,
   Text,
@@ -17,7 +17,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { SharedElement } from 'react-navigation-shared-element';
 
 import { mapGfxStyle } from '_app/constants';
-import { useAddItemMutation, useMoveItemMutation, useRemoveItemMutation } from '_app/generated/graphql';
+import { useAddItemMutation, useItemQuery, useMoveItemMutation, useRemoveItemMutation } from '_app/generated/graphql';
 import { authStore } from '_app/stores';
 
 import { s } from './styles';
@@ -25,12 +25,31 @@ import { s } from './styles';
 // TODO: refactor mutations and conditions, split into different components and files
 export const CardScreen = ({ route, navigation }) => {
   const { item } = route.params;
+  const [currentItem, setCurrentItem] = useState(item);
+
   const user = authStore(state => state.user);
+
+  const {
+    data: itemData,
+    loading: itemLoading,
+    error: itemError,
+    refetch: itemRefetch,
+  } = useItemQuery({
+    variables: {
+      id: currentItem.id,
+    },
+  });
+
+  useEffect(() => {
+    if (itemData) {
+      setCurrentItem(itemData.item);
+    }
+  }, [itemData]);
 
   const [want, { loading: loadingWant }] = useAddItemMutation({
     variables: {
       input: {
-        id: item.id,
+        id: currentItem.id,
         type: 'WANT',
       },
     },
@@ -42,7 +61,7 @@ export const CardScreen = ({ route, navigation }) => {
   const [visited, { loading: loadingVisited }] = useAddItemMutation({
     variables: {
       input: {
-        id: item.id,
+        id: currentItem.id,
         type: 'VISITED',
       },
     },
@@ -54,7 +73,7 @@ export const CardScreen = ({ route, navigation }) => {
   const [removeWant, { loading: loadingRemoveWant }] = useRemoveItemMutation({
     variables: {
       input: {
-        id: item.id,
+        id: currentItem.id,
         type: 'WANT',
       },
     },
@@ -66,7 +85,7 @@ export const CardScreen = ({ route, navigation }) => {
   const [removeVisited, { loading: loadingRemoveVisited }] = useRemoveItemMutation({
     variables: {
       input: {
-        id: item.id,
+        id: currentItem.id,
         type: 'VISITED',
       },
     },
@@ -78,7 +97,7 @@ export const CardScreen = ({ route, navigation }) => {
   const [moveWant, { loading: loadingMoveWant }] = useMoveItemMutation({
     variables: {
       input: {
-        id: item.id,
+        id: currentItem.id,
         type: 'WANT',
       },
     },
@@ -90,7 +109,7 @@ export const CardScreen = ({ route, navigation }) => {
   const [moveVisited, { loading: loadingMoveVisited }] = useMoveItemMutation({
     variables: {
       input: {
-        id: item.id,
+        id: currentItem.id,
         type: 'VISITED',
       },
     },
@@ -108,11 +127,17 @@ export const CardScreen = ({ route, navigation }) => {
     }
   };
 
-  const alreadyWanted = item.userWanted && item.userWanted.find(u => u.id === user.id);
-  const alreadyVisited = item.userVisited && item.userVisited.find(u => u.id === user.id);
+  const alreadyWanted = currentItem.userWanted && currentItem.userWanted.find(u => u.id === user.id);
+  const alreadyVisited = currentItem.userVisited && currentItem.userVisited.find(u => u.id === user.id);
 
   const loading =
-    loadingWant || loadingVisited || loadingRemoveWant || loadingRemoveVisited || loadingMoveWant || loadingMoveVisited;
+    loadingWant ||
+    loadingVisited ||
+    loadingRemoveWant ||
+    loadingRemoveVisited ||
+    loadingMoveWant ||
+    loadingMoveVisited ||
+    itemLoading;
 
   const onPressSheet = () =>
     ActionSheetIOS.showActionSheetWithOptions(
@@ -140,7 +165,7 @@ export const CardScreen = ({ route, navigation }) => {
   const renderContent = () => (
     <Animated.View style={[s.content]}>
       <View style={s.section}>
-        <Text style={s.name}>{item.country.flag + ' ' + item.name}</Text>
+        <Text style={s.name}>{currentItem.country.flag + ' ' + currentItem.name}</Text>
       </View>
       <View style={s.section}>
         <View style={s.cardButtons}>
@@ -239,12 +264,12 @@ export const CardScreen = ({ route, navigation }) => {
       }}
     >
       <StatusBar barStyle="light-content" animated translucent backgroundColor="rgba(255,255,255,100)" />
-      <SharedElement id={`item.${item.id}.image`}>
+      <SharedElement id={`item.${currentItem.id}.image`}>
         <Image
           style={s.cardImage}
           source={{
-            uri: item.photos
-              ? item.photos[0]
+            uri: currentItem.photos
+              ? currentItem.photos[0]
               : 'https://images.unsplash.com/photo-1503614472-8c93d56e92ce?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1299&q=80/250x300',
           }}
           resizeMode="cover"

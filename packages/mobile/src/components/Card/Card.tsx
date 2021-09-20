@@ -152,11 +152,14 @@ export const Card = ({ item, size }: TCardProps) => {
           <Text style={s.flagText}>{country && country.flag}</Text>
         </View>
       </View>
-      <View style={s.rating}>
-        <Icon.StarIcon size={16} color="black" />
-        <Text style={s.ratingNumber}>{rating ? rating.number : 0}</Text>
-        <Text style={s.ratingCount}>{rating ? rating.count : 0}</Text>
-      </View>
+      {size !== 'base' && (
+        <View style={s.rating}>
+          <Icon.StarIcon size={16} color="black" />
+          <Text style={s.ratingNumber}>{rating ? rating.number : 0}</Text>
+          <Text style={s.ratingCount}>{rating ? rating.count : 0}</Text>
+        </View>
+      )}
+
       <Text numberOfLines={1} style={s.itemTitle}>
         {withLocalization('name', name, locale, localizations)}
       </Text>

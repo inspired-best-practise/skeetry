@@ -76,6 +76,6 @@ export const s = StyleSheet.create({
   listWrapper: {
     justifyContent: 'space-between',
     marginHorizontal: normalize(20),
+    marginBottom: normalize(60),
   },
-  listContainer: {},
 });

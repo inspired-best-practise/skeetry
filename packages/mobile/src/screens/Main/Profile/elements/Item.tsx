@@ -1,8 +1,6 @@
 import React from 'react';
-import { View } from 'react-native';
 
 import { Card } from '_app/components';
-import { normalize } from '_app/utils/dimensions';
 
 // TODO: refactor
 export const renderItem = ({ item }: any) => {

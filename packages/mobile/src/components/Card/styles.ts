@@ -11,7 +11,6 @@ export const s = StyleSheet.create({
     marginTop: StatusBar.currentHeight || 0,
   },
   item: {
-    position: 'relative',
     borderRadius: radius.base,
   },
   itemImage: {

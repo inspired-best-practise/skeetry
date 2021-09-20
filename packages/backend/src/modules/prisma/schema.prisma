@@ -58,6 +58,7 @@ model Item {
   type          ItemType
   name          String             @unique
   overview      String?
+  capital       Boolean            @default(false)
   country       Country            @relation(fields: [countryId], references: [id])
   wantedCount   Int                @default(0)
   visitedCount  Int                @default(0)
@@ -171,7 +172,7 @@ enum Continent {
   SOUTH_AMERICA
   ANTARCTICA
   EUROPE
-  AUSTRALIA
+  OCEANIA
 }
 
 enum ItemType {
