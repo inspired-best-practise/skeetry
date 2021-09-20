@@ -229,6 +229,7 @@ export const CardScreen = ({ route, navigation }) => {
 
   return (
     <View
+      // eslint-disable-next-line react-native/no-inline-styles
       style={{
         flex: 1,
         paddingTop: insets.top,
