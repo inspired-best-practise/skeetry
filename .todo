@@ -5,11 +5,12 @@ Global tasks:
   ☐ Make a design for the app
   ☐ Make a design for the landing
   ✔ Buy domain (.com + .ru) @done(21-09-13 18:50)
-  ☐ Buy CX21 hetzner server for Rancher
-  ☐ Buy CPX41 hetzner server for Cluster
-  ☐ Set up Rancher + Cluster (Deploy backend)
+  ✔ Buy CX21 hetzner server for Rancher @done(21-09-21 14:07)
+  ✔ Buy CPX41 hetzner server for Cluster @done(21-09-21 14:08)
+  ✔ Set up Rancher + Cluster (Deploy backend) @done(21-09-21 14:08)
   ☐ Make landing
-  ☐ Deploy landing to cluster
+  ✔ Deploy landing @done(21-09-21 14:08)
+  ✔ Github Actions CI/CD @done(21-09-21 14:08)
 
 Features:
   ✔ Commitizen @done(21-09-08 14:54)
