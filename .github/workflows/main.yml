@@ -26,7 +26,8 @@ jobs:
         run: yarn --frozen-lockfile
 
       - name: Build apps
-        run: yarn build api
+        working-directory: ./packages/backend
+        run: yarn build
 
       # Docker
 
