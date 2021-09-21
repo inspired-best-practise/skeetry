@@ -1,23 +1,19 @@
-FROM --platform=linux/amd64 node:14 AS builder
-
-# Create app directory
+FROM node:lts-alpine as base
 WORKDIR /app
+RUN ls
+COPY dist/ .
+COPY prisma ./prisma
 
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-COPY package*.json ./
+FROM base as dependencies
+RUN yarn --production
+RUN yarn add apollo-server-express
 
-# Install app dependencies
-RUN yarn
+FROM dependencies as prisma
+RUN yarn add prisma --dev
+RUN yarn prisma generate
 
-COPY . .
+FROM prisma as release
+ENV PORT=3000
+EXPOSE ${PORT}
 
-RUN yarn build
-
-FROM --platform=linux/amd64 node:14
-
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package*.json ./
-COPY --from=builder /app/dist ./dist
-
-EXPOSE 3000
-CMD [ "yarn", "start:prod" ]
+CMD node ./main.js
