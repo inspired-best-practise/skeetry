@@ -2,7 +2,6 @@ FROM node:lts-alpine as base
 WORKDIR /app
 RUN ls
 COPY dist/ .
-COPY package*.json ./
 COPY prisma ./prisma
 
 FROM base as dependencies
