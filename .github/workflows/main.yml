@@ -45,9 +45,8 @@ jobs:
       - name: Build and export
         uses: docker/build-push-action@v2
         with:
-          working-directory: ./packages/backend
-          path: ./packages/backend
-          context: .
+          file: packages/backend/Dockerfile
+          context: ./packages/backend
           push: true
           tags: ghcr.io/${{ github.repository }}/skeetry-api:latest
           cache-from: type=registry,ref=ghcr.io/${{ github.repository }}/skeetry-api:latest
