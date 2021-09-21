@@ -7,6 +7,10 @@ Features:
   ☐ Get nearby sights, places, cities, countries by user geolocation
   ☐ Implement graphql-upload
   ✔ Implement twilio @done(21-09-17 17:45)
+  ☐ Ban system
+
+Refactoring:
+  ☐ Check want and visited count (Item model)
 
 Deploy:
   ✔ Fix bcrypt error - only in Docker (Solution: hash-wasm) @done(21-09-15 10:12)
