@@ -77,7 +77,7 @@ model State {
 
 model StateLocalization {
   id       String  @id @default(cuid())
-  locale   Locale
+  locale   Locale  @default(RU)
   name     String
   overview String?
   state    State   @relation(fields: [stateId], references: [id])
