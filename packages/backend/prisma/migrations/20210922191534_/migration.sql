@@ -5,4 +5,4 @@
 
 */
 -- AlterTable
-ALTER TABLE "StateLocalization" ADD COLUMN     "locale" "Locale" NOT NULL;
+ALTER TABLE "StateLocalization" ALTER COLUMN "locale" SET DEFAULT E'RU';
