@@ -28,7 +28,7 @@ jobs:
 
       - name: Build apps
         working-directory: ./packages/backend
-        run: yarn build
+        run: npx prisma generate && yarn build
 
       # Docker
 
