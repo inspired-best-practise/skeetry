@@ -1,5 +1,0 @@
-query Item($id: String!) {
-  item(id: $id) {
-    ...RegularItem
-  }
-}

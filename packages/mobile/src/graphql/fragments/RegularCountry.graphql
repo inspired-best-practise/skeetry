@@ -1,10 +1,25 @@
 fragment RegularCountry on Country {
-  id           
-  name         
-  overview    
-  continent
-  flag
-  locale
+  id             
+  pk             
+  name           
+  iso2          
+  iso3           
+  numericCode    
+  phoneCode      
+  currency       
+  currencySymbol 
+  tld            
+  native         
+  continent      
+  subregion      
+  latitude       
+  longitude      
+  emoji          
+  emojiU         
+  overview       
+  states {
+    ...RegularState
+  }
   localizations {
     ...RegularCountryLocalization
   }

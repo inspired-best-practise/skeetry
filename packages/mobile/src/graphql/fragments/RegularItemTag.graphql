@@ -1,9 +1,0 @@
-fragment RegularItemTag on ItemTag {
-  id
-  name
-  emoji
-  locale
-  localizations {
-    ...RegularItemTagLocalization
-  }
-}

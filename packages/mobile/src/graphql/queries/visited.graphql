@@ -1,5 +1,5 @@
 query Visited {
   visited {
-    ...RegularItem
+    ...RegularCity
   }
 }

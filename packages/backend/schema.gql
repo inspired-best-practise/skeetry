@@ -27,12 +27,12 @@ type City {
   createdAt: DateTime!
   flag: String
   id: ID!
+  images: [Image!]!
   latitude: String!
   localizations: [CityLocalization!]
   longitude: String!
   name: String!
   overview: String
-  photos: [Image!]!
   reviewsCount: Int!
   type: String!
 
@@ -61,12 +61,25 @@ type Country {
 
   """Identifies the date and time when the object was created."""
   createdAt: DateTime!
-  flag: String
+  currency: String!
+  currencySymbol: String!
+  emoji: String
+  emojiU: String!
   id: ID!
-  locale: Locale!
+  iso2: String!
+  iso3: String!
+  latitude: String!
   localizations: [CountryLocalization!]
+  longitude: String!
   name: String!
+  native: String!
+  numericCode: String!
   overview: String
+  phoneCode: String!
+  pk: Int!
+  states: [State!]
+  subregion: String!
+  tld: String!
 
   """Identifies the date and time when the object was last updated."""
   updatedAt: DateTime!
@@ -143,6 +156,38 @@ input SignupInput {
   password: String!
   phone: String!
   username: String!
+}
+
+type State {
+  cities: [City!]
+  country: Country!
+
+  """Identifies the date and time when the object was created."""
+  createdAt: DateTime!
+  id: ID!
+  latitude: String!
+  localizations: [StateLocalization!]
+  longitude: String!
+  name: String!
+  overview: String!
+  pk: Int!
+  stateCode: String!
+
+  """Identifies the date and time when the object was last updated."""
+  updatedAt: DateTime!
+}
+
+type StateLocalization {
+  """Identifies the date and time when the object was created."""
+  createdAt: DateTime!
+  id: ID!
+  locale: String!
+  name: String!
+  overview: String!
+  state: State!
+
+  """Identifies the date and time when the object was last updated."""
+  updatedAt: DateTime!
 }
 
 type Story {

@@ -37,7 +37,7 @@ export class City extends BaseModel {
   reviewsCount: number;
 
   @Field(() => [Image])
-  photos: Image[];
+  images: Image[];
 
   @Field()
   latitude: string;

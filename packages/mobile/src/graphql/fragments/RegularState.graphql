@@ -1,0 +1,18 @@
+fragment RegularState on State {
+  id
+  pk            
+  name          
+  stateCode     
+  latitude      
+  longitude     
+  overview      
+  cities {
+    ...RegularCity
+  }
+  country {
+    ...RegularCountry
+  }
+  localizations {
+    ...RegularStateLocalization
+  }
+}

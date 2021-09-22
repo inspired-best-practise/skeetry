@@ -1,25 +1,26 @@
-fragment RegularItem on Item {
-  id   
-  type         
+fragment RegularCity on City {
+  id
+  pk     
   name         
   overview     
   wantedCount  
   visitedCount 
-  reviewsCount 
-  photos       
   latitude     
   longitude
-  locale
+  isCapital
+  images {
+    ...RegularImage
+  }  
   userWanted {
     ...RegularUser
   }
   userVisited {
     ...RegularUser
   }
-  country {
-    ...RegularCountry
+  state {
+    ...RegularState
   }
   localizations {
-    ...RegularItemLocalization
+    ...RegularCityLocalization
   }
 }

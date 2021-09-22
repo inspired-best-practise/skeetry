@@ -1,5 +1,5 @@
 query Wanted {
   wanted {
-    ...RegularItem
+    ...RegularCity
   }
 }

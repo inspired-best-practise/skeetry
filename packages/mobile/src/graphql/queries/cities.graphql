@@ -1,0 +1,5 @@
+query Cities($input: CitiesInput) {
+  cities(input: $input) {
+    ...RegularCity
+  }
+}

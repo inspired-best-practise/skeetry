@@ -1,0 +1,6 @@
+fragment RegularStateLocalization on StateLocalization {
+  id
+  locale
+  name
+  overview
+}

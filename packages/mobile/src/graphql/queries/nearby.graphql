@@ -1,5 +1,5 @@
 query Nearby {
   nearby {
-    ...RegularItem
+    ...RegularCity
   }
 }

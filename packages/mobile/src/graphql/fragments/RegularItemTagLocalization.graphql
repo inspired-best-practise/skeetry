@@ -1,5 +1,0 @@
-fragment RegularItemTagLocalization on ItemTagLocalization {
-  id
-  name
-  locale
-}

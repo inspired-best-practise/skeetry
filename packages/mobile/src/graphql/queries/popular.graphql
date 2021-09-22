@@ -1,5 +1,5 @@
 query Popular {
   popular {
-    ...RegularItem
+    ...RegularCity
   }
 }
