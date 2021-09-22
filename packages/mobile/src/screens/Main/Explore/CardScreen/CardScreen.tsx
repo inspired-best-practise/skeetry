@@ -17,7 +17,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { SharedElement } from 'react-navigation-shared-element';
 
 import { mapGfxStyle } from '_app/constants';
-import { useAddItemMutation, useItemQuery, useMoveItemMutation, useRemoveItemMutation } from '_app/generated/graphql';
+import { useAddCityMutation, useCityQuery, useMoveCityMutation, useRemoveCityMutation } from '_app/generated/graphql';
 import { authStore } from '_app/stores';
 
 import { s } from './styles';
@@ -25,7 +25,7 @@ import { s } from './styles';
 // TODO: refactor mutations and conditions, split into different components and files
 export const CardScreen = ({ route, navigation }) => {
   const { item } = route.params;
-  const [currentItem, setCurrentItem] = useState(item);
+  const [currentCity, setCurrentCity] = useState(item);
 
   const user = authStore(state => state.user);
 
@@ -34,22 +34,22 @@ export const CardScreen = ({ route, navigation }) => {
     loading: itemLoading,
     error: itemError,
     refetch: itemRefetch,
-  } = useItemQuery({
+  } = useCityQuery({
     variables: {
-      id: currentItem.id,
+      id: currentCity.id,
     },
   });
 
   useEffect(() => {
     if (itemData) {
-      setCurrentItem(itemData.item);
+      setCurrentCity(itemData.city);
     }
   }, [itemData]);
 
-  const [want, { loading: loadingWant }] = useAddItemMutation({
+  const [want, { loading: loadingWant }] = useAddCityMutation({
     variables: {
       input: {
-        id: currentItem.id,
+        id: currentCity.id,
         type: 'WANT',
       },
     },
@@ -58,10 +58,10 @@ export const CardScreen = ({ route, navigation }) => {
     },
   });
 
-  const [visited, { loading: loadingVisited }] = useAddItemMutation({
+  const [visited, { loading: loadingVisited }] = useAddCityMutation({
     variables: {
       input: {
-        id: currentItem.id,
+        id: currentCity.id,
         type: 'VISITED',
       },
     },
@@ -70,10 +70,10 @@ export const CardScreen = ({ route, navigation }) => {
     },
   });
 
-  const [removeWant, { loading: loadingRemoveWant }] = useRemoveItemMutation({
+  const [removeWant, { loading: loadingRemoveWant }] = useRemoveCityMutation({
     variables: {
       input: {
-        id: currentItem.id,
+        id: currentCity.id,
         type: 'WANT',
       },
     },
@@ -82,10 +82,10 @@ export const CardScreen = ({ route, navigation }) => {
     },
   });
 
-  const [removeVisited, { loading: loadingRemoveVisited }] = useRemoveItemMutation({
+  const [removeVisited, { loading: loadingRemoveVisited }] = useRemoveCityMutation({
     variables: {
       input: {
-        id: currentItem.id,
+        id: currentCity.id,
         type: 'VISITED',
       },
     },
@@ -94,10 +94,10 @@ export const CardScreen = ({ route, navigation }) => {
     },
   });
 
-  const [moveWant, { loading: loadingMoveWant }] = useMoveItemMutation({
+  const [moveWant, { loading: loadingMoveWant }] = useMoveCityMutation({
     variables: {
       input: {
-        id: currentItem.id,
+        id: currentCity.id,
         type: 'WANT',
       },
     },
@@ -106,10 +106,10 @@ export const CardScreen = ({ route, navigation }) => {
     },
   });
 
-  const [moveVisited, { loading: loadingMoveVisited }] = useMoveItemMutation({
+  const [moveVisited, { loading: loadingMoveVisited }] = useMoveCityMutation({
     variables: {
       input: {
-        id: currentItem.id,
+        id: currentCity.id,
         type: 'VISITED',
       },
     },
@@ -127,8 +127,8 @@ export const CardScreen = ({ route, navigation }) => {
     }
   };
 
-  const alreadyWanted = currentItem.userWanted && currentItem.userWanted.find(u => u.id === user.id);
-  const alreadyVisited = currentItem.userVisited && currentItem.userVisited.find(u => u.id === user.id);
+  const alreadyWanted = currentCity.userWanted && currentCity.userWanted.find(u => u.id === user.id);
+  const alreadyVisited = currentCity.userVisited && currentCity.userVisited.find(u => u.id === user.id);
 
   const loading =
     loadingWant ||
@@ -165,7 +165,7 @@ export const CardScreen = ({ route, navigation }) => {
   const renderContent = () => (
     <Animated.View style={[s.content]}>
       <View style={s.section}>
-        <Text style={s.name}>{currentItem.country.flag + ' ' + currentItem.name}</Text>
+        <Text style={s.name}>{currentCity.country.flag + ' ' + currentCity.name}</Text>
       </View>
       <View style={s.section}>
         <View style={s.cardButtons}>
@@ -264,12 +264,12 @@ export const CardScreen = ({ route, navigation }) => {
       }}
     >
       <StatusBar barStyle="light-content" animated translucent backgroundColor="rgba(255,255,255,100)" />
-      <SharedElement id={`item.${currentItem.id}.image`}>
+      <SharedElement id={`item.${currentCity.id}.image`}>
         <Image
           style={s.cardImage}
           source={{
-            uri: currentItem.photos
-              ? currentItem.photos[0]
+            uri: currentCity.photos
+              ? currentCity.photos[0]
               : 'https://images.unsplash.com/photo-1503614472-8c93d56e92ce?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1299&q=80/250x300',
           }}
           resizeMode="cover"

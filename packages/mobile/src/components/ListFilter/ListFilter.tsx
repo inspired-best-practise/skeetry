@@ -1,6 +1,7 @@
 import React from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
 import * as Icon from 'react-native-heroicons/solid';
+
 import { ListFilterItem } from '_app/components';
 
 export const ListFilter = () => {

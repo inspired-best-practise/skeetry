@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { ScrollView, View, Text } from 'react-native';
 
 import { tTitle } from '_app/constants';
-import { useItemTagsQuery } from '_app/generated/graphql';
+import { useTagsQuery } from '_app/generated/graphql';
 
 import { Category } from './Category';
 import { s } from './styles';
@@ -11,9 +11,9 @@ import { s } from './styles';
 export const Categories = () => {
   const { t } = useTranslation();
 
-  const { data, loading, error } = useItemTagsQuery();
+  const { data, loading, error } = useTagsQuery();
 
-  const categories = data?.itemTags;
+  const categories = data?.tags;
 
   return !error && categories && categories.length !== 0 ? (
     <View>

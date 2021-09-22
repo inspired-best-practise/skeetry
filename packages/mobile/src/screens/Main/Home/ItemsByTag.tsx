@@ -3,7 +3,7 @@ import { SafeAreaView, View, Text, StatusBar } from 'react-native';
 
 import { CardList, ModalControl } from '_app/components';
 import { tTitle } from '_app/constants';
-import { useItemsQuery } from '_app/generated/graphql';
+import { useCitiesQuery } from '_app/generated/graphql';
 import { withLocalization } from '_app/utils/helpers';
 
 import { s } from './styles';
@@ -12,10 +12,10 @@ import { s } from './styles';
 export const ItemsByTagScreen = ({ route }) => {
   const { id, name, emoji, locale, localizations } = route.params.item;
 
-  const { data, loading, error } = useItemsQuery({
+  const { data, loading, error } = useCitiesQuery({
     variables: {
       input: {
-        itemTagId: id,
+        cityTagId: id,
       },
     },
   });
