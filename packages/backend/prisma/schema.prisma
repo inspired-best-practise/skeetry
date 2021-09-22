@@ -12,36 +12,44 @@ generator client {
 }
 
 model User {
-  id             String   @id @default(cuid())
-  username       String   @unique
-  name           String?
-  avatar         String?
-  bio            String?
-  phone          String   @unique
-  verified       Boolean  @default(false)
-  wanted         Item[]   @relation("WantedItem")
-  visited        Item[]   @relation("VisitedItem")
-  wantedCount    Int      @default(0)
-  visitedCount   Int      @default(0)
-  followersCount Int      @default(0)
-  followingCount Int      @default(0)
-  youFollow      Boolean  @default(false)
-  followsYou     Boolean  @default(false)
-  rating         Int?
-  password       String
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @default(now()) @updatedAt
+  id           String   @id @default(cuid())
+  username     String   @unique
+  name         String?
+  avatar       String?
+  bio          String?
+  phone        String   @unique
+  verified     Boolean  @default(false)
+  wanted       City[]   @relation("WantedCity")
+  visited      City[]   @relation("VisitedCity")
+  wantedCount  Int      @default(0)
+  visitedCount Int      @default(0)
+  rating       Int?
+  password     String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @default(now()) @updatedAt
 }
 
 model Country {
-  id            String                @id @default(cuid())
-  name          String                @unique
-  overview      String?
-  flag          String
-  continent     Continent
-  locale        Locale
-  localizations CountryLocalization[]
-  item          Item[]
+  id             String                @id @default(cuid())
+  pk             Int                   @unique
+  name           String                @unique
+  iso2           String?
+  iso3           String?
+  numericCode    String?
+  phoneCode      String?
+  currency       String?
+  currencySymbol String?
+  tld            String?
+  native         String?
+  continent      Continent
+  subregion      String?
+  latitude       String?
+  longitude      String?
+  emoji          String?
+  emojiU         String?
+  overview       String?
+  states         State[]
+  localizations  CountryLocalization[]
 }
 
 model CountryLocalization {
@@ -53,70 +61,80 @@ model CountryLocalization {
   countryId String?
 }
 
-model Item {
-  id            String             @id @default(cuid())
-  type          ItemType
-  name          String             @unique
+model State {
+  id            String              @id @default(cuid())
+  pk            Int                 @unique
+  name          String
+  stateCode     String?
+  latitude      String?
+  longitude     String?
   overview      String?
-  capital       Boolean            @default(false)
-  country       Country            @relation(fields: [countryId], references: [id])
-  wantedCount   Int                @default(0)
-  visitedCount  Int                @default(0)
-  reviewsCount  Int                @default(0)
-  photos        String[]
-  latitude      String
-  longitude     String
-  tags          ItemTag[]
-  userWanted    User[]             @relation("WantedItem")
-  userVisited   User[]             @relation("VisitedItem")
-  itemReview    ItemReview[]
-  locale        Locale             @default(EN)
-  localizations ItemLocalization[]
+  cities        City[]
+  country       Country             @relation(fields: [countryId], references: [id])
   countryId     String
+  localizations StateLocalization[]
 }
 
-model ItemLocalization {
+model StateLocalization {
+  id       String  @id @default(cuid())
+  name     String
+  overview String?
+  state    State   @relation(fields: [stateId], references: [id])
+  stateId  String
+}
+
+model City {
+  id            String             @id @default(cuid())
+  pk            Int                @unique
+  name          String
+  images        Image[]
+  latitude      String
+  longitude     String
+  wantedCount   Int                @default(0)
+  visitedCount  Int                @default(0)
+  overview      String?
+  isCapital     Boolean            @default(false)
+  state         State              @relation(fields: [stateId], references: [id])
+  stateId       String
+  tags          Tag[]
+  userWanted    User[]             @relation("WantedCity")
+  userVisited   User[]             @relation("VisitedCity")
+  localizations CityLocalization[]
+}
+
+model CityLocalization {
   id       String  @id @default(cuid())
   locale   Locale
   name     String
   overview String?
-  item     Item?   @relation(fields: [itemId], references: [id])
-  itemId   String?
+  city     City    @relation(fields: [cityId], references: [id])
+  cityId   String
 }
 
-model ItemTag {
-  id            String                @id @default(cuid())
-  name          String                @unique
+model Image {
+  id         String  @id @default(cuid())
+  urlRegular String?
+  urlSmall   String?
+  urlThumb   String?
+  city       City?   @relation(fields: [cityId], references: [id])
+  cityId     String?
+}
+
+model Tag {
+  id            String            @id @default(cuid())
+  name          String            @unique
   emoji         String
-  locale        Locale                @default(EN)
-  localizations ItemTagLocalization[]
-  item          Item[]
+  cities        City[]
+  cityId        String
+  localizations TagLocalization[]
 }
 
-model ItemTagLocalization {
-  id        String   @id @default(cuid())
-  locale    Locale
-  name      String
-  itemTag   ItemTag? @relation(fields: [itemTagId], references: [id])
-  itemTagId String?
-}
-
-model ItemReview {
-  id            String                   @id @default(cuid())
-  body          String
-  reviewedAt    DateTime                 @default(now())
-  item          Item                     @relation(fields: [itemId], references: [id])
-  itemId        String
-  locale        Locale
-  localizations ItemReviewLocalization[]
-}
-
-model ItemReviewLocalization {
-  id           String      @id @default(cuid())
-  locale       Locale
-  body         String
-  itemReview   ItemReview? @relation(fields: [itemReviewId], references: [id])
-  itemReviewId String?
+model TagLocalization {
+  id     String @id @default(cuid())
+  locale Locale
+  name   String
+  tag    Tag    @relation(fields: [tagId], references: [id])
+  tagId  String
 }
 
 model Story {
@@ -124,7 +142,6 @@ model Story {
   previewTitle  String
   previewImage  String
   steps         StoryStep[]
-  locale        Locale
   localizations StoryLocalization[]
 }
 
@@ -143,7 +160,6 @@ model StoryStep {
   image         String
   story         Story?                  @relation(fields: [storyId], references: [id])
   storyId       String?
-  locale        Locale
   localizations StoryStepLocalization[]
 }
 
@@ -168,20 +184,13 @@ model Sms {
 enum Continent {
   ASIA
   AFRICA
-  NORTH_AMERICA
-  SOUTH_AMERICA
-  ANTARCTICA
+  AMERICAS
+  POLAR
   EUROPE
   OCEANIA
-}
-
-enum ItemType {
-  CITY
-  PLACE
-  SIGHT
+  ISLAND
 }
 
 enum Locale {
-  EN
   RU
 }

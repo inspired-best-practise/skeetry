@@ -11,6 +11,7 @@ Features:
 
 Refactoring:
   ☐ Check want and visited count (Item model)
+  ☐ Add places and sights to Item model
 
 Deploy:
   ✔ Fix bcrypt error - only in Docker (Solution: hash-wasm) @done(21-09-15 10:12)
