@@ -16,7 +16,7 @@ export type Scalars = {
   DateTime: any;
 };
 
-export type ActionItemInput = {
+export type ActionCityInput = {
   id: Scalars['ID'];
   type: Scalars['String'];
 };
@@ -30,17 +30,69 @@ export type Auth = {
   user: User;
 };
 
+export type CitiesInput = {
+  cityTagId: Scalars['ID'];
+};
+
+export type City = {
+  __typename?: 'City';
+  /** Identifies the date and time when the object was created. */
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ID'];
+  images: Array<Image>;
+  isCapital: Scalars['Boolean'];
+  latitude: Scalars['String'];
+  localizations?: Maybe<Array<CityLocalization>>;
+  longitude: Scalars['String'];
+  name: Scalars['String'];
+  overview?: Maybe<Scalars['String']>;
+  pk: Scalars['Int'];
+  reviewsCount: Scalars['Int'];
+  state: State;
+  /** Identifies the date and time when the object was last updated. */
+  updatedAt: Scalars['DateTime'];
+  userVisited?: Maybe<Array<User>>;
+  userWanted?: Maybe<Array<User>>;
+  visitedCount: Scalars['Int'];
+  wantedCount: Scalars['Int'];
+};
+
+export type CityLocalization = {
+  __typename?: 'CityLocalization';
+  /** Identifies the date and time when the object was created. */
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ID'];
+  locale: Locale;
+  name: Scalars['String'];
+  overview?: Maybe<Scalars['String']>;
+  /** Identifies the date and time when the object was last updated. */
+  updatedAt: Scalars['DateTime'];
+};
+
 export type Country = {
   __typename?: 'Country';
   continent: Scalars['String'];
   /** Identifies the date and time when the object was created. */
   createdAt: Scalars['DateTime'];
-  flag?: Maybe<Scalars['String']>;
+  currency: Scalars['String'];
+  currencySymbol: Scalars['String'];
+  emoji?: Maybe<Scalars['String']>;
+  emojiU: Scalars['String'];
   id: Scalars['ID'];
-  locale: Locale;
+  iso2: Scalars['String'];
+  iso3: Scalars['String'];
+  latitude: Scalars['String'];
   localizations?: Maybe<Array<CountryLocalization>>;
+  longitude: Scalars['String'];
   name: Scalars['String'];
+  native: Scalars['String'];
+  numericCode: Scalars['String'];
   overview?: Maybe<Scalars['String']>;
+  phoneCode: Scalars['String'];
+  pk: Scalars['Int'];
+  states?: Maybe<Array<State>>;
+  subregion: Scalars['String'];
+  tld: Scalars['String'];
   /** Identifies the date and time when the object was last updated. */
   updatedAt: Scalars['DateTime'];
 };
@@ -57,68 +109,17 @@ export type CountryLocalization = {
   updatedAt: Scalars['DateTime'];
 };
 
-export type Item = {
-  __typename?: 'Item';
-  country: Country;
-  /** Identifies the date and time when the object was created. */
-  createdAt: Scalars['DateTime'];
-  flag?: Maybe<Scalars['String']>;
-  id: Scalars['ID'];
-  latitude: Scalars['String'];
-  locale: Locale;
-  localizations?: Maybe<Array<ItemLocalization>>;
-  longitude: Scalars['String'];
-  name: Scalars['String'];
-  overview?: Maybe<Scalars['String']>;
-  photos: Array<Scalars['String']>;
-  reviewsCount: Scalars['Int'];
-  type: Scalars['String'];
-  /** Identifies the date and time when the object was last updated. */
-  updatedAt: Scalars['DateTime'];
-  userVisited?: Maybe<Array<User>>;
-  userWanted?: Maybe<Array<User>>;
-  visitedCount: Scalars['Int'];
-  wantedCount: Scalars['Int'];
-};
-
-export type ItemLocalization = {
-  __typename?: 'ItemLocalization';
+export type Image = {
+  __typename?: 'Image';
+  city?: Maybe<Array<City>>;
   /** Identifies the date and time when the object was created. */
   createdAt: Scalars['DateTime'];
   id: Scalars['ID'];
-  locale: Locale;
-  name: Scalars['String'];
-  overview?: Maybe<Scalars['String']>;
   /** Identifies the date and time when the object was last updated. */
   updatedAt: Scalars['DateTime'];
-};
-
-export type ItemTag = {
-  __typename?: 'ItemTag';
-  /** Identifies the date and time when the object was created. */
-  createdAt: Scalars['DateTime'];
-  emoji: Scalars['String'];
-  id: Scalars['ID'];
-  locale: Scalars['String'];
-  localizations?: Maybe<Array<ItemTagLocalization>>;
-  name: Scalars['String'];
-  /** Identifies the date and time when the object was last updated. */
-  updatedAt: Scalars['DateTime'];
-};
-
-export type ItemTagLocalization = {
-  __typename?: 'ItemTagLocalization';
-  /** Identifies the date and time when the object was created. */
-  createdAt: Scalars['DateTime'];
-  id: Scalars['ID'];
-  locale: Locale;
-  name: Scalars['String'];
-  /** Identifies the date and time when the object was last updated. */
-  updatedAt: Scalars['DateTime'];
-};
-
-export type ItemsInput = {
-  itemTagId: Scalars['ID'];
+  urlRegular: Scalars['String'];
+  urlSmall: Scalars['String'];
+  urlThumb: Scalars['String'];
 };
 
 export enum Locale {
@@ -133,19 +134,19 @@ export type LoginInput = {
 
 export type Mutation = {
   __typename?: 'Mutation';
-  addItem: Item;
+  addCity: City;
   confirmSmsCode: Scalars['Boolean'];
   login: Auth;
-  moveItem: Item;
+  moveCity: City;
   refreshToken: Token;
-  removeItem: Item;
+  removeCity: City;
   sendSmsCode: Scalars['Boolean'];
   signup: Auth;
 };
 
 
-export type MutationAddItemArgs = {
-  input: ActionItemInput;
+export type MutationAddCityArgs = {
+  input: ActionCityInput;
 };
 
 
@@ -160,13 +161,13 @@ export type MutationLoginArgs = {
 };
 
 
-export type MutationMoveItemArgs = {
-  input: ActionItemInput;
+export type MutationMoveCityArgs = {
+  input: ActionCityInput;
 };
 
 
-export type MutationRemoveItemArgs = {
-  input: ActionItemInput;
+export type MutationRemoveCityArgs = {
+  input: ActionCityInput;
 };
 
 
@@ -181,32 +182,32 @@ export type MutationSignupArgs = {
 
 export type Query = {
   __typename?: 'Query';
+  cities: Array<City>;
+  city: City;
   countries: Array<Country>;
   country: Country;
-  item: Item;
-  itemTags: Array<ItemTag>;
-  items: Array<Item>;
   me: User;
-  nearby: Array<Item>;
-  popular: Array<Item>;
+  nearby: Array<City>;
+  popular: Array<City>;
   stories: Array<Story>;
-  visited: Array<Item>;
-  wanted: Array<Item>;
+  tags: Array<Tag>;
+  visited: Array<City>;
+  wanted: Array<City>;
+};
+
+
+export type QueryCitiesArgs = {
+  input?: Maybe<CitiesInput>;
+};
+
+
+export type QueryCityArgs = {
+  id: Scalars['String'];
 };
 
 
 export type QueryCountryArgs = {
   id: Scalars['Int'];
-};
-
-
-export type QueryItemArgs = {
-  id: Scalars['String'];
-};
-
-
-export type QueryItemsArgs = {
-  input?: Maybe<ItemsInput>;
 };
 
 export type SignupInput = {
@@ -216,6 +217,37 @@ export type SignupInput = {
   username: Scalars['String'];
 };
 
+export type State = {
+  __typename?: 'State';
+  cities?: Maybe<Array<City>>;
+  country: Country;
+  /** Identifies the date and time when the object was created. */
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ID'];
+  latitude: Scalars['String'];
+  localizations?: Maybe<Array<StateLocalization>>;
+  longitude: Scalars['String'];
+  name: Scalars['String'];
+  overview: Scalars['String'];
+  pk: Scalars['Int'];
+  stateCode: Scalars['String'];
+  /** Identifies the date and time when the object was last updated. */
+  updatedAt: Scalars['DateTime'];
+};
+
+export type StateLocalization = {
+  __typename?: 'StateLocalization';
+  /** Identifies the date and time when the object was created. */
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ID'];
+  locale: Scalars['String'];
+  name: Scalars['String'];
+  overview: Scalars['String'];
+  state: State;
+  /** Identifies the date and time when the object was last updated. */
+  updatedAt: Scalars['DateTime'];
+};
+
 export type Story = {
   __typename?: 'Story';
   /** Identifies the date and time when the object was created. */
@@ -223,6 +255,29 @@ export type Story = {
   description: Scalars['String'];
   id: Scalars['ID'];
   title: Scalars['String'];
+  /** Identifies the date and time when the object was last updated. */
+  updatedAt: Scalars['DateTime'];
+};
+
+export type Tag = {
+  __typename?: 'Tag';
+  /** Identifies the date and time when the object was created. */
+  createdAt: Scalars['DateTime'];
+  emoji: Scalars['String'];
+  id: Scalars['ID'];
+  localizations?: Maybe<Array<TagLocalization>>;
+  name: Scalars['String'];
+  /** Identifies the date and time when the object was last updated. */
+  updatedAt: Scalars['DateTime'];
+};
+
+export type TagLocalization = {
+  __typename?: 'TagLocalization';
+  /** Identifies the date and time when the object was created. */
+  createdAt: Scalars['DateTime'];
+  id: Scalars['ID'];
+  locale: Locale;
+  name: Scalars['String'];
   /** Identifies the date and time when the object was last updated. */
   updatedAt: Scalars['DateTime'];
 };
@@ -249,26 +304,32 @@ export type User = {
   wantedCount: Scalars['Int'];
 };
 
-export type RegularCountryFragment = { __typename?: 'Country', id: string, name: string, overview?: Maybe<string>, continent: string, flag?: Maybe<string>, locale: Locale, localizations?: Maybe<Array<{ __typename?: 'CountryLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> };
+export type RegularCityFragment = { __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> };
+
+export type RegularCityLocalizationFragment = { __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> };
+
+export type RegularCountryFragment = { __typename?: 'Country', id: string, pk: number, name: string, iso2: string, iso3: string, numericCode: string, phoneCode: string, currency: string, currencySymbol: string, tld: string, native: string, continent: string, subregion: string, latitude: string, longitude: string, emoji?: Maybe<string>, emojiU: string, overview?: Maybe<string>, states?: Maybe<Array<{ __typename?: 'State', id: string, pk: number, name: string, stateCode: string, latitude: string, longitude: string, overview: string, cities?: Maybe<Array<{ __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> }>>, localizations?: Maybe<Array<{ __typename?: 'StateLocalization', id: string, locale: string, name: string, overview: string }>> }>>, localizations?: Maybe<Array<{ __typename?: 'CountryLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> };
 
 export type RegularCountryLocalizationFragment = { __typename?: 'CountryLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> };
 
-export type RegularItemFragment = { __typename?: 'Item', id: string, type: string, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, reviewsCount: number, photos: Array<string>, latitude: string, longitude: string, locale: Locale, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, country: { __typename?: 'Country', id: string, name: string, overview?: Maybe<string>, continent: string, flag?: Maybe<string>, locale: Locale, localizations?: Maybe<Array<{ __typename?: 'CountryLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> }, localizations?: Maybe<Array<{ __typename?: 'ItemLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> };
+export type RegularImageFragment = { __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string };
 
-export type RegularItemLocalizationFragment = { __typename?: 'ItemLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> };
+export type RegularStateFragment = { __typename?: 'State', id: string, pk: number, name: string, stateCode: string, latitude: string, longitude: string, overview: string, cities?: Maybe<Array<{ __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> }>>, localizations?: Maybe<Array<{ __typename?: 'StateLocalization', id: string, locale: string, name: string, overview: string }>> };
 
-export type RegularItemTagFragment = { __typename?: 'ItemTag', id: string, name: string, emoji: string, locale: string, localizations?: Maybe<Array<{ __typename?: 'ItemTagLocalization', id: string, name: string, locale: Locale }>> };
+export type RegularStateLocalizationFragment = { __typename?: 'StateLocalization', id: string, locale: string, name: string, overview: string };
 
-export type RegularItemTagLocalizationFragment = { __typename?: 'ItemTagLocalization', id: string, name: string, locale: Locale };
+export type RegularTagFragment = { __typename?: 'Tag', id: string, name: string, emoji: string, localizations?: Maybe<Array<{ __typename?: 'TagLocalization', id: string, name: string, locale: Locale }>> };
+
+export type RegularTagLocalizationFragment = { __typename?: 'TagLocalization', id: string, name: string, locale: Locale };
 
 export type RegularUserFragment = { __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any };
 
-export type AddItemMutationVariables = Exact<{
-  input: ActionItemInput;
+export type AddCityMutationVariables = Exact<{
+  input: ActionCityInput;
 }>;
 
 
-export type AddItemMutation = { __typename?: 'Mutation', addItem: { __typename?: 'Item', id: string, type: string, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, reviewsCount: number, photos: Array<string>, latitude: string, longitude: string, locale: Locale, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, country: { __typename?: 'Country', id: string, name: string, overview?: Maybe<string>, continent: string, flag?: Maybe<string>, locale: Locale, localizations?: Maybe<Array<{ __typename?: 'CountryLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> }, localizations?: Maybe<Array<{ __typename?: 'ItemLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> } };
+export type AddCityMutation = { __typename?: 'Mutation', addCity: { __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> } };
 
 export type ConfirmSmsCodeMutationVariables = Exact<{
   phone: Scalars['String'];
@@ -285,24 +346,24 @@ export type LoginMutationVariables = Exact<{
 
 export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'Auth', accessToken: string, refreshToken: string, user: { __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any } } };
 
-export type MoveItemMutationVariables = Exact<{
-  input: ActionItemInput;
+export type MoveCityMutationVariables = Exact<{
+  input: ActionCityInput;
 }>;
 
 
-export type MoveItemMutation = { __typename?: 'Mutation', moveItem: { __typename?: 'Item', id: string, type: string, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, reviewsCount: number, photos: Array<string>, latitude: string, longitude: string, locale: Locale, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, country: { __typename?: 'Country', id: string, name: string, overview?: Maybe<string>, continent: string, flag?: Maybe<string>, locale: Locale, localizations?: Maybe<Array<{ __typename?: 'CountryLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> }, localizations?: Maybe<Array<{ __typename?: 'ItemLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> } };
+export type MoveCityMutation = { __typename?: 'Mutation', moveCity: { __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> } };
 
 export type RefreshTokenMutationVariables = Exact<{ [key: string]: never; }>;
 
 
 export type RefreshTokenMutation = { __typename?: 'Mutation', refreshToken: { __typename?: 'Token', accessToken: string, refreshToken: string } };
 
-export type RemoveItemMutationVariables = Exact<{
-  input: ActionItemInput;
+export type RemoveCityMutationVariables = Exact<{
+  input: ActionCityInput;
 }>;
 
 
-export type RemoveItemMutation = { __typename?: 'Mutation', removeItem: { __typename?: 'Item', id: string, type: string, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, reviewsCount: number, photos: Array<string>, latitude: string, longitude: string, locale: Locale, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, country: { __typename?: 'Country', id: string, name: string, overview?: Maybe<string>, continent: string, flag?: Maybe<string>, locale: Locale, localizations?: Maybe<Array<{ __typename?: 'CountryLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> }, localizations?: Maybe<Array<{ __typename?: 'ItemLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> } };
+export type RemoveCityMutation = { __typename?: 'Mutation', removeCity: { __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> } };
 
 export type SendSmsCodeMutationVariables = Exact<{
   phone: Scalars['String'];
@@ -318,24 +379,19 @@ export type SignupMutationVariables = Exact<{
 
 export type SignupMutation = { __typename?: 'Mutation', signup: { __typename?: 'Auth', accessToken: string, refreshToken: string, user: { __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any } } };
 
-export type ItemQueryVariables = Exact<{
+export type CitiesQueryVariables = Exact<{
+  input?: Maybe<CitiesInput>;
+}>;
+
+
+export type CitiesQuery = { __typename?: 'Query', cities: Array<{ __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> }> };
+
+export type CityQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
 
 
-export type ItemQuery = { __typename?: 'Query', item: { __typename?: 'Item', id: string, type: string, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, reviewsCount: number, photos: Array<string>, latitude: string, longitude: string, locale: Locale, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, country: { __typename?: 'Country', id: string, name: string, overview?: Maybe<string>, continent: string, flag?: Maybe<string>, locale: Locale, localizations?: Maybe<Array<{ __typename?: 'CountryLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> }, localizations?: Maybe<Array<{ __typename?: 'ItemLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> } };
-
-export type ItemTagsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type ItemTagsQuery = { __typename?: 'Query', itemTags: Array<{ __typename?: 'ItemTag', id: string, name: string, emoji: string, locale: string, localizations?: Maybe<Array<{ __typename?: 'ItemTagLocalization', id: string, name: string, locale: Locale }>> }> };
-
-export type ItemsQueryVariables = Exact<{
-  input?: Maybe<ItemsInput>;
-}>;
-
-
-export type ItemsQuery = { __typename?: 'Query', items: Array<{ __typename?: 'Item', id: string, type: string, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, reviewsCount: number, photos: Array<string>, latitude: string, longitude: string, locale: Locale, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, country: { __typename?: 'Country', id: string, name: string, overview?: Maybe<string>, continent: string, flag?: Maybe<string>, locale: Locale, localizations?: Maybe<Array<{ __typename?: 'CountryLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> }, localizations?: Maybe<Array<{ __typename?: 'ItemLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> }> };
+export type CityQuery = { __typename?: 'Query', city: { __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> } };
 
 export type MeQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -345,23 +401,36 @@ export type MeQuery = { __typename?: 'Query', me: { __typename?: 'User', id: str
 export type NearbyQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type NearbyQuery = { __typename?: 'Query', nearby: Array<{ __typename?: 'Item', id: string, type: string, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, reviewsCount: number, photos: Array<string>, latitude: string, longitude: string, locale: Locale, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, country: { __typename?: 'Country', id: string, name: string, overview?: Maybe<string>, continent: string, flag?: Maybe<string>, locale: Locale, localizations?: Maybe<Array<{ __typename?: 'CountryLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> }, localizations?: Maybe<Array<{ __typename?: 'ItemLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> }> };
+export type NearbyQuery = { __typename?: 'Query', nearby: Array<{ __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> }> };
 
 export type PopularQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type PopularQuery = { __typename?: 'Query', popular: Array<{ __typename?: 'Item', id: string, type: string, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, reviewsCount: number, photos: Array<string>, latitude: string, longitude: string, locale: Locale, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, country: { __typename?: 'Country', id: string, name: string, overview?: Maybe<string>, continent: string, flag?: Maybe<string>, locale: Locale, localizations?: Maybe<Array<{ __typename?: 'CountryLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> }, localizations?: Maybe<Array<{ __typename?: 'ItemLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> }> };
+export type PopularQuery = { __typename?: 'Query', popular: Array<{ __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> }> };
+
+export type TagsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type TagsQuery = { __typename?: 'Query', tags: Array<{ __typename?: 'Tag', id: string, name: string, emoji: string, localizations?: Maybe<Array<{ __typename?: 'TagLocalization', id: string, name: string, locale: Locale }>> }> };
 
 export type VisitedQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type VisitedQuery = { __typename?: 'Query', visited: Array<{ __typename?: 'Item', id: string, type: string, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, reviewsCount: number, photos: Array<string>, latitude: string, longitude: string, locale: Locale, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, country: { __typename?: 'Country', id: string, name: string, overview?: Maybe<string>, continent: string, flag?: Maybe<string>, locale: Locale, localizations?: Maybe<Array<{ __typename?: 'CountryLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> }, localizations?: Maybe<Array<{ __typename?: 'ItemLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> }> };
+export type VisitedQuery = { __typename?: 'Query', visited: Array<{ __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> }> };
 
 export type WantedQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type WantedQuery = { __typename?: 'Query', wanted: Array<{ __typename?: 'Item', id: string, type: string, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, reviewsCount: number, photos: Array<string>, latitude: string, longitude: string, locale: Locale, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, country: { __typename?: 'Country', id: string, name: string, overview?: Maybe<string>, continent: string, flag?: Maybe<string>, locale: Locale, localizations?: Maybe<Array<{ __typename?: 'CountryLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> }, localizations?: Maybe<Array<{ __typename?: 'ItemLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> }> };
+export type WantedQuery = { __typename?: 'Query', wanted: Array<{ __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> }> };
 
+export const RegularImageFragmentDoc = gql`
+    fragment RegularImage on Image {
+  id
+  urlRegular
+  urlSmall
+  urlThumb
+}
+    `;
 export const RegularUserFragmentDoc = gql`
     fragment RegularUser on User {
   id
@@ -374,6 +443,67 @@ export const RegularUserFragmentDoc = gql`
   updatedAt
 }
     `;
+export const RegularCityLocalizationFragmentDoc = gql`
+    fragment RegularCityLocalization on CityLocalization {
+  id
+  locale
+  name
+  overview
+}
+    `;
+export const RegularCityFragmentDoc = gql`
+    fragment RegularCity on City {
+  id
+  pk
+  name
+  overview
+  wantedCount
+  visitedCount
+  latitude
+  longitude
+  isCapital
+  images {
+    ...RegularImage
+  }
+  userWanted {
+    ...RegularUser
+  }
+  userVisited {
+    ...RegularUser
+  }
+  localizations {
+    ...RegularCityLocalization
+  }
+}
+    ${RegularImageFragmentDoc}
+${RegularUserFragmentDoc}
+${RegularCityLocalizationFragmentDoc}`;
+export const RegularStateLocalizationFragmentDoc = gql`
+    fragment RegularStateLocalization on StateLocalization {
+  id
+  locale
+  name
+  overview
+}
+    `;
+export const RegularStateFragmentDoc = gql`
+    fragment RegularState on State {
+  id
+  pk
+  name
+  stateCode
+  latitude
+  longitude
+  overview
+  cities {
+    ...RegularCity
+  }
+  localizations {
+    ...RegularStateLocalization
+  }
+}
+    ${RegularCityFragmentDoc}
+${RegularStateLocalizationFragmentDoc}`;
 export const RegularCountryLocalizationFragmentDoc = gql`
     fragment RegularCountryLocalization on CountryLocalization {
   id
@@ -385,104 +515,82 @@ export const RegularCountryLocalizationFragmentDoc = gql`
 export const RegularCountryFragmentDoc = gql`
     fragment RegularCountry on Country {
   id
+  pk
   name
-  overview
+  iso2
+  iso3
+  numericCode
+  phoneCode
+  currency
+  currencySymbol
+  tld
+  native
   continent
-  flag
-  locale
+  subregion
+  latitude
+  longitude
+  emoji
+  emojiU
+  overview
+  states {
+    ...RegularState
+  }
   localizations {
     ...RegularCountryLocalization
   }
 }
-    ${RegularCountryLocalizationFragmentDoc}`;
-export const RegularItemLocalizationFragmentDoc = gql`
-    fragment RegularItemLocalization on ItemLocalization {
-  id
-  locale
-  name
-  overview
-}
-    `;
-export const RegularItemFragmentDoc = gql`
-    fragment RegularItem on Item {
-  id
-  type
-  name
-  overview
-  wantedCount
-  visitedCount
-  reviewsCount
-  photos
-  latitude
-  longitude
-  locale
-  userWanted {
-    ...RegularUser
-  }
-  userVisited {
-    ...RegularUser
-  }
-  country {
-    ...RegularCountry
-  }
-  localizations {
-    ...RegularItemLocalization
-  }
-}
-    ${RegularUserFragmentDoc}
-${RegularCountryFragmentDoc}
-${RegularItemLocalizationFragmentDoc}`;
-export const RegularItemTagLocalizationFragmentDoc = gql`
-    fragment RegularItemTagLocalization on ItemTagLocalization {
+    ${RegularStateFragmentDoc}
+${RegularCountryLocalizationFragmentDoc}`;
+export const RegularTagLocalizationFragmentDoc = gql`
+    fragment RegularTagLocalization on TagLocalization {
   id
   name
   locale
 }
     `;
-export const RegularItemTagFragmentDoc = gql`
-    fragment RegularItemTag on ItemTag {
+export const RegularTagFragmentDoc = gql`
+    fragment RegularTag on Tag {
   id
   name
   emoji
-  locale
   localizations {
-    ...RegularItemTagLocalization
+    ...RegularTagLocalization
   }
 }
-    ${RegularItemTagLocalizationFragmentDoc}`;
-export const AddItemDocument = gql`
-    mutation addItem($input: ActionItemInput!) {
-  addItem(input: $input) {
-    ...RegularItem
+    ${RegularTagLocalizationFragmentDoc}`;
+export const AddCityDocument = gql`
+    mutation addCity($input: ActionCityInput!) {
+  addCity(input: $input) {
+    ...RegularCity
   }
 }
-    ${RegularItemFragmentDoc}`;
-export type AddItemMutationFn = Apollo.MutationFunction<AddItemMutation, AddItemMutationVariables>;
+    ${RegularCityFragmentDoc}`;
+export type AddCityMutationFn = Apollo.MutationFunction<AddCityMutation, AddCityMutationVariables>;
 
 /**
- * __useAddItemMutation__
+ * __useAddCityMutation__
  *
- * To run a mutation, you first call `useAddItemMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useAddItemMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useAddCityMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAddCityMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [addItemMutation, { data, loading, error }] = useAddItemMutation({
+ * const [addCityMutation, { data, loading, error }] = useAddCityMutation({
  *   variables: {
  *      input: // value for 'input'
  *   },
  * });
  */
-export function useAddItemMutation(baseOptions?: Apollo.MutationHookOptions<AddItemMutation, AddItemMutationVariables>) {
+export function useAddCityMutation(baseOptions?: Apollo.MutationHookOptions<AddCityMutation, AddCityMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<AddItemMutation, AddItemMutationVariables>(AddItemDocument, options);
+        return Apollo.useMutation<AddCityMutation, AddCityMutationVariables>(AddCityDocument, options);
       }
-export type AddItemMutationHookResult = ReturnType<typeof useAddItemMutation>;
-export type AddItemMutationResult = Apollo.MutationResult<AddItemMutation>;
-export type AddItemMutationOptions = Apollo.BaseMutationOptions<AddItemMutation, AddItemMutationVariables>;
+export type AddCityMutationHookResult = ReturnType<typeof useAddCityMutation>;
+export type AddCityMutationResult = Apollo.MutationResult<AddCityMutation>;
+export type AddCityMutationOptions = Apollo.BaseMutationOptions<AddCityMutation, AddCityMutationVariables>;
 export const ConfirmSmsCodeDocument = gql`
     mutation confirmSmsCode($phone: String!, $code: String!) {
   confirmSmsCode(phone: $phone, code: $code)
@@ -552,39 +660,39 @@ export function useLoginMutation(baseOptions?: Apollo.MutationHookOptions<LoginM
 export type LoginMutationHookResult = ReturnType<typeof useLoginMutation>;
 export type LoginMutationResult = Apollo.MutationResult<LoginMutation>;
 export type LoginMutationOptions = Apollo.BaseMutationOptions<LoginMutation, LoginMutationVariables>;
-export const MoveItemDocument = gql`
-    mutation moveItem($input: ActionItemInput!) {
-  moveItem(input: $input) {
-    ...RegularItem
+export const MoveCityDocument = gql`
+    mutation moveCity($input: ActionCityInput!) {
+  moveCity(input: $input) {
+    ...RegularCity
   }
 }
-    ${RegularItemFragmentDoc}`;
-export type MoveItemMutationFn = Apollo.MutationFunction<MoveItemMutation, MoveItemMutationVariables>;
+    ${RegularCityFragmentDoc}`;
+export type MoveCityMutationFn = Apollo.MutationFunction<MoveCityMutation, MoveCityMutationVariables>;
 
 /**
- * __useMoveItemMutation__
+ * __useMoveCityMutation__
  *
- * To run a mutation, you first call `useMoveItemMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useMoveItemMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useMoveCityMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useMoveCityMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [moveItemMutation, { data, loading, error }] = useMoveItemMutation({
+ * const [moveCityMutation, { data, loading, error }] = useMoveCityMutation({
  *   variables: {
  *      input: // value for 'input'
  *   },
  * });
  */
-export function useMoveItemMutation(baseOptions?: Apollo.MutationHookOptions<MoveItemMutation, MoveItemMutationVariables>) {
+export function useMoveCityMutation(baseOptions?: Apollo.MutationHookOptions<MoveCityMutation, MoveCityMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<MoveItemMutation, MoveItemMutationVariables>(MoveItemDocument, options);
+        return Apollo.useMutation<MoveCityMutation, MoveCityMutationVariables>(MoveCityDocument, options);
       }
-export type MoveItemMutationHookResult = ReturnType<typeof useMoveItemMutation>;
-export type MoveItemMutationResult = Apollo.MutationResult<MoveItemMutation>;
-export type MoveItemMutationOptions = Apollo.BaseMutationOptions<MoveItemMutation, MoveItemMutationVariables>;
+export type MoveCityMutationHookResult = ReturnType<typeof useMoveCityMutation>;
+export type MoveCityMutationResult = Apollo.MutationResult<MoveCityMutation>;
+export type MoveCityMutationOptions = Apollo.BaseMutationOptions<MoveCityMutation, MoveCityMutationVariables>;
 export const RefreshTokenDocument = gql`
     mutation refreshToken {
   refreshToken {
@@ -618,39 +726,39 @@ export function useRefreshTokenMutation(baseOptions?: Apollo.MutationHookOptions
 export type RefreshTokenMutationHookResult = ReturnType<typeof useRefreshTokenMutation>;
 export type RefreshTokenMutationResult = Apollo.MutationResult<RefreshTokenMutation>;
 export type RefreshTokenMutationOptions = Apollo.BaseMutationOptions<RefreshTokenMutation, RefreshTokenMutationVariables>;
-export const RemoveItemDocument = gql`
-    mutation removeItem($input: ActionItemInput!) {
-  removeItem(input: $input) {
-    ...RegularItem
+export const RemoveCityDocument = gql`
+    mutation removeCity($input: ActionCityInput!) {
+  removeCity(input: $input) {
+    ...RegularCity
   }
 }
-    ${RegularItemFragmentDoc}`;
-export type RemoveItemMutationFn = Apollo.MutationFunction<RemoveItemMutation, RemoveItemMutationVariables>;
+    ${RegularCityFragmentDoc}`;
+export type RemoveCityMutationFn = Apollo.MutationFunction<RemoveCityMutation, RemoveCityMutationVariables>;
 
 /**
- * __useRemoveItemMutation__
+ * __useRemoveCityMutation__
  *
- * To run a mutation, you first call `useRemoveItemMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useRemoveItemMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useRemoveCityMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useRemoveCityMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [removeItemMutation, { data, loading, error }] = useRemoveItemMutation({
+ * const [removeCityMutation, { data, loading, error }] = useRemoveCityMutation({
  *   variables: {
  *      input: // value for 'input'
  *   },
  * });
  */
-export function useRemoveItemMutation(baseOptions?: Apollo.MutationHookOptions<RemoveItemMutation, RemoveItemMutationVariables>) {
+export function useRemoveCityMutation(baseOptions?: Apollo.MutationHookOptions<RemoveCityMutation, RemoveCityMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<RemoveItemMutation, RemoveItemMutationVariables>(RemoveItemDocument, options);
+        return Apollo.useMutation<RemoveCityMutation, RemoveCityMutationVariables>(RemoveCityDocument, options);
       }
-export type RemoveItemMutationHookResult = ReturnType<typeof useRemoveItemMutation>;
-export type RemoveItemMutationResult = Apollo.MutationResult<RemoveItemMutation>;
-export type RemoveItemMutationOptions = Apollo.BaseMutationOptions<RemoveItemMutation, RemoveItemMutationVariables>;
+export type RemoveCityMutationHookResult = ReturnType<typeof useRemoveCityMutation>;
+export type RemoveCityMutationResult = Apollo.MutationResult<RemoveCityMutation>;
+export type RemoveCityMutationOptions = Apollo.BaseMutationOptions<RemoveCityMutation, RemoveCityMutationVariables>;
 export const SendSmsCodeDocument = gql`
     mutation sendSmsCode($phone: String!) {
   sendSmsCode(phone: $phone)
@@ -719,110 +827,76 @@ export function useSignupMutation(baseOptions?: Apollo.MutationHookOptions<Signu
 export type SignupMutationHookResult = ReturnType<typeof useSignupMutation>;
 export type SignupMutationResult = Apollo.MutationResult<SignupMutation>;
 export type SignupMutationOptions = Apollo.BaseMutationOptions<SignupMutation, SignupMutationVariables>;
-export const ItemDocument = gql`
-    query Item($id: String!) {
-  item(id: $id) {
-    ...RegularItem
+export const CitiesDocument = gql`
+    query Cities($input: CitiesInput) {
+  cities(input: $input) {
+    ...RegularCity
   }
 }
-    ${RegularItemFragmentDoc}`;
+    ${RegularCityFragmentDoc}`;
 
 /**
- * __useItemQuery__
+ * __useCitiesQuery__
  *
- * To run a query within a React component, call `useItemQuery` and pass it any options that fit your needs.
- * When your component renders, `useItemQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useCitiesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCitiesQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useItemQuery({
- *   variables: {
- *      id: // value for 'id'
- *   },
- * });
- */
-export function useItemQuery(baseOptions: Apollo.QueryHookOptions<ItemQuery, ItemQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<ItemQuery, ItemQueryVariables>(ItemDocument, options);
-      }
-export function useItemLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ItemQuery, ItemQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<ItemQuery, ItemQueryVariables>(ItemDocument, options);
-        }
-export type ItemQueryHookResult = ReturnType<typeof useItemQuery>;
-export type ItemLazyQueryHookResult = ReturnType<typeof useItemLazyQuery>;
-export type ItemQueryResult = Apollo.QueryResult<ItemQuery, ItemQueryVariables>;
-export const ItemTagsDocument = gql`
-    query ItemTags {
-  itemTags {
-    ...RegularItemTag
-  }
-}
-    ${RegularItemTagFragmentDoc}`;
-
-/**
- * __useItemTagsQuery__
- *
- * To run a query within a React component, call `useItemTagsQuery` and pass it any options that fit your needs.
- * When your component renders, `useItemTagsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useItemTagsQuery({
- *   variables: {
- *   },
- * });
- */
-export function useItemTagsQuery(baseOptions?: Apollo.QueryHookOptions<ItemTagsQuery, ItemTagsQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<ItemTagsQuery, ItemTagsQueryVariables>(ItemTagsDocument, options);
-      }
-export function useItemTagsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ItemTagsQuery, ItemTagsQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<ItemTagsQuery, ItemTagsQueryVariables>(ItemTagsDocument, options);
-        }
-export type ItemTagsQueryHookResult = ReturnType<typeof useItemTagsQuery>;
-export type ItemTagsLazyQueryHookResult = ReturnType<typeof useItemTagsLazyQuery>;
-export type ItemTagsQueryResult = Apollo.QueryResult<ItemTagsQuery, ItemTagsQueryVariables>;
-export const ItemsDocument = gql`
-    query Items($input: ItemsInput) {
-  items(input: $input) {
-    ...RegularItem
-  }
-}
-    ${RegularItemFragmentDoc}`;
-
-/**
- * __useItemsQuery__
- *
- * To run a query within a React component, call `useItemsQuery` and pass it any options that fit your needs.
- * When your component renders, `useItemsQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useItemsQuery({
+ * const { data, loading, error } = useCitiesQuery({
  *   variables: {
  *      input: // value for 'input'
  *   },
  * });
  */
-export function useItemsQuery(baseOptions?: Apollo.QueryHookOptions<ItemsQuery, ItemsQueryVariables>) {
+export function useCitiesQuery(baseOptions?: Apollo.QueryHookOptions<CitiesQuery, CitiesQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<ItemsQuery, ItemsQueryVariables>(ItemsDocument, options);
+        return Apollo.useQuery<CitiesQuery, CitiesQueryVariables>(CitiesDocument, options);
       }
-export function useItemsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<ItemsQuery, ItemsQueryVariables>) {
+export function useCitiesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CitiesQuery, CitiesQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<ItemsQuery, ItemsQueryVariables>(ItemsDocument, options);
+          return Apollo.useLazyQuery<CitiesQuery, CitiesQueryVariables>(CitiesDocument, options);
         }
-export type ItemsQueryHookResult = ReturnType<typeof useItemsQuery>;
-export type ItemsLazyQueryHookResult = ReturnType<typeof useItemsLazyQuery>;
-export type ItemsQueryResult = Apollo.QueryResult<ItemsQuery, ItemsQueryVariables>;
+export type CitiesQueryHookResult = ReturnType<typeof useCitiesQuery>;
+export type CitiesLazyQueryHookResult = ReturnType<typeof useCitiesLazyQuery>;
+export type CitiesQueryResult = Apollo.QueryResult<CitiesQuery, CitiesQueryVariables>;
+export const CityDocument = gql`
+    query City($id: String!) {
+  city(id: $id) {
+    ...RegularCity
+  }
+}
+    ${RegularCityFragmentDoc}`;
+
+/**
+ * __useCityQuery__
+ *
+ * To run a query within a React component, call `useCityQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCityQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useCityQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useCityQuery(baseOptions: Apollo.QueryHookOptions<CityQuery, CityQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<CityQuery, CityQueryVariables>(CityDocument, options);
+      }
+export function useCityLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<CityQuery, CityQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<CityQuery, CityQueryVariables>(CityDocument, options);
+        }
+export type CityQueryHookResult = ReturnType<typeof useCityQuery>;
+export type CityLazyQueryHookResult = ReturnType<typeof useCityLazyQuery>;
+export type CityQueryResult = Apollo.QueryResult<CityQuery, CityQueryVariables>;
 export const MeDocument = gql`
     query Me {
   me {
@@ -860,10 +934,10 @@ export type MeQueryResult = Apollo.QueryResult<MeQuery, MeQueryVariables>;
 export const NearbyDocument = gql`
     query Nearby {
   nearby {
-    ...RegularItem
+    ...RegularCity
   }
 }
-    ${RegularItemFragmentDoc}`;
+    ${RegularCityFragmentDoc}`;
 
 /**
  * __useNearbyQuery__
@@ -894,10 +968,10 @@ export type NearbyQueryResult = Apollo.QueryResult<NearbyQuery, NearbyQueryVaria
 export const PopularDocument = gql`
     query Popular {
   popular {
-    ...RegularItem
+    ...RegularCity
   }
 }
-    ${RegularItemFragmentDoc}`;
+    ${RegularCityFragmentDoc}`;
 
 /**
  * __usePopularQuery__
@@ -925,13 +999,47 @@ export function usePopularLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<Po
 export type PopularQueryHookResult = ReturnType<typeof usePopularQuery>;
 export type PopularLazyQueryHookResult = ReturnType<typeof usePopularLazyQuery>;
 export type PopularQueryResult = Apollo.QueryResult<PopularQuery, PopularQueryVariables>;
+export const TagsDocument = gql`
+    query Tags {
+  tags {
+    ...RegularTag
+  }
+}
+    ${RegularTagFragmentDoc}`;
+
+/**
+ * __useTagsQuery__
+ *
+ * To run a query within a React component, call `useTagsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useTagsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useTagsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useTagsQuery(baseOptions?: Apollo.QueryHookOptions<TagsQuery, TagsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<TagsQuery, TagsQueryVariables>(TagsDocument, options);
+      }
+export function useTagsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TagsQuery, TagsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<TagsQuery, TagsQueryVariables>(TagsDocument, options);
+        }
+export type TagsQueryHookResult = ReturnType<typeof useTagsQuery>;
+export type TagsLazyQueryHookResult = ReturnType<typeof useTagsLazyQuery>;
+export type TagsQueryResult = Apollo.QueryResult<TagsQuery, TagsQueryVariables>;
 export const VisitedDocument = gql`
     query Visited {
   visited {
-    ...RegularItem
+    ...RegularCity
   }
 }
-    ${RegularItemFragmentDoc}`;
+    ${RegularCityFragmentDoc}`;
 
 /**
  * __useVisitedQuery__
@@ -962,10 +1070,10 @@ export type VisitedQueryResult = Apollo.QueryResult<VisitedQuery, VisitedQueryVa
 export const WantedDocument = gql`
     query Wanted {
   wanted {
-    ...RegularItem
+    ...RegularCity
   }
 }
-    ${RegularItemFragmentDoc}`;
+    ${RegularCityFragmentDoc}`;
 
 /**
  * __useWantedQuery__
