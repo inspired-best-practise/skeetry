@@ -9,9 +9,6 @@ fragment RegularState on State {
   cities {
     ...RegularCity
   }
-  country {
-    ...RegularCountry
-  }
   localizations {
     ...RegularStateLocalization
   }

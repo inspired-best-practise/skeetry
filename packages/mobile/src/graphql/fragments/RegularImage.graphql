@@ -3,7 +3,4 @@ fragment RegularImage on Image {
   urlRegular
   urlSmall
   urlThumb
-  city {
-    ...RegularCity
-  }
 }

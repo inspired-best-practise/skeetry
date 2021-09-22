@@ -3,7 +3,7 @@ import { User } from '../../user/models/user.model';
 import { BaseModel } from '../../common/base.model';
 import { CityLocalization } from './cityLocalization.model';
 import { Image } from '../../image/models/image.model';
-import { Country } from '../../../modules/country/models/country.models';
+import { State } from '../../state/models/state.model';
 
 export enum CityType {
   COUNTRY = 'COUNTRY',
@@ -19,7 +19,7 @@ registerEnumType(CityType, {
 @ObjectType()
 export class City extends BaseModel {
   @Field()
-  type: CityType;
+  pk: number;
 
   @Field()
   name: string;
@@ -45,8 +45,8 @@ export class City extends BaseModel {
   @Field()
   longitude: string;
 
-  @Field({ nullable: true })
-  flag?: string;
+  @Field()
+  isCapital: boolean;
 
   @Field(() => [User], { nullable: true })
   userWanted: User[];
@@ -54,8 +54,8 @@ export class City extends BaseModel {
   @Field(() => [User], { nullable: true })
   userVisited: User[];
 
-  @Field(() => Country)
-  country: Country;
+  @Field(() => State)
+  state: State;
 
   @Field(() => [CityLocalization], { nullable: true })
   localizations?: CityLocalization[];

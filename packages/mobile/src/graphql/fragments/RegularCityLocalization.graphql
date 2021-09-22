@@ -1,4 +1,4 @@
-fragment RegularItemLocalization on ItemLocalization {
+fragment RegularCityLocalization on CityLocalization {
   id
   locale
   name

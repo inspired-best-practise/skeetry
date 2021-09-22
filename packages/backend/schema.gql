@@ -21,20 +21,19 @@ input CitiesInput {
 }
 
 type City {
-  country: Country!
-
   """Identifies the date and time when the object was created."""
   createdAt: DateTime!
-  flag: String
   id: ID!
   images: [Image!]!
+  isCapital: Boolean!
   latitude: String!
   localizations: [CityLocalization!]
   longitude: String!
   name: String!
   overview: String
+  pk: Int!
   reviewsCount: Int!
-  type: String!
+  state: State!
 
   """Identifies the date and time when the object was last updated."""
   updatedAt: DateTime!

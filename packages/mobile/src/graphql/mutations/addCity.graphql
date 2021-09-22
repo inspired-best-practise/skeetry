@@ -1,5 +1,5 @@
-mutation addItem($input: ActionItemInput!) {
-  addItem(input: $input) {
-    ...RegularItem
+mutation addCity($input: ActionCityInput!) {
+  addCity(input: $input) {
+    ...RegularCity
   }
 }

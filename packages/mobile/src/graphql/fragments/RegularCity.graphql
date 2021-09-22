@@ -17,9 +17,6 @@ fragment RegularCity on City {
   userVisited {
     ...RegularUser
   }
-  state {
-    ...RegularState
-  }
   localizations {
     ...RegularCityLocalization
   }
