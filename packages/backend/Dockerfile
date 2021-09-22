@@ -10,7 +10,7 @@ RUN yarn add apollo-server-express
 
 FROM dependencies as prisma
 RUN yarn add prisma --dev
-RUN yarn prisma generate
+RUN npx prisma generate
 COPY . .
 
 FROM prisma as release
