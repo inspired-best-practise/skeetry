@@ -2,7 +2,7 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-input ActionItemInput {
+input ActionCityInput {
   id: ID!
   type: String!
 }
@@ -14,6 +14,46 @@ type Auth {
   """JWT refresh token"""
   refreshToken: String!
   user: User!
+}
+
+input CitiesInput {
+  cityTagId: ID!
+}
+
+type City {
+  country: Country!
+
+  """Identifies the date and time when the object was created."""
+  createdAt: DateTime!
+  flag: String
+  id: ID!
+  latitude: String!
+  localizations: [CityLocalization!]
+  longitude: String!
+  name: String!
+  overview: String
+  photos: [Image!]!
+  reviewsCount: Int!
+  type: String!
+
+  """Identifies the date and time when the object was last updated."""
+  updatedAt: DateTime!
+  userVisited: [User!]
+  userWanted: [User!]
+  visitedCount: Int!
+  wantedCount: Int!
+}
+
+type CityLocalization {
+  """Identifies the date and time when the object was created."""
+  createdAt: DateTime!
+  id: ID!
+  locale: Locale!
+  name: String!
+  overview: String
+
+  """Identifies the date and time when the object was last updated."""
+  updatedAt: DateTime!
 }
 
 type Country {
@@ -49,69 +89,18 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
-type Item {
-  country: Country!
+type Image {
+  city: [City!]
 
   """Identifies the date and time when the object was created."""
   createdAt: DateTime!
-  flag: String
   id: ID!
-  latitude: String!
-  locale: Locale!
-  localizations: [ItemLocalization!]
-  longitude: String!
-  name: String!
-  overview: String
-  photos: [String!]!
-  reviewsCount: Int!
-  type: String!
 
   """Identifies the date and time when the object was last updated."""
   updatedAt: DateTime!
-  userVisited: [User!]
-  userWanted: [User!]
-  visitedCount: Int!
-  wantedCount: Int!
-}
-
-type ItemLocalization {
-  """Identifies the date and time when the object was created."""
-  createdAt: DateTime!
-  id: ID!
-  locale: Locale!
-  name: String!
-  overview: String
-
-  """Identifies the date and time when the object was last updated."""
-  updatedAt: DateTime!
-}
-
-type ItemTag {
-  """Identifies the date and time when the object was created."""
-  createdAt: DateTime!
-  emoji: String!
-  id: ID!
-  locale: String!
-  localizations: [ItemTagLocalization!]
-  name: String!
-
-  """Identifies the date and time when the object was last updated."""
-  updatedAt: DateTime!
-}
-
-type ItemTagLocalization {
-  """Identifies the date and time when the object was created."""
-  createdAt: DateTime!
-  id: ID!
-  locale: Locale!
-  name: String!
-
-  """Identifies the date and time when the object was last updated."""
-  updatedAt: DateTime!
-}
-
-input ItemsInput {
-  itemTagId: ID!
+  urlRegular: String!
+  urlSmall: String!
+  urlThumb: String!
 }
 
 enum Locale {
@@ -125,28 +114,28 @@ input LoginInput {
 }
 
 type Mutation {
-  addItem(input: ActionItemInput!): Item!
+  addCity(input: ActionCityInput!): City!
   confirmSmsCode(code: String!, phone: String!): Boolean!
   login(input: LoginInput!): Auth!
-  moveItem(input: ActionItemInput!): Item!
+  moveCity(input: ActionCityInput!): City!
   refreshToken: Token!
-  removeItem(input: ActionItemInput!): Item!
+  removeCity(input: ActionCityInput!): City!
   sendSmsCode(phone: String!): Boolean!
   signup(input: SignupInput!): Auth!
 }
 
 type Query {
+  cities(input: CitiesInput): [City!]!
+  city(id: String!): City!
   countries: [Country!]!
   country(id: Int!): Country!
-  item(id: String!): Item!
-  itemTags: [ItemTag!]!
-  items(input: ItemsInput): [Item!]!
   me: User!
-  nearby: [Item!]!
-  popular: [Item!]!
+  nearby: [City!]!
+  popular: [City!]!
   stories: [Story!]!
-  visited: [Item!]!
-  wanted: [Item!]!
+  tags: [Tag!]!
+  visited: [City!]!
+  wanted: [City!]!
 }
 
 input SignupInput {
@@ -162,6 +151,29 @@ type Story {
   description: String!
   id: ID!
   title: String!
+
+  """Identifies the date and time when the object was last updated."""
+  updatedAt: DateTime!
+}
+
+type Tag {
+  """Identifies the date and time when the object was created."""
+  createdAt: DateTime!
+  emoji: String!
+  id: ID!
+  localizations: [TagLocalization!]
+  name: String!
+
+  """Identifies the date and time when the object was last updated."""
+  updatedAt: DateTime!
+}
+
+type TagLocalization {
+  """Identifies the date and time when the object was created."""
+  createdAt: DateTime!
+  id: ID!
+  locale: Locale!
+  name: String!
 
   """Identifies the date and time when the object was last updated."""
   updatedAt: DateTime!

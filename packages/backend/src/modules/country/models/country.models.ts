@@ -1,5 +1,4 @@
 import { Field, ObjectType, registerEnumType } from '@nestjs/graphql';
-import { Item } from '../../../modules/item/models/item.model';
 import { BaseModel, Locale } from '../../common/base.model';
 import { CountryLocalization } from './countryLocalization.model';
 

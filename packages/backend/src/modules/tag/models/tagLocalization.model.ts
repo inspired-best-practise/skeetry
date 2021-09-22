@@ -2,7 +2,7 @@ import { Field, ObjectType } from '@nestjs/graphql';
 import { BaseModel, Locale } from '../../common/base.model';
 
 @ObjectType()
-export class ItemTagLocalization extends BaseModel {
+export class TagLocalization extends BaseModel {
   @Field(() => Locale)
   locale: Locale;
 

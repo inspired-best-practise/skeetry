@@ -1,18 +1,18 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { User } from '../user/models/user.model';
-import { ActionItemInput } from './dto/action-item.input';
-import { ItemsInput } from './dto/items.input';
+import { ActionCityInput } from './dto/action-city.input';
+import { CitiesInput } from './dto/cities.input';
 
-// TODO: refactor addItem, removeItem, moveItem
+// TODO: refactor addCity, removeCity, moveCity
 @Injectable()
-export class ItemService {
+export class CityService {
   constructor(private prisma: PrismaService) {}
 
-  async addItem(user: User, input: ActionItemInput) {
+  async addCity(user: User, input: ActionCityInput) {
     const { id, type } = input;
 
-    const item = await this.prisma.city.findUnique({
+    const city = await this.prisma.city.findUnique({
       include: {
         userWanted: true,
         userVisited: true,
@@ -23,8 +23,8 @@ export class ItemService {
       },
     });
 
-    const alreadyWanted = item.userWanted.find((u) => u.id === user.id);
-    const alreadyVisited = item.userVisited.find((u) => u.id === user.id);
+    const alreadyWanted = city.userWanted.find((u) => u.id === user.id);
+    const alreadyVisited = city.userVisited.find((u) => u.id === user.id);
 
     if (
       (type === 'WANT' && alreadyWanted) ||
@@ -45,7 +45,7 @@ export class ItemService {
               },
               wanted: {
                 connect: {
-                  id: item.id,
+                  id: city.id,
                 },
               },
             }
@@ -55,19 +55,19 @@ export class ItemService {
               },
               visited: {
                 connect: {
-                  id: item.id,
+                  id: city.id,
                 },
               },
             },
     });
 
-    return item;
+    return city;
   }
 
-  async removeItem(user: User, input: ActionItemInput) {
+  async removeCity(user: User, input: ActionCityInput) {
     const { id, type } = input;
 
-    const item = await this.prisma.city.findUnique({
+    const city = await this.prisma.city.findUnique({
       include: {
         userWanted: true,
         userVisited: true,
@@ -78,14 +78,14 @@ export class ItemService {
       },
     });
 
-    const existInWanted = item.userWanted.find((u) => u.id === user.id);
-    const existInVisited = item.userVisited.find((u) => u.id === user.id);
+    const existInWanted = city.userWanted.find((u) => u.id === user.id);
+    const existInVisited = city.userVisited.find((u) => u.id === user.id);
 
     if (
       (type === 'WANT' && !existInWanted) ||
       (type === 'VISITED' && !existInVisited)
     ) {
-      throw new Error('Item is not on the list');
+      throw new Error('City is not on the list');
     }
 
     await this.prisma.user.update({
@@ -100,7 +100,7 @@ export class ItemService {
               },
               wanted: {
                 disconnect: {
-                  id: item.id,
+                  id: city.id,
                 },
               },
             }
@@ -110,19 +110,19 @@ export class ItemService {
               },
               visited: {
                 disconnect: {
-                  id: item.id,
+                  id: city.id,
                 },
               },
             },
     });
 
-    return item;
+    return city;
   }
 
-  async moveItem(user: User, input: ActionItemInput) {
+  async moveCity(user: User, input: ActionCityInput) {
     const { id, type } = input;
 
-    const item = await this.prisma.city.findUnique({
+    const city = await this.prisma.city.findUnique({
       include: {
         userWanted: true,
         userVisited: true,
@@ -133,8 +133,8 @@ export class ItemService {
       },
     });
 
-    const existInWanted = item.userWanted.find((u) => u.id === user.id);
-    const existInVisited = item.userVisited.find((u) => u.id === user.id);
+    const existInWanted = city.userWanted.find((u) => u.id === user.id);
+    const existInVisited = city.userVisited.find((u) => u.id === user.id);
 
     if (
       (type === 'WANT' && !existInWanted) ||
@@ -158,12 +158,12 @@ export class ItemService {
               },
               wanted: {
                 disconnect: {
-                  id: item.id,
+                  id: city.id,
                 },
               },
               visited: {
                 connect: {
-                  id: item.id,
+                  id: city.id,
                 },
               },
             }
@@ -176,22 +176,22 @@ export class ItemService {
               },
               visited: {
                 disconnect: {
-                  id: item.id,
+                  id: city.id,
                 },
               },
               wanted: {
                 connect: {
-                  id: item.id,
+                  id: city.id,
                 },
               },
             },
     });
 
-    return item;
+    return city;
   }
 
   async findOne(id: string) {
-    const item = await this.prisma.city.findUnique({
+    const city = await this.prisma.city.findUnique({
       include: {
         localizations: true,
         userVisited: true,
@@ -203,16 +203,16 @@ export class ItemService {
       },
     });
 
-    if (!item) {
-      throw new Error('Item does not exist');
+    if (!city) {
+      throw new Error('City does not exist');
     }
 
-    return item;
+    return city;
   }
 
-  async findAll(input: ItemsInput) {
+  async findAll(input: CitiesInput) {
     if (!input) {
-      const items = await this.prisma.city.findMany({
+      const cities = await this.prisma.city.findMany({
         include: {
           localizations: true,
           userVisited: true,
@@ -221,14 +221,14 @@ export class ItemService {
         },
       });
 
-      return items;
+      return cities;
     }
 
-    const { itemTagId } = input;
+    const { cityTagId } = input;
 
     const tagExist = await this.prisma.tag.findUnique({
       where: {
-        id: itemTagId,
+        id: cityTagId,
       },
     });
 
@@ -236,7 +236,7 @@ export class ItemService {
       throw new Error("Tag doesn't exist");
     }
 
-    const items = await this.prisma.city.findMany({
+    const cities = await this.prisma.city.findMany({
       include: {
         localizations: true,
         userVisited: true,
@@ -246,17 +246,17 @@ export class ItemService {
       where: {
         tags: {
           some: {
-            id: itemTagId,
+            id: cityTagId,
           },
         },
       },
     });
 
-    return items;
+    return cities;
   }
 
   async findWanted(user: User) {
-    const items = await this.prisma.city.findMany({
+    const cities = await this.prisma.city.findMany({
       include: {
         localizations: true,
         userWanted: true,
@@ -271,11 +271,11 @@ export class ItemService {
       },
     });
 
-    return items;
+    return cities;
   }
 
   async findVisited(user: User) {
-    const items = await this.prisma.city.findMany({
+    const cities = await this.prisma.city.findMany({
       include: {
         localizations: true,
         userVisited: true,
@@ -290,12 +290,12 @@ export class ItemService {
       },
     });
 
-    return items;
+    return cities;
   }
 
-  // TODO: just items now
+  // TODO: just cities now
   async findNearby() {
-    const items = await this.prisma.city.findMany({
+    const cities = await this.prisma.city.findMany({
       include: {
         localizations: true,
         userVisited: true,
@@ -303,12 +303,12 @@ export class ItemService {
       },
     });
 
-    return items;
+    return cities;
   }
 
-  // TODO: just items now
+  // TODO: just cities now
   async findPopular() {
-    const items = await this.prisma.city.findMany({
+    const cities = await this.prisma.city.findMany({
       include: {
         localizations: true,
         userVisited: true,
@@ -316,6 +316,6 @@ export class ItemService {
       },
     });
 
-    return items;
+    return cities;
   }
 }

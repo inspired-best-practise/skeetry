@@ -1,19 +1,19 @@
 import { InputType, Field, ID, registerEnumType } from '@nestjs/graphql';
 
-export enum AddItemInputType {
+export enum AddCityInputType {
   WANT = 'WANT',
   VISITED = 'VISITED',
 }
 
-registerEnumType(AddItemInputType, {
-  name: 'AddItemInputType',
+registerEnumType(AddCityInputType, {
+  name: 'AddCityInputType',
 });
 
 @InputType()
-export class ActionItemInput {
+export class ActionCityInput {
   @Field(() => ID)
   id: string;
 
   @Field()
-  type: AddItemInputType;
+  type: AddCityInputType;
 }

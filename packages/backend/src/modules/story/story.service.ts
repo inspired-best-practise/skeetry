@@ -8,8 +8,8 @@ export class StoryService {
 
   @UseGuards(GqlAuthGuard)
   async findAll() {
-    const itemTags = await this.prisma.story.findMany();
+    const tags = await this.prisma.story.findMany();
 
-    return itemTags;
+    return tags;
   }
 }

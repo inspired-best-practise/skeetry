@@ -3,12 +3,12 @@ import { GqlAuthGuard } from '../auth/guards/gql-auth.guard';
 import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
-export class ItemTagService {
+export class TagService {
   constructor(private prisma: PrismaService) {}
 
   @UseGuards(GqlAuthGuard)
   async findAll() {
-    const itemTags = await this.prisma.tag.findMany({
+    const tags = await this.prisma.tag.findMany({
       include: {
         localizations: true,
       },
@@ -19,6 +19,6 @@ export class ItemTagService {
       },
     });
 
-    return itemTags;
+    return tags;
   }
 }

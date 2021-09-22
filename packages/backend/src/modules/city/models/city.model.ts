@@ -1,24 +1,25 @@
 import { Field, ObjectType, registerEnumType } from '@nestjs/graphql';
 import { User } from '../../user/models/user.model';
-import { BaseModel, Locale } from '../../common/base.model';
-import { ItemLocalization } from './itemLocalization.model';
+import { BaseModel } from '../../common/base.model';
+import { CityLocalization } from './cityLocalization.model';
+import { Image } from '../../image/models/image.model';
 import { Country } from '../../../modules/country/models/country.models';
 
-export enum ItemType {
+export enum CityType {
   COUNTRY = 'COUNTRY',
   CITY = 'CITY',
   PLACE = 'PLACE',
   SIGHT = 'SIGHT',
 }
 
-registerEnumType(ItemType, {
-  name: 'ItemType',
+registerEnumType(CityType, {
+  name: 'CityType',
 });
 
 @ObjectType()
-export class Item extends BaseModel {
+export class City extends BaseModel {
   @Field()
-  type: ItemType;
+  type: CityType;
 
   @Field()
   name: string;
@@ -35,8 +36,8 @@ export class Item extends BaseModel {
   @Field({ defaultValue: 0 })
   reviewsCount: number;
 
-  @Field(() => [String])
-  photos: String[];
+  @Field(() => [Image])
+  photos: Image[];
 
   @Field()
   latitude: string;
@@ -56,9 +57,6 @@ export class Item extends BaseModel {
   @Field(() => Country)
   country: Country;
 
-  @Field(() => Locale)
-  locale: Locale;
-
-  @Field(() => [ItemLocalization], { nullable: true })
-  localizations?: ItemLocalization[];
+  @Field(() => [CityLocalization], { nullable: true })
+  localizations?: CityLocalization[];
 }
