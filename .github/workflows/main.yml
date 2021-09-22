@@ -2,10 +2,6 @@ name: API
 
 on: [push]
 
-defaults:
-  run:
-    working-directory: ./packages/backend
-
 jobs:
   build_monorepo:
     name: Build api app
