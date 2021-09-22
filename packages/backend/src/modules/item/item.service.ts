@@ -12,11 +12,11 @@ export class ItemService {
   async addItem(user: User, input: ActionItemInput) {
     const { id, type } = input;
 
-    const item = await this.prisma.item.findUnique({
+    const item = await this.prisma.city.findUnique({
       include: {
         userWanted: true,
         userVisited: true,
-        country: true,
+        state: true,
       },
       where: {
         id,
@@ -67,11 +67,11 @@ export class ItemService {
   async removeItem(user: User, input: ActionItemInput) {
     const { id, type } = input;
 
-    const item = await this.prisma.item.findUnique({
+    const item = await this.prisma.city.findUnique({
       include: {
         userWanted: true,
         userVisited: true,
-        country: true,
+        state: true,
       },
       where: {
         id,
@@ -122,11 +122,11 @@ export class ItemService {
   async moveItem(user: User, input: ActionItemInput) {
     const { id, type } = input;
 
-    const item = await this.prisma.item.findUnique({
+    const item = await this.prisma.city.findUnique({
       include: {
         userWanted: true,
         userVisited: true,
-        country: true,
+        state: true,
       },
       where: {
         id,
@@ -191,12 +191,12 @@ export class ItemService {
   }
 
   async findOne(id: string) {
-    const item = await this.prisma.item.findUnique({
+    const item = await this.prisma.city.findUnique({
       include: {
         localizations: true,
         userVisited: true,
         userWanted: true,
-        country: true,
+        state: true,
       },
       where: {
         id,
@@ -212,12 +212,12 @@ export class ItemService {
 
   async findAll(input: ItemsInput) {
     if (!input) {
-      const items = await this.prisma.item.findMany({
+      const items = await this.prisma.city.findMany({
         include: {
           localizations: true,
           userVisited: true,
           userWanted: true,
-          country: true,
+          state: true,
         },
       });
 
@@ -226,7 +226,7 @@ export class ItemService {
 
     const { itemTagId } = input;
 
-    const tagExist = await this.prisma.itemTag.findUnique({
+    const tagExist = await this.prisma.tag.findUnique({
       where: {
         id: itemTagId,
       },
@@ -236,12 +236,12 @@ export class ItemService {
       throw new Error("Tag doesn't exist");
     }
 
-    const items = await this.prisma.item.findMany({
+    const items = await this.prisma.city.findMany({
       include: {
         localizations: true,
         userVisited: true,
         userWanted: true,
-        country: true,
+        state: true,
       },
       where: {
         tags: {
@@ -256,11 +256,11 @@ export class ItemService {
   }
 
   async findWanted(user: User) {
-    const items = await this.prisma.item.findMany({
+    const items = await this.prisma.city.findMany({
       include: {
         localizations: true,
         userWanted: true,
-        country: true,
+        state: true,
       },
       where: {
         userWanted: {
@@ -275,11 +275,11 @@ export class ItemService {
   }
 
   async findVisited(user: User) {
-    const items = await this.prisma.item.findMany({
+    const items = await this.prisma.city.findMany({
       include: {
         localizations: true,
         userVisited: true,
-        country: true,
+        state: true,
       },
       where: {
         userVisited: {
@@ -295,11 +295,11 @@ export class ItemService {
 
   // TODO: just items now
   async findNearby() {
-    const items = await this.prisma.item.findMany({
+    const items = await this.prisma.city.findMany({
       include: {
         localizations: true,
         userVisited: true,
-        country: true,
+        state: true,
       },
     });
 
@@ -308,11 +308,11 @@ export class ItemService {
 
   // TODO: just items now
   async findPopular() {
-    const items = await this.prisma.item.findMany({
+    const items = await this.prisma.city.findMany({
       include: {
         localizations: true,
         userVisited: true,
-        country: true,
+        state: true,
       },
     });
 

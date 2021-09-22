@@ -8,12 +8,12 @@ export class ItemTagService {
 
   @UseGuards(GqlAuthGuard)
   async findAll() {
-    const itemTags = await this.prisma.itemTag.findMany({
+    const itemTags = await this.prisma.tag.findMany({
       include: {
         localizations: true,
       },
       where: {
-        item: {
+        cities: {
           some: {},
         },
       },
