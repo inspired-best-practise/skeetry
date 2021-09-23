@@ -47,7 +47,6 @@ export type City = {
   name: Scalars['String'];
   overview?: Maybe<Scalars['String']>;
   pk: Scalars['Int'];
-  reviewsCount: Scalars['Int'];
   state: State;
   /** Identifies the date and time when the object was last updated. */
   updatedAt: Scalars['DateTime'];
@@ -55,6 +54,19 @@ export type City = {
   userWanted?: Maybe<Array<User>>;
   visitedCount: Scalars['Int'];
   wantedCount: Scalars['Int'];
+};
+
+export type CityConnection = {
+  __typename?: 'CityConnection';
+  edges?: Maybe<Array<CityEdge>>;
+  pageInfo: PageInfo;
+  totalCount: Scalars['Int'];
+};
+
+export type CityEdge = {
+  __typename?: 'CityEdge';
+  cursor: Scalars['String'];
+  node: City;
 };
 
 export type CityLocalization = {
@@ -67,6 +79,10 @@ export type CityLocalization = {
   overview?: Maybe<Scalars['String']>;
   /** Identifies the date and time when the object was last updated. */
   updatedAt: Scalars['DateTime'];
+};
+
+export type CityOrder = {
+  direction: OrderDirection;
 };
 
 export type Country = {
@@ -180,24 +196,45 @@ export type MutationSignupArgs = {
   input: SignupInput;
 };
 
+/** Possible directions in which to order a list of items when provided an `orderBy` argument. */
+export enum OrderDirection {
+  Asc = 'asc',
+  Desc = 'desc'
+}
+
+export type PageInfo = {
+  __typename?: 'PageInfo';
+  endCursor?: Maybe<Scalars['String']>;
+  hasNextPage: Scalars['Boolean'];
+  hasPreviousPage: Scalars['Boolean'];
+  startCursor?: Maybe<Scalars['String']>;
+};
+
 export type Query = {
   __typename?: 'Query';
-  cities: Array<City>;
+  cities: CityConnection;
   city: City;
   countries: Array<Country>;
   country: Country;
   me: User;
-  nearby: Array<City>;
-  popular: Array<City>;
+  nearby: CityConnection;
+  popular: CityConnection;
   stories: Array<Story>;
   tags: Array<Tag>;
-  visited: Array<City>;
-  wanted: Array<City>;
+  visited: CityConnection;
+  wanted: CityConnection;
 };
 
 
 export type QueryCitiesArgs = {
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first: Scalars['Int'];
   input?: Maybe<CitiesInput>;
+  last?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<CityOrder>;
+  query?: Maybe<Scalars['String']>;
+  skip?: Maybe<Scalars['Int']>;
 };
 
 
@@ -208,6 +245,46 @@ export type QueryCityArgs = {
 
 export type QueryCountryArgs = {
   id: Scalars['Int'];
+};
+
+
+export type QueryNearbyArgs = {
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first: Scalars['Int'];
+  last?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<CityOrder>;
+  skip?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryPopularArgs = {
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first: Scalars['Int'];
+  last?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<CityOrder>;
+  skip?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryVisitedArgs = {
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first: Scalars['Int'];
+  last?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<CityOrder>;
+  skip?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryWantedArgs = {
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first: Scalars['Int'];
+  last?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<CityOrder>;
+  skip?: Maybe<Scalars['Int']>;
 };
 
 export type SignupInput = {
@@ -308,13 +385,15 @@ export type RegularCityFragment = { __typename?: 'City', id: string, pk: number,
 
 export type RegularCityLocalizationFragment = { __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> };
 
-export type RegularCountryFragment = { __typename?: 'Country', id: string, pk: number, name: string, iso2: string, iso3: string, numericCode: string, phoneCode: string, currency: string, currencySymbol: string, tld: string, native: string, continent: string, subregion: string, latitude: string, longitude: string, emoji?: Maybe<string>, emojiU: string, overview?: Maybe<string>, states?: Maybe<Array<{ __typename?: 'State', id: string, pk: number, name: string, stateCode: string, latitude: string, longitude: string, overview: string, cities?: Maybe<Array<{ __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> }>>, localizations?: Maybe<Array<{ __typename?: 'StateLocalization', id: string, locale: string, name: string, overview: string }>> }>>, localizations?: Maybe<Array<{ __typename?: 'CountryLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> };
+export type RegularCountryFragment = { __typename?: 'Country', id: string, pk: number, name: string, iso2: string, iso3: string, numericCode: string, phoneCode: string, currency: string, currencySymbol: string, tld: string, native: string, continent: string, subregion: string, latitude: string, longitude: string, emoji?: Maybe<string>, emojiU: string, overview?: Maybe<string>, states?: Maybe<Array<{ __typename?: 'State', id: string, pk: number, name: string, stateCode: string, latitude: string, longitude: string, overview: string, localizations?: Maybe<Array<{ __typename?: 'StateLocalization', id: string, locale: string, name: string, overview: string }>> }>>, localizations?: Maybe<Array<{ __typename?: 'CountryLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> };
 
 export type RegularCountryLocalizationFragment = { __typename?: 'CountryLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> };
 
 export type RegularImageFragment = { __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string };
 
-export type RegularStateFragment = { __typename?: 'State', id: string, pk: number, name: string, stateCode: string, latitude: string, longitude: string, overview: string, cities?: Maybe<Array<{ __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> }>>, localizations?: Maybe<Array<{ __typename?: 'StateLocalization', id: string, locale: string, name: string, overview: string }>> };
+export type RegularPageInfoFragment = { __typename?: 'PageInfo', endCursor?: Maybe<string>, hasNextPage: boolean, hasPreviousPage: boolean, startCursor?: Maybe<string> };
+
+export type RegularStateFragment = { __typename?: 'State', id: string, pk: number, name: string, stateCode: string, latitude: string, longitude: string, overview: string, localizations?: Maybe<Array<{ __typename?: 'StateLocalization', id: string, locale: string, name: string, overview: string }>> };
 
 export type RegularStateLocalizationFragment = { __typename?: 'StateLocalization', id: string, locale: string, name: string, overview: string };
 
@@ -380,11 +459,18 @@ export type SignupMutationVariables = Exact<{
 export type SignupMutation = { __typename?: 'Mutation', signup: { __typename?: 'Auth', accessToken: string, refreshToken: string, user: { __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any } } };
 
 export type CitiesQueryVariables = Exact<{
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first: Scalars['Int'];
   input?: Maybe<CitiesInput>;
+  last?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<CityOrder>;
+  query?: Maybe<Scalars['String']>;
+  skip?: Maybe<Scalars['Int']>;
 }>;
 
 
-export type CitiesQuery = { __typename?: 'Query', cities: Array<{ __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> }> };
+export type CitiesQuery = { __typename?: 'Query', cities: { __typename?: 'CityConnection', totalCount: number, edges?: Maybe<Array<{ __typename?: 'CityEdge', cursor: string, node: { __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> } }>>, pageInfo: { __typename?: 'PageInfo', endCursor?: Maybe<string>, hasNextPage: boolean, hasPreviousPage: boolean, startCursor?: Maybe<string> } } };
 
 export type CityQueryVariables = Exact<{
   id: Scalars['String'];
@@ -398,30 +484,58 @@ export type MeQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type MeQuery = { __typename?: 'Query', me: { __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any } };
 
-export type NearbyQueryVariables = Exact<{ [key: string]: never; }>;
+export type NearbyQueryVariables = Exact<{
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first: Scalars['Int'];
+  last?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<CityOrder>;
+  skip?: Maybe<Scalars['Int']>;
+}>;
 
 
-export type NearbyQuery = { __typename?: 'Query', nearby: Array<{ __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> }> };
+export type NearbyQuery = { __typename?: 'Query', nearby: { __typename?: 'CityConnection', totalCount: number, edges?: Maybe<Array<{ __typename?: 'CityEdge', cursor: string, node: { __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> } }>>, pageInfo: { __typename?: 'PageInfo', endCursor?: Maybe<string>, hasNextPage: boolean, hasPreviousPage: boolean, startCursor?: Maybe<string> } } };
 
-export type PopularQueryVariables = Exact<{ [key: string]: never; }>;
+export type PopularQueryVariables = Exact<{
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first: Scalars['Int'];
+  last?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<CityOrder>;
+  skip?: Maybe<Scalars['Int']>;
+}>;
 
 
-export type PopularQuery = { __typename?: 'Query', popular: Array<{ __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> }> };
+export type PopularQuery = { __typename?: 'Query', popular: { __typename?: 'CityConnection', totalCount: number, edges?: Maybe<Array<{ __typename?: 'CityEdge', cursor: string, node: { __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> } }>>, pageInfo: { __typename?: 'PageInfo', endCursor?: Maybe<string>, hasNextPage: boolean, hasPreviousPage: boolean, startCursor?: Maybe<string> } } };
 
 export type TagsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type TagsQuery = { __typename?: 'Query', tags: Array<{ __typename?: 'Tag', id: string, name: string, emoji: string, localizations?: Maybe<Array<{ __typename?: 'TagLocalization', id: string, name: string, locale: Locale }>> }> };
 
-export type VisitedQueryVariables = Exact<{ [key: string]: never; }>;
+export type VisitedQueryVariables = Exact<{
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first: Scalars['Int'];
+  last?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<CityOrder>;
+  skip?: Maybe<Scalars['Int']>;
+}>;
 
 
-export type VisitedQuery = { __typename?: 'Query', visited: Array<{ __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> }> };
+export type VisitedQuery = { __typename?: 'Query', visited: { __typename?: 'CityConnection', totalCount: number, edges?: Maybe<Array<{ __typename?: 'CityEdge', cursor: string, node: { __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> } }>>, pageInfo: { __typename?: 'PageInfo', endCursor?: Maybe<string>, hasNextPage: boolean, hasPreviousPage: boolean, startCursor?: Maybe<string> } } };
 
-export type WantedQueryVariables = Exact<{ [key: string]: never; }>;
+export type WantedQueryVariables = Exact<{
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first: Scalars['Int'];
+  last?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<CityOrder>;
+  skip?: Maybe<Scalars['Int']>;
+}>;
 
 
-export type WantedQuery = { __typename?: 'Query', wanted: Array<{ __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> }> };
+export type WantedQuery = { __typename?: 'Query', wanted: { __typename?: 'CityConnection', totalCount: number, edges?: Maybe<Array<{ __typename?: 'CityEdge', cursor: string, node: { __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> } }>>, pageInfo: { __typename?: 'PageInfo', endCursor?: Maybe<string>, hasNextPage: boolean, hasPreviousPage: boolean, startCursor?: Maybe<string> } } };
 
 export const RegularImageFragmentDoc = gql`
     fragment RegularImage on Image {
@@ -495,15 +609,11 @@ export const RegularStateFragmentDoc = gql`
   latitude
   longitude
   overview
-  cities {
-    ...RegularCity
-  }
   localizations {
     ...RegularStateLocalization
   }
 }
-    ${RegularCityFragmentDoc}
-${RegularStateLocalizationFragmentDoc}`;
+    ${RegularStateLocalizationFragmentDoc}`;
 export const RegularCountryLocalizationFragmentDoc = gql`
     fragment RegularCountryLocalization on CountryLocalization {
   id
@@ -541,6 +651,14 @@ export const RegularCountryFragmentDoc = gql`
 }
     ${RegularStateFragmentDoc}
 ${RegularCountryLocalizationFragmentDoc}`;
+export const RegularPageInfoFragmentDoc = gql`
+    fragment RegularPageInfo on PageInfo {
+  endCursor
+  hasNextPage
+  hasPreviousPage
+  startCursor
+}
+    `;
 export const RegularTagLocalizationFragmentDoc = gql`
     fragment RegularTagLocalization on TagLocalization {
   id
@@ -828,12 +946,31 @@ export type SignupMutationHookResult = ReturnType<typeof useSignupMutation>;
 export type SignupMutationResult = Apollo.MutationResult<SignupMutation>;
 export type SignupMutationOptions = Apollo.BaseMutationOptions<SignupMutation, SignupMutationVariables>;
 export const CitiesDocument = gql`
-    query Cities($input: CitiesInput) {
-  cities(input: $input) {
-    ...RegularCity
+    query Cities($after: String, $before: String, $first: Int!, $input: CitiesInput, $last: Int, $orderBy: CityOrder, $query: String, $skip: Int) {
+  cities(
+    after: $after
+    before: $before
+    first: $first
+    input: $input
+    last: $last
+    orderBy: $orderBy
+    query: $query
+    skip: $skip
+  ) {
+    edges {
+      cursor
+      node {
+        ...RegularCity
+      }
+    }
+    pageInfo {
+      ...RegularPageInfo
+    }
+    totalCount
   }
 }
-    ${RegularCityFragmentDoc}`;
+    ${RegularCityFragmentDoc}
+${RegularPageInfoFragmentDoc}`;
 
 /**
  * __useCitiesQuery__
@@ -847,11 +984,18 @@ export const CitiesDocument = gql`
  * @example
  * const { data, loading, error } = useCitiesQuery({
  *   variables: {
+ *      after: // value for 'after'
+ *      before: // value for 'before'
+ *      first: // value for 'first'
  *      input: // value for 'input'
+ *      last: // value for 'last'
+ *      orderBy: // value for 'orderBy'
+ *      query: // value for 'query'
+ *      skip: // value for 'skip'
  *   },
  * });
  */
-export function useCitiesQuery(baseOptions?: Apollo.QueryHookOptions<CitiesQuery, CitiesQueryVariables>) {
+export function useCitiesQuery(baseOptions: Apollo.QueryHookOptions<CitiesQuery, CitiesQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
         return Apollo.useQuery<CitiesQuery, CitiesQueryVariables>(CitiesDocument, options);
       }
@@ -932,12 +1076,29 @@ export type MeQueryHookResult = ReturnType<typeof useMeQuery>;
 export type MeLazyQueryHookResult = ReturnType<typeof useMeLazyQuery>;
 export type MeQueryResult = Apollo.QueryResult<MeQuery, MeQueryVariables>;
 export const NearbyDocument = gql`
-    query Nearby {
-  nearby {
-    ...RegularCity
+    query Nearby($after: String, $before: String, $first: Int!, $last: Int, $orderBy: CityOrder, $skip: Int) {
+  nearby(
+    after: $after
+    before: $before
+    first: $first
+    last: $last
+    orderBy: $orderBy
+    skip: $skip
+  ) {
+    edges {
+      cursor
+      node {
+        ...RegularCity
+      }
+    }
+    pageInfo {
+      ...RegularPageInfo
+    }
+    totalCount
   }
 }
-    ${RegularCityFragmentDoc}`;
+    ${RegularCityFragmentDoc}
+${RegularPageInfoFragmentDoc}`;
 
 /**
  * __useNearbyQuery__
@@ -951,10 +1112,16 @@ export const NearbyDocument = gql`
  * @example
  * const { data, loading, error } = useNearbyQuery({
  *   variables: {
+ *      after: // value for 'after'
+ *      before: // value for 'before'
+ *      first: // value for 'first'
+ *      last: // value for 'last'
+ *      orderBy: // value for 'orderBy'
+ *      skip: // value for 'skip'
  *   },
  * });
  */
-export function useNearbyQuery(baseOptions?: Apollo.QueryHookOptions<NearbyQuery, NearbyQueryVariables>) {
+export function useNearbyQuery(baseOptions: Apollo.QueryHookOptions<NearbyQuery, NearbyQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
         return Apollo.useQuery<NearbyQuery, NearbyQueryVariables>(NearbyDocument, options);
       }
@@ -966,12 +1133,29 @@ export type NearbyQueryHookResult = ReturnType<typeof useNearbyQuery>;
 export type NearbyLazyQueryHookResult = ReturnType<typeof useNearbyLazyQuery>;
 export type NearbyQueryResult = Apollo.QueryResult<NearbyQuery, NearbyQueryVariables>;
 export const PopularDocument = gql`
-    query Popular {
-  popular {
-    ...RegularCity
+    query Popular($after: String, $before: String, $first: Int!, $last: Int, $orderBy: CityOrder, $skip: Int) {
+  popular(
+    after: $after
+    before: $before
+    first: $first
+    last: $last
+    orderBy: $orderBy
+    skip: $skip
+  ) {
+    edges {
+      cursor
+      node {
+        ...RegularCity
+      }
+    }
+    pageInfo {
+      ...RegularPageInfo
+    }
+    totalCount
   }
 }
-    ${RegularCityFragmentDoc}`;
+    ${RegularCityFragmentDoc}
+${RegularPageInfoFragmentDoc}`;
 
 /**
  * __usePopularQuery__
@@ -985,10 +1169,16 @@ export const PopularDocument = gql`
  * @example
  * const { data, loading, error } = usePopularQuery({
  *   variables: {
+ *      after: // value for 'after'
+ *      before: // value for 'before'
+ *      first: // value for 'first'
+ *      last: // value for 'last'
+ *      orderBy: // value for 'orderBy'
+ *      skip: // value for 'skip'
  *   },
  * });
  */
-export function usePopularQuery(baseOptions?: Apollo.QueryHookOptions<PopularQuery, PopularQueryVariables>) {
+export function usePopularQuery(baseOptions: Apollo.QueryHookOptions<PopularQuery, PopularQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
         return Apollo.useQuery<PopularQuery, PopularQueryVariables>(PopularDocument, options);
       }
@@ -1034,12 +1224,29 @@ export type TagsQueryHookResult = ReturnType<typeof useTagsQuery>;
 export type TagsLazyQueryHookResult = ReturnType<typeof useTagsLazyQuery>;
 export type TagsQueryResult = Apollo.QueryResult<TagsQuery, TagsQueryVariables>;
 export const VisitedDocument = gql`
-    query Visited {
-  visited {
-    ...RegularCity
+    query Visited($after: String, $before: String, $first: Int!, $last: Int, $orderBy: CityOrder, $skip: Int) {
+  visited(
+    after: $after
+    before: $before
+    first: $first
+    last: $last
+    orderBy: $orderBy
+    skip: $skip
+  ) {
+    edges {
+      cursor
+      node {
+        ...RegularCity
+      }
+    }
+    pageInfo {
+      ...RegularPageInfo
+    }
+    totalCount
   }
 }
-    ${RegularCityFragmentDoc}`;
+    ${RegularCityFragmentDoc}
+${RegularPageInfoFragmentDoc}`;
 
 /**
  * __useVisitedQuery__
@@ -1053,10 +1260,16 @@ export const VisitedDocument = gql`
  * @example
  * const { data, loading, error } = useVisitedQuery({
  *   variables: {
+ *      after: // value for 'after'
+ *      before: // value for 'before'
+ *      first: // value for 'first'
+ *      last: // value for 'last'
+ *      orderBy: // value for 'orderBy'
+ *      skip: // value for 'skip'
  *   },
  * });
  */
-export function useVisitedQuery(baseOptions?: Apollo.QueryHookOptions<VisitedQuery, VisitedQueryVariables>) {
+export function useVisitedQuery(baseOptions: Apollo.QueryHookOptions<VisitedQuery, VisitedQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
         return Apollo.useQuery<VisitedQuery, VisitedQueryVariables>(VisitedDocument, options);
       }
@@ -1068,12 +1281,29 @@ export type VisitedQueryHookResult = ReturnType<typeof useVisitedQuery>;
 export type VisitedLazyQueryHookResult = ReturnType<typeof useVisitedLazyQuery>;
 export type VisitedQueryResult = Apollo.QueryResult<VisitedQuery, VisitedQueryVariables>;
 export const WantedDocument = gql`
-    query Wanted {
-  wanted {
-    ...RegularCity
+    query Wanted($after: String, $before: String, $first: Int!, $last: Int, $orderBy: CityOrder, $skip: Int) {
+  wanted(
+    after: $after
+    before: $before
+    first: $first
+    last: $last
+    orderBy: $orderBy
+    skip: $skip
+  ) {
+    edges {
+      cursor
+      node {
+        ...RegularCity
+      }
+    }
+    pageInfo {
+      ...RegularPageInfo
+    }
+    totalCount
   }
 }
-    ${RegularCityFragmentDoc}`;
+    ${RegularCityFragmentDoc}
+${RegularPageInfoFragmentDoc}`;
 
 /**
  * __useWantedQuery__
@@ -1087,10 +1317,16 @@ export const WantedDocument = gql`
  * @example
  * const { data, loading, error } = useWantedQuery({
  *   variables: {
+ *      after: // value for 'after'
+ *      before: // value for 'before'
+ *      first: // value for 'first'
+ *      last: // value for 'last'
+ *      orderBy: // value for 'orderBy'
+ *      skip: // value for 'skip'
  *   },
  * });
  */
-export function useWantedQuery(baseOptions?: Apollo.QueryHookOptions<WantedQuery, WantedQueryVariables>) {
+export function useWantedQuery(baseOptions: Apollo.QueryHookOptions<WantedQuery, WantedQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
         return Apollo.useQuery<WantedQuery, WantedQueryVariables>(WantedDocument, options);
       }

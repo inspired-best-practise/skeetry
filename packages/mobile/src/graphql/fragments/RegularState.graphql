@@ -5,10 +5,7 @@ fragment RegularState on State {
   stateCode     
   latitude      
   longitude     
-  overview      
-  cities {
-    ...RegularCity
-  }
+  overview
   localizations {
     ...RegularStateLocalization
   }

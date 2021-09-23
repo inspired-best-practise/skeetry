@@ -1,5 +1,28 @@
-query Visited {
-  visited {
-    ...RegularCity
+query Visited(
+  $after: String,
+  $before: String,
+  $first: Int!,
+  $last: Int,
+  $orderBy: CityOrder,
+  $skip: Int
+) {
+  visited(
+    after: $after,
+    before: $before,
+    first: $first,
+    last: $last,
+    orderBy: $orderBy,
+    skip: $skip
+  ) {
+    edges {
+      cursor
+      node {
+        ...RegularCity
+      }
+    }
+    pageInfo {
+      ...RegularPageInfo
+    }
+    totalCount
   }
 }
