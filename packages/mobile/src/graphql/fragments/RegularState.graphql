@@ -6,6 +6,9 @@ fragment RegularState on State {
   latitude      
   longitude     
   overview
+  country {
+    ...RegularCountry
+  }
   localizations {
     ...RegularStateLocalization
   }

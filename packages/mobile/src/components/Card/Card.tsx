@@ -15,8 +15,6 @@ export const Card = ({ item, size }: TCardProps) => {
   const { photos, name, id, rating, state, locale, localizations } = item;
   const [active, setActive] = useState(0);
 
-  console.log('state', state);
-
   const changeItem = nativeEvent => {
     if (nativeEvent) {
       const slide = Math.ceil(nativeEvent.contentOffset.x / nativeEvent.layoutMeasurement.width);
@@ -150,7 +148,9 @@ export const Card = ({ item, size }: TCardProps) => {
             </View>
           </View>
         )}
-        <View style={s.flag}>{/* <Text style={s.flagText}>{state && state.country.flag}</Text> */}</View>
+        <View style={s.flag}>
+          <Text style={s.flagText}>{state && state.country.emoji}</Text>
+        </View>
       </View>
       {size !== 'base' && (
         <View style={s.rating}>
@@ -164,7 +164,7 @@ export const Card = ({ item, size }: TCardProps) => {
         {withLocalization('name', name, locale, localizations)}
       </Text>
       <Text numberOfLines={1} style={s.itemDesc}>
-        {/* {withLocalization('country.name', state.country.name, locale, localizations)} */}
+        {withLocalization('state.country.name', state.country.name, locale, localizations)}
       </Text>
     </View>
   );

@@ -17,9 +17,6 @@ fragment RegularCountry on Country {
   emoji          
   emojiU         
   overview       
-  states {
-    ...RegularState
-  }
   localizations {
     ...RegularCountryLocalization
   }

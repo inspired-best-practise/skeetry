@@ -34,7 +34,7 @@ export const LocationsScreen = () => {
     );
   }
 
-  const popular = dataPopular?.popular;
+  const popular = dataPopular?.popular.edges;
 
   return (
     <ScrollView ref={ref} showsVerticalScrollIndicator={false} scrollsToTop={true}>
