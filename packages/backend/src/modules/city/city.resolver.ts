@@ -7,6 +7,9 @@ import { UserEntity } from '../user/user.decorator';
 import { User } from '../user/models/user.model';
 import { ActionCityInput } from './dto/action-city.input';
 import { CitiesInput } from './dto/cities.input';
+import { CityConnection } from './models/city-connection.model';
+import { PaginationArgs } from '../common/pagination/pagination.args';
+import { CityOrder } from './dto/city-order.input';
 
 @Resolver(() => City)
 export class CityResolver {
@@ -37,9 +40,25 @@ export class CityResolver {
   }
 
   @UseGuards(GqlAuthGuard)
-  @Query(() => [City], { name: 'cities' })
-  findAll(@Args('input', { nullable: true }) input: CitiesInput) {
-    return this.city.findAll(input);
+  @Query((returns) => CityConnection, { name: 'cities' })
+  findAll(
+    @Args('input', { nullable: true }) input: CitiesInput,
+    @Args('skip', { nullable: true }) skip: number,
+    @Args('after', { nullable: true }) after: string,
+    @Args('before', { nullable: true }) before: string,
+    @Args('first') first: number,
+    @Args('last', { nullable: true }) last: number,
+    @Args({ name: 'query', type: () => String, nullable: true })
+    query: string,
+    @Args({
+      name: 'orderBy',
+      type: () => CityOrder,
+      nullable: true,
+    })
+    orderBy: CityOrder,
+  ) {
+    const pagination = { skip, after, before, first, last };
+    return this.city.findAll(input, pagination, query, orderBy);
   }
 
   @UseGuards(GqlAuthGuard)

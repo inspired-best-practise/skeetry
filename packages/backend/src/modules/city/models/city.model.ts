@@ -33,9 +33,6 @@ export class City extends BaseModel {
   @Field({ defaultValue: 0 })
   visitedCount: number;
 
-  @Field({ defaultValue: 0 })
-  reviewsCount: number;
-
   @Field(() => [Image])
   images: Image[];
 

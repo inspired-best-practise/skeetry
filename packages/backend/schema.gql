@@ -32,7 +32,6 @@ type City {
   name: String!
   overview: String
   pk: Int!
-  reviewsCount: Int!
   state: State!
 
   """Identifies the date and time when the object was last updated."""
@@ -41,6 +40,17 @@ type City {
   userWanted: [User!]
   visitedCount: Int!
   wantedCount: Int!
+}
+
+type CityConnection {
+  edges: [CityEdge!]
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type CityEdge {
+  cursor: String!
+  node: City!
 }
 
 type CityLocalization {
@@ -53,6 +63,10 @@ type CityLocalization {
 
   """Identifies the date and time when the object was last updated."""
   updatedAt: DateTime!
+}
+
+input CityOrder {
+  direction: OrderDirection!
 }
 
 type Country {
@@ -136,8 +150,23 @@ type Mutation {
   signup(input: SignupInput!): Auth!
 }
 
+"""
+Possible directions in which to order a list of items when provided an `orderBy` argument.
+"""
+enum OrderDirection {
+  asc
+  desc
+}
+
+type PageInfo {
+  endCursor: String
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+}
+
 type Query {
-  cities(input: CitiesInput): [City!]!
+  cities(after: String, before: String, first: Int!, input: CitiesInput, last: Int, orderBy: CityOrder, query: String, skip: Int): CityConnection!
   city(id: String!): City!
   countries: [Country!]!
   country(id: Int!): Country!

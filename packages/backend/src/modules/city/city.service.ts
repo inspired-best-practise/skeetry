@@ -1,8 +1,11 @@
+import { findManyCursorConnection } from '@devoxa/prisma-relay-cursor-connection';
 import { Injectable } from '@nestjs/common';
+import { PaginationArgs } from '../common/pagination/pagination.args';
 import { PrismaService } from '../prisma/prisma.service';
 import { User } from '../user/models/user.model';
 import { ActionCityInput } from './dto/action-city.input';
 import { CitiesInput } from './dto/cities.input';
+import { CityOrder } from './dto/city-order.input';
 
 // TODO: refactor addCity, removeCity, moveCity
 @Injectable()
@@ -210,17 +213,37 @@ export class CityService {
     return city;
   }
 
-  async findAll(input: CitiesInput) {
+  async findAll(
+    input: CitiesInput,
+    pagination: PaginationArgs,
+    query: string,
+    orderBy: CityOrder,
+  ) {
+    const { skip, after, before, first, last } = pagination;
     if (!input) {
-      const cities = await this.prisma.city.findMany({
-        include: {
-          localizations: true,
-          userVisited: true,
-          userWanted: true,
-          state: true,
-        },
-      });
-
+      const cities = await findManyCursorConnection(
+        (args) =>
+          this.prisma.city.findMany({
+            include: {
+              localizations: true,
+              userVisited: true,
+              userWanted: true,
+              state: true,
+            },
+            where: {
+              name: { contains: query || '' },
+            },
+            orderBy: orderBy ? { name: orderBy.direction } : null,
+            ...args,
+          }),
+        () =>
+          this.prisma.city.count({
+            where: {
+              name: { contains: query || '' },
+            },
+          }),
+        { first, last, before, after },
+      );
       return cities;
     }
 
