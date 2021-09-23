@@ -1,5 +1,5 @@
 import { useScrollToTop } from '@react-navigation/native';
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Text, SafeAreaView, View, ScrollView } from 'react-native';
 
@@ -14,6 +14,7 @@ import { s } from './styles';
 export const HomeScreen = () => {
   const { t } = useTranslation();
   const ref = useRef<ScrollView>(null);
+  const [popular, setPopular] = useState([]);
 
   useScrollToTop(ref);
 
@@ -33,6 +34,7 @@ export const HomeScreen = () => {
     data: dataPopular,
     loading: loadingPopular,
     error: errorPopular,
+    fetchMore: fetchMorePopular,
   } = usePopularQuery({
     variables: {
       first: 10,
@@ -42,8 +44,29 @@ export const HomeScreen = () => {
     },
   });
 
+  useEffect(() => {
+    if (dataPopular) {
+      setPopular(dataPopular.popular.edges);
+    }
+  }, [dataPopular]);
+
   const nearby = dataNearby?.nearby.edges;
-  const popular = dataPopular?.popular.edges;
+
+  const handleEndReached = async () => {
+    if (popular) {
+      const lastPopular = popular[popular.length - 1].node.id;
+      const newData = await fetchMorePopular({
+        variables: {
+          first: 10,
+          after: lastPopular,
+          orderBy: {
+            direction: OrderDirection.Asc,
+          },
+        },
+      });
+      setPopular(prevState => [...prevState, ...newData.data.popular.edges]);
+    }
+  };
 
   return (
     <SafeAreaView style={s.container}>
@@ -57,7 +80,12 @@ export const HomeScreen = () => {
           <HorizontalCardList title={`${t('home:nearby')}`} data={nearby} size="wide" />
         )}
         {!loadingPopular && !errorPopular && (
-          <HorizontalCardList title={`${t('home:popular')}`} data={popular} size="wide" />
+          <HorizontalCardList
+            title={`${t('home:popular')}`}
+            data={popular}
+            size="wide"
+            handleEndReached={handleEndReached}
+          />
         )}
       </ScrollView>
     </SafeAreaView>

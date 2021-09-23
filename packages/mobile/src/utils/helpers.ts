@@ -18,10 +18,15 @@ export const withLocalization = (fieldName: string, field: string, locale, local
   const languageTag = detectedLocale?.languageTag;
 
   const hasLocalization = languageTag
-    ? localizations && localizations.find(l => l.locale === languageTag.toUpperCase())
+    ? localizations
+      ? localizations.find(l => l.locale === languageTag.toUpperCase())
+      : null
     : null;
 
   const sameLocale = languageTag ? compareLocale(languageTag, locale) : null;
+  if (!hasLocalization || sameLocale) {
+    return field;
+  }
 
-  return !hasLocalization || sameLocale ? field : hasLocalization[`${fieldName}`];
+  return hasLocalization[`${fieldName}`];
 };

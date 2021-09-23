@@ -103,7 +103,7 @@ export const ProfileScreen = () => {
         columnWrapperStyle={s.listWrapper}
         contentContainerStyle={{}}
         renderItem={renderItem}
-        keyExtractor={item => item.id}
+        keyExtractor={item => item.node.id}
         showsVerticalScrollIndicator={false}
         decelerationRate="fast"
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}

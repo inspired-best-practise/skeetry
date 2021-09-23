@@ -61,7 +61,7 @@ export const Card = ({ item, size }: TCardProps) => {
               </Pressable>
             ) : (
               <Pressable
-                key={'key'}
+                key={item.id}
                 onPress={() =>
                   navigation.push('CardScreen', {
                     item,
@@ -118,7 +118,7 @@ export const Card = ({ item, size }: TCardProps) => {
                 ))
               ) : (
                 <Pressable
-                  key={'key'}
+                  key={item.id}
                   onPress={() =>
                     navigation.push('CardScreen', {
                       item,
@@ -159,7 +159,6 @@ export const Card = ({ item, size }: TCardProps) => {
           <Text style={s.ratingCount}>{rating ? rating.count : 0}</Text>
         </View>
       )}
-
       <Text numberOfLines={1} style={s.itemTitle}>
         {withLocalization('name', name, locale, localizations)}
       </Text>

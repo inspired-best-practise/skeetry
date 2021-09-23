@@ -16,18 +16,20 @@ export const CardList = ({ data, loading }): JSX.Element => {
     wait(2000).then(() => setRefreshing(false));
   }, []);
 
-  const renderItem = ({ item }: any) => (
-    <View style={{ marginBottom: 20 }}>
-      <Card item={item} size="full" />
-    </View>
-  );
+  const renderItem = ({ item }: any) => {
+    return (
+      <View style={{ marginBottom: 20 }}>
+        <Card item={item.node} size="full" />
+      </View>
+    );
+  };
 
   return !loading ? (
     <FlatList
       contentContainerStyle={s.list}
       data={data}
       renderItem={renderItem}
-      keyExtractor={item => item.id}
+      keyExtractor={item => item.node.id}
       showsVerticalScrollIndicator={false}
       decelerationRate="fast"
       refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}

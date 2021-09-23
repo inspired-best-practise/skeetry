@@ -10,7 +10,7 @@ import { normalize } from '_app/utils/dimensions';
 import { Card } from '../Card';
 import { itemWidthBase, itemWidthSmall, itemWidthWide, s, sliderWidth } from './styles';
 
-export const HorizontalCardList = ({ title, data, size }) => {
+export const HorizontalCardList = ({ title, data, size, handleEndReached }) => {
   const renderItem = ({ item }) => {
     return (
       <View key={item.node.id} style={{ marginVertical: normalize(20) }}>
@@ -39,6 +39,9 @@ export const HorizontalCardList = ({ title, data, size }) => {
       </View>
       <Carousel
         data={data}
+        onEndReached={() => {
+          return handleEndReached();
+        }}
         renderItem={renderItem}
         sliderWidth={sliderWidth}
         itemWidth={itemWidth}
