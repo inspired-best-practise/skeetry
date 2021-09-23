@@ -19,7 +19,11 @@ export class CityService {
       include: {
         userWanted: true,
         userVisited: true,
-        state: true,
+        state: {
+          include: {
+            country: true,
+          },
+        },
       },
       where: {
         id,
@@ -74,7 +78,11 @@ export class CityService {
       include: {
         userWanted: true,
         userVisited: true,
-        state: true,
+        state: {
+          include: {
+            country: true,
+          },
+        },
       },
       where: {
         id,
@@ -129,7 +137,11 @@ export class CityService {
       include: {
         userWanted: true,
         userVisited: true,
-        state: true,
+        state: {
+          include: {
+            country: true,
+          },
+        },
       },
       where: {
         id,
@@ -199,7 +211,11 @@ export class CityService {
         localizations: true,
         userVisited: true,
         userWanted: true,
-        state: true,
+        state: {
+          include: {
+            country: true,
+          },
+        },
       },
       where: {
         id,
@@ -228,7 +244,11 @@ export class CityService {
               localizations: true,
               userVisited: true,
               userWanted: true,
-              state: true,
+              state: {
+                include: {
+                  country: true,
+                },
+              },
             },
             where: {
               name: { contains: query || '' },
@@ -266,7 +286,11 @@ export class CityService {
             localizations: true,
             userVisited: true,
             userWanted: true,
-            state: true,
+            state: {
+              include: {
+                country: true,
+              },
+            },
           },
           where: {
             AND: [
@@ -313,7 +337,11 @@ export class CityService {
           include: {
             localizations: true,
             userWanted: true,
-            state: true,
+            state: {
+              include: {
+                country: true,
+              },
+            },
           },
           where: {
             userWanted: {
@@ -354,7 +382,11 @@ export class CityService {
           include: {
             localizations: true,
             userVisited: true,
-            state: true,
+            state: {
+              include: {
+                country: true,
+              },
+            },
           },
           where: {
             userVisited: {
@@ -393,7 +425,11 @@ export class CityService {
             localizations: true,
             userVisited: true,
             userWanted: true,
-            state: true,
+            state: {
+              include: {
+                country: true,
+              },
+            },
           },
           orderBy: orderBy ? { name: orderBy.direction } : null,
           ...args,
@@ -420,7 +456,11 @@ export class CityService {
             localizations: true,
             userVisited: true,
             userWanted: true,
-            state: true,
+            state: {
+              include: {
+                country: true,
+              },
+            },
           },
           orderBy: orderBy ? { name: orderBy.direction } : null,
           ...args,
