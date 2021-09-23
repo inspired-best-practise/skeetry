@@ -12,7 +12,7 @@ import { s } from './styles';
 
 // TODO: refactor
 export const Card = ({ item, size }: TCardProps) => {
-  const { photos, name, id, rating, country, locale, localizations } = item;
+  const { photos, name, id, rating, state, locale, localizations } = item;
   const [active, setActive] = useState(0);
 
   const changeItem = nativeEvent => {
@@ -149,7 +149,7 @@ export const Card = ({ item, size }: TCardProps) => {
           </View>
         )}
         <View style={s.flag}>
-          <Text style={s.flagText}>{country && country.flag}</Text>
+          <Text style={s.flagText}>{state && state.country.flag}</Text>
         </View>
       </View>
       {size !== 'base' && (
@@ -164,7 +164,7 @@ export const Card = ({ item, size }: TCardProps) => {
         {withLocalization('name', name, locale, localizations)}
       </Text>
       <Text numberOfLines={1} style={s.itemDesc}>
-        {withLocalization('country.name', country.name, locale, localizations)}
+        {withLocalization('country.name', state.country.name, locale, localizations)}
       </Text>
     </View>
   );

@@ -193,13 +193,13 @@ type State {
   """Identifies the date and time when the object was created."""
   createdAt: DateTime!
   id: ID!
-  latitude: String!
+  latitude: String
   localizations: [StateLocalization!]
-  longitude: String!
+  longitude: String
   name: String!
-  overview: String!
+  overview: String
   pk: Int!
-  stateCode: String!
+  stateCode: String
 
   """Identifies the date and time when the object was last updated."""
   updatedAt: DateTime!

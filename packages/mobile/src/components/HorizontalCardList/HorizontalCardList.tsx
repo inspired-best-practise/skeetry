@@ -13,8 +13,8 @@ import { itemWidthBase, itemWidthSmall, itemWidthWide, s, sliderWidth } from './
 export const HorizontalCardList = ({ title, data, size }) => {
   const renderItem = ({ item }) => {
     return (
-      <View key={item.id} style={{ marginVertical: normalize(20) }}>
-        <Card item={item} size={size} />
+      <View key={item.node.id} style={{ marginVertical: normalize(20) }}>
+        <Card item={item.node} size={size} />
       </View>
     );
   };

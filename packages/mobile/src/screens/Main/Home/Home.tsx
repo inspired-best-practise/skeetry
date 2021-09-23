@@ -42,8 +42,8 @@ export const HomeScreen = () => {
     },
   });
 
-  const nearby = dataNearby?.nearby;
-  const popular = dataPopular?.popular;
+  const nearby = dataNearby?.nearby.edges;
+  const popular = dataPopular?.popular.edges;
 
   return (
     <SafeAreaView style={s.container}>

@@ -12,17 +12,17 @@ export class State extends BaseModel {
   @Field()
   name: string;
 
-  @Field()
-  stateCode: string;
+  @Field({ nullable: true })
+  stateCode?: string;
 
-  @Field()
-  latitude: string;
+  @Field({ nullable: true })
+  latitude?: string;
 
-  @Field()
-  longitude: string;
+  @Field({ nullable: true })
+  longitude?: string;
 
-  @Field()
-  overview: string;
+  @Field({ nullable: true })
+  overview?: string;
 
   @Field(() => [City], { nullable: true })
   cities: City[];

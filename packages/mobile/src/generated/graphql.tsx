@@ -39,7 +39,7 @@ export type City = {
   /** Identifies the date and time when the object was created. */
   createdAt: Scalars['DateTime'];
   id: Scalars['ID'];
-  images: Array<Image>;
+  images?: Maybe<Array<Image>>;
   isCapital: Scalars['Boolean'];
   latitude: Scalars['String'];
   localizations?: Maybe<Array<CityLocalization>>;
@@ -381,7 +381,7 @@ export type User = {
   wantedCount: Scalars['Int'];
 };
 
-export type RegularCityFragment = { __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> };
+export type RegularCityFragment = { __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images?: Maybe<Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, state: { __typename?: 'State', id: string, pk: number, name: string, stateCode: string, latitude: string, longitude: string, overview: string, localizations?: Maybe<Array<{ __typename?: 'StateLocalization', id: string, locale: string, name: string, overview: string }>> }, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> };
 
 export type RegularCityLocalizationFragment = { __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> };
 
@@ -408,7 +408,7 @@ export type AddCityMutationVariables = Exact<{
 }>;
 
 
-export type AddCityMutation = { __typename?: 'Mutation', addCity: { __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> } };
+export type AddCityMutation = { __typename?: 'Mutation', addCity: { __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images?: Maybe<Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, state: { __typename?: 'State', id: string, pk: number, name: string, stateCode: string, latitude: string, longitude: string, overview: string, localizations?: Maybe<Array<{ __typename?: 'StateLocalization', id: string, locale: string, name: string, overview: string }>> }, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> } };
 
 export type ConfirmSmsCodeMutationVariables = Exact<{
   phone: Scalars['String'];
@@ -430,7 +430,7 @@ export type MoveCityMutationVariables = Exact<{
 }>;
 
 
-export type MoveCityMutation = { __typename?: 'Mutation', moveCity: { __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> } };
+export type MoveCityMutation = { __typename?: 'Mutation', moveCity: { __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images?: Maybe<Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, state: { __typename?: 'State', id: string, pk: number, name: string, stateCode: string, latitude: string, longitude: string, overview: string, localizations?: Maybe<Array<{ __typename?: 'StateLocalization', id: string, locale: string, name: string, overview: string }>> }, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> } };
 
 export type RefreshTokenMutationVariables = Exact<{ [key: string]: never; }>;
 
@@ -442,7 +442,7 @@ export type RemoveCityMutationVariables = Exact<{
 }>;
 
 
-export type RemoveCityMutation = { __typename?: 'Mutation', removeCity: { __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> } };
+export type RemoveCityMutation = { __typename?: 'Mutation', removeCity: { __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images?: Maybe<Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, state: { __typename?: 'State', id: string, pk: number, name: string, stateCode: string, latitude: string, longitude: string, overview: string, localizations?: Maybe<Array<{ __typename?: 'StateLocalization', id: string, locale: string, name: string, overview: string }>> }, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> } };
 
 export type SendSmsCodeMutationVariables = Exact<{
   phone: Scalars['String'];
@@ -470,14 +470,14 @@ export type CitiesQueryVariables = Exact<{
 }>;
 
 
-export type CitiesQuery = { __typename?: 'Query', cities: { __typename?: 'CityConnection', totalCount: number, edges?: Maybe<Array<{ __typename?: 'CityEdge', cursor: string, node: { __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> } }>>, pageInfo: { __typename?: 'PageInfo', endCursor?: Maybe<string>, hasNextPage: boolean, hasPreviousPage: boolean, startCursor?: Maybe<string> } } };
+export type CitiesQuery = { __typename?: 'Query', cities: { __typename?: 'CityConnection', totalCount: number, edges?: Maybe<Array<{ __typename?: 'CityEdge', cursor: string, node: { __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images?: Maybe<Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, state: { __typename?: 'State', id: string, pk: number, name: string, stateCode: string, latitude: string, longitude: string, overview: string, localizations?: Maybe<Array<{ __typename?: 'StateLocalization', id: string, locale: string, name: string, overview: string }>> }, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> } }>>, pageInfo: { __typename?: 'PageInfo', endCursor?: Maybe<string>, hasNextPage: boolean, hasPreviousPage: boolean, startCursor?: Maybe<string> } } };
 
 export type CityQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
 
 
-export type CityQuery = { __typename?: 'Query', city: { __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> } };
+export type CityQuery = { __typename?: 'Query', city: { __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images?: Maybe<Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, state: { __typename?: 'State', id: string, pk: number, name: string, stateCode: string, latitude: string, longitude: string, overview: string, localizations?: Maybe<Array<{ __typename?: 'StateLocalization', id: string, locale: string, name: string, overview: string }>> }, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> } };
 
 export type MeQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -494,7 +494,7 @@ export type NearbyQueryVariables = Exact<{
 }>;
 
 
-export type NearbyQuery = { __typename?: 'Query', nearby: { __typename?: 'CityConnection', totalCount: number, edges?: Maybe<Array<{ __typename?: 'CityEdge', cursor: string, node: { __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> } }>>, pageInfo: { __typename?: 'PageInfo', endCursor?: Maybe<string>, hasNextPage: boolean, hasPreviousPage: boolean, startCursor?: Maybe<string> } } };
+export type NearbyQuery = { __typename?: 'Query', nearby: { __typename?: 'CityConnection', totalCount: number, edges?: Maybe<Array<{ __typename?: 'CityEdge', cursor: string, node: { __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images?: Maybe<Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, state: { __typename?: 'State', id: string, pk: number, name: string, stateCode: string, latitude: string, longitude: string, overview: string, localizations?: Maybe<Array<{ __typename?: 'StateLocalization', id: string, locale: string, name: string, overview: string }>> }, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> } }>>, pageInfo: { __typename?: 'PageInfo', endCursor?: Maybe<string>, hasNextPage: boolean, hasPreviousPage: boolean, startCursor?: Maybe<string> } } };
 
 export type PopularQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>;
@@ -506,7 +506,7 @@ export type PopularQueryVariables = Exact<{
 }>;
 
 
-export type PopularQuery = { __typename?: 'Query', popular: { __typename?: 'CityConnection', totalCount: number, edges?: Maybe<Array<{ __typename?: 'CityEdge', cursor: string, node: { __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> } }>>, pageInfo: { __typename?: 'PageInfo', endCursor?: Maybe<string>, hasNextPage: boolean, hasPreviousPage: boolean, startCursor?: Maybe<string> } } };
+export type PopularQuery = { __typename?: 'Query', popular: { __typename?: 'CityConnection', totalCount: number, edges?: Maybe<Array<{ __typename?: 'CityEdge', cursor: string, node: { __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images?: Maybe<Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, state: { __typename?: 'State', id: string, pk: number, name: string, stateCode: string, latitude: string, longitude: string, overview: string, localizations?: Maybe<Array<{ __typename?: 'StateLocalization', id: string, locale: string, name: string, overview: string }>> }, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> } }>>, pageInfo: { __typename?: 'PageInfo', endCursor?: Maybe<string>, hasNextPage: boolean, hasPreviousPage: boolean, startCursor?: Maybe<string> } } };
 
 export type TagsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -523,7 +523,7 @@ export type VisitedQueryVariables = Exact<{
 }>;
 
 
-export type VisitedQuery = { __typename?: 'Query', visited: { __typename?: 'CityConnection', totalCount: number, edges?: Maybe<Array<{ __typename?: 'CityEdge', cursor: string, node: { __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> } }>>, pageInfo: { __typename?: 'PageInfo', endCursor?: Maybe<string>, hasNextPage: boolean, hasPreviousPage: boolean, startCursor?: Maybe<string> } } };
+export type VisitedQuery = { __typename?: 'Query', visited: { __typename?: 'CityConnection', totalCount: number, edges?: Maybe<Array<{ __typename?: 'CityEdge', cursor: string, node: { __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images?: Maybe<Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, state: { __typename?: 'State', id: string, pk: number, name: string, stateCode: string, latitude: string, longitude: string, overview: string, localizations?: Maybe<Array<{ __typename?: 'StateLocalization', id: string, locale: string, name: string, overview: string }>> }, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> } }>>, pageInfo: { __typename?: 'PageInfo', endCursor?: Maybe<string>, hasNextPage: boolean, hasPreviousPage: boolean, startCursor?: Maybe<string> } } };
 
 export type WantedQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>;
@@ -535,7 +535,7 @@ export type WantedQueryVariables = Exact<{
 }>;
 
 
-export type WantedQuery = { __typename?: 'Query', wanted: { __typename?: 'CityConnection', totalCount: number, edges?: Maybe<Array<{ __typename?: 'CityEdge', cursor: string, node: { __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> } }>>, pageInfo: { __typename?: 'PageInfo', endCursor?: Maybe<string>, hasNextPage: boolean, hasPreviousPage: boolean, startCursor?: Maybe<string> } } };
+export type WantedQuery = { __typename?: 'Query', wanted: { __typename?: 'CityConnection', totalCount: number, edges?: Maybe<Array<{ __typename?: 'CityEdge', cursor: string, node: { __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images?: Maybe<Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, state: { __typename?: 'State', id: string, pk: number, name: string, stateCode: string, latitude: string, longitude: string, overview: string, localizations?: Maybe<Array<{ __typename?: 'StateLocalization', id: string, locale: string, name: string, overview: string }>> }, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> } }>>, pageInfo: { __typename?: 'PageInfo', endCursor?: Maybe<string>, hasNextPage: boolean, hasPreviousPage: boolean, startCursor?: Maybe<string> } } };
 
 export const RegularImageFragmentDoc = gql`
     fragment RegularImage on Image {
@@ -557,6 +557,28 @@ export const RegularUserFragmentDoc = gql`
   updatedAt
 }
     `;
+export const RegularStateLocalizationFragmentDoc = gql`
+    fragment RegularStateLocalization on StateLocalization {
+  id
+  locale
+  name
+  overview
+}
+    `;
+export const RegularStateFragmentDoc = gql`
+    fragment RegularState on State {
+  id
+  pk
+  name
+  stateCode
+  latitude
+  longitude
+  overview
+  localizations {
+    ...RegularStateLocalization
+  }
+}
+    ${RegularStateLocalizationFragmentDoc}`;
 export const RegularCityLocalizationFragmentDoc = gql`
     fragment RegularCityLocalization on CityLocalization {
   id
@@ -582,6 +604,9 @@ export const RegularCityFragmentDoc = gql`
   userWanted {
     ...RegularUser
   }
+  state {
+    ...RegularState
+  }
   userVisited {
     ...RegularUser
   }
@@ -591,29 +616,8 @@ export const RegularCityFragmentDoc = gql`
 }
     ${RegularImageFragmentDoc}
 ${RegularUserFragmentDoc}
+${RegularStateFragmentDoc}
 ${RegularCityLocalizationFragmentDoc}`;
-export const RegularStateLocalizationFragmentDoc = gql`
-    fragment RegularStateLocalization on StateLocalization {
-  id
-  locale
-  name
-  overview
-}
-    `;
-export const RegularStateFragmentDoc = gql`
-    fragment RegularState on State {
-  id
-  pk
-  name
-  stateCode
-  latitude
-  longitude
-  overview
-  localizations {
-    ...RegularStateLocalization
-  }
-}
-    ${RegularStateLocalizationFragmentDoc}`;
 export const RegularCountryLocalizationFragmentDoc = gql`
     fragment RegularCountryLocalization on CountryLocalization {
   id
