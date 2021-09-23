@@ -171,12 +171,12 @@ type Query {
   countries: [Country!]!
   country(id: Int!): Country!
   me: User!
-  nearby: [City!]!
-  popular: [City!]!
+  nearby(after: String, before: String, first: Int!, last: Int, orderBy: CityOrder, skip: Int): CityConnection!
+  popular(after: String, before: String, first: Int!, last: Int, orderBy: CityOrder, skip: Int): CityConnection!
   stories: [Story!]!
   tags: [Tag!]!
-  visited: [City!]!
-  wanted: [City!]!
+  visited(after: String, before: String, first: Int!, last: Int, orderBy: CityOrder, skip: Int): CityConnection!
+  wanted(after: String, before: String, first: Int!, last: Int, orderBy: CityOrder, skip: Int): CityConnection!
 }
 
 input SignupInput {

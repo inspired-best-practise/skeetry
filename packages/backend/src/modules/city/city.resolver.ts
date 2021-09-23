@@ -8,7 +8,6 @@ import { User } from '../user/models/user.model';
 import { ActionCityInput } from './dto/action-city.input';
 import { CitiesInput } from './dto/cities.input';
 import { CityConnection } from './models/city-connection.model';
-import { PaginationArgs } from '../common/pagination/pagination.args';
 import { CityOrder } from './dto/city-order.input';
 
 @Resolver(() => City)
@@ -62,26 +61,82 @@ export class CityResolver {
   }
 
   @UseGuards(GqlAuthGuard)
-  @Query(() => [City], { name: 'wanted' })
-  async wanted(@UserEntity() user: User) {
-    return this.city.findWanted(user);
+  @Query((returns) => CityConnection, { name: 'wanted' })
+  wanted(
+    @Args('skip', { nullable: true }) skip: number,
+    @Args('after', { nullable: true }) after: string,
+    @Args('before', { nullable: true }) before: string,
+    @Args('first') first: number,
+    @Args('last', { nullable: true }) last: number,
+    @Args({
+      name: 'orderBy',
+      type: () => CityOrder,
+      nullable: true,
+    })
+    orderBy: CityOrder,
+    @UserEntity() user: User,
+  ) {
+    const pagination = { skip, after, before, first, last };
+    return this.city.findWanted(pagination, orderBy, user);
   }
 
   @UseGuards(GqlAuthGuard)
-  @Query(() => [City], { name: 'visited' })
-  async visited(@UserEntity() user: User) {
-    return this.city.findVisited(user);
+  @Query((returns) => CityConnection, { name: 'visited' })
+  visited(
+    @Args('skip', { nullable: true }) skip: number,
+    @Args('after', { nullable: true }) after: string,
+    @Args('before', { nullable: true }) before: string,
+    @Args('first') first: number,
+    @Args('last', { nullable: true }) last: number,
+    @Args({
+      name: 'orderBy',
+      type: () => CityOrder,
+      nullable: true,
+    })
+    orderBy: CityOrder,
+    @UserEntity() user: User,
+  ) {
+    const pagination = { skip, after, before, first, last };
+    return this.city.findVisited(pagination, orderBy, user);
   }
 
   @UseGuards(GqlAuthGuard)
-  @Query(() => [City], { name: 'nearby' })
-  async nearby() {
-    return this.city.findNearby();
+  @Query((returns) => CityConnection, { name: 'nearby' })
+  nearby(
+    @Args('skip', { nullable: true }) skip: number,
+    @Args('after', { nullable: true }) after: string,
+    @Args('before', { nullable: true }) before: string,
+    @Args('first') first: number,
+    @Args('last', { nullable: true }) last: number,
+    @Args({
+      name: 'orderBy',
+      type: () => CityOrder,
+      nullable: true,
+    })
+    orderBy: CityOrder,
+    @UserEntity() user: User,
+  ) {
+    const pagination = { skip, after, before, first, last };
+    return this.city.findNearby(pagination, orderBy, user);
   }
 
   @UseGuards(GqlAuthGuard)
-  @Query(() => [City], { name: 'popular' })
-  async popular() {
-    return this.city.findPopular();
+  @Query((returns) => CityConnection, { name: 'popular' })
+  popular(
+    @Args('skip', { nullable: true }) skip: number,
+    @Args('after', { nullable: true }) after: string,
+    @Args('before', { nullable: true }) before: string,
+    @Args('first') first: number,
+    @Args('last', { nullable: true }) last: number,
+    @Args({
+      name: 'orderBy',
+      type: () => CityOrder,
+      nullable: true,
+    })
+    orderBy: CityOrder,
+    @UserEntity() user: User,
+  ) {
+    const pagination = { skip, after, before, first, last };
+    return this.city.findPopular(pagination, orderBy, user);
   }
 }

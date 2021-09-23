@@ -259,85 +259,175 @@ export class CityService {
       throw new Error("Tag doesn't exist");
     }
 
-    const cities = await this.prisma.city.findMany({
-      include: {
-        localizations: true,
-        userVisited: true,
-        userWanted: true,
-        state: true,
-      },
-      where: {
-        tags: {
-          some: {
-            id: cityTagId,
+    const cities = await findManyCursorConnection(
+      (args) =>
+        this.prisma.city.findMany({
+          include: {
+            localizations: true,
+            userVisited: true,
+            userWanted: true,
+            state: true,
           },
-        },
-      },
-    });
+          where: {
+            AND: [
+              { name: { contains: query || '' } },
+              {
+                tags: {
+                  some: {
+                    id: cityTagId,
+                  },
+                },
+              },
+            ],
+          },
+          orderBy: orderBy ? { name: orderBy.direction } : null,
+          ...args,
+        }),
+      () =>
+        this.prisma.city.count({
+          where: {
+            AND: [
+              { name: { contains: query || '' } },
+              {
+                tags: {
+                  some: {
+                    id: cityTagId,
+                  },
+                },
+              },
+            ],
+          },
+        }),
+      { first, last, before, after },
+    );
 
     return cities;
   }
 
-  async findWanted(user: User) {
-    const cities = await this.prisma.city.findMany({
-      include: {
-        localizations: true,
-        userWanted: true,
-        state: true,
-      },
-      where: {
-        userWanted: {
-          some: {
-            id: user.id,
+  async findWanted(pagination: PaginationArgs, orderBy: CityOrder, user: User) {
+    const { skip, after, before, first, last } = pagination;
+
+    const cities = await findManyCursorConnection(
+      (args) =>
+        this.prisma.city.findMany({
+          include: {
+            localizations: true,
+            userWanted: true,
+            state: true,
           },
-        },
-      },
-    });
+          where: {
+            userWanted: {
+              some: {
+                id: user.id,
+              },
+            },
+          },
+          orderBy: orderBy ? { name: orderBy.direction } : null,
+          ...args,
+        }),
+      () =>
+        this.prisma.city.count({
+          where: {
+            userWanted: {
+              some: {
+                id: user.id,
+              },
+            },
+          },
+        }),
+      { first, last, before, after },
+    );
 
     return cities;
   }
 
-  async findVisited(user: User) {
-    const cities = await this.prisma.city.findMany({
-      include: {
-        localizations: true,
-        userVisited: true,
-        state: true,
-      },
-      where: {
-        userVisited: {
-          some: {
-            id: user.id,
+  async findVisited(
+    pagination: PaginationArgs,
+    orderBy: CityOrder,
+    user: User,
+  ) {
+    const { skip, after, before, first, last } = pagination;
+
+    const cities = await findManyCursorConnection(
+      (args) =>
+        this.prisma.city.findMany({
+          include: {
+            localizations: true,
+            userVisited: true,
+            state: true,
           },
-        },
-      },
-    });
+          where: {
+            userVisited: {
+              some: {
+                id: user.id,
+              },
+            },
+          },
+          orderBy: orderBy ? { name: orderBy.direction } : null,
+          ...args,
+        }),
+      () =>
+        this.prisma.city.count({
+          where: {
+            userVisited: {
+              some: {
+                id: user.id,
+              },
+            },
+          },
+        }),
+      { first, last, before, after },
+    );
 
     return cities;
   }
 
   // TODO: just cities now
-  async findNearby() {
-    const cities = await this.prisma.city.findMany({
-      include: {
-        localizations: true,
-        userVisited: true,
-        state: true,
-      },
-    });
+  async findNearby(pagination: PaginationArgs, orderBy: CityOrder, user: User) {
+    const { skip, after, before, first, last } = pagination;
+
+    const cities = await findManyCursorConnection(
+      (args) =>
+        this.prisma.city.findMany({
+          include: {
+            localizations: true,
+            userVisited: true,
+            userWanted: true,
+            state: true,
+          },
+          orderBy: orderBy ? { name: orderBy.direction } : null,
+          ...args,
+        }),
+      () => this.prisma.city.count(),
+      { first, last, before, after },
+    );
 
     return cities;
   }
 
   // TODO: just cities now
-  async findPopular() {
-    const cities = await this.prisma.city.findMany({
-      include: {
-        localizations: true,
-        userVisited: true,
-        state: true,
-      },
-    });
+  async findPopular(
+    pagination: PaginationArgs,
+    orderBy: CityOrder,
+    user: User,
+  ) {
+    const { skip, after, before, first, last } = pagination;
+
+    const cities = await findManyCursorConnection(
+      (args) =>
+        this.prisma.city.findMany({
+          include: {
+            localizations: true,
+            userVisited: true,
+            userWanted: true,
+            state: true,
+          },
+          orderBy: orderBy ? { name: orderBy.direction } : null,
+          ...args,
+        }),
+      () => this.prisma.city.count(),
+      { first, last, before, after },
+    );
 
     return cities;
   }
