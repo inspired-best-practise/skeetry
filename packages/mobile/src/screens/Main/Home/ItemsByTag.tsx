@@ -1,5 +1,6 @@
 import React from 'react';
-import { SafeAreaView, View, Text, StatusBar } from 'react-native';
+import { View, Text, StatusBar } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { CardList, ModalControl } from '_app/components';
 import { tTitle } from '_app/constants';

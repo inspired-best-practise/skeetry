@@ -1,7 +1,8 @@
 import { useScrollToTop } from '@react-navigation/native';
 import React, { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, Text, StatusBar, TouchableHighlight, ScrollView, SafeAreaView, TextInput } from 'react-native';
+import { View, Text, StatusBar, TouchableHighlight, ScrollView, TextInput } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { HorizontalCardList, ModalControl } from '_app/components';
 import { usePopularQuery, OrderDirection } from '_app/generated/graphql';

@@ -1,7 +1,8 @@
 import { useScrollToTop } from '@react-navigation/native';
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Text, SafeAreaView, View, ScrollView } from 'react-native';
+import { Text, View, ScrollView } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { HorizontalCardList } from '_app/components';
 import { Categories } from '_app/components/Categories';
