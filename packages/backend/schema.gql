@@ -24,7 +24,7 @@ type City {
   """Identifies the date and time when the object was created."""
   createdAt: DateTime!
   id: ID!
-  images: [Image!]!
+  images: [Image!]
   isCapital: Boolean!
   latitude: String!
   localizations: [CityLocalization!]

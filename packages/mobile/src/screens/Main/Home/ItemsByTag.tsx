@@ -3,7 +3,7 @@ import { SafeAreaView, View, Text, StatusBar } from 'react-native';
 
 import { CardList, ModalControl } from '_app/components';
 import { tTitle } from '_app/constants';
-import { useCitiesQuery } from '_app/generated/graphql';
+import { OrderDirection, useCitiesQuery } from '_app/generated/graphql';
 import { withLocalization } from '_app/utils/helpers';
 
 import { s } from './styles';
@@ -17,6 +17,10 @@ export const ItemsByTagScreen = ({ route }) => {
       input: {
         cityTagId: id,
       },
+      first: 10,
+      orderBy: {
+        direction: OrderDirection.Asc,
+      },
     },
   });
 
@@ -26,7 +30,7 @@ export const ItemsByTagScreen = ({ route }) => {
     </SafeAreaView>;
   }
 
-  const items = data?.items;
+  const cities = data?.cities.edges;
 
   // TODO: add wrapper for formSheet screens with StatusBar and ModalControl
   return (
@@ -40,8 +44,8 @@ export const ItemsByTagScreen = ({ route }) => {
         </View>
       </View>
       <View style={{ paddingTop: 20 }}>
-        {items && items.length !== 0 && !error ? (
-          <CardList loading={loading} data={items} />
+        {cities && cities.length !== 0 && !error ? (
+          <CardList loading={loading} data={cities} />
         ) : (
           <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <Text>There are no elements items yet.</Text>

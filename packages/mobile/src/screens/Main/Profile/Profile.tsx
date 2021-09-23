@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { View, Text, FlatList, RefreshControl } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { useMeQuery, useVisitedQuery, useWantedQuery } from '_app/generated/graphql';
+import { OrderDirection, useMeQuery, useVisitedQuery, useWantedQuery } from '_app/generated/graphql';
 import { profileStore } from '_app/stores';
 
 import { renderEmpty, renderItem, renderHeader } from './elements';
@@ -17,13 +17,32 @@ export const ProfileScreen = () => {
   const [refreshing, setRefreshing] = useState(false);
 
   const { loading, data, error, refetch } = useMeQuery();
-  const { data: dataWanted, loading: loadingWanted, error: errorWanted, refetch: refetchWanted } = useWantedQuery();
+  const {
+    data: dataWanted,
+    loading: loadingWanted,
+    error: errorWanted,
+    refetch: refetchWanted,
+  } = useWantedQuery({
+    variables: {
+      first: 10,
+      orderBy: {
+        direction: OrderDirection.Asc,
+      },
+    },
+  });
   const {
     data: dataVisited,
     loading: loadingVisited,
     error: errorVisited,
     refetch: refetchVisited,
-  } = useVisitedQuery();
+  } = useVisitedQuery({
+    variables: {
+      first: 10,
+      orderBy: {
+        direction: OrderDirection.Asc,
+      },
+    },
+  });
 
   const selected = profileStore(state => state.selected);
   const setSelected = profileStore(state => state.setSelected);
@@ -55,8 +74,8 @@ export const ProfileScreen = () => {
   }
 
   const user = data!.me;
-  const wanted = dataWanted!.wanted;
-  const visited = dataVisited!.visited;
+  const wanted = dataWanted!.wanted.edges;
+  const visited = dataVisited!.visited.edges;
 
   const getData = () => {
     switch (selected) {

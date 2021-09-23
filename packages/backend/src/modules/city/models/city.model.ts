@@ -33,8 +33,8 @@ export class City extends BaseModel {
   @Field({ defaultValue: 0 })
   visitedCount: number;
 
-  @Field(() => [Image])
-  images: Image[];
+  @Field(() => [Image], { nullable: true })
+  images?: Image[];
 
   @Field()
   latitude: string;

@@ -5,13 +5,24 @@ import { SafeAreaView, Text } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import { HorizontalCardList } from '_app/components';
-import { usePopularQuery } from '_app/generated/graphql';
+import { OrderDirection, usePopularQuery } from '_app/generated/graphql';
 
 export const LocationsScreen = () => {
   const { t } = useTranslation();
   const ref = useRef<ScrollView>(null);
 
-  const { data: dataPopular, loading: loadingPopular, error: errorPopular } = usePopularQuery();
+  const {
+    data: dataPopular,
+    loading: loadingPopular,
+    error: errorPopular,
+  } = usePopularQuery({
+    variables: {
+      first: 10,
+      orderBy: {
+        direction: OrderDirection.Asc,
+      },
+    },
+  });
 
   useScrollToTop(ref);
 

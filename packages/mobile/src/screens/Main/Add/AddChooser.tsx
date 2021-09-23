@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { View, Text, StatusBar, TouchableHighlight, ScrollView, SafeAreaView, TextInput } from 'react-native';
 
 import { HorizontalCardList, ModalControl } from '_app/components';
-import { usePopularQuery } from '_app/generated/graphql';
+import { usePopularQuery, OrderDirection } from '_app/generated/graphql';
 import { normalize } from '_app/utils/dimensions';
 
 import { s } from './styles';
@@ -32,7 +32,18 @@ export const AddChooserScreen = () => {
   const { t } = useTranslation();
   const ref = useRef<ScrollView>(null);
 
-  const { data: dataPopular, loading: loadingPopular, error: errorPopular } = usePopularQuery();
+  const {
+    data: dataPopular,
+    loading: loadingPopular,
+    error: errorPopular,
+  } = usePopularQuery({
+    variables: {
+      first: 10,
+      orderBy: {
+        direction: OrderDirection.Asc,
+      },
+    },
+  });
 
   useScrollToTop(ref);
 

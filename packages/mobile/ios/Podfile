@@ -1,7 +1,7 @@
 require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-platform :ios, '14.0'
+platform :ios, '12.0'
 
 # Detect AppCenter CI build
 IS_CI = ENV['APPCENTER_BUILD_ID']
@@ -59,13 +59,15 @@ end
        flipper_post_install(installer)
        use_flipper!
      end
-   installer.pods_project.targets.each do |target|
-     target.build_configurations.each do |config|
-      config.build_settings.delete 'IPHONEOS_DEPLOYMENT_TARGET'
-     end
-   end
-   installer.pods_project.build_configurations.each do |config|
-     config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
-     find_and_replace("Pods/RCT-Folly/folly/synchronization/DistributedMutex-inl.h", "atomic_notify_one(state)", "folly::atomic_notify_one(state)")
-   end
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      if Gem::Version.new('8.0') > Gem::Version.new(config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'])
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
+      end
+    end
+  end
+  installer.pods_project.build_configurations.each do |config|
+    config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
+    find_and_replace("Pods/RCT-Folly/folly/synchronization/DistributedMutex-inl.h", "atomic_notify_one(state)", "folly::atomic_notify_one(state)")
+  end
 end

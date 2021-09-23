@@ -7,7 +7,7 @@ import { HorizontalCardList } from '_app/components';
 import { Categories } from '_app/components/Categories';
 import { Stories } from '_app/components/Stories';
 import { tTitle } from '_app/constants';
-import { useNearbyQuery, usePopularQuery } from '_app/generated/graphql';
+import { OrderDirection, useNearbyQuery, usePopularQuery } from '_app/generated/graphql';
 
 import { s } from './styles';
 
@@ -17,8 +17,30 @@ export const HomeScreen = () => {
 
   useScrollToTop(ref);
 
-  const { data: dataNearby, loading: loadingNearby, error: errorNearby } = useNearbyQuery();
-  const { data: dataPopular, loading: loadingPopular, error: errorPopular } = usePopularQuery();
+  const {
+    data: dataNearby,
+    loading: loadingNearby,
+    error: errorNearby,
+  } = useNearbyQuery({
+    variables: {
+      first: 10,
+      orderBy: {
+        direction: OrderDirection.Asc,
+      },
+    },
+  });
+  const {
+    data: dataPopular,
+    loading: loadingPopular,
+    error: errorPopular,
+  } = usePopularQuery({
+    variables: {
+      first: 10,
+      orderBy: {
+        direction: OrderDirection.Asc,
+      },
+    },
+  });
 
   const nearby = dataNearby?.nearby;
   const popular = dataPopular?.popular;
