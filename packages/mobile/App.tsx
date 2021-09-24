@@ -12,7 +12,6 @@ import * as Sentry from '@sentry/react-native';
 import React, { useEffect } from 'react';
 import { LogBox, StatusBar } from 'react-native';
 import Config from 'react-native-config';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 import SplashScreen from 'react-native-splash-screen';
 
 import { LoadingOverlay } from '_app/components';
