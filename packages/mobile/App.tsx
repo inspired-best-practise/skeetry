@@ -18,6 +18,7 @@ import { LoadingOverlay } from '_app/components';
 import '_app/i18n';
 import RootStackNavigation from '_app/navigations';
 import { client } from '_app/services/graphql';
+import CodePushProvider from '_app/utils/CodePushProvider';
 
 LogBox.ignoreLogs(['Require cycle:']);
 
@@ -37,11 +38,13 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <ApolloProvider client={client}>
-      <StatusBar barStyle="dark-content" animated translucent backgroundColor="rgba(0,0,0,0)" />
-      <RootStackNavigation />
-      <LoadingOverlay />
-    </ApolloProvider>
+    <CodePushProvider>
+      <ApolloProvider client={client}>
+        <StatusBar barStyle="dark-content" animated translucent backgroundColor="rgba(0,0,0,0)" />
+        <RootStackNavigation />
+        <LoadingOverlay />
+      </ApolloProvider>
+    </CodePushProvider>
   );
 };
 

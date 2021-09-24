@@ -1,7 +1,8 @@
 import { useScrollToTop } from '@react-navigation/native';
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Text, View, ScrollView } from 'react-native';
+import { Text, View, ScrollView, TouchableOpacity } from 'react-native';
+import codePush from 'react-native-code-push';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { HorizontalCardList } from '_app/components';
@@ -94,6 +95,22 @@ export const HomeScreen = () => {
     }
   };
 
+  const onButtonPress = () => {
+    codePush.sync({
+      updateDialog: {
+        appendReleaseDescription: true,
+        descriptionPrefix: ' Описание: ',
+        mandatoryContinueButtonLabel: 'Продолжить',
+        mandatoryUpdateMessage: 'Доступно обновление, которое необходимо установить!',
+        optionalIgnoreButtonLabel: 'Игнорировать',
+        optionalInstallButtonLabel: 'Установить',
+        optionalUpdateMessage: 'Доступно обновление, вы желаете его установить?',
+        title: 'Обновления доступны',
+      },
+      installMode: codePush.InstallMode.IMMEDIATE,
+    });
+  };
+
   return (
     <SafeAreaView style={s.container}>
       <View style={s.header}>
@@ -107,6 +124,11 @@ export const HomeScreen = () => {
         overScrollMode="never"
       >
         <Stories />
+        <View style={[s.header, { marginBottom: 10 }]}>
+          <TouchableOpacity onPress={onButtonPress}>
+            <Text style={{ fontWeight: '600', color: 'blue' }}>Check for updates</Text>
+          </TouchableOpacity>
+        </View>
         <Categories />
         {!errorNearby && (
           <HorizontalCardList

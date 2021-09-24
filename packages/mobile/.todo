@@ -4,7 +4,7 @@ Refactoring:
    ☐ Refactor navigation
    ☐ Add wrapper for formSheet screens with StatusBar and ModalControl
    ☐ Update design
-   ☐ Card list from Carousel to ScrollView
+   ✔ Card list from Carousel to ScrollView @done(21-09-24 21:09)
    ☐ Auth: delete duplicated styles
    ☐ Create Input component from TextInput
    ☐ Refactoring Card component
@@ -17,7 +17,7 @@ Global bugs:
    ✔ Fix SplashScreen @done(21-09-24 18:23)
    ☐ Fix refetch animation on Profile screen
    ☐ Fix tsconfig/eslint for normal editor highlighting
-   ☐ Fix Podfile
+   ✔ Fix Podfile @done(21-09-24 19:36)
    ☐ Fix react-navigation-shared-element transition
 
 Features:
@@ -43,7 +43,7 @@ Features:
    ☐ Show/Hide password
    ☐ Apollo Cache
    ☐ Picture of the day*
-   ☐ Code Push
+   ✔ Code Push @done(21-09-24 21:09)
    ✔ Android app icon @done(21-09-24 17:13)
 
 Auth:
