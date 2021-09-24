@@ -4,7 +4,7 @@ Refactoring:
    ☐ Refactor navigation
    ☐ Add wrapper for formSheet screens with StatusBar and ModalControl
    ☐ Update design
-   ☐ Small cards from Carousel to ScrollView
+   ☐ Card list from Carousel to ScrollView
    ☐ Auth: delete duplicated styles
    ☐ Create Input component from TextInput
    ☐ Refactoring Card component
@@ -43,6 +43,7 @@ Features:
    ☐ Show/Hide password
    ☐ Apollo Cache
    ☐ Picture of the day*
+   ☐ Code Push
 
 Auth:
    ✔ Form with yup + react-hook-form / formik @done(21-09-18 20:23)

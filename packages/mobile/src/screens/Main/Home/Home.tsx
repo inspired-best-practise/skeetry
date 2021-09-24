@@ -15,7 +15,8 @@ import { s } from './styles';
 export const HomeScreen = () => {
   const { t } = useTranslation();
   const ref = useRef<ScrollView>(null);
-  const [popular, setPopular] = useState([]);
+  const [nearby, setNearby] = useState();
+  const [popular, setPopular] = useState();
 
   useScrollToTop(ref);
 
@@ -23,6 +24,7 @@ export const HomeScreen = () => {
     data: dataNearby,
     loading: loadingNearby,
     error: errorNearby,
+    fetchMore: fetchMoreNearby,
   } = useNearbyQuery({
     variables: {
       first: 10,
@@ -31,6 +33,7 @@ export const HomeScreen = () => {
       },
     },
   });
+
   const {
     data: dataPopular,
     loading: loadingPopular,
@@ -51,9 +54,29 @@ export const HomeScreen = () => {
     }
   }, [dataPopular]);
 
-  const nearby = dataNearby?.nearby.edges;
+  useEffect(() => {
+    if (dataNearby) {
+      setNearby(dataNearby.nearby.edges);
+    }
+  }, [dataNearby]);
 
-  const handleEndReached = async () => {
+  const nearbyEndReached = async () => {
+    if (nearby) {
+      const lastNearby = nearby[nearby.length - 1].node.id;
+      const newData = await fetchMoreNearby({
+        variables: {
+          first: 10,
+          after: lastNearby,
+          orderBy: {
+            direction: OrderDirection.Asc,
+          },
+        },
+      });
+      setNearby(prevState => [...prevState, ...newData.data.nearby.edges]);
+    }
+  };
+
+  const popularEndReached = async () => {
     if (popular) {
       const lastPopular = popular[popular.length - 1].node.id;
       const newData = await fetchMorePopular({
@@ -69,6 +92,9 @@ export const HomeScreen = () => {
     }
   };
 
+  console.log('loadingPopular', loadingPopular);
+  console.log('loadingNearby', loadingNearby);
+
   return (
     <SafeAreaView style={s.container}>
       <View style={s.header}>
@@ -78,14 +104,21 @@ export const HomeScreen = () => {
         <Stories />
         <Categories />
         {!loadingNearby && !errorNearby && (
-          <HorizontalCardList title={`${t('home:nearby')}`} data={nearby} size="wide" />
+          <HorizontalCardList
+            title={`${t('home:nearby')}`}
+            data={nearby}
+            size="wide"
+            handleEndReached={nearbyEndReached}
+            loading={loadingNearby}
+          />
         )}
         {!loadingPopular && !errorPopular && (
           <HorizontalCardList
             title={`${t('home:popular')}`}
             data={popular}
             size="wide"
-            handleEndReached={handleEndReached}
+            handleEndReached={popularEndReached}
+            loading={loadingPopular}
           />
         )}
       </ScrollView>

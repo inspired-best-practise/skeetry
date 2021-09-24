@@ -10,7 +10,7 @@ Features:
   ☐ Ban system
 
 Refactoring:
-  ☐ Check want and visited count (Item model)
+  ✔ Check want and visited count (Item model) @done(21-09-24 14:05)
   ☐ Add places and sights to Item model
   ☐ Add pagination to tag/country/state models
   ☐ OrderBy optional

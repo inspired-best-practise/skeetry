@@ -68,6 +68,24 @@ export class CityService {
             },
     });
 
+    await this.prisma.city.update({
+      where: {
+        id: city.id,
+      },
+      data:
+        type === 'WANT'
+          ? {
+              wantedCount: {
+                increment: 1,
+              },
+            }
+          : {
+              visitedCount: {
+                increment: 1,
+              },
+            },
+    });
+
     return city;
   }
 
@@ -123,6 +141,24 @@ export class CityService {
                 disconnect: {
                   id: city.id,
                 },
+              },
+            },
+    });
+
+    await this.prisma.city.update({
+      where: {
+        id: city.id,
+      },
+      data:
+        type === 'WANT'
+          ? {
+              wantedCount: {
+                decrement: 1,
+              },
+            }
+          : {
+              visitedCount: {
+                decrement: 1,
               },
             },
     });
@@ -198,6 +234,24 @@ export class CityService {
                 connect: {
                   id: city.id,
                 },
+              },
+            },
+    });
+
+    await this.prisma.city.update({
+      where: {
+        id: city.id,
+      },
+      data:
+        type === 'WANT'
+          ? {
+              wantedCount: {
+                decrement: 1,
+              },
+            }
+          : {
+              visitedCount: {
+                increment: 1,
               },
             },
     });
