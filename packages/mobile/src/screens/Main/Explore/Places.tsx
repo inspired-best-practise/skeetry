@@ -5,7 +5,7 @@ import { s } from './styles';
 
 export const PlacesScreen = () => {
   return (
-    <ScrollView style={s.categoryList}>
+    <ScrollView overScrollMode="never" style={s.categoryList}>
       <View style={s.categories}>
         <Text style={s.categoriesTitle}>Places</Text>
       </View>

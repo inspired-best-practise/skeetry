@@ -14,7 +14,13 @@ export const ProfileFilter = () => {
   const selected = profileStore(state => state.selected);
 
   return (
-    <ScrollView ref={ref} horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={s.container}>
+    <ScrollView
+      ref={ref}
+      overScrollMode="never"
+      horizontal
+      showsHorizontalScrollIndicator={false}
+      contentContainerStyle={s.container}
+    >
       <ProfileFilterItem selected={selected} name="want" title={`${t('profile:want')}`} />
       <ProfileFilterItem selected={selected} name="visited" title={`${t('profile:visited')}`} />
       <ProfileFilterItem selected={selected} name="cities" title={`${t('profile:cities')}`} />

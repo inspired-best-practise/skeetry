@@ -37,7 +37,7 @@ export const LocationsScreen = () => {
   const popular = dataPopular?.popular.edges;
 
   return (
-    <ScrollView ref={ref} showsVerticalScrollIndicator={false} scrollsToTop={true}>
+    <ScrollView ref={ref} overScrollMode="never" showsVerticalScrollIndicator={false} scrollsToTop={true}>
       {!loadingPopular && !errorPopular && (
         <HorizontalCardList title={`${t('explore:popular')}`} data={popular} size="wide" />
       )}

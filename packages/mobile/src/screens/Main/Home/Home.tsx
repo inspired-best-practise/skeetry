@@ -32,6 +32,7 @@ export const HomeScreen = () => {
         direction: OrderDirection.Asc,
       },
     },
+    notifyOnNetworkStatusChange: true,
   });
 
   const {
@@ -46,6 +47,7 @@ export const HomeScreen = () => {
         direction: OrderDirection.Asc,
       },
     },
+    notifyOnNetworkStatusChange: true,
   });
 
   useEffect(() => {
@@ -92,18 +94,21 @@ export const HomeScreen = () => {
     }
   };
 
-  console.log('loadingPopular', loadingPopular);
-  console.log('loadingNearby', loadingNearby);
-
   return (
     <SafeAreaView style={s.container}>
       <View style={s.header}>
         <Text style={tTitle}>Skeetry</Text>
       </View>
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={s.main} ref={ref} scrollsToTop={true}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={s.main}
+        ref={ref}
+        scrollsToTop={true}
+        overScrollMode="never"
+      >
         <Stories />
         <Categories />
-        {!loadingNearby && !errorNearby && (
+        {!errorNearby && (
           <HorizontalCardList
             title={`${t('home:nearby')}`}
             data={nearby}
@@ -112,7 +117,7 @@ export const HomeScreen = () => {
             loading={loadingNearby}
           />
         )}
-        {!loadingPopular && !errorPopular && (
+        {!errorPopular && (
           <HorizontalCardList
             title={`${t('home:popular')}`}
             data={popular}

@@ -39,11 +39,9 @@ const App: React.FC = () => {
 
   return (
     <ApolloProvider client={client}>
-      <SafeAreaProvider>
-        <StatusBar barStyle="dark-content" animated translucent backgroundColor="rgba(0,0,0,0)" />
-        <RootStackNavigation />
-        <LoadingOverlay />
-      </SafeAreaProvider>
+      <StatusBar barStyle="dark-content" animated translucent backgroundColor="rgba(0,0,0,0)" />
+      <RootStackNavigation />
+      <LoadingOverlay />
     </ApolloProvider>
   );
 };

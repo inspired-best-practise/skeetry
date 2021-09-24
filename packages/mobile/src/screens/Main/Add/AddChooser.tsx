@@ -74,7 +74,12 @@ export const AddChooserScreen = () => {
           <HorizontalCardList title={`${t('search:recommended')}`} data={popular} size="small" />
         )}
         {/* Tags component */}
-        <ScrollView contentContainerStyle={s.contentContainer} horizontal showsHorizontalScrollIndicator={false}>
+        <ScrollView
+          overScrollMode="never"
+          contentContainerStyle={s.contentContainer}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+        >
           {tagsMock.map(t => (
             <TouchableHighlight key={t.id} style={s.tag} underlayColor="#DDDDDD" onPress={() => {}}>
               <Text>{t.title}</Text>

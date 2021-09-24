@@ -8,6 +8,7 @@ export const Stories = () => {
   return (
     <ScrollView
       horizontal
+      overScrollMode="never"
       showsHorizontalScrollIndicator={false}
       contentContainerStyle={{ marginTop: 10, marginBottom: 20, marginHorizontal: 12, paddingRight: 20 }}
     >

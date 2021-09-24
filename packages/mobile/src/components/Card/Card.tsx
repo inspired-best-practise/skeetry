@@ -90,6 +90,7 @@ export const Card = ({ item, size }: TCardProps) => {
         {size === 'full' && (
           <View>
             <ScrollView
+              overScrollMode="never"
               scrollEventThrottle={6}
               onScroll={({ nativeEvent }) => changeItem(nativeEvent)}
               pagingEnabled

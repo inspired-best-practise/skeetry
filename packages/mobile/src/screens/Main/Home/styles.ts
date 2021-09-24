@@ -4,9 +4,7 @@ import { normalize } from '_app/utils/dimensions';
 
 export const s = StyleSheet.create({
   container: {
-    flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
   },
   header: {
     display: 'flex',
