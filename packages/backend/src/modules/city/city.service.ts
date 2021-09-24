@@ -248,9 +248,15 @@ export class CityService {
               wantedCount: {
                 decrement: 1,
               },
+              visitedCount: {
+                increment: 1,
+              },
             }
           : {
               visitedCount: {
+                decrement: 1,
+              },
+              wantedCount: {
                 increment: 1,
               },
             },
