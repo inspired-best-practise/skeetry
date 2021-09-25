@@ -144,9 +144,8 @@ export class CityResolver {
       nullable: true,
     })
     orderBy: CityOrder,
-    @UserEntity() user: User,
   ) {
     const pagination = { skip, after, before, first, last };
-    return this.city.findPopular(pagination, orderBy, user);
+    return this.city.findPopular(pagination, orderBy);
   }
 }

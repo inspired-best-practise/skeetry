@@ -79,10 +79,16 @@ export class CityService {
               wantedCount: {
                 increment: 1,
               },
+              popularity: {
+                increment: 1,
+              },
             }
           : {
               visitedCount: {
                 increment: 1,
+              },
+              popularity: {
+                increment: 2,
               },
             },
     });
@@ -156,10 +162,16 @@ export class CityService {
               wantedCount: {
                 decrement: 1,
               },
+              popularity: {
+                decrement: 1,
+              },
             }
           : {
               visitedCount: {
                 decrement: 1,
+              },
+              popularity: {
+                decrement: 2,
               },
             },
     });
@@ -252,6 +264,9 @@ export class CityService {
               visitedCount: {
                 increment: 1,
               },
+              popularity: {
+                increment: 1,
+              },
             }
           : {
               visitedCount: {
@@ -259,6 +274,9 @@ export class CityService {
               },
               wantedCount: {
                 increment: 1,
+              },
+              popularity: {
+                decrement: 1,
               },
             },
     });
@@ -529,11 +547,7 @@ export class CityService {
   }
 
   // TODO: just cities now
-  async findPopular(
-    pagination: PaginationArgs,
-    orderBy: CityOrder,
-    user: User,
-  ) {
+  async findPopular(pagination: PaginationArgs, orderBy: CityOrder) {
     const { skip, after, before, first, last } = pagination;
 
     const cities = await findManyCursorConnection(

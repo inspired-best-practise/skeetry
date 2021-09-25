@@ -93,6 +93,7 @@ model City {
   longitude     String
   wantedCount   Int                @default(0)
   visitedCount  Int                @default(0)
+  popularity    Int                @default(0)
   overview      String?
   isCapital     Boolean            @default(false)
   state         State              @relation(fields: [stateId], references: [id])

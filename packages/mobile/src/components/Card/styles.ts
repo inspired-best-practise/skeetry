@@ -37,6 +37,7 @@ export const s = StyleSheet.create({
   },
   itemBase: {
     width: itemBaseWidth,
+    height: itemBaseWidth - 10,
   },
   itemSizeSmall: {
     height: normalize(125),
