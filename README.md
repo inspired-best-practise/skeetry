@@ -16,7 +16,7 @@
 
 **Desgin progress: [Figma](https://www.figma.com/file/apvodGovgRQ0QHaki2rdGq/Skeetry)**
 
-## Progress
+## Project progress
 
 - Global: [.todo](https://github.com/alekseytsvetkov/skeetry/blob/staging/.todo)
 - Backend: [.todo](https://github.com/alekseytsvetkov/skeetry/blob/staging/packages/backend/.todo)
