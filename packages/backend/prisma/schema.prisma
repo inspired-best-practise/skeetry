@@ -1,14 +1,11 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "debian-openssl-1.1.x"]
+}
 
 datasource db {
   provider = "postgresql"
   url      = env("POSTGRES_URL")
-}
-
-generator client {
-  provider      = "prisma-client-js"
-  binaryTargets = ["native", "debian-openssl-1.1.x"]
 }
 
 model User {
@@ -19,19 +16,18 @@ model User {
   bio          String?
   phone        String   @unique
   verified     Boolean  @default(false)
-  wanted       City[]   @relation("WantedCity")
-  visited      City[]   @relation("VisitedCity")
   wantedCount  Int      @default(0)
   visitedCount Int      @default(0)
   rating       Int?
   password     String
   createdAt    DateTime @default(now())
   updatedAt    DateTime @default(now()) @updatedAt
+  visited      City[]   @relation("VisitedCity")
+  wanted       City[]   @relation("WantedCity")
 }
 
 model Country {
   id             String                @id @default(cuid())
-  pk             Int                   @unique
   name           String                @unique
   iso2           String?
   iso3           String?
@@ -44,12 +40,13 @@ model Country {
   continent      Continent
   subregion      String?
   latitude       String?
-  longitude      String?
   emoji          String?
   emojiU         String?
   overview       String?
-  states         State[]
+  pk             Int                   @unique
+  longitude      String?
   localizations  CountryLocalization[]
+  states         State[]
 }
 
 model CountryLocalization {
@@ -57,38 +54,36 @@ model CountryLocalization {
   name      String   @unique
   overview  String?
   locale    Locale
-  country   Country? @relation(fields: [countryId], references: [id])
   countryId String?
+  country   Country? @relation(fields: [countryId], references: [id])
 }
 
 model State {
   id            String              @id @default(cuid())
-  pk            Int                 @unique
   name          String
   stateCode     String?
   latitude      String?
-  longitude     String?
   overview      String?
-  cities        City[]
-  country       Country             @relation(fields: [countryId], references: [id])
   countryId     String
+  pk            Int                 @unique
+  longitude     String?
+  country       Country             @relation(fields: [countryId], references: [id])
+  cities        City[]
   localizations StateLocalization[]
 }
 
 model StateLocalization {
   id       String  @id @default(cuid())
-  locale   Locale  @default(RU)
   name     String
+  locale   Locale  @default(RU)
   overview String?
-  state    State   @relation(fields: [stateId], references: [id])
   stateId  String
+  state    State   @relation(fields: [stateId], references: [id])
 }
 
 model City {
   id            String             @id @default(cuid())
-  pk            Int                @unique
   name          String
-  images        Image[]
   latitude      String
   longitude     String
   wantedCount   Int                @default(0)
@@ -96,12 +91,14 @@ model City {
   popularity    Int                @default(0)
   overview      String?
   isCapital     Boolean            @default(false)
-  state         State              @relation(fields: [stateId], references: [id])
   stateId       String
-  tags          Tag[]
-  userWanted    User[]             @relation("WantedCity")
-  userVisited   User[]             @relation("VisitedCity")
+  pk            Int                @unique
+  state         State              @relation(fields: [stateId], references: [id])
   localizations CityLocalization[]
+  images        Image[]
+  tags          Tag[]
+  userVisited   User[]             @relation("VisitedCity")
+  userWanted    User[]             @relation("WantedCity")
 }
 
 model CityLocalization {
@@ -109,50 +106,50 @@ model CityLocalization {
   locale   Locale
   name     String
   overview String?
-  city     City    @relation(fields: [cityId], references: [id])
   cityId   String
+  city     City    @relation(fields: [cityId], references: [id])
 }
 
 model Image {
   id         String  @id @default(cuid())
+  cityId     String?
   urlRegular String?
   urlSmall   String?
   urlThumb   String?
   city       City?   @relation(fields: [cityId], references: [id])
-  cityId     String?
 }
 
 model Tag {
   id            String            @id @default(cuid())
   name          String            @unique
   emoji         String
-  cities        City[]
   cityId        String
   localizations TagLocalization[]
+  cities        City[]
 }
 
 model TagLocalization {
   id     String @id @default(cuid())
   locale Locale
   name   String
-  tag    Tag    @relation(fields: [tagId], references: [id])
   tagId  String
+  tag    Tag    @relation(fields: [tagId], references: [id])
 }
 
 model Story {
   id            String              @id @default(cuid())
   previewTitle  String
   previewImage  String
-  steps         StoryStep[]
   localizations StoryLocalization[]
+  steps         StoryStep[]
 }
 
 model StoryLocalization {
   id           String  @id @default(cuid())
   locale       Locale
   previewTitle String
-  story        Story?  @relation(fields: [storyId], references: [id])
   storyId      String?
+  story        Story?  @relation(fields: [storyId], references: [id])
 }
 
 model StoryStep {
@@ -160,8 +157,8 @@ model StoryStep {
   title         String
   description   String
   image         String
-  story         Story?                  @relation(fields: [storyId], references: [id])
   storyId       String?
+  story         Story?                  @relation(fields: [storyId], references: [id])
   localizations StoryStepLocalization[]
 }
 
@@ -170,8 +167,8 @@ model StoryStepLocalization {
   locale      Locale
   title       String
   description String
-  StoryStep   StoryStep? @relation(fields: [storyStepId], references: [id])
   storyStepId String?
+  StoryStep   StoryStep? @relation(fields: [storyStepId], references: [id])
 }
 
 model Sms {

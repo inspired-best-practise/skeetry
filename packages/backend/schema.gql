@@ -85,7 +85,7 @@ type Country {
   localizations: [CountryLocalization!]
   longitude: String!
   name: String!
-  native: String!
+  native: String
   numericCode: String!
   overview: String
   phoneCode: String!
@@ -166,7 +166,7 @@ type PageInfo {
 }
 
 type Query {
-  cities(after: String, before: String, first: Int!, input: CitiesInput, last: Int, orderBy: CityOrder, query: String, skip: Int): CityConnection!
+  cities(after: String, before: String, continent: String, first: Int!, input: CitiesInput, isCapital: Boolean, last: Int, orderBy: CityOrder, query: String, skip: Int): CityConnection!
   city(id: String!): City!
   countries: [Country!]!
   country(id: Int!): Country!
