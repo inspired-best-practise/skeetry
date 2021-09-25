@@ -3,12 +3,11 @@ import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
 import React from 'react';
 import Icon from 'react-native-vector-icons/Feather';
-import { createSharedElementStackNavigator } from 'react-navigation-shared-element';
 import { THomeTabParamList } from 'types';
 
 import { TabBarComponent } from '_app/components/BottomTabBar';
 import { colors } from '_app/constants';
-import { HomeScreen, ProfileScreen, AddScreen, CardScreen, LocationsScreen } from '_app/screens/Main';
+import { HomeScreen, ProfileScreen, AddScreen, LocationsScreen } from '_app/screens/Main';
 
 // import { SwipesScreen } from '_app/screens/Main/Swipes';
 
@@ -25,11 +24,10 @@ export const iosTransitionSpec = {
 };
 
 const Stack = createStackNavigator();
-const SharedStack = createSharedElementStackNavigator();
 
 const ProfileStack = () => {
   return (
-    <SharedStack.Navigator
+    <Stack.Navigator
       initialRouteName="Profile"
       // mode="modal"
       screenOptions={{
@@ -49,7 +47,7 @@ const ProfileStack = () => {
       }}
       // headerMode="float"
     >
-      <SharedStack.Screen
+      <Stack.Screen
         component={ProfileScreen}
         name="Profile"
         options={({ route }) => ({
@@ -57,39 +55,13 @@ const ProfileStack = () => {
           headerTitle: 'Home',
         })}
       />
-      <SharedStack.Screen
-        name="CardScreen"
-        component={CardScreen}
-        sharedElements={(route, otherRoute, showing) => {
-          const { item } = route.params;
-          if (route.name === 'CardScreen' && showing) {
-            // Open animation fades in image, title and description
-            return [
-              {
-                id: `item.${item.id}.image`,
-              },
-            ];
-          } else {
-            // Close animation only fades out image
-            return [
-              {
-                id: `item.${item.id}.image`,
-              },
-            ];
-          }
-        }}
-        options={({ route }) => ({
-          headerShown: false,
-          gestureEnabled: false,
-        })}
-      />
-    </SharedStack.Navigator>
+    </Stack.Navigator>
   );
 };
 
 const ExploreStack = () => {
   return (
-    <SharedStack.Navigator
+    <Stack.Navigator
       initialRouteName="Explore"
       // mode="modal"
       screenOptions={{
@@ -109,40 +81,14 @@ const ExploreStack = () => {
       }}
       // headerMode="float"
     >
-      <SharedStack.Screen
+      <Stack.Screen
         component={LocationsScreen}
         name="Explore"
         options={({ route }) => ({
           headerShown: false,
         })}
       />
-      <SharedStack.Screen
-        name="CardScreen"
-        component={CardScreen}
-        sharedElements={(route, otherRoute, showing) => {
-          const { item } = route.params;
-          if (route.name === 'CardScreen' && showing) {
-            // Open animation fades in image, title and description
-            return [
-              {
-                id: `item.${item.id}.image`,
-              },
-            ];
-          } else {
-            // Close animation only fades out image
-            return [
-              {
-                id: `item.${item.id}.image`,
-              },
-            ];
-          }
-        }}
-        options={({ route }) => ({
-          headerShown: false,
-          gestureEnabled: false,
-        })}
-      />
-    </SharedStack.Navigator>
+    </Stack.Navigator>
   );
 };
 
@@ -180,7 +126,7 @@ const AddStack = () => {
 
 const HomeStack = () => {
   return (
-    <SharedStack.Navigator
+    <Stack.Navigator
       initialRouteName="Home"
       // mode="modal"
       screenOptions={{
@@ -200,40 +146,14 @@ const HomeStack = () => {
       }}
       // headerMode="float"
     >
-      <SharedStack.Screen
+      <Stack.Screen
         component={HomeScreen}
         name="HomeScreen"
         options={({ route }) => ({
           headerShown: false,
         })}
       />
-      <SharedStack.Screen
-        name="CardScreen"
-        component={CardScreen}
-        sharedElements={(route, otherRoute, showing) => {
-          const { item } = route.params;
-          if (route.name === 'CardScreen' && showing) {
-            // Open animation fades in image, title and description
-            return [
-              {
-                id: `item.${item.id}.image`,
-              },
-            ];
-          } else {
-            // Close animation only fades out image
-            return [
-              {
-                id: `item.${item.id}.image`,
-              },
-            ];
-          }
-        }}
-        options={({ route }) => ({
-          headerShown: false,
-          gestureEnabled: false,
-        })}
-      />
-    </SharedStack.Navigator>
+    </Stack.Navigator>
   );
 };
 

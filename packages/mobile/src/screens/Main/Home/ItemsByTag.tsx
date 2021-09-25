@@ -39,14 +39,14 @@ export const ItemsByTagScreen = ({ route }) => {
       <StatusBar barStyle={PLATFORM.IS_IOS ? 'light-content' : 'dark-content'} animated translucent />
       {PLATFORM.IS_IOS && <ModalControl />}
       {PLATFORM.IS_IOS && (
-        <View style={{ paddingTop: 100, display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+        <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginBottom: 20 }}>
           <Text style={tTitle}>{withLocalization('name', name, locale, localizations)}</Text>
           <View style={{ marginLeft: 5 }}>
             <Text>{emoji}</Text>
           </View>
         </View>
       )}
-      <View style={{ paddingTop: 20 }}>
+      <View>
         {cities && cities.length !== 0 && !error ? (
           <CardList loading={loading} data={cities} />
         ) : (

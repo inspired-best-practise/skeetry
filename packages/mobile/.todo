@@ -13,12 +13,12 @@ Refactoring:
   
 Global bugs:
    ✔ Fix open animation react-navigation-shared-element with react-native-safe-area-context (https://github.com/IjzerenHein/react-navigation-shared-element/issues/187) @done(21-09-11 15:18)
-   ☐ Fix close animation react-navigation-shared-element if used in two stacks (Explore and Profile)
+   ✘ Fix close animation react-navigation-shared-element if used in two stacks (Explore and Profile) @cancelled(21-09-25 19:22)
    ✔ Fix SplashScreen @done(21-09-24 18:23)
    ☐ Fix refetch animation on Profile screen
    ☐ Fix tsconfig/eslint for normal editor highlighting
    ✔ Fix Podfile @done(21-09-24 19:36)
-   ☐ Fix react-navigation-shared-element transition
+   ✘ Fix react-navigation-shared-element transition @cancelled(21-09-25 19:22)
 
 Features:
    ✔ Get device language @done(21-09-06 16:42)

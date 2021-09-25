@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { Text, Pressable, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { ScrollView } from 'react-native-gesture-handler';
-import * as Icon from 'react-native-heroicons/solid';
-import { SharedElement } from 'react-navigation-shared-element';
 
 import { navigation } from '_app/services/navigations';
 import { withLocalization } from '_app/utils/helpers';
@@ -54,18 +52,16 @@ export const Card = ({ item, size }: TCardProps) => {
                   })
                 }
               >
-                <SharedElement id={`item.${item.id}.image`}>
-                  <FastImage
-                    style={[
-                      s.itemImage,
-                      size === 'wide' && s.itemSizeWide,
-                      size === 'base' && s.itemSizeBase,
-                      size === 'small' && s.itemSizeSmall,
-                    ]}
-                    source={{ uri: photos[0], priority: FastImage.priority.normal }}
-                    resizeMode={FastImage.resizeMode.cover}
-                  />
-                </SharedElement>
+                <FastImage
+                  style={[
+                    s.itemImage,
+                    size === 'wide' && s.itemSizeWide,
+                    size === 'base' && s.itemSizeBase,
+                    size === 'small' && s.itemSizeSmall,
+                  ]}
+                  source={{ uri: photos[0], priority: FastImage.priority.normal }}
+                  resizeMode={FastImage.resizeMode.cover}
+                />
               </Pressable>
             ) : (
               <Pressable
@@ -76,21 +72,19 @@ export const Card = ({ item, size }: TCardProps) => {
                   })
                 }
               >
-                <SharedElement id={`item.${item.id}.image`}>
-                  <FastImage
-                    style={[
-                      s.itemImage,
-                      size === 'wide' && s.itemSizeWide,
-                      size === 'base' && s.itemSizeBase,
-                      size === 'small' && s.itemSizeSmall,
-                    ]}
-                    source={{
-                      uri: 'https://images.unsplash.com/photo-1503614472-8c93d56e92ce?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1299&q=80/250x300',
-                      priority: FastImage.priority.normal,
-                    }}
-                    resizeMode={FastImage.resizeMode.cover}
-                  />
-                </SharedElement>
+                <FastImage
+                  style={[
+                    s.itemImage,
+                    size === 'wide' && s.itemSizeWide,
+                    size === 'base' && s.itemSizeBase,
+                    size === 'small' && s.itemSizeSmall,
+                  ]}
+                  source={{
+                    uri: 'https://images.unsplash.com/photo-1503614472-8c93d56e92ce?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1299&q=80/250x300',
+                    priority: FastImage.priority.normal,
+                  }}
+                  resizeMode={FastImage.resizeMode.cover}
+                />
               </Pressable>
             )}
           </View>
@@ -114,14 +108,12 @@ export const Card = ({ item, size }: TCardProps) => {
                       })
                     }
                   >
-                    <SharedElement id={`item.${item.id}.image`}>
-                      <FastImage
-                        key={index}
-                        style={[s.itemImage, s.itemSizeFull]}
-                        source={{ uri: i, priority: FastImage.priority.normal }}
-                        resizeMode={FastImage.resizeMode.cover}
-                      />
-                    </SharedElement>
+                    <FastImage
+                      key={index}
+                      style={[s.itemImage, s.itemSizeFull]}
+                      source={{ uri: i, priority: FastImage.priority.normal }}
+                      resizeMode={FastImage.resizeMode.cover}
+                    />
                   </Pressable>
                 ))
               ) : (
@@ -133,16 +125,14 @@ export const Card = ({ item, size }: TCardProps) => {
                     })
                   }
                 >
-                  <SharedElement id={`item.${item.id}.image`}>
-                    <FastImage
-                      style={[s.itemImage, size === 'full' && s.itemSizeFull]}
-                      source={{
-                        uri: 'https://images.unsplash.com/photo-1503614472-8c93d56e92ce?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1299&q=80/250x300',
-                        priority: FastImage.priority.normal,
-                      }}
-                      resizeMode={FastImage.resizeMode.cover}
-                    />
-                  </SharedElement>
+                  <FastImage
+                    style={[s.itemImage, size === 'full' && s.itemSizeFull]}
+                    source={{
+                      uri: 'https://images.unsplash.com/photo-1503614472-8c93d56e92ce?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1299&q=80/250x300',
+                      priority: FastImage.priority.normal,
+                    }}
+                    resizeMode={FastImage.resizeMode.cover}
+                  />
                 </Pressable>
               )}
             </ScrollView>

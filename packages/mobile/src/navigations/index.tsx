@@ -5,7 +5,7 @@ import React from 'react';
 import { enableScreens } from 'react-native-screens';
 
 import { PLATFORM } from '_app/constants';
-import { ProfileSettingsScreen } from '_app/screens/Main';
+import { CardScreen, ProfileSettingsScreen } from '_app/screens/Main';
 import { AddChooserScreen } from '_app/screens/Main/Add/AddChooser';
 import { ItemsByTagScreen } from '_app/screens/Main/Home/ItemsByTag';
 import { Offline } from '_app/screens/Others';
@@ -54,6 +54,16 @@ const Index = (): JSX.Element => {
           })}
           name="ItemsByTag"
           component={ItemsByTagScreen}
+        />
+        <RootStack.Screen
+          options={({ route }) => ({
+            ...TransitionPresets.ModalTransition,
+            headerShown: false,
+            headerTitle: '',
+            presentation: 'formSheet',
+          })}
+          name="CardScreen"
+          component={CardScreen}
         />
         <RootStack.Screen
           options={{

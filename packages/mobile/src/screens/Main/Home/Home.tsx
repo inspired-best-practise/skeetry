@@ -85,7 +85,6 @@ export const HomeScreen = () => {
   const popularEndReached = async () => {
     if (popular) {
       const lastPopular = popular[popular.length - 1].node.id;
-      console.log(popular[popular.length - 1]);
       const newData = await fetchMorePopular({
         variables: {
           first: 10,

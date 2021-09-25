@@ -2,7 +2,6 @@ import { useScrollToTop } from '@react-navigation/native';
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View, Text, StatusBar, TouchableHighlight, ScrollView, TextInput } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { HorizontalCardList, ModalControl } from '_app/components';
 import { PLATFORM } from '_app/constants';
@@ -44,7 +43,7 @@ export const AddChooserScreen = () => {
     variables: {
       first: 10,
       orderBy: {
-        direction: OrderDirection.Asc,
+        direction: OrderDirection.Desc,
       },
     },
     notifyOnNetworkStatusChange: true,
@@ -64,7 +63,7 @@ export const AddChooserScreen = () => {
           first: 10,
           after: lastRecommended,
           orderBy: {
-            direction: OrderDirection.Asc,
+            direction: OrderDirection.Desc,
           },
         },
       });
