@@ -1,3 +1,4 @@
+import { Continent } from '.prisma/client';
 import { findManyCursorConnection } from '@devoxa/prisma-relay-cursor-connection';
 import { Injectable } from '@nestjs/common';
 import { PaginationArgs } from '../common/pagination/pagination.args';
@@ -291,6 +292,7 @@ export class CityService {
 
   async findAll(
     input: CitiesInput,
+    continent: Continent,
     pagination: PaginationArgs,
     query: string,
     orderBy: CityOrder,
@@ -311,7 +313,16 @@ export class CityService {
               },
             },
             where: {
-              name: { contains: query || '' },
+              AND: [
+                { name: { contains: query || '' } },
+                continent && {
+                  state: {
+                    country: {
+                      continent,
+                    },
+                  },
+                },
+              ],
             },
             orderBy: orderBy ? { name: orderBy.direction } : null,
             ...args,
@@ -319,7 +330,16 @@ export class CityService {
         () =>
           this.prisma.city.count({
             where: {
-              name: { contains: query || '' },
+              AND: [
+                { name: { contains: query || '' } },
+                continent && {
+                  state: {
+                    country: {
+                      continent,
+                    },
+                  },
+                },
+              ],
             },
           }),
         { first, last, before, after },

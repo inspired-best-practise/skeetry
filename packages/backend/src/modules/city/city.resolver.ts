@@ -9,6 +9,7 @@ import { ActionCityInput } from './dto/action-city.input';
 import { CitiesInput } from './dto/cities.input';
 import { CityConnection } from './models/city-connection.model';
 import { CityOrder } from './dto/city-order.input';
+import { Continent } from '.prisma/client';
 
 @Resolver(() => City)
 export class CityResolver {
@@ -42,6 +43,7 @@ export class CityResolver {
   @Query((returns) => CityConnection, { name: 'cities' })
   findAll(
     @Args('input', { nullable: true }) input: CitiesInput,
+    @Args('continent', { nullable: true }) continent: Continent,
     @Args('skip', { nullable: true }) skip: number,
     @Args('after', { nullable: true }) after: string,
     @Args('before', { nullable: true }) before: string,
@@ -57,7 +59,7 @@ export class CityResolver {
     orderBy: CityOrder,
   ) {
     const pagination = { skip, after, before, first, last };
-    return this.city.findAll(input, pagination, query, orderBy);
+    return this.city.findAll(input, continent, pagination, query, orderBy);
   }
 
   @UseGuards(GqlAuthGuard)

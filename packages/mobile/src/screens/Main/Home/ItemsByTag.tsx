@@ -3,7 +3,7 @@ import { View, Text, StatusBar } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { CardList, ModalControl } from '_app/components';
-import { tTitle } from '_app/constants';
+import { PLATFORM, tTitle } from '_app/constants';
 import { OrderDirection, useCitiesQuery } from '_app/generated/graphql';
 import { withLocalization } from '_app/utils/helpers';
 
@@ -36,14 +36,16 @@ export const ItemsByTagScreen = ({ route }) => {
   // TODO: add wrapper for formSheet screens with StatusBar and ModalControl
   return (
     <SafeAreaView style={s.container}>
-      <StatusBar barStyle="light-content" animated translucent backgroundColor="rgba(255,255,255,100)" />
-      <ModalControl />
-      <View style={{ paddingTop: 100, display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-        <Text style={tTitle}>{withLocalization('name', name, locale, localizations)}</Text>
-        <View style={{ marginLeft: 5 }}>
-          <Text>{emoji}</Text>
+      <StatusBar barStyle="dark-content" animated translucent />
+      {PLATFORM.IS_IOS && <ModalControl />}
+      {PLATFORM.IS_IOS && (
+        <View style={{ paddingTop: 100, display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+          <Text style={tTitle}>{withLocalization('name', name, locale, localizations)}</Text>
+          <View style={{ marginLeft: 5 }}>
+            <Text>{emoji}</Text>
+          </View>
         </View>
-      </View>
+      )}
       <View style={{ paddingTop: 20 }}>
         {cities && cities.length !== 0 && !error ? (
           <CardList loading={loading} data={cities} />

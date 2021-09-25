@@ -46,8 +46,8 @@ export class Country extends BaseModel {
   @Field()
   tld: string;
 
-  @Field()
-  native: string;
+  @Field({ nullable: true })
+  native?: string;
 
   @Field({ nullable: true })
   overview: string;

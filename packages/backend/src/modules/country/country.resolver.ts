@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Args, Int } from '@nestjs/graphql';
 import { CountryService } from './country.service';
 import { Country } from './models/country.models';
 

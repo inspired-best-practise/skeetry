@@ -171,6 +171,8 @@ export const CardScreen = ({ route, navigation }) => {
               `Move to ${alreadyWanted ? 'Visited' : 'Want'}`,
               `Remove from ${alreadyWanted ? 'Want' : 'Visited'}`,
             ],
+            cancelButtonIndex: 0,
+            destructiveButtonIndex: 2,
           },
           i => {
             if (i === 0) {

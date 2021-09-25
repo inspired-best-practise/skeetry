@@ -46,11 +46,12 @@ const Index = (): JSX.Element => {
           component={AddChooserScreen}
         />
         <RootStack.Screen
-          options={{
+          options={({ route }) => ({
             ...TransitionPresets.ModalTransition,
-            headerShown: false,
+            headerShown: PLATFORM.IS_IOS ? false : true,
+            headerTitle: `${route.params.item.name} ${route.params.item.emoji}`,
             presentation: 'formSheet',
-          }}
+          })}
           name="ItemsByTag"
           component={ItemsByTagScreen}
         />
