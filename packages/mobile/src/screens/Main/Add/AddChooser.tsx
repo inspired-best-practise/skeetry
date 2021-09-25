@@ -64,7 +64,7 @@ export const AddChooserScreen = () => {
           first: 10,
           after: lastRecommended,
           orderBy: {
-            direction: OrderDirection.Asc,
+            direction: OrderDirection.Desc,
           },
         },
       });

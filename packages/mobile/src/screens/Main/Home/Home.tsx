@@ -30,7 +30,7 @@ export const HomeScreen = () => {
     variables: {
       first: 10,
       orderBy: {
-        direction: OrderDirection.Asc,
+        direction: OrderDirection.Desc,
       },
     },
     notifyOnNetworkStatusChange: true,
@@ -71,7 +71,7 @@ export const HomeScreen = () => {
           first: 10,
           after: lastNearby,
           orderBy: {
-            direction: OrderDirection.Asc,
+            direction: OrderDirection.Desc,
           },
         },
       });
@@ -87,7 +87,7 @@ export const HomeScreen = () => {
           first: 10,
           after: lastPopular,
           orderBy: {
-            direction: OrderDirection.Asc,
+            direction: OrderDirection.Desc,
           },
         },
       });

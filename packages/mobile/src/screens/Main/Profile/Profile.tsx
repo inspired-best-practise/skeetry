@@ -26,7 +26,7 @@ export const ProfileScreen = () => {
     variables: {
       first: 10,
       orderBy: {
-        direction: OrderDirection.Asc,
+        direction: OrderDirection.Desc,
       },
     },
   });
@@ -39,7 +39,7 @@ export const ProfileScreen = () => {
     variables: {
       first: 10,
       orderBy: {
-        direction: OrderDirection.Asc,
+        direction: OrderDirection.Desc,
       },
     },
   });
