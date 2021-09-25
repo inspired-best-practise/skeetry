@@ -232,6 +232,7 @@ export type QueryCitiesArgs = {
   continent?: Maybe<Scalars['String']>;
   first: Scalars['Int'];
   input?: Maybe<CitiesInput>;
+  isCapital?: Maybe<Scalars['Boolean']>;
   last?: Maybe<Scalars['Int']>;
   orderBy?: Maybe<CityOrder>;
   query?: Maybe<Scalars['String']>;
@@ -461,6 +462,7 @@ export type SignupMutation = { __typename?: 'Mutation', signup: { __typename?: '
 
 export type CitiesQueryVariables = Exact<{
   continent?: Maybe<Scalars['String']>;
+  isCapital?: Maybe<Scalars['Boolean']>;
   after?: Maybe<Scalars['String']>;
   before?: Maybe<Scalars['String']>;
   first: Scalars['Int'];
@@ -952,9 +954,10 @@ export type SignupMutationHookResult = ReturnType<typeof useSignupMutation>;
 export type SignupMutationResult = Apollo.MutationResult<SignupMutation>;
 export type SignupMutationOptions = Apollo.BaseMutationOptions<SignupMutation, SignupMutationVariables>;
 export const CitiesDocument = gql`
-    query Cities($continent: String, $after: String, $before: String, $first: Int!, $input: CitiesInput, $last: Int, $orderBy: CityOrder, $query: String, $skip: Int) {
+    query Cities($continent: String, $isCapital: Boolean, $after: String, $before: String, $first: Int!, $input: CitiesInput, $last: Int, $orderBy: CityOrder, $query: String, $skip: Int) {
   cities(
     continent: $continent
+    isCapital: $isCapital
     after: $after
     before: $before
     first: $first
@@ -992,6 +995,7 @@ ${RegularPageInfoFragmentDoc}`;
  * const { data, loading, error } = useCitiesQuery({
  *   variables: {
  *      continent: // value for 'continent'
+ *      isCapital: // value for 'isCapital'
  *      after: // value for 'after'
  *      before: // value for 'before'
  *      first: // value for 'first'
