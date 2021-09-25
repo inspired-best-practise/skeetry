@@ -346,7 +346,7 @@ export class CityService {
                 },
               ],
             },
-            orderBy: orderBy ? { popularity: orderBy.direction } : null,
+            orderBy: orderBy ? { name: orderBy.direction } : null,
             ...args,
           }),
         () =>
@@ -409,7 +409,7 @@ export class CityService {
               },
             ],
           },
-          orderBy: orderBy ? { popularity: orderBy.direction } : null,
+          orderBy: orderBy ? { name: orderBy.direction } : null,
           ...args,
         }),
       () =>
@@ -536,7 +536,7 @@ export class CityService {
               },
             },
           },
-          orderBy: orderBy ? { popularity: orderBy.direction } : null,
+          orderBy: orderBy ? { name: orderBy.direction } : null,
           ...args,
         }),
       () => this.prisma.city.count(),

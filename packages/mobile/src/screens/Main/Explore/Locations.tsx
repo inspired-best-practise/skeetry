@@ -28,7 +28,7 @@ export const LocationsScreen = () => {
     variables: {
       first: 10,
       orderBy: {
-        direction: OrderDirection.Desc,
+        direction: OrderDirection.Asc,
       },
       isCapital: true,
     },
@@ -44,7 +44,7 @@ export const LocationsScreen = () => {
     variables: {
       first: 10,
       orderBy: {
-        direction: OrderDirection.Desc,
+        direction: OrderDirection.Asc,
       },
       continent: 'EUROPE',
     },
@@ -60,7 +60,7 @@ export const LocationsScreen = () => {
     variables: {
       first: 10,
       orderBy: {
-        direction: OrderDirection.Desc,
+        direction: OrderDirection.Asc,
       },
       continent: 'ASIA',
     },
@@ -76,7 +76,7 @@ export const LocationsScreen = () => {
     variables: {
       first: 10,
       orderBy: {
-        direction: OrderDirection.Desc,
+        direction: OrderDirection.Asc,
       },
       continent: 'OCEANIA',
     },
@@ -92,7 +92,7 @@ export const LocationsScreen = () => {
     variables: {
       first: 10,
       orderBy: {
-        direction: OrderDirection.Desc,
+        direction: OrderDirection.Asc,
       },
       continent: 'AMERICAS',
     },
@@ -108,7 +108,7 @@ export const LocationsScreen = () => {
     variables: {
       first: 10,
       orderBy: {
-        direction: OrderDirection.Desc,
+        direction: OrderDirection.Asc,
       },
       continent: 'AFRICA',
     },
@@ -161,7 +161,7 @@ export const LocationsScreen = () => {
           first: 10,
           after: lastCapital,
           orderBy: {
-            direction: OrderDirection.Desc,
+            direction: OrderDirection.Asc,
           },
           isCapital: true,
         },
@@ -178,7 +178,7 @@ export const LocationsScreen = () => {
           first: 10,
           after: lastEurope,
           orderBy: {
-            direction: OrderDirection.Desc,
+            direction: OrderDirection.Asc,
           },
           continent: 'EUROPE',
         },
@@ -195,7 +195,7 @@ export const LocationsScreen = () => {
           first: 10,
           after: lastAsia,
           orderBy: {
-            direction: OrderDirection.Desc,
+            direction: OrderDirection.Asc,
           },
           continent: 'ASIA',
         },
@@ -212,7 +212,7 @@ export const LocationsScreen = () => {
           first: 10,
           after: lastAustralia,
           orderBy: {
-            direction: OrderDirection.Desc,
+            direction: OrderDirection.Asc,
           },
           continent: 'OCEANIA',
         },
@@ -229,7 +229,7 @@ export const LocationsScreen = () => {
           first: 10,
           after: lastAmericas,
           orderBy: {
-            direction: OrderDirection.Desc,
+            direction: OrderDirection.Asc,
           },
           continent: 'AMERICAS',
         },
@@ -246,7 +246,7 @@ export const LocationsScreen = () => {
           first: 10,
           after: lastAfrica,
           orderBy: {
-            direction: OrderDirection.Desc,
+            direction: OrderDirection.Asc,
           },
           continent: 'AFRICA',
         },

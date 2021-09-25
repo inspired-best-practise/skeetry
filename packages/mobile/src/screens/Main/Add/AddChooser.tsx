@@ -44,7 +44,7 @@ export const AddChooserScreen = () => {
     variables: {
       first: 10,
       orderBy: {
-        direction: OrderDirection.Desc,
+        direction: OrderDirection.Asc,
       },
     },
     notifyOnNetworkStatusChange: true,
@@ -64,7 +64,7 @@ export const AddChooserScreen = () => {
           first: 10,
           after: lastRecommended,
           orderBy: {
-            direction: OrderDirection.Desc,
+            direction: OrderDirection.Asc,
           },
         },
       });

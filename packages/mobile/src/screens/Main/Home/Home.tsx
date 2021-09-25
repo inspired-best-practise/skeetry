@@ -9,32 +9,35 @@ import { HorizontalCardList } from '_app/components';
 import { Categories } from '_app/components/Categories';
 import { Stories } from '_app/components/Stories';
 import { tTitle } from '_app/constants';
-import { OrderDirection, useNearbyQuery, usePopularQuery } from '_app/generated/graphql';
+import {
+  OrderDirection, // useNearbyQuery,
+  usePopularQuery,
+} from '_app/generated/graphql';
 
 import { s } from './styles';
 
 export const HomeScreen = () => {
   const { t } = useTranslation();
   const ref = useRef<ScrollView>(null);
-  const [nearby, setNearby] = useState();
+  // const [nearby, setNearby] = useState();
   const [popular, setPopular] = useState();
 
   useScrollToTop(ref);
 
-  const {
-    data: dataNearby,
-    loading: loadingNearby,
-    error: errorNearby,
-    fetchMore: fetchMoreNearby,
-  } = useNearbyQuery({
-    variables: {
-      first: 10,
-      orderBy: {
-        direction: OrderDirection.Desc,
-      },
-    },
-    notifyOnNetworkStatusChange: true,
-  });
+  // const {
+  //   data: dataNearby,
+  //   loading: loadingNearby,
+  //   error: errorNearby,
+  //   fetchMore: fetchMoreNearby,
+  // } = useNearbyQuery({
+  //   variables: {
+  //     first: 10,
+  //     orderBy: {
+  //       direction: OrderDirection.Asc,
+  //     },
+  //   },
+  //   notifyOnNetworkStatusChange: true,
+  // });
 
   const {
     data: dataPopular,
@@ -51,37 +54,38 @@ export const HomeScreen = () => {
     notifyOnNetworkStatusChange: true,
   });
 
+  // useEffect(() => {
+  //   if (dataNearby) {
+  //     setNearby(dataNearby.nearby.edges);
+  //   }
+  // }, [dataNearby]);
+
   useEffect(() => {
     if (dataPopular) {
       setPopular(dataPopular.popular.edges);
     }
   }, [dataPopular]);
 
-  useEffect(() => {
-    if (dataNearby) {
-      setNearby(dataNearby.nearby.edges);
-    }
-  }, [dataNearby]);
-
-  const nearbyEndReached = async () => {
-    if (nearby) {
-      const lastNearby = nearby[nearby.length - 1].node.id;
-      const newData = await fetchMoreNearby({
-        variables: {
-          first: 10,
-          after: lastNearby,
-          orderBy: {
-            direction: OrderDirection.Desc,
-          },
-        },
-      });
-      setNearby(prevState => [...prevState, ...newData.data.nearby.edges]);
-    }
-  };
+  // const nearbyEndReached = async () => {
+  //   if (nearby) {
+  //     const lastNearby = nearby[nearby.length - 1].node.id;
+  //     const newData = await fetchMoreNearby({
+  //       variables: {
+  //         first: 10,
+  //         after: lastNearby,
+  //         orderBy: {
+  //           direction: OrderDirection.Asc,
+  //         },
+  //       },
+  //     });
+  //     setNearby(prevState => [...prevState, ...newData.data.nearby.edges]);
+  //   }
+  // };
 
   const popularEndReached = async () => {
     if (popular) {
       const lastPopular = popular[popular.length - 1].node.id;
+      console.log(popular[popular.length - 1]);
       const newData = await fetchMorePopular({
         variables: {
           first: 10,
@@ -124,7 +128,7 @@ export const HomeScreen = () => {
           </TouchableOpacity>
         </View>
         <Categories />
-        {!errorNearby && (
+        {/* {!errorNearby && (
           <HorizontalCardList
             title={`${t('home:nearby')}`}
             data={nearby}
@@ -132,7 +136,7 @@ export const HomeScreen = () => {
             handleEndReached={nearbyEndReached}
             loading={loadingNearby}
           />
-        )}
+        )} */}
         {!errorPopular && (
           <HorizontalCardList
             title={`${t('home:popular')}`}

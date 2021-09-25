@@ -20,7 +20,7 @@ export const ItemsByTagScreen = ({ route }) => {
       },
       first: 10,
       orderBy: {
-        direction: OrderDirection.Desc,
+        direction: OrderDirection.Asc,
       },
     },
   });
