@@ -5,6 +5,7 @@ import { View, Text, StatusBar, TouchableHighlight, ScrollView, TextInput } from
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { HorizontalCardList, ModalControl } from '_app/components';
+import { PLATFORM } from '_app/constants';
 import { usePopularQuery, OrderDirection } from '_app/generated/graphql';
 import { normalize } from '_app/utils/dimensions';
 
@@ -60,8 +61,8 @@ export const AddChooserScreen = () => {
 
   return (
     <View style={s.container}>
-      <StatusBar barStyle="light-content" animated translucent backgroundColor="rgba(255,255,255,100)" />
-      <ModalControl />
+      <StatusBar barStyle="dark-content" animated translucent />
+      {PLATFORM.IS_IOS && <ModalControl />}
 
       <View style={s.containerWrap}>
         <View style={{ paddingHorizontal: normalize(20), marginBottom: normalize(10) }}>

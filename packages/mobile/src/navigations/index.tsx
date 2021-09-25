@@ -4,6 +4,7 @@ import { TransitionPresets } from '@react-navigation/stack';
 import React from 'react';
 import { enableScreens } from 'react-native-screens';
 
+import { PLATFORM } from '_app/constants';
 import { ProfileSettingsScreen } from '_app/screens/Main';
 import { AddChooserScreen } from '_app/screens/Main/Add/AddChooser';
 import { ItemsByTagScreen } from '_app/screens/Main/Home/ItemsByTag';
@@ -37,7 +38,8 @@ const Index = (): JSX.Element => {
         <RootStack.Screen
           options={{
             ...TransitionPresets.ModalTransition,
-            headerShown: false,
+            headerShown: PLATFORM.IS_IOS ? false : true,
+            headerTitle: 'Поиск',
             presentation: 'formSheet',
           }}
           name="AddChooser"
@@ -55,7 +57,8 @@ const Index = (): JSX.Element => {
         <RootStack.Screen
           options={{
             ...TransitionPresets.ModalTransition,
-            headerShown: false,
+            headerShown: PLATFORM.IS_IOS ? false : true,
+            headerTitle: 'Настройки',
             presentation: 'formSheet',
           }}
           name="ProfileSettings"

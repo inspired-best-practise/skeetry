@@ -163,11 +163,17 @@ const AddStack = () => {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerShown: false,
+        headerShown: true,
         gestureEnabled: true,
       }}
     >
-      <Stack.Screen name="Add" component={AddScreen} />
+      <Stack.Screen
+        options={({ route }) => ({
+          headerShown: true,
+        })}
+        name="Add"
+        component={AddScreen}
+      />
     </Stack.Navigator>
   );
 };

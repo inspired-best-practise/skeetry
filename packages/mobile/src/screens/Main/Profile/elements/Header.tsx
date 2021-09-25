@@ -17,16 +17,14 @@ export const renderHeader = (user: TUser, t, setSelected) => {
           <Icon name="settings" size={24} color={'rgba(0,0,0, 0.15)'} />
         </TouchableWithoutFeedback>
 
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        {/* <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <TouchableWithoutFeedback onPress={() => navigation.navigate('AddChooser')} style={{ marginRight: 10 }}>
-            {/* TODO: color fron constants */}
             <Icon name="bar-chart" size={24} color={'rgba(0,0,0, 0.15)'} />
           </TouchableWithoutFeedback>
           <TouchableWithoutFeedback onPress={() => navigation.navigate('AddChooser')}>
-            {/* TODO: color fron constants */}
             <Icon name="share" size={20} color={'rgba(0,0,0, 0.15)'} />
           </TouchableWithoutFeedback>
-        </View>
+        </View> */}
       </View>
       <View style={s.profileHeader}>
         <Text style={s.name}>{user.username}</Text>

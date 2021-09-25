@@ -26,7 +26,15 @@ export const Card = ({ item, size }: TCardProps) => {
   };
 
   return (
-    <View style={[s.item, size === 'base' && s.itemSizeBase]}>
+    <View
+      style={[
+        s.item,
+        size === 'full' && s.itemFull,
+        size === 'wide' && s.itemWide,
+        size === 'base' && s.itemBase,
+        size === 'small' && s.itemSmall,
+      ]}
+    >
       <View
         style={[
           s.item,

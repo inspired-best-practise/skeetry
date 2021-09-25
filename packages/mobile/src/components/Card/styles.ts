@@ -21,17 +21,29 @@ export const s = StyleSheet.create({
     width: SCREEN_WIDTH - 40,
     height: CARD_HEIGHT - 20,
   },
+  itemFull: {
+    width: SCREEN_WIDTH - 40,
+  },
   itemSizeWide: {
     height: normalize(150),
+    width: normalize(240),
+  },
+  itemWide: {
     width: normalize(240),
   },
   itemSizeBase: {
     height: itemBaseWidth - 10,
     width: itemBaseWidth,
   },
+  itemBase: {
+    width: itemBaseWidth,
+  },
   itemSizeSmall: {
-    height: normalize(110),
-    width: normalize(115),
+    height: normalize(125),
+    width: normalize(125),
+  },
+  itemSmall: {
+    width: normalize(125),
   },
   focalPoint: {
     ...StyleSheet.absoluteFillObject,
@@ -96,12 +108,10 @@ export const s = StyleSheet.create({
   },
   itemTitle: {
     marginTop: normalize(10),
-    width: normalize(240 - 40),
     ...tBase,
   },
   itemDesc: {
     marginTop: normalize(2),
-    width: normalize(240),
     ...tSmallRegular,
     // TODO: color from constants
     color: 'rgba(0,0,0,.5)',
