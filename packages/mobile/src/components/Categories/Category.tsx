@@ -14,7 +14,7 @@ export const Category = ({ item }: TCategoryProps) => {
   return (
     <TouchableOpacity
       onPress={() =>
-        navigation.navigate('ItemsByTag', {
+        navigation.navigate('ItemsByCategory', {
           item,
         })
       }

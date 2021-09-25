@@ -4,12 +4,13 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Feather';
 
 import { colors, tTitle } from '_app/constants';
+import { navigation } from '_app/services/navigations';
 import { normalize } from '_app/utils/dimensions';
 
 import { Card } from '../Card';
 import { s } from './styles';
 
-export const HorizontalCardList = ({ title, data, size, handleEndReached, loading }) => {
+export const HorizontalCardList = ({ title, data, size, handleEndReached, loading, type }) => {
   const renderItem = ({ item }) => {
     return (
       <View key={item.node.id} style={{ marginVertical: normalize(20), marginRight: 20 }}>
@@ -20,12 +21,22 @@ export const HorizontalCardList = ({ title, data, size, handleEndReached, loadin
 
   return (
     <View>
-      <View style={s.main}>
-        <Text style={tTitle}>{title}</Text>
-        <TouchableOpacity activeOpacity={0.7}>
+      <TouchableOpacity
+        activeOpacity={0.7}
+        onPress={() =>
+          navigation.navigate('ItemsByCategory', {
+            item: {
+              name: title,
+            },
+            data: data,
+          })
+        }
+      >
+        <View style={s.main}>
+          <Text style={tTitle}>{title}</Text>
           <Icon name="chevron-right" size={22} color={colors.black} />
-        </TouchableOpacity>
-      </View>
+        </View>
+      </TouchableOpacity>
       <FlatList
         contentContainerStyle={{
           marginHorizontal: 20,

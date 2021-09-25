@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, StatusBar } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -10,10 +10,11 @@ import { withLocalization } from '_app/utils/helpers';
 import { s } from './styles';
 
 // TODO: type route
-export const ItemsByTagScreen = ({ route }) => {
+export const ItemsByCategoryScreen = ({ route }) => {
   const { id, name, emoji, locale, localizations } = route.params.item;
+  const [cities, setCities] = useState();
 
-  const { data, loading, error } = useCitiesQuery({
+  const { data, loading, error, fetchMore } = useCitiesQuery({
     variables: {
       input: {
         cityTagId: id,
@@ -23,15 +24,33 @@ export const ItemsByTagScreen = ({ route }) => {
         direction: OrderDirection.Asc,
       },
     },
+    notifyOnNetworkStatusChange: true,
   });
 
-  if (loading) {
-    <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Loading...</Text>
-    </SafeAreaView>;
-  }
+  useEffect(() => {
+    if (data) {
+      setCities(data.cities.edges);
+    }
+  }, [data]);
 
-  const cities = data?.cities.edges;
+  const handleEndReached = async () => {
+    if (cities) {
+      const lastCity = cities[cities.length - 1].node.id;
+      const newData = await fetchMore({
+        variables: {
+          input: {
+            cityTagId: id,
+          },
+          after: lastCity,
+          first: 10,
+          orderBy: {
+            direction: OrderDirection.Asc,
+          },
+        },
+      });
+      setCities(prevState => [...prevState, ...newData.data.cities.edges]);
+    }
+  };
 
   // TODO: add wrapper for formSheet screens with StatusBar and ModalControl
   return (
@@ -48,7 +67,7 @@ export const ItemsByTagScreen = ({ route }) => {
       )}
       <View>
         {cities && cities.length !== 0 && !error ? (
-          <CardList loading={loading} data={cities} />
+          <CardList data={cities} onEndReached={handleEndReached} />
         ) : (
           <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <Text>There are no elements items yet.</Text>

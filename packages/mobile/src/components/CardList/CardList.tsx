@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { RefreshControl, FlatList, View, Text } from 'react-native';
+import { RefreshControl, FlatList, View } from 'react-native';
 
 import { Card } from '_app/components';
 import { wait } from '_app/utils/helpers';
@@ -8,7 +8,7 @@ import { s } from './styles';
 
 // TODO: type item when done
 
-export const CardList = ({ data, loading }): JSX.Element => {
+export const CardList = ({ data, onEndReached }): JSX.Element => {
   const [refreshing, setRefreshing] = useState(false);
 
   const onRefresh = React.useCallback(() => {
@@ -24,19 +24,19 @@ export const CardList = ({ data, loading }): JSX.Element => {
     );
   };
 
-  return !loading ? (
+  return (
     <FlatList
       contentContainerStyle={s.list}
       data={data}
       renderItem={renderItem}
       keyExtractor={item => item.node.id}
       showsVerticalScrollIndicator={false}
+      onEndReachedThreshold={0.5}
+      onEndReached={() => {
+        return onEndReached();
+      }}
       decelerationRate="fast"
       refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
     />
-  ) : (
-    <View style={{ marginHorizontal: 20 }}>
-      <Text>Loading...</Text>
-    </View>
   );
 };

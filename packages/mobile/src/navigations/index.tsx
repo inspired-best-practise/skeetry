@@ -9,7 +9,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import { colors, PLATFORM } from '_app/constants';
 import { CardScreen, ProfileSettingsScreen } from '_app/screens/Main';
 import { AddChooserScreen } from '_app/screens/Main/Add/AddChooser';
-import { ItemsByTagScreen } from '_app/screens/Main/Home/ItemsByTag';
+import { ItemsByCategoryScreen } from '_app/screens/Main/Home/ItemsByCategory';
 import { Offline } from '_app/screens/Others';
 import { navigation, navigationRef } from '_app/services/navigations';
 import { normalize } from '_app/utils/dimensions';
@@ -55,8 +55,8 @@ const Index = (): JSX.Element => {
             headerTitle: `${route.params.item.name} ${route.params.item.emoji}`,
             presentation: 'formSheet',
           })}
-          name="ItemsByTag"
-          component={ItemsByTagScreen}
+          name="ItemsByCategory"
+          component={ItemsByCategoryScreen}
         />
         <RootStack.Screen
           options={({ route }) => ({
