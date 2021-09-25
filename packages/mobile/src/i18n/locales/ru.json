@@ -23,7 +23,8 @@
     "north_america": "Северная Америка",
     "south_america": "Южная Америка",
     "americas": "Америка",
-    "africa": "Африка"
+    "africa": "Африка",
+    "capital": "Столицы"
   },
   "search": {
     "recommended": "Рекомендуется"

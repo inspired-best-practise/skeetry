@@ -44,6 +44,7 @@ export class CityResolver {
   findAll(
     @Args('input', { nullable: true }) input: CitiesInput,
     @Args('continent', { nullable: true }) continent: Continent,
+    @Args('isCapital', { nullable: true }) isCapital: boolean,
     @Args('skip', { nullable: true }) skip: number,
     @Args('after', { nullable: true }) after: string,
     @Args('before', { nullable: true }) before: string,
@@ -59,7 +60,14 @@ export class CityResolver {
     orderBy: CityOrder,
   ) {
     const pagination = { skip, after, before, first, last };
-    return this.city.findAll(input, continent, pagination, query, orderBy);
+    return this.city.findAll(
+      input,
+      continent,
+      isCapital,
+      pagination,
+      query,
+      orderBy,
+    );
   }
 
   @UseGuards(GqlAuthGuard)

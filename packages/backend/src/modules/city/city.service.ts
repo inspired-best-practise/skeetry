@@ -293,6 +293,7 @@ export class CityService {
   async findAll(
     input: CitiesInput,
     continent: Continent,
+    isCapital: boolean,
     pagination: PaginationArgs,
     query: string,
     orderBy: CityOrder,
@@ -322,6 +323,9 @@ export class CityService {
                     },
                   },
                 },
+                isCapital && {
+                  isCapital,
+                },
               ],
             },
             orderBy: orderBy ? { name: orderBy.direction } : null,
@@ -338,6 +342,9 @@ export class CityService {
                       continent,
                     },
                   },
+                },
+                isCapital && {
+                  isCapital,
                 },
               ],
             },

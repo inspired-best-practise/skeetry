@@ -18,7 +18,7 @@ export const ProfileSettingsScreen = () => {
 
   return (
     <View style={s.container}>
-      <StatusBar barStyle="dark-content" animated translucent />
+      <StatusBar barStyle={PLATFORM.IS_IOS ? 'light-content' : 'dark-content'} animated translucent />
       {PLATFORM.IS_IOS && <ModalControl />}
 
       <View style={s.containerWrap}>

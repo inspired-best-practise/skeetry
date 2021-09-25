@@ -5,14 +5,14 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { HorizontalCardList } from '_app/components';
-import { OrderDirection, useCitiesQuery, usePopularQuery } from '_app/generated/graphql';
+import { OrderDirection, useCitiesQuery } from '_app/generated/graphql';
 
 import { s } from './styles';
 
 export const LocationsScreen = () => {
   const { t } = useTranslation();
   const ref = useRef<ScrollView>(null);
-  const [popular, setPopular] = useState();
+  const [capital, setCapital] = useState();
   const [europe, setEurope] = useState();
   const [asia, setAsia] = useState();
   const [australia, setAustralia] = useState();
@@ -20,16 +20,17 @@ export const LocationsScreen = () => {
   const [africa, setAfrica] = useState();
 
   const {
-    data: dataPopular,
-    loading: loadingPopular,
-    error: errorPopular,
-    fetchMore: fetchMorePopular,
-  } = usePopularQuery({
+    data: dataCapital,
+    loading: loadingCapital,
+    error: errorCapital,
+    fetchMore: fetchMoreCapital,
+  } = useCitiesQuery({
     variables: {
       first: 10,
       orderBy: {
         direction: OrderDirection.Asc,
       },
+      isCapital: true,
     },
     notifyOnNetworkStatusChange: true,
   });
@@ -115,10 +116,10 @@ export const LocationsScreen = () => {
   });
 
   useEffect(() => {
-    if (dataPopular) {
-      setPopular(dataPopular.popular.edges);
+    if (dataCapital) {
+      setCapital(dataCapital.cities.edges);
     }
-  }, [dataPopular]);
+  }, [dataCapital]);
 
   useEffect(() => {
     if (dataEurope) {
@@ -152,19 +153,20 @@ export const LocationsScreen = () => {
 
   useScrollToTop(ref);
 
-  const popularEndReached = async () => {
-    if (popular) {
-      const lastPopular = popular[popular.length - 1].node.id;
-      const newData = await fetchMorePopular({
+  const capitalEndReached = async () => {
+    if (capital) {
+      const lastCapital = capital[capital.length - 1].node.id;
+      const newData = await fetchMoreCapital({
         variables: {
           first: 10,
-          after: lastPopular,
+          after: lastCapital,
           orderBy: {
             direction: OrderDirection.Asc,
           },
+          isCapital: true,
         },
       });
-      setPopular(prevState => [...prevState, ...newData.data.popular.edges]);
+      setCapital(prevState => [...prevState, ...newData.data.cities.edges]);
     }
   };
 
@@ -256,13 +258,13 @@ export const LocationsScreen = () => {
   return (
     <SafeAreaView style={s.container}>
       <ScrollView ref={ref} showsVerticalScrollIndicator={false} scrollsToTop={true}>
-        {!errorPopular && (
+        {!errorCapital && (
           <HorizontalCardList
-            title={`${t('explore:popular')}`}
-            data={popular}
+            title={`${t('explore:capital')}`}
+            data={capital}
             size="wide"
-            handleEndReached={popularEndReached}
-            loading={loadingPopular}
+            handleEndReached={capitalEndReached}
+            loading={loadingCapital}
           />
         )}
         {/* {!errorPopular && (
