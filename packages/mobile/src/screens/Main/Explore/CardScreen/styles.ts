@@ -7,23 +7,11 @@ const { width } = Dimensions.get('window');
 
 export const s = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  backIcon: {
-    backgroundColor: '#fff',
-    borderRadius: 100,
-    width: 30,
-    marginLeft: 16,
-    alignItems: 'center',
-    paddingVertical: 6,
+    position: 'relative',
   },
   cardImage: {
     width: SCREEN_WIDTH,
     height: 470,
-    position: 'absolute',
-    zIndex: 1,
-    top: -85,
   },
   itemImage: {
     width: SCREEN_WIDTH,
@@ -76,12 +64,8 @@ export const s = StyleSheet.create({
     fontSize: 16,
     lineHeight: 18,
   },
-
   content: {
-    backgroundColor: 'white',
     padding: 16,
-    height: '100%',
-    zIndex: 10000,
   },
   section: {
     paddingBottom: 20,

@@ -19,6 +19,7 @@ import { LoadingOverlay } from '_app/components';
 import '_app/i18n';
 import RootStackNavigation from '_app/navigations';
 import { client } from '_app/services/graphql';
+// import { authStore } from '_app/stores';
 import CodePushProvider from '_app/utils/CodePushProvider';
 
 LogBox.ignoreLogs(['Require cycle:']);
@@ -34,8 +35,10 @@ if (Config.NODE_ENV !== 'dev') {
 }
 
 const App: React.FC = () => {
+  // const setLogout = authStore(state => state.setLogout);
   useEffect(() => {
     SplashScreen.hide();
+    // setLogout()
   }, []);
 
   return (

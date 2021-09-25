@@ -2,14 +2,17 @@ import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createNativeStackNavigator, NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import { TransitionPresets } from '@react-navigation/stack';
 import React from 'react';
+import { Animated, TouchableWithoutFeedback } from 'react-native';
 import { enableScreens } from 'react-native-screens';
+import Icon from 'react-native-vector-icons/Feather';
 
-import { PLATFORM } from '_app/constants';
+import { colors, PLATFORM } from '_app/constants';
 import { CardScreen, ProfileSettingsScreen } from '_app/screens/Main';
 import { AddChooserScreen } from '_app/screens/Main/Add/AddChooser';
 import { ItemsByTagScreen } from '_app/screens/Main/Home/ItemsByTag';
 import { Offline } from '_app/screens/Others';
-import { navigationRef } from '_app/services/navigations';
+import { navigation, navigationRef } from '_app/services/navigations';
+import { normalize } from '_app/utils/dimensions';
 
 import RootTab from './RootTab';
 
@@ -58,9 +61,27 @@ const Index = (): JSX.Element => {
         <RootStack.Screen
           options={({ route }) => ({
             ...TransitionPresets.ModalTransition,
-            headerShown: false,
-            headerTitle: '',
-            presentation: 'formSheet',
+            headerShown: true,
+            headerTransparent: true,
+            headerShadowVisible: false,
+            headerTintColor: colors.white,
+            presentation: 'fullScreenModal',
+            title: '',
+            headerLeft: () => (
+              <TouchableWithoutFeedback onPress={() => navigation.goBack()}>
+                <Animated.View
+                  style={{
+                    backgroundColor: '#fff',
+                    borderRadius: 100,
+                    alignItems: 'center',
+                    paddingVertical: normalize(6),
+                    paddingHorizontal: normalize(6),
+                  }}
+                >
+                  <Icon name="x" size={18} color={'black'} />
+                </Animated.View>
+              </TouchableWithoutFeedback>
+            ),
           })}
           name="CardScreen"
           component={CardScreen}

@@ -1,20 +1,9 @@
 import { useActionSheet } from '@expo/react-native-action-sheet';
-import BottomSheet from '@gorhom/bottom-sheet';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import {
-  View,
-  Text,
-  Image,
-  TouchableHighlight,
-  TouchableWithoutFeedback,
-  StatusBar,
-  Animated,
-  Pressable,
-  ActionSheetIOS,
-} from 'react-native';
-import * as Icon from 'react-native-heroicons/solid';
+import React, { useEffect, useState } from 'react';
+import { View, Text, Image, TouchableHighlight, StatusBar, Pressable, ActionSheetIOS } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import Icon from 'react-native-vector-icons/Feather';
 
 import { mapGfxStyle, PLATFORM } from '_app/constants';
 import { useAddCityMutation, useCityQuery, useMoveCityMutation, useRemoveCityMutation } from '_app/generated/graphql';
@@ -185,107 +174,8 @@ export const CardScreen = ({ route, navigation }) => {
         );
   };
 
-  const renderContent = () => (
-    <Animated.View style={[s.content]}>
-      <View style={s.section}>
-        <Text style={s.name}>{currentCity.state.country.emoji + ' ' + currentCity.name}</Text>
-      </View>
-      <View style={s.section}>
-        <View style={s.cardButtons}>
-          {!alreadyWanted && !alreadyVisited && !loading ? (
-            <>
-              <TouchableHighlight underlayColor="#DDDDDD" style={s.button} onPress={() => handlePress('want')}>
-                <Text style={s.buttonText}>Want</Text>
-              </TouchableHighlight>
-              <TouchableHighlight underlayColor="#DDDDDD" style={s.button} onPress={() => handlePress('visited')}>
-                <Text style={s.buttonText}>Visited</Text>
-              </TouchableHighlight>
-            </>
-          ) : (
-            <TouchableHighlight
-              underlayColor="#DDDDDD"
-              style={[s.button, (alreadyWanted || alreadyVisited || loading) && s.buttonFull]}
-              onPress={() => !loading && onPressSheet()}
-            >
-              <View style={[s.buttonWithIcon]}>
-                <Text style={[s.buttonText, (alreadyWanted || alreadyVisited || loading) && s.buttonWithIconText]}>
-                  {loading ? 'loading' : alreadyWanted ? 'Want' : 'Visited'}
-                </Text>
-                <Icon.DotsHorizontalIcon style={s.buttonIcon} size={18} color={'black'} />
-              </View>
-            </TouchableHighlight>
-          )}
-        </View>
-      </View>
-      <View style={s.section}>
-        <Text style={s.sectionTitle}>Where you'll be</Text>
-        <Pressable onPress={() => navigation.navigate('AddChooser')}>
-          <MapView
-            style={s.minimap}
-            pitchEnabled={false}
-            scrollEnabled={false}
-            zoomControlEnabled={false}
-            zoomEnabled={false}
-            rotateEnabled={false}
-            provider={PROVIDER_GOOGLE}
-            mapType="standard"
-            moveOnMarkerPress={false}
-            pointerEvents="none"
-            customMapStyle={mapGfxStyle}
-            initialRegion={{
-              latitude: 37.78825,
-              longitude: -122.4324,
-              latitudeDelta: 0.09,
-              longitudeDelta: 0.04,
-            }}
-          />
-        </Pressable>
-      </View>
-
-      <View style={s.section}>
-        <Text style={s.sectionTitle}>Description</Text>
-        <Text>
-          <Text style={s.sectionMainText}>National language:</Text> English
-        </Text>
-        <Text>
-          <Text style={s.sectionMainText}>Currency:</Text> USD
-        </Text>
-        <Text>
-          <Text style={s.sectionMainText}>Driving side:</Text> Left
-        </Text>
-      </View>
-    </Animated.View>
-  );
-
-  const bottomSheetRef = useRef<BottomSheet>(null);
-  const snapPoints = useMemo(() => [650, 450], []);
-  const handleSheetChanges = useCallback((index: number) => {
-    console.log('handleSheetChanges', index);
-  }, []);
-
-  const fadeAnim = useRef(new Animated.Value(0)).current;
-
-  useEffect(() => {
-    Animated.timing(fadeAnim, {
-      toValue: 1,
-      duration: 1100,
-      useNativeDriver: true,
-    }).start();
-  }, [fadeAnim]);
-
-  const insets = useSafeAreaInsets();
-
   return (
-    <View
-      // eslint-disable-next-line react-native/no-inline-styles
-      style={{
-        flex: 1,
-        paddingTop: insets.top,
-        paddingLeft: insets.left,
-        paddingRight: insets.right,
-        paddingBottom: insets.bottom,
-      }}
-    >
+    <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={s.container}>
       <StatusBar barStyle="light-content" animated translucent />
       <Image
         style={s.cardImage}
@@ -296,14 +186,82 @@ export const CardScreen = ({ route, navigation }) => {
         }}
         resizeMode="cover"
       />
-      <TouchableWithoutFeedback onPress={() => navigation.goBack()}>
-        <Animated.View style={[s.backIcon, { opacity: fadeAnim }]}>
-          <Icon.XIcon size={18} color={'black'} />
-        </Animated.View>
-      </TouchableWithoutFeedback>
-      <BottomSheet ref={bottomSheetRef} index={1} snapPoints={snapPoints} onChange={handleSheetChanges}>
-        {renderContent}
-      </BottomSheet>
-    </View>
+      {/* {PLATFORM.IS_ANDROID && (
+        <TouchableWithoutFeedback onPress={() => navigation.goBack()}>
+          <Animated.View style={[s.backIcon, { opacity: fadeAnim }]}>
+            <Icon.XIcon size={18} color={'black'} />
+          </Animated.View>
+        </TouchableWithoutFeedback>
+      )} */}
+      <View style={s.content}>
+        <View style={s.section}>
+          <Text style={s.name}>{currentCity.state.country.emoji + ' ' + currentCity.name}</Text>
+        </View>
+        <View style={s.section}>
+          <View style={s.cardButtons}>
+            {!alreadyWanted && !alreadyVisited && !loading ? (
+              <>
+                <TouchableHighlight underlayColor="#DDDDDD" style={s.button} onPress={() => handlePress('want')}>
+                  <Text style={s.buttonText}>Want</Text>
+                </TouchableHighlight>
+                <TouchableHighlight underlayColor="#DDDDDD" style={s.button} onPress={() => handlePress('visited')}>
+                  <Text style={s.buttonText}>Visited</Text>
+                </TouchableHighlight>
+              </>
+            ) : (
+              <TouchableHighlight
+                underlayColor="#DDDDDD"
+                style={[s.button, (alreadyWanted || alreadyVisited || loading) && s.buttonFull]}
+                onPress={() => !loading && onPressSheet()}
+              >
+                <View style={[s.buttonWithIcon]}>
+                  <Text style={[s.buttonText, (alreadyWanted || alreadyVisited || loading) && s.buttonWithIconText]}>
+                    {loading ? 'loading' : alreadyWanted ? 'Want' : 'Visited'}
+                  </Text>
+                  <Icon name="more-horizontal" style={s.buttonIcon} size={18} color={'black'} />
+                </View>
+              </TouchableHighlight>
+            )}
+          </View>
+        </View>
+        <View style={s.section}>
+          <Text style={s.sectionTitle}>Where you'll be</Text>
+          <Pressable onPress={() => navigation.navigate('AddChooser')}>
+            <MapView
+              style={s.minimap}
+              pitchEnabled={false}
+              scrollEnabled={false}
+              zoomControlEnabled={false}
+              zoomEnabled={false}
+              rotateEnabled={false}
+              provider={PROVIDER_GOOGLE}
+              mapType="standard"
+              moveOnMarkerPress={false}
+              pointerEvents="none"
+              customMapStyle={mapGfxStyle}
+              initialRegion={{
+                latitude: 37.78825,
+                longitude: -122.4324,
+                latitudeDelta: 0.09,
+                longitudeDelta: 0.04,
+              }}
+            />
+          </Pressable>
+        </View>
+
+        <View style={s.section}>
+          <Text style={s.sectionTitle}>Description</Text>
+          <Text>
+            <Text style={s.sectionMainText}>National language:</Text> English
+          </Text>
+          <Text>
+            <Text style={s.sectionMainText}>Currency:</Text> USD
+          </Text>
+          <Text>
+            <Text style={s.sectionMainText}>Driving side:</Text> Left
+          </Text>
+        </View>
+      </View>
+    </ScrollView>
   );
 };
