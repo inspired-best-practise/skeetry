@@ -93,7 +93,6 @@ export const ProfileScreen = () => {
     <>
       <View style={s.headerArea} />
       <FlatList
-        overScrollMode="never"
         ref={ref}
         refreshing={loadingWanted}
         ListHeaderComponent={renderHeader(user, t, setSelected)}

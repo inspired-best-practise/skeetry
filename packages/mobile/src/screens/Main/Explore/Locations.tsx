@@ -2,9 +2,12 @@ import { useScrollToTop } from '@react-navigation/native';
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ScrollView } from 'react-native-gesture-handler';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { HorizontalCardList } from '_app/components';
 import { OrderDirection, usePopularQuery } from '_app/generated/graphql';
+
+import { s } from './styles';
 
 export const LocationsScreen = () => {
   const { t } = useTranslation();
@@ -51,88 +54,90 @@ export const LocationsScreen = () => {
   };
 
   return (
-    <ScrollView ref={ref} overScrollMode="never" showsVerticalScrollIndicator={false} scrollsToTop={true}>
-      {!errorPopular && (
-        <HorizontalCardList
-          title={`${t('explore:popular')}`}
-          data={popular}
-          size="wide"
-          handleEndReached={popularEndReached}
-          loading={loadingPopular}
-        />
-      )}
-      {!errorPopular && (
-        <HorizontalCardList
-          title={`${t('explore:forYou')}`}
-          data={popular}
-          size="small"
-          handleEndReached={popularEndReached}
-          loading={loadingPopular}
-        />
-      )}
-      {!errorPopular && (
-        <HorizontalCardList
-          title={`${t('explore:europe')}`}
-          data={popular}
-          size="small"
-          handleEndReached={popularEndReached}
-          loading={loadingPopular}
-        />
-      )}
-      {!errorPopular && (
-        <HorizontalCardList
-          title={`${t('explore:asia')}`}
-          data={popular}
-          size="small"
-          handleEndReached={popularEndReached}
-          loading={loadingPopular}
-        />
-      )}
-      {!errorPopular && (
-        <HorizontalCardList
-          title={`${t('explore:australia')}`}
-          data={popular}
-          size="small"
-          handleEndReached={popularEndReached}
-          loading={loadingPopular}
-        />
-      )}
-      {!errorPopular && (
-        <HorizontalCardList
-          title={`${t('explore:antarctica')}`}
-          data={popular}
-          size="small"
-          handleEndReached={popularEndReached}
-          loading={loadingPopular}
-        />
-      )}
-      {!errorPopular && (
-        <HorizontalCardList
-          title={`${t('explore:north_america')}`}
-          data={popular}
-          size="small"
-          handleEndReached={popularEndReached}
-          loading={loadingPopular}
-        />
-      )}
-      {!errorPopular && (
-        <HorizontalCardList
-          title={`${t('explore:south_america')}`}
-          data={popular}
-          size="small"
-          handleEndReached={popularEndReached}
-          loading={loadingPopular}
-        />
-      )}
-      {!errorPopular && (
-        <HorizontalCardList
-          title={`${t('explore:africa')}`}
-          data={popular}
-          size="small"
-          handleEndReached={popularEndReached}
-          loading={loadingPopular}
-        />
-      )}
-    </ScrollView>
+    <SafeAreaView style={s.container}>
+      <ScrollView ref={ref} showsVerticalScrollIndicator={false} scrollsToTop={true}>
+        {!errorPopular && (
+          <HorizontalCardList
+            title={`${t('explore:popular')}`}
+            data={popular}
+            size="wide"
+            handleEndReached={popularEndReached}
+            loading={loadingPopular}
+          />
+        )}
+        {!errorPopular && (
+          <HorizontalCardList
+            title={`${t('explore:forYou')}`}
+            data={popular}
+            size="small"
+            handleEndReached={popularEndReached}
+            loading={loadingPopular}
+          />
+        )}
+        {!errorPopular && (
+          <HorizontalCardList
+            title={`${t('explore:europe')}`}
+            data={popular}
+            size="small"
+            handleEndReached={popularEndReached}
+            loading={loadingPopular}
+          />
+        )}
+        {!errorPopular && (
+          <HorizontalCardList
+            title={`${t('explore:asia')}`}
+            data={popular}
+            size="small"
+            handleEndReached={popularEndReached}
+            loading={loadingPopular}
+          />
+        )}
+        {!errorPopular && (
+          <HorizontalCardList
+            title={`${t('explore:australia')}`}
+            data={popular}
+            size="small"
+            handleEndReached={popularEndReached}
+            loading={loadingPopular}
+          />
+        )}
+        {!errorPopular && (
+          <HorizontalCardList
+            title={`${t('explore:antarctica')}`}
+            data={popular}
+            size="small"
+            handleEndReached={popularEndReached}
+            loading={loadingPopular}
+          />
+        )}
+        {!errorPopular && (
+          <HorizontalCardList
+            title={`${t('explore:north_america')}`}
+            data={popular}
+            size="small"
+            handleEndReached={popularEndReached}
+            loading={loadingPopular}
+          />
+        )}
+        {!errorPopular && (
+          <HorizontalCardList
+            title={`${t('explore:south_america')}`}
+            data={popular}
+            size="small"
+            handleEndReached={popularEndReached}
+            loading={loadingPopular}
+          />
+        )}
+        {!errorPopular && (
+          <HorizontalCardList
+            title={`${t('explore:africa')}`}
+            data={popular}
+            size="small"
+            handleEndReached={popularEndReached}
+            loading={loadingPopular}
+          />
+        )}
+      </ScrollView>
+    </SafeAreaView>
   );
 };

@@ -26,7 +26,6 @@ export const CardList = ({ data, loading }): JSX.Element => {
 
   return !loading ? (
     <FlatList
-      overScrollMode="never"
       contentContainerStyle={s.list}
       data={data}
       renderItem={renderItem}

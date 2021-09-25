@@ -7,7 +7,6 @@ import { ListFilterItem } from '_app/components';
 export const ListFilter = () => {
   return (
     <ScrollView
-      overScrollMode="never"
       horizontal
       showsHorizontalScrollIndicator={false}
       contentContainerStyle={{ paddingHorizontal: 10, marginBottom: 20 }}

@@ -116,13 +116,7 @@ export const HomeScreen = () => {
       <View style={s.header}>
         <Text style={tTitle}>Skeetry</Text>
       </View>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={s.main}
-        ref={ref}
-        scrollsToTop={true}
-        overScrollMode="never"
-      >
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={s.main} ref={ref} scrollsToTop={true}>
         <Stories />
         <View style={[s.header, { marginBottom: 10 }]}>
           <TouchableOpacity onPress={onButtonPress}>

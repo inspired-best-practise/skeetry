@@ -27,7 +27,6 @@ export const HorizontalCardList = ({ title, data, size, handleEndReached, loadin
         </TouchableOpacity>
       </View>
       <FlatList
-        overScrollMode="never"
         contentContainerStyle={{
           marginHorizontal: 20,
         }}

@@ -24,12 +24,7 @@ export const Categories = () => {
       {loading ? (
         <Text style={{ margin: 20 }}>Loading...</Text>
       ) : (
-        <ScrollView
-          overScrollMode="never"
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={s.categoryWrapper}
-        >
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={s.categoryWrapper}>
           {categories.map(category => (
             <Category key={category.id} item={category} />
           ))}

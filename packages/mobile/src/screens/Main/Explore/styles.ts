@@ -5,9 +5,7 @@ import { normalize } from '_app/utils/dimensions';
 
 export const s = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    marginTop: normalize(10),
   },
   categories: {
     paddingTop: normalize(18),

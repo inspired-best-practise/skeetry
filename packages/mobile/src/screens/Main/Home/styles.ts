@@ -14,6 +14,6 @@ export const s = StyleSheet.create({
     paddingTop: normalize(5),
   },
   main: {
-    paddingBottom: normalize(50),
+    paddingBottom: normalize(40),
   },
 });

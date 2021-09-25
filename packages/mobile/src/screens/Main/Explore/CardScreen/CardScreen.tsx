@@ -1,3 +1,4 @@
+import { useActionSheet } from '@expo/react-native-action-sheet';
 import BottomSheet from '@gorhom/bottom-sheet';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
@@ -16,7 +17,7 @@ import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { SharedElement } from 'react-navigation-shared-element';
 
-import { mapGfxStyle } from '_app/constants';
+import { mapGfxStyle, PLATFORM } from '_app/constants';
 import { useAddCityMutation, useCityQuery, useMoveCityMutation, useRemoveCityMutation } from '_app/generated/graphql';
 import { authStore } from '_app/stores';
 
@@ -25,6 +26,7 @@ import { s } from './styles';
 // TODO: refactor mutations and conditions, split into different components and files
 export const CardScreen = ({ route, navigation }) => {
   const { item } = route.params;
+  const { showActionSheetWithOptions } = useActionSheet();
   const [currentCity, setCurrentCity] = useState(item);
 
   const user = authStore(state => state.user);
@@ -139,28 +141,48 @@ export const CardScreen = ({ route, navigation }) => {
     loadingMoveVisited ||
     itemLoading;
 
-  const onPressSheet = () =>
-    ActionSheetIOS.showActionSheetWithOptions(
-      {
-        options: [
-          'Cancel',
-          `Move to ${alreadyWanted ? 'Visited' : 'Want'}`,
-          `Remove from ${alreadyWanted ? 'Want' : 'Visited'}`,
-        ],
-        destructiveButtonIndex: 2,
-        cancelButtonIndex: 0,
-        userInterfaceStyle: 'light',
-      },
-      buttonIndex => {
-        if (buttonIndex === 0) {
-          // cancel action
-        } else if (buttonIndex === 1) {
-          alreadyWanted ? moveWant() : moveVisited();
-        } else if (buttonIndex === 2) {
-          alreadyWanted ? removeWant() : removeVisited();
-        }
-      },
-    );
+  const onPressSheet = () => {
+    PLATFORM.IS_IOS
+      ? ActionSheetIOS.showActionSheetWithOptions(
+          {
+            options: [
+              'Cancel',
+              `Move to ${alreadyWanted ? 'Visited' : 'Want'}`,
+              `Remove from ${alreadyWanted ? 'Want' : 'Visited'}`,
+            ],
+            destructiveButtonIndex: 2,
+            cancelButtonIndex: 0,
+            userInterfaceStyle: 'light',
+          },
+          buttonIndex => {
+            if (buttonIndex === 0) {
+              // cancel action
+            } else if (buttonIndex === 1) {
+              alreadyWanted ? moveWant() : moveVisited();
+            } else if (buttonIndex === 2) {
+              alreadyWanted ? removeWant() : removeVisited();
+            }
+          },
+        )
+      : showActionSheetWithOptions(
+          {
+            options: [
+              'Cancel',
+              `Move to ${alreadyWanted ? 'Visited' : 'Want'}`,
+              `Remove from ${alreadyWanted ? 'Want' : 'Visited'}`,
+            ],
+          },
+          i => {
+            if (i === 0) {
+              // cancel action
+            } else if (i === 1) {
+              alreadyWanted ? moveWant() : moveVisited();
+            } else if (i === 2) {
+              alreadyWanted ? removeWant() : removeVisited();
+            }
+          },
+        );
+  };
 
   const renderContent = () => (
     <Animated.View style={[s.content]}>
@@ -263,7 +285,7 @@ export const CardScreen = ({ route, navigation }) => {
         paddingBottom: insets.bottom,
       }}
     >
-      <StatusBar barStyle="light-content" animated translucent backgroundColor="rgba(255,255,255,100)" />
+      <StatusBar barStyle="light-content" animated translucent />
       <SharedElement id={`item.${currentCity.id}.image`}>
         <Image
           style={s.cardImage}

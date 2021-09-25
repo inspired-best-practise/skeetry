@@ -8,6 +8,7 @@
  * @format
  */
 import { ApolloProvider } from '@apollo/client';
+import { ActionSheetProvider, connectActionSheet } from '@expo/react-native-action-sheet';
 import * as Sentry from '@sentry/react-native';
 import React, { useEffect } from 'react';
 import { LogBox, StatusBar } from 'react-native';
@@ -41,11 +42,13 @@ const App: React.FC = () => {
     <CodePushProvider>
       <ApolloProvider client={client}>
         <StatusBar barStyle="dark-content" animated translucent backgroundColor="rgba(0,0,0,0)" />
-        <RootStackNavigation />
+        <ActionSheetProvider>
+          <RootStackNavigation />
+        </ActionSheetProvider>
         <LoadingOverlay />
       </ApolloProvider>
     </CodePushProvider>
   );
 };
 
-export default Sentry.wrap(App);
+export default Sentry.wrap(connectActionSheet(App));

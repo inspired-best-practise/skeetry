@@ -8,8 +8,9 @@ import { THomeTabParamList } from 'types';
 
 import { TabBarComponent } from '_app/components/BottomTabBar';
 import { colors } from '_app/constants';
-import { HomeScreen, ProfileScreen, AddScreen, ExploreScreen, CardScreen } from '_app/screens/Main';
-import { SwipesScreen } from '_app/screens/Main/Swipes';
+import { HomeScreen, ProfileScreen, AddScreen, CardScreen, LocationsScreen } from '_app/screens/Main';
+
+// import { SwipesScreen } from '_app/screens/Main/Swipes';
 
 export const iosTransitionSpec = {
   animation: 'spring',
@@ -109,7 +110,7 @@ const ExploreStack = () => {
       // headerMode="float"
     >
       <SharedStack.Screen
-        component={ExploreScreen}
+        component={LocationsScreen}
         name="Explore"
         options={({ route }) => ({
           headerShown: false,
@@ -145,18 +146,18 @@ const ExploreStack = () => {
   );
 };
 
-const SwipesStack = () => {
-  return (
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: false,
-        gestureEnabled: true,
-      }}
-    >
-      <Stack.Screen name="Swipes" component={SwipesScreen} />
-    </Stack.Navigator>
-  );
-};
+// const SwipesStack = () => {
+//   return (
+//     <Stack.Navigator
+//       screenOptions={{
+//         headerShown: false,
+//         gestureEnabled: true,
+//       }}
+//     >
+//       <Stack.Screen name="Swipes" component={SwipesScreen} />
+//     </Stack.Navigator>
+//   );
+// };
 
 const AddStack = () => {
   return (
@@ -292,7 +293,7 @@ const HomeTab = () => {
         component={AddStack}
         name="AddPage"
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         options={({ route }) => ({
           tabBarIcon: ({ focused }) => (
             <Icon name="globe" size={26} color={focused ? colors.gray900 : colors.gray300} />
@@ -300,7 +301,7 @@ const HomeTab = () => {
         })}
         component={SwipesStack}
         name="SwipesPage"
-      />
+      /> */}
       <Tab.Screen
         options={({ route }) => ({
           tabBarVisible: getTabBarVisible(route),
