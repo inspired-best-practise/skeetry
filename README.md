@@ -16,6 +16,13 @@
 
 **Desgin progress: [Figma](https://www.figma.com/file/apvodGovgRQ0QHaki2rdGq/Skeetry)**
 
+## Progress
+
+- Global: [.todo](https://github.com/alekseytsvetkov/skeetry/blob/staging/.todo)
+- Backend: [.todo](https://github.com/alekseytsvetkov/skeetry/blob/staging/packages/backend/.todo)
+- Frontend: [.todo](https://github.com/alekseytsvetkov/skeetry/blob/staging/packages/frontend/.todo)
+- Mobile: [.todo](https://github.com/alekseytsvetkov/skeetry/blob/staging/packages/mobile/.todo)
+
 ## Structure
 
 | Codebase              |      Description          |
