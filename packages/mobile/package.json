@@ -14,7 +14,8 @@
     "lint-staged": "lint-staged",
     "prettier:write": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'",
     "u": "yarn upgrade-interactive --latest",
-    "codegen": "graphql-codegen --config codegen.yml -r dotenv/config"
+    "codegen": "DOTENV_CONFIG_PATH=.env.local graphql-codegen --config codegen.yml -r dotenv/config",
+    "codegen:prod": "DOTENV_CONFIG_PATH=.env.prod graphql-codegen --config codegen.yml -r dotenv/config"
   },
   "dependencies": {
     "@apollo/client": "^3.4.13",

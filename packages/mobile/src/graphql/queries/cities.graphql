@@ -1,4 +1,5 @@
 query Cities(
+  $continent: String,
   $after: String,
   $before: String,
   $first: Int!,
@@ -9,6 +10,7 @@ query Cities(
   $skip: Int
 ) {
   cities(
+    continent: $continent,
     after: $after,
     before: $before,
     first: $first,

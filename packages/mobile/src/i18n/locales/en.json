@@ -22,6 +22,8 @@
     "antarctica": "Antarctica",
     "north_america": "North America",
     "south_america": "South America",
+    "americas": "Americas",
+    "polar": "Polar",
     "africa": "Africa"
   },
   "search": {
