@@ -45,7 +45,7 @@ export const HomeScreen = () => {
     variables: {
       first: 10,
       orderBy: {
-        direction: OrderDirection.Asc,
+        direction: OrderDirection.Desc,
       },
     },
     notifyOnNetworkStatusChange: true,

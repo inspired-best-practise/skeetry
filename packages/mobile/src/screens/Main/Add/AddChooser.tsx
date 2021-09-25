@@ -1,5 +1,5 @@
 import { useScrollToTop } from '@react-navigation/native';
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View, Text, StatusBar, TouchableHighlight, ScrollView, TextInput } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -33,31 +33,46 @@ const tagsMock = [
 export const AddChooserScreen = () => {
   const { t } = useTranslation();
   const ref = useRef<ScrollView>(null);
+  const [recommended, setRecommended] = useState();
 
   const {
-    data: dataPopular,
-    loading: loadingPopular,
-    error: errorPopular,
+    data: dataRecommended,
+    loading: loadingRecommended,
+    error: errorRecommended,
+    fetchMore: fetchMoreRecommended,
   } = usePopularQuery({
     variables: {
       first: 10,
       orderBy: {
-        direction: OrderDirection.Asc,
+        direction: OrderDirection.Desc,
       },
     },
+    notifyOnNetworkStatusChange: true,
   });
 
+  useEffect(() => {
+    if (dataRecommended) {
+      setRecommended(dataRecommended.popular.edges);
+    }
+  }, [dataRecommended]);
+
+  const recommendedEndReached = async () => {
+    if (recommended) {
+      const lastRecommended = recommended[recommended.length - 1].node.id;
+      const newData = await fetchMoreRecommended({
+        variables: {
+          first: 10,
+          after: lastRecommended,
+          orderBy: {
+            direction: OrderDirection.Asc,
+          },
+        },
+      });
+      setRecommended(prevState => [...prevState, ...newData.data.popular.edges]);
+    }
+  };
+
   useScrollToTop(ref);
-
-  if (loadingPopular) {
-    return (
-      <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Loading...</Text>
-      </SafeAreaView>
-    );
-  }
-
-  const popular = dataPopular?.popular;
 
   return (
     <View style={s.container}>
@@ -71,8 +86,14 @@ export const AddChooserScreen = () => {
           </View>
         </View>
 
-        {!loadingPopular && !errorPopular && (
-          <HorizontalCardList title={`${t('search:recommended')}`} data={popular} size="small" />
+        {!errorRecommended && (
+          <HorizontalCardList
+            title={`${t('search:recommended')}`}
+            data={recommended}
+            size="small"
+            handleEndReached={recommendedEndReached}
+            loading={loadingRecommended}
+          />
         )}
         {/* Tags component */}
         <ScrollView contentContainerStyle={s.contentContainer} horizontal showsHorizontalScrollIndicator={false}>

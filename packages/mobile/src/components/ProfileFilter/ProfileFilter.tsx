@@ -17,8 +17,8 @@ export const ProfileFilter = () => {
     <ScrollView ref={ref} horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={s.container}>
       <ProfileFilterItem selected={selected} name="want" title={`${t('profile:want')}`} />
       <ProfileFilterItem selected={selected} name="visited" title={`${t('profile:visited')}`} />
-      <ProfileFilterItem selected={selected} name="cities" title={`${t('profile:cities')}`} />
-      <ProfileFilterItem selected={selected} name="places" title={`${t('profile:places')}`} />
+      {/* <ProfileFilterItem selected={selected} name="cities" title={`${t('profile:cities')}`} />
+      <ProfileFilterItem selected={selected} name="places" title={`${t('profile:places')}`} /> */}
     </ScrollView>
   );
 };
