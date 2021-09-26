@@ -7,11 +7,12 @@ export const s = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     flexDirection: 'row',
   },
   containerWrap: {
     marginTop: normalize(20),
+    width: '100%',
   },
   contentContainer: {
     flexWrap: 'wrap',
