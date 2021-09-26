@@ -1,16 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Feather';
 
+import { HorizontalListSkeleton, Card } from '_app/components';
 import { colors, tTitle } from '_app/constants';
 import { navigation } from '_app/services/navigations';
 import { normalize } from '_app/utils/dimensions';
 
-import { Card } from '../Card';
 import { s } from './styles';
 
-export const HorizontalCardList = ({ title, data, size, handleEndReached, loading, type }) => {
+export const HorizontalCardList = ({ title, data, size, handleEndReached, loading }) => {
+  const [loadingCounter, setLoadingCount] = useState(0);
+
+  useEffect(() => {
+    if (!loading) {
+      setLoadingCount(1);
+    }
+  }, [loading]);
+
   const renderItem = ({ item }) => {
     return (
       <View key={item.node.id} style={{ marginVertical: normalize(20), marginRight: 20 }}>
@@ -37,22 +45,25 @@ export const HorizontalCardList = ({ title, data, size, handleEndReached, loadin
           <Icon name="chevron-right" size={22} color={colors.black} />
         </View>
       </TouchableOpacity>
-      <FlatList
-        contentContainerStyle={{
-          marginHorizontal: 20,
-        }}
-        data={data}
-        // TODO: check initialNumToRender
-        initialNumToRender={3}
-        onEndReachedThreshold={0.5}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        renderItem={renderItem}
-        onEndReached={() => {
-          return handleEndReached();
-        }}
-        keyExtractor={item => item.node.id}
-      />
+      {loadingCounter === 0 && <HorizontalListSkeleton size={size} />}
+      {loadingCounter > 0 && (
+        <FlatList
+          contentContainerStyle={{
+            marginHorizontal: 20,
+          }}
+          data={data}
+          // TODO: check initialNumToRender
+          initialNumToRender={3}
+          onEndReachedThreshold={0.5}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          renderItem={renderItem}
+          onEndReached={() => {
+            return handleEndReached();
+          }}
+          keyExtractor={item => item.node.id}
+        />
+      )}
     </View>
   );
 };
