@@ -7,9 +7,9 @@ import { THomeTabParamList } from 'types';
 
 import { TabBarComponent } from '_app/components/BottomTabBar';
 import { colors } from '_app/constants';
-import { HomeScreen, ProfileScreen, AddScreen, LocationsScreen } from '_app/screens/Main';
+import { HomeScreen, ProfileScreen, AddScreen, LocationsScreen } from '_app/screens';
 
-// import { SwipesScreen } from '_app/screens/Main/Swipes';
+// import { SwipesScreen } from '_app/screens';
 
 export const iosTransitionSpec = {
   animation: 'spring',

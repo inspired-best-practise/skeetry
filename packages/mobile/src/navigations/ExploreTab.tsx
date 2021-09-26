@@ -3,7 +3,7 @@ import React from 'react';
 import { Animated, View, TouchableOpacity } from 'react-native';
 
 import { tTitle } from '_app/constants';
-import { LocationsScreen, PlacesScreen } from '_app/screens/Main';
+import { LocationsScreen, PlacesScreen } from '_app/screens';
 import { normalize } from '_app/utils/dimensions';
 
 const Tab = createMaterialTopTabNavigator();

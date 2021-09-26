@@ -7,10 +7,7 @@ import { enableScreens } from 'react-native-screens';
 import Icon from 'react-native-vector-icons/Feather';
 
 import { colors, PLATFORM } from '_app/constants';
-import { CardScreen, ProfileSettingsScreen } from '_app/screens/Main';
-import { AddChooserScreen } from '_app/screens/Main/Add/AddChooser';
-import { ItemsByCategoryScreen } from '_app/screens/Main/Home/ItemsByCategory';
-import { Offline } from '_app/screens/Others';
+import { CardScreen, ProfileSettingsScreen, Offline, AddChooserScreen, ItemsByCategoryScreen } from '_app/screens';
 import { navigation, navigationRef } from '_app/services/navigations';
 import { normalize } from '_app/utils/dimensions';
 
