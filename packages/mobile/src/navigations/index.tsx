@@ -7,7 +7,14 @@ import { enableScreens } from 'react-native-screens';
 import Icon from 'react-native-vector-icons/Feather';
 
 import { colors, PLATFORM } from '_app/constants';
-import { CardScreen, ProfileSettingsScreen, Offline, AddChooserScreen, ItemsByCategoryScreen } from '_app/screens';
+import {
+  CardScreen,
+  ProfileSettingsScreen,
+  AddChooserScreen,
+  ItemsByCategoryScreen,
+  OfflineScreen,
+  AvatarScreen,
+} from '_app/screens';
 import { navigation, navigationRef } from '_app/services/navigations';
 import { normalize } from '_app/utils/dimensions';
 
@@ -25,6 +32,12 @@ const theme = {
 
 // TODO: type when done
 const RootStack = createNativeStackNavigator();
+
+const forFade = ({ current }) => ({
+  cardStyle: {
+    opacity: current.progress,
+  },
+});
 
 const Index = (): JSX.Element => {
   const navigationOptions: NativeStackNavigationOptions = {
@@ -59,6 +72,7 @@ const Index = (): JSX.Element => {
           options={({ route }) => ({
             ...TransitionPresets.ModalTransition,
             headerShown: true,
+            gestureEnabled: true,
             headerTransparent: true,
             headerShadowVisible: false,
             headerTintColor: colors.white,
@@ -100,7 +114,14 @@ const Index = (): JSX.Element => {
             presentation: 'card',
           }}
           name="Offline"
-          component={Offline}
+          component={OfflineScreen}
+        />
+        <RootStack.Screen
+          options={{
+            headerShown: false,
+          }}
+          name="Avatar"
+          component={AvatarScreen}
         />
       </RootStack.Navigator>
     </NavigationContainer>

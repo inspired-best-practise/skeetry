@@ -1,8 +1,9 @@
 import React from 'react';
 import { View, Text } from 'react-native';
+
 import { s } from './styles';
 
-export const Offline = () => {
+export const OfflineScreen = () => {
   return (
     <View style={s.container}>
       <Text style={s.title}>You're Offline</Text>

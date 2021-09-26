@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Feather';
 
 import { ProfileStatsItem, Avatar, ProfileFilter } from '_app/components';
@@ -28,7 +28,16 @@ export const renderHeader = (user: TUser, t, setSelected) => {
       </View>
       <View style={s.profileHeader}>
         <Text style={s.name}>{user.username}</Text>
-        <Avatar src={user.avatar} nickname={user.username} />
+        <TouchableOpacity
+          activeOpacity={0.7}
+          onPress={() =>
+            navigation.push('Avatar', {
+              image: user.avatar,
+            })
+          }
+        >
+          <Avatar src={user.avatar} nickname={user.username} />
+        </TouchableOpacity>
       </View>
       <View style={s.profileStats}>
         <ProfileStatsItem name={`${t('profile:place')}`} number={0} />
