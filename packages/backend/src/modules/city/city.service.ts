@@ -333,7 +333,7 @@ export class CityService {
             },
             where: {
               AND: [
-                { name: { contains: query || '' } },
+                { name: { startsWith: query || '' } },
                 continent && {
                   state: {
                     country: {
@@ -353,7 +353,7 @@ export class CityService {
           this.prisma.city.count({
             where: {
               AND: [
-                { name: { contains: query || '' } },
+                { name: { startsWith: query || '' } },
                 continent && {
                   state: {
                     country: {
@@ -399,7 +399,7 @@ export class CityService {
           },
           where: {
             AND: [
-              { name: { contains: query || '' } },
+              { name: { startsWith: query || '' } },
               {
                 tags: {
                   some: {
@@ -416,7 +416,7 @@ export class CityService {
         this.prisma.city.count({
           where: {
             AND: [
-              { name: { contains: query || '' } },
+              { name: { startsWith: query || '' } },
               {
                 tags: {
                   some: {
