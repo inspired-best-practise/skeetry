@@ -4,28 +4,10 @@ import SkeletonContent from 'react-native-skeleton-content-nonexpo';
 
 import { s } from '../Card/styles';
 
-export const HorizontalListSkeleton = ({ size }: { size: string }) => {
-  let styleImage = {};
-  let styleText = {};
-
-  // TODO: refactor
-  switch (size) {
-    case 'wide':
-      styleImage = 'wide' ? s.itemSizeWide : {};
-      styleText = 'wide' ? s.itemWide : {};
-      break;
-    case 'small':
-      styleImage = 'small' ? s.itemSizeSmall : {};
-      styleText = 'small' ? s.itemSmall : {};
-      break;
-
-    default:
-      break;
-  }
-
+export const VerticalListSkeleton = () => {
   return (
     <ScrollView
-      horizontal
+      showsVerticalScrollIndicator={false}
       scrollEnabled={false}
       showsHorizontalScrollIndicator={false}
       contentContainerStyle={{ margin: 20 }}
@@ -33,25 +15,25 @@ export const HorizontalListSkeleton = ({ size }: { size: string }) => {
       {[{}, {}, {}].map((_i, index) => (
         <SkeletonContent
           key={index}
-          containerStyle={{ flex: 1, marginRight: 20 }}
+          containerStyle={{ flex: 1, marginBottom: 20 }}
           isLoading={true}
           layout={[
             {
               key: 'image',
-              marginBottom: 10,
               borderRadius: 12,
-              ...styleImage,
+              marginBottom: 10,
+              ...s.itemSizeFull,
             },
             {
               key: 'city',
               height: 10,
               marginBottom: 10,
-              ...styleText,
+              ...s.itemFull,
             },
             {
               key: 'country',
               height: 10,
-              ...styleText,
+              ...s.itemFull,
             },
           ]}
         />

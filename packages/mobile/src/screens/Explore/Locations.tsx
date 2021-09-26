@@ -256,7 +256,7 @@ export const LocationsScreen = () => {
   };
 
   return (
-    <SafeAreaView style={s.container}>
+    <SafeAreaView edges={['top']} style={s.container}>
       <ScrollView ref={ref} showsVerticalScrollIndicator={false} scrollsToTop={true}>
         {!errorCapital && (
           <HorizontalCardList

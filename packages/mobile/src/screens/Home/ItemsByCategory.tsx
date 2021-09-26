@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StatusBar } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { CardList, ModalControl } from '_app/components';
+import { CardList, ModalControl, VerticalListSkeleton } from '_app/components';
 import { PLATFORM, tTitle } from '_app/constants';
 import { OrderDirection, useCitiesQuery } from '_app/generated/graphql';
 import { withLocalization } from '_app/utils/helpers';
@@ -12,9 +12,10 @@ import { s } from './styles';
 // TODO: type route
 export const ItemsByCategoryScreen = ({ route }) => {
   const { id, name, emoji, locale, localizations } = route.params.item;
+  const [loadingCounter, setLoadingCount] = useState(0);
   const [cities, setCities] = useState();
 
-  const { data, loading, error, fetchMore } = useCitiesQuery({
+  const { data, loading, fetchMore } = useCitiesQuery({
     variables: {
       input: {
         cityTagId: id,
@@ -26,6 +27,12 @@ export const ItemsByCategoryScreen = ({ route }) => {
     },
     notifyOnNetworkStatusChange: true,
   });
+
+  useEffect(() => {
+    if (!loading) {
+      setLoadingCount(1);
+    }
+  }, [loading]);
 
   useEffect(() => {
     if (data) {
@@ -66,13 +73,8 @@ export const ItemsByCategoryScreen = ({ route }) => {
         </View>
       )}
       <View>
-        {cities && cities.length !== 0 && !error ? (
-          <CardList data={cities} onEndReached={handleEndReached} />
-        ) : (
-          <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>There are no elements items yet.</Text>
-          </SafeAreaView>
-        )}
+        {loadingCounter === 0 && <VerticalListSkeleton />}
+        {loadingCounter > 0 && <CardList data={cities} onEndReached={handleEndReached} />}
       </View>
     </SafeAreaView>
   );

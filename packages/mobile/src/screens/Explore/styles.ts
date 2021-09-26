@@ -5,6 +5,7 @@ import { normalize } from '_app/utils/dimensions';
 
 export const s = StyleSheet.create({
   container: {
+    flex: 1,
     marginTop: normalize(10),
   },
   categories: {

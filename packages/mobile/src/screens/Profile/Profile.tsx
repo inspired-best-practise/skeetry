@@ -17,11 +17,13 @@ export const ProfileScreen = () => {
   const [refreshing, setRefreshing] = useState(false);
 
   const { loading, data, error, refetch } = useMeQuery();
+
   const {
     data: dataWanted,
     loading: loadingWanted,
     error: errorWanted,
     refetch: refetchWanted,
+    fetchMore: fetchMoreWanted,
   } = useWantedQuery({
     variables: {
       first: 10,
@@ -29,12 +31,14 @@ export const ProfileScreen = () => {
         direction: OrderDirection.Asc,
       },
     },
+    notifyOnNetworkStatusChange: true,
   });
   const {
     data: dataVisited,
     loading: loadingVisited,
     error: errorVisited,
     refetch: refetchVisited,
+    fetchMore: fetchMoreVisited,
   } = useVisitedQuery({
     variables: {
       first: 10,
@@ -42,6 +46,7 @@ export const ProfileScreen = () => {
         direction: OrderDirection.Asc,
       },
     },
+    notifyOnNetworkStatusChange: true,
   });
 
   const selected = profileStore(state => state.selected);
@@ -94,7 +99,6 @@ export const ProfileScreen = () => {
       <View style={s.headerArea} />
       <FlatList
         ref={ref}
-        refreshing={loadingWanted}
         ListHeaderComponent={renderHeader(user, t, setSelected)}
         ListEmptyComponent={renderEmpty}
         numColumns={2}
