@@ -70,7 +70,7 @@ export const s = StyleSheet.create({
   containerWrap: {
     marginTop: normalize(40),
     width: '100%',
-    justifyContent: 'flex-start',
+    alignItems: 'center',
     paddingHorizontal: normalize(20),
   },
   listWrapper: {

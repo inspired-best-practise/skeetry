@@ -50,6 +50,19 @@ export const authStore = create(
             updatedAt,
           },
         })),
+      unsetUser: () =>
+        set(() => ({
+          user: {
+            id: null,
+            phone: null,
+            username: null,
+            avatar: null,
+            wantedCount: null,
+            visitedCount: null,
+            createdAt: null,
+            updatedAt: null,
+          },
+        })),
     }),
     {
       name: 'auth-storage',

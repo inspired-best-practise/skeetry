@@ -4,6 +4,7 @@ import FastImage from 'react-native-fast-image';
 import { s } from './styles';
 
 export const Avatar = ({ src, nickname }: TAvatarProps) => {
+  // TODO: own function
   const placeholderImageMock = `https://eu.ui-avatars.com/api/?length=1&name=${nickname}`;
 
   if (!src) {

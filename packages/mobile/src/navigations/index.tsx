@@ -14,6 +14,7 @@ import {
   ItemsByCategoryScreen,
   OfflineScreen,
   AvatarScreen,
+  CameraScreen,
 } from '_app/screens';
 import { navigation, navigationRef } from '_app/services/navigations';
 import { normalize } from '_app/utils/dimensions';
@@ -32,12 +33,6 @@ const theme = {
 
 // TODO: type when done
 const RootStack = createNativeStackNavigator();
-
-const forFade = ({ current }) => ({
-  cardStyle: {
-    opacity: current.progress,
-  },
-});
 
 const Index = (): JSX.Element => {
   const navigationOptions: NativeStackNavigationOptions = {
@@ -122,6 +117,31 @@ const Index = (): JSX.Element => {
           }}
           name="Avatar"
           component={AvatarScreen}
+        />
+        <RootStack.Screen
+          options={{
+            ...TransitionPresets.ModalTransition,
+            headerShown: true,
+            gestureEnabled: true,
+            presentation: 'fullScreenModal',
+            headerLeft: () => (
+              <TouchableWithoutFeedback onPress={() => navigation.goBack()}>
+                <Animated.View
+                  style={{
+                    backgroundColor: '#fff',
+                    borderRadius: 100,
+                    alignItems: 'center',
+                    paddingVertical: normalize(6),
+                    paddingHorizontal: normalize(6),
+                  }}
+                >
+                  <Icon name="x" size={18} color={'black'} />
+                </Animated.View>
+              </TouchableWithoutFeedback>
+            ),
+          }}
+          name="Camera"
+          component={CameraScreen}
         />
       </RootStack.Navigator>
     </NavigationContainer>

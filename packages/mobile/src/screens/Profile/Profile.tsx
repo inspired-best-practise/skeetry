@@ -16,7 +16,9 @@ export const ProfileScreen = () => {
 
   const [refreshing, setRefreshing] = useState(false);
 
-  const { loading, data, error, refetch } = useMeQuery();
+  const { loading, data, error, refetch } = useMeQuery({
+    fetchPolicy: 'no-cache',
+  });
 
   const {
     data: dataWanted,

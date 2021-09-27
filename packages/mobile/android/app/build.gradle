@@ -145,6 +145,7 @@ android {
         versionCode 1
         versionName "1.0"
         resValue 'string', "CODE_PUSH_APK_BUILD_TIME", String.format("\"%d\"", System.currentTimeMillis())
+        missingDimensionStrategy 'react-native-camera', 'general'
     }
     splits {
         abi {
