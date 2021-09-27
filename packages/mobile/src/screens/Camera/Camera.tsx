@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { View, Alert, SafeAreaView } from 'react-native';
+import { View, Alert } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
@@ -27,7 +27,7 @@ export const CameraScreen = () => {
   };
 
   return (
-    <SafeAreaView style={s.container}>
+    <View style={s.container}>
       <View style={{ height: SCREEN_HEIGHT / 2 }}>
         <RNCamera
           ref={cameraRef}
@@ -57,6 +57,6 @@ export const CameraScreen = () => {
           <View style={s.circle} />
         </TouchableOpacity>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };

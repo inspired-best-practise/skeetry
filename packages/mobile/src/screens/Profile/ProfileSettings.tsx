@@ -1,7 +1,6 @@
 import { useActionSheet } from '@expo/react-native-action-sheet';
 import React from 'react';
-import { View, Text, StatusBar, ActionSheetIOS, Alert } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { View, Text, StatusBar, ActionSheetIOS, Alert, TouchableOpacity } from 'react-native';
 import { launchImageLibrary } from 'react-native-image-picker';
 
 import { Avatar, ModalControl } from '_app/components';
