@@ -6,6 +6,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { navigation } from '_app/services/navigations';
 import { withLocalization } from '_app/utils/helpers';
 
+import ImagePlaceholder from '../ImagePlaceholder/ImagePlaceholder';
 import { s } from './styles';
 
 // TODO: refactor
@@ -72,18 +73,14 @@ export const Card = ({ item, size }: TCardProps) => {
                   })
                 }
               >
-                <FastImage
+                <ImagePlaceholder
                   style={[
                     s.itemImage,
                     size === 'wide' && s.itemSizeWide,
                     size === 'base' && s.itemSizeBase,
                     size === 'small' && s.itemSizeSmall,
                   ]}
-                  source={{
-                    uri: 'https://images.unsplash.com/photo-1503614472-8c93d56e92ce?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1299&q=80/250x300',
-                    priority: FastImage.priority.normal,
-                  }}
-                  resizeMode={FastImage.resizeMode.cover}
+                  size={35}
                 />
               </Pressable>
             )}
@@ -125,14 +122,7 @@ export const Card = ({ item, size }: TCardProps) => {
                     })
                   }
                 >
-                  <FastImage
-                    style={[s.itemImage, size === 'full' && s.itemSizeFull]}
-                    source={{
-                      uri: 'https://images.unsplash.com/photo-1503614472-8c93d56e92ce?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1299&q=80/250x300',
-                      priority: FastImage.priority.normal,
-                    }}
-                    resizeMode={FastImage.resizeMode.cover}
-                  />
+                  <ImagePlaceholder style={[s.itemImage, size === 'full' && s.itemSizeFull]} size={35} />
                 </Pressable>
               )}
             </ScrollView>

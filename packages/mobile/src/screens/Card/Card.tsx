@@ -5,6 +5,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import Icon from 'react-native-vector-icons/Feather';
 
+import ImagePlaceholder from '_app/components/ImagePlaceholder/ImagePlaceholder';
 import { mapGfxStyle, PLATFORM } from '_app/constants';
 import { useAddCityMutation, useCityQuery, useMoveCityMutation, useRemoveCityMutation } from '_app/generated/graphql';
 import { authStore } from '_app/stores';
@@ -177,15 +178,18 @@ export const CardScreen = ({ route, navigation }) => {
   return (
     <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={s.container}>
       <StatusBar barStyle="light-content" animated translucent />
-      <Image
-        style={s.cardImage}
-        source={{
-          uri: currentCity.photos
-            ? currentCity.photos[0]
-            : 'https://images.unsplash.com/photo-1503614472-8c93d56e92ce?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1299&q=80/250x300',
-        }}
-        resizeMode="cover"
-      />
+      {currentCity.photos ? (
+        <Image
+          style={s.cardImage}
+          source={{
+            uri: currentCity.photos[0],
+          }}
+          resizeMode="cover"
+        />
+      ) : (
+        <ImagePlaceholder style={s.cardImage} size={40} />
+      )}
+
       {/* {PLATFORM.IS_ANDROID && (
         <TouchableWithoutFeedback onPress={() => navigation.goBack()}>
           <Animated.View style={[s.backIcon, { opacity: fadeAnim }]}>
