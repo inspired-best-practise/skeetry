@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { UserModule } from './modules/user/user.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -9,6 +9,7 @@ import { CityModule } from './modules/city/city.module';
 import { TagModule } from './modules/tag/tag.module';
 import { StoryModule } from './modules/story/story.module';
 import { CountryModule } from './modules/country/country.module';
+import { graphqlUploadExpress } from 'graphql-upload';
 
 @Module({
   imports: [
@@ -43,4 +44,8 @@ import { CountryModule } from './modules/country/country.module';
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(graphqlUploadExpress()).forRoutes('graphql');
+  }
+}
