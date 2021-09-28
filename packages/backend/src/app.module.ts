@@ -46,6 +46,8 @@ import { graphqlUploadExpress } from 'graphql-upload';
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(graphqlUploadExpress()).forRoutes('graphql');
+    consumer
+      .apply(graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }))
+      .forRoutes('graphql');
   }
 }
