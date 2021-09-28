@@ -28,12 +28,12 @@ export const CameraScreen = () => {
             }),
           },
         });
-        console.log({ loading, data, error });
+        console.log('!!!', { loading, data, error });
         if (!loading) {
           navigation.goBack();
         }
       } catch (err) {
-        console.log(err.message || err);
+        console.log('???', err.message || err);
         console.log({ loading, data, error });
         Alert.alert('Error', 'Failed to take picture: ' + (err.message || err));
         navigation.goBack();

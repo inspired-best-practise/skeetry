@@ -1,3 +1,4 @@
+import { StorageService } from './../storage/storage.service';
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { User } from './models/user.model';
 import { PrismaService } from '../prisma/prisma.service';
@@ -6,12 +7,13 @@ import { GqlAuthGuard } from '../auth/guards/gql-auth.guard';
 import { UserEntity } from './user.decorator';
 import { UserService } from './user.service';
 import { GraphQLUpload, FileUpload } from 'graphql-upload';
-import { createWriteStream } from 'fs';
+import { v4 as uuidv4 } from 'uuid';
 @Resolver(() => User)
 export class UserResolver {
   constructor(
     private readonly user: UserService,
     private prisma: PrismaService,
+    private storage: StorageService,
   ) {}
 
   @UseGuards(GqlAuthGuard)
@@ -21,18 +23,14 @@ export class UserResolver {
   }
 
   @UseGuards(GqlAuthGuard)
-  @Mutation(() => Boolean)
+  @Mutation((returns) => Boolean)
   async uploadPhoto(
     @UserEntity() user: User,
-    @Args({ name: 'file', type: () => GraphQLUpload })
-    { createReadStream, filename }: FileUpload,
+    @Args({ name: 'file', type: () => GraphQLUpload }) file: FileUpload,
   ): Promise<boolean> {
-    console.log('__dirname', __dirname);
-    return new Promise(async (resolve, reject) =>
-      createReadStream()
-        .pipe(createWriteStream(`./api-storage/uploads/${filename}`))
-        .on('finish', () => resolve(true))
-        .on('error', () => reject(false)),
-    );
+    const ext = file.filename.match(/\.[a-z]+$/);
+    const filename = `${uuidv4()}${ext}`;
+    const url = await this.storage.upload({ ...file, filename });
+    return await this.user.uploadPhoto(user, url);
   }
 }
