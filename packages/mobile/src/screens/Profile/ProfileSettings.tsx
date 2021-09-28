@@ -5,7 +5,7 @@ import { launchImageLibrary } from 'react-native-image-picker';
 
 import { Avatar, ModalControl } from '_app/components';
 import { PLATFORM, tBase, tTitle } from '_app/constants';
-import { useMeQuery, useUpdateAvatarMutation } from '_app/generated/graphql';
+import { useMeQuery, useUploadPhotoMutation } from '_app/generated/graphql';
 import { navigation } from '_app/services/navigations';
 import { authStore } from '_app/stores';
 
@@ -22,7 +22,7 @@ export const ProfileSettingsScreen = () => {
   } = useMeQuery({
     fetchPolicy: 'no-cache',
   });
-  const [updateAvatar, { loading, data, error }] = useUpdateAvatarMutation();
+  const [uploadPhoto, { loading, data, error }] = useUploadPhotoMutation();
 
   const { showActionSheetWithOptions } = useActionSheet();
 
@@ -54,20 +54,15 @@ export const ProfileSettingsScreen = () => {
                   }
                   if (assets) {
                     console.log(assets[0].base64);
-                    return updateAvatar({
+                    return uploadPhoto({
                       variables: {
-                        base64: assets[0].base64,
+                        file: assets[0],
                       },
                     });
                   }
                 },
               );
             } else if (buttonIndex === 3) {
-              updateAvatar({
-                variables: {
-                  remove: true,
-                },
-              }).then(() => refetchMe());
             }
           },
         )
@@ -91,21 +86,15 @@ export const ProfileSettingsScreen = () => {
                   }
                   if (assets) {
                     console.log(assets[0].base64);
-                    return updateAvatar({
+                    return uploadPhoto({
                       variables: {
-                        base64: assets[0].base64,
+                        file: assets[0],
                       },
                     });
                   }
                 },
               );
             } else if (i === 3) {
-              updateAvatar({
-                variables: {
-                  remove: true,
-                },
-              });
-              refetchMe();
             }
           },
         );

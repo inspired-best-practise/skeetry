@@ -18,6 +18,7 @@ import { CountryModule } from './modules/country/country.module';
         const graphqlConfig = configService.get<GraphqlConfig>('graphql');
         // TODO: add introspection for production
         return {
+          uploads: false,
           installSubscriptionHandlers:
             graphqlConfig.installSubscriptionHandlers,
           buildSchemaOptions: {

@@ -14,6 +14,8 @@ export type Scalars = {
   Float: number;
   /** A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format. */
   DateTime: any;
+  /** The `Upload` scalar type represents a file upload. */
+  Upload: any;
 };
 
 export type ActionCityInput = {
@@ -158,7 +160,7 @@ export type Mutation = {
   removeCity: City;
   sendSmsCode: Scalars['Boolean'];
   signup: Auth;
-  updateAvatar: User;
+  uploadPhoto: Scalars['Boolean'];
 };
 
 
@@ -198,9 +200,8 @@ export type MutationSignupArgs = {
 };
 
 
-export type MutationUpdateAvatarArgs = {
-  base64?: Maybe<Scalars['String']>;
-  remove?: Maybe<Scalars['Boolean']>;
+export type MutationUploadPhotoArgs = {
+  file: Scalars['Upload'];
 };
 
 /** Possible directions in which to order a list of items when provided an `orderBy` argument. */
@@ -467,13 +468,12 @@ export type SignupMutationVariables = Exact<{
 
 export type SignupMutation = { __typename?: 'Mutation', signup: { __typename?: 'Auth', accessToken: string, refreshToken: string, user: { __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any } } };
 
-export type UpdateAvatarMutationVariables = Exact<{
-  base64?: Maybe<Scalars['String']>;
-  remove?: Maybe<Scalars['Boolean']>;
+export type UploadPhotoMutationVariables = Exact<{
+  file: Scalars['Upload'];
 }>;
 
 
-export type UpdateAvatarMutation = { __typename?: 'Mutation', updateAvatar: { __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any } };
+export type UploadPhotoMutation = { __typename?: 'Mutation', uploadPhoto: boolean };
 
 export type CitiesQueryVariables = Exact<{
   continent?: Maybe<Scalars['String']>;
@@ -968,40 +968,37 @@ export function useSignupMutation(baseOptions?: Apollo.MutationHookOptions<Signu
 export type SignupMutationHookResult = ReturnType<typeof useSignupMutation>;
 export type SignupMutationResult = Apollo.MutationResult<SignupMutation>;
 export type SignupMutationOptions = Apollo.BaseMutationOptions<SignupMutation, SignupMutationVariables>;
-export const UpdateAvatarDocument = gql`
-    mutation updateAvatar($base64: String, $remove: Boolean) {
-  updateAvatar(base64: $base64, remove: $remove) {
-    ...RegularUser
-  }
+export const UploadPhotoDocument = gql`
+    mutation uploadPhoto($file: Upload!) {
+  uploadPhoto(file: $file)
 }
-    ${RegularUserFragmentDoc}`;
-export type UpdateAvatarMutationFn = Apollo.MutationFunction<UpdateAvatarMutation, UpdateAvatarMutationVariables>;
+    `;
+export type UploadPhotoMutationFn = Apollo.MutationFunction<UploadPhotoMutation, UploadPhotoMutationVariables>;
 
 /**
- * __useUpdateAvatarMutation__
+ * __useUploadPhotoMutation__
  *
- * To run a mutation, you first call `useUpdateAvatarMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdateAvatarMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useUploadPhotoMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUploadPhotoMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [updateAvatarMutation, { data, loading, error }] = useUpdateAvatarMutation({
+ * const [uploadPhotoMutation, { data, loading, error }] = useUploadPhotoMutation({
  *   variables: {
- *      base64: // value for 'base64'
- *      remove: // value for 'remove'
+ *      file: // value for 'file'
  *   },
  * });
  */
-export function useUpdateAvatarMutation(baseOptions?: Apollo.MutationHookOptions<UpdateAvatarMutation, UpdateAvatarMutationVariables>) {
+export function useUploadPhotoMutation(baseOptions?: Apollo.MutationHookOptions<UploadPhotoMutation, UploadPhotoMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdateAvatarMutation, UpdateAvatarMutationVariables>(UpdateAvatarDocument, options);
+        return Apollo.useMutation<UploadPhotoMutation, UploadPhotoMutationVariables>(UploadPhotoDocument, options);
       }
-export type UpdateAvatarMutationHookResult = ReturnType<typeof useUpdateAvatarMutation>;
-export type UpdateAvatarMutationResult = Apollo.MutationResult<UpdateAvatarMutation>;
-export type UpdateAvatarMutationOptions = Apollo.BaseMutationOptions<UpdateAvatarMutation, UpdateAvatarMutationVariables>;
+export type UploadPhotoMutationHookResult = ReturnType<typeof useUploadPhotoMutation>;
+export type UploadPhotoMutationResult = Apollo.MutationResult<UploadPhotoMutation>;
+export type UploadPhotoMutationOptions = Apollo.BaseMutationOptions<UploadPhotoMutation, UploadPhotoMutationVariables>;
 export const CitiesDocument = gql`
     query Cities($continent: String, $isCapital: Boolean, $after: String, $before: String, $first: Int!, $input: CitiesInput, $last: Int, $orderBy: CityOrder, $query: String, $skip: Int) {
   cities(

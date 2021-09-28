@@ -1,8 +1,9 @@
+import { ReactNativeFile } from 'apollo-upload-client';
 import React, { useRef } from 'react';
 import { View, Alert, TouchableOpacity } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 
-import { useUpdateAvatarMutation } from '_app/generated/graphql';
+import { useUpdateAvatarMutation, useUploadPhotoMutation } from '_app/generated/graphql';
 import { navigation } from '_app/services/navigations';
 import { SCREEN_HEIGHT } from '_app/utils/dimensions';
 
@@ -10,25 +11,30 @@ import { s } from './styles';
 
 export const CameraScreen = () => {
   const cameraRef = useRef(null);
-  const [updateAvatar, { loading, data, error }] = useUpdateAvatarMutation();
+  const [uploadPhoto, { loading, data, error }] = useUploadPhotoMutation();
 
   const takePicture = async () => {
     if (cameraRef) {
-      const options = { quality: 0.1, base64: true };
+      const options = { quality: 0.5, base64: true };
       try {
         const photo = await cameraRef.current.takePictureAsync(options);
-        console.log('photo.base64!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-        console.log('photo.base64!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!', photo.base64);
-        await updateAvatar({
+        const retrievedName = photo.uri.slice(photo.uri.lastIndexOf('/'));
+        await uploadPhoto({
           variables: {
-            base64: photo.base64,
+            file: new ReactNativeFile({
+              uri: photo.uri,
+              type: 'image/*',
+              name: retrievedName.slice(1),
+            }),
           },
         });
-        Alert.alert(`after mutation., data, ${data}, error, ${error}`);
+        console.log({ loading, data, error });
         if (!loading) {
           navigation.goBack();
         }
       } catch (err) {
+        console.log(err.message || err);
+        console.log({ loading, data, error });
         Alert.alert('Error', 'Failed to take picture: ' + (err.message || err));
         navigation.goBack();
         return;

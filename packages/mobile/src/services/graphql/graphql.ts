@@ -1,19 +1,23 @@
-import { ApolloClient, createHttpLink, from, InMemoryCache } from '@apollo/client';
+import { ApolloClient, from, InMemoryCache } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { onError } from '@apollo/client/link/error';
+import { createUploadLink } from 'apollo-upload-client';
+import fetch from 'isomorphic-unfetch';
 
 import { PLATFORM } from '_app/constants';
 import { getAccessToken } from '_app/stores';
 
 const cache = new InMemoryCache();
 
-const httpLink = createHttpLink({
+const httpLink = createUploadLink({
   uri:
     process.env.NODE_ENV === 'dev'
       ? PLATFORM.IS_ANDROID
         ? 'http://10.0.2.2:3000/graphql'
         : 'http://localhost:3000/graphql'
       : 'https://api.skeetry.com/graphql',
+  credentials: 'include',
+  fetch,
 });
 
 const authLink = setContext((_, { headers }) => {

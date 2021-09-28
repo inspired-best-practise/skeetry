@@ -1,5 +1,0 @@
-mutation updateAvatar($base64: String, $remove: Boolean) {
-  updateAvatar(base64: $base64, remove: $remove) {
-    ...RegularUser
-  }
-}
