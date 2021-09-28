@@ -148,6 +148,7 @@ type Mutation {
   removeCity(input: ActionCityInput!): City!
   sendSmsCode(phone: String!): Boolean!
   signup(input: SignupInput!): Auth!
+  uploadPhoto(file: Upload!): Boolean!
 }
 
 """
@@ -259,6 +260,9 @@ type Token {
   """JWT refresh token"""
   refreshToken: String!
 }
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
 
 type User {
   avatar: String

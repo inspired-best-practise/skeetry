@@ -11,6 +11,7 @@ Global tasks:
   ☐ Make landing
   ✔ Deploy landing @done(21-09-21 14:08)
   ✔ Github Actions CI/CD @done(21-09-21 14:08)
+  ☐ Move CI/CD from Github Actions to Rancher Pipelines
 
 Features:
   ✔ Commitizen @done(21-09-08 14:54)

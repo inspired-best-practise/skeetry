@@ -5,7 +5,8 @@ import { UseGuards } from '@nestjs/common';
 import { GqlAuthGuard } from '../auth/guards/gql-auth.guard';
 import { UserEntity } from './user.decorator';
 import { UserService } from './user.service';
-
+import { GraphQLUpload, FileUpload } from 'graphql-upload';
+import { createWriteStream } from 'fs';
 @Resolver(() => User)
 export class UserResolver {
   constructor(
@@ -20,12 +21,17 @@ export class UserResolver {
   }
 
   @UseGuards(GqlAuthGuard)
-  @Mutation(() => User)
-  updateAvatar(
+  @Mutation(() => Boolean)
+  async uploadPhoto(
     @UserEntity() user: User,
-    @Args('base64', { nullable: true }) base64: string,
-    @Args('remove', { nullable: true }) remove: boolean,
-  ) {
-    return this.user.updateAvatar(user, base64, remove);
+    @Args({ name: 'file', type: () => GraphQLUpload })
+    { createReadStream, filename }: FileUpload,
+  ): Promise<boolean> {
+    return new Promise(async (resolve, reject) =>
+      createReadStream()
+        .pipe(createWriteStream(`./uploads/${filename}`))
+        .on('finish', () => resolve(true))
+        .on('error', () => reject(false)),
+    );
   }
 }

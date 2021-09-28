@@ -5,6 +5,7 @@ import { launchImageLibrary } from 'react-native-image-picker';
 
 import { Avatar, ModalControl } from '_app/components';
 import { PLATFORM, tBase, tTitle } from '_app/constants';
+import { useMeQuery, useUpdateAvatarMutation } from '_app/generated/graphql';
 import { navigation } from '_app/services/navigations';
 import { authStore } from '_app/stores';
 
@@ -12,14 +13,21 @@ import { s } from './styles';
 
 export const ProfileSettingsScreen = () => {
   const setLogout = authStore(state => state.setLogout);
-  const unsetUser = authStore(state => state.unsetUser);
-  const user = authStore(state => state.user);
+
+  const {
+    loading: loadingMe,
+    data: dataMe,
+    error: errorMe,
+    refetch: refetchMe,
+  } = useMeQuery({
+    fetchPolicy: 'no-cache',
+  });
+  const [updateAvatar, { loading, data, error }] = useUpdateAvatarMutation();
 
   const { showActionSheetWithOptions } = useActionSheet();
 
   const logout = () => {
     setLogout();
-    unsetUser();
     navigation.goBack();
   };
 
@@ -38,12 +46,28 @@ export const ProfileSettingsScreen = () => {
             } else if (buttonIndex === 1) {
               navigation.push('Camera');
             } else if (buttonIndex === 2) {
-              launchImageLibrary({ mediaType: 'photo' }, ({ didCancel, errorCode, errorMessage, assets }) =>
-                Alert.alert(
-                  `didCancel: ${didCancel}, errorCode: ${errorCode}, errorMessage: ${errorMessage}, assets: ${assets}`,
-                ),
+              launchImageLibrary(
+                { mediaType: 'photo', includeBase64: true },
+                ({ didCancel, errorCode, errorMessage, assets }) => {
+                  if (errorMessage || errorCode || didCancel) {
+                    return null;
+                  }
+                  if (assets) {
+                    console.log(assets[0].base64);
+                    return updateAvatar({
+                      variables: {
+                        base64: assets[0].base64,
+                      },
+                    });
+                  }
+                },
               );
             } else if (buttonIndex === 3) {
+              updateAvatar({
+                variables: {
+                  remove: true,
+                },
+              }).then(() => refetchMe());
             }
           },
         )
@@ -59,15 +83,43 @@ export const ProfileSettingsScreen = () => {
             } else if (i === 1) {
               navigation.push('Camera');
             } else if (i === 2) {
-              launchImageLibrary({ mediaType: 'photo' }, ({ didCancel, errorCode, errorMessage, assets }) =>
-                Alert.alert(
-                  `didCancel: ${didCancel}, errorCode: ${errorCode}, errorMessage: ${errorMessage}, assets: ${assets}`,
-                ),
+              launchImageLibrary(
+                { mediaType: 'photo', includeBase64: true },
+                ({ didCancel, errorCode, errorMessage, assets }) => {
+                  if (errorMessage || errorCode || didCancel) {
+                    return null;
+                  }
+                  if (assets) {
+                    console.log(assets[0].base64);
+                    return updateAvatar({
+                      variables: {
+                        base64: assets[0].base64,
+                      },
+                    });
+                  }
+                },
               );
+            } else if (i === 3) {
+              updateAvatar({
+                variables: {
+                  remove: true,
+                },
+              });
+              refetchMe();
             }
           },
         );
   };
+
+  if (loadingMe) {
+    return (
+      <View style={s.container}>
+        <Text style={[tTitle, { textAlign: 'center', marginBottom: 20 }]}>Loading</Text>
+      </View>
+    );
+  }
+
+  const user = dataMe!.me;
 
   return (
     <View style={s.container}>

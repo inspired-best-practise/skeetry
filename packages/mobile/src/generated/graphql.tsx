@@ -158,6 +158,7 @@ export type Mutation = {
   removeCity: City;
   sendSmsCode: Scalars['Boolean'];
   signup: Auth;
+  updateAvatar: User;
 };
 
 
@@ -194,6 +195,12 @@ export type MutationSendSmsCodeArgs = {
 
 export type MutationSignupArgs = {
   input: SignupInput;
+};
+
+
+export type MutationUpdateAvatarArgs = {
+  base64?: Maybe<Scalars['String']>;
+  remove?: Maybe<Scalars['Boolean']>;
 };
 
 /** Possible directions in which to order a list of items when provided an `orderBy` argument. */
@@ -459,6 +466,14 @@ export type SignupMutationVariables = Exact<{
 
 
 export type SignupMutation = { __typename?: 'Mutation', signup: { __typename?: 'Auth', accessToken: string, refreshToken: string, user: { __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any } } };
+
+export type UpdateAvatarMutationVariables = Exact<{
+  base64?: Maybe<Scalars['String']>;
+  remove?: Maybe<Scalars['Boolean']>;
+}>;
+
+
+export type UpdateAvatarMutation = { __typename?: 'Mutation', updateAvatar: { __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any } };
 
 export type CitiesQueryVariables = Exact<{
   continent?: Maybe<Scalars['String']>;
@@ -953,6 +968,40 @@ export function useSignupMutation(baseOptions?: Apollo.MutationHookOptions<Signu
 export type SignupMutationHookResult = ReturnType<typeof useSignupMutation>;
 export type SignupMutationResult = Apollo.MutationResult<SignupMutation>;
 export type SignupMutationOptions = Apollo.BaseMutationOptions<SignupMutation, SignupMutationVariables>;
+export const UpdateAvatarDocument = gql`
+    mutation updateAvatar($base64: String, $remove: Boolean) {
+  updateAvatar(base64: $base64, remove: $remove) {
+    ...RegularUser
+  }
+}
+    ${RegularUserFragmentDoc}`;
+export type UpdateAvatarMutationFn = Apollo.MutationFunction<UpdateAvatarMutation, UpdateAvatarMutationVariables>;
+
+/**
+ * __useUpdateAvatarMutation__
+ *
+ * To run a mutation, you first call `useUpdateAvatarMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateAvatarMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateAvatarMutation, { data, loading, error }] = useUpdateAvatarMutation({
+ *   variables: {
+ *      base64: // value for 'base64'
+ *      remove: // value for 'remove'
+ *   },
+ * });
+ */
+export function useUpdateAvatarMutation(baseOptions?: Apollo.MutationHookOptions<UpdateAvatarMutation, UpdateAvatarMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateAvatarMutation, UpdateAvatarMutationVariables>(UpdateAvatarDocument, options);
+      }
+export type UpdateAvatarMutationHookResult = ReturnType<typeof useUpdateAvatarMutation>;
+export type UpdateAvatarMutationResult = Apollo.MutationResult<UpdateAvatarMutation>;
+export type UpdateAvatarMutationOptions = Apollo.BaseMutationOptions<UpdateAvatarMutation, UpdateAvatarMutationVariables>;
 export const CitiesDocument = gql`
     query Cities($continent: String, $isCapital: Boolean, $after: String, $before: String, $first: Int!, $input: CitiesInput, $last: Int, $orderBy: CityOrder, $query: String, $skip: Int) {
   cities(

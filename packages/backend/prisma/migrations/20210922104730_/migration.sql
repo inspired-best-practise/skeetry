@@ -74,6 +74,7 @@ CREATE TABLE "State" (
 CREATE TABLE "StateLocalization" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
+    "locale" "Locale" NOT NULL,
     "overview" TEXT,
     "stateId" TEXT NOT NULL,
 

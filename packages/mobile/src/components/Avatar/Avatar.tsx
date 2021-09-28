@@ -20,10 +20,12 @@ export const Avatar = ({ src, nickname }: TAvatarProps) => {
     );
   }
 
+  const image = `data:image/png;base64,${src}`;
+
   return (
     <FastImage
       style={s.avatarImage}
-      source={{ uri: src, priority: FastImage.priority.normal }}
+      source={{ uri: image, priority: FastImage.priority.normal }}
       resizeMode={FastImage.resizeMode.cover}
     />
   );
