@@ -1,7 +1,9 @@
 import { useActionSheet } from '@expo/react-native-action-sheet';
+import { ReactNativeFile } from 'apollo-upload-client';
 import React from 'react';
-import { View, Text, StatusBar, ActionSheetIOS, Alert, TouchableOpacity } from 'react-native';
+import { View, Text, StatusBar, ActionSheetIOS, TouchableOpacity } from 'react-native';
 import { launchImageLibrary } from 'react-native-image-picker';
+import { v4 as uuidv4 } from 'uuid';
 
 import { Avatar, ModalControl } from '_app/components';
 import { PLATFORM, tBase, tTitle } from '_app/constants';
@@ -53,10 +55,13 @@ export const ProfileSettingsScreen = () => {
                     return null;
                   }
                   if (assets) {
-                    console.log(assets[0].base64);
                     return uploadPhoto({
                       variables: {
-                        file: assets[0],
+                        file: new ReactNativeFile({
+                          uri: assets[0].uri,
+                          type: 'image/*',
+                          name: uuidv4(),
+                        }),
                       },
                     });
                   }
@@ -85,10 +90,14 @@ export const ProfileSettingsScreen = () => {
                     return null;
                   }
                   if (assets) {
-                    console.log(assets[0].base64);
+                    console.log({ loading, data, error });
                     return uploadPhoto({
                       variables: {
-                        file: assets[0],
+                        file: new ReactNativeFile({
+                          uri: assets[0].uri,
+                          type: 'image/*',
+                          name: uuidv4(),
+                        }),
                       },
                     });
                   }
@@ -109,6 +118,8 @@ export const ProfileSettingsScreen = () => {
   }
 
   const user = dataMe!.me;
+
+  console.log({ loading, data, error });
 
   return (
     <View style={s.container}>

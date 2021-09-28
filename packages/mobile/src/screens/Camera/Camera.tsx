@@ -2,8 +2,9 @@ import { ReactNativeFile } from 'apollo-upload-client';
 import React, { useRef } from 'react';
 import { View, Alert, TouchableOpacity } from 'react-native';
 import { RNCamera } from 'react-native-camera';
+import { v4 as uuidv4 } from 'uuid';
 
-import { useUpdateAvatarMutation, useUploadPhotoMutation } from '_app/generated/graphql';
+import { useUploadPhotoMutation } from '_app/generated/graphql';
 import { navigation } from '_app/services/navigations';
 import { SCREEN_HEIGHT } from '_app/utils/dimensions';
 
@@ -18,23 +19,20 @@ export const CameraScreen = () => {
       const options = { quality: 0.5, base64: true };
       try {
         const photo = await cameraRef.current.takePictureAsync(options);
-        const retrievedName = photo.uri.slice(photo.uri.lastIndexOf('/'));
         await uploadPhoto({
           variables: {
             file: new ReactNativeFile({
               uri: photo.uri,
               type: 'image/*',
-              name: retrievedName.slice(1),
+              name: uuidv4(),
             }),
           },
         });
-        console.log('!!!', { loading, data, error });
+        console.log({ loading, data, error });
         if (!loading) {
           navigation.goBack();
         }
       } catch (err) {
-        console.log('???', err.message || err);
-        console.log({ loading, data, error });
         Alert.alert('Error', 'Failed to take picture: ' + (err.message || err));
         navigation.goBack();
         return;
