@@ -27,9 +27,10 @@ export class UserResolver {
     @Args({ name: 'file', type: () => GraphQLUpload })
     { createReadStream, filename }: FileUpload,
   ): Promise<boolean> {
+    console.log('__dirname', __dirname);
     return new Promise(async (resolve, reject) =>
       createReadStream()
-        .pipe(createWriteStream(`./uploads/${filename}`))
+        .pipe(createWriteStream(`./api-storage/uploads/${filename}`))
         .on('finish', () => resolve(true))
         .on('error', () => reject(false)),
     );
