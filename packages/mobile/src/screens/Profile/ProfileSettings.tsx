@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { Avatar, ModalControl } from '_app/components';
 import { PLATFORM, tBase, tTitle } from '_app/constants';
-import { useMeQuery, useUploadPhotoMutation } from '_app/generated/graphql';
+import { useDeletePhotoMutation, useMeQuery, useUploadPhotoMutation } from '_app/generated/graphql';
 import { navigation } from '_app/services/navigations';
 import { authStore } from '_app/stores';
 
@@ -25,6 +25,7 @@ export const ProfileSettingsScreen = () => {
     fetchPolicy: 'no-cache',
   });
   const [uploadPhoto, { loading, data, error }] = useUploadPhotoMutation();
+  const [deletePhoto, { loading: loadingDelete, data: dataDelete, error: errorDelete }] = useDeletePhotoMutation();
 
   const { showActionSheetWithOptions } = useActionSheet();
 
@@ -69,6 +70,7 @@ export const ProfileSettingsScreen = () => {
                 },
               );
             } else if (buttonIndex === 3) {
+              deletePhoto();
             }
           },
         )
@@ -106,6 +108,7 @@ export const ProfileSettingsScreen = () => {
                 },
               );
             } else if (i === 3) {
+              deletePhoto();
             }
           },
         );
