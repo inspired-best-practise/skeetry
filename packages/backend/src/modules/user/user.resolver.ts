@@ -8,6 +8,7 @@ import { UserEntity } from './user.decorator';
 import { UserService } from './user.service';
 import { GraphQLUpload, FileUpload } from 'graphql-upload';
 import { v4 as uuidv4 } from 'uuid';
+import sharp from 'sharp';
 @Resolver(() => User)
 export class UserResolver {
   constructor(
@@ -30,6 +31,7 @@ export class UserResolver {
   ): Promise<boolean> {
     const ext = file.filename.match(/\.[a-z]+$/);
     const filename = `${uuidv4()}${ext}`;
+
     const url = await this.storage.upload({ ...file, filename });
     return await this.user.uploadPhoto(user, url);
   }
