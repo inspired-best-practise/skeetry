@@ -177,6 +177,8 @@ type Query {
   popular(after: String, before: String, first: Int!, last: Int, orderBy: CityOrder, skip: Int): CityConnection!
   stories: [Story!]!
   tags: [Tag!]!
+  user(id: String!): User!
+  users(after: String, before: String, first: Int!, last: Int, orderBy: UserOrder, query: String, skip: Int): UserConnection!
   visited(after: String, before: String, first: Int!, last: Int, orderBy: CityOrder, skip: Int): CityConnection!
   wanted(after: String, before: String, first: Int!, last: Int, orderBy: CityOrder, skip: Int): CityConnection!
 }
@@ -278,4 +280,19 @@ type User {
   username: String!
   visitedCount: Int!
   wantedCount: Int!
+}
+
+type UserConnection {
+  edges: [UserEdge!]
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type UserEdge {
+  cursor: String!
+  node: User!
+}
+
+input UserOrder {
+  direction: OrderDirection!
 }
