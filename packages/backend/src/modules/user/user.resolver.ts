@@ -8,7 +8,6 @@ import { UserEntity } from './user.decorator';
 import { UserService } from './user.service';
 import { GraphQLUpload, FileUpload } from 'graphql-upload';
 import { v4 as uuidv4 } from 'uuid';
-import sharp from 'sharp';
 @Resolver(() => User)
 export class UserResolver {
   constructor(
@@ -23,7 +22,7 @@ export class UserResolver {
     return user;
   }
 
-  @UseGuards(GqlAuthGuard)
+  // @UseGuards(GqlAuthGuard)
   @Mutation((returns) => Boolean)
   async uploadPhoto(
     @UserEntity() user: User,

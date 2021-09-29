@@ -2,10 +2,12 @@ import { useScrollToTop } from '@react-navigation/native';
 import React, { useCallback, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View, Text, FlatList, RefreshControl } from 'react-native';
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { tBase } from '_app/constants';
 import { OrderDirection, useMeQuery, useVisitedQuery, useWantedQuery } from '_app/generated/graphql';
-import { profileStore } from '_app/stores';
+import { authStore, profileStore } from '_app/stores';
 
 import { renderEmpty, renderItem, renderHeader } from './elements';
 import { s } from './styles';
@@ -53,6 +55,7 @@ export const ProfileScreen = () => {
 
   const selected = profileStore(state => state.selected);
   const setSelected = profileStore(state => state.setSelected);
+  const setLogout = authStore(state => state.setLogout);
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
@@ -76,6 +79,9 @@ export const ProfileScreen = () => {
     return (
       <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>Error. Please try later...</Text>
+        <TouchableWithoutFeedback style={{ margin: 10 }} onPress={() => setLogout()}>
+          <Text style={tBase}>Logout</Text>
+        </TouchableWithoutFeedback>
       </SafeAreaView>
     );
   }
