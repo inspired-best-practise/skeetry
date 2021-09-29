@@ -16,9 +16,8 @@ export const CameraScreen = () => {
 
   const takePicture = async () => {
     if (cameraRef) {
-      const options = { quality: 0.5, base64: true };
       try {
-        const photo = await cameraRef.current.takePictureAsync(options);
+        const photo = await cameraRef.current.takePictureAsync();
         await uploadPhoto({
           variables: {
             file: new ReactNativeFile({

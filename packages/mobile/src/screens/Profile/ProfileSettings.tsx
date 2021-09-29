@@ -49,11 +49,12 @@ export const ProfileSettingsScreen = () => {
               navigation.push('Camera');
             } else if (buttonIndex === 2) {
               launchImageLibrary(
-                { mediaType: 'photo', includeBase64: true },
+                { mediaType: 'photo', maxWidth: 1024, maxHeight: 1024 },
                 ({ didCancel, errorCode, errorMessage, assets }) => {
                   if (errorMessage || errorCode || didCancel) {
                     return null;
                   }
+                  console.log('assets!!!', assets);
                   if (assets) {
                     return uploadPhoto({
                       variables: {
@@ -84,13 +85,14 @@ export const ProfileSettingsScreen = () => {
               navigation.push('Camera');
             } else if (i === 2) {
               launchImageLibrary(
-                { mediaType: 'photo', includeBase64: true },
+                { mediaType: 'photo', maxWidth: 1024, maxHeight: 1024 },
                 ({ didCancel, errorCode, errorMessage, assets }) => {
                   if (errorMessage || errorCode || didCancel) {
                     return null;
                   }
                   if (assets) {
                     console.log({ loading, data, error });
+                    console.log('assets!!!', assets);
                     return uploadPhoto({
                       variables: {
                         file: new ReactNativeFile({
