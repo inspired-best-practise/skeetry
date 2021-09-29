@@ -9,3 +9,4 @@ export * from './Profile';
 export * from './Swipes';
 export * from './Avatar';
 export * from './Camera';
+export * from './CitiesList';

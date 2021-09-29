@@ -10,7 +10,7 @@ export const VerticalListSkeleton = () => {
       showsVerticalScrollIndicator={false}
       scrollEnabled={false}
       showsHorizontalScrollIndicator={false}
-      contentContainerStyle={{ margin: 20 }}
+      contentContainerStyle={{ margin: 20, marginTop: 0 }}
     >
       {[{}, {}, {}].map((_i, index) => (
         <SkeletonContent

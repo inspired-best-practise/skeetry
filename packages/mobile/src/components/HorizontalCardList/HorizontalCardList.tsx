@@ -10,7 +10,7 @@ import { normalize } from '_app/utils/dimensions';
 
 import { s } from './styles';
 
-export const HorizontalCardList = ({ title, data, size, handleEndReached, loading }) => {
+export const HorizontalCardList = ({ title, data, size, handleEndReached, loading, type }) => {
   const [loadingCounter, setLoadingCount] = useState(0);
 
   useEffect(() => {
@@ -32,11 +32,11 @@ export const HorizontalCardList = ({ title, data, size, handleEndReached, loadin
       <TouchableOpacity
         activeOpacity={0.7}
         onPress={() =>
-          navigation.navigate('ItemsByCategory', {
+          navigation.navigate('CitiesList', {
             item: {
               name: title,
+              type,
             },
-            data: data,
           })
         }
       >

@@ -265,6 +265,7 @@ export const LocationsScreen = () => {
             size="wide"
             handleEndReached={capitalEndReached}
             loading={loadingCapital}
+            type="capital"
           />
         )}
         {/* {!errorPopular && (
@@ -283,6 +284,7 @@ export const LocationsScreen = () => {
             size="small"
             handleEndReached={europeEndReached}
             loading={loadingEurope}
+            type="europe"
           />
         )}
         {!errorAsia && (
@@ -292,6 +294,7 @@ export const LocationsScreen = () => {
             size="small"
             handleEndReached={asiaEndReached}
             loading={loadingAsia}
+            type="asia"
           />
         )}
         {!errorAustralia && (
@@ -301,6 +304,7 @@ export const LocationsScreen = () => {
             size="small"
             handleEndReached={australiaEndReached}
             loading={loadingAustralia}
+            type="oceania"
           />
         )}
         {!errorAmericas && (
@@ -310,6 +314,7 @@ export const LocationsScreen = () => {
             size="small"
             handleEndReached={americasEndReached}
             loading={loadingAmericas}
+            type="americas"
           />
         )}
         {!errorAfrica && (
@@ -319,6 +324,7 @@ export const LocationsScreen = () => {
             size="small"
             handleEndReached={africaEndReached}
             loading={loadingAfrica}
+            type="africa"
           />
         )}
       </ScrollView>

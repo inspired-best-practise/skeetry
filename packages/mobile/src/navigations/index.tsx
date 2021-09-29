@@ -15,6 +15,7 @@ import {
   OfflineScreen,
   AvatarScreen,
   CameraScreen,
+  CitiesListScreen,
 } from '_app/screens';
 import { navigation, navigationRef } from '_app/services/navigations';
 import { normalize } from '_app/utils/dimensions';
@@ -62,6 +63,16 @@ const Index = (): JSX.Element => {
           })}
           name="ItemsByCategory"
           component={ItemsByCategoryScreen}
+        />
+        <RootStack.Screen
+          options={({ route }) => ({
+            ...TransitionPresets.ModalTransition,
+            headerShown: PLATFORM.IS_IOS ? false : true,
+            headerTitle: `${route.params.item.name}`,
+            presentation: 'formSheet',
+          })}
+          name="CitiesList"
+          component={CitiesListScreen}
         />
         <RootStack.Screen
           options={({ route }) => ({

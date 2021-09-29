@@ -132,11 +132,7 @@ export const AddChooserScreen = () => {
                   <Text>No cities found</Text>
                 )}
               </ScrollView>
-              {loadingUsers && (
-                <View style={{ marginVertical: 20 }}>
-                  <HorizontalListSkeleton size="small" />
-                </View>
-              )}
+              {loadingUsers && <HorizontalListSkeleton size="small" />}
               <ScrollView
                 horizontal
                 showsHorizontalScrollIndicator={false}
@@ -144,8 +140,8 @@ export const AddChooserScreen = () => {
               >
                 {usersList?.length !== 0 ? (
                   usersList?.map(i => (
-                    <TouchableOpacity activeOpacity={0.7}>
-                      <View key={i.node.id} style={{ marginRight: 20, flexDirection: 'row', alignItems: 'center' }}>
+                    <TouchableOpacity key={i.node.id} activeOpacity={0.7}>
+                      <View style={{ marginRight: 20, flexDirection: 'row', alignItems: 'center' }}>
                         <Avatar src={i.node.avatar} nickname={i.node.username} />
                         <Text style={[tBase, { paddingLeft: 10 }]}>{i.node.username}</Text>
                         {/* <Card item={i.node} size="small" /> */}

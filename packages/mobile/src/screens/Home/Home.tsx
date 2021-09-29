@@ -7,7 +7,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { HorizontalCardList } from '_app/components';
 import { Categories } from '_app/components/Categories';
-import ImagePlaceholder from '_app/components/ImagePlaceholder/ImagePlaceholder';
 import { Stories } from '_app/components/Stories';
 import { tTitle } from '_app/constants';
 import {
@@ -144,6 +143,7 @@ export const HomeScreen = () => {
             size="wide"
             handleEndReached={popularEndReached}
             loading={loadingPopular}
+            type="popular"
           />
         )}
       </ScrollView>

@@ -24,20 +24,18 @@ export const Categories = () => {
   const categories = data?.tags;
 
   return (
-    !error && (
-      <View>
-        <View style={{ marginHorizontal: 20 }}>
-          <Text style={tTitle}>{`${t('home:categories')}`}</Text>
-        </View>
-        {loadingCounter === 0 && <CategoriesSkeleton />}
-        {loadingCounter > 0 && (
-          <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={s.categoryWrapper}>
-            {categories!.map(category => (
-              <Category key={category.id} item={category} />
-            ))}
-          </ScrollView>
-        )}
+    <View>
+      <View style={{ marginHorizontal: 20 }}>
+        <Text style={tTitle}>{`${t('home:categories')}`}</Text>
       </View>
-    )
+      {loadingCounter === 0 && <CategoriesSkeleton />}
+      {loadingCounter > 0 && (
+        <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={s.categoryWrapper}>
+          {categories!.map(category => (
+            <Category key={category.id} item={category} />
+          ))}
+        </ScrollView>
+      )}
+    </View>
   );
 };
