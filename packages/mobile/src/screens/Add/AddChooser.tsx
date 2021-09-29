@@ -2,12 +2,12 @@ import { useScrollToTop } from '@react-navigation/native';
 import React, { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View, StatusBar, ScrollView, TextInput, TouchableWithoutFeedback, Keyboard, Text } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
-import { Card, ModalControl, VerticalListSkeleton } from '_app/components';
-import { PLATFORM } from '_app/constants';
-import { OrderDirection, useCitiesQuery } from '_app/generated/graphql';
+import { Avatar, Card, HorizontalListSkeleton, ModalControl } from '_app/components';
+import { PLATFORM, tBase } from '_app/constants';
+import { OrderDirection, useCitiesQuery, useUsersQuery } from '_app/generated/graphql';
 import { normalize } from '_app/utils/dimensions';
-import { wait } from '_app/utils/helpers';
 
 import { s } from './styles';
 
@@ -48,6 +48,22 @@ export const AddChooserScreen = () => {
     notifyOnNetworkStatusChange: true,
   });
 
+  const {
+    data: dataUsers,
+    loading: loadingUsers,
+    error: errorUsers,
+    fetchMore: fetchMoreUsers,
+  } = useUsersQuery({
+    variables: {
+      first: 10,
+      query: input,
+      orderBy: {
+        direction: OrderDirection.Desc,
+      },
+    },
+    notifyOnNetworkStatusChange: true,
+  });
+
   // useEffect(() => {
   //   if (dataRecommended) {
   //     setRecommended(dataRecommended.popular.edges);
@@ -77,6 +93,7 @@ export const AddChooserScreen = () => {
   useScrollToTop(ref);
 
   const searchList = dataSearch?.cities.edges;
+  const usersList = dataUsers?.users.edges;
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
@@ -98,21 +115,48 @@ export const AddChooserScreen = () => {
           </View>
 
           {input.length !== 0 && (
-            <ScrollView
-              showsVerticalScrollIndicator={false}
-              contentContainerStyle={{ alignItems: 'center', marginBottom: 20 }}
-            >
-              {loadingSearch && <VerticalListSkeleton />}
-              {!loadingSearch && searchList?.length !== 0 ? (
-                searchList?.map(i => (
-                  <View key={i.node.id} style={{ marginBottom: 20 }}>
-                    <Card item={i.node} size="full" />
-                  </View>
-                ))
-              ) : (
-                <Text>Not found</Text>
+            <View>
+              {loadingSearch && <HorizontalListSkeleton size="small" />}
+              <ScrollView
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={{ alignItems: 'center', paddingHorizontal: 20 }}
+              >
+                {searchList?.length !== 0 ? (
+                  searchList?.map(i => (
+                    <View key={i.node.id} style={{ marginRight: 20 }}>
+                      <Card item={i.node} size="small" />
+                    </View>
+                  ))
+                ) : (
+                  <Text>No cities found</Text>
+                )}
+              </ScrollView>
+              {loadingUsers && (
+                <View style={{ marginVertical: 20 }}>
+                  <HorizontalListSkeleton size="small" />
+                </View>
               )}
-            </ScrollView>
+              <ScrollView
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                contentContainerStyle={{ alignItems: 'center', padding: 20 }}
+              >
+                {usersList?.length !== 0 ? (
+                  usersList?.map(i => (
+                    <TouchableOpacity activeOpacity={0.7}>
+                      <View key={i.node.id} style={{ marginRight: 20, flexDirection: 'row', alignItems: 'center' }}>
+                        <Avatar src={i.node.avatar} nickname={i.node.username} />
+                        <Text style={[tBase, { paddingLeft: 10 }]}>{i.node.username}</Text>
+                        {/* <Card item={i.node} size="small" /> */}
+                      </View>
+                    </TouchableOpacity>
+                  ))
+                ) : (
+                  <Text>No travelers found</Text>
+                )}
+              </ScrollView>
+            </View>
           )}
 
           {/* {!errorRecommended && (

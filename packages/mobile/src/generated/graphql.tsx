@@ -230,6 +230,8 @@ export type Query = {
   popular: CityConnection;
   stories: Array<Story>;
   tags: Array<Tag>;
+  user: User;
+  users: UserConnection;
   visited: CityConnection;
   wanted: CityConnection;
 };
@@ -275,6 +277,22 @@ export type QueryPopularArgs = {
   first: Scalars['Int'];
   last?: Maybe<Scalars['Int']>;
   orderBy?: Maybe<CityOrder>;
+  skip?: Maybe<Scalars['Int']>;
+};
+
+
+export type QueryUserArgs = {
+  id: Scalars['String'];
+};
+
+
+export type QueryUsersArgs = {
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first: Scalars['Int'];
+  last?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<UserOrder>;
+  query?: Maybe<Scalars['String']>;
   skip?: Maybe<Scalars['Int']>;
 };
 
@@ -390,6 +408,23 @@ export type User = {
   username: Scalars['String'];
   visitedCount: Scalars['Int'];
   wantedCount: Scalars['Int'];
+};
+
+export type UserConnection = {
+  __typename?: 'UserConnection';
+  edges?: Maybe<Array<UserEdge>>;
+  pageInfo: PageInfo;
+  totalCount: Scalars['Int'];
+};
+
+export type UserEdge = {
+  __typename?: 'UserEdge';
+  cursor: Scalars['String'];
+  node: User;
+};
+
+export type UserOrder = {
+  direction: OrderDirection;
 };
 
 export type RegularCityFragment = { __typename?: 'City', id: string, pk: number, name: string, overview?: Maybe<string>, wantedCount: number, visitedCount: number, latitude: string, longitude: string, isCapital: boolean, images?: Maybe<Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }>>, userWanted?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, state: { __typename?: 'State', id: string, pk: number, name: string, stateCode?: Maybe<string>, latitude?: Maybe<string>, longitude?: Maybe<string>, overview?: Maybe<string>, country: { __typename?: 'Country', id: string, pk: number, name: string, iso2: string, iso3: string, numericCode: string, phoneCode: string, currency: string, currencySymbol: string, tld: string, native?: Maybe<string>, continent: string, subregion: string, latitude: string, longitude: string, emoji?: Maybe<string>, emojiU: string, overview?: Maybe<string>, localizations?: Maybe<Array<{ __typename?: 'CountryLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> }, localizations?: Maybe<Array<{ __typename?: 'StateLocalization', id: string, locale: string, name: string, overview: string }>> }, userVisited?: Maybe<Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }>>, localizations?: Maybe<Array<{ __typename?: 'CityLocalization', id: string, locale: Locale, name: string, overview?: Maybe<string> }>> };
@@ -537,6 +572,26 @@ export type TagsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type TagsQuery = { __typename?: 'Query', tags: Array<{ __typename?: 'Tag', id: string, name: string, emoji: string, localizations?: Maybe<Array<{ __typename?: 'TagLocalization', id: string, name: string, locale: Locale }>> }> };
+
+export type UserQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+export type UserQuery = { __typename?: 'Query', user: { __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any } };
+
+export type UsersQueryVariables = Exact<{
+  after?: Maybe<Scalars['String']>;
+  before?: Maybe<Scalars['String']>;
+  first: Scalars['Int'];
+  last?: Maybe<Scalars['Int']>;
+  orderBy?: Maybe<UserOrder>;
+  query?: Maybe<Scalars['String']>;
+  skip?: Maybe<Scalars['Int']>;
+}>;
+
+
+export type UsersQuery = { __typename?: 'Query', users: { __typename?: 'UserConnection', totalCount: number, edges?: Maybe<Array<{ __typename?: 'UserEdge', cursor: string, node: { __typename?: 'User', id: string, phone: string, username: string, avatar?: Maybe<string>, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any } }>>, pageInfo: { __typename?: 'PageInfo', endCursor?: Maybe<string>, hasNextPage: boolean, hasPreviousPage: boolean, startCursor?: Maybe<string> } } };
 
 export type VisitedQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>;
@@ -1317,6 +1372,100 @@ export function useTagsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<TagsQ
 export type TagsQueryHookResult = ReturnType<typeof useTagsQuery>;
 export type TagsLazyQueryHookResult = ReturnType<typeof useTagsLazyQuery>;
 export type TagsQueryResult = Apollo.QueryResult<TagsQuery, TagsQueryVariables>;
+export const UserDocument = gql`
+    query User($id: String!) {
+  user(id: $id) {
+    ...RegularUser
+  }
+}
+    ${RegularUserFragmentDoc}`;
+
+/**
+ * __useUserQuery__
+ *
+ * To run a query within a React component, call `useUserQuery` and pass it any options that fit your needs.
+ * When your component renders, `useUserQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useUserQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useUserQuery(baseOptions: Apollo.QueryHookOptions<UserQuery, UserQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<UserQuery, UserQueryVariables>(UserDocument, options);
+      }
+export function useUserLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<UserQuery, UserQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<UserQuery, UserQueryVariables>(UserDocument, options);
+        }
+export type UserQueryHookResult = ReturnType<typeof useUserQuery>;
+export type UserLazyQueryHookResult = ReturnType<typeof useUserLazyQuery>;
+export type UserQueryResult = Apollo.QueryResult<UserQuery, UserQueryVariables>;
+export const UsersDocument = gql`
+    query Users($after: String, $before: String, $first: Int!, $last: Int, $orderBy: UserOrder, $query: String, $skip: Int) {
+  users(
+    after: $after
+    before: $before
+    first: $first
+    last: $last
+    orderBy: $orderBy
+    query: $query
+    skip: $skip
+  ) {
+    edges {
+      cursor
+      node {
+        ...RegularUser
+      }
+    }
+    pageInfo {
+      ...RegularPageInfo
+    }
+    totalCount
+  }
+}
+    ${RegularUserFragmentDoc}
+${RegularPageInfoFragmentDoc}`;
+
+/**
+ * __useUsersQuery__
+ *
+ * To run a query within a React component, call `useUsersQuery` and pass it any options that fit your needs.
+ * When your component renders, `useUsersQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useUsersQuery({
+ *   variables: {
+ *      after: // value for 'after'
+ *      before: // value for 'before'
+ *      first: // value for 'first'
+ *      last: // value for 'last'
+ *      orderBy: // value for 'orderBy'
+ *      query: // value for 'query'
+ *      skip: // value for 'skip'
+ *   },
+ * });
+ */
+export function useUsersQuery(baseOptions: Apollo.QueryHookOptions<UsersQuery, UsersQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<UsersQuery, UsersQueryVariables>(UsersDocument, options);
+      }
+export function useUsersLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<UsersQuery, UsersQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<UsersQuery, UsersQueryVariables>(UsersDocument, options);
+        }
+export type UsersQueryHookResult = ReturnType<typeof useUsersQuery>;
+export type UsersLazyQueryHookResult = ReturnType<typeof useUsersLazyQuery>;
+export type UsersQueryResult = Apollo.QueryResult<UsersQuery, UsersQueryVariables>;
 export const VisitedDocument = gql`
     query Visited($after: String, $before: String, $first: Int!, $last: Int, $orderBy: CityOrder, $skip: Int) {
   visited(

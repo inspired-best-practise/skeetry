@@ -28,7 +28,7 @@ export const HorizontalListSkeleton = ({ size }: { size: string }) => {
       horizontal
       scrollEnabled={false}
       showsHorizontalScrollIndicator={false}
-      contentContainerStyle={{ margin: 20 }}
+      contentContainerStyle={{ marginHorizontal: 20 }}
     >
       {[{}, {}, {}].map((_i, index) => (
         <SkeletonContent

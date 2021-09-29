@@ -67,13 +67,13 @@ Explore:
    ☐ Add "Must see" section
 
 Card: 
-   ☐ Fix bottom sheet blink
+   ✘ Fix bottom sheet blink @cancelled(21-09-29 18:03)
 
 Profile: 
    ☐ Statistics screen: Countries statistic like Asia 5%, Europa 10%
 
 Search:
-   ☐ Add "Search" input
+   ✔ Add "Search" input @done(21-09-29 18:04)
    ☐ Add "Recommened" section
    ☐ Update "Categories" section
    ☐ Add "Travelers" section
