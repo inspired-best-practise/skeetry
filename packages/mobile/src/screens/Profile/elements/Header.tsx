@@ -31,6 +31,7 @@ export const renderHeader = (user: TUser, t, setSelected) => {
         <TouchableOpacity
           activeOpacity={0.7}
           onPress={() =>
+            user.avatar &&
             navigation.push('Avatar', {
               image: user.avatar,
             })

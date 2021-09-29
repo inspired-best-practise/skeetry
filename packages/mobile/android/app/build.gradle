@@ -145,7 +145,8 @@ android {
         versionCode 1
         versionName "1.0"
         resValue 'string', "CODE_PUSH_APK_BUILD_TIME", String.format("\"%d\"", System.currentTimeMillis())
-        missingDimensionStrategy 'react-native-camera', 'mlkit' // TODO: crash with 'general'
+        missingDimensionStrategy 'react-native-camera', 'mlkit'
+        multiDexEnabled true
     }
     splits {
         abi {
@@ -162,6 +163,12 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        release {
+            storeFile file('kive.keystore')
+            storePassword '225615'
+            keyAlias 'kive'
+            keyPassword '225615'
+        }
     }
     buildTypes {
         debug {
@@ -170,7 +177,7 @@ android {
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
