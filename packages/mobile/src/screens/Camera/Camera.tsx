@@ -27,8 +27,10 @@ export const CameraScreen = () => {
               name: uuidv4(),
             }),
           },
+          update: cache => {
+            cache.evict({});
+          },
         });
-        console.log({ loading, data, error });
         if (!loading) {
           navigation.goBack();
         }

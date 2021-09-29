@@ -16,16 +16,9 @@ import { s } from './styles';
 export const ProfileSettingsScreen = () => {
   const setLogout = authStore(state => state.setLogout);
 
-  const {
-    loading: loadingMe,
-    data: dataMe,
-    error: errorMe,
-    refetch: refetchMe,
-  } = useMeQuery({
-    fetchPolicy: 'no-cache',
-  });
-  const [uploadPhoto, { loading, data, error }] = useUploadPhotoMutation();
-  const [deletePhoto, { loading: loadingDelete, data: dataDelete, error: errorDelete }] = useDeletePhotoMutation();
+  const { loading, data } = useMeQuery();
+  const [uploadPhoto] = useUploadPhotoMutation();
+  const [deletePhoto] = useDeletePhotoMutation();
 
   const { showActionSheetWithOptions } = useActionSheet();
 
@@ -55,7 +48,6 @@ export const ProfileSettingsScreen = () => {
                   if (errorMessage || errorCode || didCancel) {
                     return null;
                   }
-                  console.log('assets!!!', assets);
                   if (assets) {
                     return uploadPhoto({
                       variables: {
@@ -65,12 +57,19 @@ export const ProfileSettingsScreen = () => {
                           name: uuidv4(),
                         }),
                       },
+                      update: cache => {
+                        cache.evict({});
+                      },
                     });
                   }
                 },
               );
             } else if (buttonIndex === 3) {
-              deletePhoto();
+              deletePhoto({
+                update: cache => {
+                  cache.evict({});
+                },
+              });
             }
           },
         )
@@ -93,8 +92,6 @@ export const ProfileSettingsScreen = () => {
                     return null;
                   }
                   if (assets) {
-                    console.log({ loading, data, error });
-                    console.log('assets!!!', assets);
                     return uploadPhoto({
                       variables: {
                         file: new ReactNativeFile({
@@ -108,23 +105,17 @@ export const ProfileSettingsScreen = () => {
                 },
               );
             } else if (i === 3) {
-              deletePhoto();
+              deletePhoto({
+                update: cache => {
+                  cache.evict({});
+                },
+              });
             }
           },
         );
   };
 
-  if (loadingMe) {
-    return (
-      <View style={s.container}>
-        <Text style={[tTitle, { textAlign: 'center', marginBottom: 20 }]}>Loading</Text>
-      </View>
-    );
-  }
-
-  const user = dataMe!.me;
-
-  console.log({ loading, data, error });
+  const user = data!.me;
 
   return (
     <View style={s.container}>
@@ -132,9 +123,11 @@ export const ProfileSettingsScreen = () => {
       {PLATFORM.IS_IOS && <ModalControl />}
       <View style={s.containerWrap}>
         {PLATFORM.IS_IOS && <Text style={[tTitle, { textAlign: 'center', marginBottom: 20 }]}>Настройки</Text>}
-        <TouchableOpacity activeOpacity={0.7} onPress={() => onPressSheet()}>
-          <Avatar src={user.avatar} nickname={user.username} />
-        </TouchableOpacity>
+        {!loading && (
+          <TouchableOpacity activeOpacity={0.7} onPress={() => onPressSheet()}>
+            <Avatar src={user.avatar} nickname={user.username} />
+          </TouchableOpacity>
+        )}
         <TouchableOpacity onPress={() => logout()} activeOpacity={1} style={{ marginTop: 20 }}>
           <Text style={tBase}>Выйти</Text>
         </TouchableOpacity>
