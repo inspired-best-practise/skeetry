@@ -7,7 +7,7 @@ export class UserService {
   constructor(private prisma: PrismaService) {}
 
   async uploadPhoto(user: User, url: string): Promise<boolean> {
-    if (!user || !url) {
+    if (!url) {
       return false;
     }
 
@@ -17,6 +17,19 @@ export class UserService {
       },
       data: {
         avatar: url,
+      },
+    });
+
+    return true;
+  }
+
+  async deletePhoto(user: User): Promise<boolean> {
+    await this.prisma.user.update({
+      where: {
+        id: user.id,
+      },
+      data: {
+        avatar: null,
       },
     });
 

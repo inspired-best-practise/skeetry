@@ -142,6 +142,7 @@ input LoginInput {
 type Mutation {
   addCity(input: ActionCityInput!): City!
   confirmSmsCode(code: String!, phone: String!): Boolean!
+  deletePhoto: Boolean!
   login(input: LoginInput!): Auth!
   moveCity(input: ActionCityInput!): City!
   refreshToken: Token!

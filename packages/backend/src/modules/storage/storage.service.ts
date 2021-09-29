@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import * as AWS from 'aws-sdk';
 import { FileUpload } from 'graphql-upload';
-import * as sharp from 'sharp';
 
 const { AWS_REGION, AWS_S3_BUCKET_NAME, AWS_ACCESS_KEY_ID, AWS_SECRET_KEY } =
   process.env;
@@ -21,14 +20,9 @@ export class StorageService {
 
   async upload({ createReadStream, filename }: FileUpload): Promise<string> {
     const stream = createReadStream();
-    const size = 400;
-
-    const resizer = sharp().resize({ width: size }).jpeg().withMetadata();
-
-    const fileBuffer = stream.pipe(resizer);
 
     const result = await this.s3
-      .upload({ Bucket: AWS_S3_BUCKET_NAME!, Key: filename, Body: fileBuffer })
+      .upload({ Bucket: AWS_S3_BUCKET_NAME!, Key: filename, Body: stream })
       .promise();
     return result.Location;
   }

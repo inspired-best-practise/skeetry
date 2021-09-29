@@ -28,10 +28,15 @@ export class UserResolver {
     @UserEntity() user: User,
     @Args({ name: 'file', type: () => GraphQLUpload }) file: FileUpload,
   ): Promise<boolean> {
-    const ext = file.filename;
+    const ext = file.filename.match(/\.[a-z]+$/);
     const filename = `${uuidv4()}${ext}`;
-
     const url = await this.storage.upload({ ...file, filename });
     return await this.user.uploadPhoto(user, url);
+  }
+
+  @UseGuards(GqlAuthGuard)
+  @Mutation((returns) => Boolean)
+  async deletePhoto(@UserEntity() user: User): Promise<boolean> {
+    return this.user.deletePhoto(user);
   }
 }
