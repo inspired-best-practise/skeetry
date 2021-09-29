@@ -22,7 +22,7 @@ export class UserResolver {
     return user;
   }
 
-  // @UseGuards(GqlAuthGuard)
+  @UseGuards(GqlAuthGuard)
   @Mutation((returns) => Boolean)
   async uploadPhoto(
     @UserEntity() user: User,
