@@ -28,7 +28,7 @@ export class UserResolver {
     @UserEntity() user: User,
     @Args({ name: 'file', type: () => GraphQLUpload }) file: FileUpload,
   ): Promise<boolean> {
-    const ext = file.filename.match(/\.[a-z]+$/);
+    const ext = file.filename;
     const filename = `${uuidv4()}${ext}`;
 
     const url = await this.storage.upload({ ...file, filename });
