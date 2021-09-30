@@ -27,6 +27,8 @@ target 'skeetry' do
   pod 'react-native-google-maps', :path => rn_maps_path
   pod 'GoogleMaps'
   pod 'Google-Maps-iOS-Utils'
+  # For extensions without React dependencies
+  pod 'react-native-config/Extension', :path => '../node_modules/react-native-config'
 
   use_react_native!(
     :path => config[:reactNativePath],
@@ -54,6 +56,10 @@ end
     Dir[dir + '*/'].each(&method(:find_and_replace))
   end
 
+  ENVFILES = {
+    'Debug' => '$(PODS_ROOT)/../../.env.local',
+    'Release' => '$(PODS_ROOT)/../../.env.production',
+  }
   post_install do |installer|
     if not IS_CI
        flipper_post_install(installer)

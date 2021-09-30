@@ -12,12 +12,12 @@ import { s } from './styles';
 export const LocationsScreen = () => {
   const { t } = useTranslation();
   const ref = useRef<ScrollView>(null);
-  const [capital, setCapital] = useState();
-  const [europe, setEurope] = useState();
-  const [asia, setAsia] = useState();
-  const [australia, setAustralia] = useState();
-  const [americas, setAmericas] = useState();
-  const [africa, setAfrica] = useState();
+  const [capital, setCapital] = useState([]);
+  const [europe, setEurope] = useState([]);
+  const [asia, setAsia] = useState([]);
+  const [australia, setAustralia] = useState([]);
+  const [americas, setAmericas] = useState([]);
+  const [africa, setAfrica] = useState([]);
 
   const {
     data: dataCapital,
@@ -116,37 +116,37 @@ export const LocationsScreen = () => {
   });
 
   useEffect(() => {
-    if (dataCapital) {
+    if (dataCapital && capital.length === 0) {
       setCapital(dataCapital.cities.edges);
     }
   }, [dataCapital]);
 
   useEffect(() => {
-    if (dataEurope) {
+    if (dataEurope && europe.length === 0) {
       setEurope(dataEurope.cities.edges);
     }
   }, [dataEurope]);
 
   useEffect(() => {
-    if (dataAsia) {
+    if (dataAsia && asia.length === 0) {
       setAsia(dataAsia.cities.edges);
     }
   }, [dataAsia]);
 
   useEffect(() => {
-    if (dataAustralia) {
+    if (dataAustralia && australia.length === 0) {
       setAustralia(dataAustralia.cities.edges);
     }
   }, [dataAustralia]);
 
   useEffect(() => {
-    if (dataAmericas) {
+    if (dataAmericas && americas.length === 0) {
       setAmericas(dataAmericas.cities.edges);
     }
   }, [dataAmericas]);
 
   useEffect(() => {
-    if (dataAfrica) {
+    if (dataAfrica && africa.length === 0) {
       setAfrica(dataAfrica.cities.edges);
     }
   }, [dataAfrica]);

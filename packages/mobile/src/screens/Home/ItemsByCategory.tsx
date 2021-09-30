@@ -13,7 +13,7 @@ import { s } from './styles';
 export const ItemsByCategoryScreen = ({ route }) => {
   const { id, name, emoji, locale, localizations } = route.params.item;
   const [loadingCounter, setLoadingCount] = useState(0);
-  const [cities, setCities] = useState();
+  const [cities, setCities] = useState([]);
 
   const { data, loading, fetchMore } = useCitiesQuery({
     variables: {
@@ -35,7 +35,7 @@ export const ItemsByCategoryScreen = ({ route }) => {
   }, [loading]);
 
   useEffect(() => {
-    if (data) {
+    if (data && cities.length === 0) {
       setCities(data.cities.edges);
     }
   }, [data]);

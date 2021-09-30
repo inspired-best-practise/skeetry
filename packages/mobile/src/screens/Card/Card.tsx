@@ -2,7 +2,7 @@ import { useActionSheet } from '@expo/react-native-action-sheet';
 import React, { useEffect, useState } from 'react';
 import { View, Text, Image, TouchableHighlight, StatusBar, Pressable, ActionSheetIOS } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import Icon from 'react-native-vector-icons/Feather';
 
 import ImagePlaceholder from '_app/components/ImagePlaceholder/ImagePlaceholder';
@@ -230,7 +230,13 @@ export const CardScreen = ({ route, navigation }) => {
         </View>
         <View style={s.section}>
           <Text style={s.sectionTitle}>Where you'll be</Text>
-          <Pressable onPress={() => navigation.navigate('AddChooser')}>
+          <Pressable
+            onPress={() =>
+              navigation.navigate('Map', {
+                item: currentCity,
+              })
+            }
+          >
             <MapView
               style={s.minimap}
               pitchEnabled={false}
@@ -244,26 +250,21 @@ export const CardScreen = ({ route, navigation }) => {
               pointerEvents="none"
               customMapStyle={mapGfxStyle}
               initialRegion={{
-                latitude: 37.78825,
-                longitude: -122.4324,
+                latitude: Number(currentCity.latitude),
+                longitude: Number(currentCity.longitude),
                 latitudeDelta: 0.09,
                 longitudeDelta: 0.04,
               }}
-            />
+            >
+              <Marker
+                key={currentCity.id}
+                coordinate={{
+                  latitude: Number(currentCity.latitude),
+                  longitude: Number(currentCity.longitude),
+                }}
+              />
+            </MapView>
           </Pressable>
-        </View>
-
-        <View style={s.section}>
-          <Text style={s.sectionTitle}>Description</Text>
-          <Text>
-            <Text style={s.sectionMainText}>National language:</Text> English
-          </Text>
-          <Text>
-            <Text style={s.sectionMainText}>Currency:</Text> USD
-          </Text>
-          <Text>
-            <Text style={s.sectionMainText}>Driving side:</Text> Left
-          </Text>
         </View>
       </View>
     </ScrollView>

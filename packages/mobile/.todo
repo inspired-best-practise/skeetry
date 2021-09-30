@@ -65,7 +65,9 @@ Home:
 Explore: 
    ✔ Rethink this page @done(21-09-16 12:11)
    ☐ Add "Must see" section
-   ☐ Detail vertical list screen (fetch more and refetch)
+   ✔ Detail vertical list screen (fetch more) @done(21-09-30 15:15)
+   ☐ Sorting lists by popularity
+   ☐ Images
 
 Card: 
    ✘ Fix bottom sheet blink @cancelled(21-09-29 18:03)

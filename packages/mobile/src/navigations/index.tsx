@@ -16,6 +16,7 @@ import {
   AvatarScreen,
   CameraScreen,
   CitiesListScreen,
+  MapScreen,
 } from '_app/screens';
 import { navigation, navigationRef } from '_app/services/navigations';
 import { normalize } from '_app/utils/dimensions';
@@ -73,6 +74,35 @@ const Index = (): JSX.Element => {
           })}
           name="CitiesList"
           component={CitiesListScreen}
+        />
+        <RootStack.Screen
+          options={({ route }) => ({
+            ...TransitionPresets.ModalTransition,
+            headerShown: true,
+            gestureEnabled: true,
+            headerTransparent: true,
+            headerShadowVisible: false,
+            headerTintColor: colors.white,
+            presentation: 'fullScreenModal',
+            title: '',
+            headerLeft: () => (
+              <TouchableWithoutFeedback onPress={() => navigation.goBack()}>
+                <Animated.View
+                  style={{
+                    backgroundColor: '#fff',
+                    borderRadius: 100,
+                    alignItems: 'center',
+                    paddingVertical: normalize(6),
+                    paddingHorizontal: normalize(6),
+                  }}
+                >
+                  <Icon name="x" size={18} color={'black'} />
+                </Animated.View>
+              </TouchableWithoutFeedback>
+            ),
+          })}
+          name="Map"
+          component={MapScreen}
         />
         <RootStack.Screen
           options={({ route }) => ({

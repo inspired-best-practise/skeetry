@@ -20,7 +20,7 @@ export const HomeScreen = () => {
   const { t } = useTranslation();
   const ref = useRef<ScrollView>(null);
   // const [nearby, setNearby] = useState();
-  const [popular, setPopular] = useState();
+  const [popular, setPopular] = useState([]);
 
   useScrollToTop(ref);
 
@@ -61,7 +61,7 @@ export const HomeScreen = () => {
   // }, [dataNearby]);
 
   useEffect(() => {
-    if (dataPopular) {
+    if (dataPopular && popular.length === 0) {
       setPopular(dataPopular.popular.edges);
     }
   }, [dataPopular]);
