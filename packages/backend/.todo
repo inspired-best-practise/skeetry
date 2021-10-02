@@ -27,3 +27,9 @@ Auth module:
 Story module:
   ☐ Add show date to story model (is this a normal solution?)
   ☐ Save "saw" field to storage or database (where is the best place to store it?)
+
+Production:
+  ✔ Check postgres container @done(21-10-01 19:11)
+  ✔ Auto backups postgres @done(21-10-01 19:11)
+  ☐ DB backups
+  ☐ Rancher backups

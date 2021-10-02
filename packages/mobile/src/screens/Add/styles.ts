@@ -36,7 +36,7 @@ export const s = StyleSheet.create({
     width: '100%',
     height: normalize(45),
     backgroundColor: colors.lightGray,
-    marginVertical: normalize(10),
+    marginTop: normalize(10),
     color: colors.baseGray,
     borderRadius: radius.base,
   },

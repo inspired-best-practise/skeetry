@@ -13,7 +13,7 @@ export const Categories = () => {
   const { t } = useTranslation();
   const [loadingCounter, setLoadingCount] = useState(0);
 
-  const { data, loading, error } = useTagsQuery();
+  const { data, loading } = useTagsQuery();
 
   useEffect(() => {
     if (!loading) {
@@ -23,7 +23,7 @@ export const Categories = () => {
 
   const categories = data?.tags;
 
-  return (
+  return categories?.length !== 0 ? (
     <View>
       <View style={{ marginHorizontal: 20 }}>
         <Text style={tTitle}>{`${t('home:categories')}`}</Text>
@@ -37,5 +37,5 @@ export const Categories = () => {
         </ScrollView>
       )}
     </View>
-  );
+  ) : null;
 };

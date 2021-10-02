@@ -136,16 +136,15 @@ export const HomeScreen = () => {
             loading={loadingNearby}
           />
         )} */}
-        {!errorPopular && (
-          <HorizontalCardList
-            title={`${t('home:popular')}`}
-            data={popular}
-            size="wide"
-            handleEndReached={popularEndReached}
-            loading={loadingPopular}
-            type="popular"
-          />
-        )}
+
+        <HorizontalCardList
+          title={`${t('home:popular')}`}
+          data={popular}
+          size="wide"
+          handleEndReached={popularEndReached}
+          loading={loadingPopular}
+          type="popular"
+        />
       </ScrollView>
     </SafeAreaView>
   );

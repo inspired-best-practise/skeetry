@@ -72,7 +72,7 @@ Explore:
 Card: 
    ✘ Fix bottom sheet blink @cancelled(21-09-29 18:03)
    ☐ Country name
-   ☐ Map + map detail screen
+   ✔ Map + map detail screen @done(21-09-30 16:57)
 
 Profile: 
    ☐ Statistics screen: Countries statistic like Asia 5%, Europa 10%

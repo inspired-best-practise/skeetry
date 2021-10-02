@@ -258,75 +258,54 @@ export const LocationsScreen = () => {
   return (
     <SafeAreaView edges={['top']} style={s.container}>
       <ScrollView ref={ref} showsVerticalScrollIndicator={false} scrollsToTop={true}>
-        {!errorCapital && (
-          <HorizontalCardList
-            title={`${t('explore:capital')}`}
-            data={capital}
-            size="wide"
-            handleEndReached={capitalEndReached}
-            loading={loadingCapital}
-            type="capital"
-          />
-        )}
-        {/* {!errorPopular && (
-          <HorizontalCardList
-            title={`${t('explore:forYou')}`}
-            data={popular}
-            size="small"
-            handleEndReached={popularEndReached}
-            loading={loadingPopular}
-          />
-        )} */}
-        {!errorEurope && (
-          <HorizontalCardList
-            title={`${t('explore:europe')}`}
-            data={europe}
-            size="small"
-            handleEndReached={europeEndReached}
-            loading={loadingEurope}
-            type="europe"
-          />
-        )}
-        {!errorAsia && (
-          <HorizontalCardList
-            title={`${t('explore:asia')}`}
-            data={asia}
-            size="small"
-            handleEndReached={asiaEndReached}
-            loading={loadingAsia}
-            type="asia"
-          />
-        )}
-        {!errorAustralia && (
-          <HorizontalCardList
-            title={`${t('explore:australia')}`}
-            data={australia}
-            size="small"
-            handleEndReached={australiaEndReached}
-            loading={loadingAustralia}
-            type="oceania"
-          />
-        )}
-        {!errorAmericas && (
-          <HorizontalCardList
-            title={`${t('explore:americas')}`}
-            data={americas}
-            size="small"
-            handleEndReached={americasEndReached}
-            loading={loadingAmericas}
-            type="americas"
-          />
-        )}
-        {!errorAfrica && (
-          <HorizontalCardList
-            title={`${t('explore:africa')}`}
-            data={africa}
-            size="small"
-            handleEndReached={africaEndReached}
-            loading={loadingAfrica}
-            type="africa"
-          />
-        )}
+        <HorizontalCardList
+          title={`${t('explore:capital')}`}
+          data={capital}
+          size="wide"
+          handleEndReached={capitalEndReached}
+          loading={loadingCapital}
+          type="capital"
+        />
+        <HorizontalCardList
+          title={`${t('explore:europe')}`}
+          data={europe}
+          size="small"
+          handleEndReached={europeEndReached}
+          loading={loadingEurope}
+          type="europe"
+        />
+        <HorizontalCardList
+          title={`${t('explore:asia')}`}
+          data={asia}
+          size="small"
+          handleEndReached={asiaEndReached}
+          loading={loadingAsia}
+          type="asia"
+        />
+        <HorizontalCardList
+          title={`${t('explore:australia')}`}
+          data={australia}
+          size="small"
+          handleEndReached={australiaEndReached}
+          loading={loadingAustralia}
+          type="oceania"
+        />
+        <HorizontalCardList
+          title={`${t('explore:americas')}`}
+          data={americas}
+          size="small"
+          handleEndReached={americasEndReached}
+          loading={loadingAmericas}
+          type="americas"
+        />
+        <HorizontalCardList
+          title={`${t('explore:africa')}`}
+          data={africa}
+          size="small"
+          handleEndReached={africaEndReached}
+          loading={loadingAfrica}
+          type="africa"
+        />
       </ScrollView>
     </SafeAreaView>
   );
