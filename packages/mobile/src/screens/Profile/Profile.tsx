@@ -1,5 +1,5 @@
 import { useScrollToTop } from '@react-navigation/native';
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View, Text, FlatList, RefreshControl } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
@@ -17,6 +17,8 @@ export const ProfileScreen = () => {
   const { t } = useTranslation();
 
   const [refreshing, setRefreshing] = useState(false);
+  const [wanted, setWanted] = useState([]);
+  const [visited, setVisited] = useState([]);
 
   const { loading, data, error, refetch } = useMeQuery();
 
@@ -35,6 +37,29 @@ export const ProfileScreen = () => {
     },
     notifyOnNetworkStatusChange: true,
   });
+
+  useEffect(() => {
+    if (dataWanted && wanted.length === 0) {
+      setWanted(dataWanted.wanted.edges);
+    }
+  }, [dataWanted]);
+
+  const wantedEndReached = async () => {
+    if (wanted) {
+      const lastWanted = wanted[wanted.length - 1].node.id;
+      const newData = await fetchMoreWanted({
+        variables: {
+          first: 10,
+          after: lastWanted,
+          orderBy: {
+            direction: OrderDirection.Asc,
+          },
+        },
+      });
+      setWanted(prevState => [...prevState, ...newData.data.wanted.edges]);
+    }
+  };
+
   const {
     data: dataVisited,
     loading: loadingVisited,
@@ -51,6 +76,28 @@ export const ProfileScreen = () => {
     notifyOnNetworkStatusChange: true,
   });
 
+  useEffect(() => {
+    if (dataVisited && visited.length === 0) {
+      setVisited(dataVisited.visited.edges);
+    }
+  }, [dataVisited]);
+
+  const visitedEndReached = async () => {
+    if (wanted) {
+      const lastVisited = visited[visited.length - 1].node.id;
+      const newData = await fetchMoreVisited({
+        variables: {
+          first: 10,
+          after: lastVisited,
+          orderBy: {
+            direction: OrderDirection.Asc,
+          },
+        },
+      });
+      setVisited(prevState => [...prevState, ...newData.data.visited.edges]);
+    }
+  };
+
   const selected = profileStore(state => state.selected);
   const setSelected = profileStore(state => state.setSelected);
   const setLogout = authStore(state => state.setLogout);
@@ -65,7 +112,7 @@ export const ProfileScreen = () => {
 
   useScrollToTop(ref);
 
-  if (loading || loadingWanted || loadingVisited) {
+  if (loading) {
     return (
       <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>Loading...</Text>
@@ -85,8 +132,8 @@ export const ProfileScreen = () => {
   }
 
   const user = data!.me;
-  const wanted = dataWanted!.wanted.edges;
-  const visited = dataVisited!.visited.edges;
+
+  const isMe = true;
 
   const getData = () => {
     switch (selected) {
@@ -105,7 +152,7 @@ export const ProfileScreen = () => {
       <View style={s.headerArea} />
       <FlatList
         ref={ref}
-        ListHeaderComponent={renderHeader(user, t, setSelected)}
+        ListHeaderComponent={renderHeader(user, t, setSelected, isMe)}
         ListEmptyComponent={renderEmpty}
         numColumns={2}
         horizontal={false}
@@ -117,6 +164,7 @@ export const ProfileScreen = () => {
         showsVerticalScrollIndicator={false}
         decelerationRate="fast"
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+        onEndReached={() => (selected === 'want' ? wantedEndReached() : visitedEndReached())}
       />
     </>
   );

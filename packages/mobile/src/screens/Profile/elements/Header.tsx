@@ -8,14 +8,15 @@ import { navigation } from '_app/services/navigations';
 
 import { s } from '../styles';
 
-export const renderHeader = (user: TUser, t, setSelected) => {
+export const renderHeader = (user: TUser, t, setSelected, isMe) => {
   return (
     <View>
       <View style={[s.profilePanel, { alignItems: 'center' }]}>
-        <TouchableWithoutFeedback onPress={() => navigation.navigate('ProfileSettings')}>
-          {/* TODO: color fron constants */}
-          <Icon name="settings" size={24} color={'rgba(0,0,0, 0.15)'} />
-        </TouchableWithoutFeedback>
+        {isMe && (
+          <TouchableWithoutFeedback onPress={() => navigation.navigate('ProfileSettings')}>
+            <Icon name="settings" size={24} color={'rgba(0,0,0, 0.15)'} />
+          </TouchableWithoutFeedback>
+        )}
 
         {/* <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <TouchableWithoutFeedback onPress={() => navigation.navigate('AddChooser')} style={{ marginRight: 10 }}>

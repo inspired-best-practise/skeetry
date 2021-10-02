@@ -84,10 +84,11 @@ export class CityResolver {
       nullable: true,
     })
     orderBy: CityOrder,
+    @Args('userId', { nullable: true }) userId: string,
     @UserEntity() user: User,
   ) {
     const pagination = { skip, after, before, first, last };
-    return this.city.findWanted(pagination, orderBy, user);
+    return this.city.findWanted(pagination, orderBy, userId, user);
   }
 
   @UseGuards(GqlAuthGuard)
@@ -104,10 +105,11 @@ export class CityResolver {
       nullable: true,
     })
     orderBy: CityOrder,
+    @Args('userId', { nullable: true }) userId: string,
     @UserEntity() user: User,
   ) {
     const pagination = { skip, after, before, first, last };
-    return this.city.findVisited(pagination, orderBy, user);
+    return this.city.findVisited(pagination, orderBy, userId, user);
   }
 
   @UseGuards(GqlAuthGuard)

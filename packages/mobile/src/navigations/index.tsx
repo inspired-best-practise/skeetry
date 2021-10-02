@@ -17,6 +17,7 @@ import {
   CameraScreen,
   CitiesListScreen,
   MapScreen,
+  ProfileUserScreen,
 } from '_app/screens';
 import { navigation, navigationRef } from '_app/services/navigations';
 import { normalize } from '_app/utils/dimensions';
@@ -183,6 +184,16 @@ const Index = (): JSX.Element => {
           }}
           name="Camera"
           component={CameraScreen}
+        />
+        <RootStack.Screen
+          options={({ route }) => ({
+            ...TransitionPresets.ModalTransition,
+            headerShown: PLATFORM.IS_IOS ? false : true,
+            headerTitle: `${route.params.user.username}`,
+            presentation: 'formSheet',
+          })}
+          name="ProfileUser"
+          component={ProfileUserScreen}
         />
       </RootStack.Navigator>
     </NavigationContainer>

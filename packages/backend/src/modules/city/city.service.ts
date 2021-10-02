@@ -433,7 +433,12 @@ export class CityService {
     return cities;
   }
 
-  async findWanted(pagination: PaginationArgs, orderBy: CityOrder, user: User) {
+  async findWanted(
+    pagination: PaginationArgs,
+    orderBy: CityOrder,
+    userId: string,
+    user: User,
+  ) {
     const { skip, after, before, first, last } = pagination;
 
     const cities = await findManyCursorConnection(
@@ -451,7 +456,7 @@ export class CityService {
           where: {
             userWanted: {
               some: {
-                id: user.id,
+                id: userId ? userId : user.id,
               },
             },
           },
@@ -463,7 +468,7 @@ export class CityService {
           where: {
             userWanted: {
               some: {
-                id: user.id,
+                id: userId ? userId : user.id,
               },
             },
           },
@@ -477,6 +482,7 @@ export class CityService {
   async findVisited(
     pagination: PaginationArgs,
     orderBy: CityOrder,
+    userId: string,
     user: User,
   ) {
     const { skip, after, before, first, last } = pagination;
@@ -496,7 +502,7 @@ export class CityService {
           where: {
             userVisited: {
               some: {
-                id: user.id,
+                id: userId ? userId : user.id,
               },
             },
           },
@@ -508,7 +514,7 @@ export class CityService {
           where: {
             userVisited: {
               some: {
-                id: user.id,
+                id: userId ? userId : user.id,
               },
             },
           },
@@ -520,7 +526,7 @@ export class CityService {
   }
 
   // TODO: just cities now
-  async findNearby(pagination: PaginationArgs, orderBy: CityOrder, user: User) {
+  async findNearby(pagination: PaginationArgs, orderBy: CityOrder) {
     const { skip, after, before, first, last } = pagination;
 
     const cities = await findManyCursorConnection(

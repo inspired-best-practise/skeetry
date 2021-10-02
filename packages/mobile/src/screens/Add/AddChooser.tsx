@@ -7,6 +7,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Avatar, Card, HorizontalListSkeleton, ModalControl } from '_app/components';
 import { PLATFORM, tBase } from '_app/constants';
 import { OrderDirection, useCitiesQuery, useUsersQuery } from '_app/generated/graphql';
+import { navigation } from '_app/services/navigations';
 import { normalize } from '_app/utils/dimensions';
 
 import { s } from './styles';
@@ -130,7 +131,15 @@ export const AddChooserScreen = () => {
                   contentContainerStyle={{ alignItems: 'center', padding: 20 }}
                 >
                   {usersList?.map(i => (
-                    <TouchableOpacity key={i.node.id} activeOpacity={0.7}>
+                    <TouchableOpacity
+                      key={i.node.id}
+                      activeOpacity={0.7}
+                      onPress={() =>
+                        navigation.push('ProfileUser', {
+                          user: i.node,
+                        })
+                      }
+                    >
                       <View style={{ marginRight: 20, flexDirection: 'row', alignItems: 'center' }}>
                         <Avatar src={i.node.avatar} nickname={i.node.username} />
                         <Text style={[tBase, { paddingLeft: 10 }]}>{i.node.username}</Text>

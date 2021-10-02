@@ -16,6 +16,10 @@ export const s = StyleSheet.create({
     // paddingHorizontal: normalize(20),
     paddingBottom: normalize(80),
   },
+  containerUser: {
+    flex: 1,
+    alignItems: 'center',
+  },
   profilePanel: {
     display: 'flex',
     flexDirection: 'row',
