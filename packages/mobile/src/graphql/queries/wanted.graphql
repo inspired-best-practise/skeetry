@@ -4,7 +4,8 @@ query Wanted(
   $first: Int!,
   $last: Int,
   $orderBy: CityOrder,
-  $skip: Int
+  $skip: Int,
+  $userId: String,
 ) {
   wanted(
     after: $after,
@@ -12,7 +13,8 @@ query Wanted(
     first: $first,
     last: $last,
     orderBy: $orderBy,
-    skip: $skip
+    skip: $skip,
+    userId: $userId
   ) {
     edges {
       cursor

@@ -304,6 +304,7 @@ export type QueryVisitedArgs = {
   last?: Maybe<Scalars['Int']>;
   orderBy?: Maybe<CityOrder>;
   skip?: Maybe<Scalars['Int']>;
+  userId?: Maybe<Scalars['String']>;
 };
 
 
@@ -314,6 +315,7 @@ export type QueryWantedArgs = {
   last?: Maybe<Scalars['Int']>;
   orderBy?: Maybe<CityOrder>;
   skip?: Maybe<Scalars['Int']>;
+  userId?: Maybe<Scalars['String']>;
 };
 
 export type SignupInput = {
@@ -600,6 +602,7 @@ export type VisitedQueryVariables = Exact<{
   last?: Maybe<Scalars['Int']>;
   orderBy?: Maybe<CityOrder>;
   skip?: Maybe<Scalars['Int']>;
+  userId?: Maybe<Scalars['String']>;
 }>;
 
 
@@ -612,6 +615,7 @@ export type WantedQueryVariables = Exact<{
   last?: Maybe<Scalars['Int']>;
   orderBy?: Maybe<CityOrder>;
   skip?: Maybe<Scalars['Int']>;
+  userId?: Maybe<Scalars['String']>;
 }>;
 
 
@@ -1467,7 +1471,7 @@ export type UsersQueryHookResult = ReturnType<typeof useUsersQuery>;
 export type UsersLazyQueryHookResult = ReturnType<typeof useUsersLazyQuery>;
 export type UsersQueryResult = Apollo.QueryResult<UsersQuery, UsersQueryVariables>;
 export const VisitedDocument = gql`
-    query Visited($after: String, $before: String, $first: Int!, $last: Int, $orderBy: CityOrder, $skip: Int) {
+    query Visited($after: String, $before: String, $first: Int!, $last: Int, $orderBy: CityOrder, $skip: Int, $userId: String) {
   visited(
     after: $after
     before: $before
@@ -1475,6 +1479,7 @@ export const VisitedDocument = gql`
     last: $last
     orderBy: $orderBy
     skip: $skip
+    userId: $userId
   ) {
     edges {
       cursor
@@ -1509,6 +1514,7 @@ ${RegularPageInfoFragmentDoc}`;
  *      last: // value for 'last'
  *      orderBy: // value for 'orderBy'
  *      skip: // value for 'skip'
+ *      userId: // value for 'userId'
  *   },
  * });
  */
@@ -1524,7 +1530,7 @@ export type VisitedQueryHookResult = ReturnType<typeof useVisitedQuery>;
 export type VisitedLazyQueryHookResult = ReturnType<typeof useVisitedLazyQuery>;
 export type VisitedQueryResult = Apollo.QueryResult<VisitedQuery, VisitedQueryVariables>;
 export const WantedDocument = gql`
-    query Wanted($after: String, $before: String, $first: Int!, $last: Int, $orderBy: CityOrder, $skip: Int) {
+    query Wanted($after: String, $before: String, $first: Int!, $last: Int, $orderBy: CityOrder, $skip: Int, $userId: String) {
   wanted(
     after: $after
     before: $before
@@ -1532,6 +1538,7 @@ export const WantedDocument = gql`
     last: $last
     orderBy: $orderBy
     skip: $skip
+    userId: $userId
   ) {
     edges {
       cursor
@@ -1566,6 +1573,7 @@ ${RegularPageInfoFragmentDoc}`;
  *      last: // value for 'last'
  *      orderBy: // value for 'orderBy'
  *      skip: // value for 'skip'
+ *      userId: // value for 'userId'
  *   },
  * });
  */

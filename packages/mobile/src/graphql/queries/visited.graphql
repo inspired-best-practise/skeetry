@@ -4,7 +4,8 @@ query Visited(
   $first: Int!,
   $last: Int,
   $orderBy: CityOrder,
-  $skip: Int
+  $skip: Int,
+  $userId: String,
 ) {
   visited(
     after: $after,
@@ -12,7 +13,8 @@ query Visited(
     first: $first,
     last: $last,
     orderBy: $orderBy,
-    skip: $skip
+    skip: $skip,
+    userId: $userId
   ) {
     edges {
       cursor
