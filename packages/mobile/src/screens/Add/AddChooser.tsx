@@ -1,8 +1,16 @@
 import { useScrollToTop } from '@react-navigation/native';
 import React, { useRef, useState } from 'react';
 // import { useTranslation } from 'react-i18next';
-import { View, StatusBar, ScrollView, TextInput, TouchableWithoutFeedback, Keyboard, Text } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import {
+  View,
+  StatusBar,
+  ScrollView,
+  TextInput,
+  TouchableWithoutFeedback,
+  Keyboard,
+  Text,
+  TouchableOpacity,
+} from 'react-native';
 
 import { Avatar, Card, HorizontalListSkeleton, ModalControl } from '_app/components';
 import { PLATFORM, tBase } from '_app/constants';
