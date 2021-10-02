@@ -526,7 +526,7 @@ export class CityService {
   }
 
   // TODO: just cities now
-  async findNearby(pagination: PaginationArgs, orderBy: CityOrder) {
+  async findNearby(pagination: PaginationArgs, orderBy: CityOrder, user: User) {
     const { skip, after, before, first, last } = pagination;
 
     const cities = await findManyCursorConnection(
