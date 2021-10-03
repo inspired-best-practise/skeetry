@@ -1,5 +1,5 @@
 -- CreateEnum
-CREATE TYPE "Continent" AS ENUM ('ASIA', 'AFRICA', 'NORTH_AMERICA', 'SOUTH_AMERICA', 'ANTARCTICA', 'EUROPE', 'OCEANIA');
+CREATE TYPE "Continent" AS ENUM ('AFRICA', 'ASIA', 'EUROPE', 'NORTH_AMERICA', 'SOUTH_AMERICA', 'ANTARCTICA', 'AUSTRALIA', 'ISLAND', 'OCEANIA');
 
 -- CreateEnum
 CREATE TYPE "Locale" AS ENUM ('RU');
@@ -38,10 +38,11 @@ CREATE TABLE "Country" (
     "continent" "Continent" NOT NULL,
     "subregion" TEXT,
     "latitude" TEXT,
-    "longitue" TEXT,
     "emoji" TEXT,
     "emojiU" TEXT,
     "overview" TEXT,
+    "pk" INTEGER NOT NULL,
+    "longitude" TEXT,
 
     CONSTRAINT "Country_pkey" PRIMARY KEY ("id")
 );
@@ -62,10 +63,11 @@ CREATE TABLE "State" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "stateCode" TEXT,
-    "latitude" TEXT NOT NULL,
-    "longitue" TEXT NOT NULL,
+    "latitude" TEXT,
     "overview" TEXT,
     "countryId" TEXT NOT NULL,
+    "pk" INTEGER NOT NULL,
+    "longitude" TEXT,
 
     CONSTRAINT "State_pkey" PRIMARY KEY ("id")
 );
@@ -74,7 +76,7 @@ CREATE TABLE "State" (
 CREATE TABLE "StateLocalization" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
-    "locale" "Locale" NOT NULL,
+    "locale" "Locale" NOT NULL DEFAULT E'RU',
     "overview" TEXT,
     "stateId" TEXT NOT NULL,
 
@@ -85,13 +87,18 @@ CREATE TABLE "StateLocalization" (
 CREATE TABLE "City" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
-    "latitude" TEXT NOT NULL,
-    "longitude" TEXT NOT NULL,
+    "area" TEXT,
+    "region" TEXT,
+    "latitude" TEXT,
+    "longitude" TEXT,
     "wantedCount" INTEGER NOT NULL DEFAULT 0,
     "visitedCount" INTEGER NOT NULL DEFAULT 0,
+    "popularity" INTEGER NOT NULL DEFAULT 0,
     "overview" TEXT,
     "isCapital" BOOLEAN NOT NULL DEFAULT false,
     "stateId" TEXT NOT NULL,
+    "pk" INTEGER NOT NULL,
+    "countryId" TEXT,
 
     CONSTRAINT "City_pkey" PRIMARY KEY ("id")
 );
@@ -110,11 +117,10 @@ CREATE TABLE "CityLocalization" (
 -- CreateTable
 CREATE TABLE "Image" (
     "id" TEXT NOT NULL,
-    "urls" JSONB NOT NULL DEFAULT E'[{ "raw": "" }, { "full": "" }, { "regular": "" }, { "small": "" }, { "thumb": "" }]',
-    "blurHash" TEXT,
     "cityId" TEXT,
-    "isUnsplash" BOOLEAN NOT NULL DEFAULT true,
-    "unsplashId" TEXT,
+    "urlRegular" TEXT,
+    "urlSmall" TEXT,
+    "urlThumb" TEXT,
 
     CONSTRAINT "Image_pkey" PRIMARY KEY ("id")
 );
@@ -193,13 +199,13 @@ CREATE TABLE "Sms" (
 );
 
 -- CreateTable
-CREATE TABLE "_WantedCity" (
+CREATE TABLE "_VisitedCity" (
     "A" TEXT NOT NULL,
     "B" TEXT NOT NULL
 );
 
 -- CreateTable
-CREATE TABLE "_VisitedCity" (
+CREATE TABLE "_WantedCity" (
     "A" TEXT NOT NULL,
     "B" TEXT NOT NULL
 );
@@ -220,22 +226,31 @@ CREATE UNIQUE INDEX "User_phone_key" ON "User"("phone");
 CREATE UNIQUE INDEX "Country_name_key" ON "Country"("name");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "Country_pk_key" ON "Country"("pk");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "CountryLocalization_name_key" ON "CountryLocalization"("name");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "State_pk_key" ON "State"("pk");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "City_pk_key" ON "City"("pk");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "Tag_name_key" ON "Tag"("name");
-
--- CreateIndex
-CREATE UNIQUE INDEX "_WantedCity_AB_unique" ON "_WantedCity"("A", "B");
-
--- CreateIndex
-CREATE INDEX "_WantedCity_B_index" ON "_WantedCity"("B");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "_VisitedCity_AB_unique" ON "_VisitedCity"("A", "B");
 
 -- CreateIndex
 CREATE INDEX "_VisitedCity_B_index" ON "_VisitedCity"("B");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "_WantedCity_AB_unique" ON "_WantedCity"("A", "B");
+
+-- CreateIndex
+CREATE INDEX "_WantedCity_B_index" ON "_WantedCity"("B");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "_CityToTag_AB_unique" ON "_CityToTag"("A", "B");
@@ -256,6 +271,9 @@ ALTER TABLE "StateLocalization" ADD CONSTRAINT "StateLocalization_stateId_fkey" 
 ALTER TABLE "City" ADD CONSTRAINT "City_stateId_fkey" FOREIGN KEY ("stateId") REFERENCES "State"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "City" ADD CONSTRAINT "City_countryId_fkey" FOREIGN KEY ("countryId") REFERENCES "Country"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "CityLocalization" ADD CONSTRAINT "CityLocalization_cityId_fkey" FOREIGN KEY ("cityId") REFERENCES "City"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
@@ -274,16 +292,16 @@ ALTER TABLE "StoryStep" ADD CONSTRAINT "StoryStep_storyId_fkey" FOREIGN KEY ("st
 ALTER TABLE "StoryStepLocalization" ADD CONSTRAINT "StoryStepLocalization_storyStepId_fkey" FOREIGN KEY ("storyStepId") REFERENCES "StoryStep"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "_WantedCity" ADD FOREIGN KEY ("A") REFERENCES "City"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "_WantedCity" ADD FOREIGN KEY ("B") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
 ALTER TABLE "_VisitedCity" ADD FOREIGN KEY ("A") REFERENCES "City"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_VisitedCity" ADD FOREIGN KEY ("B") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_WantedCity" ADD FOREIGN KEY ("A") REFERENCES "City"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_WantedCity" ADD FOREIGN KEY ("B") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_CityToTag" ADD FOREIGN KEY ("A") REFERENCES "City"("id") ON DELETE CASCADE ON UPDATE CASCADE;
