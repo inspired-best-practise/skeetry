@@ -96,7 +96,7 @@ model City {
   isCapital     Boolean            @default(false)
   stateId       String
   pk            Int                @unique
-  state         State              @relation(fields: [stateId], references: [id])
+  state         State?             @relation(fields: [stateId], references: [id])
   localizations CityLocalization[]
   images        Image[]
   tags          Tag[]
