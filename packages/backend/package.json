@@ -61,6 +61,7 @@
     "twilio": "^3.68.0",
     "unsplash-js": "^7.0.15",
     "uuid": "^8.3.2",
+    "vk-io": "^4.4.0",
     "webpack": "^5.55.1",
     "webpack-node-externals": "^3.0.0"
   },

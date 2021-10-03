@@ -12,6 +12,9 @@ node_modules/
 dist/*
 lib/
 /prisma/seed.ts
+/prisma/countries.ts
+/prisma/states.ts
+/prisma/cities.ts
 
 # misc
 .DS_Store

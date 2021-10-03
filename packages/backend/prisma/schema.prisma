@@ -84,8 +84,10 @@ model StateLocalization {
 model City {
   id            String             @id @default(cuid())
   name          String
-  latitude      String
-  longitude     String
+  area          String?
+  region        String?
+  latitude      String?
+  longitude     String?
   wantedCount   Int                @default(0)
   visitedCount  Int                @default(0)
   popularity    Int                @default(0)
@@ -181,12 +183,13 @@ model Sms {
 }
 
 enum Continent {
-  ASIA
   AFRICA
-  AMERICAS
-  POLAR
+  ASIA
   EUROPE
-  OCEANIA
+  NORTH_AMERICA
+  SOUTH_AMERICA
+  ANTARCTICA
+  AUSTRALIA
   ISLAND
 }
 
