@@ -191,6 +191,7 @@ enum Continent {
   ANTARCTICA
   AUSTRALIA
   ISLAND
+  OCEANIA
 }
 
 enum Locale {
