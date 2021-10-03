@@ -47,6 +47,7 @@ model Country {
   longitude      String?
   localizations  CountryLocalization[]
   states         State[]
+  cities         City[]
 }
 
 model CountryLocalization {
@@ -101,6 +102,8 @@ model City {
   tags          Tag[]
   userVisited   User[]             @relation("VisitedCity")
   userWanted    User[]             @relation("WantedCity")
+  country       Country?           @relation(fields: [countryId], references: [id])
+  countryId     String?
 }
 
 model CityLocalization {
