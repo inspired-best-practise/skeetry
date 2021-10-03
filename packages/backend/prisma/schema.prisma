@@ -94,7 +94,7 @@ model City {
   popularity    Int                @default(0)
   overview      String?
   isCapital     Boolean            @default(false)
-  stateId       String
+  stateId       String?
   pk            Int                @unique
   state         State?             @relation(fields: [stateId], references: [id])
   localizations CityLocalization[]
