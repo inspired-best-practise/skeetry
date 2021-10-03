@@ -15,6 +15,7 @@ lib/
 /prisma/countries.ts
 /prisma/states.ts
 /prisma/cities.ts
+/prisma/clean.ts
 
 # misc
 .DS_Store
