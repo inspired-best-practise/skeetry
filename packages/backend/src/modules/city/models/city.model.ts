@@ -36,10 +36,10 @@ export class City extends BaseModel {
   @Field(() => [Image], { nullable: true })
   images?: Image[];
 
-  @Field()
+  @Field({ nullable: true })
   latitude: string;
 
-  @Field()
+  @Field({ nullable: true })
   longitude: string;
 
   @Field()
@@ -51,7 +51,7 @@ export class City extends BaseModel {
   @Field(() => [User], { nullable: true })
   userVisited: User[];
 
-  @Field(() => State)
+  @Field(() => State, { nullable: true })
   state: State;
 
   @Field(() => [CityLocalization], { nullable: true })
