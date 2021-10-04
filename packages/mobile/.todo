@@ -44,6 +44,7 @@ Features:
    ☐ Picture of the day*
    ✔ Code Push @done(21-09-24 21:09)
    ✔ Android app icon @done(21-09-24 17:13)
+   ☐ react-native-confetti-cannon for signup
 
 Auth:
    ✔ Form with yup + react-hook-form / formik @done(21-09-18 20:23)
