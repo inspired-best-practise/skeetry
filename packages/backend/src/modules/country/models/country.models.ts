@@ -25,25 +25,25 @@ export class Country extends BaseModel {
   @Field()
   name: string;
 
-  @Field()
+  @Field({ nullable: true })
   iso2: string;
 
-  @Field()
+  @Field({ nullable: true })
   iso3: string;
 
-  @Field()
+  @Field({ nullable: true })
   numericCode: string;
 
-  @Field()
+  @Field({ nullable: true })
   phoneCode: string;
 
-  @Field()
+  @Field({ nullable: true })
   currency: string;
 
-  @Field()
+  @Field({ nullable: true })
   currencySymbol: string;
 
-  @Field()
+  @Field({ nullable: true })
   tld: string;
 
   @Field({ nullable: true })
@@ -55,19 +55,19 @@ export class Country extends BaseModel {
   @Field()
   continent: Continent;
 
-  @Field()
+  @Field({ nullable: true })
   subregion: string;
 
-  @Field()
+  @Field({ nullable: true })
   latitude: string;
 
-  @Field()
+  @Field({ nullable: true })
   longitude: string;
 
   @Field({ nullable: true })
   emoji?: string;
 
-  @Field()
+  @Field({ nullable: true })
   emojiU: string;
 
   @Field(() => [State], { nullable: true })

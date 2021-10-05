@@ -1,21 +1,11 @@
 fragment RegularCountry on Country {
   id             
   pk             
-  name           
-  iso2          
-  iso3           
-  numericCode    
-  phoneCode      
-  currency       
-  currencySymbol 
-  tld            
-  native         
-  continent      
-  subregion      
+  name            
+  continent        
   latitude       
   longitude      
-  emoji          
-  emojiU         
+  emoji              
   overview       
   localizations {
     ...RegularCountryLocalization
