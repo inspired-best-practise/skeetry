@@ -14,14 +14,6 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: skeetry
 
-  redis:
-    container_name: 'skeetry-redis'
-    image: 'redis'
-    ports:
-      - '127.0.0.1:6379:6379'
-    volumes:
-      - 'redisdata:/data'
-
   api:
     container_name: 'skeetry-api'
     image: node:lts

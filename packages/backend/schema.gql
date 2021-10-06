@@ -26,13 +26,13 @@ type City {
   id: ID!
   images: [Image!]
   isCapital: Boolean!
-  latitude: String!
+  latitude: String
   localizations: [CityLocalization!]
-  longitude: String!
+  longitude: String
   name: String!
   overview: String
   pk: Int!
-  state: State!
+  state: State
 
   """Identifies the date and time when the object was last updated."""
   updatedAt: DateTime!
@@ -74,25 +74,25 @@ type Country {
 
   """Identifies the date and time when the object was created."""
   createdAt: DateTime!
-  currency: String!
-  currencySymbol: String!
+  currency: String
+  currencySymbol: String
   emoji: String
-  emojiU: String!
+  emojiU: String
   id: ID!
-  iso2: String!
-  iso3: String!
-  latitude: String!
+  iso2: String
+  iso3: String
+  latitude: String
   localizations: [CountryLocalization!]
-  longitude: String!
+  longitude: String
   name: String!
   native: String
-  numericCode: String!
+  numericCode: String
   overview: String
-  phoneCode: String!
+  phoneCode: String
   pk: Int!
   states: [State!]
-  subregion: String!
-  tld: String!
+  subregion: String
+  tld: String
 
   """Identifies the date and time when the object was last updated."""
   updatedAt: DateTime!

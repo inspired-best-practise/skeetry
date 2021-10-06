@@ -150,9 +150,9 @@ export const Card = ({ item, size }: TCardProps) => {
       <Text numberOfLines={1} style={s.itemTitle}>
         {withLocalization('name', name, locale, localizations)}
       </Text>
-      <Text numberOfLines={1} style={s.itemDesc}>
+      {/* <Text numberOfLines={1} style={s.itemDesc}>
         {withLocalization('state.country.name', state.country.name, locale, localizations)}
-      </Text>
+      </Text> */}
     </View>
   );
 };
