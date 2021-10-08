@@ -4,6 +4,7 @@ import { BaseModel } from '../../common/base.model';
 import { CityLocalization } from './cityLocalization.model';
 import { Image } from '../../image/models/image.model';
 import { State } from '../../state/models/state.model';
+import { Country } from '../../country/models/country.models';
 
 export enum CityType {
   COUNTRY = 'COUNTRY',
@@ -53,6 +54,9 @@ export class City extends BaseModel {
 
   @Field(() => State, { nullable: true })
   state: State;
+
+  @Field(() => Country, { nullable: true })
+  country: Country;
 
   @Field(() => [CityLocalization], { nullable: true })
   localizations?: CityLocalization[];

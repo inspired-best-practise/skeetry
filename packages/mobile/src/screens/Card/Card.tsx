@@ -199,7 +199,9 @@ export const CardScreen = ({ route, navigation }) => {
       )} */}
       <View style={s.content}>
         <View style={s.section}>
-          <Text style={s.name}>{currentCity.state.country.emoji + ' ' + currentCity.name}</Text>
+          <Text style={s.name}>
+            {currentCity.state ? currentCity.state.country.emoji : currentCity.country.emoji + ' ' + currentCity.name}
+          </Text>
         </View>
         <View style={s.section}>
           <View style={s.cardButtons}>
