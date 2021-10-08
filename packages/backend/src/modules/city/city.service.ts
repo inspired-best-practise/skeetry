@@ -20,6 +20,7 @@ export class CityService {
       include: {
         userWanted: true,
         userVisited: true,
+        country: true,
         state: {
           include: {
             country: true,
@@ -103,6 +104,7 @@ export class CityService {
       include: {
         userWanted: true,
         userVisited: true,
+        country: true,
         state: {
           include: {
             country: true,
@@ -186,6 +188,7 @@ export class CityService {
       include: {
         userWanted: true,
         userVisited: true,
+        country: true,
         state: {
           include: {
             country: true,
@@ -290,6 +293,7 @@ export class CityService {
         localizations: true,
         userVisited: true,
         userWanted: true,
+        country: true,
         state: {
           include: {
             country: true,
@@ -325,6 +329,7 @@ export class CityService {
               localizations: true,
               userVisited: true,
               userWanted: true,
+              country: true,
               state: {
                 include: {
                   country: true,
@@ -391,6 +396,7 @@ export class CityService {
             localizations: true,
             userVisited: true,
             userWanted: true,
+            country: true,
             state: {
               include: {
                 country: true,
@@ -447,6 +453,7 @@ export class CityService {
           include: {
             localizations: true,
             userWanted: true,
+            country: true,
             state: {
               include: {
                 country: true,
@@ -493,6 +500,7 @@ export class CityService {
           include: {
             localizations: true,
             userVisited: true,
+            country: true,
             state: {
               include: {
                 country: true,
@@ -536,6 +544,7 @@ export class CityService {
             localizations: true,
             userVisited: true,
             userWanted: true,
+            country: true,
             state: {
               include: {
                 country: true,
@@ -563,6 +572,7 @@ export class CityService {
             localizations: true,
             userVisited: true,
             userWanted: true,
+            country: true,
             state: {
               include: {
                 country: true,

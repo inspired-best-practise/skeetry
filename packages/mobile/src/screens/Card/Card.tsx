@@ -175,6 +175,8 @@ export const CardScreen = ({ route, navigation }) => {
         );
   };
 
+  console.log('currentCity', item);
+
   return (
     <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={s.container}>
       <StatusBar barStyle="light-content" animated translucent />
