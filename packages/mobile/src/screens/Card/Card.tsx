@@ -175,8 +175,6 @@ export const CardScreen = ({ route, navigation }) => {
         );
   };
 
-  console.log('currentCity', item);
-
   return (
     <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={s.container}>
       <StatusBar barStyle="light-content" animated translucent />
@@ -202,7 +200,9 @@ export const CardScreen = ({ route, navigation }) => {
       <View style={s.content}>
         <View style={s.section}>
           <Text style={s.name}>
-            {currentCity.state ? currentCity.state.country.emoji : currentCity.country.emoji + ' ' + currentCity.name}
+            {currentCity.state
+              ? currentCity.state.country.emoji + ' ' + currentCity.name
+              : currentCity.country.emoji + ' ' + currentCity.name}
           </Text>
         </View>
         <View style={s.section}>

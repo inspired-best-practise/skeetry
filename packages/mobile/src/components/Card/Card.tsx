@@ -11,7 +11,7 @@ import { s } from './styles';
 
 // TODO: refactor
 export const Card = ({ item, size }: TCardProps) => {
-  const { photos, name, id, rating, state, locale, localizations } = item;
+  const { photos, name, id, rating, state, country, locale, localizations } = item;
   const [active, setActive] = useState(0);
 
   const changeItem = nativeEvent => {
@@ -137,7 +137,7 @@ export const Card = ({ item, size }: TCardProps) => {
           </View>
         )}
         <View style={s.flag}>
-          <Text style={s.flagText}>{state && state.country.emoji}</Text>
+          <Text style={s.flagText}>{state ? state.country.emoji : country.emoji}</Text>
         </View>
       </View>
       {/* {size !== 'base' && (
@@ -150,9 +150,11 @@ export const Card = ({ item, size }: TCardProps) => {
       <Text numberOfLines={1} style={s.itemTitle}>
         {withLocalization('name', name, locale, localizations)}
       </Text>
-      {/* <Text numberOfLines={1} style={s.itemDesc}>
-        {withLocalization('state.country.name', state.country.name, locale, localizations)}
-      </Text> */}
+      <Text numberOfLines={1} style={s.itemDesc}>
+        {state
+          ? withLocalization('state.country.name', state.country.name, locale, localizations)
+          : withLocalization('country.name', country.name, locale, localizations)}
+      </Text>
     </View>
   );
 };
