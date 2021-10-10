@@ -1,6 +1,6 @@
 import { useScrollToTop } from '@react-navigation/native';
 import React, { useRef, useState } from 'react';
-// import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import {
   View,
   StatusBar,
@@ -21,7 +21,7 @@ import { normalize } from '_app/utils/dimensions';
 import { s } from './styles';
 
 export const AddChooserScreen = () => {
-  // const { t } = useTranslation();
+  const { t } = useTranslation();
   const ref = useRef<ScrollView>(null);
   // const [recommended, setRecommended] = useState();
   const [input, setInput] = useState('');
@@ -106,14 +106,14 @@ export const AddChooserScreen = () => {
               <TextInput
                 style={s.input}
                 autoCapitalize="none"
-                placeholder="Search"
+                placeholder={t('search:search')}
                 spellCheck={false}
                 onChangeText={handleChange}
               />
             </View>
           </View>
           {searchList?.length === 0 && usersList?.length === 0 && (
-            <Text style={{ alignItems: 'center', padding: 20 }}>Nothing was found for your query</Text>
+            <Text style={{ alignItems: 'center', padding: 20 }}>{t('search:not_found')}</Text>
           )}
           {input.length !== 0 && (
             <View>
@@ -171,7 +171,7 @@ export const AddChooserScreen = () => {
           {input.length !== 0 && (
             <ScrollView contentContainerStyle={s.contentContainer} horizontal showsHorizontalScrollIndicator={false}>
               {tagsMock.map(t => (
-                <TouchableHighlight key={t.id} style={s.tag} underlayColor="#DDDDDD" onPress={() => {}}>
+                <TouchableHighlight key={t.id} style={s.tag} underlayColor={colors.mainGray} onPress={() => {}}>
                   <Text>{t.title}</Text>
                 </TouchableHighlight>
               ))}

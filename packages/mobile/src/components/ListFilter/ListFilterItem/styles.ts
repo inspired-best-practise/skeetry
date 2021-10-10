@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 export const s = StyleSheet.create({
   filterItem: {
-    backgroundColor: '#eee',
+    backgroundColor: colors.mainGray,
     borderRadius: 6,
     paddingHorizontal: 20,
     paddingVertical: 12,

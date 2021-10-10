@@ -2,6 +2,7 @@ import { createStackNavigator, StackNavigationOptions } from '@react-navigation/
 import React from 'react';
 import { TAuthStackParamList } from 'types';
 
+import { colors } from '_app/constants';
 import {
   ForgotPasswordScreen,
   LoginScreen,
@@ -26,7 +27,7 @@ const AuthStack = () => {
         name="Phone"
         options={{
           headerShown: true,
-          headerTintColor: '#000',
+          headerTintColor: colors.black,
         }}
       />
       <Stack.Screen
@@ -34,7 +35,7 @@ const AuthStack = () => {
         name="Code"
         options={{
           headerShown: true,
-          headerTintColor: '#000',
+          headerTintColor: colors.black,
         }}
       />
       <Stack.Screen
@@ -49,7 +50,7 @@ const AuthStack = () => {
         name="ForgotPassword"
         options={{
           headerShown: true,
-          headerTintColor: '#000',
+          headerTintColor: colors.black,
           headerTitle: 'Forgot Pasword',
         }}
       />

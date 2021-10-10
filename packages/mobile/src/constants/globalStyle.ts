@@ -1,3 +1,4 @@
+import { DarkTheme, DefaultTheme } from '@react-navigation/native';
 import { TextStyle } from 'react-native';
 import { MapStyleElement } from 'react-native-maps';
 
@@ -50,6 +51,42 @@ export const colors = {
   gray700: '#374151',
   gray800: '#1F2937',
   gray900: '#111827',
+};
+
+// {
+//   white: '#000',
+//   black: '#fff',
+//   text: '#fff',
+//   lineGray: '#0d0d0d',
+//   lightGray: '#080808',
+//   mainGray: '#111111',
+//   mediumGray: '#a6a6a6',
+//   baseGray: '#393939',
+//   gray50: '#060504',
+//   gray100: '#0c0b09',
+//   gray200: '#1a1814',
+//   gray300: '#2e2a24',
+//   gray400: '#635c50',
+//   gray500: '#948d7f',
+//   gray700: '#c8beae',
+//   gray800: '#e0d6c8',
+//   gray900: '#eee7d8',
+// }
+
+export const lightTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: colors.white,
+  },
+};
+
+export const darkTheme = {
+  ...DarkTheme,
+  colors: {
+    ...DarkTheme.colors,
+    background: colors.black,
+  },
 };
 
 const textBase: TextStyle = {

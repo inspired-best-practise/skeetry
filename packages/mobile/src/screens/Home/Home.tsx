@@ -123,7 +123,7 @@ export const HomeScreen = () => {
         <Stories />
         <View style={[s.header, { marginBottom: 10 }]}>
           <TouchableOpacity onPress={onButtonPress}>
-            <Text style={{ fontWeight: '600', color: 'blue' }}>Check for updates</Text>
+            <Text style={{ fontWeight: '600', color: 'blue' }}>{t('utils:check_updates')}</Text>
           </TouchableOpacity>
         </View>
         <Categories />

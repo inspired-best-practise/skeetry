@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { View, Text, TouchableOpacity } from 'react-native';
 
 import { authStore } from '_app/stores';
@@ -6,11 +7,13 @@ import { authStore } from '_app/stores';
 import { s } from './styles';
 
 export const WelcomeScreen = () => {
+  const { t } = useTranslation();
+
   const setLogin = authStore(state => state.setLogin);
 
   return (
     <View style={s.container}>
-      <Text style={{ marginVertical: 20, textAlign: 'center' }}>Welcome to Skeetry</Text>
+      <Text style={{ marginVertical: 20, textAlign: 'center' }}>{t('utils:welcome_to')} Skeetry</Text>
       <TouchableOpacity
         onPress={() => setLogin()}
         activeOpacity={0.6}
@@ -20,7 +23,7 @@ export const WelcomeScreen = () => {
           opacity: 1,
         }}
       >
-        <Text style={s.btnLoginText}>Next</Text>
+        <Text style={s.btnLoginText}>{t('utils:next')}</Text>
       </TouchableOpacity>
     </View>
   );

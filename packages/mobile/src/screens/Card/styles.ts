@@ -1,6 +1,6 @@
 import { Dimensions, StyleSheet } from 'react-native';
 
-import { radius } from '_app/constants';
+import { colors, radius } from '_app/constants';
 import { SCREEN_WIDTH } from '_app/utils/dimensions';
 
 const { width } = Dimensions.get('window');
@@ -41,13 +41,13 @@ export const s = StyleSheet.create({
   },
   smallDivider: {
     height: 1,
-    backgroundColor: '#DCDDDE',
+    backgroundColor: colors.mainGray,
     marginVertical: 16,
     width: width * 0.25,
   },
   divider: {
     height: 1,
-    backgroundColor: '#DCDDDE',
+    backgroundColor: colors.mainGray,
     marginVertical: 16,
   },
   host: {
@@ -69,7 +69,7 @@ export const s = StyleSheet.create({
   },
   section: {
     paddingBottom: 20,
-    borderColor: '#eee',
+    borderColor: colors.mainGray,
     borderBottomWidth: 1,
     marginBottom: 20,
   },
@@ -94,7 +94,7 @@ export const s = StyleSheet.create({
     paddingHorizontal: 20,
   },
   button: {
-    backgroundColor: '#eee',
+    backgroundColor: colors.mainGray,
     paddingHorizontal: 50,
     paddingVertical: 12,
     borderRadius: 6,
@@ -130,6 +130,6 @@ export const s = StyleSheet.create({
     marginHorizontal: 2,
   },
   ratingCount: {
-    color: '#777',
+    color: colors.mediumGray,
   },
 });

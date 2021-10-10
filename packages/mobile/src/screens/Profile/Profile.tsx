@@ -153,7 +153,7 @@ export const ProfileScreen = () => {
       <FlatList
         ref={ref}
         ListHeaderComponent={renderHeader(user, t, setSelected, isMe)}
-        ListEmptyComponent={renderEmpty}
+        ListEmptyComponent={renderEmpty(t)}
         numColumns={2}
         horizontal={false}
         data={getData()}

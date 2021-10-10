@@ -20,12 +20,12 @@ export const s = StyleSheet.create({
     paddingHorizontal: normalize(12),
   },
   title: {
-    color: '#777',
+    color: colors.mediumGray,
     fontSize: 18,
     fontWeight: '500',
   },
   tag: {
-    backgroundColor: '#eee',
+    backgroundColor: colors.mainGray,
     paddingHorizontal: normalize(14),
     paddingVertical: normalize(10),
     borderRadius: radius.full,

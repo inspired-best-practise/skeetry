@@ -142,7 +142,7 @@ export const Card = ({ item, size }: TCardProps) => {
       </View>
       {/* {size !== 'base' && (
         <View style={s.rating}>
-          <Icon.StarIcon size={16} color="black" />
+          <Icon.StarIcon size={16} color={colors.black} />
           <Text style={s.ratingNumber}>{rating ? rating.number : 0}</Text>
           <Text style={s.ratingCount}>{rating ? rating.count : 0}</Text>
         </View>

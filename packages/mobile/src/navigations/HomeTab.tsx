@@ -164,7 +164,7 @@ const HomeTab = () => {
     headerShown: false,
     tabBarShowLabel: false,
     tabBarStyle: {
-      borderTopColor: '#dddddd',
+      borderTopColor: colors.mainGray,
       backgroundColor: 'transparent',
     },
   };

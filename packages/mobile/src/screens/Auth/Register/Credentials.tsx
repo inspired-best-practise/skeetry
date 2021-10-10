@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -11,6 +12,8 @@ import { authStore, regStore } from '_app/stores';
 import { s } from './styles';
 
 export const CredentialsScreen = () => {
+  const { t } = useTranslation();
+
   const [signupMutation, { data, loading, error }] = useSignupMutation();
 
   const setTokens = authStore(state => state.setTokens);
@@ -63,7 +66,7 @@ export const CredentialsScreen = () => {
                 onChangeText={onChange}
                 value={value}
                 autoCapitalize="none"
-                placeholder="Username"
+                placeholder={t('utils:username')}
                 spellCheck={false}
               />
             </View>
@@ -71,7 +74,11 @@ export const CredentialsScreen = () => {
           name="username"
           defaultValue=""
         />
-        {errors.username && <Text style={s.errorLogin}>Username is required.</Text>}
+        {errors.username && (
+          <Text style={s.errorLogin}>
+            {t('utils:username')} {t('utils:is_required')}
+          </Text>
+        )}
         <Controller
           control={control}
           rules={{ required: true }}
@@ -83,7 +90,7 @@ export const CredentialsScreen = () => {
                 onChangeText={onChange}
                 value={value}
                 autoCapitalize="none"
-                placeholder="Password"
+                placeholder={t('utils:password')}
                 spellCheck={false}
                 secureTextEntry
               />
@@ -92,7 +99,11 @@ export const CredentialsScreen = () => {
           name="password"
           defaultValue=""
         />
-        {errors.password && <Text style={s.errorLogin}>Password is required.</Text>}
+        {errors.password && (
+          <Text style={s.errorLogin}>
+            {t('utils:password')} {t('utils:is_required')}
+          </Text>
+        )}
         <TouchableOpacity
           onPress={handleSubmit(onSubmit)}
           activeOpacity={0.6}
@@ -103,7 +114,7 @@ export const CredentialsScreen = () => {
             opacity: 1,
           }}
         >
-          <Text style={s.btnLoginText}>{!loading ? 'Next' : 'Loading...'}</Text>
+          <Text style={s.btnLoginText}>{!loading ? t('utils:next') : t('utils:loading')}</Text>
         </TouchableOpacity>
         {error && <Text style={[s.errorLogin, { textAlign: 'center' }]}>{error.message}</Text>}
       </FormWrapper>

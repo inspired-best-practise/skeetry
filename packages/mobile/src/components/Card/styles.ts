@@ -105,7 +105,7 @@ export const s = StyleSheet.create({
     marginHorizontal: 2,
   },
   ratingCount: {
-    color: '#777',
+    color: colors.mediumGray,
   },
   itemTitle: {
     marginTop: normalize(10),

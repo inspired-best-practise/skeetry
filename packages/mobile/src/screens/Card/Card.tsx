@@ -1,12 +1,13 @@
 import { useActionSheet } from '@expo/react-native-action-sheet';
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { View, Text, Image, TouchableHighlight, StatusBar, Pressable, ActionSheetIOS } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import Icon from 'react-native-vector-icons/Feather';
 
 import ImagePlaceholder from '_app/components/ImagePlaceholder/ImagePlaceholder';
-import { mapGfxStyle, PLATFORM } from '_app/constants';
+import { colors, mapGfxStyle, PLATFORM } from '_app/constants';
 import { useAddCityMutation, useCityQuery, useMoveCityMutation, useRemoveCityMutation } from '_app/generated/graphql';
 import { authStore } from '_app/stores';
 
@@ -14,6 +15,7 @@ import { s } from './styles';
 
 // TODO: refactor mutations and conditions, split into different components and files
 export const CardScreen = ({ route, navigation }) => {
+  const { t } = useTranslation();
   const { item } = route.params;
   const { showActionSheetWithOptions } = useActionSheet();
   const [currentCity, setCurrentCity] = useState(item);
@@ -135,9 +137,9 @@ export const CardScreen = ({ route, navigation }) => {
       ? ActionSheetIOS.showActionSheetWithOptions(
           {
             options: [
-              'Cancel',
-              `Move to ${alreadyWanted ? 'Visited' : 'Want'}`,
-              `Remove from ${alreadyWanted ? 'Want' : 'Visited'}`,
+              `${t('utils:cancel')}`,
+              `${alreadyWanted ? t('utils:visited') : t('utils:want')}`,
+              `${t('utils:delete')}`,
             ],
             destructiveButtonIndex: 2,
             cancelButtonIndex: 0,
@@ -156,9 +158,9 @@ export const CardScreen = ({ route, navigation }) => {
       : showActionSheetWithOptions(
           {
             options: [
-              'Cancel',
-              `Move to ${alreadyWanted ? 'Visited' : 'Want'}`,
-              `Remove from ${alreadyWanted ? 'Want' : 'Visited'}`,
+              `${t('utils:cancel')}`,
+              `${alreadyWanted ? t('utils:visited') : t('utils:want')}`,
+              `${t('utils:delete')}`,
             ],
             cancelButtonIndex: 0,
             destructiveButtonIndex: 2,
@@ -193,7 +195,7 @@ export const CardScreen = ({ route, navigation }) => {
       {/* {PLATFORM.IS_ANDROID && (
         <TouchableWithoutFeedback onPress={() => navigation.goBack()}>
           <Animated.View style={[s.backIcon, { opacity: fadeAnim }]}>
-            <Icon.XIcon size={18} color={'black'} />
+            <Icon.XIcon size={18} color={colors.black} />
           </Animated.View>
         </TouchableWithoutFeedback>
       )} */}
@@ -209,31 +211,39 @@ export const CardScreen = ({ route, navigation }) => {
           <View style={s.cardButtons}>
             {!alreadyWanted && !alreadyVisited && !loading ? (
               <>
-                <TouchableHighlight underlayColor="#DDDDDD" style={s.button} onPress={() => handlePress('want')}>
-                  <Text style={s.buttonText}>Want</Text>
+                <TouchableHighlight
+                  underlayColor={colors.mainGray}
+                  style={s.button}
+                  onPress={() => handlePress('want')}
+                >
+                  <Text style={s.buttonText}>{t('utils:want')}</Text>
                 </TouchableHighlight>
-                <TouchableHighlight underlayColor="#DDDDDD" style={s.button} onPress={() => handlePress('visited')}>
-                  <Text style={s.buttonText}>Visited</Text>
+                <TouchableHighlight
+                  underlayColor={colors.mainGray}
+                  style={s.button}
+                  onPress={() => handlePress('visited')}
+                >
+                  <Text style={s.buttonText}>{t('utils:visited')}</Text>
                 </TouchableHighlight>
               </>
             ) : (
               <TouchableHighlight
-                underlayColor="#DDDDDD"
+                underlayColor={colors.mainGray}
                 style={[s.button, (alreadyWanted || alreadyVisited || loading) && s.buttonFull]}
                 onPress={() => !loading && onPressSheet()}
               >
                 <View style={[s.buttonWithIcon]}>
                   <Text style={[s.buttonText, (alreadyWanted || alreadyVisited || loading) && s.buttonWithIconText]}>
-                    {loading ? 'loading' : alreadyWanted ? 'Want' : 'Visited'}
+                    {loading ? t('utils:loading') : alreadyWanted ? t('utils:want') : t('utils:visited')}
                   </Text>
-                  <Icon name="more-horizontal" style={s.buttonIcon} size={18} color={'black'} />
+                  <Icon name="more-horizontal" style={s.buttonIcon} size={18} color={colors.black} />
                 </View>
               </TouchableHighlight>
             )}
           </View>
         </View>
         <View style={s.section}>
-          <Text style={s.sectionTitle}>Where you'll be</Text>
+          <Text style={s.sectionTitle}>{t('utils:location')}</Text>
           <Pressable
             onPress={() =>
               navigation.navigate('Map', {

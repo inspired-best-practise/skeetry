@@ -1,22 +1,14 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
- *
- * @format
- */
 import { ApolloProvider } from '@apollo/client';
 import { ActionSheetProvider, connectActionSheet } from '@expo/react-native-action-sheet';
 import * as Sentry from '@sentry/react-native';
 import React, { useEffect } from 'react';
-import { LogBox, StatusBar } from 'react-native';
+import { LogBox, StatusBar, useColorScheme } from 'react-native';
 import Config from 'react-native-config';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import SplashScreen from 'react-native-splash-screen';
 
 import { LoadingOverlay } from '_app/components';
+import { colors } from '_app/constants';
 import '_app/i18n';
 import RootStackNavigation from '_app/navigations';
 import { client } from '_app/services/graphql';
@@ -35,6 +27,14 @@ if (Config.NODE_ENV !== 'dev') {
 }
 
 const App: React.FC = () => {
+  const scheme = useColorScheme();
+
+  useEffect(() => {
+    if (scheme) {
+      console.log('scheme', scheme);
+    }
+  }, [scheme]);
+
   useEffect(() => {
     SplashScreen.hide();
   }, []);
@@ -43,7 +43,7 @@ const App: React.FC = () => {
     <CodePushProvider>
       <ApolloProvider client={client}>
         <SafeAreaProvider>
-          <StatusBar barStyle="dark-content" animated translucent backgroundColor="rgba(0,0,0,0)" />
+          <StatusBar barStyle="dark-content" animated translucent backgroundColor={colors.black} />
           <ActionSheetProvider>
             <RootStackNavigation />
           </ActionSheetProvider>

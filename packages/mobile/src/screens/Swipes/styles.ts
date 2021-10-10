@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 
+import { colors } from '_app/constants';
+
 export const s = StyleSheet.create({
   container: {
     flex: 1,
@@ -13,7 +15,7 @@ export const s = StyleSheet.create({
   card: {
     width: '100%',
     height: '100%',
-    shadowColor: '#000000',
+    shadowColor: colors.black,
     shadowOffset: {
       width: 0,
       height: 8,

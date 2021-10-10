@@ -4,6 +4,7 @@ import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture
 import Icon from 'react-native-vector-icons/Feather';
 
 import { ProfileStatsItem, Avatar, ProfileFilter } from '_app/components';
+import { colors } from '_app/constants';
 import { navigation } from '_app/services/navigations';
 
 import { s } from '../styles';
@@ -14,16 +15,16 @@ export const renderHeader = (user: TUser, t, setSelected, isMe) => {
       <View style={[s.profilePanel, { alignItems: 'center' }]}>
         {isMe && (
           <TouchableWithoutFeedback onPress={() => navigation.navigate('ProfileSettings')}>
-            <Icon name="settings" size={24} color={'rgba(0,0,0, 0.15)'} />
+            <Icon name="settings" size={24} color={colors.mainGray} />
           </TouchableWithoutFeedback>
         )}
 
         {/* <View style={{ flexDirection: 'row', alignItems: 'center' }}>
           <TouchableWithoutFeedback onPress={() => navigation.navigate('AddChooser')} style={{ marginRight: 10 }}>
-            <Icon name="bar-chart" size={24} color={'rgba(0,0,0, 0.15)'} />
+            <Icon name="bar-chart" size={24} color={colors.mainGray} />
           </TouchableWithoutFeedback>
           <TouchableWithoutFeedback onPress={() => navigation.navigate('AddChooser')}>
-            <Icon name="share" size={20} color={'rgba(0,0,0, 0.15)'} />
+            <Icon name="share" size={20} color={colors.mainGray} />
           </TouchableWithoutFeedback>
         </View> */}
       </View>

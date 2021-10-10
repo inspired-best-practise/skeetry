@@ -3,11 +3,11 @@ import { View, Text } from 'react-native';
 
 import { colors, tBase, tTitle } from '_app/constants';
 
-export const renderEmpty = () => (
-  <View style={{ margin: 20 }}>
-    <Text style={[tTitle, { textAlign: 'center', marginBottom: 5 }]}>Список пуст</Text>
-    <Text style={[tBase, { textAlign: 'center', color: colors.mediumGray }]}>
-      Добавьте несколько стран, городов, мест или достопримечательностей
-    </Text>
-  </View>
-);
+export const renderEmpty = t => {
+  return (
+    <View style={{ margin: 20 }}>
+      <Text style={[tTitle, { textAlign: 'center', marginBottom: 5 }]}>{t('profile:empty_list_title')}</Text>
+      <Text style={[tBase, { textAlign: 'center', color: colors.mediumGray }]}>{t('profile:empty_list_desc')}</Text>
+    </View>
+  );
+};

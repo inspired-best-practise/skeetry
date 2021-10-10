@@ -1,12 +1,12 @@
-import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator, NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import { TransitionPresets } from '@react-navigation/stack';
 import React from 'react';
-import { Animated, TouchableWithoutFeedback } from 'react-native';
+import { Animated, TouchableWithoutFeedback, useColorScheme } from 'react-native';
 import { enableScreens } from 'react-native-screens';
 import Icon from 'react-native-vector-icons/Feather';
 
-import { colors, PLATFORM } from '_app/constants';
+import { colors, darkTheme, lightTheme, PLATFORM } from '_app/constants';
 import {
   CardScreen,
   ProfileSettingsScreen,
@@ -26,24 +26,18 @@ import RootTab from './RootTab';
 
 enableScreens();
 
-const theme = {
-  ...DefaultTheme,
-  colors: {
-    ...DefaultTheme.colors,
-    background: '#ffffff',
-  },
-};
-
 // TODO: type when done
 const RootStack = createNativeStackNavigator();
 
 const Index = (): JSX.Element => {
+  const scheme = useColorScheme();
+
   const navigationOptions: NativeStackNavigationOptions = {
     headerShown: false,
   };
 
   return (
-    <NavigationContainer ref={navigationRef} theme={theme}>
+    <NavigationContainer ref={navigationRef} theme={scheme === 'dark' ? darkTheme : lightTheme}>
       <RootStack.Navigator initialRouteName="RootTab">
         <RootStack.Screen name="Root Tab" component={RootTab} options={navigationOptions} />
         <RootStack.Screen
@@ -90,14 +84,14 @@ const Index = (): JSX.Element => {
               <TouchableWithoutFeedback onPress={() => navigation.goBack()}>
                 <Animated.View
                   style={{
-                    backgroundColor: '#fff',
+                    backgroundColor: colors.white,
                     borderRadius: 100,
                     alignItems: 'center',
                     paddingVertical: normalize(6),
                     paddingHorizontal: normalize(6),
                   }}
                 >
-                  <Icon name="x" size={18} color={'black'} />
+                  <Icon name="x" size={18} color={colors.black} />
                 </Animated.View>
               </TouchableWithoutFeedback>
             ),
@@ -119,14 +113,14 @@ const Index = (): JSX.Element => {
               <TouchableWithoutFeedback onPress={() => navigation.goBack()}>
                 <Animated.View
                   style={{
-                    backgroundColor: '#fff',
+                    backgroundColor: colors.white,
                     borderRadius: 100,
                     alignItems: 'center',
                     paddingVertical: normalize(6),
                     paddingHorizontal: normalize(6),
                   }}
                 >
-                  <Icon name="x" size={18} color={'black'} />
+                  <Icon name="x" size={18} color={colors.black} />
                 </Animated.View>
               </TouchableWithoutFeedback>
             ),
@@ -170,14 +164,14 @@ const Index = (): JSX.Element => {
               <TouchableWithoutFeedback onPress={() => navigation.goBack()}>
                 <Animated.View
                   style={{
-                    backgroundColor: '#fff',
+                    backgroundColor: colors.white,
                     borderRadius: 100,
                     alignItems: 'center',
                     paddingVertical: normalize(6),
                     paddingHorizontal: normalize(6),
                   }}
                 >
-                  <Icon name="x" size={18} color={'black'} />
+                  <Icon name="x" size={18} color={colors.black} />
                 </Animated.View>
               </TouchableWithoutFeedback>
             ),

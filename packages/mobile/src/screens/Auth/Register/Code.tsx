@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -11,6 +12,8 @@ import { regStore } from '_app/stores';
 import { s } from './styles';
 
 export const CodeScreen = () => {
+  const { t } = useTranslation();
+
   const [confirmSmsCodeMutation, { data, loading, error }] = useConfirmSmsCodeMutation();
 
   const phone = regStore(state => state.phone);
@@ -54,7 +57,7 @@ export const CodeScreen = () => {
                 onChangeText={onChange}
                 value={value}
                 autoCapitalize="none"
-                placeholder="Code"
+                placeholder={t('utils:code')}
                 spellCheck={false}
               />
             </View>
@@ -62,7 +65,11 @@ export const CodeScreen = () => {
           name="code"
           defaultValue=""
         />
-        {errors.code && <Text style={s.errorLogin}>Code is required.</Text>}
+        {errors.code && (
+          <Text style={s.errorLogin}>
+            {t('utils:code')} {t('utils:is_required')}
+          </Text>
+        )}
         <TouchableOpacity
           onPress={handleSubmit(onSubmit)}
           activeOpacity={0.6}
@@ -73,7 +80,7 @@ export const CodeScreen = () => {
             opacity: 1,
           }}
         >
-          <Text style={s.btnLoginText}>{!loading ? 'Next' : 'Loading...'}</Text>
+          <Text style={s.btnLoginText}>{!loading ? t('utils:next') : t('utils:loading')}</Text>
         </TouchableOpacity>
         {error && <Text style={[s.errorLogin, { textAlign: 'center' }]}>{error.message}</Text>}
       </FormWrapper>

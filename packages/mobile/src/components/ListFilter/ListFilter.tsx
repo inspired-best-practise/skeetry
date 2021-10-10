@@ -11,8 +11,8 @@ export const ListFilter = () => {
       showsHorizontalScrollIndicator={false}
       contentContainerStyle={{ paddingHorizontal: 10, marginBottom: 20 }}
     >
-      <ListFilterItem name="Filter" icon={<Icon.FilterIcon size={16} color={'black'} />} />
-      <ListFilterItem name="Visited" icon={<Icon.EyeIcon size={16} color={'black'} />} />
+      <ListFilterItem name="Filter" icon={<Icon.FilterIcon size={16} color={colors.black} />} />
+      <ListFilterItem name="Visited" icon={<Icon.EyeIcon size={16} color={colors.black} />} />
       <ListFilterItem name="Popular" />
       <ListFilterItem name="Mountains" />
       <ListFilterItem name="Sea" />

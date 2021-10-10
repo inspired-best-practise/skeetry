@@ -3,6 +3,8 @@ import React, { createContext, useContext } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 import codePush, { DownloadProgress } from 'react-native-code-push';
 
+import { colors } from '_app/constants';
+
 export interface ICodePushContext {
   status: null | codePush.SyncStatus;
   progress: null | number;
@@ -92,19 +94,19 @@ export default CodePushProvider;
 const styles = StyleSheet.create({
   container: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
     padding: 20,
     justifyContent: 'center',
     alignItems: 'center',
   },
   loaderOutline: {
     elevation: 2,
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
     height: 30,
     width: '100%',
     borderRadius: 30,
     overflow: 'hidden',
   },
-  loader: { backgroundColor: 'black', flex: 1 },
+  loader: { backgroundColor: colors.black, flex: 1 },
   text: { fontSize: 20 },
 });

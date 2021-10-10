@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 
+import { colors } from '_app/constants';
+
 export const s = StyleSheet.create({
   wrapper: {
     position: 'absolute',
@@ -7,7 +9,7 @@ export const s = StyleSheet.create({
     left: 0,
     right: 0,
     height: '100%',
-    backgroundColor: '#fff',
+    backgroundColor: colors.white,
   },
   container: {
     flex: 1,

@@ -1,6 +1,7 @@
 import { ApolloError } from '@apollo/client';
 import React, { useEffect, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { View, Text, TouchableOpacity, SafeAreaView } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 
@@ -13,6 +14,8 @@ import { authStore } from '_app/stores';
 import { s } from './styles';
 
 export const LoginScreen = () => {
+  const { t } = useTranslation();
+
   const [hidePassword, setHidePassword] = useState(true);
   const [errorLogin, setErrorLogin] = useState<ApolloError>();
 
@@ -69,7 +72,7 @@ export const LoginScreen = () => {
                 onChangeText={onChange}
                 value={value}
                 autoCapitalize="none"
-                placeholder="Username"
+                placeholder={t('utils:username')}
                 spellCheck={false}
               />
             </View>
@@ -77,7 +80,11 @@ export const LoginScreen = () => {
           name="username"
           defaultValue=""
         />
-        {errors.username && <Text style={s.errorLogin}>Username is required.</Text>}
+        {errors.username && (
+          <Text style={s.errorLogin}>
+            {t('utils:username')} {t('utils:is_required')}
+          </Text>
+        )}
         <Controller
           control={control}
           rules={{
@@ -91,7 +98,7 @@ export const LoginScreen = () => {
                 onChangeText={onChange}
                 value={value}
                 autoCapitalize="none"
-                placeholder="Password"
+                placeholder={t('utils:password')}
                 spellCheck={false}
                 secureTextEntry
               />
@@ -100,9 +107,13 @@ export const LoginScreen = () => {
           name="password"
           defaultValue=""
         />
-        {errors.password && <Text style={s.errorLogin}>Password is required.</Text>}
+        {errors.password && (
+          <Text style={s.errorLogin}>
+            {t('utils:password')} {t('utils:is_required')}
+          </Text>
+        )}
         <TouchableOpacity onPress={() => navigation.push('ForgotPassword')} style={s.forgotPassword} activeOpacity={1}>
-          <Text style={s.forgotPasswordText}>Forgot your password?</Text>
+          <Text style={s.forgotPasswordText}>{t('utils:forgot_password')}</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={handleSubmit(onSubmit)}
@@ -114,7 +125,7 @@ export const LoginScreen = () => {
             opacity: 1,
           }}
         >
-          <Text style={s.btnLoginText}>{!loading ? 'Login' : 'Loading...'}</Text>
+          <Text style={s.btnLoginText}>{!loading ? t('utils:login') : t('utils:loading')}</Text>
         </TouchableOpacity>
         <Text style={[s.errorLogin, errorLogin ? { opacity: 1, textAlign: 'center' } : { opacity: 0 }]}>
           {errorLogin && errorLogin.message}
@@ -122,7 +133,7 @@ export const LoginScreen = () => {
       </FormWrapper>
       <TouchableOpacity onPress={() => navigation.push('Phone')} activeOpacity={1} style={s.registerWrapper}>
         <Text style={s.registerWrapperText}>
-          <Text style={s.registerWrapperTextBold}>Don't have an account?</Text> Register now.
+          <Text style={s.registerWrapperTextBold}>{t('utils:no_account')}</Text> {t('utils:register_now')}
         </Text>
       </TouchableOpacity>
     </SafeAreaView>

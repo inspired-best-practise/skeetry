@@ -11,7 +11,9 @@
     "visited": "Visited",
     "trips": "Trips",
     "cities": "Сities",
-    "places": "Places"
+    "places": "Places",
+    "empty_list_title": "The list is empty",
+    "empty_list_desc": "Add some countries, cities, places, or landmarks"
   },
   "explore": {
     "popular": "Popular",
@@ -28,6 +30,35 @@
     "capital": "Capital Cities"
   },
   "search": {
+    "search": "Search by city or user",
+    "not_found": "Nothing was found for your query",
     "recommended": "Recommended"
+  },
+  "settings": {
+    "settings": "Settings",
+    "take_photo": "Take a photo",
+    "choose_from_gallery": "Choose from gallery",
+    "delete_photo": "Delete current photo"
+  },
+  "utils": {
+    "username": "Username",
+    "phone": "Phone",
+    "password": "Password",
+    "code": "Code",
+    "forgot_password": "Forgot your password?",
+    "login": "Login",
+    "no_account": "Don't have an account?",
+    "register_now": "Register now",
+    "is_required": "is required",
+    "next": "Next",
+    "welcome_to": "Welcome to",
+    "check_updates": "Check for updates",
+    "want": "Want",
+    "visited": "Visited",
+    "cancel": "Cancel",
+    "loading": "Loading...",
+    "delete": "Delete",
+    "location": "Location",
+    "logout": "Log out"
   }
 }

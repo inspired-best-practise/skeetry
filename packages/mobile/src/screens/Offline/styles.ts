@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 
+import { colors } from '_app/constants';
+
 export const s = StyleSheet.create({
   container: {
     flex: 1,
@@ -17,6 +19,6 @@ export const s = StyleSheet.create({
     fontWeight: '600',
     fontSize: 18,
     marginBottom: 18,
-    color: '#777777',
+    color: colors.mediumGray,
   },
 });
