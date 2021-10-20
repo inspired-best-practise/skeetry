@@ -124,7 +124,7 @@ export const ProfileUserScreen = ({ route }) => {
       <FlatList
         ref={ref}
         ListHeaderComponent={renderHeader(user, t, setSelected, isMe)}
-        ListEmptyComponent={renderEmpty}
+        ListEmptyComponent={renderEmpty(t)}
         numColumns={2}
         data={getData()}
         columnWrapperStyle={s.listWrapper}

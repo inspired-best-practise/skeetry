@@ -9,128 +9,111 @@ datasource db {
 }
 
 model User {
-  id           String   @id @default(cuid())
-  username     String   @unique
-  name         String?
-  avatar       String?
-  bio          String?
-  phone        String   @unique
-  verified     Boolean  @default(false)
-  wantedCount  Int      @default(0)
-  visitedCount Int      @default(0)
-  rating       Int?
-  password     String
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @default(now()) @updatedAt
-  visited      City[]   @relation("VisitedCity")
-  wanted       City[]   @relation("WantedCity")
+  id             String    @id @default(cuid())
+  username       String    @unique
+  name           String?
+  avatar         String?
+  bio            String?
+  phone          String    @unique
+  email          String?   @unique
+  verified       Boolean   @default(false)
+  wantedCount    Int       @default(0)
+  visitedCount   Int       @default(0)
+  rating         Int?
+  password       String
+  followersCount Int       @default(0)
+  followingCount Int       @default(0)
+  visited        Geoname[] @relation("VisitedGeoname")
+  wanted         Geoname[] @relation("WantedGeoname")
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @default(now()) @updatedAt
 }
 
-model Country {
-  id             String                @id @default(cuid())
-  name           String                @unique
-  iso2           String?
-  iso3           String?
-  numericCode    String?
-  phoneCode      String?
-  currency       String?
-  currencySymbol String?
-  tld            String?
-  native         String?
-  continent      Continent
-  subregion      String?
-  latitude       String?
-  emoji          String?
-  emojiU         String?
-  overview       String?
-  pk             Int                   @unique
-  longitude      String?
-  localizations  CountryLocalization[]
-  states         State[]
-  cities         City[]
-}
-
-model CountryLocalization {
+model ContinentCode {
   id        String   @id @default(cuid())
-  name      String   @unique
-  overview  String?
-  locale    Locale
-  countryId String?
-  country   Country? @relation(fields: [countryId], references: [id])
+  code      String?  @unique @db.Char(2)
+  name      String?
+  geoname   Geoname? @relation(fields: [geonameId], references: [pk])
+  geonameId Int?
 }
 
-model State {
-  id            String              @id @default(cuid())
-  name          String
-  stateCode     String?
-  latitude      String?
-  overview      String?
-  countryId     String
-  pk            Int                 @unique
-  longitude     String?
-  country       Country             @relation(fields: [countryId], references: [id])
-  cities        City[]
-  localizations StateLocalization[]
+model CountryInfo {
+  isoAlpha2          String   @id @unique @db.Char(2)
+  isoAlpha3          String?  @db.Char(3)
+  isoNumeric         Int?
+  fipsCode           String?
+  country            String?
+  emoji              String?
+  emojiU             String?
+  capital            String?
+  area               Float?
+  population         Int?
+  continentCode      String?  @db.Char(2)
+  tld                String?
+  currencyCode       String?  @db.Char(3)
+  currencyName       String?
+  phone              String?
+  postal             String?
+  postalRegex        String?
+  languages          String?
+  neighbours         String?
+  equivalentFipsCode String?
+  geoname            Geoname? @relation(fields: [geonameId], references: [pk])
+  geonameId          Int?
 }
 
-model StateLocalization {
-  id       String  @id @default(cuid())
-  name     String
-  locale   Locale  @default(RU)
-  overview String?
-  stateId  String
-  state    State   @relation(fields: [stateId], references: [id])
+model Geoname {
+  pk             Int             @id @unique
+  name           String?
+  asciiName      String?
+  alternateNames String?
+  overview       String?
+  latitude       Float?
+  longitude      Float?
+  fclass         String?         @db.Char(1)
+  fcode          String?         @db.Char(10)
+  countryCode    String?         @db.Char(2)
+  cc2            String?
+  admin1         String?
+  admin2         String?
+  admin3         String?
+  admin4         String?
+  population     BigInt?
+  elevation      Int?
+  gtopo30        Int?
+  timezone       String?
+  modifiedDate   DateTime?       @db.Date
+  wantedCount    Int             @default(0)
+  visitedCount   Int             @default(0)
+  images         Image[]
+  tags           Tag[]
+  userVisited    User[]          @relation("VisitedGeoname")
+  userWanted     User[]          @relation("WantedGeoname")
+  ContinentCode  ContinentCode[]
+  CountryInfo    CountryInfo[]
+  AlternateName  AlternateName[]
 }
 
-model City {
-  id            String             @id @default(cuid())
-  name          String
-  area          String?
-  region        String?
-  latitude      String?
-  longitude     String?
-  wantedCount   Int                @default(0)
-  visitedCount  Int                @default(0)
-  popularity    Int                @default(0)
-  overview      String?
-  isCapital     Boolean            @default(false)
-  stateId       String?
-  pk            Int                @unique
-  state         State?             @relation(fields: [stateId], references: [id])
-  localizations CityLocalization[]
-  images        Image[]
-  tags          Tag[]
-  userVisited   User[]             @relation("VisitedCity")
-  userWanted    User[]             @relation("WantedCity")
-  country       Country?           @relation(fields: [countryId], references: [id])
-  countryId     String?
-}
-
-model CityLocalization {
-  id       String  @id @default(cuid())
-  locale   Locale
-  name     String
-  overview String?
-  cityId   String
-  city     City    @relation(fields: [cityId], references: [id])
-}
-
-model Image {
-  id         String  @id @default(cuid())
-  cityId     String?
-  urlRegular String?
-  urlSmall   String?
-  urlThumb   String?
-  city       City?   @relation(fields: [cityId], references: [id])
+model AlternateName {
+  pk              Int      @id @unique
+  isoLang         String?
+  alternateName   String?
+  isPreferredName Boolean?
+  isShortName     Boolean?
+  isColloquial    Boolean?
+  isHistoric      Boolean?
+  from            String?
+  to              String?
+  geoname         Geoname? @relation(fields: [geonameId], references: [pk])
+  geonameId       Int?
 }
 
 model Tag {
   id            String            @id @default(cuid())
   name          String            @unique
   emoji         String
-  cityId        String
   localizations TagLocalization[]
-  cities        City[]
+  geonames      Geoname[]
 }
 
 model TagLocalization {
@@ -173,7 +156,14 @@ model StoryStepLocalization {
   title       String
   description String
   storyStepId String?
-  StoryStep   StoryStep? @relation(fields: [storyStepId], references: [id])
+  storyStep   StoryStep? @relation(fields: [storyStepId], references: [id])
+}
+
+model Image {
+  id        String   @id @default(cuid())
+  url       String
+  geoname   Geoname? @relation(fields: [geonameId], references: [pk])
+  geonameId Int?
 }
 
 model Sms {
@@ -183,18 +173,6 @@ model Sms {
   confirmed Boolean  @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
-}
-
-enum Continent {
-  AFRICA
-  ASIA
-  EUROPE
-  NORTH_AMERICA
-  SOUTH_AMERICA
-  ANTARCTICA
-  AUSTRALIA
-  ISLAND
-  OCEANIA
 }
 
 enum Locale {

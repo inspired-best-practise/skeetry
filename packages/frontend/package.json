@@ -1,6 +1,7 @@
 {
   "name": "frontend",
   "version": "0.1.0",
+  "author": "Aleksey Tsvetkov <code.aleksey@icloud.com>",
   "private": true,
   "scripts": {
     "dev": "next dev",
