@@ -33,8 +33,8 @@ model ContinentCode {
   id        String   @id @default(cuid())
   code      String?  @unique @db.Char(2)
   name      String?
-  geoname   Geoname? @relation(fields: [geonameId], references: [pk])
-  geonameId Int?
+  geoname   Geoname? @relation(fields: [geonameId], references: [id])
+  geonameId String?
 }
 
 model CountryInfo {
@@ -58,12 +58,12 @@ model CountryInfo {
   languages          String?
   neighbours         String?
   equivalentFipsCode String?
-  geoname            Geoname? @relation(fields: [geonameId], references: [pk])
-  geonameId          Int?
+  geoname            Geoname? @relation(fields: [geonameId], references: [id])
+  geonameId          String?
 }
 
 model Geoname {
-  pk             Int             @id @unique
+  id             String          @id @unique
   name           String?
   asciiName      String?
   alternateNames String?
@@ -95,7 +95,7 @@ model Geoname {
 }
 
 model AlternateName {
-  pk              Int      @id @unique
+  id              String   @id @unique
   isoLang         String?
   alternateName   String?
   isPreferredName Boolean?
@@ -104,8 +104,8 @@ model AlternateName {
   isHistoric      Boolean?
   from            String?
   to              String?
-  geoname         Geoname? @relation(fields: [geonameId], references: [pk])
-  geonameId       Int?
+  geoname         Geoname? @relation(fields: [geonameId], references: [id])
+  geonameId       String?
 }
 
 model Tag {
@@ -162,8 +162,8 @@ model StoryStepLocalization {
 model Image {
   id        String   @id @default(cuid())
   url       String
-  geoname   Geoname? @relation(fields: [geonameId], references: [pk])
-  geonameId Int?
+  geoname   Geoname? @relation(fields: [geonameId], references: [id])
+  geonameId String?
 }
 
 model Sms {

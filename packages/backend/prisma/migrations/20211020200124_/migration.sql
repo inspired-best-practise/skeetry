@@ -28,7 +28,7 @@ CREATE TABLE "ContinentCode" (
     "id" TEXT NOT NULL,
     "code" CHAR(2),
     "name" TEXT,
-    "geonameId" INTEGER,
+    "geonameId" TEXT,
 
     CONSTRAINT "ContinentCode_pkey" PRIMARY KEY ("id")
 );
@@ -55,14 +55,14 @@ CREATE TABLE "CountryInfo" (
     "languages" TEXT,
     "neighbours" TEXT,
     "equivalentFipsCode" TEXT,
-    "geonameId" INTEGER,
+    "geonameId" TEXT,
 
     CONSTRAINT "CountryInfo_pkey" PRIMARY KEY ("isoAlpha2")
 );
 
 -- CreateTable
 CREATE TABLE "Geoname" (
-    "pk" INTEGER NOT NULL,
+    "id" TEXT NOT NULL,
     "name" TEXT,
     "asciiName" TEXT,
     "alternateNames" TEXT,
@@ -85,12 +85,12 @@ CREATE TABLE "Geoname" (
     "wantedCount" INTEGER NOT NULL DEFAULT 0,
     "visitedCount" INTEGER NOT NULL DEFAULT 0,
 
-    CONSTRAINT "Geoname_pkey" PRIMARY KEY ("pk")
+    CONSTRAINT "Geoname_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
 CREATE TABLE "AlternateName" (
-    "pk" INTEGER NOT NULL,
+    "id" TEXT NOT NULL,
     "isoLang" TEXT,
     "alternateName" TEXT,
     "isPreferredName" BOOLEAN,
@@ -99,9 +99,9 @@ CREATE TABLE "AlternateName" (
     "isHistoric" BOOLEAN,
     "from" TEXT,
     "to" TEXT,
-    "geonameId" INTEGER,
+    "geonameId" TEXT,
 
-    CONSTRAINT "AlternateName_pkey" PRIMARY KEY ("pk")
+    CONSTRAINT "AlternateName_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -168,7 +168,7 @@ CREATE TABLE "StoryStepLocalization" (
 CREATE TABLE "Image" (
     "id" TEXT NOT NULL,
     "url" TEXT NOT NULL,
-    "geonameId" INTEGER,
+    "geonameId" TEXT,
 
     CONSTRAINT "Image_pkey" PRIMARY KEY ("id")
 );
@@ -187,19 +187,19 @@ CREATE TABLE "Sms" (
 
 -- CreateTable
 CREATE TABLE "_VisitedGeoname" (
-    "A" INTEGER NOT NULL,
+    "A" TEXT NOT NULL,
     "B" TEXT NOT NULL
 );
 
 -- CreateTable
 CREATE TABLE "_WantedGeoname" (
-    "A" INTEGER NOT NULL,
+    "A" TEXT NOT NULL,
     "B" TEXT NOT NULL
 );
 
 -- CreateTable
 CREATE TABLE "_GeonameToTag" (
-    "A" INTEGER NOT NULL,
+    "A" TEXT NOT NULL,
     "B" TEXT NOT NULL
 );
 
@@ -219,10 +219,10 @@ CREATE UNIQUE INDEX "ContinentCode_code_key" ON "ContinentCode"("code");
 CREATE UNIQUE INDEX "CountryInfo_isoAlpha2_key" ON "CountryInfo"("isoAlpha2");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Geoname_pk_key" ON "Geoname"("pk");
+CREATE UNIQUE INDEX "Geoname_id_key" ON "Geoname"("id");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "AlternateName_pk_key" ON "AlternateName"("pk");
+CREATE UNIQUE INDEX "AlternateName_id_key" ON "AlternateName"("id");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Tag_name_key" ON "Tag"("name");
@@ -246,13 +246,13 @@ CREATE UNIQUE INDEX "_GeonameToTag_AB_unique" ON "_GeonameToTag"("A", "B");
 CREATE INDEX "_GeonameToTag_B_index" ON "_GeonameToTag"("B");
 
 -- AddForeignKey
-ALTER TABLE "ContinentCode" ADD CONSTRAINT "ContinentCode_geonameId_fkey" FOREIGN KEY ("geonameId") REFERENCES "Geoname"("pk") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "ContinentCode" ADD CONSTRAINT "ContinentCode_geonameId_fkey" FOREIGN KEY ("geonameId") REFERENCES "Geoname"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "CountryInfo" ADD CONSTRAINT "CountryInfo_geonameId_fkey" FOREIGN KEY ("geonameId") REFERENCES "Geoname"("pk") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "CountryInfo" ADD CONSTRAINT "CountryInfo_geonameId_fkey" FOREIGN KEY ("geonameId") REFERENCES "Geoname"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "AlternateName" ADD CONSTRAINT "AlternateName_geonameId_fkey" FOREIGN KEY ("geonameId") REFERENCES "Geoname"("pk") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "AlternateName" ADD CONSTRAINT "AlternateName_geonameId_fkey" FOREIGN KEY ("geonameId") REFERENCES "Geoname"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "TagLocalization" ADD CONSTRAINT "TagLocalization_tagId_fkey" FOREIGN KEY ("tagId") REFERENCES "Tag"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -267,22 +267,22 @@ ALTER TABLE "StoryStep" ADD CONSTRAINT "StoryStep_storyId_fkey" FOREIGN KEY ("st
 ALTER TABLE "StoryStepLocalization" ADD CONSTRAINT "StoryStepLocalization_storyStepId_fkey" FOREIGN KEY ("storyStepId") REFERENCES "StoryStep"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Image" ADD CONSTRAINT "Image_geonameId_fkey" FOREIGN KEY ("geonameId") REFERENCES "Geoname"("pk") ON DELETE SET NULL ON UPDATE CASCADE;
+ALTER TABLE "Image" ADD CONSTRAINT "Image_geonameId_fkey" FOREIGN KEY ("geonameId") REFERENCES "Geoname"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "_VisitedGeoname" ADD FOREIGN KEY ("A") REFERENCES "Geoname"("pk") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "_VisitedGeoname" ADD FOREIGN KEY ("A") REFERENCES "Geoname"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_VisitedGeoname" ADD FOREIGN KEY ("B") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "_WantedGeoname" ADD FOREIGN KEY ("A") REFERENCES "Geoname"("pk") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "_WantedGeoname" ADD FOREIGN KEY ("A") REFERENCES "Geoname"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_WantedGeoname" ADD FOREIGN KEY ("B") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "_GeonameToTag" ADD FOREIGN KEY ("A") REFERENCES "Geoname"("pk") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "_GeonameToTag" ADD FOREIGN KEY ("A") REFERENCES "Geoname"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "_GeonameToTag" ADD FOREIGN KEY ("B") REFERENCES "Tag"("id") ON DELETE CASCADE ON UPDATE CASCADE;

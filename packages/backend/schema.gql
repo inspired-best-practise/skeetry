@@ -2,7 +2,7 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-input ActionCityInput {
+input ActionGeonameInput {
   id: ID!
   type: String!
 }
@@ -16,112 +16,51 @@ type Auth {
   user: User!
 }
 
-input CitiesInput {
-  cityTagId: ID!
-}
-
-type City {
-  country: Country
-
-  """Identifies the date and time when the object was created."""
-  createdAt: DateTime!
-  id: ID!
-  images: [Image!]
-  isCapital: Boolean!
-  latitude: String
-  localizations: [CityLocalization!]
-  longitude: String
-  name: String!
-  overview: String
-  pk: Int!
-  state: State
-
-  """Identifies the date and time when the object was last updated."""
-  updatedAt: DateTime!
-  userVisited: [User!]
-  userWanted: [User!]
-  visitedCount: Int!
-  wantedCount: Int!
-}
-
-type CityConnection {
-  edges: [CityEdge!]
-  pageInfo: PageInfo!
-  totalCount: Int!
-}
-
-type CityEdge {
-  cursor: String!
-  node: City!
-}
-
-type CityLocalization {
-  """Identifies the date and time when the object was created."""
-  createdAt: DateTime!
-  id: ID!
-  locale: Locale!
-  name: String!
-  overview: String
-
-  """Identifies the date and time when the object was last updated."""
-  updatedAt: DateTime!
-}
-
-input CityOrder {
-  direction: OrderDirection!
-}
-
-type Country {
-  continent: String!
-
-  """Identifies the date and time when the object was created."""
-  createdAt: DateTime!
-  currency: String
-  currencySymbol: String
-  emoji: String
-  emojiU: String
-  id: ID!
-  iso2: String
-  iso3: String
-  latitude: String
-  localizations: [CountryLocalization!]
-  longitude: String
-  name: String!
-  native: String
-  numericCode: String
-  overview: String
-  phoneCode: String
-  pk: Int!
-  states: [State!]
-  subregion: String
-  tld: String
-
-  """Identifies the date and time when the object was last updated."""
-  updatedAt: DateTime!
-}
-
-type CountryLocalization {
-  """Identifies the date and time when the object was created."""
-  createdAt: DateTime!
-  id: ID!
-  locale: Locale!
-  name: String!
-  overview: String
-
-  """Identifies the date and time when the object was last updated."""
-  updatedAt: DateTime!
-}
+"""The Integer as string"""
+scalar BigInt
 
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
 scalar DateTime
 
-type Image {
-  city: [City!]
+type Geoname {
+  id: String!
+  images: [Image!]
+  latitude: Float
+  longitude: Float
+  name: String!
+  overview: String
+  population: BigInt!
+  userVisited: [User!]
+  userWanted: [User!]
+  visitedCount: Int!
+  wantedCount: Int!
+}
 
+type GeonameConnection {
+  edges: [GeonameEdge!]
+  pageInfo: PageInfo!
+  totalCount: Int!
+}
+
+type GeonameEdge {
+  cursor: String!
+  node: Geoname!
+}
+
+input GeonameOrder {
+  direction: OrderDirection!
+}
+
+input GeonamesInput {
+  geonameTagId: ID!
+}
+
+type Image {
   """Identifies the date and time when the object was created."""
   createdAt: DateTime!
+  geoname: [Geoname!]
   id: ID!
 
   """Identifies the date and time when the object was last updated."""
@@ -142,13 +81,13 @@ input LoginInput {
 }
 
 type Mutation {
-  addCity(input: ActionCityInput!): City!
+  addGeoname(input: ActionGeonameInput!): Geoname!
   confirmSmsCode(code: String!, phone: String!): Boolean!
   deletePhoto: Boolean!
   login(input: LoginInput!): Auth!
-  moveCity(input: ActionCityInput!): City!
+  moveGeoname(input: ActionGeonameInput!): Geoname!
   refreshToken: Token!
-  removeCity(input: ActionCityInput!): City!
+  removeGeoname(input: ActionGeonameInput!): Geoname!
   sendSmsCode(phone: String!): Boolean!
   signup(input: SignupInput!): Auth!
   uploadPhoto(file: Upload!): Boolean!
@@ -170,19 +109,17 @@ type PageInfo {
 }
 
 type Query {
-  cities(after: String, before: String, continent: String, first: Int!, input: CitiesInput, isCapital: Boolean, last: Int, orderBy: CityOrder, query: String, skip: Int): CityConnection!
-  city(id: String!): City!
-  countries: [Country!]!
-  country(id: Int!): Country!
+  geoname(id: String!): Geoname!
+  geonames(after: String, before: String, first: Int!, input: GeonamesInput, last: Int, orderBy: GeonameOrder, query: String, skip: Int): GeonameConnection!
   me: User!
-  nearby(after: String, before: String, first: Int!, last: Int, orderBy: CityOrder, skip: Int): CityConnection!
-  popular(after: String, before: String, first: Int!, last: Int, orderBy: CityOrder, skip: Int): CityConnection!
+  nearby(after: String, before: String, first: Int!, last: Int, orderBy: GeonameOrder, skip: Int): GeonameConnection!
+  popular(after: String, before: String, first: Int!, last: Int, orderBy: GeonameOrder, skip: Int): GeonameConnection!
   stories: [Story!]!
   tags: [Tag!]!
   user(id: String!): User!
   users(after: String, before: String, first: Int!, last: Int, orderBy: UserOrder, query: String, skip: Int): UserConnection!
-  visited(after: String, before: String, first: Int!, last: Int, orderBy: CityOrder, skip: Int, userId: String): CityConnection!
-  wanted(after: String, before: String, first: Int!, last: Int, orderBy: CityOrder, skip: Int, userId: String): CityConnection!
+  visited(after: String, before: String, first: Int!, last: Int, orderBy: GeonameOrder, skip: Int, userId: String): GeonameConnection!
+  wanted(after: String, before: String, first: Int!, last: Int, orderBy: GeonameOrder, skip: Int, userId: String): GeonameConnection!
 }
 
 input SignupInput {
@@ -190,38 +127,6 @@ input SignupInput {
   password: String!
   phone: String!
   username: String!
-}
-
-type State {
-  cities: [City!]
-  country: Country!
-
-  """Identifies the date and time when the object was created."""
-  createdAt: DateTime!
-  id: ID!
-  latitude: String
-  localizations: [StateLocalization!]
-  longitude: String
-  name: String!
-  overview: String
-  pk: Int!
-  stateCode: String
-
-  """Identifies the date and time when the object was last updated."""
-  updatedAt: DateTime!
-}
-
-type StateLocalization {
-  """Identifies the date and time when the object was created."""
-  createdAt: DateTime!
-  id: ID!
-  locale: String!
-  name: String!
-  overview: String!
-  state: State!
-
-  """Identifies the date and time when the object was last updated."""
-  updatedAt: DateTime!
 }
 
 type Story {

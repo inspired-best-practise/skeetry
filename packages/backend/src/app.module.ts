@@ -5,10 +5,9 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import config from './config';
 import { GraphqlConfig } from './config/config.interface';
 import { AuthModule } from './modules/auth/auth.module';
-import { CityModule } from './modules/city/city.module';
+import { GeonameModule } from './modules/geoname/geoname.module';
 import { TagModule } from './modules/tag/tag.module';
 import { StoryModule } from './modules/story/story.module';
-import { CountryModule } from './modules/country/country.module';
 import { graphqlUploadExpress } from 'graphql-upload';
 
 @Module({
@@ -36,10 +35,9 @@ import { graphqlUploadExpress } from 'graphql-upload';
     }),
     AuthModule,
     UserModule,
-    CityModule,
+    GeonameModule,
     TagModule,
     StoryModule,
-    CountryModule,
   ],
   controllers: [],
   providers: [],

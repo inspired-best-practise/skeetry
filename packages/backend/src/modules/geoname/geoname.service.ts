@@ -1,39 +1,31 @@
-import { Continent } from '.prisma/client';
 import { findManyCursorConnection } from '@devoxa/prisma-relay-cursor-connection';
 import { Injectable } from '@nestjs/common';
 import { PaginationArgs } from '../common/pagination/pagination.args';
 import { PrismaService } from '../prisma/prisma.service';
 import { User } from '../user/models/user.model';
-import { ActionCityInput } from './dto/action-city.input';
-import { CitiesInput } from './dto/cities.input';
-import { CityOrder } from './dto/city-order.input';
+import { ActionGeonameInput } from './dto/action-geoname.input';
+import { GeonamesInput } from './dto/geonames.input';
+import { GeonameOrder } from './dto/geoname-order.input';
 
-// TODO: refactor addCity, removeCity, moveCity
 @Injectable()
-export class CityService {
+export class GeonameService {
   constructor(private prisma: PrismaService) {}
 
-  async addCity(user: User, input: ActionCityInput) {
+  async addGeoname(user: User, input: ActionGeonameInput) {
     const { id, type } = input;
 
-    const city = await this.prisma.city.findUnique({
+    const geoname = await this.prisma.geoname.findUnique({
       include: {
         userWanted: true,
         userVisited: true,
-        country: true,
-        state: {
-          include: {
-            country: true,
-          },
-        },
       },
       where: {
         id,
       },
     });
 
-    const alreadyWanted = city.userWanted.find((u) => u.id === user.id);
-    const alreadyVisited = city.userVisited.find((u) => u.id === user.id);
+    const alreadyWanted = geoname.userWanted.find((u) => u.id === user.id);
+    const alreadyVisited = geoname.userVisited.find((u) => u.id === user.id);
 
     if (
       (type === 'WANT' && alreadyWanted) ||
@@ -54,7 +46,7 @@ export class CityService {
               },
               wanted: {
                 connect: {
-                  id: city.id,
+                  id: geoname.id,
                 },
               },
             }
@@ -64,15 +56,15 @@ export class CityService {
               },
               visited: {
                 connect: {
-                  id: city.id,
+                  id: geoname.id,
                 },
               },
             },
     });
 
-    await this.prisma.city.update({
+    await this.prisma.geoname.update({
       where: {
-        id: city.id,
+        id: geoname.id,
       },
       data:
         type === 'WANT'
@@ -80,50 +72,38 @@ export class CityService {
               wantedCount: {
                 increment: 1,
               },
-              popularity: {
-                increment: 1,
-              },
             }
           : {
               visitedCount: {
                 increment: 1,
               },
-              popularity: {
-                increment: 2,
-              },
             },
     });
 
-    return city;
+    return geoname;
   }
 
-  async removeCity(user: User, input: ActionCityInput) {
+  async removeGeoname(user: User, input: ActionGeonameInput) {
     const { id, type } = input;
 
-    const city = await this.prisma.city.findUnique({
+    const geoname = await this.prisma.geoname.findUnique({
       include: {
         userWanted: true,
         userVisited: true,
-        country: true,
-        state: {
-          include: {
-            country: true,
-          },
-        },
       },
       where: {
         id,
       },
     });
 
-    const existInWanted = city.userWanted.find((u) => u.id === user.id);
-    const existInVisited = city.userVisited.find((u) => u.id === user.id);
+    const existInWanted = geoname.userWanted.find((u) => u.id === user.id);
+    const existInVisited = geoname.userVisited.find((u) => u.id === user.id);
 
     if (
       (type === 'WANT' && !existInWanted) ||
       (type === 'VISITED' && !existInVisited)
     ) {
-      throw new Error('City is not on the list');
+      throw new Error('Geoname is not on the list');
     }
 
     await this.prisma.user.update({
@@ -138,7 +118,7 @@ export class CityService {
               },
               wanted: {
                 disconnect: {
-                  id: city.id,
+                  id: geoname.id,
                 },
               },
             }
@@ -148,15 +128,15 @@ export class CityService {
               },
               visited: {
                 disconnect: {
-                  id: city.id,
+                  id: geoname.id,
                 },
               },
             },
     });
 
-    await this.prisma.city.update({
+    await this.prisma.geoname.update({
       where: {
-        id: city.id,
+        id: geoname.id,
       },
       data:
         type === 'WANT'
@@ -164,44 +144,32 @@ export class CityService {
               wantedCount: {
                 decrement: 1,
               },
-              popularity: {
-                decrement: 1,
-              },
             }
           : {
               visitedCount: {
                 decrement: 1,
               },
-              popularity: {
-                decrement: 2,
-              },
             },
     });
 
-    return city;
+    return geoname;
   }
 
-  async moveCity(user: User, input: ActionCityInput) {
+  async moveGeoname(user: User, input: ActionGeonameInput) {
     const { id, type } = input;
 
-    const city = await this.prisma.city.findUnique({
+    const geoname = await this.prisma.geoname.findUnique({
       include: {
         userWanted: true,
         userVisited: true,
-        country: true,
-        state: {
-          include: {
-            country: true,
-          },
-        },
       },
       where: {
         id,
       },
     });
 
-    const existInWanted = city.userWanted.find((u) => u.id === user.id);
-    const existInVisited = city.userVisited.find((u) => u.id === user.id);
+    const existInWanted = geoname.userWanted.find((u) => u.id === user.id);
+    const existInVisited = geoname.userVisited.find((u) => u.id === user.id);
 
     if (
       (type === 'WANT' && !existInWanted) ||
@@ -225,12 +193,12 @@ export class CityService {
               },
               wanted: {
                 disconnect: {
-                  id: city.id,
+                  id: geoname.id,
                 },
               },
               visited: {
                 connect: {
-                  id: city.id,
+                  id: geoname.id,
                 },
               },
             }
@@ -243,20 +211,20 @@ export class CityService {
               },
               visited: {
                 disconnect: {
-                  id: city.id,
+                  id: geoname.id,
                 },
               },
               wanted: {
                 connect: {
-                  id: city.id,
+                  id: geoname.id,
                 },
               },
             },
     });
 
-    await this.prisma.city.update({
+    await this.prisma.geoname.update({
       where: {
-        id: city.id,
+        id: geoname.id,
       },
       data:
         type === 'WANT'
@@ -267,9 +235,6 @@ export class CityService {
               visitedCount: {
                 increment: 1,
               },
-              popularity: {
-                increment: 1,
-              },
             }
           : {
               visitedCount: {
@@ -278,110 +243,67 @@ export class CityService {
               wantedCount: {
                 increment: 1,
               },
-              popularity: {
-                decrement: 1,
-              },
             },
     });
 
-    return city;
+    return geoname;
   }
 
   async findOne(id: string) {
-    const city = await this.prisma.city.findUnique({
+    const geoname = await this.prisma.geoname.findUnique({
       include: {
-        localizations: true,
         userVisited: true,
         userWanted: true,
-        country: true,
-        state: {
-          include: {
-            country: true,
-          },
-        },
       },
       where: {
         id,
       },
     });
 
-    if (!city) {
-      throw new Error('City does not exist');
+    if (!geoname) {
+      throw new Error('Geoname does not exist');
     }
 
-    return city;
+    return geoname;
   }
 
   async findAll(
-    input: CitiesInput,
-    continent: Continent,
-    isCapital: boolean,
+    input: GeonamesInput,
     pagination: PaginationArgs,
     query: string,
-    orderBy: CityOrder,
+    orderBy: GeonameOrder,
   ) {
     const { skip, after, before, first, last } = pagination;
     if (!input) {
-      const cities = await findManyCursorConnection(
+      const geonames = await findManyCursorConnection(
         (args) =>
-          this.prisma.city.findMany({
+          this.prisma.geoname.findMany({
             include: {
-              localizations: true,
               userVisited: true,
               userWanted: true,
-              country: true,
-              state: {
-                include: {
-                  country: true,
-                },
-              },
             },
             where: {
-              AND: [
-                { name: { startsWith: query || '' } },
-                continent && {
-                  state: {
-                    country: {
-                      continent,
-                    },
-                  },
-                },
-                isCapital && {
-                  isCapital,
-                },
-              ],
+              AND: [{ name: { startsWith: query || '' } }],
             },
-            orderBy: orderBy ? { name: orderBy.direction } : null,
+            orderBy: orderBy ? { population: orderBy.direction } : null,
             ...args,
           }),
         () =>
-          this.prisma.city.count({
+          this.prisma.geoname.count({
             where: {
-              AND: [
-                { name: { startsWith: query || '' } },
-                continent && {
-                  state: {
-                    country: {
-                      continent,
-                    },
-                  },
-                },
-                isCapital && {
-                  isCapital,
-                },
-              ],
+              AND: [{ name: { startsWith: query || '' } }],
             },
           }),
         { first, last, before, after },
       );
-      return cities;
+      return geonames;
     }
 
-    const { cityTagId } = input;
+    const { geonameTagId } = input;
 
     const tagExist = await this.prisma.tag.findUnique({
       where: {
-        id: cityTagId,
+        id: geonameTagId,
       },
     });
 
@@ -389,19 +311,12 @@ export class CityService {
       throw new Error("Tag doesn't exist");
     }
 
-    const cities = await findManyCursorConnection(
+    const geonames = await findManyCursorConnection(
       (args) =>
-        this.prisma.city.findMany({
+        this.prisma.geoname.findMany({
           include: {
-            localizations: true,
             userVisited: true,
             userWanted: true,
-            country: true,
-            state: {
-              include: {
-                country: true,
-              },
-            },
           },
           where: {
             AND: [
@@ -409,7 +324,7 @@ export class CityService {
               {
                 tags: {
                   some: {
-                    id: cityTagId,
+                    id: geonameTagId,
                   },
                 },
               },
@@ -419,14 +334,14 @@ export class CityService {
           ...args,
         }),
       () =>
-        this.prisma.city.count({
+        this.prisma.geoname.count({
           where: {
             AND: [
               { name: { startsWith: query || '' } },
               {
                 tags: {
                   some: {
-                    id: cityTagId,
+                    id: geonameTagId,
                   },
                 },
               },
@@ -436,29 +351,22 @@ export class CityService {
       { first, last, before, after },
     );
 
-    return cities;
+    return geonames;
   }
 
   async findWanted(
     pagination: PaginationArgs,
-    orderBy: CityOrder,
+    orderBy: GeonameOrder,
     userId: string,
     user: User,
   ) {
     const { skip, after, before, first, last } = pagination;
 
-    const cities = await findManyCursorConnection(
+    const geonames = await findManyCursorConnection(
       (args) =>
-        this.prisma.city.findMany({
+        this.prisma.geoname.findMany({
           include: {
-            localizations: true,
             userWanted: true,
-            country: true,
-            state: {
-              include: {
-                country: true,
-              },
-            },
           },
           where: {
             userWanted: {
@@ -471,7 +379,7 @@ export class CityService {
           ...args,
         }),
       () =>
-        this.prisma.city.count({
+        this.prisma.geoname.count({
           where: {
             userWanted: {
               some: {
@@ -483,29 +391,22 @@ export class CityService {
       { first, last, before, after },
     );
 
-    return cities;
+    return geonames;
   }
 
   async findVisited(
     pagination: PaginationArgs,
-    orderBy: CityOrder,
+    orderBy: GeonameOrder,
     userId: string,
     user: User,
   ) {
     const { skip, after, before, first, last } = pagination;
 
-    const cities = await findManyCursorConnection(
+    const geonames = await findManyCursorConnection(
       (args) =>
-        this.prisma.city.findMany({
+        this.prisma.geoname.findMany({
           include: {
-            localizations: true,
             userVisited: true,
-            country: true,
-            state: {
-              include: {
-                country: true,
-              },
-            },
           },
           where: {
             userVisited: {
@@ -518,7 +419,7 @@ export class CityService {
           ...args,
         }),
       () =>
-        this.prisma.city.count({
+        this.prisma.geoname.count({
           where: {
             userVisited: {
               some: {
@@ -530,62 +431,50 @@ export class CityService {
       { first, last, before, after },
     );
 
-    return cities;
+    return geonames;
   }
 
-  // TODO: just cities now
-  async findNearby(pagination: PaginationArgs, orderBy: CityOrder, user: User) {
+  async findNearby(
+    pagination: PaginationArgs,
+    orderBy: GeonameOrder,
+    user: User,
+  ) {
     const { skip, after, before, first, last } = pagination;
 
-    const cities = await findManyCursorConnection(
+    const geonames = await findManyCursorConnection(
       (args) =>
-        this.prisma.city.findMany({
+        this.prisma.geoname.findMany({
           include: {
-            localizations: true,
             userVisited: true,
             userWanted: true,
-            country: true,
-            state: {
-              include: {
-                country: true,
-              },
-            },
           },
           orderBy: orderBy ? { name: orderBy.direction } : null,
           ...args,
         }),
-      () => this.prisma.city.count(),
+      () => this.prisma.geoname.count(),
       { first, last, before, after },
     );
 
-    return cities;
+    return geonames;
   }
 
-  // TODO: just cities now
-  async findPopular(pagination: PaginationArgs, orderBy: CityOrder) {
+  async findPopular(pagination: PaginationArgs, orderBy: GeonameOrder) {
     const { skip, after, before, first, last } = pagination;
 
-    const cities = await findManyCursorConnection(
+    const geonames = await findManyCursorConnection(
       (args) =>
-        this.prisma.city.findMany({
+        this.prisma.geoname.findMany({
           include: {
-            localizations: true,
             userVisited: true,
             userWanted: true,
-            country: true,
-            state: {
-              include: {
-                country: true,
-              },
-            },
           },
-          orderBy: orderBy ? { popularity: orderBy.direction } : null,
+          orderBy: orderBy ? { name: orderBy.direction } : null,
           ...args,
         }),
-      () => this.prisma.city.count(),
+      () => this.prisma.geoname.count(),
       { first, last, before, after },
     );
 
-    return cities;
+    return geonames;
   }
 }

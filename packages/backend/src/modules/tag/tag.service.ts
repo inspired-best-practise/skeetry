@@ -13,7 +13,7 @@ export class TagService {
         localizations: true,
       },
       where: {
-        cities: {
+        geonames: {
           some: {},
         },
       },
