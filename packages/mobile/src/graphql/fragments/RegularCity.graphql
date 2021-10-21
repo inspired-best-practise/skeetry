@@ -1,5 +1,4 @@
 fragment RegularCity on City {
-  id
   pk     
   name         
   overview     
@@ -7,23 +6,13 @@ fragment RegularCity on City {
   visitedCount 
   latitude     
   longitude
-  isCapital
   images {
     ...RegularImage
   }  
   userWanted {
     ...RegularUser
   }
-  state {
-    ...RegularState
-  }
-  country {
-    ...RegularCountry
-  }
   userVisited {
     ...RegularUser
-  }
-  localizations {
-    ...RegularCityLocalization
   }
 }

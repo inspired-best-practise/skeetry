@@ -4,7 +4,7 @@ import { Image } from '../../image/models/image.model';
 import { GraphQLBigInt } from '@the-gear/graphql-scalars';
 
 @ObjectType()
-export class Geoname {
+export class City {
   @Field()
   id: string;
 

@@ -2,7 +2,7 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-input ActionGeonameInput {
+input ActionCityInput {
   id: ID!
   type: String!
 }
@@ -19,12 +19,11 @@ type Auth {
 """The Integer as string"""
 scalar BigInt
 
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
+input CitiesInput {
+  cityTagId: ID!
+}
 
-type Geoname {
+type City {
   id: String!
   images: [Image!]
   latitude: Float
@@ -38,29 +37,31 @@ type Geoname {
   wantedCount: Int!
 }
 
-type GeonameConnection {
-  edges: [GeonameEdge!]
+type CityConnection {
+  edges: [CityEdge!]
   pageInfo: PageInfo!
   totalCount: Int!
 }
 
-type GeonameEdge {
+type CityEdge {
   cursor: String!
-  node: Geoname!
+  node: City!
 }
 
-input GeonameOrder {
+input CityOrder {
   direction: OrderDirection!
 }
 
-input GeonamesInput {
-  geonameTagId: ID!
-}
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
 
 type Image {
+  city: [City!]
+
   """Identifies the date and time when the object was created."""
   createdAt: DateTime!
-  geoname: [Geoname!]
   id: ID!
 
   """Identifies the date and time when the object was last updated."""
@@ -81,13 +82,13 @@ input LoginInput {
 }
 
 type Mutation {
-  addGeoname(input: ActionGeonameInput!): Geoname!
+  addCity(input: ActionCityInput!): City!
   confirmSmsCode(code: String!, phone: String!): Boolean!
   deletePhoto: Boolean!
   login(input: LoginInput!): Auth!
-  moveGeoname(input: ActionGeonameInput!): Geoname!
+  moveCity(input: ActionCityInput!): City!
   refreshToken: Token!
-  removeGeoname(input: ActionGeonameInput!): Geoname!
+  removeCity(input: ActionCityInput!): City!
   sendSmsCode(phone: String!): Boolean!
   signup(input: SignupInput!): Auth!
   uploadPhoto(file: Upload!): Boolean!
@@ -109,17 +110,17 @@ type PageInfo {
 }
 
 type Query {
-  geoname(id: String!): Geoname!
-  geonames(after: String, before: String, first: Int!, input: GeonamesInput, last: Int, orderBy: GeonameOrder, query: String, skip: Int): GeonameConnection!
+  cities(after: String, before: String, first: Int!, input: CitiesInput, last: Int, orderBy: CityOrder, query: String, skip: Int): CityConnection!
+  city(id: String!): City!
   me: User!
-  nearby(after: String, before: String, first: Int!, last: Int, orderBy: GeonameOrder, skip: Int): GeonameConnection!
-  popular(after: String, before: String, first: Int!, last: Int, orderBy: GeonameOrder, skip: Int): GeonameConnection!
+  nearby(after: String, before: String, first: Int!, last: Int, orderBy: CityOrder, skip: Int): CityConnection!
+  popular(after: String, before: String, first: Int!, last: Int, orderBy: CityOrder, skip: Int): CityConnection!
   stories: [Story!]!
   tags: [Tag!]!
   user(id: String!): User!
   users(after: String, before: String, first: Int!, last: Int, orderBy: UserOrder, query: String, skip: Int): UserConnection!
-  visited(after: String, before: String, first: Int!, last: Int, orderBy: GeonameOrder, skip: Int, userId: String): GeonameConnection!
-  wanted(after: String, before: String, first: Int!, last: Int, orderBy: GeonameOrder, skip: Int, userId: String): GeonameConnection!
+  visited(after: String, before: String, first: Int!, last: Int, orderBy: CityOrder, skip: Int, userId: String): CityConnection!
+  wanted(after: String, before: String, first: Int!, last: Int, orderBy: CityOrder, skip: Int, userId: String): CityConnection!
 }
 
 input SignupInput {

@@ -1,6 +1,6 @@
 import { ObjectType } from '@nestjs/graphql';
 import PaginatedResponse from '../../common/pagination/pagination';
-import { Geoname } from './geoname.model';
+import { City } from './city.model';
 
 @ObjectType()
-export class GeonameConnection extends PaginatedResponse(Geoname) {}
+export class CityConnection extends PaginatedResponse(City) {}

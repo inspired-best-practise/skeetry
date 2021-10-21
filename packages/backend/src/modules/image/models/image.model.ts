@@ -1,4 +1,4 @@
-import { Geoname } from './../../geoname/models/geoname.model';
+import { City } from './../../city/models/city.model';
 import { Field, ObjectType } from '@nestjs/graphql';
 import { BaseModel } from '../../common/base.model';
 
@@ -13,6 +13,6 @@ export class Image extends BaseModel {
   @Field()
   urlThumb: string;
 
-  @Field(() => [Geoname], { nullable: true })
-  geoname?: Geoname[];
+  @Field(() => [City], { nullable: true })
+  city?: City[];
 }

@@ -1,6 +1,0 @@
-fragment RegularCityLocalization on CityLocalization {
-  id
-  locale
-  name
-  overview
-}

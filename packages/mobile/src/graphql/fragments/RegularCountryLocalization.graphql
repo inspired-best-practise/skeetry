@@ -1,6 +1,0 @@
-fragment RegularCountryLocalization on CountryLocalization {
-  id
-  locale
-  name
-  overview
-}

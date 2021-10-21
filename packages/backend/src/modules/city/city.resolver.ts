@@ -1,56 +1,47 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
-import { GeonameService } from './geoname.service';
-import { Geoname } from './models/geoname.model';
+import { CityService } from './city.service';
+import { City } from './models/city.model';
 import { GqlAuthGuard } from '../auth/guards/gql-auth.guard';
 import { UseGuards } from '@nestjs/common';
 import { UserEntity } from '../user/user.decorator';
 import { User } from '../user/models/user.model';
-import { ActionGeonameInput } from './dto/action-geoname.input';
-import { GeonamesInput } from './dto/geonames.input';
-import { GeonameConnection } from './models/geoname-connection.model';
-import { GeonameOrder } from './dto/geoname-order.input';
+import { ActionCityInput } from './dto/action-city.input';
+import { CitiesInput } from './dto/cities.input';
+import { CityConnection } from './models/city-connection.model';
+import { CityOrder } from './dto/city-order.input';
 
-@Resolver(() => Geoname)
-export class GeonameResolver {
-  constructor(private readonly geoname: GeonameService) {}
+@Resolver(() => City)
+export class CityResolver {
+  constructor(private readonly city: CityService) {}
 
   @UseGuards(GqlAuthGuard)
-  @Mutation(() => Geoname)
-  addGeoname(
-    @UserEntity() user: User,
-    @Args('input') input: ActionGeonameInput,
-  ) {
-    return this.geoname.addGeoname(user, input);
+  @Mutation(() => City)
+  addCity(@UserEntity() user: User, @Args('input') input: ActionCityInput) {
+    return this.city.addCity(user, input);
   }
 
   @UseGuards(GqlAuthGuard)
-  @Mutation(() => Geoname)
-  removeGeoname(
-    @UserEntity() user: User,
-    @Args('input') input: ActionGeonameInput,
-  ) {
-    return this.geoname.removeGeoname(user, input);
+  @Mutation(() => City)
+  removeCity(@UserEntity() user: User, @Args('input') input: ActionCityInput) {
+    return this.city.removeCity(user, input);
   }
 
   @UseGuards(GqlAuthGuard)
-  @Mutation(() => Geoname)
-  moveGeoname(
-    @UserEntity() user: User,
-    @Args('input') input: ActionGeonameInput,
-  ) {
-    return this.geoname.moveGeoname(user, input);
+  @Mutation(() => City)
+  moveCity(@UserEntity() user: User, @Args('input') input: ActionCityInput) {
+    return this.city.moveCity(user, input);
   }
 
   @UseGuards(GqlAuthGuard)
-  @Query(() => Geoname, { name: 'geoname' })
+  @Query(() => City, { name: 'city' })
   findOne(@Args('id') id: string) {
-    return this.geoname.findOne(id);
+    return this.city.findOne(id);
   }
 
   @UseGuards(GqlAuthGuard)
-  @Query((returns) => GeonameConnection, { name: 'geonames' })
+  @Query((returns) => CityConnection, { name: 'cities' })
   findAll(
-    @Args('input', { nullable: true }) input: GeonamesInput,
+    @Args('input', { nullable: true }) input: CitiesInput,
     @Args('skip', { nullable: true }) skip: number,
     @Args('after', { nullable: true }) after: string,
     @Args('before', { nullable: true }) before: string,
@@ -60,17 +51,17 @@ export class GeonameResolver {
     query: string,
     @Args({
       name: 'orderBy',
-      type: () => GeonameOrder,
+      type: () => CityOrder,
       nullable: true,
     })
-    orderBy: GeonameOrder,
+    orderBy: CityOrder,
   ) {
     const pagination = { skip, after, before, first, last };
-    return this.geoname.findAll(input, pagination, query, orderBy);
+    return this.city.findAll(input, pagination, query, orderBy);
   }
 
   @UseGuards(GqlAuthGuard)
-  @Query((returns) => GeonameConnection, { name: 'wanted' })
+  @Query((returns) => CityConnection, { name: 'wanted' })
   wanted(
     @Args('skip', { nullable: true }) skip: number,
     @Args('after', { nullable: true }) after: string,
@@ -79,19 +70,19 @@ export class GeonameResolver {
     @Args('last', { nullable: true }) last: number,
     @Args({
       name: 'orderBy',
-      type: () => GeonameOrder,
+      type: () => CityOrder,
       nullable: true,
     })
-    orderBy: GeonameOrder,
+    orderBy: CityOrder,
     @Args('userId', { nullable: true }) userId: string,
     @UserEntity() user: User,
   ) {
     const pagination = { skip, after, before, first, last };
-    return this.geoname.findWanted(pagination, orderBy, userId, user);
+    return this.city.findWanted(pagination, orderBy, userId, user);
   }
 
   @UseGuards(GqlAuthGuard)
-  @Query((returns) => GeonameConnection, { name: 'visited' })
+  @Query((returns) => CityConnection, { name: 'visited' })
   visited(
     @Args('skip', { nullable: true }) skip: number,
     @Args('after', { nullable: true }) after: string,
@@ -100,19 +91,19 @@ export class GeonameResolver {
     @Args('last', { nullable: true }) last: number,
     @Args({
       name: 'orderBy',
-      type: () => GeonameOrder,
+      type: () => CityOrder,
       nullable: true,
     })
-    orderBy: GeonameOrder,
+    orderBy: CityOrder,
     @Args('userId', { nullable: true }) userId: string,
     @UserEntity() user: User,
   ) {
     const pagination = { skip, after, before, first, last };
-    return this.geoname.findVisited(pagination, orderBy, userId, user);
+    return this.city.findVisited(pagination, orderBy, userId, user);
   }
 
   @UseGuards(GqlAuthGuard)
-  @Query((returns) => GeonameConnection, { name: 'nearby' })
+  @Query((returns) => CityConnection, { name: 'nearby' })
   nearby(
     @Args('skip', { nullable: true }) skip: number,
     @Args('after', { nullable: true }) after: string,
@@ -121,18 +112,18 @@ export class GeonameResolver {
     @Args('last', { nullable: true }) last: number,
     @Args({
       name: 'orderBy',
-      type: () => GeonameOrder,
+      type: () => CityOrder,
       nullable: true,
     })
-    orderBy: GeonameOrder,
+    orderBy: CityOrder,
     @UserEntity() user: User,
   ) {
     const pagination = { skip, after, before, first, last };
-    return this.geoname.findNearby(pagination, orderBy, user);
+    return this.city.findNearby(pagination, orderBy, user);
   }
 
   @UseGuards(GqlAuthGuard)
-  @Query((returns) => GeonameConnection, { name: 'popular' })
+  @Query((returns) => CityConnection, { name: 'popular' })
   popular(
     @Args('skip', { nullable: true }) skip: number,
     @Args('after', { nullable: true }) after: string,
@@ -141,12 +132,12 @@ export class GeonameResolver {
     @Args('last', { nullable: true }) last: number,
     @Args({
       name: 'orderBy',
-      type: () => GeonameOrder,
+      type: () => CityOrder,
       nullable: true,
     })
-    orderBy: GeonameOrder,
+    orderBy: CityOrder,
   ) {
     const pagination = { skip, after, before, first, last };
-    return this.geoname.findPopular(pagination, orderBy);
+    return this.city.findPopular(pagination, orderBy);
   }
 }
