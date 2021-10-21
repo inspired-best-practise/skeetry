@@ -283,7 +283,7 @@ export class GeonameService {
               userWanted: true,
             },
             where: {
-              AND: [{ name: { startsWith: query || '' } }],
+              AND: [{ alternateNames: { contains: query || '' } }],
             },
             orderBy: orderBy ? { population: orderBy.direction } : null,
             ...args,
@@ -291,7 +291,7 @@ export class GeonameService {
         () =>
           this.prisma.geoname.count({
             where: {
-              AND: [{ name: { startsWith: query || '' } }],
+              AND: [{ alternateNames: { contains: query || '' } }],
             },
           }),
         { first, last, before, after },
@@ -320,7 +320,7 @@ export class GeonameService {
           },
           where: {
             AND: [
-              { name: { startsWith: query || '' } },
+              { alternateNames: { contains: query || '' } },
               {
                 tags: {
                   some: {
@@ -337,7 +337,7 @@ export class GeonameService {
         this.prisma.geoname.count({
           where: {
             AND: [
-              { name: { startsWith: query || '' } },
+              { alternateNames: { contains: query || '' } },
               {
                 tags: {
                   some: {
