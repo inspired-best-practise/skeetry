@@ -28,7 +28,7 @@ jobs:
 
       - name: Build apps
         working-directory: ./packages/backend
-        run: yarn add @devoxa/prisma-relay-cursor-connection && npx prisma generate && yarn build
+        run: yarn build
 
       # Docker
 

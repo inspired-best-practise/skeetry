@@ -7,7 +7,6 @@ COPY prisma ./prisma
 FROM base as dependencies
 RUN yarn --production
 RUN yarn add apollo-server-express
-RUN yarn add sharp
 
 FROM dependencies as prisma
 RUN yarn add prisma --dev
