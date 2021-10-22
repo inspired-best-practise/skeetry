@@ -17,4 +17,4 @@ FROM prisma as release
 ENV PORT=3000
 EXPOSE ${PORT}
 
-CMD node ./main.js
+CMD node ./src/main.js
