@@ -15,4 +15,12 @@ fragment RegularCity on City {
   userVisited {
     ...RegularUser
   }
+  alternateName {
+    id
+    isoLang
+    alternateName
+    isPreferredName
+    isShortName
+    isHistoric
+  }
 }
