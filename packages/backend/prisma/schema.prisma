@@ -89,9 +89,9 @@ model Geoname {
   tags           Tag[]
   userVisited    User[]          @relation("VisitedGeoname")
   userWanted     User[]          @relation("WantedGeoname")
-  ContinentCode  ContinentCode[]
-  CountryInfo    CountryInfo[]
-  AlternateName  AlternateName[]
+  continentCode  ContinentCode[]
+  countryInfo    CountryInfo[]
+  alternateName  AlternateName[]
 }
 
 model AlternateName {
