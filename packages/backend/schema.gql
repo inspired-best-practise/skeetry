@@ -7,6 +7,15 @@ input ActionCityInput {
   type: String!
 }
 
+type AlternateName {
+  alternateName: String
+  id: String!
+  isHistoric: Boolean
+  isPreferredName: Boolean
+  isShortName: Boolean
+  isoLang: String
+}
+
 type Auth {
   """JWT access token"""
   accessToken: String!
@@ -24,6 +33,7 @@ input CitiesInput {
 }
 
 type City {
+  alternateName: [AlternateName!]
   id: String!
   images: [Image!]
   latitude: Float
