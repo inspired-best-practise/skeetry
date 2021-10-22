@@ -30,7 +30,7 @@ export const ProfileScreen = () => {
     fetchMore: fetchMoreWanted,
   } = useWantedQuery({
     variables: {
-      first: 10,
+      first: 5,
       orderBy: {
         direction: OrderDirection.Asc,
       },
@@ -49,7 +49,7 @@ export const ProfileScreen = () => {
       const lastWanted = wanted[wanted.length - 1].node.id;
       const newData = await fetchMoreWanted({
         variables: {
-          first: 10,
+          first: 5,
           after: lastWanted,
           orderBy: {
             direction: OrderDirection.Asc,
@@ -68,7 +68,7 @@ export const ProfileScreen = () => {
     fetchMore: fetchMoreVisited,
   } = useVisitedQuery({
     variables: {
-      first: 10,
+      first: 5,
       orderBy: {
         direction: OrderDirection.Asc,
       },
@@ -87,7 +87,7 @@ export const ProfileScreen = () => {
       const lastVisited = visited[visited.length - 1].node.id;
       const newData = await fetchMoreVisited({
         variables: {
-          first: 10,
+          first: 5,
           after: lastVisited,
           orderBy: {
             direction: OrderDirection.Asc,

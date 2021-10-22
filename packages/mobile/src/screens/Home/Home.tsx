@@ -31,7 +31,7 @@ export const HomeScreen = () => {
   //   fetchMore: fetchMoreNearby,
   // } = useNearbyQuery({
   //   variables: {
-  //     first: 10,
+  //     first: 5,
   //     orderBy: {
   //       direction: OrderDirection.Asc,
   //     },
@@ -46,7 +46,7 @@ export const HomeScreen = () => {
     fetchMore: fetchMorePopular,
   } = usePopularQuery({
     variables: {
-      first: 10,
+      first: 5,
       orderBy: {
         direction: OrderDirection.Desc,
       },
@@ -71,7 +71,7 @@ export const HomeScreen = () => {
   //     const lastNearby = nearby[nearby.length - 1].node.id;
   //     const newData = await fetchMoreNearby({
   //       variables: {
-  //         first: 10,
+  //         first: 5,
   //         after: lastNearby,
   //         orderBy: {
   //           direction: OrderDirection.Asc,
@@ -87,7 +87,7 @@ export const HomeScreen = () => {
       const lastPopular = popular[popular.length - 1].node.id;
       const newData = await fetchMorePopular({
         variables: {
-          first: 10,
+          first: 5,
           after: lastPopular,
           orderBy: {
             direction: OrderDirection.Desc,

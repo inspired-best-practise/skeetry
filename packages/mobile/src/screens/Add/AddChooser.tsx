@@ -33,7 +33,7 @@ export const AddChooserScreen = () => {
   //   fetchMore: fetchMoreRecommended,
   // } = usePopularQuery({
   //   variables: {
-  //     first: 10,
+  //     first: 5,
   //     orderBy: {
   //       direction: OrderDirection.Desc,
   //     },
@@ -43,7 +43,7 @@ export const AddChooserScreen = () => {
 
   const { data: dataSearch, loading: loadingSearch } = useCitiesQuery({
     variables: {
-      first: 10,
+      first: 5,
       query: input,
       orderBy: {
         direction: OrderDirection.Desc,
@@ -54,7 +54,7 @@ export const AddChooserScreen = () => {
 
   const { data: dataUsers, loading: loadingUsers } = useUsersQuery({
     variables: {
-      first: 10,
+      first: 5,
       query: input,
       orderBy: {
         direction: OrderDirection.Desc,
@@ -74,7 +74,7 @@ export const AddChooserScreen = () => {
   //     const lastRecommended = recommended[recommended.length - 1].node.id;
   //     const newData = await fetchMoreRecommended({
   //       variables: {
-  //         first: 10,
+  //         first: 5,
   //         after: lastRecommended,
   //         orderBy: {
   //           direction: OrderDirection.Desc,

@@ -32,7 +32,7 @@ export const ProfileUserScreen = ({ route }) => {
   } = useWantedQuery({
     variables: {
       userId: user.id,
-      first: 10,
+      first: 5,
       orderBy: {
         direction: OrderDirection.Asc,
       },
@@ -52,7 +52,7 @@ export const ProfileUserScreen = ({ route }) => {
       const newData = await fetchMoreWanted({
         variables: {
           userId: user.id,
-          first: 10,
+          first: 5,
           after: lastWanted,
           orderBy: {
             direction: OrderDirection.Asc,
@@ -72,7 +72,7 @@ export const ProfileUserScreen = ({ route }) => {
   } = useVisitedQuery({
     variables: {
       userId: user.id,
-      first: 10,
+      first: 5,
       orderBy: {
         direction: OrderDirection.Asc,
       },
@@ -92,7 +92,7 @@ export const ProfileUserScreen = ({ route }) => {
       const newData = await fetchMoreVisited({
         variables: {
           userId: user.id,
-          first: 10,
+          first: 5,
           after: lastVisited,
           orderBy: {
             direction: OrderDirection.Asc,

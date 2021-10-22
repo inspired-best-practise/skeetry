@@ -43,8 +43,7 @@
     "dayjs": "^1.10.7",
     "eslint-config-prettier": "^8.3.0",
     "graphql": "^15.6.1",
-    "husky": "^7.0.4",
-    "i18next": "^21.3.2",
+    "i18next": "^21.3.3",
     "isomorphic-unfetch": "^3.1.0",
     "lint-staged": "^11.2.3",
     "react": "17.0.2",
@@ -81,7 +80,7 @@
     "react-native-vector-icons": "^8.1.0",
     "react-navigation-hooks": "^1.1.0",
     "use-memo-one": "^1.1.2",
-    "zustand": "^3.5.14"
+    "zustand": "^3.6.0"
   },
   "devDependencies": {
     "@babel/core": "^7.15.8",
@@ -96,8 +95,8 @@
     "@react-native-community/eslint-config": "^3.0.1",
     "@types/apollo-upload-client": "^14.1.0",
     "@types/jest": "^27.0.2",
-    "@types/react-native": "^0.65.9",
-    "@types/react-native-snap-carousel": "^3.8.4",
+    "@types/react-native": "^0.65.10",
+    "@types/react-native-snap-carousel": "^3.8.5",
     "@types/react-native-vector-icons": "^6.4.9",
     "@types/react-test-renderer": "^17.0.1",
     "@types/uuid": "^8.3.1",

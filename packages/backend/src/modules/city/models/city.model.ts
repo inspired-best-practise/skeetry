@@ -1,5 +1,6 @@
 import { Field, ObjectType, Float } from '@nestjs/graphql';
 import { User } from '../../user/models/user.model';
+import { AlternateName } from './alternateName.model';
 import { Image } from '../../image/models/image.model';
 import { GraphQLBigInt } from '@the-gear/graphql-scalars';
 
@@ -37,4 +38,7 @@ export class City {
 
   @Field(() => [User], { nullable: true })
   userVisited: User[];
+
+  @Field(() => [AlternateName], { nullable: true })
+  alternateName: AlternateName[];
 }

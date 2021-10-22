@@ -2410,10 +2410,10 @@
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.4.tgz#fcf7205c25dff795ee79af1e30da2c9790808f11"
   integrity sha512-rZ5drC/jWjrArrS8BR6SIr4cWpW09RNTYt9AMZo3Jwwif+iacXAqgVjm0B0Bv/S1jhDXKHqRVNCbACkJ89RAnQ==
 
-"@types/react-native-snap-carousel@^3.8.4":
-  version "3.8.4"
-  resolved "https://registry.yarnpkg.com/@types/react-native-snap-carousel/-/react-native-snap-carousel-3.8.4.tgz#0ffa154d29df2f09b4d2d1dd331fc678915918f7"
-  integrity sha512-gBcMQyb7WztctzjAgr7RFzM5/59FDhcrsc7S2KibQbKyghzRE5dTJ61HfETmjgeIsJw/Ahgw3iKR1QSzpRwDvg==
+"@types/react-native-snap-carousel@^3.8.5":
+  version "3.8.5"
+  resolved "https://registry.yarnpkg.com/@types/react-native-snap-carousel/-/react-native-snap-carousel-3.8.5.tgz#5b3cb208119e3599d5537b5fc83653a155c6275d"
+  integrity sha512-EMBwQo/om2HZM/J6u8Bvz7i0BEO/v6frrpmlvUQ579CMsgYQPlYzQ1ne4KDdRq08+yDSG8/8AwIi1R+185ROsg==
   dependencies:
     "@types/react" "*"
     "@types/react-native" "*"
@@ -2433,10 +2433,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-native@^0.65.9":
-  version "0.65.9"
-  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.65.9.tgz#477e4358e7d7978e9400d91ae90c9805d7ec34ca"
-  integrity sha512-CYHmz66i88WpkQAkRmHGCQb8J7SWT0nWwMTN21AIfZJ3dQ5uz9c8+aFQS+nZpsphpa0cjcgqw3ilvMe/EJrM5w==
+"@types/react-native@^0.65.10":
+  version "0.65.10"
+  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.65.10.tgz#5dad96570ae48b5e326445597e050dfb349a6d54"
+  integrity sha512-LKf/EgM4IiYVBSjTVvxfWQCzZW8X4TcLuoqd2jfzeRLpNAsX+W5dWh2QhtMM15IyS2TuI8YJNK4JU5wHLVxanQ==
   dependencies:
     "@types/react" "*"
 
@@ -5538,15 +5538,15 @@ human-signals@^2.1.0:
   resolved "https://registry.yarnpkg.com/human-signals/-/human-signals-2.1.0.tgz#dc91fcba42e4d06e4abaed33b3e7a3c02f514ea0"
   integrity sha512-B4FFZ6q/T2jhhksgkbEW3HBvWIfDW85snkQgawt07S7J5QXTk6BkNV+0yAeZrM5QpMAdYlocGoljn0sJ/WQkFw==
 
-husky@^7.0.4:
+husky@^7.0.2:
   version "7.0.4"
   resolved "https://registry.yarnpkg.com/husky/-/husky-7.0.4.tgz#242048245dc49c8fb1bf0cc7cfb98dd722531535"
   integrity sha512-vbaCKN2QLtP/vD4yvs6iz6hBEo6wkSzs8HpRah1Z6aGmF2KW5PdYuAd7uX5a+OyBZHBhd+TFLqgjUgytQr4RvQ==
 
-i18next@^21.3.2:
-  version "21.3.2"
-  resolved "https://registry.yarnpkg.com/i18next/-/i18next-21.3.2.tgz#8a83593e764fe19b81565737fbf78eed8a70ab00"
-  integrity sha512-ojsp2GYeXaPNkMaG2p4Ot2bNZjvCFpTGT5ffnDLyMaLQovLEtTjv66X9riP0vkq1W3+Ici2cty77So+bfyDjSQ==
+i18next@^21.3.3:
+  version "21.3.3"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-21.3.3.tgz#1065d557328db29a2e1f33526ed37608cdb0242c"
+  integrity sha512-Wv5arCT9pK35nfhOzTdS64T7JpPcoqnkOEidxc4zF0DZ8KetpvmnkO+uWkXy+DFz6zWzPX7U9bIemwBqpFRprw==
   dependencies:
     "@babel/runtime" "^7.12.0"
 
@@ -11048,7 +11048,7 @@ zen-observable@0.8.15:
   resolved "https://registry.yarnpkg.com/zen-observable/-/zen-observable-0.8.15.tgz#96415c512d8e3ffd920afd3889604e30b9eaac15"
   integrity sha512-PQ2PC7R9rslx84ndNBZB/Dkv8V8fZEpk83RLgXtYd0fwUgEjseMn1Dgajh2x6S8QbZAFa9p2qVCEuYZNgve0dQ==
 
-zustand@^3.5.14:
-  version "3.5.14"
-  resolved "https://registry.yarnpkg.com/zustand/-/zustand-3.5.14.tgz#591c3e8b75c57b2d13d596d8db00a08a0b3d5cdb"
-  integrity sha512-Y5o/024/eBluNGLt1MYp9KTqCzbw/Cztvx8MVjtmMWHQPrgnKfOe0Wqu7j7JSl+KxfJMA0TxNz4RKSqDx0fbHQ==
+zustand@^3.6.0:
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/zustand/-/zustand-3.6.0.tgz#7f89b72eed66e717b1e012781273085bce90728d"
+  integrity sha512-kCzsXL0GaJrG/EluZJJEaUQrf0pAlAD4qcTp8DU96pdF03RAGcGzVGorpIvh4cyKYbxn3wJbR6Hac4j3SsAS1g==

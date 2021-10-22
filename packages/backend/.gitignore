@@ -11,7 +11,6 @@ node_modules/
 /dist
 dist/*
 lib/
-/prisma/seed.ts
 
 # misc
 .DS_Store

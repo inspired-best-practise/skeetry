@@ -26,7 +26,7 @@ export const LocationsScreen = () => {
     fetchMore: fetchMoreCapital,
   } = useCitiesQuery({
     variables: {
-      first: 10,
+      first: 5,
       orderBy: {
         direction: OrderDirection.Asc,
       },
@@ -42,7 +42,7 @@ export const LocationsScreen = () => {
     fetchMore: fetchMoreEurope,
   } = useCitiesQuery({
     variables: {
-      first: 10,
+      first: 5,
       orderBy: {
         direction: OrderDirection.Asc,
       },
@@ -58,7 +58,7 @@ export const LocationsScreen = () => {
     fetchMore: fetchMoreAsia,
   } = useCitiesQuery({
     variables: {
-      first: 10,
+      first: 5,
       orderBy: {
         direction: OrderDirection.Asc,
       },
@@ -74,7 +74,7 @@ export const LocationsScreen = () => {
     fetchMore: fetchMoreAustralia,
   } = useCitiesQuery({
     variables: {
-      first: 10,
+      first: 5,
       orderBy: {
         direction: OrderDirection.Asc,
       },
@@ -90,7 +90,7 @@ export const LocationsScreen = () => {
     fetchMore: fetchMoreAmericas,
   } = useCitiesQuery({
     variables: {
-      first: 10,
+      first: 5,
       orderBy: {
         direction: OrderDirection.Asc,
       },
@@ -106,7 +106,7 @@ export const LocationsScreen = () => {
     fetchMore: fetchMoreAfrica,
   } = useCitiesQuery({
     variables: {
-      first: 10,
+      first: 5,
       orderBy: {
         direction: OrderDirection.Asc,
       },
@@ -158,7 +158,7 @@ export const LocationsScreen = () => {
       const lastCapital = capital[capital.length - 1].node.id;
       const newData = await fetchMoreCapital({
         variables: {
-          first: 10,
+          first: 5,
           after: lastCapital,
           orderBy: {
             direction: OrderDirection.Asc,
@@ -175,7 +175,7 @@ export const LocationsScreen = () => {
       const lastEurope = europe[europe.length - 1].node.id;
       const newData = await fetchMoreEurope({
         variables: {
-          first: 10,
+          first: 5,
           after: lastEurope,
           orderBy: {
             direction: OrderDirection.Asc,
@@ -192,7 +192,7 @@ export const LocationsScreen = () => {
       const lastAsia = asia[asia.length - 1].node.id;
       const newData = await fetchMoreAsia({
         variables: {
-          first: 10,
+          first: 5,
           after: lastAsia,
           orderBy: {
             direction: OrderDirection.Asc,
@@ -209,7 +209,7 @@ export const LocationsScreen = () => {
       const lastAustralia = australia[australia.length - 1].node.id;
       const newData = await fetchMoreAustralia({
         variables: {
-          first: 10,
+          first: 5,
           after: lastAustralia,
           orderBy: {
             direction: OrderDirection.Asc,
@@ -226,7 +226,7 @@ export const LocationsScreen = () => {
       const lastAmericas = americas[americas.length - 1].node.id;
       const newData = await fetchMoreAmericas({
         variables: {
-          first: 10,
+          first: 5,
           after: lastAmericas,
           orderBy: {
             direction: OrderDirection.Asc,
@@ -243,7 +243,7 @@ export const LocationsScreen = () => {
       const lastAfrica = africa[africa.length - 1].node.id;
       const newData = await fetchMoreAfrica({
         variables: {
-          first: 10,
+          first: 5,
           after: lastAfrica,
           orderBy: {
             direction: OrderDirection.Asc,

@@ -20,7 +20,7 @@ export const ItemsByCategoryScreen = ({ route }) => {
       input: {
         cityTagId: id,
       },
-      first: 10,
+      first: 5,
       orderBy: {
         direction: OrderDirection.Asc,
       },
@@ -49,7 +49,7 @@ export const ItemsByCategoryScreen = ({ route }) => {
             cityTagId: id,
           },
           after: lastCity,
-          first: 10,
+          first: 5,
           orderBy: {
             direction: OrderDirection.Asc,
           },

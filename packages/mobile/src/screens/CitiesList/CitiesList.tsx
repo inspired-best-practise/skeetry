@@ -15,7 +15,7 @@ export const CitiesListScreen = ({ route }) => {
 
   const { data, loading, fetchMore } = useCitiesQuery({
     variables: {
-      first: 10,
+      first: 5,
       skip: 1,
       orderBy: {
         direction: OrderDirection.Asc,
@@ -43,7 +43,7 @@ export const CitiesListScreen = ({ route }) => {
       const lastCity = cities[cities.length - 1].node.id;
       const newData = await fetchMore({
         variables: {
-          first: 10,
+          first: 5,
           after: lastCity,
           orderBy: {
             direction: OrderDirection.Asc,

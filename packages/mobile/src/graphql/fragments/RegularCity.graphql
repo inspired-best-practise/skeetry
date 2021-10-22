@@ -1,5 +1,5 @@
 fragment RegularCity on City {
-  pk     
+  id     
   name         
   overview     
   wantedCount  

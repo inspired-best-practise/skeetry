@@ -4,14 +4,13 @@ import FastImage from 'react-native-fast-image';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import { navigation } from '_app/services/navigations';
-import { withLocalization } from '_app/utils/helpers';
 
 import ImagePlaceholder from '../ImagePlaceholder/ImagePlaceholder';
 import { s } from './styles';
 
 // TODO: refactor
 export const Card = ({ item, size }: TCardProps) => {
-  const { photos, name, id, rating, state, country, locale, localizations } = item;
+  const { photos, name, countryCode } = item;
   const [active, setActive] = useState(0);
 
   const changeItem = nativeEvent => {
@@ -136,9 +135,9 @@ export const Card = ({ item, size }: TCardProps) => {
             </View>
           </View>
         )}
-        <View style={s.flag}>
+        {/* <View style={s.flag}>
           <Text style={s.flagText}>{state ? state.country.emoji : country.emoji}</Text>
-        </View>
+        </View> */}
       </View>
       {/* {size !== 'base' && (
         <View style={s.rating}>
@@ -148,12 +147,14 @@ export const Card = ({ item, size }: TCardProps) => {
         </View>
       )} */}
       <Text numberOfLines={1} style={s.itemTitle}>
-        {withLocalization('name', name, locale, localizations)}
+        {name}
+        {/* {withLocalization('name', name, locale, localizations)} */}
       </Text>
       <Text numberOfLines={1} style={s.itemDesc}>
-        {state
+        {countryCode}
+        {/* {state
           ? withLocalization('state.country.name', state.country.name, locale, localizations)
-          : withLocalization('country.name', country.name, locale, localizations)}
+          : withLocalization('country.name', country.name, locale, localizations)} */}
       </Text>
     </View>
   );
