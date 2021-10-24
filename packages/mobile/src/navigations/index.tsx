@@ -18,6 +18,7 @@ import {
   CitiesListScreen,
   MapScreen,
   ProfileUserScreen,
+  StoriesScreen,
 } from '_app/screens';
 import { navigation, navigationRef } from '_app/services/navigations';
 import { normalize } from '_app/utils/dimensions';
@@ -188,6 +189,15 @@ const Index = (): JSX.Element => {
           })}
           name="ProfileUser"
           component={ProfileUserScreen}
+        />
+        <RootStack.Screen
+          options={({ route }) => ({
+            ...TransitionPresets.ModalTransition,
+            headerShown: false,
+            presentation: 'fullScreenModal',
+          })}
+          name="Stories"
+          component={StoriesScreen}
         />
       </RootStack.Navigator>
     </NavigationContainer>

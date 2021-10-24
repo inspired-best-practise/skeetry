@@ -13,10 +13,10 @@ export const compareLocale = (languageTag: string, locale: any) => {
   return languageTag === locale.toLowerCase();
 };
 
+export const languageTag = detectedLocale?.languageTag;
+
 // TODO: refactor and type
 export const withLocalization = (fieldName: string, field: string, locale, localizations) => {
-  const languageTag = detectedLocale?.languageTag;
-
   const hasLocalization = languageTag
     ? localizations
       ? localizations.find(l => l.locale === languageTag.toUpperCase())

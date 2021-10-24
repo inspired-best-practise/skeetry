@@ -10,6 +10,7 @@ import ImagePlaceholder from '_app/components/ImagePlaceholder/ImagePlaceholder'
 import { colors, mapGfxStyle, PLATFORM } from '_app/constants';
 import { useAddCityMutation, useCityQuery, useMoveCityMutation, useRemoveCityMutation } from '_app/generated/graphql';
 import { authStore } from '_app/stores';
+import { languageTag } from '_app/utils/helpers';
 
 import { s } from './styles';
 
@@ -21,6 +22,20 @@ export const CardScreen = ({ route, navigation }) => {
   const [currentCity, setCurrentCity] = useState(item);
 
   const user = authStore(state => state.user);
+
+  const ruName = item.alternateName.find(a => {
+    if (a.isoLang === 'ru' && a.isPreferredName === true) {
+      return a;
+    }
+
+    if (a.isoLang === 'ru' && !a.isHistoric) {
+      return a;
+    }
+
+    return null;
+  });
+
+  const title = languageTag === 'ru' && ruName && ruName.alternateName ? ruName.alternateName : currentCity.name;
 
   const {
     data: itemData,
@@ -202,7 +217,7 @@ export const CardScreen = ({ route, navigation }) => {
       <View style={s.content}>
         <View style={s.section}>
           <Text style={s.name}>
-            {currentCity.name}
+            {title}
             {/* {currentCity.state
               ? currentCity.state.country.emoji + ' ' + currentCity.name
               : currentCity.country.emoji + ' ' + currentCity.name} */}

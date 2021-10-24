@@ -18,6 +18,7 @@ export class CityService {
       include: {
         userWanted: true,
         userVisited: true,
+        images: true,
       },
       where: {
         id,
@@ -90,6 +91,7 @@ export class CityService {
       include: {
         userWanted: true,
         userVisited: true,
+        images: true,
       },
       where: {
         id,
@@ -162,6 +164,7 @@ export class CityService {
       include: {
         userWanted: true,
         userVisited: true,
+        images: true,
       },
       where: {
         id,
@@ -255,6 +258,7 @@ export class CityService {
         userVisited: true,
         userWanted: true,
         alternateName: true,
+        images: true,
       },
       where: {
         id,
@@ -283,6 +287,7 @@ export class CityService {
               userVisited: true,
               userWanted: true,
               alternateName: true,
+              images: true,
             },
             where: {
               AND: [
@@ -337,6 +342,7 @@ export class CityService {
             userVisited: true,
             userWanted: true,
             alternateName: true,
+            images: true,
           },
           where: {
             AND: [
@@ -392,6 +398,7 @@ export class CityService {
           include: {
             userWanted: true,
             alternateName: true,
+            images: true,
           },
           where: {
             userWanted: {
@@ -433,6 +440,7 @@ export class CityService {
           include: {
             userVisited: true,
             alternateName: true,
+            images: true,
           },
           where: {
             userVisited: {
@@ -470,6 +478,7 @@ export class CityService {
             userVisited: true,
             userWanted: true,
             alternateName: true,
+            images: true,
           },
           orderBy: orderBy ? { name: orderBy.direction } : null,
           ...args,
@@ -491,6 +500,7 @@ export class CityService {
             userVisited: true,
             userWanted: true,
             alternateName: true,
+            images: true,
           },
           orderBy: orderBy ? { name: orderBy.direction } : null,
           ...args,

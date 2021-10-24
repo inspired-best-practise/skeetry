@@ -5,13 +5,7 @@ import { BaseModel } from '../../common/base.model';
 @ObjectType()
 export class Image extends BaseModel {
   @Field()
-  urlRegular: string;
-
-  @Field()
-  urlSmall: string;
-
-  @Field()
-  urlThumb: string;
+  url: string;
 
   @Field(() => [City], { nullable: true })
   city?: City[];

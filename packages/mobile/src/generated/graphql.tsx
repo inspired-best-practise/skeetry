@@ -25,6 +25,16 @@ export type ActionCityInput = {
   type: Scalars['String'];
 };
 
+export type AlternateName = {
+  __typename?: 'AlternateName';
+  alternateName?: Maybe<Scalars['String']>;
+  id: Scalars['String'];
+  isHistoric?: Maybe<Scalars['Boolean']>;
+  isPreferredName?: Maybe<Scalars['Boolean']>;
+  isShortName?: Maybe<Scalars['Boolean']>;
+  isoLang?: Maybe<Scalars['String']>;
+};
+
 export type Auth = {
   __typename?: 'Auth';
   /** JWT access token */
@@ -40,6 +50,7 @@ export type CitiesInput = {
 
 export type City = {
   __typename?: 'City';
+  alternateName?: Maybe<Array<AlternateName>>;
   id: Scalars['String'];
   images?: Maybe<Array<Image>>;
   latitude?: Maybe<Scalars['Float']>;
@@ -332,7 +343,7 @@ export type UserOrder = {
   direction: OrderDirection;
 };
 
-export type RegularCityFragment = { __typename?: 'City', id: string, name: string, overview?: string | null | undefined, wantedCount: number, visitedCount: number, latitude?: number | null | undefined, longitude?: number | null | undefined, images?: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }> | null | undefined, userWanted?: Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: string | null | undefined, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }> | null | undefined, userVisited?: Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: string | null | undefined, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }> | null | undefined };
+export type RegularCityFragment = { __typename?: 'City', id: string, name: string, overview?: string | null | undefined, wantedCount: number, visitedCount: number, latitude?: number | null | undefined, longitude?: number | null | undefined, images?: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }> | null | undefined, userWanted?: Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: string | null | undefined, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }> | null | undefined, userVisited?: Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: string | null | undefined, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }> | null | undefined, alternateName?: Array<{ __typename?: 'AlternateName', id: string, isoLang?: string | null | undefined, alternateName?: string | null | undefined, isPreferredName?: boolean | null | undefined, isShortName?: boolean | null | undefined, isHistoric?: boolean | null | undefined }> | null | undefined };
 
 export type RegularImageFragment = { __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string };
 
@@ -349,7 +360,7 @@ export type AddCityMutationVariables = Exact<{
 }>;
 
 
-export type AddCityMutation = { __typename?: 'Mutation', addCity: { __typename?: 'City', id: string, name: string, overview?: string | null | undefined, wantedCount: number, visitedCount: number, latitude?: number | null | undefined, longitude?: number | null | undefined, images?: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }> | null | undefined, userWanted?: Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: string | null | undefined, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }> | null | undefined, userVisited?: Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: string | null | undefined, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }> | null | undefined } };
+export type AddCityMutation = { __typename?: 'Mutation', addCity: { __typename?: 'City', id: string, name: string, overview?: string | null | undefined, wantedCount: number, visitedCount: number, latitude?: number | null | undefined, longitude?: number | null | undefined, images?: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }> | null | undefined, userWanted?: Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: string | null | undefined, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }> | null | undefined, userVisited?: Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: string | null | undefined, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }> | null | undefined, alternateName?: Array<{ __typename?: 'AlternateName', id: string, isoLang?: string | null | undefined, alternateName?: string | null | undefined, isPreferredName?: boolean | null | undefined, isShortName?: boolean | null | undefined, isHistoric?: boolean | null | undefined }> | null | undefined } };
 
 export type ConfirmSmsCodeMutationVariables = Exact<{
   phone: Scalars['String'];
@@ -376,7 +387,7 @@ export type MoveCityMutationVariables = Exact<{
 }>;
 
 
-export type MoveCityMutation = { __typename?: 'Mutation', moveCity: { __typename?: 'City', id: string, name: string, overview?: string | null | undefined, wantedCount: number, visitedCount: number, latitude?: number | null | undefined, longitude?: number | null | undefined, images?: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }> | null | undefined, userWanted?: Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: string | null | undefined, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }> | null | undefined, userVisited?: Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: string | null | undefined, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }> | null | undefined } };
+export type MoveCityMutation = { __typename?: 'Mutation', moveCity: { __typename?: 'City', id: string, name: string, overview?: string | null | undefined, wantedCount: number, visitedCount: number, latitude?: number | null | undefined, longitude?: number | null | undefined, images?: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }> | null | undefined, userWanted?: Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: string | null | undefined, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }> | null | undefined, userVisited?: Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: string | null | undefined, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }> | null | undefined, alternateName?: Array<{ __typename?: 'AlternateName', id: string, isoLang?: string | null | undefined, alternateName?: string | null | undefined, isPreferredName?: boolean | null | undefined, isShortName?: boolean | null | undefined, isHistoric?: boolean | null | undefined }> | null | undefined } };
 
 export type RefreshTokenMutationVariables = Exact<{ [key: string]: never; }>;
 
@@ -388,7 +399,7 @@ export type RemoveCityMutationVariables = Exact<{
 }>;
 
 
-export type RemoveCityMutation = { __typename?: 'Mutation', removeCity: { __typename?: 'City', id: string, name: string, overview?: string | null | undefined, wantedCount: number, visitedCount: number, latitude?: number | null | undefined, longitude?: number | null | undefined, images?: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }> | null | undefined, userWanted?: Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: string | null | undefined, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }> | null | undefined, userVisited?: Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: string | null | undefined, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }> | null | undefined } };
+export type RemoveCityMutation = { __typename?: 'Mutation', removeCity: { __typename?: 'City', id: string, name: string, overview?: string | null | undefined, wantedCount: number, visitedCount: number, latitude?: number | null | undefined, longitude?: number | null | undefined, images?: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }> | null | undefined, userWanted?: Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: string | null | undefined, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }> | null | undefined, userVisited?: Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: string | null | undefined, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }> | null | undefined, alternateName?: Array<{ __typename?: 'AlternateName', id: string, isoLang?: string | null | undefined, alternateName?: string | null | undefined, isPreferredName?: boolean | null | undefined, isShortName?: boolean | null | undefined, isHistoric?: boolean | null | undefined }> | null | undefined } };
 
 export type SendSmsCodeMutationVariables = Exact<{
   phone: Scalars['String'];
@@ -423,14 +434,14 @@ export type CitiesQueryVariables = Exact<{
 }>;
 
 
-export type CitiesQuery = { __typename?: 'Query', cities: { __typename?: 'CityConnection', totalCount: number, edges?: Array<{ __typename?: 'CityEdge', cursor: string, node: { __typename?: 'City', id: string, name: string, overview?: string | null | undefined, wantedCount: number, visitedCount: number, latitude?: number | null | undefined, longitude?: number | null | undefined, images?: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }> | null | undefined, userWanted?: Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: string | null | undefined, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }> | null | undefined, userVisited?: Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: string | null | undefined, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }> | null | undefined } }> | null | undefined, pageInfo: { __typename?: 'PageInfo', endCursor?: string | null | undefined, hasNextPage: boolean, hasPreviousPage: boolean, startCursor?: string | null | undefined } } };
+export type CitiesQuery = { __typename?: 'Query', cities: { __typename?: 'CityConnection', totalCount: number, edges?: Array<{ __typename?: 'CityEdge', cursor: string, node: { __typename?: 'City', id: string, name: string, overview?: string | null | undefined, wantedCount: number, visitedCount: number, latitude?: number | null | undefined, longitude?: number | null | undefined, images?: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }> | null | undefined, userWanted?: Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: string | null | undefined, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }> | null | undefined, userVisited?: Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: string | null | undefined, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }> | null | undefined, alternateName?: Array<{ __typename?: 'AlternateName', id: string, isoLang?: string | null | undefined, alternateName?: string | null | undefined, isPreferredName?: boolean | null | undefined, isShortName?: boolean | null | undefined, isHistoric?: boolean | null | undefined }> | null | undefined } }> | null | undefined, pageInfo: { __typename?: 'PageInfo', endCursor?: string | null | undefined, hasNextPage: boolean, hasPreviousPage: boolean, startCursor?: string | null | undefined } } };
 
 export type CityQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
 
 
-export type CityQuery = { __typename?: 'Query', city: { __typename?: 'City', id: string, name: string, overview?: string | null | undefined, wantedCount: number, visitedCount: number, latitude?: number | null | undefined, longitude?: number | null | undefined, images?: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }> | null | undefined, userWanted?: Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: string | null | undefined, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }> | null | undefined, userVisited?: Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: string | null | undefined, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }> | null | undefined } };
+export type CityQuery = { __typename?: 'Query', city: { __typename?: 'City', id: string, name: string, overview?: string | null | undefined, wantedCount: number, visitedCount: number, latitude?: number | null | undefined, longitude?: number | null | undefined, images?: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }> | null | undefined, userWanted?: Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: string | null | undefined, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }> | null | undefined, userVisited?: Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: string | null | undefined, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }> | null | undefined, alternateName?: Array<{ __typename?: 'AlternateName', id: string, isoLang?: string | null | undefined, alternateName?: string | null | undefined, isPreferredName?: boolean | null | undefined, isShortName?: boolean | null | undefined, isHistoric?: boolean | null | undefined }> | null | undefined } };
 
 export type MeQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -447,7 +458,7 @@ export type NearbyQueryVariables = Exact<{
 }>;
 
 
-export type NearbyQuery = { __typename?: 'Query', nearby: { __typename?: 'CityConnection', totalCount: number, edges?: Array<{ __typename?: 'CityEdge', cursor: string, node: { __typename?: 'City', id: string, name: string, overview?: string | null | undefined, wantedCount: number, visitedCount: number, latitude?: number | null | undefined, longitude?: number | null | undefined, images?: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }> | null | undefined, userWanted?: Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: string | null | undefined, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }> | null | undefined, userVisited?: Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: string | null | undefined, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }> | null | undefined } }> | null | undefined, pageInfo: { __typename?: 'PageInfo', endCursor?: string | null | undefined, hasNextPage: boolean, hasPreviousPage: boolean, startCursor?: string | null | undefined } } };
+export type NearbyQuery = { __typename?: 'Query', nearby: { __typename?: 'CityConnection', totalCount: number, edges?: Array<{ __typename?: 'CityEdge', cursor: string, node: { __typename?: 'City', id: string, name: string, overview?: string | null | undefined, wantedCount: number, visitedCount: number, latitude?: number | null | undefined, longitude?: number | null | undefined, images?: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }> | null | undefined, userWanted?: Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: string | null | undefined, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }> | null | undefined, userVisited?: Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: string | null | undefined, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }> | null | undefined, alternateName?: Array<{ __typename?: 'AlternateName', id: string, isoLang?: string | null | undefined, alternateName?: string | null | undefined, isPreferredName?: boolean | null | undefined, isShortName?: boolean | null | undefined, isHistoric?: boolean | null | undefined }> | null | undefined } }> | null | undefined, pageInfo: { __typename?: 'PageInfo', endCursor?: string | null | undefined, hasNextPage: boolean, hasPreviousPage: boolean, startCursor?: string | null | undefined } } };
 
 export type PopularQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>;
@@ -459,7 +470,7 @@ export type PopularQueryVariables = Exact<{
 }>;
 
 
-export type PopularQuery = { __typename?: 'Query', popular: { __typename?: 'CityConnection', totalCount: number, edges?: Array<{ __typename?: 'CityEdge', cursor: string, node: { __typename?: 'City', id: string, name: string, overview?: string | null | undefined, wantedCount: number, visitedCount: number, latitude?: number | null | undefined, longitude?: number | null | undefined, images?: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }> | null | undefined, userWanted?: Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: string | null | undefined, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }> | null | undefined, userVisited?: Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: string | null | undefined, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }> | null | undefined } }> | null | undefined, pageInfo: { __typename?: 'PageInfo', endCursor?: string | null | undefined, hasNextPage: boolean, hasPreviousPage: boolean, startCursor?: string | null | undefined } } };
+export type PopularQuery = { __typename?: 'Query', popular: { __typename?: 'CityConnection', totalCount: number, edges?: Array<{ __typename?: 'CityEdge', cursor: string, node: { __typename?: 'City', id: string, name: string, overview?: string | null | undefined, wantedCount: number, visitedCount: number, latitude?: number | null | undefined, longitude?: number | null | undefined, images?: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }> | null | undefined, userWanted?: Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: string | null | undefined, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }> | null | undefined, userVisited?: Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: string | null | undefined, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }> | null | undefined, alternateName?: Array<{ __typename?: 'AlternateName', id: string, isoLang?: string | null | undefined, alternateName?: string | null | undefined, isPreferredName?: boolean | null | undefined, isShortName?: boolean | null | undefined, isHistoric?: boolean | null | undefined }> | null | undefined } }> | null | undefined, pageInfo: { __typename?: 'PageInfo', endCursor?: string | null | undefined, hasNextPage: boolean, hasPreviousPage: boolean, startCursor?: string | null | undefined } } };
 
 export type TagsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -497,7 +508,7 @@ export type VisitedQueryVariables = Exact<{
 }>;
 
 
-export type VisitedQuery = { __typename?: 'Query', visited: { __typename?: 'CityConnection', totalCount: number, edges?: Array<{ __typename?: 'CityEdge', cursor: string, node: { __typename?: 'City', id: string, name: string, overview?: string | null | undefined, wantedCount: number, visitedCount: number, latitude?: number | null | undefined, longitude?: number | null | undefined, images?: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }> | null | undefined, userWanted?: Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: string | null | undefined, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }> | null | undefined, userVisited?: Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: string | null | undefined, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }> | null | undefined } }> | null | undefined, pageInfo: { __typename?: 'PageInfo', endCursor?: string | null | undefined, hasNextPage: boolean, hasPreviousPage: boolean, startCursor?: string | null | undefined } } };
+export type VisitedQuery = { __typename?: 'Query', visited: { __typename?: 'CityConnection', totalCount: number, edges?: Array<{ __typename?: 'CityEdge', cursor: string, node: { __typename?: 'City', id: string, name: string, overview?: string | null | undefined, wantedCount: number, visitedCount: number, latitude?: number | null | undefined, longitude?: number | null | undefined, images?: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }> | null | undefined, userWanted?: Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: string | null | undefined, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }> | null | undefined, userVisited?: Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: string | null | undefined, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }> | null | undefined, alternateName?: Array<{ __typename?: 'AlternateName', id: string, isoLang?: string | null | undefined, alternateName?: string | null | undefined, isPreferredName?: boolean | null | undefined, isShortName?: boolean | null | undefined, isHistoric?: boolean | null | undefined }> | null | undefined } }> | null | undefined, pageInfo: { __typename?: 'PageInfo', endCursor?: string | null | undefined, hasNextPage: boolean, hasPreviousPage: boolean, startCursor?: string | null | undefined } } };
 
 export type WantedQueryVariables = Exact<{
   after?: Maybe<Scalars['String']>;
@@ -510,7 +521,7 @@ export type WantedQueryVariables = Exact<{
 }>;
 
 
-export type WantedQuery = { __typename?: 'Query', wanted: { __typename?: 'CityConnection', totalCount: number, edges?: Array<{ __typename?: 'CityEdge', cursor: string, node: { __typename?: 'City', id: string, name: string, overview?: string | null | undefined, wantedCount: number, visitedCount: number, latitude?: number | null | undefined, longitude?: number | null | undefined, images?: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }> | null | undefined, userWanted?: Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: string | null | undefined, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }> | null | undefined, userVisited?: Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: string | null | undefined, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }> | null | undefined } }> | null | undefined, pageInfo: { __typename?: 'PageInfo', endCursor?: string | null | undefined, hasNextPage: boolean, hasPreviousPage: boolean, startCursor?: string | null | undefined } } };
+export type WantedQuery = { __typename?: 'Query', wanted: { __typename?: 'CityConnection', totalCount: number, edges?: Array<{ __typename?: 'CityEdge', cursor: string, node: { __typename?: 'City', id: string, name: string, overview?: string | null | undefined, wantedCount: number, visitedCount: number, latitude?: number | null | undefined, longitude?: number | null | undefined, images?: Array<{ __typename?: 'Image', id: string, urlRegular: string, urlSmall: string, urlThumb: string }> | null | undefined, userWanted?: Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: string | null | undefined, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }> | null | undefined, userVisited?: Array<{ __typename?: 'User', id: string, phone: string, username: string, avatar?: string | null | undefined, wantedCount: number, visitedCount: number, createdAt: any, updatedAt: any }> | null | undefined, alternateName?: Array<{ __typename?: 'AlternateName', id: string, isoLang?: string | null | undefined, alternateName?: string | null | undefined, isPreferredName?: boolean | null | undefined, isShortName?: boolean | null | undefined, isHistoric?: boolean | null | undefined }> | null | undefined } }> | null | undefined, pageInfo: { __typename?: 'PageInfo', endCursor?: string | null | undefined, hasNextPage: boolean, hasPreviousPage: boolean, startCursor?: string | null | undefined } } };
 
 export const RegularImageFragmentDoc = gql`
     fragment RegularImage on Image {
@@ -549,6 +560,14 @@ export const RegularCityFragmentDoc = gql`
   }
   userVisited {
     ...RegularUser
+  }
+  alternateName {
+    id
+    isoLang
+    alternateName
+    isPreferredName
+    isShortName
+    isHistoric
   }
 }
     ${RegularImageFragmentDoc}

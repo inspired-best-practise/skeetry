@@ -4,12 +4,31 @@ const prisma = new PrismaClient();
 async function main() {
   console.log('Seeding...');
 
-  for (let i = 0; i < 10000; i++) {
+  for (let i = 0; i < 10000000; i++) {
     console.log('i', i);
 
     const geoname = await prisma.geoname.findFirst({
       where: {
-        fclass: 'R',
+        OR: [
+          {
+            fclass: 'R',
+          },
+          {
+            fclass: 'H',
+          },
+          {
+            fclass: 'S',
+          },
+          {
+            fclass: 'T',
+          },
+          {
+            fclass: 'U',
+          },
+          {
+            fclass: 'V',
+          },
+        ],
       },
     });
 

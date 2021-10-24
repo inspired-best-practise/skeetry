@@ -137,14 +137,14 @@ export const HomeScreen = () => {
           />
         )} */}
 
-        <HorizontalCardList
+        {/* <HorizontalCardList
           title={`${t('home:popular')}`}
           data={popular}
           size="wide"
           handleEndReached={popularEndReached}
           loading={loadingPopular}
           type="popular"
-        />
+        /> */}
       </ScrollView>
     </SafeAreaView>
   );

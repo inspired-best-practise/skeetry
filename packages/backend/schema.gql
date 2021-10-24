@@ -76,9 +76,7 @@ type Image {
 
   """Identifies the date and time when the object was last updated."""
   updatedAt: DateTime!
-  urlRegular: String!
-  urlSmall: String!
-  urlThumb: String!
+  url: String!
 }
 
 enum Locale {

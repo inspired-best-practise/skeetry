@@ -1,6 +1,4 @@
 fragment RegularImage on Image {
   id
-  urlRegular
-  urlSmall
-  urlThumb
+  url
 }

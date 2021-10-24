@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { ScrollView } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { HorizontalCardList } from '_app/components';
+// import { HorizontalCardList } from '_app/components';
 import { OrderDirection, useCitiesQuery } from '_app/generated/graphql';
 
 import { s } from './styles';
@@ -258,7 +258,7 @@ export const LocationsScreen = () => {
   return (
     <SafeAreaView edges={['top']} style={s.container}>
       <ScrollView ref={ref} showsVerticalScrollIndicator={false} scrollsToTop={true}>
-        <HorizontalCardList
+        {/* <HorizontalCardList
           title={`${t('explore:capital')}`}
           data={capital}
           size="wide"
@@ -305,7 +305,7 @@ export const LocationsScreen = () => {
           handleEndReached={africaEndReached}
           loading={loadingAfrica}
           type="africa"
-        />
+        />*/}
       </ScrollView>
     </SafeAreaView>
   );

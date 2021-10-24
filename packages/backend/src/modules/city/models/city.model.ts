@@ -1,7 +1,7 @@
 import { Field, ObjectType, Float } from '@nestjs/graphql';
 import { User } from '../../user/models/user.model';
 import { AlternateName } from './alternateName.model';
-import { Image } from '../../image/models/image.model';
+import { Image } from './image.model';
 import { GraphQLBigInt } from '@the-gear/graphql-scalars';
 
 @ObjectType()

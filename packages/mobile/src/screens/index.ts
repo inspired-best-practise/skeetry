@@ -11,3 +11,4 @@ export * from './Avatar';
 export * from './Camera';
 export * from './CitiesList';
 export * from './Map';
+export * from './Stories';

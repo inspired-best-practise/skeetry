@@ -4,14 +4,31 @@ import FastImage from 'react-native-fast-image';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import { navigation } from '_app/services/navigations';
+import { languageTag } from '_app/utils/helpers';
 
 import ImagePlaceholder from '../ImagePlaceholder/ImagePlaceholder';
 import { s } from './styles';
 
+console.log('languageTag', languageTag);
+
 // TODO: refactor
 export const Card = ({ item, size }: TCardProps) => {
-  const { photos, name, countryCode } = item;
+  const { photos, name, countryCode, alternateName } = item;
   const [active, setActive] = useState(0);
+
+  const ruName = alternateName.find(a => {
+    if (a.isoLang === 'ru' && a.isPreferredName === true) {
+      return a;
+    }
+
+    if (a.isoLang === 'ru' && !a.isHistoric) {
+      return a;
+    }
+
+    return null;
+  });
+
+  const title = languageTag === 'ru' && ruName && ruName.alternateName ? ruName.alternateName : name;
 
   const changeItem = nativeEvent => {
     if (nativeEvent) {
@@ -147,8 +164,7 @@ export const Card = ({ item, size }: TCardProps) => {
         </View>
       )} */}
       <Text numberOfLines={1} style={s.itemTitle}>
-        {name}
-        {/* {withLocalization('name', name, locale, localizations)} */}
+        {title}
       </Text>
       <Text numberOfLines={1} style={s.itemDesc}>
         {countryCode}

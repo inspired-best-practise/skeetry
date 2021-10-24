@@ -21,10 +21,8 @@
     "migrate": "prisma format && prisma migrate dev && prisma generate",
     "seed": "prisma db seed",
     "g": "graphql-codegen --config codegen.yml",
-    "ts-node": "ts-node --compiler-options \"{\\\"module\\\":\\\"commonjs\\\"}\""
-  },
-  "prisma": {
-    "seed": "ts-node prisma/seed.ts"
+    "ts-node": "ts-node --compiler-options \"{\\\"module\\\":\\\"commonjs\\\"}\"",
+    "image": "ts-node prisma/image.ts"
   },
   "dependencies": {
     "@apollo/subgraph": "^0.1.2",
