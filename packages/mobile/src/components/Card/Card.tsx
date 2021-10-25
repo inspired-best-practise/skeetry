@@ -13,7 +13,7 @@ console.log('languageTag', languageTag);
 
 // TODO: refactor
 export const Card = ({ item, size }: TCardProps) => {
-  const { photos, name, countryCode, alternateName } = item;
+  const { images, name, countryCode, alternateName } = item;
   const [active, setActive] = useState(0);
 
   const ruName = alternateName.find(a => {
@@ -61,7 +61,7 @@ export const Card = ({ item, size }: TCardProps) => {
       >
         {size !== 'full' && (
           <View>
-            {photos ? (
+            {images ? (
               <Pressable
                 onPress={() =>
                   navigation.push('CardScreen', {
@@ -76,7 +76,7 @@ export const Card = ({ item, size }: TCardProps) => {
                     size === 'base' && s.itemSizeBase,
                     size === 'small' && s.itemSizeSmall,
                   ]}
-                  source={{ uri: photos[0], priority: FastImage.priority.normal }}
+                  source={{ uri: images[0].url, priority: FastImage.priority.normal }}
                   resizeMode={FastImage.resizeMode.cover}
                 />
               </Pressable>
@@ -111,8 +111,8 @@ export const Card = ({ item, size }: TCardProps) => {
               horizontal
               showsHorizontalScrollIndicator={false}
             >
-              {photos ? (
-                photos.map((i, index) => (
+              {images ? (
+                images.map((i, index) => (
                   <Pressable
                     key={index}
                     onPress={() =>
@@ -143,8 +143,8 @@ export const Card = ({ item, size }: TCardProps) => {
               )}
             </ScrollView>
             <View style={s.wrapDot}>
-              {photos &&
-                photos.map((i, index) => (
+              {images &&
+                images.map((i, index) => (
                   <Text key={index} style={active === index ? s.dotActive : s.dot}>
                     ●
                   </Text>

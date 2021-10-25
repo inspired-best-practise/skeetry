@@ -1,8 +1,10 @@
+import MasonryList from '@react-native-seoul/masonry-list';
 import { useScrollToTop } from '@react-navigation/native';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Text, View, ScrollView, TouchableOpacity } from 'react-native';
+import { Text, View, ScrollView, TouchableOpacity, Image } from 'react-native';
 import codePush from 'react-native-code-push';
+import FastImage from 'react-native-fast-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { HorizontalCardList } from '_app/components';
@@ -13,6 +15,7 @@ import {
   OrderDirection, // useNearbyQuery,
   usePopularQuery,
 } from '_app/generated/graphql';
+import { normalize } from '_app/utils/dimensions';
 
 import { s } from './styles';
 
@@ -114,19 +117,65 @@ export const HomeScreen = () => {
     });
   };
 
+  const images = [
+    {
+      id: '0',
+      uri: 'https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YXJjaGl0ZWN0dXJlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60',
+    },
+    {
+      id: '1',
+      uri: 'https://images.unsplash.com/photo-1492321936769-b49830bc1d1e?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGFyY2hpdGVjdHVyZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60',
+    },
+    {
+      id: '2',
+      uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Kostroma._Fire_Tower_P7140241_2640.jpg/1024px-Kostroma._Fire_Tower_P7140241_2640.jpg',
+    },
+    {
+      id: '3',
+      uri: 'https://images.unsplash.com/photo-1488972685288-c3fd157d7c7a?ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8YXJjaGl0ZWN0dXJlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60',
+    },
+    {
+      id: '4',
+      uri: 'https://images.unsplash.com/photo-1493397212122-2b85dda8106b?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8YXJjaGl0ZWN0dXJlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60',
+    },
+  ];
+
   return (
-    <SafeAreaView style={s.container}>
+    <SafeAreaView>
       <View style={s.header}>
         <Text style={tTitle}>Skeetry</Text>
       </View>
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={s.main} ref={ref} scrollsToTop={true}>
+      <ScrollView showsVerticalScrollIndicator={false} ref={ref} scrollsToTop={true} contentContainerStyle={s.main}>
         <Stories />
-        <View style={[s.header, { marginBottom: 10 }]}>
+        {/* <View style={[s.header, { marginBottom: 10 }]}>
           <TouchableOpacity onPress={onButtonPress}>
             <Text style={{ fontWeight: '600', color: 'blue' }}>{t('utils:check_updates')}</Text>
           </TouchableOpacity>
-        </View>
+        </View> */}
+        {/* TODO: move categories to explore or search? */}
         <Categories />
+
+        <MasonryList
+          data={images}
+          contentContainerStyle={{ marginHorizontal: normalize(4) }}
+          keyExtractor={(item, index): string => item.id}
+          numColumns={2}
+          showsVerticalScrollIndicator={false}
+          renderItem={({ item }) => {
+            return (
+              <FastImage
+                style={{
+                  height: 200,
+                  borderRadius: 20,
+                  margin: normalize(4),
+                }}
+                source={{ uri: item.uri, priority: FastImage.priority.normal }}
+                resizeMode={FastImage.resizeMode.cover}
+              />
+            );
+          }}
+        />
+
         {/* {!errorNearby && (
           <HorizontalCardList
             title={`${t('home:nearby')}`}

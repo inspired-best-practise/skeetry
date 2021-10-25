@@ -22,7 +22,12 @@
     "seed": "prisma db seed",
     "g": "graphql-codegen --config codegen.yml",
     "ts-node": "ts-node --compiler-options \"{\\\"module\\\":\\\"commonjs\\\"}\"",
-    "image": "ts-node prisma/image.ts"
+    "image": "ts-node prisma/image.ts",
+    "name": "ts-node prisma/name.ts",
+    "alt": "ts-node prisma/alt.ts"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
   },
   "dependencies": {
     "@apollo/subgraph": "^0.1.2",

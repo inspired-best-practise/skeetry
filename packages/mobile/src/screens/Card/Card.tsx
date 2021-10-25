@@ -195,11 +195,11 @@ export const CardScreen = ({ route, navigation }) => {
   return (
     <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={s.container}>
       <StatusBar barStyle="light-content" animated translucent />
-      {currentCity.photos ? (
+      {currentCity.images ? (
         <Image
           style={s.cardImage}
           source={{
-            uri: currentCity.photos[0],
+            uri: currentCity.images[0].url,
           }}
           resizeMode="cover"
         />
