@@ -1,3 +1,4 @@
+import { useActionSheet } from '@expo/react-native-action-sheet';
 import { useScrollToTop } from '@react-navigation/native';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -16,6 +17,7 @@ export const ProfileScreen = () => {
   const ref = useRef(null);
   const { t } = useTranslation();
 
+  const { showActionSheetWithOptions } = useActionSheet();
   const [refreshing, setRefreshing] = useState(false);
   const [wanted, setWanted] = useState([]);
   const [visited, setVisited] = useState([]);
@@ -152,7 +154,7 @@ export const ProfileScreen = () => {
       <View style={s.headerArea} />
       <FlatList
         ref={ref}
-        ListHeaderComponent={renderHeader(user, t, setSelected, isMe)}
+        ListHeaderComponent={renderHeader(user, t, setSelected, isMe, showActionSheetWithOptions, setLogout)}
         ListEmptyComponent={renderEmpty(t)}
         numColumns={2}
         horizontal={false}

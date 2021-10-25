@@ -1,7 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { View, Text, StatusBar, TouchableOpacity, SafeAreaView } from 'react-native';
-import codePush from 'react-native-code-push';
 
 import { Avatar } from '_app/components';
 import { tBase, tTitle } from '_app/constants';
@@ -16,22 +15,6 @@ export const ProfileSettingsScreen = () => {
   const { loading, data } = useMeQuery();
 
   const user = data!.me;
-
-  const onButtonPress = () => {
-    codePush.sync({
-      updateDialog: {
-        appendReleaseDescription: true,
-        descriptionPrefix: ' Описание: ',
-        mandatoryContinueButtonLabel: 'Продолжить',
-        mandatoryUpdateMessage: 'Доступно обновление, которое необходимо установить!',
-        optionalIgnoreButtonLabel: 'Игнорировать',
-        optionalInstallButtonLabel: 'Установить',
-        optionalUpdateMessage: 'Доступно обновление, вы желаете его установить?',
-        title: 'Обновления доступны',
-      },
-      installMode: codePush.InstallMode.IMMEDIATE,
-    });
-  };
 
   return (
     <SafeAreaView style={s.container}>
@@ -60,11 +43,6 @@ export const ProfileSettingsScreen = () => {
         <Text style={{ position: 'absolute', top: 0, right: 20 }} onPress={() => navigation.push('ProfileChange')}>
           Изменить
         </Text>
-        <View style={[{ marginTop: 10 }]}>
-          <TouchableOpacity onPress={onButtonPress}>
-            <Text style={{ fontWeight: '600', color: 'blue' }}>{t('utils:check_updates')}</Text>
-          </TouchableOpacity>
-        </View>
       </View>
     </SafeAreaView>
   );

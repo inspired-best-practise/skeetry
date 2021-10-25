@@ -7,7 +7,7 @@ import { launchImageLibrary } from 'react-native-image-picker';
 import { v4 as uuidv4 } from 'uuid';
 
 import { Avatar, ModalControl } from '_app/components';
-import { colors, PLATFORM, tBase, tTitle } from '_app/constants';
+import { PLATFORM, tBase } from '_app/constants';
 import { useDeletePhotoMutation, useMeQuery, useUploadPhotoMutation } from '_app/generated/graphql';
 import { navigation } from '_app/services/navigations';
 import { authStore } from '_app/stores';
@@ -148,10 +148,6 @@ export const ProfileChangeScreen = () => {
         <Text style={[tBase, { paddingTop: 20 }]} onPress={() => onPressSheet()}>
           Новое фото
         </Text>
-        <TouchableOpacity onPress={() => logout()} activeOpacity={1} style={{ marginTop: 20 }}>
-          {/* TODO: color from constants */}
-          <Text style={[tBase, { color: 'red' }]}>{t('utils:logout')}</Text>
-        </TouchableOpacity>
         <Text style={{ position: 'absolute', top: 0, left: 20 }} onPress={() => navigation.navigate('ProfileSettings')}>
           Отмена
         </Text>

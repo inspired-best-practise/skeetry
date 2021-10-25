@@ -37,7 +37,9 @@
     "settings": "Настройки",
     "take_photo": "Сделать фото",
     "choose_from_gallery": "Выбрать из галлереи",
-    "delete_photo": "Удалить текущее фото"
+    "delete_photo": "Удалить текущее фото",
+    "account_settings": "Настройки учетной записи",
+    "logout": "Выйти"
   },
   "utils": {
     "username": "Имя пользователя",

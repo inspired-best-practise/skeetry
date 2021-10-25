@@ -22,11 +22,8 @@ export const s = StyleSheet.create({
     backgroundColor: colors.white,
   },
   profilePanel: {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
     width: '100%',
+    alignItems: 'flex-end',
     paddingBottom: normalize(10),
     marginBottom: normalize(10),
     paddingHorizontal: normalize(20),
@@ -34,7 +31,6 @@ export const s = StyleSheet.create({
   profileHeader: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
     width: '100%',
     paddingBottom: normalize(20),
@@ -45,8 +41,9 @@ export const s = StyleSheet.create({
   },
   name: {
     fontWeight: '700',
-    fontSize: normalize(22),
+    fontSize: normalize(20),
     color: colors.black,
+    marginLeft: normalize(20),
   },
   profileStats: {
     display: 'flex',

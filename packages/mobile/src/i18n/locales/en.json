@@ -38,7 +38,9 @@
     "settings": "Settings",
     "take_photo": "Take a photo",
     "choose_from_gallery": "Choose from gallery",
-    "delete_photo": "Delete current photo"
+    "delete_photo": "Delete current photo",
+    "account_settings": "Account Settings",
+    "logout": "Log Out"
   },
   "utils": {
     "username": "Username",
@@ -52,7 +54,7 @@
     "is_required": "is required",
     "next": "Next",
     "welcome_to": "Welcome to",
-    "check_updates": "Check for updates",
+    "check_updates": "Check Updates",
     "want": "Want",
     "visited": "Visited",
     "cancel": "Cancel",
