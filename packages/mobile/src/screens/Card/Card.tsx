@@ -195,7 +195,7 @@ export const CardScreen = ({ route, navigation }) => {
   return (
     <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={s.container}>
       <StatusBar barStyle="light-content" animated translucent />
-      {currentCity.images ? (
+      {currentCity.images.length !== 0 ? (
         <Image
           style={s.cardImage}
           source={{

@@ -2,7 +2,7 @@ export type THomeTabParamList = {
   HomePage: undefined;
   ExplorePage: undefined;
   SwipesPage: undefined;
-  AddPage: undefined;
+  AddChooser: undefined;
   ActivityPage: undefined;
   ProfilePage: undefined;
 };

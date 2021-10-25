@@ -61,7 +61,7 @@ export const Card = ({ item, size }: TCardProps) => {
       >
         {size !== 'full' && (
           <View>
-            {images ? (
+            {images.length !== 0 ? (
               <Pressable
                 onPress={() =>
                   navigation.push('CardScreen', {

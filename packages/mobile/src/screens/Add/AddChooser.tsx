@@ -10,9 +10,10 @@ import {
   Keyboard,
   Text,
   TouchableOpacity,
+  SafeAreaView,
 } from 'react-native';
 
-import { Avatar, Card, HorizontalListSkeleton, ModalControl } from '_app/components';
+import { Avatar, Card, HorizontalListSkeleton } from '_app/components';
 import { PLATFORM, tBase } from '_app/constants';
 import { OrderDirection, useCitiesQuery, useUsersQuery } from '_app/generated/graphql';
 import { navigation } from '_app/services/navigations';
@@ -96,9 +97,8 @@ export const AddChooserScreen = () => {
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-      <View style={s.container}>
-        <StatusBar barStyle={PLATFORM.IS_IOS ? 'light-content' : 'dark-content'} animated translucent />
-        {PLATFORM.IS_IOS && <ModalControl />}
+      <SafeAreaView style={s.container}>
+        <StatusBar barStyle="dark-content" animated translucent />
 
         <View style={s.containerWrap}>
           <View style={{ paddingHorizontal: normalize(20) }}>
@@ -178,7 +178,7 @@ export const AddChooserScreen = () => {
             </ScrollView>
           )} */}
         </View>
-      </View>
+      </SafeAreaView>
     </TouchableWithoutFeedback>
   );
 };

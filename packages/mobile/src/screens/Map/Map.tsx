@@ -6,7 +6,6 @@ import { mapGfxStyle } from '_app/constants';
 import { s } from './styles';
 
 export const MapScreen = ({ route }) => {
-  console.log('route', route.params);
   const currentCity = route.params.item;
 
   return (

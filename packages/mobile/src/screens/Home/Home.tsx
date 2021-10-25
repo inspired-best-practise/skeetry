@@ -1,9 +1,8 @@
 import MasonryList from '@react-native-seoul/masonry-list';
 import { useScrollToTop } from '@react-navigation/native';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Text, View, ScrollView, TouchableOpacity, Image } from 'react-native';
-import codePush from 'react-native-code-push';
+import { Text, View, ScrollView } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -101,22 +100,6 @@ export const HomeScreen = () => {
     }
   };
 
-  const onButtonPress = () => {
-    codePush.sync({
-      updateDialog: {
-        appendReleaseDescription: true,
-        descriptionPrefix: ' Описание: ',
-        mandatoryContinueButtonLabel: 'Продолжить',
-        mandatoryUpdateMessage: 'Доступно обновление, которое необходимо установить!',
-        optionalIgnoreButtonLabel: 'Игнорировать',
-        optionalInstallButtonLabel: 'Установить',
-        optionalUpdateMessage: 'Доступно обновление, вы желаете его установить?',
-        title: 'Обновления доступны',
-      },
-      installMode: codePush.InstallMode.IMMEDIATE,
-    });
-  };
-
   const images = [
     {
       id: '0',
@@ -147,11 +130,6 @@ export const HomeScreen = () => {
       </View>
       <ScrollView showsVerticalScrollIndicator={false} ref={ref} scrollsToTop={true} contentContainerStyle={s.main}>
         <Stories />
-        {/* <View style={[s.header, { marginBottom: 10 }]}>
-          <TouchableOpacity onPress={onButtonPress}>
-            <Text style={{ fontWeight: '600', color: 'blue' }}>{t('utils:check_updates')}</Text>
-          </TouchableOpacity>
-        </View> */}
         {/* TODO: move categories to explore or search? */}
         <Categories />
 

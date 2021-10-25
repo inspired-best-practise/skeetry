@@ -19,6 +19,7 @@ export const s = StyleSheet.create({
   containerUser: {
     flex: 1,
     alignItems: 'center',
+    backgroundColor: colors.white,
   },
   profilePanel: {
     display: 'flex',
@@ -72,7 +73,6 @@ export const s = StyleSheet.create({
     borderRadius: radius.base,
   },
   containerWrap: {
-    marginTop: normalize(40),
     width: '100%',
     alignItems: 'center',
     paddingHorizontal: normalize(20),

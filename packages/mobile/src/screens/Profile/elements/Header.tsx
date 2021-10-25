@@ -31,7 +31,7 @@ export const renderHeader = (user: TUser, t, setSelected, isMe) => {
       <View style={s.profileHeader}>
         <Text style={s.name}>{user.username}</Text>
         <TouchableOpacity
-          activeOpacity={0.7}
+          activeOpacity={user.avatar ? 0.7 : 1}
           onPress={() =>
             user.avatar &&
             navigation.push('Avatar', {

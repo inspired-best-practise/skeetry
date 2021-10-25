@@ -7,7 +7,7 @@ import { THomeTabParamList } from 'types';
 
 import { TabBarComponent } from '_app/components/BottomTabBar';
 import { colors } from '_app/constants';
-import { HomeScreen, ProfileScreen, AddScreen, LocationsScreen } from '_app/screens';
+import { HomeScreen, ProfileScreen, AddScreen, LocationsScreen, AddChooserScreen } from '_app/screens';
 
 // import { SwipesScreen } from '_app/screens';
 
@@ -205,19 +205,16 @@ const HomeTab = () => {
         name="ExplorePage"
       />
       <Tab.Screen
-        listeners={({ navigation }) => ({
-          tabPress: e => {
-            e.preventDefault();
-            navigation.navigate('AddChooser');
+        options={({ route }) => ({
+          tabBarStyle: {
+            display: getTabBarVisible(route) ? 'flex' : 'none',
           },
-        })}
-        options={{
           tabBarIcon: ({ focused }) => (
             <Icon name="search" size={26} color={focused ? colors.gray900 : colors.gray300} />
           ),
-        }}
-        component={AddStack}
-        name="AddPage"
+        })}
+        component={AddChooserScreen}
+        name="AddChooser"
       />
       {/* <Tab.Screen
         options={({ route }) => ({

@@ -1,10 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlatList } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { FlatList, View } from 'react-native';
 
-import { ModalControl } from '_app/components';
-import { PLATFORM } from '_app/constants';
 import { useWantedQuery, OrderDirection, useVisitedQuery } from '_app/generated/graphql';
 import { profileStore } from '_app/stores';
 import { SCREEN_WIDTH } from '_app/utils/dimensions';
@@ -119,8 +116,7 @@ export const ProfileUserScreen = ({ route }) => {
   };
 
   return (
-    <SafeAreaView style={s.containerUser}>
-      {PLATFORM.IS_IOS && <ModalControl />}
+    <View style={s.containerUser}>
       <FlatList
         ref={ref}
         ListHeaderComponent={renderHeader(user, t, setSelected, isMe)}
@@ -135,6 +131,6 @@ export const ProfileUserScreen = ({ route }) => {
         decelerationRate="fast"
         onEndReached={() => (selected === 'want' ? wantedEndReached() : visitedEndReached())}
       />
-    </SafeAreaView>
+    </View>
   );
 };

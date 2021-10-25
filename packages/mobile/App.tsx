@@ -43,7 +43,7 @@ const App: React.FC = () => {
     <CodePushProvider>
       <ApolloProvider client={client}>
         <SafeAreaProvider>
-          <StatusBar barStyle="dark-content" animated translucent backgroundColor={colors.black} />
+          <StatusBar barStyle="dark-content" animated translucent />
           <ActionSheetProvider>
             <RootStackNavigation />
           </ActionSheetProvider>

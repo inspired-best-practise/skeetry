@@ -11,7 +11,6 @@ export const s = StyleSheet.create({
     flexDirection: 'row',
   },
   containerWrap: {
-    marginTop: normalize(20),
     width: '100%',
   },
   contentContainer: {

@@ -1,11 +1,10 @@
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator, NativeStackNavigationOptions } from '@react-navigation/native-stack';
-import { TransitionPresets } from '@react-navigation/stack';
+import { createStackNavigator, StackNavigationOptions, TransitionPresets } from '@react-navigation/stack';
 import React from 'react';
-import { Animated, TouchableWithoutFeedback, useColorScheme } from 'react-native';
+import { Easing, useColorScheme } from 'react-native';
 import { enableScreens } from 'react-native-screens';
-import Icon from 'react-native-vector-icons/Feather';
 
+import CloseModal from '_app/components/CloseModal/CloseModal';
 import { colors, darkTheme, lightTheme, PLATFORM } from '_app/constants';
 import {
   CardScreen,
@@ -20,20 +19,42 @@ import {
   ProfileUserScreen,
   StoriesScreen,
 } from '_app/screens';
-import { navigation, navigationRef } from '_app/services/navigations';
-import { normalize } from '_app/utils/dimensions';
+import { ProfileChangeScreen } from '_app/screens/Profile/ProfileChange';
+import { navigationRef } from '_app/services/navigations';
 
 import RootTab from './RootTab';
 
 enableScreens();
 
 // TODO: type when done
-const RootStack = createNativeStackNavigator();
+const RootStack = createStackNavigator();
+
+const options = {
+  gestureEnabled: false,
+  headerBackTitleVisible: false,
+  transitionSpec: {
+    open: {
+      animation: 'timing',
+      config: { duration: 300, easing: Easing.inOut(Easing.ease) },
+    },
+    close: {
+      animation: 'timing',
+      config: { duration: 300, easing: Easing.inOut(Easing.ease) },
+    },
+  },
+  cardStyleInterpolator: ({ current: { progress } }) => {
+    return {
+      cardStyle: {
+        opacity: progress,
+      },
+    };
+  },
+};
 
 const Index = (): JSX.Element => {
   const scheme = useColorScheme();
 
-  const navigationOptions: NativeStackNavigationOptions = {
+  const navigationOptions: StackNavigationOptions = {
     headerShown: false,
   };
 
@@ -43,10 +64,11 @@ const Index = (): JSX.Element => {
         <RootStack.Screen name="Root Tab" component={RootTab} options={navigationOptions} />
         <RootStack.Screen
           options={{
-            ...TransitionPresets.ModalTransition,
-            headerShown: PLATFORM.IS_IOS ? false : true,
+            headerShown: true,
+            headerTintColor: colors.black,
             headerTitle: 'Поиск',
-            presentation: 'formSheet',
+            presentation: 'transparentModal',
+            ...options,
           }}
           name="AddChooser"
           component={AddChooserScreen}
@@ -56,7 +78,7 @@ const Index = (): JSX.Element => {
             ...TransitionPresets.ModalTransition,
             headerShown: PLATFORM.IS_IOS ? false : true,
             headerTitle: `${route.params.item.name} ${route.params.item.emoji}`,
-            presentation: 'formSheet',
+            presentation: 'modal',
           })}
           name="ItemsByCategory"
           component={ItemsByCategoryScreen}
@@ -66,78 +88,52 @@ const Index = (): JSX.Element => {
             ...TransitionPresets.ModalTransition,
             headerShown: PLATFORM.IS_IOS ? false : true,
             headerTitle: `${route.params.item.name}`,
-            presentation: 'formSheet',
+            presentation: 'modal',
           })}
           name="CitiesList"
           component={CitiesListScreen}
         />
         <RootStack.Screen
           options={({ route }) => ({
-            ...TransitionPresets.ModalTransition,
             headerShown: true,
-            gestureEnabled: true,
             headerTransparent: true,
             headerShadowVisible: false,
             headerTintColor: colors.white,
-            presentation: 'fullScreenModal',
             title: '',
-            headerLeft: () => (
-              <TouchableWithoutFeedback onPress={() => navigation.goBack()}>
-                <Animated.View
-                  style={{
-                    backgroundColor: colors.white,
-                    borderRadius: 100,
-                    alignItems: 'center',
-                    paddingVertical: normalize(6),
-                    paddingHorizontal: normalize(6),
-                  }}
-                >
-                  <Icon name="x" size={18} color={colors.black} />
-                </Animated.View>
-              </TouchableWithoutFeedback>
-            ),
+            ...options,
+            headerLeft: () => <CloseModal />,
           })}
           name="Map"
           component={MapScreen}
         />
         <RootStack.Screen
           options={({ route }) => ({
-            ...TransitionPresets.ModalTransition,
-            headerShown: true,
-            gestureEnabled: true,
             headerTransparent: true,
             headerShadowVisible: false,
             headerTintColor: colors.white,
-            presentation: 'fullScreenModal',
             title: '',
-            headerLeft: () => (
-              <TouchableWithoutFeedback onPress={() => navigation.goBack()}>
-                <Animated.View
-                  style={{
-                    backgroundColor: colors.white,
-                    borderRadius: 100,
-                    alignItems: 'center',
-                    paddingVertical: normalize(6),
-                    paddingHorizontal: normalize(6),
-                  }}
-                >
-                  <Icon name="x" size={18} color={colors.black} />
-                </Animated.View>
-              </TouchableWithoutFeedback>
-            ),
+            presentation: 'transparentModal',
+            ...options,
+            headerLeft: () => <CloseModal />,
           })}
           name="CardScreen"
           component={CardScreen}
         />
         <RootStack.Screen
           options={{
-            ...TransitionPresets.ModalTransition,
-            headerShown: PLATFORM.IS_IOS ? false : true,
-            headerTitle: 'Настройки',
-            presentation: 'formSheet',
+            headerShown: false,
+            ...options,
           }}
           name="ProfileSettings"
           component={ProfileSettingsScreen}
+        />
+        <RootStack.Screen
+          options={{
+            headerShown: false,
+            ...options,
+          }}
+          name="ProfileChange"
+          component={ProfileChangeScreen}
         />
         <RootStack.Screen
           options={{
@@ -151,50 +147,45 @@ const Index = (): JSX.Element => {
         <RootStack.Screen
           options={{
             headerShown: false,
+            presentation: 'transparentModal',
           }}
           name="Avatar"
           component={AvatarScreen}
         />
         <RootStack.Screen
           options={{
-            ...TransitionPresets.ModalTransition,
-            headerShown: true,
-            gestureEnabled: true,
-            presentation: 'fullScreenModal',
-            headerLeft: () => (
-              <TouchableWithoutFeedback onPress={() => navigation.goBack()}>
-                <Animated.View
-                  style={{
-                    backgroundColor: colors.white,
-                    borderRadius: 100,
-                    alignItems: 'center',
-                    paddingVertical: normalize(6),
-                    paddingHorizontal: normalize(6),
-                  }}
-                >
-                  <Icon name="x" size={18} color={colors.black} />
-                </Animated.View>
-              </TouchableWithoutFeedback>
-            ),
+            headerTransparent: true,
+            headerShadowVisible: false,
+            headerTintColor: colors.white,
+            title: 'Camera',
+            presentation: 'transparentModal',
+            ...options,
+            headerLeft: () => <CloseModal />,
           }}
           name="Camera"
           component={CameraScreen}
         />
         <RootStack.Screen
           options={({ route }) => ({
-            ...TransitionPresets.ModalTransition,
-            headerShown: PLATFORM.IS_IOS ? false : true,
+            headerShown: true,
+            headerTintColor: colors.black,
             headerTitle: `${route.params.user.username}`,
-            presentation: 'formSheet',
+            presentation: 'transparentModal',
+            ...options,
           })}
           name="ProfileUser"
           component={ProfileUserScreen}
         />
         <RootStack.Screen
           options={({ route }) => ({
-            ...TransitionPresets.ModalTransition,
-            headerShown: false,
-            presentation: 'fullScreenModal',
+            headerShown: true,
+            headerTransparent: true,
+            headerShadowVisible: false,
+            headerTintColor: colors.white,
+            headerTitle: '',
+            presentation: 'transparentModal',
+            ...options,
+            headerLeft: () => <CloseModal />,
           })}
           name="Stories"
           component={StoriesScreen}

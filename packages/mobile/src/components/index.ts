@@ -16,3 +16,4 @@ export * from './HorizontalCardList';
 export * from './FormWrapper';
 export * from './HorizontalListSkeleton';
 export * from './VerticalListSkeleton';
+export * from './CloseModal';
