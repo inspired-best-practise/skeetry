@@ -12,9 +12,9 @@ export const s = StyleSheet.create({
   },
   container: {
     flex: 1,
-    alignItems: 'center',
-    // paddingHorizontal: normalize(20),
-    paddingBottom: normalize(80),
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    flexDirection: 'row',
   },
   containerUser: {
     flex: 1,
@@ -72,7 +72,7 @@ export const s = StyleSheet.create({
   containerWrap: {
     width: '100%',
     alignItems: 'center',
-    paddingHorizontal: normalize(20),
+    marginTop: normalize(30),
   },
   listWrapper: {
     justifyContent: 'space-between',

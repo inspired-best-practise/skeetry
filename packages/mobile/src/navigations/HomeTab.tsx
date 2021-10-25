@@ -205,16 +205,19 @@ const HomeTab = () => {
         name="ExplorePage"
       />
       <Tab.Screen
-        options={({ route }) => ({
-          tabBarStyle: {
-            display: getTabBarVisible(route) ? 'flex' : 'none',
+        listeners={({ navigation }) => ({
+          tabPress: e => {
+            e.preventDefault();
+            navigation.navigate('AddChooser');
           },
+        })}
+        options={{
           tabBarIcon: ({ focused }) => (
             <Icon name="search" size={26} color={focused ? colors.gray900 : colors.gray300} />
           ),
-        })}
-        component={AddChooserScreen}
-        name="AddChooser"
+        }}
+        component={AddStack}
+        name="AddPage"
       />
       {/* <Tab.Screen
         options={({ route }) => ({

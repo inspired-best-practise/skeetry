@@ -17,3 +17,4 @@ export * from './FormWrapper';
 export * from './HorizontalListSkeleton';
 export * from './VerticalListSkeleton';
 export * from './CloseModal';
+export * from './MenuItem';

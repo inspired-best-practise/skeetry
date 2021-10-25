@@ -12,6 +12,7 @@ export const s = StyleSheet.create({
   },
   containerWrap: {
     width: '100%',
+    marginTop: normalize(20),
   },
   contentContainer: {
     flexWrap: 'wrap',

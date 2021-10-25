@@ -39,7 +39,12 @@
     "choose_from_gallery": "Выбрать из галлереи",
     "delete_photo": "Удалить текущее фото",
     "account_settings": "Настройки учетной записи",
-    "logout": "Выйти"
+    "logout": "Выйти",
+    "notifications": "Уведомления",
+    "design": "Оформление",
+    "language": "Язык",
+    "help": "Помощь",
+    "info": "Информация"
   },
   "utils": {
     "username": "Имя пользователя",

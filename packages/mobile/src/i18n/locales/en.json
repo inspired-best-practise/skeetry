@@ -40,7 +40,12 @@
     "choose_from_gallery": "Choose from gallery",
     "delete_photo": "Delete current photo",
     "account_settings": "Account Settings",
-    "logout": "Log Out"
+    "logout": "Log Out",
+    "notifications": "Notifications",
+    "design": "Design",
+    "language": "Language",
+    "help": "Help",
+    "info": "Information"
   },
   "utils": {
     "username": "Username",

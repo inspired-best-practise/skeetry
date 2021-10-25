@@ -2,7 +2,7 @@ import { useActionSheet } from '@expo/react-native-action-sheet';
 import { ReactNativeFile } from 'apollo-upload-client';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, Text, StatusBar, ActionSheetIOS, TouchableOpacity, SafeAreaView } from 'react-native';
+import { View, Text, StatusBar, ActionSheetIOS, TouchableOpacity, SafeAreaView, TextInput } from 'react-native';
 import { launchImageLibrary } from 'react-native-image-picker';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -129,8 +129,8 @@ export const ProfileChangeScreen = () => {
 
   return (
     <SafeAreaView style={s.container}>
-      <StatusBar barStyle="dark-content" animated translucent />
-      {PLATFORM.IS_IOS && <ModalControl />}
+      <StatusBar barStyle={PLATFORM.IS_IOS ? 'light-content' : 'dark-content'} animated translucent />
+      <ModalControl />
       <View style={s.containerWrap}>
         {!loading && (
           <TouchableOpacity
@@ -148,11 +148,11 @@ export const ProfileChangeScreen = () => {
         <Text style={[tBase, { paddingTop: 20 }]} onPress={() => onPressSheet()}>
           Новое фото
         </Text>
-        <Text style={{ position: 'absolute', top: 0, left: 20 }} onPress={() => navigation.navigate('ProfileSettings')}>
-          Отмена
-        </Text>
+        <TextInput autoCapitalize="none" placeholder={t('profile:name')} value={'Aleksey'} spellCheck={false} />
+        <TextInput autoCapitalize="none" placeholder={t('profile:username')} value={'kive'} spellCheck={false} />
+        <TextInput autoCapitalize="none" placeholder={t('profile:bio')} spellCheck={false} />
         <Text
-          style={{ position: 'absolute', top: 0, right: 20 }}
+          style={{ position: 'absolute', top: 0, right: 10 }}
           onPress={() => navigation.navigate('ProfileSettings')}
         >
           Готово

@@ -21,6 +21,7 @@ import {
 } from '_app/screens';
 import { ProfileChangeScreen } from '_app/screens/Profile/ProfileChange';
 import { navigationRef } from '_app/services/navigations';
+import { SCREEN_HEIGHT } from '_app/utils/dimensions';
 
 import RootTab from './RootTab';
 
@@ -64,11 +65,9 @@ const Index = (): JSX.Element => {
         <RootStack.Screen name="Root Tab" component={RootTab} options={navigationOptions} />
         <RootStack.Screen
           options={{
-            headerShown: true,
-            headerTintColor: colors.black,
-            headerTitle: 'Поиск',
-            presentation: 'transparentModal',
-            ...options,
+            headerShown: false,
+            presentation: 'modal',
+            gestureResponseDistance: SCREEN_HEIGHT,
           }}
           name="AddChooser"
           component={AddChooserScreen}
@@ -122,7 +121,8 @@ const Index = (): JSX.Element => {
         <RootStack.Screen
           options={{
             headerShown: false,
-            ...options,
+            presentation: 'modal',
+            gestureResponseDistance: SCREEN_HEIGHT,
           }}
           name="ProfileSettings"
           component={ProfileSettingsScreen}
@@ -130,7 +130,8 @@ const Index = (): JSX.Element => {
         <RootStack.Screen
           options={{
             headerShown: false,
-            ...options,
+            presentation: 'modal',
+            gestureResponseDistance: SCREEN_HEIGHT,
           }}
           name="ProfileChange"
           component={ProfileChangeScreen}
