@@ -10,17 +10,6 @@ export const s = StyleSheet.create({
     height: normalize(50),
     backgroundColor: colors.white,
   },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'flex-start',
-    flexDirection: 'row',
-  },
-  containerUser: {
-    flex: 1,
-    alignItems: 'center',
-    backgroundColor: colors.white,
-  },
   profilePanel: {
     width: '100%',
     alignItems: 'flex-end',

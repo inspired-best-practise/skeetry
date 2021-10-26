@@ -66,6 +66,7 @@
     "loading": "Loading...",
     "delete": "Delete",
     "location": "Location",
-    "logout": "Log out"
+    "logout": "Log out",
+    "wip": "Work in progress"
   }
 }

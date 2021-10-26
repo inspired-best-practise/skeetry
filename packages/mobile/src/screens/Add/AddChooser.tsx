@@ -13,7 +13,7 @@ import {
   SafeAreaView,
 } from 'react-native';
 
-import { Avatar, Card, HorizontalListSkeleton, ModalControl } from '_app/components';
+import { Avatar, Card, HorizontalListSkeleton, ModalControl, ModalWrapper } from '_app/components';
 import { PLATFORM, tBase } from '_app/constants';
 import { OrderDirection, useCitiesQuery, useUsersQuery } from '_app/generated/graphql';
 import { navigation } from '_app/services/navigations';
@@ -96,71 +96,66 @@ export const AddChooserScreen = () => {
   const usersList = dataUsers?.users.edges;
 
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-      <SafeAreaView style={s.container}>
-        <StatusBar barStyle={PLATFORM.IS_IOS ? 'light-content' : 'dark-content'} animated translucent />
-        {PLATFORM.IS_IOS && <ModalControl />}
-
-        <View style={s.containerWrap}>
-          <View style={{ paddingHorizontal: normalize(20) }}>
-            <View style={s.textInputWrapper}>
-              <TextInput
-                style={s.input}
-                autoCapitalize="none"
-                placeholder={t('search:search')}
-                spellCheck={false}
-                onChangeText={handleChange}
-              />
-            </View>
-          </View>
-          {searchList?.length === 0 && usersList?.length === 0 && (
-            <Text style={{ alignItems: 'center', padding: 20 }}>{t('search:not_found')}</Text>
+    <ModalWrapper>
+      <View style={{ paddingHorizontal: normalize(20) }}>
+        <View style={s.textInputWrapper}>
+          <TextInput
+            style={s.input}
+            autoCapitalize="none"
+            placeholder={t('search:search')}
+            spellCheck={false}
+            onChangeText={handleChange}
+          />
+        </View>
+      </View>
+      {searchList?.length === 0 && usersList?.length === 0 && (
+        <Text style={{ alignItems: 'center', padding: 20 }}>{t('search:not_found')}</Text>
+      )}
+      {input.length !== 0 && (
+        <View>
+          {loadingSearch && <HorizontalListSkeleton size="small" />}
+          {searchList?.length !== 0 && (
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={{ alignItems: 'center', padding: 20 }}
+            >
+              {searchList?.map(i => (
+                <View key={i.node.id} style={{ marginRight: 20 }}>
+                  <Card item={i.node} size="small" />
+                </View>
+              ))}
+            </ScrollView>
           )}
-          {input.length !== 0 && (
-            <View>
-              {loadingSearch && <HorizontalListSkeleton size="small" />}
-              {searchList?.length !== 0 && (
-                <ScrollView
-                  horizontal
-                  showsHorizontalScrollIndicator={false}
-                  contentContainerStyle={{ alignItems: 'center', padding: 20 }}
+          {loadingUsers && <HorizontalListSkeleton size="small" />}
+          {usersList?.length !== 0 && (
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={{ alignItems: 'center', padding: 20 }}
+            >
+              {usersList?.map(i => (
+                <TouchableOpacity
+                  key={i.node.id}
+                  activeOpacity={0.7}
+                  onPress={() =>
+                    navigation.push('ProfileUser', {
+                      user: i.node,
+                    })
+                  }
                 >
-                  {searchList?.map(i => (
-                    <View key={i.node.id} style={{ marginRight: 20 }}>
-                      <Card item={i.node} size="small" />
-                    </View>
-                  ))}
-                </ScrollView>
-              )}
-              {loadingUsers && <HorizontalListSkeleton size="small" />}
-              {usersList?.length !== 0 && (
-                <ScrollView
-                  horizontal
-                  showsHorizontalScrollIndicator={false}
-                  contentContainerStyle={{ alignItems: 'center', padding: 20 }}
-                >
-                  {usersList?.map(i => (
-                    <TouchableOpacity
-                      key={i.node.id}
-                      activeOpacity={0.7}
-                      onPress={() =>
-                        navigation.push('ProfileUser', {
-                          user: i.node,
-                        })
-                      }
-                    >
-                      <View style={{ marginRight: 20, flexDirection: 'row', alignItems: 'center' }}>
-                        <Avatar src={i.node.avatar} nickname={i.node.username} />
-                        <Text style={[tBase, { paddingLeft: 10 }]}>{i.node.username}</Text>
-                      </View>
-                    </TouchableOpacity>
-                  ))}
-                </ScrollView>
-              )}
-            </View>
+                  <View style={{ marginRight: 20, flexDirection: 'row', alignItems: 'center' }}>
+                    <Avatar src={i.node.avatar} nickname={i.node.username} />
+                    <Text style={[tBase, { paddingLeft: 10 }]}>{i.node.username}</Text>
+                  </View>
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
           )}
+        </View>
+      )}
 
-          {/* {input.length !== 0 && (
+      {/* {input.length !== 0 && (
             <HorizontalCardList
               title={`${t('search:recommended')}`}
               data={recommended}
@@ -178,8 +173,6 @@ export const AddChooserScreen = () => {
               ))}
             </ScrollView>
           )} */}
-        </View>
-      </SafeAreaView>
-    </TouchableWithoutFeedback>
+    </ModalWrapper>
   );
 };

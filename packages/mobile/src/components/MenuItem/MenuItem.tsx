@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { TouchableHighlight, View, Text } from 'react-native';
+import { TouchableHighlight, View, Text, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 
 import { colors, tBase } from '_app/constants';
@@ -11,11 +11,7 @@ const MenuItem = ({ name, icon }: MenuItemProps) => {
   const { t } = useTranslation();
 
   return (
-    <TouchableHighlight
-      underlayColor={colors.lineGray}
-      onPress={() => console.log('MenuItem clicked!')}
-      style={s.menuItem}
-    >
+    <TouchableHighlight underlayColor={colors.lineGray} onPress={() => Alert.alert(t('utils:wip'))} style={s.menuItem}>
       <View style={s.container}>
         <View style={s.wrap}>
           <Icon name={icon} size={22} color={colors.black} />

@@ -10,10 +10,6 @@ export const s = StyleSheet.create({
     alignItems: 'flex-start',
     flexDirection: 'row',
   },
-  containerWrap: {
-    width: '100%',
-    marginTop: normalize(20),
-  },
   contentContainer: {
     flexWrap: 'wrap',
     maxWidth: normalize(800),
@@ -36,7 +32,6 @@ export const s = StyleSheet.create({
     width: '100%',
     height: normalize(45),
     backgroundColor: colors.lightGray,
-    marginTop: normalize(10),
     color: colors.baseGray,
     borderRadius: radius.base,
   },

@@ -18,3 +18,4 @@ export * from './HorizontalListSkeleton';
 export * from './VerticalListSkeleton';
 export * from './CloseModal';
 export * from './MenuItem';
+export * from './ModalWrapper';

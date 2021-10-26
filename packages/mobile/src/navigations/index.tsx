@@ -18,6 +18,7 @@ import {
   MapScreen,
   ProfileUserScreen,
   StoriesScreen,
+  UsersTopScreen,
 } from '_app/screens';
 import { ProfileChangeScreen } from '_app/screens/Profile/ProfileChange';
 import { navigationRef } from '_app/services/navigations';
@@ -72,7 +73,7 @@ const Index = (): JSX.Element => {
           name="AddChooser"
           component={AddChooserScreen}
         />
-        <RootStack.Screen
+        {/* <RootStack.Screen
           options={({ route }) => ({
             ...TransitionPresets.ModalTransition,
             headerShown: PLATFORM.IS_IOS ? false : true,
@@ -81,8 +82,8 @@ const Index = (): JSX.Element => {
           })}
           name="ItemsByCategory"
           component={ItemsByCategoryScreen}
-        />
-        <RootStack.Screen
+        /> */}
+        {/* <RootStack.Screen
           options={({ route }) => ({
             ...TransitionPresets.ModalTransition,
             headerShown: PLATFORM.IS_IOS ? false : true,
@@ -91,7 +92,7 @@ const Index = (): JSX.Element => {
           })}
           name="CitiesList"
           component={CitiesListScreen}
-        />
+        /> */}
         <RootStack.Screen
           options={({ route }) => ({
             headerShown: true,
@@ -168,11 +169,9 @@ const Index = (): JSX.Element => {
         />
         <RootStack.Screen
           options={({ route }) => ({
-            headerShown: true,
-            headerTintColor: colors.black,
-            headerTitle: `${route.params.user.username}`,
-            presentation: 'transparentModal',
-            ...options,
+            headerShown: false,
+            presentation: 'modal',
+            gestureResponseDistance: SCREEN_HEIGHT,
           })}
           name="ProfileUser"
           component={ProfileUserScreen}
@@ -190,6 +189,15 @@ const Index = (): JSX.Element => {
           })}
           name="Stories"
           component={StoriesScreen}
+        />
+        <RootStack.Screen
+          options={({ route }) => ({
+            headerShown: false,
+            presentation: 'modal',
+            gestureResponseDistance: SCREEN_HEIGHT,
+          })}
+          name="UsersTop"
+          component={UsersTopScreen}
         />
       </RootStack.Navigator>
     </NavigationContainer>

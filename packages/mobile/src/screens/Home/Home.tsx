@@ -2,7 +2,7 @@ import MasonryList from '@react-native-seoul/masonry-list';
 import { useScrollToTop } from '@react-navigation/native';
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Text, View, ScrollView } from 'react-native';
+import { Text, View, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -141,15 +141,17 @@ export const HomeScreen = () => {
           showsVerticalScrollIndicator={false}
           renderItem={({ item }) => {
             return (
-              <FastImage
-                style={{
-                  height: 200,
-                  borderRadius: 20,
-                  margin: normalize(4),
-                }}
-                source={{ uri: item.uri, priority: FastImage.priority.normal }}
-                resizeMode={FastImage.resizeMode.cover}
-              />
+              <TouchableOpacity activeOpacity={0.8} onPress={() => Alert.alert(t('utils:wip'))}>
+                <FastImage
+                  style={{
+                    height: 200,
+                    borderRadius: 20,
+                    margin: normalize(4),
+                  }}
+                  source={{ uri: item.uri, priority: FastImage.priority.normal }}
+                  resizeMode={FastImage.resizeMode.cover}
+                />
+              </TouchableOpacity>
             );
           }}
         />

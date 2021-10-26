@@ -59,10 +59,12 @@ export const CodePushProvider = codePush(codePushOptions)(
     codePushDownloadDidProgress(progress: DownloadProgress) {
       this.setState({ progress: progress.receivedBytes / progress.totalBytes });
     }
+
     render() {
       const isUpdating =
         this.state.status === codePush.SyncStatus.DOWNLOADING_PACKAGE ||
         this.state.status === codePush.SyncStatus.INSTALLING_UPDATE;
+
       return (
         <CodePushContext.Provider
           value={{

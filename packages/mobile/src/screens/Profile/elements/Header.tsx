@@ -99,7 +99,7 @@ export const renderHeader = (user: TUser, t, setSelected, isMe, showActionSheetW
         <Text style={s.name}>{user.username}</Text>
       </View>
       <View style={s.profileStats}>
-        <ProfileStatsItem name={`${t('profile:place')}`} number={0} />
+        <ProfileStatsItem name={`${t('profile:place')}`} number={0} action={() => navigation.push('UsersTop')} />
         <ProfileStatsItem name={`${t('profile:want')}`} number={user.wantedCount} action={() => setSelected('want')} />
         <ProfileStatsItem
           name={`${t('profile:visited')}`}

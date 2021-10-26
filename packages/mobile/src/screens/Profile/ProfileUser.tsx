@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlatList, View } from 'react-native';
+import { FlatList } from 'react-native';
 
+import { ModalWrapper } from '_app/components';
 import { useWantedQuery, OrderDirection, useVisitedQuery } from '_app/generated/graphql';
 import { profileStore } from '_app/stores';
 import { SCREEN_WIDTH } from '_app/utils/dimensions';
@@ -116,7 +117,7 @@ export const ProfileUserScreen = ({ route }) => {
   };
 
   return (
-    <View style={s.containerUser}>
+    <ModalWrapper>
       <FlatList
         ref={ref}
         ListHeaderComponent={renderHeader(user, t, setSelected, isMe)}
@@ -131,6 +132,6 @@ export const ProfileUserScreen = ({ route }) => {
         decelerationRate="fast"
         onEndReached={() => (selected === 'want' ? wantedEndReached() : visitedEndReached())}
       />
-    </View>
+    </ModalWrapper>
   );
 };
