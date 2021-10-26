@@ -11,10 +11,11 @@ import {
   Text,
   TouchableOpacity,
   SafeAreaView,
+  useColorScheme,
 } from 'react-native';
 
 import { Avatar, Card, HorizontalListSkeleton, ModalControl, ModalWrapper } from '_app/components';
-import { PLATFORM, tBase } from '_app/constants';
+import { colors, PLATFORM, radius, tBase } from '_app/constants';
 import { OrderDirection, useCitiesQuery, useUsersQuery } from '_app/generated/graphql';
 import { navigation } from '_app/services/navigations';
 import { normalize } from '_app/utils/dimensions';
@@ -23,6 +24,8 @@ import { s } from './styles';
 
 export const AddChooserScreen = () => {
   const { t } = useTranslation();
+  const theme = useColorScheme();
+
   const ref = useRef<ScrollView>(null);
   // const [recommended, setRecommended] = useState();
   const [input, setInput] = useState('');
@@ -100,7 +103,10 @@ export const AddChooserScreen = () => {
       <View style={{ paddingHorizontal: normalize(20) }}>
         <View style={s.textInputWrapper}>
           <TextInput
-            style={s.input}
+            style={[
+              s.input,
+              theme === 'dark' && { backgroundColor: colors.gray800, borderRadius: radius.base, color: colors.white },
+            ]}
             autoCapitalize="none"
             placeholder={t('search:search')}
             spellCheck={false}
@@ -109,7 +115,7 @@ export const AddChooserScreen = () => {
         </View>
       </View>
       {searchList?.length === 0 && usersList?.length === 0 && (
-        <Text style={{ alignItems: 'center', padding: 20 }}>{t('search:not_found')}</Text>
+        <Text style={[{ alignItems: 'center', padding: 20 }]}>{t('search:not_found')}</Text>
       )}
       {input.length !== 0 && (
         <View>

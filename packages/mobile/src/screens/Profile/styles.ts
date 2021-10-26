@@ -8,7 +8,6 @@ export const itemWidth = SCREEN_WIDTH / 2 - 20;
 export const s = StyleSheet.create({
   headerArea: {
     height: normalize(50),
-    backgroundColor: colors.white,
   },
   profilePanel: {
     width: '100%',

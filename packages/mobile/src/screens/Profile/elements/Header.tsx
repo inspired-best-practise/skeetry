@@ -5,12 +5,12 @@ import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture
 import * as HeroIcon from 'react-native-heroicons/solid';
 
 import { ProfileStatsItem, Avatar, ProfileFilter } from '_app/components';
-import { colors, PLATFORM } from '_app/constants';
+import { colors, darkColor, PLATFORM, whiteColor } from '_app/constants';
 import { navigation } from '_app/services/navigations';
 
 import { s } from '../styles';
 
-export const renderHeader = (user: TUser, t, setSelected, isMe, showActionSheetWithOptions, setLogout) => {
+export const renderHeader = (user: TUser, t, setSelected, isMe, showActionSheetWithOptions, setLogout, theme) => {
   const actionOptions = [
     `${t('utils:cancel')}`,
     `${t('settings:account_settings')}`,
@@ -41,7 +41,7 @@ export const renderHeader = (user: TUser, t, setSelected, isMe, showActionSheetW
             options: actionOptions,
             destructiveButtonIndex: 3,
             cancelButtonIndex: 0,
-            userInterfaceStyle: 'light',
+            userInterfaceStyle: theme === 'dark' ? 'dark' : 'light',
           },
           buttonIndex => {
             if (buttonIndex === 0) {
@@ -58,6 +58,7 @@ export const renderHeader = (user: TUser, t, setSelected, isMe, showActionSheetW
       : showActionSheetWithOptions(
           {
             options: actionOptions,
+            userInterfaceStyle: theme === 'dark' ? 'dark' : 'light',
             cancelButtonIndex: 0,
             destructiveButtonIndex: 3,
           },
@@ -80,7 +81,7 @@ export const renderHeader = (user: TUser, t, setSelected, isMe, showActionSheetW
       <View style={[s.profilePanel]}>
         {isMe && (
           <TouchableWithoutFeedback onPress={() => onPressSheet()}>
-            <HeroIcon.DotsHorizontalIcon size={22} color={colors.black} />
+            <HeroIcon.DotsHorizontalIcon size={22} color={theme === 'dark' ? colors.white : colors.black} />
           </TouchableWithoutFeedback>
         )}
       </View>
@@ -96,7 +97,7 @@ export const renderHeader = (user: TUser, t, setSelected, isMe, showActionSheetW
         >
           <Avatar src={user.avatar} nickname={user.username} />
         </TouchableOpacity>
-        <Text style={s.name}>{user.username}</Text>
+        <Text style={[s.name, theme === 'dark' ? whiteColor : darkColor]}>{user.username}</Text>
       </View>
       <View style={s.profileStats}>
         <ProfileStatsItem name={`${t('profile:place')}`} number={0} action={() => navigation.push('UsersTop')} />

@@ -2,14 +2,14 @@ import MasonryList from '@react-native-seoul/masonry-list';
 import { useScrollToTop } from '@react-navigation/native';
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Text, View, ScrollView, TouchableOpacity, Alert } from 'react-native';
+import { Text, View, ScrollView, TouchableOpacity, Alert, useColorScheme } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 // import { HorizontalCardList } from '_app/components';
 import { Categories } from '_app/components/Categories';
 import { Stories } from '_app/components/Stories';
-import { tTitle } from '_app/constants';
+import { darkColor, tTitle, whiteColor } from '_app/constants';
 import {
   OrderDirection, // useNearbyQuery,
   usePopularQuery,
@@ -23,6 +23,8 @@ export const HomeScreen = () => {
   const ref = useRef<ScrollView>(null);
   // const [nearby, setNearby] = useState();
   const [popular, setPopular] = useState([]);
+
+  const theme = useColorScheme();
 
   useScrollToTop(ref);
 
@@ -126,7 +128,7 @@ export const HomeScreen = () => {
   return (
     <SafeAreaView>
       <View style={s.header}>
-        <Text style={tTitle}>Skeetry</Text>
+        <Text style={[tTitle, theme === 'dark' ? whiteColor : darkColor]}>Skeetry</Text>
       </View>
       <ScrollView showsVerticalScrollIndicator={false} ref={ref} scrollsToTop={true} contentContainerStyle={s.main}>
         <Stories />

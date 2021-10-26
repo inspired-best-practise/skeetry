@@ -169,6 +169,22 @@ export const tSmallSemibold: TextStyle = {
   fontWeight: '600',
 };
 
+export const darkColor: TextStyle = {
+  color: colors.black,
+};
+
+export const whiteColor: TextStyle = {
+  color: colors.white,
+};
+
+export const darkBg: TextStyle = {
+  backgroundColor: colors.black,
+};
+
+export const whiteBg: TextStyle = {
+  backgroundColor: colors.white,
+};
+
 export const mapGfxStyle: MapStyleElement[] = [
   {
     elementType: 'geometry',

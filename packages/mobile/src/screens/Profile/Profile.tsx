@@ -2,11 +2,11 @@ import { useActionSheet } from '@expo/react-native-action-sheet';
 import { useScrollToTop } from '@react-navigation/native';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, Text, FlatList, RefreshControl } from 'react-native';
+import { View, Text, FlatList, RefreshControl, useColorScheme } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { tBase } from '_app/constants';
+import { darkBg, tBase, whiteBg } from '_app/constants';
 import { OrderDirection, useMeQuery, useVisitedQuery, useWantedQuery } from '_app/generated/graphql';
 import { authStore, profileStore } from '_app/stores';
 
@@ -16,6 +16,7 @@ import { s } from './styles';
 export const ProfileScreen = () => {
   const ref = useRef(null);
   const { t } = useTranslation();
+  const theme = useColorScheme();
 
   const { showActionSheetWithOptions } = useActionSheet();
   const [refreshing, setRefreshing] = useState(false);
@@ -151,11 +152,11 @@ export const ProfileScreen = () => {
 
   return (
     <>
-      <View style={s.headerArea} />
+      <View style={[s.headerArea, theme === 'dark' ? darkBg : whiteBg]} />
       <FlatList
         ref={ref}
-        ListHeaderComponent={renderHeader(user, t, setSelected, isMe, showActionSheetWithOptions, setLogout)}
-        ListEmptyComponent={renderEmpty(t)}
+        ListHeaderComponent={renderHeader(user, t, setSelected, isMe, showActionSheetWithOptions, setLogout, theme)}
+        ListEmptyComponent={renderEmpty(t, theme)}
         numColumns={2}
         horizontal={false}
         data={getData()}

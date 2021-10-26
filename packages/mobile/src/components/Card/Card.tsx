@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Text, Pressable, View } from 'react-native';
+import { Text, Pressable, View, useColorScheme } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { ScrollView } from 'react-native-gesture-handler';
 
+import { darkColor, whiteColor } from '_app/constants';
 import { navigation } from '_app/services/navigations';
 import { languageTag } from '_app/utils/helpers';
 
@@ -13,6 +14,8 @@ console.log('languageTag', languageTag);
 
 // TODO: refactor
 export const Card = ({ item, size }: TCardProps) => {
+  const theme = useColorScheme();
+
   const { images, name, countryCode, alternateName } = item;
   const [active, setActive] = useState(0);
 
@@ -163,10 +166,10 @@ export const Card = ({ item, size }: TCardProps) => {
           <Text style={s.ratingCount}>{rating ? rating.count : 0}</Text>
         </View>
       )} */}
-      <Text numberOfLines={1} style={s.itemTitle}>
+      <Text numberOfLines={1} style={[s.itemTitle, theme === 'dark' ? whiteColor : darkColor]}>
         {title}
       </Text>
-      <Text numberOfLines={1} style={s.itemDesc}>
+      <Text numberOfLines={1} style={[s.itemDesc, theme === 'dark' ? whiteColor : darkColor]}>
         {countryCode}
         {/* {state
           ? withLocalization('state.country.name', state.country.name, locale, localizations)

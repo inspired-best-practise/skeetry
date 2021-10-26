@@ -1,15 +1,16 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, useColorScheme } from 'react-native';
 
 import { Avatar, ModalWrapper } from '_app/components';
 import MenuItem from '_app/components/MenuItem/MenuItem';
-import { colors, radius, tBase, tTitle } from '_app/constants';
+import { colors, darkColor, radius, tBase, tTitle, whiteColor } from '_app/constants';
 import { useMeQuery } from '_app/generated/graphql';
 import { navigation } from '_app/services/navigations';
 
 export const ProfileSettingsScreen = () => {
   const { t } = useTranslation();
+  const theme = useColorScheme();
 
   const { loading, data } = useMeQuery();
 
@@ -21,7 +22,7 @@ export const ProfileSettingsScreen = () => {
         <View
           style={{
             marginBottom: 10,
-            backgroundColor: colors.gray100,
+            backgroundColor: theme === 'dark' ? colors.gray800 : colors.gray100,
             alignItems: 'center',
             width: '100%',
             paddingVertical: 20,
@@ -42,11 +43,11 @@ export const ProfileSettingsScreen = () => {
               <Avatar src={user.avatar} nickname={user.username} />
             </TouchableOpacity>
           )}
-          <Text style={[tTitle, { paddingTop: 10 }]}>Aleksey</Text>
-          <Text style={[tBase, { paddingTop: 4 }]}>+7 999 888-77-66</Text>
-          <Text style={[tBase, { paddingTop: 4 }]}>@{user.username}</Text>
+          <Text style={[tTitle, { paddingTop: 10 }, theme === 'dark' ? whiteColor : darkColor]}>Aleksey</Text>
+          <Text style={[tBase, { paddingTop: 4 }, theme === 'dark' ? whiteColor : darkColor]}>+7 999 888-77-66</Text>
+          <Text style={[tBase, { paddingTop: 4 }, theme === 'dark' ? whiteColor : darkColor]}>@{user.username}</Text>
           <Text
-            style={[tBase, { position: 'absolute', top: 10, right: 10 }]}
+            style={[tBase, { position: 'absolute', top: 10, right: 10 }, theme === 'dark' ? whiteColor : darkColor]}
             onPress={() => navigation.push('ProfileChange')}
           >
             {t('profile:change')}

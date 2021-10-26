@@ -8,7 +8,6 @@ const { width } = Dimensions.get('window');
 export const s = StyleSheet.create({
   container: {
     position: 'relative',
-    backgroundColor: colors.white,
   },
   cardImage: {
     width: SCREEN_WIDTH,

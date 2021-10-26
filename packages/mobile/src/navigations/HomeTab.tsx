@@ -2,6 +2,7 @@ import { BottomTabNavigationOptions, createBottomTabNavigator } from '@react-nav
 import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
 import React from 'react';
+import { useColorScheme } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import { THomeTabParamList } from 'types';
 
@@ -180,6 +181,8 @@ const HomeTab = () => {
     return true;
   }
 
+  const theme = useColorScheme();
+
   return (
     <Tab.Navigator tabBar={TabBarComponent} screenOptions={screenOptions}>
       <Tab.Screen
@@ -187,7 +190,21 @@ const HomeTab = () => {
           tabBarStyle: {
             display: getTabBarVisible(route) ? 'flex' : 'none',
           },
-          tabBarIcon: ({ focused }) => <Icon name="home" size={26} color={focused ? colors.gray900 : colors.gray300} />,
+          tabBarIcon: ({ focused }) => (
+            <Icon
+              name="home"
+              size={26}
+              color={
+                focused
+                  ? theme === 'dark'
+                    ? colors.white
+                    : colors.gray900
+                  : theme === 'dark'
+                  ? colors.gray500
+                  : colors.gray300
+              }
+            />
+          ),
         })}
         component={HomeStack}
         name="HomePage"
@@ -198,7 +215,15 @@ const HomeTab = () => {
             display: getTabBarVisible(route) ? 'flex' : 'none',
           },
           tabBarIcon: ({ focused }) => (
-            <Icon name="compass" size={26} color={focused ? colors.gray900 : colors.gray300} />
+            <Icon name="compass" size={26} color={
+                focused
+                  ? theme === 'dark'
+                    ? colors.white
+                    : colors.gray900
+                  : theme === 'dark'
+                  ? colors.gray500
+                  : colors.gray300
+              } />
           ),
         })}
         component={ExploreStack}
@@ -213,7 +238,19 @@ const HomeTab = () => {
         })}
         options={{
           tabBarIcon: ({ focused }) => (
-            <Icon name="search" size={26} color={focused ? colors.gray900 : colors.gray300} />
+            <Icon
+              name="search"
+              size={26}
+              color={
+                focused
+                  ? theme === 'dark'
+                    ? colors.white
+                    : colors.gray900
+                  : theme === 'dark'
+                  ? colors.gray500
+                  : colors.gray300
+              }
+            />
           ),
         }}
         component={AddStack}
@@ -222,7 +259,15 @@ const HomeTab = () => {
       {/* <Tab.Screen
         options={({ route }) => ({
           tabBarIcon: ({ focused }) => (
-            <Icon name="globe" size={26} color={focused ? colors.gray900 : colors.gray300} />
+            <Icon name="globe" size={26} color={
+                focused
+                  ? theme === 'dark'
+                    ? colors.white
+                    : colors.gray900
+                  : theme === 'dark'
+                  ? colors.gray500
+                  : colors.gray300
+              } />
           ),
         })}
         component={SwipesStack}
@@ -234,7 +279,21 @@ const HomeTab = () => {
           tabBarStyle: {
             display: getTabBarVisible(route) ? 'flex' : 'none',
           },
-          tabBarIcon: ({ focused }) => <Icon name="user" size={26} color={focused ? colors.gray900 : colors.gray300} />,
+          tabBarIcon: ({ focused }) => (
+            <Icon
+              name="user"
+              size={26}
+              color={
+                focused
+                  ? theme === 'dark'
+                    ? colors.white
+                    : colors.gray900
+                  : theme === 'dark'
+                  ? colors.gray500
+                  : colors.gray300
+              }
+            />
+          ),
         })}
         component={ProfileStack}
         name="ProfilePage"

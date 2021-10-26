@@ -1,13 +1,22 @@
 import { useActionSheet } from '@expo/react-native-action-sheet';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, Text, Image, TouchableHighlight, StatusBar, Pressable, ActionSheetIOS } from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  TouchableHighlight,
+  StatusBar,
+  Pressable,
+  ActionSheetIOS,
+  useColorScheme,
+} from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import Icon from 'react-native-vector-icons/Feather';
 
 import ImagePlaceholder from '_app/components/ImagePlaceholder/ImagePlaceholder';
-import { colors, mapGfxStyle, PLATFORM } from '_app/constants';
+import { colors, darkBg, darkColor, mapGfxStyle, PLATFORM, whiteBg, whiteColor } from '_app/constants';
 import { useAddCityMutation, useCityQuery, useMoveCityMutation, useRemoveCityMutation } from '_app/generated/graphql';
 import { authStore } from '_app/stores';
 import { languageTag } from '_app/utils/helpers';
@@ -17,6 +26,8 @@ import { s } from './styles';
 // TODO: refactor mutations and conditions, split into different components and files
 export const CardScreen = ({ route, navigation }) => {
   const { t } = useTranslation();
+  const theme = useColorScheme();
+
   const { item } = route.params;
   const { showActionSheetWithOptions } = useActionSheet();
   const [currentCity, setCurrentCity] = useState(item);
@@ -158,7 +169,7 @@ export const CardScreen = ({ route, navigation }) => {
             ],
             destructiveButtonIndex: 2,
             cancelButtonIndex: 0,
-            userInterfaceStyle: 'light',
+            userInterfaceStyle: theme === 'dark' ? 'dark' : 'light',
           },
           buttonIndex => {
             if (buttonIndex === 0) {
@@ -179,6 +190,7 @@ export const CardScreen = ({ route, navigation }) => {
             ],
             cancelButtonIndex: 0,
             destructiveButtonIndex: 2,
+            userInterfaceStyle: theme === 'dark' ? 'dark' : 'light',
           },
           i => {
             if (i === 0) {
@@ -193,7 +205,10 @@ export const CardScreen = ({ route, navigation }) => {
   };
 
   return (
-    <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={s.container}>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={[s.container, theme === 'dark' ? darkBg : whiteBg]}
+    >
       <StatusBar barStyle="light-content" animated translucent />
       {currentCity.images.length !== 0 ? (
         <Image
@@ -216,7 +231,7 @@ export const CardScreen = ({ route, navigation }) => {
       )} */}
       <View style={s.content}>
         <View style={s.section}>
-          <Text style={s.name}>
+          <Text style={[s.name, theme === 'dark' ? whiteColor : darkColor]}>
             {title}
             {/* {currentCity.state
               ? currentCity.state.country.emoji + ' ' + currentCity.name
@@ -228,38 +243,53 @@ export const CardScreen = ({ route, navigation }) => {
             {!alreadyWanted && !alreadyVisited && !loading ? (
               <>
                 <TouchableHighlight
-                  underlayColor={colors.mainGray}
-                  style={s.button}
+                  underlayColor={theme === 'dark' ? colors.gray700 : colors.mainGray}
+                  style={[s.button, theme === 'dark' && { backgroundColor: colors.gray800 }]}
                   onPress={() => handlePress('want')}
                 >
-                  <Text style={s.buttonText}>{t('utils:want')}</Text>
+                  <Text style={[s.buttonText, theme === 'dark' ? whiteColor : darkColor]}>{t('utils:want')}</Text>
                 </TouchableHighlight>
                 <TouchableHighlight
-                  underlayColor={colors.mainGray}
-                  style={s.button}
+                  underlayColor={theme === 'dark' ? colors.gray700 : colors.mainGray}
+                  style={[s.button, theme === 'dark' && { backgroundColor: colors.gray800 }]}
                   onPress={() => handlePress('visited')}
                 >
-                  <Text style={s.buttonText}>{t('utils:visited')}</Text>
+                  <Text style={[s.buttonText, theme === 'dark' ? whiteColor : darkColor]}>{t('utils:visited')}</Text>
                 </TouchableHighlight>
               </>
             ) : (
               <TouchableHighlight
-                underlayColor={colors.mainGray}
-                style={[s.button, (alreadyWanted || alreadyVisited || loading) && s.buttonFull]}
+                underlayColor={theme === 'dark' ? colors.gray700 : colors.mainGray}
+                style={[
+                  s.button,
+                  (alreadyWanted || alreadyVisited || loading) && s.buttonFull,
+                  theme === 'dark' && { backgroundColor: colors.gray800 },
+                ]}
                 onPress={() => !loading && onPressSheet()}
               >
                 <View style={[s.buttonWithIcon]}>
-                  <Text style={[s.buttonText, (alreadyWanted || alreadyVisited || loading) && s.buttonWithIconText]}>
+                  <Text
+                    style={[
+                      s.buttonText,
+                      (alreadyWanted || alreadyVisited || loading) && s.buttonWithIconText,
+                      theme === 'dark' ? whiteColor : darkColor,
+                    ]}
+                  >
                     {loading ? t('utils:loading') : alreadyWanted ? t('utils:want') : t('utils:visited')}
                   </Text>
-                  <Icon name="more-horizontal" style={s.buttonIcon} size={18} color={colors.black} />
+                  <Icon
+                    name="more-horizontal"
+                    style={s.buttonIcon}
+                    size={18}
+                    color={theme === 'dark' ? colors.white : colors.black}
+                  />
                 </View>
               </TouchableHighlight>
             )}
           </View>
         </View>
         <View style={s.section}>
-          <Text style={s.sectionTitle}>{t('utils:location')}</Text>
+          <Text style={[s.sectionTitle, theme === 'dark' ? whiteColor : darkColor]}>{t('utils:location')}</Text>
           <Pressable
             onPress={() =>
               navigation.navigate('Map', {
