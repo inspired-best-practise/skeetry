@@ -192,7 +192,7 @@ const HomeTab = () => {
         component={HomeStack}
         name="HomePage"
       />
-      <Tab.Screen
+      {/* <Tab.Screen
         options={({ route }) => ({
           tabBarStyle: {
             display: getTabBarVisible(route) ? 'flex' : 'none',
@@ -203,7 +203,7 @@ const HomeTab = () => {
         })}
         component={ExploreStack}
         name="ExplorePage"
-      />
+      /> */}
       <Tab.Screen
         listeners={({ navigation }) => ({
           tabPress: e => {

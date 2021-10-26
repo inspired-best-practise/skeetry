@@ -1,6 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator, StackNavigationOptions, TransitionPresets } from '@react-navigation/stack';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Easing, useColorScheme } from 'react-native';
 import { enableScreens } from 'react-native-screens';
 
@@ -56,6 +57,8 @@ const options = {
 const Index = (): JSX.Element => {
   const scheme = useColorScheme();
 
+  const { t } = useTranslation();
+
   const navigationOptions: StackNavigationOptions = {
     headerShown: false,
   };
@@ -66,7 +69,8 @@ const Index = (): JSX.Element => {
         <RootStack.Screen name="Root Tab" component={RootTab} options={navigationOptions} />
         <RootStack.Screen
           options={{
-            headerShown: false,
+            headerShown: PLATFORM.IS_IOS ? false : true,
+            title: t('utils:search'),
             presentation: 'modal',
             gestureResponseDistance: SCREEN_HEIGHT,
           }}
@@ -121,7 +125,8 @@ const Index = (): JSX.Element => {
         />
         <RootStack.Screen
           options={{
-            headerShown: false,
+            headerShown: PLATFORM.IS_IOS ? false : true,
+            title: t('utils:settings'),
             presentation: 'modal',
             gestureResponseDistance: SCREEN_HEIGHT,
           }}
@@ -130,7 +135,8 @@ const Index = (): JSX.Element => {
         />
         <RootStack.Screen
           options={{
-            headerShown: false,
+            headerShown: PLATFORM.IS_IOS ? false : true,
+            title: t('profile:profile_change'),
             presentation: 'modal',
             gestureResponseDistance: SCREEN_HEIGHT,
           }}
@@ -159,7 +165,7 @@ const Index = (): JSX.Element => {
             headerTransparent: true,
             headerShadowVisible: false,
             headerTintColor: colors.white,
-            title: 'Camera',
+            title: t('utils:camera'),
             presentation: 'transparentModal',
             ...options,
             headerLeft: () => <CloseModal />,
@@ -169,7 +175,8 @@ const Index = (): JSX.Element => {
         />
         <RootStack.Screen
           options={({ route }) => ({
-            headerShown: false,
+            headerShown: PLATFORM.IS_IOS ? false : true,
+            headerTitle: `${route.params.user.username}`,
             presentation: 'modal',
             gestureResponseDistance: SCREEN_HEIGHT,
           })}
@@ -192,7 +199,8 @@ const Index = (): JSX.Element => {
         />
         <RootStack.Screen
           options={({ route }) => ({
-            headerShown: false,
+            headerShown: PLATFORM.IS_IOS ? false : true,
+            title: t('utils:top'),
             presentation: 'modal',
             gestureResponseDistance: SCREEN_HEIGHT,
           })}

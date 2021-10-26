@@ -6,7 +6,7 @@ import { Text, View, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { HorizontalCardList } from '_app/components';
+// import { HorizontalCardList } from '_app/components';
 import { Categories } from '_app/components/Categories';
 import { Stories } from '_app/components/Stories';
 import { tTitle } from '_app/constants';

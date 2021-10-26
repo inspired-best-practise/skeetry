@@ -17,7 +17,6 @@ export const s = StyleSheet.create({
   itemImage: {
     width: SCREEN_WIDTH,
     height: 300,
-    borderRadius: 6,
   },
   title: {
     fontSize: 32,

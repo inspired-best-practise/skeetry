@@ -2,7 +2,7 @@ import { useActionSheet } from '@expo/react-native-action-sheet';
 import { ReactNativeFile } from 'apollo-upload-client';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Text, ActionSheetIOS, TouchableOpacity, TextInput } from 'react-native';
+import { Text, ActionSheetIOS, TouchableOpacity, TextInput, View } from 'react-native';
 import { launchImageLibrary } from 'react-native-image-picker';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -10,7 +10,6 @@ import { Avatar, ModalWrapper } from '_app/components';
 import { PLATFORM, tBase } from '_app/constants';
 import { useDeletePhotoMutation, useMeQuery, useUploadPhotoMutation } from '_app/generated/graphql';
 import { navigation } from '_app/services/navigations';
-import { authStore } from '_app/stores';
 
 export const ProfileChangeScreen = () => {
   const { t } = useTranslation();
@@ -120,28 +119,45 @@ export const ProfileChangeScreen = () => {
 
   return (
     <ModalWrapper>
-      {!loading && (
-        <TouchableOpacity
-          activeOpacity={user.avatar ? 0.7 : 1}
-          onPress={() =>
-            user.avatar &&
-            navigation.push('Avatar', {
-              image: user.avatar,
-            })
-          }
+      <View style={{ alignItems: 'center', padding: 20 }}>
+        {!loading && (
+          <TouchableOpacity
+            activeOpacity={user.avatar ? 0.7 : 1}
+            onPress={() =>
+              user.avatar &&
+              navigation.push('Avatar', {
+                image: user.avatar,
+              })
+            }
+          >
+            <Avatar src={user.avatar} nickname={user.username} />
+          </TouchableOpacity>
+        )}
+        <Text style={[tBase, { paddingTop: 20 }]} onPress={() => onPressSheet()}>
+          {t('profile:new_photo')}
+        </Text>
+        <TextInput
+          style={{ width: '100%' }}
+          autoCapitalize="none"
+          placeholder={t('profile:name')}
+          value={'Aleksey'}
+          spellCheck={false}
+        />
+        <TextInput
+          style={{ width: '100%' }}
+          autoCapitalize="none"
+          placeholder={t('profile:username')}
+          value={'kive'}
+          spellCheck={false}
+        />
+        <TextInput style={{ width: '100%' }} autoCapitalize="none" placeholder={t('profile:bio')} spellCheck={false} />
+        <Text
+          style={{ position: 'absolute', top: 0, right: 10 }}
+          onPress={() => navigation.navigate('ProfileSettings')}
         >
-          <Avatar src={user.avatar} nickname={user.username} />
-        </TouchableOpacity>
-      )}
-      <Text style={[tBase, { paddingTop: 20 }]} onPress={() => onPressSheet()}>
-        Новое фото
-      </Text>
-      <TextInput autoCapitalize="none" placeholder={t('profile:name')} value={'Aleksey'} spellCheck={false} />
-      <TextInput autoCapitalize="none" placeholder={t('profile:username')} value={'kive'} spellCheck={false} />
-      <TextInput autoCapitalize="none" placeholder={t('profile:bio')} spellCheck={false} />
-      <Text style={{ position: 'absolute', top: 0, right: 10 }} onPress={() => navigation.navigate('ProfileSettings')}>
-        Готово
-      </Text>
+          {t('profile:done')}
+        </Text>
+      </View>
     </ModalWrapper>
   );
 };

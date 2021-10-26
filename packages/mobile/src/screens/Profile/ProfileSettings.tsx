@@ -49,7 +49,7 @@ export const ProfileSettingsScreen = () => {
             style={[tBase, { position: 'absolute', top: 10, right: 10 }]}
             onPress={() => navigation.push('ProfileChange')}
           >
-            Изменить
+            {t('profile:change')}
           </Text>
         </View>
       </View>

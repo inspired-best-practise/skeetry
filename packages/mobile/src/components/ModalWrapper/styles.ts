@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 
+import { PLATFORM } from '_app/constants';
 import { normalize } from '_app/utils/dimensions';
 
 export const s = StyleSheet.create({
@@ -10,7 +11,7 @@ export const s = StyleSheet.create({
     flexDirection: 'row',
   },
   wrap: {
-    marginTop: normalize(33),
+    marginTop: PLATFORM.IS_IOS ? normalize(33) : normalize(13),
     width: '100%',
   },
 });

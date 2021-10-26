@@ -63,9 +63,6 @@ export const CameraScreen = () => {
             buttonPositive: 'Ok',
             buttonNegative: 'Cancel',
           }}
-          onGoogleVisionBarcodesDetected={({ barcodes }) => {
-            console.log(barcodes);
-          }}
         />
       </View>
       <View style={{ flex: 2, justifyContent: 'center' }}>

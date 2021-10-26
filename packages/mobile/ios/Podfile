@@ -61,6 +61,8 @@ end
     'Release' => '$(PODS_ROOT)/../../.env.production',
   }
   post_install do |installer|
+    react_native_post_install(installer)
+    __apply_Xcode_12_5_M1_post_install_workaround(installer)
     if not IS_CI
        flipper_post_install(installer)
        use_flipper!

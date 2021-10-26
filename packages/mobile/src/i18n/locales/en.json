@@ -13,7 +13,11 @@
     "cities": "Сities",
     "places": "Places",
     "empty_list_title": "The list is empty",
-    "empty_list_desc": "Add some countries, cities, places, or landmarks"
+    "empty_list_desc": "Add some countries, cities, places, or landmarks",
+    "profile_change": "Change profile",
+    "change": "Change",
+    "done": "Done",
+    "new_photo": "New photo"
   },
   "explore": {
     "popular": "Popular",
@@ -39,7 +43,7 @@
     "take_photo": "Take a photo",
     "choose_from_gallery": "Choose from gallery",
     "delete_photo": "Delete current photo",
-    "account_settings": "Account Settings",
+    "account_settings": "Settings",
     "logout": "Log Out",
     "notifications": "Notifications",
     "design": "Design",
@@ -67,6 +71,10 @@
     "delete": "Delete",
     "location": "Location",
     "logout": "Log out",
-    "wip": "Work in progress"
+    "wip": "Work in progress",
+    "search": "Search",
+    "top": "Top",
+    "camera": "Camera",
+    "settings": "Settings"
   }
 }
