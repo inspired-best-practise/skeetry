@@ -17,7 +17,8 @@
     "profile_change": "Change profile",
     "change": "Change",
     "done": "Done",
-    "new_photo": "New photo"
+    "new_photo": "New photo",
+    "follow": "Follow"
   },
   "explore": {
     "popular": "Popular",
@@ -46,7 +47,7 @@
     "account_settings": "Settings",
     "logout": "Log Out",
     "notifications": "Notifications",
-    "design": "Design",
+    "appearance": "Appearance",
     "language": "Language",
     "help": "Help",
     "info": "Information"
@@ -76,6 +77,7 @@
     "search": "Search",
     "top": "Top",
     "camera": "Camera",
-    "settings": "Settings"
+    "settings": "Settings",
+    "back": "Back"
   }
 }

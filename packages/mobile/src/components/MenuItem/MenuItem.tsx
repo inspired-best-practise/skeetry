@@ -7,14 +7,14 @@ import { colors, darkColor, tBase, whiteColor } from '_app/constants';
 
 import { s } from './styles';
 
-const MenuItem = ({ name, icon }: MenuItemProps) => {
+const MenuItem = ({ name, icon, action }: MenuItemProps) => {
   const { t } = useTranslation();
   const theme = useColorScheme();
 
   return (
     <TouchableHighlight
       underlayColor={theme === 'dark' ? colors.gray800 : colors.lineGray}
-      onPress={() => Alert.alert(t('utils:wip'))}
+      onPress={action ? action : () => Alert.alert(t('utils:wip'))}
       style={s.menuItem}
     >
       <View style={s.container}>

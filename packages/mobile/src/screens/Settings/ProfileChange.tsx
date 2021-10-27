@@ -2,11 +2,11 @@ import { useActionSheet } from '@expo/react-native-action-sheet';
 import { ReactNativeFile } from 'apollo-upload-client';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Text, ActionSheetIOS, TouchableOpacity, TextInput, View, useColorScheme } from 'react-native';
+import { Text, ActionSheetIOS, TouchableOpacity, TextInput, View, useColorScheme, SafeAreaView } from 'react-native';
 import { launchImageLibrary } from 'react-native-image-picker';
 import { v4 as uuidv4 } from 'uuid';
 
-import { Avatar, ModalWrapper } from '_app/components';
+import { Avatar } from '_app/components';
 import { darkColor, PLATFORM, tBase, whiteColor } from '_app/constants';
 import { useDeletePhotoMutation, useMeQuery, useUploadPhotoMutation } from '_app/generated/graphql';
 import { navigation } from '_app/services/navigations';
@@ -120,7 +120,7 @@ export const ProfileChangeScreen = () => {
   const user = data!.me;
 
   return (
-    <ModalWrapper>
+    <SafeAreaView>
       <View style={{ alignItems: 'center', padding: 20 }}>
         {!loading && (
           <TouchableOpacity
@@ -155,11 +155,11 @@ export const ProfileChangeScreen = () => {
         <TextInput style={{ width: '100%' }} autoCapitalize="none" placeholder={t('profile:bio')} spellCheck={false} />
         <Text
           style={[{ position: 'absolute', top: 0, right: 10 }, theme === 'dark' ? whiteColor : darkColor]}
-          onPress={() => navigation.navigate('ProfileSettings')}
+          onPress={() => navigation.navigate('Settings')}
         >
           {t('profile:done')}
         </Text>
       </View>
-    </ModalWrapper>
+    </SafeAreaView>
   );
 };

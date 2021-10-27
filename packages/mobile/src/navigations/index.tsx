@@ -6,10 +6,10 @@ import { Easing, useColorScheme } from 'react-native';
 import { enableScreens } from 'react-native-screens';
 
 import CloseModal from '_app/components/CloseModal/CloseModal';
-import { colors, darkTheme, lightTheme, PLATFORM } from '_app/constants';
+import { colors, darkTheme, lightTheme } from '_app/constants';
 import {
   CardScreen,
-  ProfileSettingsScreen,
+  SettingsScreen,
   AddChooserScreen,
   ItemsByCategoryScreen,
   OfflineScreen,
@@ -20,10 +20,14 @@ import {
   ProfileUserScreen,
   StoriesScreen,
   UsersTopScreen,
+  NotificationsScreen,
+  AppearanceScreen,
+  LanguageScreen,
+  HelpScreen,
+  InfoScreen,
 } from '_app/screens';
-import { ProfileChangeScreen } from '_app/screens/Profile/ProfileChange';
+import { ProfileChangeScreen } from '_app/screens/Settings/ProfileChange';
 import { navigationRef } from '_app/services/navigations';
-import { SCREEN_HEIGHT } from '_app/utils/dimensions';
 
 import RootTab from './RootTab';
 
@@ -55,7 +59,7 @@ const options = {
 };
 
 const Index = (): JSX.Element => {
-  const scheme = useColorScheme();
+  const theme = useColorScheme();
 
   const { t } = useTranslation();
 
@@ -64,15 +68,16 @@ const Index = (): JSX.Element => {
   };
 
   return (
-    <NavigationContainer ref={navigationRef} theme={scheme === 'dark' ? darkTheme : lightTheme}>
+    <NavigationContainer ref={navigationRef} theme={theme === 'dark' ? darkTheme : lightTheme}>
       <RootStack.Navigator initialRouteName="RootTab">
         <RootStack.Screen name="Root Tab" component={RootTab} options={navigationOptions} />
         <RootStack.Screen
           options={{
-            headerShown: PLATFORM.IS_IOS ? false : true,
+            headerShown: true,
+            headerTintColor: theme === 'dark' ? colors.black : colors.black,
+            headerBackTitle: t('utils:back'),
             title: t('utils:search'),
-            presentation: 'modal',
-            gestureResponseDistance: SCREEN_HEIGHT,
+            presentation: 'card',
           }}
           name="AddChooser"
           component={AddChooserScreen}
@@ -82,6 +87,7 @@ const Index = (): JSX.Element => {
             ...TransitionPresets.ModalTransition,
             headerShown: PLATFORM.IS_IOS ? false : true,
             headerTitle: `${route.params.item.name} ${route.params.item.emoji}`,
+            headerBackTitle: t('utils:back'),
             presentation: 'modal',
           })}
           name="ItemsByCategory"
@@ -92,6 +98,7 @@ const Index = (): JSX.Element => {
             ...TransitionPresets.ModalTransition,
             headerShown: PLATFORM.IS_IOS ? false : true,
             headerTitle: `${route.params.item.name}`,
+            headerBackTitle: t('utils:back'),
             presentation: 'modal',
           })}
           name="CitiesList"
@@ -102,8 +109,9 @@ const Index = (): JSX.Element => {
             headerShown: true,
             headerTransparent: true,
             headerShadowVisible: false,
-            headerTintColor: colors.white,
+            headerTintColor: theme === 'dark' ? colors.black : colors.black,
             title: '',
+            headerBackTitle: t('utils:back'),
             ...options,
             headerLeft: () => <CloseModal />,
           })}
@@ -114,8 +122,9 @@ const Index = (): JSX.Element => {
           options={({ route }) => ({
             headerTransparent: true,
             headerShadowVisible: false,
-            headerTintColor: colors.white,
+            headerTintColor: theme === 'dark' ? colors.black : colors.black,
             title: '',
+            headerBackTitle: t('utils:back'),
             presentation: 'transparentModal',
             ...options,
             headerLeft: () => <CloseModal />,
@@ -125,20 +134,22 @@ const Index = (): JSX.Element => {
         />
         <RootStack.Screen
           options={{
-            headerShown: PLATFORM.IS_IOS ? false : true,
+            headerShown: true,
+            headerTintColor: theme === 'dark' ? colors.black : colors.black,
+            headerBackTitle: t('utils:back'),
             title: t('utils:settings'),
-            presentation: 'modal',
-            gestureResponseDistance: SCREEN_HEIGHT,
+            presentation: 'card',
           }}
-          name="ProfileSettings"
-          component={ProfileSettingsScreen}
+          name="Settings"
+          component={SettingsScreen}
         />
         <RootStack.Screen
           options={{
-            headerShown: PLATFORM.IS_IOS ? false : true,
+            headerShown: true,
+            headerTintColor: theme === 'dark' ? colors.black : colors.black,
+            headerBackTitle: t('utils:back'),
             title: t('profile:profile_change'),
-            presentation: 'modal',
-            gestureResponseDistance: SCREEN_HEIGHT,
+            presentation: 'card',
           }}
           name="ProfileChange"
           component={ProfileChangeScreen}
@@ -147,6 +158,7 @@ const Index = (): JSX.Element => {
           options={{
             ...TransitionPresets.ModalTransition,
             headerShown: false,
+            headerBackTitle: t('utils:back'),
             presentation: 'card',
           }}
           name="Offline"
@@ -164,8 +176,9 @@ const Index = (): JSX.Element => {
           options={{
             headerTransparent: true,
             headerShadowVisible: false,
-            headerTintColor: colors.white,
+            headerTintColor: theme === 'dark' ? colors.black : colors.black,
             title: t('utils:camera'),
+            headerBackTitle: t('utils:back'),
             presentation: 'transparentModal',
             ...options,
             headerLeft: () => <CloseModal />,
@@ -175,10 +188,11 @@ const Index = (): JSX.Element => {
         />
         <RootStack.Screen
           options={({ route }) => ({
-            headerShown: PLATFORM.IS_IOS ? false : true,
+            headerShown: true,
             headerTitle: `${route.params.user.username}`,
-            presentation: 'modal',
-            gestureResponseDistance: SCREEN_HEIGHT,
+            headerTintColor: theme === 'dark' ? colors.black : colors.black,
+            headerBackTitle: t('utils:back'),
+            presentation: 'card',
           })}
           name="ProfileUser"
           component={ProfileUserScreen}
@@ -188,8 +202,9 @@ const Index = (): JSX.Element => {
             headerShown: true,
             headerTransparent: true,
             headerShadowVisible: false,
-            headerTintColor: colors.white,
+            headerTintColor: theme === 'dark' ? colors.black : colors.black,
             headerTitle: '',
+            headerBackTitle: t('utils:back'),
             presentation: 'transparentModal',
             ...options,
             headerLeft: () => <CloseModal />,
@@ -199,13 +214,69 @@ const Index = (): JSX.Element => {
         />
         <RootStack.Screen
           options={({ route }) => ({
-            headerShown: PLATFORM.IS_IOS ? false : true,
+            headerShown: true,
+            headerTintColor: theme === 'dark' ? colors.black : colors.black,
+            headerBackTitle: t('utils:back'),
             title: t('utils:top'),
-            presentation: 'modal',
-            gestureResponseDistance: SCREEN_HEIGHT,
+            presentation: 'card',
           })}
           name="UsersTop"
           component={UsersTopScreen}
+        />
+        <RootStack.Screen
+          options={({ route }) => ({
+            headerShown: true,
+            headerTintColor: theme === 'dark' ? colors.black : colors.black,
+            headerBackTitle: t('utils:back'),
+            title: t('settings:notifications'),
+            presentation: 'card',
+          })}
+          name="Notifications"
+          component={NotificationsScreen}
+        />
+        <RootStack.Screen
+          options={({ route }) => ({
+            headerShown: true,
+            headerTintColor: theme === 'dark' ? colors.black : colors.black,
+            headerBackTitle: t('utils:back'),
+            title: t('settings:appearance'),
+            presentation: 'card',
+          })}
+          name="Appearance"
+          component={AppearanceScreen}
+        />
+        <RootStack.Screen
+          options={({ route }) => ({
+            headerShown: true,
+            headerTintColor: theme === 'dark' ? colors.black : colors.black,
+            headerBackTitle: t('utils:back'),
+            title: t('settings:language'),
+            presentation: 'card',
+          })}
+          name="Language"
+          component={LanguageScreen}
+        />
+        <RootStack.Screen
+          options={({ route }) => ({
+            headerShown: true,
+            headerTintColor: theme === 'dark' ? colors.black : colors.black,
+            headerBackTitle: t('utils:back'),
+            title: t('settings:help'),
+            presentation: 'card',
+          })}
+          name="Help"
+          component={HelpScreen}
+        />
+        <RootStack.Screen
+          options={({ route }) => ({
+            headerShown: true,
+            headerTintColor: theme === 'dark' ? colors.black : colors.black,
+            headerBackTitle: t('utils:back'),
+            title: t('settings:help'),
+            presentation: 'card',
+          })}
+          name="Info"
+          component={InfoScreen}
         />
       </RootStack.Navigator>
     </NavigationContainer>

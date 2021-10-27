@@ -1,14 +1,14 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, Text, TouchableOpacity, useColorScheme } from 'react-native';
+import { View, Text, TouchableOpacity, useColorScheme, SafeAreaView } from 'react-native';
 
-import { Avatar, ModalWrapper } from '_app/components';
+import { Avatar } from '_app/components';
 import MenuItem from '_app/components/MenuItem/MenuItem';
-import { colors, darkColor, radius, tBase, tSmallRegular, tTitle, whiteColor } from '_app/constants';
+import { colors, darkColor, radius, tBase, whiteColor } from '_app/constants';
 import { useMeQuery } from '_app/generated/graphql';
 import { navigation } from '_app/services/navigations';
 
-export const ProfileSettingsScreen = () => {
+export const SettingsScreen = () => {
   const { t } = useTranslation();
   const theme = useColorScheme();
 
@@ -17,7 +17,7 @@ export const ProfileSettingsScreen = () => {
   const user = data!.me;
 
   return (
-    <ModalWrapper>
+    <SafeAreaView>
       <View style={{ paddingHorizontal: 10, width: '100%' }}>
         <View
           style={{
@@ -73,11 +73,11 @@ export const ProfileSettingsScreen = () => {
         </View>
       </View>
 
-      <MenuItem name="notifications" icon="bell" />
-      <MenuItem name="design" icon="image" />
-      <MenuItem name="language" icon="globe" />
-      <MenuItem name="help" icon="life-buoy" />
-      <MenuItem name="info" icon="info" />
-    </ModalWrapper>
+      <MenuItem name="notifications" icon="bell" action={() => navigation.push('Notifications')} />
+      <MenuItem name="appearance" icon="image" action={() => navigation.push('Appearance')} />
+      <MenuItem name="language" icon="globe" action={() => navigation.push('Language')} />
+      <MenuItem name="help" icon="life-buoy" action={() => navigation.push('Help')} />
+      <MenuItem name="info" icon="info" action={() => navigation.push('Info')} />
+    </SafeAreaView>
   );
 };

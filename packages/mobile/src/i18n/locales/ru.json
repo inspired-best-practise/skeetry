@@ -17,7 +17,8 @@
     "profile_change": "Изменить профиль",
     "change": "Изменить",
     "done": "Готово",
-    "new_photo": "Новое фото"
+    "new_photo": "Новое фото",
+    "follow": "Подписаться"
   },
   "explore": {
     "popular": "Популярное",
@@ -45,7 +46,7 @@
     "account_settings": "Настройки",
     "logout": "Выйти",
     "notifications": "Уведомления",
-    "design": "Оформление",
+    "appearance": "Оформление",
     "language": "Язык",
     "help": "Помощь",
     "info": "Информация"
@@ -75,6 +76,7 @@
     "search": "Поиск",
     "top": "Топ",
     "camera": "Камера",
-    "settings": "Настройки"
+    "settings": "Настройки",
+    "back": "Назад"
   }
 }

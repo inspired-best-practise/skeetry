@@ -47,7 +47,7 @@ export const renderHeader = (user: TUser, t, setSelected, isMe, theme, showActio
             if (buttonIndex === 0) {
               // cancel action
             } else if (buttonIndex === 1) {
-              navigation.navigate('ProfileSettings');
+              navigation.navigate('Settings');
             } else if (buttonIndex === 2) {
               onButtonPress();
             } else if (buttonIndex === 3) {
@@ -66,7 +66,7 @@ export const renderHeader = (user: TUser, t, setSelected, isMe, theme, showActio
             if (i === 0) {
               // cancel action
             } else if (i === 1) {
-              navigation.navigate('ProfileSettings');
+              navigation.navigate('Settings');
             } else if (i === 2) {
               onButtonPress();
             } else if (i === 3) {
@@ -118,7 +118,7 @@ export const renderHeader = (user: TUser, t, setSelected, isMe, theme, showActio
         </View>
         {!isMe && (
           <View style={{ paddingTop: 20 }}>
-            <Button title="Подписаться" primary small />
+            <Button title={t('profile:follow')} primary small />
           </View>
         )}
       </View>

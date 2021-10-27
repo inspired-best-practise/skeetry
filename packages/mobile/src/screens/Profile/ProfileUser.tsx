@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlatList, useColorScheme } from 'react-native';
+import { FlatList, SafeAreaView, useColorScheme } from 'react-native';
 
-import { ModalWrapper } from '_app/components';
 import { useWantedQuery, OrderDirection, useVisitedQuery } from '_app/generated/graphql';
 import { authStore, profileStore } from '_app/stores';
 import { SCREEN_WIDTH } from '_app/utils/dimensions';
@@ -120,7 +119,7 @@ export const ProfileUserScreen = ({ route }) => {
   };
 
   return (
-    <ModalWrapper>
+    <SafeAreaView>
       <FlatList
         ref={ref}
         ListHeaderComponent={renderHeader(user, t, setSelected, isMe, theme)}
@@ -135,6 +134,6 @@ export const ProfileUserScreen = ({ route }) => {
         decelerationRate="fast"
         onEndReached={() => (selected === 'want' ? wantedEndReached() : visitedEndReached())}
       />
-    </ModalWrapper>
+    </SafeAreaView>
   );
 };

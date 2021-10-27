@@ -13,3 +13,4 @@ export * from './CitiesList';
 export * from './Map';
 export * from './Stories';
 export * from './UsersTop';
+export * from './Settings';

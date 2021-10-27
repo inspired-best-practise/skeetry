@@ -1,21 +1,10 @@
 import { useScrollToTop } from '@react-navigation/native';
 import React, { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  View,
-  StatusBar,
-  ScrollView,
-  TextInput,
-  TouchableWithoutFeedback,
-  Keyboard,
-  Text,
-  TouchableOpacity,
-  SafeAreaView,
-  useColorScheme,
-} from 'react-native';
+import { View, ScrollView, TextInput, Text, TouchableOpacity, SafeAreaView, useColorScheme } from 'react-native';
 
-import { Avatar, Card, HorizontalListSkeleton, ModalControl, ModalWrapper } from '_app/components';
-import { colors, darkColor, PLATFORM, radius, tBase, whiteColor } from '_app/constants';
+import { Avatar, Card, HorizontalListSkeleton } from '_app/components';
+import { colors, darkColor, radius, tBase, whiteColor } from '_app/constants';
 import { OrderDirection, useCitiesQuery, useUsersQuery } from '_app/generated/graphql';
 import { navigation } from '_app/services/navigations';
 import { normalize } from '_app/utils/dimensions';
@@ -99,7 +88,7 @@ export const AddChooserScreen = () => {
   const usersList = dataUsers?.users.edges;
 
   return (
-    <ModalWrapper>
+    <SafeAreaView>
       <View style={{ paddingHorizontal: normalize(20) }}>
         <View style={s.textInputWrapper}>
           <TextInput
@@ -186,6 +175,6 @@ export const AddChooserScreen = () => {
               ))}
             </ScrollView>
           )} */}
-    </ModalWrapper>
+    </SafeAreaView>
   );
 };

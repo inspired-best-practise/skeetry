@@ -1,10 +1,10 @@
 import React from 'react';
 import { SafeAreaView, Text } from 'react-native';
 
-export const UsersTopScreen = () => {
+export const InfoScreen = () => {
   return (
     <SafeAreaView>
-      <Text>Users top</Text>
+      <Text>Info</Text>
     </SafeAreaView>
   );
 };
