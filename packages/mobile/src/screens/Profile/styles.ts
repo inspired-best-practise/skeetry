@@ -17,15 +17,17 @@ export const s = StyleSheet.create({
     paddingHorizontal: normalize(20),
   },
   profileHeader: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    width: '100%',
     paddingBottom: normalize(20),
     marginBottom: normalize(20),
     borderBottomColor: colors.mainGray,
     borderBottomWidth: 1,
     paddingHorizontal: normalize(10),
+  },
+  profileHeaderWrap: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '100%',
   },
   name: {
     ...tBase,

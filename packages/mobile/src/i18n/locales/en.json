@@ -53,6 +53,7 @@
   },
   "utils": {
     "username": "Username",
+    "name": "Name",
     "phone": "Phone",
     "password": "Password",
     "code": "Code",

@@ -4,13 +4,13 @@ import codePush from 'react-native-code-push';
 import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import * as HeroIcon from 'react-native-heroicons/solid';
 
-import { ProfileStatsItem, Avatar, ProfileFilter } from '_app/components';
+import { ProfileStatsItem, Avatar, ProfileFilter, Button } from '_app/components';
 import { colors, darkColor, PLATFORM, whiteColor } from '_app/constants';
 import { navigation } from '_app/services/navigations';
 
 import { s } from '../styles';
 
-export const renderHeader = (user: TUser, t, setSelected, isMe, showActionSheetWithOptions, setLogout, theme) => {
+export const renderHeader = (user: TUser, t, setSelected, isMe, theme, showActionSheetWithOptions, setLogout) => {
   const actionOptions = [
     `${t('utils:cancel')}`,
     `${t('settings:account_settings')}`,
@@ -76,6 +76,8 @@ export const renderHeader = (user: TUser, t, setSelected, isMe, showActionSheetW
         );
   };
 
+  console.log('theme', theme);
+
   return (
     <View>
       <View style={[s.profilePanel]}>
@@ -86,33 +88,41 @@ export const renderHeader = (user: TUser, t, setSelected, isMe, showActionSheetW
         )}
       </View>
       <View style={s.profileHeader}>
-        <TouchableOpacity
-          activeOpacity={user.avatar ? 0.7 : 1}
-          onPress={() =>
-            user.avatar &&
-            navigation.push('Avatar', {
-              image: user.avatar,
-            })
-          }
-        >
-          <Avatar src={user.avatar} nickname={user.username} />
-        </TouchableOpacity>
-        <View style={{ marginLeft: 10 }}>
-          {user.name && (
-            <Text numberOfLines={1} style={[s.name, theme === 'dark' ? whiteColor : darkColor]}>
-              {user.name}
+        <View style={s.profileHeaderWrap}>
+          <TouchableOpacity
+            activeOpacity={user.avatar ? 0.7 : 1}
+            onPress={() =>
+              user.avatar &&
+              navigation.push('Avatar', {
+                image: user.avatar,
+              })
+            }
+          >
+            <Avatar src={user.avatar} nickname={user.username} />
+          </TouchableOpacity>
+          <View style={{ marginLeft: 10 }}>
+            {user.name && (
+              <Text numberOfLines={1} style={[s.name, theme === 'dark' && whiteColor]}>
+                {user.name}
+              </Text>
+            )}
+            <Text numberOfLines={1} style={[s.username, theme === 'dark' ? whiteColor : darkColor]}>
+              @{user.username}
             </Text>
-          )}
-          <Text numberOfLines={1} style={[s.username, theme === 'dark' ? whiteColor : darkColor]}>
-            @{user.username}
-          </Text>
-          {user.bio && (
-            <Text numberOfLines={1} style={[s.bio, theme === 'dark' ? whiteColor : darkColor]}>
-              {user.bio}
-            </Text>
-          )}
+            {user.bio && (
+              <Text numberOfLines={1} style={[s.bio, theme === 'dark' ? whiteColor : darkColor]}>
+                {user.bio}
+              </Text>
+            )}
+          </View>
         </View>
+        {!isMe && (
+          <View style={{ paddingTop: 20 }}>
+            <Button title="Подписаться" primary small />
+          </View>
+        )}
       </View>
+
       <View style={s.profileStats}>
         <ProfileStatsItem name={`${t('profile:place')}`} number={0} action={() => navigation.push('UsersTop')} />
         <ProfileStatsItem name={`${t('profile:want')}`} number={user.wantedCount} action={() => setSelected('want')} />

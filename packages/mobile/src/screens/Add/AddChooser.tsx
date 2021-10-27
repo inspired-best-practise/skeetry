@@ -15,7 +15,7 @@ import {
 } from 'react-native';
 
 import { Avatar, Card, HorizontalListSkeleton, ModalControl, ModalWrapper } from '_app/components';
-import { colors, PLATFORM, radius, tBase } from '_app/constants';
+import { colors, darkColor, PLATFORM, radius, tBase, whiteColor } from '_app/constants';
 import { OrderDirection, useCitiesQuery, useUsersQuery } from '_app/generated/graphql';
 import { navigation } from '_app/services/navigations';
 import { normalize } from '_app/utils/dimensions';
@@ -152,7 +152,14 @@ export const AddChooserScreen = () => {
                 >
                   <View style={{ marginRight: 20, flexDirection: 'row', alignItems: 'center' }}>
                     <Avatar src={i.node.avatar} nickname={i.node.username} />
-                    <Text style={[tBase, { paddingLeft: 10 }]}>{i.node.username}</Text>
+                    <View>
+                      <Text style={[tBase, { paddingLeft: 10 }, theme === 'dark' ? whiteColor : darkColor]}>
+                        {i.node.name}
+                      </Text>
+                      <Text style={[tBase, { paddingLeft: 10 }, theme === 'dark' ? whiteColor : darkColor]}>
+                        @{i.node.username}
+                      </Text>
+                    </View>
                   </View>
                 </TouchableOpacity>
               ))}

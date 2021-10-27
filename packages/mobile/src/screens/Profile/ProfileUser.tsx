@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlatList } from 'react-native';
+import { FlatList, useColorScheme } from 'react-native';
 
 import { ModalWrapper } from '_app/components';
 import { useWantedQuery, OrderDirection, useVisitedQuery } from '_app/generated/graphql';
-import { profileStore } from '_app/stores';
+import { authStore, profileStore } from '_app/stores';
 import { SCREEN_WIDTH } from '_app/utils/dimensions';
 
 import { renderEmpty, renderItem, renderHeader } from './elements';
@@ -13,13 +13,16 @@ import { s } from './styles';
 export const ProfileUserScreen = ({ route }) => {
   const ref = useRef(null);
   const { t } = useTranslation();
+  const theme = useColorScheme();
 
   const [wanted, setWanted] = useState([]);
   const [visited, setVisited] = useState([]);
 
   const { user } = route.params;
 
-  const isMe = false;
+  const me = authStore(state => state.user);
+
+  const isMe = me.id === user.id;
 
   const {
     data: dataWanted,
@@ -120,7 +123,7 @@ export const ProfileUserScreen = ({ route }) => {
     <ModalWrapper>
       <FlatList
         ref={ref}
-        ListHeaderComponent={renderHeader(user, t, setSelected, isMe)}
+        ListHeaderComponent={renderHeader(user, t, setSelected, isMe, theme)}
         ListEmptyComponent={renderEmpty(t)}
         numColumns={2}
         data={getData()}

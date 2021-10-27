@@ -27,7 +27,7 @@ export const CredentialsScreen = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = ({ username, password }) => {
+  const onSubmit = ({ name, username, password }) => {
     signupMutation({
       variables: {
         input: {
@@ -44,21 +44,11 @@ export const CredentialsScreen = () => {
   useEffect(() => {
     if (data && data.signup) {
       const { accessToken, refreshToken } = data.signup;
-      const {
-        id,
-        email,
-        username: name,
-        avatar,
-        bio,
-        rating,
-        wantedCount,
-        visitedCount,
-        createdAt,
-        updatedAt,
-      } = data.signup.user;
+      const { id, email, name, username, avatar, bio, rating, wantedCount, visitedCount, createdAt, updatedAt } =
+        data.signup.user;
 
       setTokens(accessToken, refreshToken);
-      setUser(id, phone, email, name, avatar, bio, rating, wantedCount, visitedCount, createdAt, updatedAt);
+      setUser(id, phone, email, name, username, avatar, bio, rating, wantedCount, visitedCount, createdAt, updatedAt);
 
       return navigation.push('Welcome');
     }

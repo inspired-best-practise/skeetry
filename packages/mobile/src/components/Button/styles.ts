@@ -1,16 +1,16 @@
 import { StyleSheet } from 'react-native';
 
-import { colors } from '_app/constants';
+import { colors, radius } from '_app/constants';
 
 export const s = StyleSheet.create({
   button: {
     backgroundColor: colors.mainGray,
-    borderRadius: 6,
+    borderRadius: radius.s,
     paddingHorizontal: 20,
     paddingVertical: 12,
-    marginVertical: 6,
-    minWidth: 260,
-    height: 40,
+  },
+  small: {
+    paddingVertical: 10,
   },
   buttonTitle: {
     textAlign: 'center',

@@ -263,6 +263,7 @@ export type QueryWantedArgs = {
 
 export type SignupInput = {
   code: Scalars['String'];
+  name: Scalars['String'];
   password: Scalars['String'];
   phone: Scalars['String'];
   username: Scalars['String'];
