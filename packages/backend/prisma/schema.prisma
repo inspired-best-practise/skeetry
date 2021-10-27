@@ -19,7 +19,7 @@ model User {
   verified       Boolean   @default(false)
   wantedCount    Int       @default(0)
   visitedCount   Int       @default(0)
-  rating         Int?
+  rating         Int?      @default(0)
   password       String
   followersCount Int       @default(0)
   followingCount Int       @default(0)

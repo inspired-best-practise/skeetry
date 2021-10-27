@@ -44,7 +44,8 @@ export const ProfileSettingsScreen = () => {
             </TouchableOpacity>
           )}
           <Text style={[tTitle, { paddingTop: 10 }, theme === 'dark' ? whiteColor : darkColor]}>Aleksey</Text>
-          <Text style={[tBase, { paddingTop: 4 }, theme === 'dark' ? whiteColor : darkColor]}>+7 999 888-77-66</Text>
+          {/* TODO: format phone like this +7 999 888-77-66 */}
+          <Text style={[tBase, { paddingTop: 4 }, theme === 'dark' ? whiteColor : darkColor]}>{user.phone}</Text>
           <Text style={[tBase, { paddingTop: 4 }, theme === 'dark' ? whiteColor : darkColor]}>@{user.username}</Text>
           <Text
             style={[tBase, { position: 'absolute', top: 10, right: 10 }, theme === 'dark' ? whiteColor : darkColor]}
