@@ -97,7 +97,21 @@ export const renderHeader = (user: TUser, t, setSelected, isMe, showActionSheetW
         >
           <Avatar src={user.avatar} nickname={user.username} />
         </TouchableOpacity>
-        <Text style={[s.name, theme === 'dark' ? whiteColor : darkColor]}>{user.username}</Text>
+        <View style={{ marginLeft: 10 }}>
+          {user.name && (
+            <Text numberOfLines={1} style={[s.name, theme === 'dark' ? whiteColor : darkColor]}>
+              {user.name}
+            </Text>
+          )}
+          <Text numberOfLines={1} style={[s.username, theme === 'dark' ? whiteColor : darkColor]}>
+            @{user.username}
+          </Text>
+          {user.bio && (
+            <Text numberOfLines={1} style={[s.bio, theme === 'dark' ? whiteColor : darkColor]}>
+              {user.bio}
+            </Text>
+          )}
+        </View>
       </View>
       <View style={s.profileStats}>
         <ProfileStatsItem name={`${t('profile:place')}`} number={0} action={() => navigation.push('UsersTop')} />

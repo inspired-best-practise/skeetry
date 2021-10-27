@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { colors, radius } from '_app/constants';
+import { avatarSize, colors, radius, tBase, tSmallRegular, tTitle } from '_app/constants';
 import { normalize, SCREEN_WIDTH } from '_app/utils/dimensions';
 
 export const itemWidth = SCREEN_WIDTH / 2 - 20;
@@ -25,13 +25,24 @@ export const s = StyleSheet.create({
     marginBottom: normalize(20),
     borderBottomColor: colors.mainGray,
     borderBottomWidth: 1,
-    paddingHorizontal: normalize(20),
+    paddingHorizontal: normalize(10),
   },
   name: {
-    fontWeight: '700',
-    fontSize: normalize(20),
+    ...tBase,
+    fontWeight: '600',
     color: colors.black,
-    marginLeft: normalize(20),
+    marginBottom: normalize(2),
+    maxWidth: SCREEN_WIDTH - (avatarSize + normalize(30)),
+  },
+  username: {
+    ...tBase,
+    marginBottom: normalize(2),
+    maxWidth: SCREEN_WIDTH - (avatarSize + normalize(30)),
+  },
+  bio: {
+    ...tBase,
+    // 30 = 20 side paddings + avatar padding
+    maxWidth: SCREEN_WIDTH - (avatarSize + normalize(30)),
   },
   profileStats: {
     display: 'flex',

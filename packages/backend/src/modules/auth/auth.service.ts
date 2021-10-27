@@ -97,7 +97,7 @@ export class AuthService {
   }
 
   async signup(input: SignupInput): Promise<Token> {
-    const { phone, username, code, password } = input;
+    const { phone, name, username, code, password } = input;
 
     const phoneConfirmed = await this.prisma.sms.findFirst({
       where: {
@@ -122,6 +122,7 @@ export class AuthService {
       const user = await this.prisma.user.create({
         data: {
           phone,
+          name,
           username,
           password: hashedPassword,
         },

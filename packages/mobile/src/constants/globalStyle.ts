@@ -2,6 +2,8 @@ import { DarkTheme, DefaultTheme } from '@react-navigation/native';
 import { TextStyle } from 'react-native';
 import { MapStyleElement } from 'react-native-maps';
 
+import { normalize } from '_app/utils/dimensions';
+
 export const radius = {
   s: 10,
   base: 12,
@@ -138,7 +140,7 @@ export const tInput: TextStyle = {
 
 export const tBase: TextStyle = {
   ...textBase,
-  fontWeight: '600',
+  fontWeight: '400',
   fontSize: fontSize.sm,
   lineHeight: 18,
 };
@@ -184,6 +186,8 @@ export const darkBg: TextStyle = {
 export const whiteBg: TextStyle = {
   backgroundColor: colors.white,
 };
+
+export const avatarSize = normalize(70);
 
 export const mapGfxStyle: MapStyleElement[] = [
   {

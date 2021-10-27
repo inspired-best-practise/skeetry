@@ -32,6 +32,7 @@ export const CredentialsScreen = () => {
       variables: {
         input: {
           phone,
+          name,
           username,
           password,
           code,
@@ -43,10 +44,21 @@ export const CredentialsScreen = () => {
   useEffect(() => {
     if (data && data.signup) {
       const { accessToken, refreshToken } = data.signup;
-      const { id, username: name, avatar, wantedCount, visitedCount, createdAt, updatedAt } = data.signup.user;
+      const {
+        id,
+        email,
+        username: name,
+        avatar,
+        bio,
+        rating,
+        wantedCount,
+        visitedCount,
+        createdAt,
+        updatedAt,
+      } = data.signup.user;
 
       setTokens(accessToken, refreshToken);
-      setUser(id, phone, name, avatar, wantedCount, visitedCount, createdAt, updatedAt);
+      setUser(id, phone, email, name, avatar, bio, rating, wantedCount, visitedCount, createdAt, updatedAt);
 
       return navigation.push('Welcome');
     }
@@ -55,6 +67,30 @@ export const CredentialsScreen = () => {
   return (
     <SafeAreaView style={s.container}>
       <FormWrapper>
+        <Controller
+          control={control}
+          rules={{ required: true }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <View style={s.textInputWrapper}>
+              <TextInput
+                style={s.input}
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
+                autoCapitalize="none"
+                placeholder={t('utils:name')}
+                spellCheck={false}
+              />
+            </View>
+          )}
+          name="name"
+          defaultValue=""
+        />
+        {errors.name && (
+          <Text style={s.errorLogin}>
+            {t('utils:name')} {t('utils:is_required')}
+          </Text>
+        )}
         <Controller
           control={control}
           rules={{ required: true }}

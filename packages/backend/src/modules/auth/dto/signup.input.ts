@@ -9,6 +9,9 @@ export class SignupInput {
   phone: string;
 
   @Field()
+  name: string;
+
+  @Field()
   username: string;
 
   @Field()

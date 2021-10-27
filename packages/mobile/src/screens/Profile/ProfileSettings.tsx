@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity, useColorScheme } from 'react-native';
 
 import { Avatar, ModalWrapper } from '_app/components';
 import MenuItem from '_app/components/MenuItem/MenuItem';
-import { colors, darkColor, radius, tBase, tTitle, whiteColor } from '_app/constants';
+import { colors, darkColor, radius, tBase, tSmallRegular, tTitle, whiteColor } from '_app/constants';
 import { useMeQuery } from '_app/generated/graphql';
 import { navigation } from '_app/services/navigations';
 
@@ -32,6 +32,7 @@ export const ProfileSettingsScreen = () => {
         >
           {!loading && (
             <TouchableOpacity
+              style={{ marginBottom: 10 }}
               activeOpacity={user.avatar ? 0.7 : 1}
               onPress={() =>
                 user.avatar &&
@@ -43,10 +44,26 @@ export const ProfileSettingsScreen = () => {
               <Avatar src={user.avatar} nickname={user.username} />
             </TouchableOpacity>
           )}
-          <Text style={[tTitle, { paddingTop: 10 }, theme === 'dark' ? whiteColor : darkColor]}>Aleksey</Text>
+          {user.name && (
+            <Text
+              numberOfLines={1}
+              style={[tBase, { paddingTop: 5, fontWeight: '600' }, theme === 'dark' ? whiteColor : darkColor]}
+            >
+              {user.name}
+            </Text>
+          )}
+          {user.bio && (
+            <Text numberOfLines={1} style={[tBase, { paddingTop: 5 }, theme === 'dark' ? whiteColor : darkColor]}>
+              {user.bio}
+            </Text>
+          )}
           {/* TODO: format phone like this +7 999 888-77-66 */}
-          <Text style={[tBase, { paddingTop: 4 }, theme === 'dark' ? whiteColor : darkColor]}>{user.phone}</Text>
-          <Text style={[tBase, { paddingTop: 4 }, theme === 'dark' ? whiteColor : darkColor]}>@{user.username}</Text>
+          <Text numberOfLines={1} style={[tBase, { paddingTop: 5 }, theme === 'dark' ? whiteColor : darkColor]}>
+            +{user.phone}
+          </Text>
+          <Text numberOfLines={1} style={[tBase, { paddingTop: 5 }, theme === 'dark' ? whiteColor : darkColor]}>
+            @{user.username}
+          </Text>
           <Text
             style={[tBase, { position: 'absolute', top: 10, right: 10 }, theme === 'dark' ? whiteColor : darkColor]}
             onPress={() => navigation.push('ProfileChange')}

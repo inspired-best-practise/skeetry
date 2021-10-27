@@ -1,11 +1,11 @@
 import { StyleSheet } from 'react-native';
 
-import { normalize } from '_app/utils/dimensions';
+import { avatarSize } from '_app/constants';
 
 export const s = StyleSheet.create({
   avatarImage: {
-    width: normalize(60),
-    height: normalize(60),
+    width: avatarSize,
+    height: avatarSize,
     borderRadius: 100,
   },
 });
