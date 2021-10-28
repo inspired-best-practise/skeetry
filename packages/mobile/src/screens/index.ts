@@ -14,3 +14,4 @@ export * from './Map';
 export * from './Stories';
 export * from './UsersTop';
 export * from './Settings';
+export * from './Gallery';

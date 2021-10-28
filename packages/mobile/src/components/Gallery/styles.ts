@@ -6,7 +6,7 @@ export const s = StyleSheet.create({
   container: { position: 'relative' },
   image: {
     width: SCREEN_WIDTH,
-    height: 470,
+    height: normalize(380),
   },
   pager: {
     position: 'absolute',

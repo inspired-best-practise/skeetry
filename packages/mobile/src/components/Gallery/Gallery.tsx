@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { FlatList, View, Text } from 'react-native';
+import { FlatList, View, Text, TouchableOpacity } from 'react-native';
 import FastImage from 'react-native-fast-image';
 
 import { whiteColor } from '_app/constants';
+import { navigation } from '_app/services/navigations';
 
 import ImagePlaceholder from '../ImagePlaceholder/ImagePlaceholder';
 import { s } from './styles';
@@ -12,11 +13,20 @@ export const Gallery = ({ images }: GalleryProps) => {
 
   const renderItem = ({ item }) => {
     return (
-      <FastImage
-        style={s.image}
-        source={{ uri: item.url, priority: FastImage.priority.normal }}
-        resizeMode={FastImage.resizeMode.cover}
-      />
+      <TouchableOpacity
+        activeOpacity={1}
+        onPress={() =>
+          navigation.push('Gallery', {
+            images,
+          })
+        }
+      >
+        <FastImage
+          style={s.image}
+          source={{ uri: item.url, priority: FastImage.priority.normal }}
+          resizeMode={FastImage.resizeMode.cover}
+        />
+      </TouchableOpacity>
     );
   };
 
@@ -36,11 +46,20 @@ export const Gallery = ({ images }: GalleryProps) => {
 
   if (images.length <= 1) {
     return (
-      <FastImage
-        style={s.image}
-        source={{ uri: images[0].url, priority: FastImage.priority.normal }}
-        resizeMode={FastImage.resizeMode.cover}
-      />
+      <TouchableOpacity
+        activeOpacity={1}
+        onPress={() =>
+          navigation.push('Gallery', {
+            images,
+          })
+        }
+      >
+        <FastImage
+          style={s.image}
+          source={{ uri: images[0].url, priority: FastImage.priority.normal }}
+          resizeMode={FastImage.resizeMode.cover}
+        />
+      </TouchableOpacity>
     );
   }
 

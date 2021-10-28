@@ -25,6 +25,7 @@ import {
   LanguageScreen,
   HelpScreen,
   InfoScreen,
+  GalleryScreen,
 } from '_app/screens';
 import { ProfileChangeScreen } from '_app/screens/Settings/ProfileChange';
 import { navigationRef } from '_app/services/navigations';
@@ -277,6 +278,20 @@ const Index = (): JSX.Element => {
           })}
           name="Info"
           component={InfoScreen}
+        />
+        <RootStack.Screen
+          options={({ route }) => ({
+            headerShown: true,
+            headerTransparent: true,
+            headerShadowVisible: false,
+            headerTintColor: theme === 'dark' ? colors.black : colors.black,
+            title: '',
+            headerBackTitle: t('utils:back'),
+            ...options,
+            headerLeft: () => <CloseModal />,
+          })}
+          name="Gallery"
+          component={GalleryScreen}
         />
       </RootStack.Navigator>
     </NavigationContainer>
