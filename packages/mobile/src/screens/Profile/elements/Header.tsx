@@ -98,7 +98,7 @@ export const renderHeader = (user: TUser, t, setSelected, isMe, theme, showActio
               })
             }
           >
-            <Avatar src={user.avatar} nickname={user.username} />
+            <Avatar src={user.avatar} username={user.username} />
           </TouchableOpacity>
           <View style={{ marginLeft: 10 }}>
             {user.name && (

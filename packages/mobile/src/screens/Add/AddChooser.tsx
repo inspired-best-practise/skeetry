@@ -102,7 +102,7 @@ export const AddChooserScreen = () => {
                   }
                 >
                   <View style={{ marginRight: 20, flexDirection: 'row', alignItems: 'center' }}>
-                    <Avatar src={i.node.avatar} nickname={i.node.username} />
+                    <Avatar src={i.node.avatar} username={i.node.username} />
                     <View>
                       <Text style={[tBase, { paddingLeft: 10 }, theme === 'dark' ? whiteColor : darkColor]}>
                         {i.node.name}

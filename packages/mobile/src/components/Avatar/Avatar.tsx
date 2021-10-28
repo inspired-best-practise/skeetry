@@ -3,14 +3,14 @@ import FastImage from 'react-native-fast-image';
 
 import { s } from './styles';
 
-export const Avatar = ({ src, nickname }: TAvatarProps) => {
+export const Avatar = ({ src, username, small }: TAvatarProps) => {
   // TODO: own function
-  const placeholderImageMock = `https://eu.ui-avatars.com/api/?length=1&name=${nickname}`;
+  const placeholderImageMock = `https://eu.ui-avatars.com/api/?length=1&name=${username}`;
 
   if (!src) {
     return (
       <FastImage
-        style={s.avatarImage}
+        style={[s.avatarImage, small && { width: 50, height: 50 }]}
         source={{
           uri: placeholderImageMock,
           priority: FastImage.priority.normal,
@@ -22,7 +22,7 @@ export const Avatar = ({ src, nickname }: TAvatarProps) => {
 
   return (
     <FastImage
-      style={s.avatarImage}
+      style={[s.avatarImage, small && { width: 50, height: 50 }]}
       source={{ uri: src, priority: FastImage.priority.normal }}
       resizeMode={FastImage.resizeMode.cover}
     />

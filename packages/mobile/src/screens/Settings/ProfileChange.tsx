@@ -132,7 +132,7 @@ export const ProfileChangeScreen = () => {
               })
             }
           >
-            <Avatar src={user.avatar} nickname={user.username} />
+            <Avatar src={user.avatar} username={user.username} />
           </TouchableOpacity>
         )}
         <Text style={[tBase, { paddingTop: 20 }]} onPress={() => onPressSheet()}>

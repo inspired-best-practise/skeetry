@@ -1,0 +1,36 @@
+import React from 'react';
+import { View, Text } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+
+import { Avatar } from '_app/components';
+import { tBase } from '_app/constants';
+import { navigation } from '_app/services/navigations';
+
+import { s } from './styles';
+
+export const UserWithRating = ({ item, index }: UserWithRatingProps) => {
+  const { node } = item;
+
+  return (
+    <TouchableOpacity
+      activeOpacity={0.8}
+      onPress={() =>
+        navigation.push('ProfileUser', {
+          user: node,
+        })
+      }
+    >
+      <View style={s.container}>
+        <View style={s.wrap}>
+          <Text style={[tBase, s.number]}>{index + 1}</Text>
+          <Avatar small username={node.username} src={node.avatar} />
+          <View style={s.credentials}>
+            <Text style={tBase}>{node.name}</Text>
+            <Text style={tBase}>@{node.username}</Text>
+          </View>
+        </View>
+        <Text style={tBase}>{node.rating}</Text>
+      </View>
+    </TouchableOpacity>
+  );
+};

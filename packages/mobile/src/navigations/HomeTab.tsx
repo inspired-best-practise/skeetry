@@ -230,12 +230,6 @@ const HomeTab = () => {
         name="ExplorePage"
       /> */}
       <Tab.Screen
-        listeners={({ navigation }) => ({
-          tabPress: e => {
-            e.preventDefault();
-            navigation.navigate('AddChooser');
-          },
-        })}
         options={{
           tabBarIcon: ({ focused }) => (
             <Icon
@@ -253,8 +247,8 @@ const HomeTab = () => {
             />
           ),
         }}
-        component={AddStack}
-        name="AddPage"
+        component={AddChooserScreen}
+        name="AddChooser"
       />
       {/* <Tab.Screen
         options={({ route }) => ({

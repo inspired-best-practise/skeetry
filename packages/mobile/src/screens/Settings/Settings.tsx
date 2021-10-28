@@ -41,7 +41,7 @@ export const SettingsScreen = () => {
                 })
               }
             >
-              <Avatar src={user.avatar} nickname={user.username} />
+              <Avatar src={user.avatar} username={user.username} />
             </TouchableOpacity>
           )}
           {user.name && (
