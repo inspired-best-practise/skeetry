@@ -52,6 +52,12 @@
     "help": "Help",
     "info": "Information"
   },
+  "card": {
+    "contribute": "Contribute to Skeetry",
+    "no_images": "There's no picture yet",
+    "add_your_photo": "Add your photo",
+    "submit_photo": "Submit a photo"
+  },
   "utils": {
     "username": "Username",
     "name": "Name",

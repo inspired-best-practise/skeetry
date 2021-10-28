@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 
+import { colors } from '_app/constants';
 import { normalize, SCREEN_WIDTH } from '_app/utils/dimensions';
 
 export const s = StyleSheet.create({
@@ -16,5 +17,13 @@ export const s = StyleSheet.create({
     borderRadius: 4,
     paddingHorizontal: normalize(12),
     padding: normalize(6),
+  },
+  plusImage: {
+    backgroundColor: colors.gray200,
+    width: SCREEN_WIDTH,
+    height: normalize(380),
+    paddingHorizontal: normalize(20),
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
