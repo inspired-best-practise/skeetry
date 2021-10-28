@@ -133,8 +133,6 @@ export const HomeScreen = () => {
       <ScrollView showsVerticalScrollIndicator={false} ref={ref} scrollsToTop={true} contentContainerStyle={s.main}>
         <Stories />
         {/* TODO: move categories to explore or search? */}
-        <Categories />
-
         <MasonryList
           data={images}
           contentContainerStyle={{ marginHorizontal: normalize(4) }}

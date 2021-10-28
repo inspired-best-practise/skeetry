@@ -16,23 +16,7 @@ export const AddChooserScreen = () => {
   const theme = useColorScheme();
 
   const ref = useRef<ScrollView>(null);
-  // const [recommended, setRecommended] = useState();
   const [input, setInput] = useState('');
-
-  // const {
-  //   data: dataRecommended,
-  //   loading: loadingRecommended,
-  //   error: errorRecommended,
-  //   fetchMore: fetchMoreRecommended,
-  // } = usePopularQuery({
-  //   variables: {
-  //     first: 5,
-  //     orderBy: {
-  //       direction: OrderDirection.Desc,
-  //     },
-  //   },
-  //   notifyOnNetworkStatusChange: true,
-  // });
 
   const { data: dataSearch, loading: loadingSearch } = useCitiesQuery({
     variables: {
@@ -55,28 +39,6 @@ export const AddChooserScreen = () => {
     },
     notifyOnNetworkStatusChange: true,
   });
-
-  // useEffect(() => {
-  //   if (dataRecommended) {
-  //     setRecommended(dataRecommended.popular.edges);
-  //   }
-  // }, [dataRecommended]);
-
-  // const recommendedEndReached = async () => {
-  //   if (recommended) {
-  //     const lastRecommended = recommended[recommended.length - 1].node.id;
-  //     const newData = await fetchMoreRecommended({
-  //       variables: {
-  //         first: 5,
-  //         after: lastRecommended,
-  //         orderBy: {
-  //           direction: OrderDirection.Desc,
-  //         },
-  //       },
-  //     });
-  //     setRecommended(prevState => [...prevState, ...newData.data.popular.edges]);
-  //   }
-  // };
 
   const handleChange = async value => {
     setInput(value);
@@ -156,25 +118,6 @@ export const AddChooserScreen = () => {
           )}
         </View>
       )}
-
-      {/* {input.length !== 0 && (
-            <HorizontalCardList
-              title={`${t('search:recommended')}`}
-              data={recommended}
-              size="small"
-              handleEndReached={recommendedEndReached}
-              loading={loadingRecommended}
-            />
-          )}
-          {input.length !== 0 && (
-            <ScrollView contentContainerStyle={s.contentContainer} horizontal showsHorizontalScrollIndicator={false}>
-              {tagsMock.map(t => (
-                <TouchableHighlight key={t.id} style={s.tag} underlayColor={colors.mainGray} onPress={() => {}}>
-                  <Text>{t.title}</Text>
-                </TouchableHighlight>
-              ))}
-            </ScrollView>
-          )} */}
     </SafeAreaView>
   );
 };

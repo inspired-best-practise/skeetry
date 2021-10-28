@@ -133,6 +133,7 @@ type Query {
 
 input SignupInput {
   code: String!
+  name: String!
   password: String!
   phone: String!
   username: String!
@@ -185,11 +186,15 @@ scalar Upload
 
 type User {
   avatar: String
+  bio: String
 
   """Identifies the date and time when the object was created."""
   createdAt: DateTime!
+  email: String
   id: ID!
+  name: String
   phone: String!
+  rating: Int!
 
   """Identifies the date and time when the object was last updated."""
   updatedAt: DateTime!

@@ -1,5 +1,6 @@
 import { findManyCursorConnection } from '@devoxa/prisma-relay-cursor-connection';
 import { Injectable } from '@nestjs/common';
+import { Prisma } from '@prisma/client';
 import { PaginationArgs } from '../common/pagination/pagination.args';
 import { PrismaService } from '../prisma/prisma.service';
 import { User } from '../user/models/user.model';
@@ -278,6 +279,13 @@ export class CityService {
     query: string,
     orderBy: CityOrder,
   ) {
+    this.prisma.$on<any>('query', (event: Prisma.QueryEvent) => {
+      console.log('----------------------------------------------------------');
+      console.log('Query: ' + event.query);
+      console.log('Duration: ' + event.duration + 'ms');
+      console.log('----------------------------------------------------------');
+    });
+
     const { skip, after, before, first, last } = pagination;
     if (!input) {
       const cities = await findManyCursorConnection(

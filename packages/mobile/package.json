@@ -41,6 +41,7 @@
     "apollo-upload-client": "^16.0.0",
     "appcenter": "4.3.0",
     "appcenter-analytics": "4.3.0",
+    "appcenter-cli": "^2.10.4",
     "appcenter-crashes": "4.3.0",
     "dayjs": "^1.10.7",
     "eslint-config-prettier": "^8.3.0",
