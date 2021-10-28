@@ -1,21 +1,12 @@
 import { useActionSheet } from '@expo/react-native-action-sheet';
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-  View,
-  Text,
-  Image,
-  TouchableHighlight,
-  StatusBar,
-  Pressable,
-  ActionSheetIOS,
-  useColorScheme,
-} from 'react-native';
+import { View, Text, TouchableHighlight, StatusBar, Pressable, ActionSheetIOS, useColorScheme } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import Icon from 'react-native-vector-icons/Feather';
 
-import ImagePlaceholder from '_app/components/ImagePlaceholder/ImagePlaceholder';
+import { Gallery } from '_app/components';
 import { colors, darkBg, darkColor, mapGfxStyle, PLATFORM, whiteBg, whiteColor } from '_app/constants';
 import { useAddCityMutation, useCityQuery, useMoveCityMutation, useRemoveCityMutation } from '_app/generated/graphql';
 import { authStore } from '_app/stores';
@@ -210,25 +201,7 @@ export const CardScreen = ({ route, navigation }) => {
       contentContainerStyle={[s.container, theme === 'dark' ? darkBg : whiteBg]}
     >
       <StatusBar barStyle="light-content" animated translucent />
-      {currentCity.images.length !== 0 ? (
-        <Image
-          style={s.cardImage}
-          source={{
-            uri: currentCity.images[0].url,
-          }}
-          resizeMode="cover"
-        />
-      ) : (
-        <ImagePlaceholder style={s.cardImage} size={40} />
-      )}
-
-      {/* {PLATFORM.IS_ANDROID && (
-        <TouchableWithoutFeedback onPress={() => navigation.goBack()}>
-          <Animated.View style={[s.backIcon, { opacity: fadeAnim }]}>
-            <Icon.XIcon size={18} color={colors.black} />
-          </Animated.View>
-        </TouchableWithoutFeedback>
-      )} */}
+      <Gallery images={currentCity.images} />
       <View style={s.content}>
         <View style={s.section}>
           <Text style={[s.name, theme === 'dark' ? whiteColor : darkColor]}>
