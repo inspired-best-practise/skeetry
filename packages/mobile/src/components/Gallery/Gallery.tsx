@@ -52,6 +52,7 @@ export const Gallery = ({ images }: GalleryProps) => {
         onPress={() =>
           navigation.push('Gallery', {
             images,
+            page: 0,
           })
         }
       >
