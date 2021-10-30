@@ -2,7 +2,7 @@ Refactoring:
    ☐ Move all inline styles into the files
    ☐ Normalize everything
    ☐ Refactor navigation
-   ☐ Add wrapper for formSheet screens with StatusBar and ModalControl
+   ✔ Add wrapper for formSheet screens with StatusBar and ModalControl @done(21-10-30 17:21)
    ☐ Update design
    ✔ Card list from Carousel to ScrollView @done(21-09-24 21:09)
    ☐ Auth: delete duplicated styles

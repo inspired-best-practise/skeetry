@@ -155,7 +155,16 @@ export const ProfileScreen = () => {
       <View style={[s.headerArea, theme === 'dark' ? darkBg : whiteBg]} />
       <FlatList
         ref={ref}
-        ListHeaderComponent={renderHeader(user, t, setSelected, isMe, theme, showActionSheetWithOptions, setLogout)}
+        ListHeaderComponent={renderHeader(
+          user,
+          t,
+          setSelected,
+          isMe,
+          theme,
+          { route: null },
+          showActionSheetWithOptions,
+          setLogout,
+        )}
         ListEmptyComponent={renderEmpty(t, theme)}
         numColumns={2}
         horizontal={false}

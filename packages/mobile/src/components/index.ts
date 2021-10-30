@@ -21,3 +21,4 @@ export * from './MenuItem';
 export * from './ModalWrapper';
 export * from './Gallery';
 export * from './UserWithRating';
+export * from './Input';

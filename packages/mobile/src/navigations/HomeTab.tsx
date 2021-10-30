@@ -230,7 +230,10 @@ const HomeTab = () => {
         name="ExplorePage"
       /> */}
       <Tab.Screen
-        options={{
+        options={({ route }) => ({
+          tabBarStyle: {
+            display: getTabBarVisible(route) ? 'flex' : 'none',
+          },
           tabBarIcon: ({ focused }) => (
             <Icon
               name="search"
@@ -246,7 +249,7 @@ const HomeTab = () => {
               }
             />
           ),
-        }}
+        })}
         component={AddChooserScreen}
         name="AddChooser"
       />

@@ -122,7 +122,7 @@ export const ProfileUserScreen = ({ route }) => {
     <SafeAreaView>
       <FlatList
         ref={ref}
-        ListHeaderComponent={renderHeader(user, t, setSelected, isMe, theme)}
+        ListHeaderComponent={renderHeader(user, t, setSelected, isMe, theme, route)}
         ListEmptyComponent={renderEmpty(t)}
         numColumns={2}
         data={getData()}

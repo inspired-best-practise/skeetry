@@ -10,7 +10,16 @@ import { navigation } from '_app/services/navigations';
 
 import { s } from '../styles';
 
-export const renderHeader = (user: TUser, t, setSelected, isMe, theme, showActionSheetWithOptions, setLogout) => {
+export const renderHeader = (
+  user: TUser,
+  t,
+  setSelected,
+  isMe,
+  theme,
+  route,
+  showActionSheetWithOptions,
+  setLogout,
+) => {
   const actionOptions = [
     `${t('utils:cancel')}`,
     `${t('settings:account_settings')}`,
@@ -77,11 +86,12 @@ export const renderHeader = (user: TUser, t, setSelected, isMe, theme, showActio
   };
 
   console.log('theme', theme);
+  console.log('isMe', isMe);
 
   return (
     <View>
       <View style={[s.profilePanel]}>
-        {isMe && (
+        {isMe && route.name !== 'ProfileUser' && (
           <TouchableWithoutFeedback onPress={() => onPressSheet()}>
             <HeroIcon.DotsHorizontalIcon size={22} color={theme === 'dark' ? colors.white : colors.black} />
           </TouchableWithoutFeedback>

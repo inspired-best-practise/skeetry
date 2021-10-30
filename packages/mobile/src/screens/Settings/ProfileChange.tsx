@@ -1,19 +1,31 @@
 import { useActionSheet } from '@expo/react-native-action-sheet';
 import { ReactNativeFile } from 'apollo-upload-client';
 import React from 'react';
+import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { Text, ActionSheetIOS, TouchableOpacity, TextInput, View, useColorScheme, SafeAreaView } from 'react-native';
+import { Text, ActionSheetIOS, TouchableOpacity, View, useColorScheme, SafeAreaView } from 'react-native';
 import { launchImageLibrary } from 'react-native-image-picker';
 import { v4 as uuidv4 } from 'uuid';
 
-import { Avatar } from '_app/components';
+import { Avatar, Input } from '_app/components';
 import { darkColor, PLATFORM, tBase, whiteColor } from '_app/constants';
 import { useDeletePhotoMutation, useMeQuery, useUploadPhotoMutation } from '_app/generated/graphql';
 import { navigation } from '_app/services/navigations';
+import { authStore } from '_app/stores';
+import { normalize } from '_app/utils/dimensions';
 
 export const ProfileChangeScreen = () => {
   const { t } = useTranslation();
   const theme = useColorScheme();
+
+  const me = authStore(state => state.user);
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const profileChangeSubmit = data => console.log(data);
 
   const { loading, data } = useMeQuery();
   const [uploadPhoto] = useUploadPhotoMutation();
@@ -135,30 +147,60 @@ export const ProfileChangeScreen = () => {
             <Avatar src={user.avatar} username={user.username} />
           </TouchableOpacity>
         )}
-        <Text style={[tBase, { paddingTop: 20 }]} onPress={() => onPressSheet()}>
-          {t('profile:new_photo')}
-        </Text>
-        <TextInput
-          style={{ width: '100%' }}
-          autoCapitalize="none"
-          placeholder={t('profile:name')}
-          value={'Aleksey'}
-          spellCheck={false}
-        />
-        <TextInput
-          style={{ width: '100%' }}
-          autoCapitalize="none"
-          placeholder={t('profile:username')}
-          value={'kive'}
-          spellCheck={false}
-        />
-        <TextInput style={{ width: '100%' }} autoCapitalize="none" placeholder={t('profile:bio')} spellCheck={false} />
-        <Text
-          style={[{ position: 'absolute', top: 0, right: 10 }, theme === 'dark' ? whiteColor : darkColor]}
-          onPress={() => navigation.navigate('Settings')}
-        >
-          {t('profile:done')}
-        </Text>
+        <TouchableOpacity onPress={() => onPressSheet()}>
+          <Text
+            style={[
+              tBase,
+              { fontWeight: '600', paddingTop: normalize(10), paddingBottom: normalize(20) },
+              theme === 'dark' ? whiteColor : darkColor,
+            ]}
+          >
+            {t('profile:new_photo')}
+          </Text>
+        </TouchableOpacity>
+
+        <View style={{ width: '100%' }}>
+          <Controller
+            control={control}
+            rules={{
+              required: true,
+            }}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <Input placeholder={t('utils:username')} onChange={onChange} onBlur={onBlur} value={value} />
+            )}
+            name="username"
+            defaultValue={me.username}
+          />
+          {errors.username && <Text>This is required.</Text>}
+
+          <Controller
+            control={control}
+            rules={{
+              maxLength: 100,
+            }}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <Input placeholder={t('utils:name')} onChange={onChange} onBlur={onBlur} value={value} />
+            )}
+            name="name"
+            defaultValue={me.name}
+          />
+
+          {errors.name && <Text>This is required.</Text>}
+
+          <Controller
+            control={control}
+            rules={{
+              maxLength: 100,
+            }}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <Input placeholder={t('utils:bio')} onChange={onChange} onBlur={onBlur} value={value} />
+            )}
+            name="bio"
+            defaultValue={me.bio}
+          />
+
+          {errors.lastName && <Text>This is required.</Text>}
+        </View>
       </View>
     </SafeAreaView>
   );

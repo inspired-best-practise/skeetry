@@ -7,6 +7,7 @@ import MenuItem from '_app/components/MenuItem/MenuItem';
 import { colors, darkColor, radius, tBase, whiteColor } from '_app/constants';
 import { useMeQuery } from '_app/generated/graphql';
 import { navigation } from '_app/services/navigations';
+import { normalize } from '_app/utils/dimensions';
 
 export const SettingsScreen = () => {
   const { t } = useTranslation();
@@ -21,11 +22,12 @@ export const SettingsScreen = () => {
       <View style={{ paddingHorizontal: 10, width: '100%' }}>
         <View
           style={{
-            marginBottom: 10,
+            marginTop: normalize(20),
+            marginBottom: normalize(10),
             backgroundColor: theme === 'dark' ? colors.gray800 : colors.gray100,
             alignItems: 'center',
             width: '100%',
-            paddingVertical: 20,
+            paddingVertical: normalize(20),
             borderRadius: radius.base,
             position: 'relative',
           }}
@@ -64,12 +66,12 @@ export const SettingsScreen = () => {
           <Text numberOfLines={1} style={[tBase, { paddingTop: 5 }, theme === 'dark' ? whiteColor : darkColor]}>
             @{user.username}
           </Text>
-          <Text
-            style={[tBase, { position: 'absolute', top: 10, right: 10 }, theme === 'dark' ? whiteColor : darkColor]}
+          <TouchableOpacity
+            style={{ position: 'absolute', top: 10, right: 10 }}
             onPress={() => navigation.push('ProfileChange')}
           >
-            {t('profile:change')}
-          </Text>
+            <Text style={[tBase, theme === 'dark' ? whiteColor : darkColor]}>{t('profile:change')}</Text>
+          </TouchableOpacity>
         </View>
       </View>
 

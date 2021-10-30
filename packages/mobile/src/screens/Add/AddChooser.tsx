@@ -1,7 +1,8 @@
 import { useScrollToTop } from '@react-navigation/native';
 import React, { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, ScrollView, TextInput, Text, TouchableOpacity, SafeAreaView, useColorScheme } from 'react-native';
+import { View, ScrollView, TextInput, Text, TouchableOpacity, useColorScheme } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { Avatar, Card, HorizontalListSkeleton } from '_app/components';
 import { colors, darkColor, radius, tBase, whiteColor } from '_app/constants';
