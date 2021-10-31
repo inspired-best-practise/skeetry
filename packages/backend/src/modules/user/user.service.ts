@@ -1,3 +1,4 @@
+import { UpdateProfileInput } from './dto/update-profile.input';
 import { findManyCursorConnection } from '@devoxa/prisma-relay-cursor-connection';
 import { Injectable } from '@nestjs/common';
 import { PaginationArgs } from '../common/pagination/pagination.args';
@@ -71,6 +72,39 @@ export class UserService {
       },
       data: {
         avatar: null,
+      },
+    });
+
+    return true;
+  }
+
+  async updateProfile(user: User, input: UpdateProfileInput): Promise<boolean> {
+    const { name, username, bio } = input;
+
+    const userByUsername = await this.prisma.user.findUnique({
+      where: {
+        username,
+      },
+    });
+
+    const currentUser = await this.prisma.user.findUnique({
+      where: {
+        id: user.id,
+      },
+    });
+
+    if (userByUsername && userByUsername.id !== currentUser.id) {
+      throw new Error('This username is already in use');
+    }
+
+    await this.prisma.user.update({
+      where: {
+        id: user.id,
+      },
+      data: {
+        name,
+        username,
+        bio,
       },
     });
 

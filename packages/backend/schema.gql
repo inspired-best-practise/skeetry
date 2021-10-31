@@ -99,6 +99,7 @@ type Mutation {
   removeCity(input: ActionCityInput!): City!
   sendSmsCode(phone: String!): Boolean!
   signup(input: SignupInput!): Auth!
+  updateProfile: Boolean!
   uploadPhoto(file: Upload!): Boolean!
 }
 

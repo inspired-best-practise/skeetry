@@ -32,7 +32,7 @@ export class AuthService {
     });
 
     if (phoneAlreadyUsed) {
-      throw new Error('This phone is already in use.');
+      throw new Error('This phone is already in use');
     }
 
     const code = generateSmsCode();

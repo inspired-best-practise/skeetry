@@ -10,6 +10,7 @@ import { GraphQLUpload, FileUpload } from 'graphql-upload';
 import { v4 as uuidv4 } from 'uuid';
 import { UserConnection } from './models/user-connection.model';
 import { UserOrder } from './dto/user-order.input';
+import { UpdateProfileInput } from './dto/update-profile.input';
 @Resolver(() => User)
 export class UserResolver {
   constructor(
@@ -67,5 +68,14 @@ export class UserResolver {
   @Mutation((returns) => Boolean)
   async deletePhoto(@UserEntity() user: User): Promise<boolean> {
     return this.user.deletePhoto(user);
+  }
+
+  @UseGuards(GqlAuthGuard)
+  @Mutation((returns) => Boolean)
+  async updateProfile(
+    @UserEntity() user: User,
+    input: UpdateProfileInput,
+  ): Promise<boolean> {
+    return this.user.updateProfile(user, input);
   }
 }

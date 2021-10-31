@@ -2,7 +2,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator, StackNavigationOptions, TransitionPresets } from '@react-navigation/stack';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Easing, useColorScheme, View, Text } from 'react-native';
+import { Easing, useColorScheme, View, Text, Alert } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { enableScreens } from 'react-native-screens';
 
@@ -153,7 +153,7 @@ const Index = (): JSX.Element => {
             title: t('profile:profile_change'),
             presentation: 'card',
             headerRight: () => (
-              <TouchableOpacity style={{ marginRight: normalize(10) }}>
+              <TouchableOpacity style={{ marginRight: normalize(10) }} onPress={() => Alert.alert(t('utils:wip'))}>
                 <Text style={[tBase, { fontSize: 16, fontWeight: '600' }, theme === 'dark' ? whiteColor : darkColor]}>
                   {t('profile:done')}
                 </Text>

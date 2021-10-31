@@ -15,7 +15,8 @@
     "prettier:write": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'",
     "u": "yarn upgrade-interactive --latest",
     "codegen": "DOTENV_CONFIG_PATH=.env.local graphql-codegen --config codegen.yml -r dotenv/config",
-    "codegen:prod": "DOTENV_CONFIG_PATH=.env.prod graphql-codegen --config codegen.yml -r dotenv/config"
+    "codegen:prod": "DOTENV_CONFIG_PATH=.env.prod graphql-codegen --config codegen.yml -r dotenv/config",
+    "codepush:android": "appcenter codepush release-react -a kive.dev/travelAndroid -d Production"
   },
   "dependencies": {
     "@apollo/client": "^3.4.16",
