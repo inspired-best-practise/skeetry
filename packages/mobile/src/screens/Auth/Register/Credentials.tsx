@@ -48,7 +48,21 @@ export const CredentialsScreen = () => {
         data.signup.user;
 
       setTokens(accessToken, refreshToken);
-      setUser(id, phone, email, name, username, avatar, bio, rating, wantedCount, visitedCount, createdAt, updatedAt);
+      setUser(
+        id,
+        phone,
+        email,
+        name,
+        username,
+        avatar,
+        bio,
+        rating,
+        email,
+        wantedCount,
+        visitedCount,
+        createdAt,
+        updatedAt,
+      );
 
       return navigation.push('Welcome');
     }

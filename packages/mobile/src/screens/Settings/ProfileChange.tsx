@@ -55,7 +55,7 @@ export const ProfileChangeScreen = () => {
     updateProfile({
       variables: {
         input: {
-          username: username,
+          username,
           name,
           bio,
         },
@@ -66,9 +66,9 @@ export const ProfileChangeScreen = () => {
     });
 
     if (dataProfile) {
-      const { id, phone, avatar, rating, wantedCount, visitedCount, createdAt, updatedAt } = user;
+      const { id, phone, avatar, rating, email, wantedCount, visitedCount, createdAt, updatedAt } = user;
 
-      setUser(id, phone, name, username, avatar, bio, rating, wantedCount, visitedCount, createdAt, updatedAt);
+      setUser(id, phone, name, username, avatar, bio, rating, email, wantedCount, visitedCount, createdAt, updatedAt);
     }
   };
   const actionOptions = [
