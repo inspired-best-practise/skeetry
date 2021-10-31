@@ -46,7 +46,7 @@ export const SettingsScreen = () => {
               <Avatar src={user.avatar} username={user.username} />
             </TouchableOpacity>
           )}
-          {user.name?.length !== 0 && (
+          {user.bio !== null && user.name?.length !== 0 && (
             <Text
               numberOfLines={1}
               style={[tBase, { paddingTop: 5, fontWeight: '600' }, theme === 'dark' ? whiteColor : darkColor]}
@@ -54,7 +54,7 @@ export const SettingsScreen = () => {
               {user.name}
             </Text>
           )}
-          {user.bio?.length !== 0 && (
+          {user.bio !== null && user.bio?.length !== 0 && (
             <Text numberOfLines={1} style={[tBase, { paddingTop: 5 }, theme === 'dark' ? whiteColor : darkColor]}>
               {user.bio}
             </Text>
