@@ -74,7 +74,7 @@ export class UserResolver {
   @Mutation((returns) => Boolean)
   async updateProfile(
     @UserEntity() user: User,
-    input: UpdateProfileInput,
+    @Args('input') input: UpdateProfileInput,
   ): Promise<boolean> {
     return this.user.updateProfile(user, input);
   }

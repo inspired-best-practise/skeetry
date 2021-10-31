@@ -113,6 +113,7 @@ export type Mutation = {
   removeCity: City;
   sendSmsCode: Scalars['Boolean'];
   signup: Auth;
+  updateProfile: Scalars['Boolean'];
   uploadPhoto: Scalars['Boolean'];
 };
 
