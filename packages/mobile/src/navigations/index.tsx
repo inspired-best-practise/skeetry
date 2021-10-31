@@ -152,13 +152,13 @@ const Index = (): JSX.Element => {
             headerBackTitle: t('utils:back'),
             title: t('profile:profile_change'),
             presentation: 'card',
-            headerRight: () => (
-              <TouchableOpacity style={{ marginRight: normalize(10) }} onPress={() => Alert.alert(t('utils:wip'))}>
-                <Text style={[tBase, { fontSize: 16, fontWeight: '600' }, theme === 'dark' ? whiteColor : darkColor]}>
-                  {t('profile:done')}
-                </Text>
-              </TouchableOpacity>
-            ),
+            // headerRight: () => (
+            //   <TouchableOpacity style={{ marginRight: normalize(10) }} onPress={() => Alert.alert(t('utils:wip'))}>
+            //     <Text style={[tBase, { fontSize: 16, fontWeight: '600' }, theme === 'dark' ? whiteColor : darkColor]}>
+            //       {t('profile:done')}
+            //     </Text>
+            //   </TouchableOpacity>
+            // ),
           }}
           name="ProfileChange"
           component={ProfileChangeScreen}

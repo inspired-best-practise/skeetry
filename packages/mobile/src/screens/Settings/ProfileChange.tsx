@@ -3,13 +3,28 @@ import { ReactNativeFile } from 'apollo-upload-client';
 import React from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { Text, ActionSheetIOS, TouchableOpacity, View, useColorScheme, SafeAreaView } from 'react-native';
+import {
+  Text,
+  ActionSheetIOS,
+  TouchableOpacity,
+  View,
+  useColorScheme,
+  SafeAreaView,
+  TouchableWithoutFeedback,
+  KeyboardAvoidingView,
+  Keyboard,
+} from 'react-native';
 import { launchImageLibrary } from 'react-native-image-picker';
 import { v4 as uuidv4 } from 'uuid';
 
 import { Avatar, Input } from '_app/components';
 import { darkColor, PLATFORM, tBase, whiteColor } from '_app/constants';
-import { useDeletePhotoMutation, useMeQuery, useUploadPhotoMutation } from '_app/generated/graphql';
+import {
+  useDeletePhotoMutation,
+  useMeQuery,
+  useUpdateProfileMutation,
+  useUploadPhotoMutation,
+} from '_app/generated/graphql';
 import { navigation } from '_app/services/navigations';
 import { authStore } from '_app/stores';
 import { normalize } from '_app/utils/dimensions';
@@ -19,20 +34,38 @@ export const ProfileChangeScreen = () => {
   const theme = useColorScheme();
 
   const me = authStore(state => state.user);
+  const setUser = authStore(state => state.setUser);
+
+  const { loading, data } = useMeQuery();
+  const [uploadPhoto] = useUploadPhotoMutation();
+  const [deletePhoto] = useDeletePhotoMutation();
+  const [updateProfile, { data: dataProfile, loading: loadingProfile, error: errorProfile }] =
+    useUpdateProfileMutation();
+
+  const { showActionSheetWithOptions } = useActionSheet();
+
+  const user = data!.me;
 
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const profileChangeSubmit = data => console.log(data);
+  const onSubmit = ({ username, name, bio }) => {
+    updateProfile({
+      variables: {
+        input: {
+          username: username,
+          name: name.length !== 0 ? name : null,
+          bio,
+        },
+      },
+    });
 
-  const { loading, data } = useMeQuery();
-  const [uploadPhoto] = useUploadPhotoMutation();
-  const [deletePhoto] = useDeletePhotoMutation();
+    const { id, phone, avatar, rating, wantedCount, visitedCount, createdAt, updatedAt } = user;
 
-  const { showActionSheetWithOptions } = useActionSheet();
-
+    setUser(id, phone, name, username, avatar, bio, rating, wantedCount, visitedCount, createdAt, updatedAt);
+  };
   const actionOptions = [
     `${t('utils:cancel')}`,
     `${t('settings:take_photo')}`,
@@ -129,79 +162,92 @@ export const ProfileChangeScreen = () => {
         );
   };
 
-  const user = data!.me;
-
   return (
     <SafeAreaView>
-      <View style={{ alignItems: 'center', padding: 20 }}>
-        {!loading && (
-          <TouchableOpacity
-            activeOpacity={user.avatar ? 0.7 : 1}
-            onPress={() =>
-              user.avatar &&
-              navigation.push('Avatar', {
-                image: user.avatar,
-              })
-            }
-          >
-            <Avatar src={user.avatar} username={user.username} />
-          </TouchableOpacity>
-        )}
-        <TouchableOpacity onPress={() => onPressSheet()}>
-          <Text
-            style={[
-              tBase,
-              { fontWeight: '600', paddingTop: normalize(10), paddingBottom: normalize(20) },
-              theme === 'dark' ? whiteColor : darkColor,
-            ]}
-          >
-            {t('profile:new_photo')}
-          </Text>
-        </TouchableOpacity>
-
-        <View style={{ width: '100%' }}>
-          <Controller
-            control={control}
-            rules={{
-              required: true,
-            }}
-            render={({ field: { onChange, onBlur, value } }) => (
-              <Input placeholder={t('utils:username')} onChange={onChange} onBlur={onBlur} value={value} />
+      <KeyboardAvoidingView behavior="position">
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+          <View style={{ alignItems: 'center', padding: 20 }}>
+            {!loading && (
+              <TouchableOpacity
+                activeOpacity={user.avatar ? 0.7 : 1}
+                onPress={() =>
+                  user.avatar &&
+                  navigation.push('Avatar', {
+                    image: user.avatar,
+                  })
+                }
+              >
+                <Avatar src={user.avatar} username={user.username} />
+              </TouchableOpacity>
             )}
-            name="username"
-            defaultValue={me.username}
-          />
-          {errors.username && <Text>This is required.</Text>}
+            <TouchableOpacity onPress={() => onPressSheet()}>
+              <Text
+                style={[
+                  tBase,
+                  { fontWeight: '600', paddingTop: normalize(10), paddingBottom: normalize(20) },
+                  theme === 'dark' ? whiteColor : darkColor,
+                ]}
+              >
+                {t('profile:new_photo')}
+              </Text>
+            </TouchableOpacity>
 
-          <Controller
-            control={control}
-            rules={{
-              maxLength: 100,
-            }}
-            render={({ field: { onChange, onBlur, value } }) => (
-              <Input placeholder={t('utils:name')} onChange={onChange} onBlur={onBlur} value={value} />
-            )}
-            name="name"
-            defaultValue={me.name}
-          />
+            <View style={{ width: '100%' }}>
+              <Controller
+                control={control}
+                rules={{
+                  required: true,
+                }}
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <Input placeholder={t('utils:username')} onChange={onChange} onBlur={onBlur} value={value} />
+                )}
+                name="username"
+                defaultValue={me.username}
+              />
+              {errors.username && <Text>This is required.</Text>}
 
-          {errors.name && <Text>This is required.</Text>}
+              <Controller
+                control={control}
+                rules={{
+                  maxLength: 100,
+                }}
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <Input placeholder={t('utils:name')} onChange={onChange} onBlur={onBlur} value={value} />
+                )}
+                name="name"
+                defaultValue={me.name}
+              />
 
-          <Controller
-            control={control}
-            rules={{
-              maxLength: 100,
-            }}
-            render={({ field: { onChange, onBlur, value } }) => (
-              <Input placeholder={t('utils:bio')} onChange={onChange} onBlur={onBlur} value={value} />
-            )}
-            name="bio"
-            defaultValue={me.bio}
-          />
+              {errors.name && <Text>This is required.</Text>}
 
-          {errors.lastName && <Text>This is required.</Text>}
-        </View>
-      </View>
+              <Controller
+                control={control}
+                rules={{
+                  maxLength: 100,
+                }}
+                render={({ field: { onChange, onBlur, value } }) => (
+                  <Input placeholder={t('utils:bio')} onChange={onChange} onBlur={onBlur} value={value} />
+                )}
+                name="bio"
+                defaultValue={me.bio}
+              />
+
+              {errors.lastName && <Text>This is required.</Text>}
+              <TouchableOpacity
+                style={{ width: '100%', alignItems: 'center', marginTop: normalize(10) }}
+                onPress={handleSubmit(onSubmit)}
+              >
+                <Text style={[tBase, { fontWeight: '600' }]}>
+                  {loadingProfile ? t('utils:loading') : t('profile:done')}
+                </Text>
+              </TouchableOpacity>
+              {errorProfile && (
+                <Text style={{ color: 'red', marginVertical: normalize(10) }}>{errorProfile.message}</Text>
+              )}
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
