@@ -46,7 +46,6 @@ export const LoginScreen = () => {
 
   useEffect(() => {
     if (data) {
-      console.log(data.login.user);
       const { accessToken, refreshToken } = data.login;
       const { id, phone, username, name, avatar, bio, rating, wantedCount, visitedCount, createdAt, updatedAt } =
         data.login.user;

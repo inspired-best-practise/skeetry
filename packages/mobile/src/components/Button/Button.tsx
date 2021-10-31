@@ -10,8 +10,6 @@ export const Button = ({ title, small }: TButtonProps) => {
   const theme = useColorScheme();
   const { t } = useTranslation();
 
-  console.log('theme', theme);
-
   return (
     <TouchableHighlight
       style={[s.button, small && s.small, theme === 'dark' ? { backgroundColor: colors.gray600 } : darkBg]}

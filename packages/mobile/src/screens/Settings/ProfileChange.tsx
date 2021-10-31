@@ -56,15 +56,20 @@ export const ProfileChangeScreen = () => {
       variables: {
         input: {
           username: username,
-          name: name.length !== 0 ? name : null,
+          name,
           bio,
         },
       },
+      update: cache => {
+        cache.evict({});
+      },
     });
 
-    const { id, phone, avatar, rating, wantedCount, visitedCount, createdAt, updatedAt } = user;
+    if (dataProfile) {
+      const { id, phone, avatar, rating, wantedCount, visitedCount, createdAt, updatedAt } = user;
 
-    setUser(id, phone, name, username, avatar, bio, rating, wantedCount, visitedCount, createdAt, updatedAt);
+      setUser(id, phone, name, username, avatar, bio, rating, wantedCount, visitedCount, createdAt, updatedAt);
+    }
   };
   const actionOptions = [
     `${t('utils:cancel')}`,

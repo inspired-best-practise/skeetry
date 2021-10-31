@@ -49,8 +49,6 @@ export const UsersTopScreen = () => {
     return <UserWithRating item={item} index={index} />;
   };
 
-  // console.log('data', data.users.edges);
-
   return (
     <SafeAreaView>
       <FlatList

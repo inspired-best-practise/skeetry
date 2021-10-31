@@ -39,7 +39,6 @@ export const Gallery = ({ images }: GalleryProps) => {
 
     // Divide the horizontal offset by the width of the view to see which page is visible
     let pageNum = Math.floor(contentOffset.x / viewSize.width);
-    console.log('scrolled to page ', pageNum);
     setCurrentPage(pageNum + 1);
   };
 

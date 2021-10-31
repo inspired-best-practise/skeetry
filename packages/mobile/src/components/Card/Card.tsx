@@ -10,8 +10,6 @@ import { languageTag } from '_app/utils/helpers';
 import ImagePlaceholder from '../ImagePlaceholder/ImagePlaceholder';
 import { s } from './styles';
 
-console.log('languageTag', languageTag);
-
 // TODO: refactor
 export const Card = ({ item, size }: TCardProps) => {
   const theme = useColorScheme();

@@ -85,9 +85,6 @@ export const renderHeader = (
         );
   };
 
-  console.log('theme', theme);
-  console.log('isMe', isMe);
-
   return (
     <View>
       <View style={[s.profilePanel]}>
@@ -111,7 +108,7 @@ export const renderHeader = (
             <Avatar src={user.avatar} username={user.username} />
           </TouchableOpacity>
           <View style={{ marginLeft: 10 }}>
-            {user.name && user.name?.length !== 0 && (
+            {user.name.length !== 0 && (
               <Text numberOfLines={1} style={[s.name, theme === 'dark' && whiteColor]}>
                 {user.name}
               </Text>
@@ -119,7 +116,7 @@ export const renderHeader = (
             <Text numberOfLines={1} style={[s.username, theme === 'dark' ? whiteColor : darkColor]}>
               @{user.username}
             </Text>
-            {user.bio && user.bio.length !== 0 && (
+            {user.bio.length !== 0 && (
               <Text numberOfLines={1} style={[s.bio, theme === 'dark' ? whiteColor : darkColor]}>
                 {user.bio}
               </Text>
