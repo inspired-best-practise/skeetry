@@ -94,7 +94,7 @@ export const renderHeader = (
           </TouchableWithoutFeedback>
         )}
       </View>
-      <View style={s.profileHeader}>
+      <View style={[s.profileHeader, theme === 'dark' && { borderBottomColor: colors.gray800 }]}>
         <View style={s.profileHeaderWrap}>
           <TouchableOpacity
             activeOpacity={user.avatar ? 0.7 : 1}
@@ -130,7 +130,7 @@ export const renderHeader = (
         )}
       </View>
 
-      <View style={s.profileStats}>
+      <View style={[s.profileStats, { borderBottomColor: colors.gray800 }]}>
         <ProfileStatsItem name={`${t('profile:place')}`} number={0} action={() => navigation.push('UsersTop')} />
         <ProfileStatsItem name={`${t('profile:want')}`} number={user.wantedCount} action={() => setSelected('want')} />
         <ProfileStatsItem

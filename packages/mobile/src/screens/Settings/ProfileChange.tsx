@@ -242,7 +242,7 @@ export const ProfileChangeScreen = () => {
                 style={{ width: '100%', alignItems: 'center', marginTop: normalize(10) }}
                 onPress={handleSubmit(onSubmit)}
               >
-                <Text style={[tBase, { fontWeight: '600' }]}>
+                <Text style={[tBase, { fontWeight: '600' }, theme === 'dark' && whiteColor]}>
                   {loadingProfile ? t('utils:loading') : t('profile:done')}
                 </Text>
               </TouchableOpacity>
