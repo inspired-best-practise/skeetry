@@ -203,7 +203,7 @@ export const CardScreen = ({ route, navigation }) => {
       <StatusBar barStyle="light-content" animated translucent />
       <Gallery images={currentCity.images} />
       <View style={s.content}>
-        <View style={s.section}>
+        <View style={[s.section, theme === 'dark' && { borderColor: colors.gray800 }]}>
           <Text style={[s.name, theme === 'dark' ? whiteColor : darkColor]}>
             {title}
             {/* {currentCity.state
@@ -211,7 +211,7 @@ export const CardScreen = ({ route, navigation }) => {
               : currentCity.country.emoji + ' ' + currentCity.name} */}
           </Text>
         </View>
-        <View style={s.section}>
+        <View style={[s.section, theme === 'dark' && { borderColor: colors.gray800 }]}>
           <View style={s.cardButtons}>
             {!alreadyWanted && !alreadyVisited && !loading ? (
               <>
@@ -261,7 +261,7 @@ export const CardScreen = ({ route, navigation }) => {
             )}
           </View>
         </View>
-        <View style={s.section}>
+        <View style={[s.section, theme === 'dark' && { borderColor: colors.gray800 }]}>
           <Text style={[s.sectionTitle, theme === 'dark' ? whiteColor : darkColor]}>{t('utils:location')}</Text>
           <Pressable
             onPress={() =>
