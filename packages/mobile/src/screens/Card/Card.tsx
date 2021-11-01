@@ -200,7 +200,7 @@ export const CardScreen = ({ route, navigation }) => {
       showsVerticalScrollIndicator={false}
       contentContainerStyle={[s.container, theme === 'dark' ? darkBg : whiteBg]}
     >
-      <StatusBar barStyle="light-content" animated translucent />
+      <StatusBar barStyle={theme === 'dark' ? 'light-content' : 'dark-content'} animated translucent />
       <Gallery images={currentCity.images} />
       <View style={s.content}>
         <View style={[s.section, theme === 'dark' && { borderColor: colors.gray800 }]}>

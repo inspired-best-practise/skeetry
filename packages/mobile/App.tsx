@@ -27,13 +27,13 @@ if (Config.NODE_ENV !== 'dev') {
 }
 
 const App: React.FC = () => {
-  const scheme = useColorScheme();
+  const theme = useColorScheme();
 
   useEffect(() => {
-    if (scheme) {
-      console.log('scheme', scheme);
+    if (theme) {
+      console.log('scheme', theme);
     }
-  }, [scheme]);
+  }, [theme]);
 
   useEffect(() => {
     SplashScreen.hide();
@@ -43,7 +43,7 @@ const App: React.FC = () => {
     <CodePushProvider>
       <ApolloProvider client={client}>
         <SafeAreaProvider>
-          <StatusBar barStyle="dark-content" animated translucent />
+          <StatusBar barStyle={theme === 'dark' ? 'light-content' : 'dark-content'} animated translucent />
           <ActionSheetProvider>
             <RootStackNavigation />
           </ActionSheetProvider>
