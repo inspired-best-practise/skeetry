@@ -61,16 +61,16 @@ model CountryInfo {
 }
 
 model Geoname {
-  id             String    @id @unique
+  id             String          @id @unique
   name           String?
   asciiName      String?
   alternateNames String?
   overview       String?
   latitude       Float?
   longitude      Float?
-  fclass         String?   @db.Char(1)
-  fcode          String?   @db.Char(10)
-  countryCode    String?   @db.Char(2)
+  fclass         String?         @db.Char(1)
+  fcode          String?         @db.Char(10)
+  countryCode    String?         @db.Char(2)
   cc2            String?
   admin1         String?
   admin2         String?
@@ -80,13 +80,14 @@ model Geoname {
   elevation      Int?
   gtopo30        Int?
   timezone       String?
-  modifiedDate   DateTime? @db.Date
-  wantedCount    Int       @default(0)
-  visitedCount   Int       @default(0)
+  modifiedDate   DateTime?       @db.Date
+  wantedCount    Int             @default(0)
+  visitedCount   Int             @default(0)
   images         Image[]
   tags           Tag[]
-  userVisited    User[]    @relation("VisitedGeoname")
-  userWanted     User[]    @relation("WantedGeoname")
+  userVisited    User[]          @relation("VisitedGeoname")
+  userWanted     User[]          @relation("WantedGeoname")
+  alternateName  AlternateName[]
 }
 
 model AlternateName {
@@ -99,6 +100,7 @@ model AlternateName {
   isHistoric      Boolean?
   from            String?
   to              String?
+  geoname         Geoname? @relation(fields: [geonameId], references: [id])
   geonameId       String?
 }
 

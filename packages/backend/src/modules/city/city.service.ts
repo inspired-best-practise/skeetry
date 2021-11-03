@@ -258,7 +258,7 @@ export class CityService {
       include: {
         userVisited: true,
         userWanted: true,
-        alternateName: true,
+
         images: true,
       },
       where: {
@@ -294,7 +294,7 @@ export class CityService {
             include: {
               userVisited: true,
               userWanted: true,
-              alternateName: true,
+
               images: true,
             },
             where: {
@@ -349,7 +349,7 @@ export class CityService {
           include: {
             userVisited: true,
             userWanted: true,
-            alternateName: true,
+
             images: true,
           },
           where: {
@@ -405,7 +405,7 @@ export class CityService {
         this.prisma.geoname.findMany({
           include: {
             userWanted: true,
-            alternateName: true,
+
             images: true,
           },
           where: {
@@ -447,7 +447,7 @@ export class CityService {
         this.prisma.geoname.findMany({
           include: {
             userVisited: true,
-            alternateName: true,
+
             images: true,
           },
           where: {
@@ -485,7 +485,7 @@ export class CityService {
           include: {
             userVisited: true,
             userWanted: true,
-            alternateName: true,
+
             images: true,
           },
           orderBy: orderBy ? { name: orderBy.direction } : null,
@@ -507,7 +507,7 @@ export class CityService {
           include: {
             userVisited: true,
             userWanted: true,
-            alternateName: true,
+
             images: true,
           },
           orderBy: orderBy ? { name: orderBy.direction } : null,
