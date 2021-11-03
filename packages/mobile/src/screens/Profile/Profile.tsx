@@ -6,7 +6,7 @@ import { View, Text, FlatList, RefreshControl, useColorScheme } from 'react-nati
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { darkBg, tBase, whiteBg } from '_app/constants';
+import { darkBg, tBase, whiteBg, whiteColor } from '_app/constants';
 import { OrderDirection, useMeQuery, useVisitedQuery, useWantedQuery } from '_app/generated/graphql';
 import { authStore, profileStore } from '_app/stores';
 
@@ -128,7 +128,7 @@ export const ProfileScreen = () => {
       <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>Error. Please try later...</Text>
         <TouchableWithoutFeedback style={{ margin: 10 }} onPress={() => setLogout()}>
-          <Text style={tBase}>Logout</Text>
+          <Text style={[tBase, theme === 'dark' && whiteColor]}>Logout</Text>
         </TouchableWithoutFeedback>
       </SafeAreaView>
     );

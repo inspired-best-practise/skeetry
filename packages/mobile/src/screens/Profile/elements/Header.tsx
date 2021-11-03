@@ -130,7 +130,7 @@ export const renderHeader = (
         )}
       </View>
 
-      <View style={[s.profileStats, { borderBottomColor: colors.gray800 }]}>
+      <View style={[s.profileStats, theme === 'dark' && { borderBottomColor: colors.gray800 }]}>
         <ProfileStatsItem name={`${t('profile:place')}`} number={0} action={() => navigation.push('UsersTop')} />
         <ProfileStatsItem name={`${t('profile:want')}`} number={user.wantedCount} action={() => setSelected('want')} />
         <ProfileStatsItem

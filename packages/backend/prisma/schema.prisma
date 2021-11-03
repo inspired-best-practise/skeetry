@@ -30,16 +30,15 @@ model User {
 }
 
 model ContinentCode {
-  id        String   @id @default(cuid())
-  code      String?  @unique @db.Char(2)
+  id        String  @id @default(cuid())
+  code      String? @unique @db.Char(2)
   name      String?
-  geoname   Geoname? @relation(fields: [geonameId], references: [id])
   geonameId String?
 }
 
 model CountryInfo {
-  isoAlpha2          String   @id @unique @db.Char(2)
-  isoAlpha3          String?  @db.Char(3)
+  isoAlpha2          String  @id @unique @db.Char(2)
+  isoAlpha3          String? @db.Char(3)
   isoNumeric         Int?
   fipsCode           String?
   country            String?
@@ -48,9 +47,9 @@ model CountryInfo {
   capital            String?
   area               Float?
   population         Int?
-  continentCode      String?  @db.Char(2)
+  continentCode      String? @db.Char(2)
   tld                String?
-  currencyCode       String?  @db.Char(3)
+  currencyCode       String? @db.Char(3)
   currencyName       String?
   phone              String?
   postal             String?
@@ -58,21 +57,20 @@ model CountryInfo {
   languages          String?
   neighbours         String?
   equivalentFipsCode String?
-  geoname            Geoname? @relation(fields: [geonameId], references: [id])
   geonameId          String?
 }
 
 model Geoname {
-  id             String          @id @unique
+  id             String    @id @unique
   name           String?
   asciiName      String?
   alternateNames String?
   overview       String?
   latitude       Float?
   longitude      Float?
-  fclass         String?         @db.Char(1)
-  fcode          String?         @db.Char(10)
-  countryCode    String?         @db.Char(2)
+  fclass         String?   @db.Char(1)
+  fcode          String?   @db.Char(10)
+  countryCode    String?   @db.Char(2)
   cc2            String?
   admin1         String?
   admin2         String?
@@ -82,16 +80,13 @@ model Geoname {
   elevation      Int?
   gtopo30        Int?
   timezone       String?
-  modifiedDate   DateTime?       @db.Date
-  wantedCount    Int             @default(0)
-  visitedCount   Int             @default(0)
+  modifiedDate   DateTime? @db.Date
+  wantedCount    Int       @default(0)
+  visitedCount   Int       @default(0)
   images         Image[]
   tags           Tag[]
-  userVisited    User[]          @relation("VisitedGeoname")
-  userWanted     User[]          @relation("WantedGeoname")
-  continentCode  ContinentCode[]
-  countryInfo    CountryInfo[]
-  alternateName  AlternateName[]
+  userVisited    User[]    @relation("VisitedGeoname")
+  userWanted     User[]    @relation("WantedGeoname")
 }
 
 model AlternateName {
@@ -104,7 +99,6 @@ model AlternateName {
   isHistoric      Boolean?
   from            String?
   to              String?
-  geoname         Geoname? @relation(fields: [geonameId], references: [id])
   geonameId       String?
 }
 
