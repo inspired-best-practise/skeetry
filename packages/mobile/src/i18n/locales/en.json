@@ -89,6 +89,9 @@
     "about_early_access": "Early Access 🛠",
     "about_early_access_1": " is currently in early access.",
     "about_early_access_2": "The app is unstable and all of your data may be lost or deleted!",
-    "about_early_access_3": "Please report all bugs and errors to me via Telegram: "
+    "about_early_access_3": "Please report all bugs and errors to me via Telegram: ",
+    "enter_country_name": "Enter country name",
+    "picker_lang": "common",
+    "wrong_phone": "Wrong phone"
   }
 }

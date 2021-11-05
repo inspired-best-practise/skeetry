@@ -72,6 +72,7 @@
     "react-native-masonry-layout": "^1.0.6",
     "react-native-modalize": "^2.0.10",
     "react-native-pager-view": "^5.4.7",
+    "react-native-phone-number-input": "^2.1.0",
     "react-native-reanimated": "^2.2.3",
     "react-native-redash": "^16.2.2",
     "react-native-safe-area-context": "^3.3.2",
