@@ -21,7 +21,7 @@ export class PasswordService {
   }
 
   async hashPassword(password: string): Promise<string> {
-    let salt = randomBytes(16);
+    const salt = randomBytes(16);
 
     const key = await bcrypt({
       password,

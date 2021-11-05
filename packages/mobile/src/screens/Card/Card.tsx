@@ -25,17 +25,19 @@ export const CardScreen = ({ route, navigation }) => {
 
   const user = authStore(state => state.user);
 
-  const ruName = item.alternateName.find(a => {
-    if (a.isoLang === 'ru' && a.isPreferredName === true) {
-      return a;
-    }
+  const ruName = item.alternateName
+    ? item.alternateName.find(a => {
+        if (a.isoLang === 'ru' && a.isPreferredName === true) {
+          return a;
+        }
 
-    if (a.isoLang === 'ru' && !a.isHistoric) {
-      return a;
-    }
+        if (a.isoLang === 'ru' && !a.isHistoric) {
+          return a;
+        }
 
-    return null;
-  });
+        return null;
+      })
+    : null;
 
   const title = languageTag === 'ru' && ruName && ruName.alternateName ? ruName.alternateName : currentCity.name;
 

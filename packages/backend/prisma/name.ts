@@ -4,45 +4,29 @@ const prisma = new PrismaClient();
 async function main() {
   console.log('Seeding...');
 
-  for (let i = 0; i < 10000000; i++) {
-    console.log('i', i);
+  for (let i = 0; i < 16000000; i++) {
+    console.log('i: ', i);
 
-    const geoname = await prisma.geoname.findFirst({
+    const AlternateName = await prisma.alternateName.findFirst({
+      skip: i,
+    });
+
+    const geonameByAlt = await prisma.geoname.findUnique({
       where: {
-        OR: [
-          {
-            fclass: 'R',
-          },
-          {
-            fclass: 'H',
-          },
-          {
-            fclass: 'S',
-          },
-          {
-            fclass: 'T',
-          },
-          {
-            fclass: 'U',
-          },
-          {
-            fclass: 'V',
-          },
-        ],
+        id: AlternateName.geonameId,
       },
     });
 
-    if (!geoname) {
-      break;
+    if (!geonameByAlt) {
+      await prisma.alternateName.delete({
+        where: {
+          id: AlternateName.id,
+        },
+      });
+      console.log('deteled');
+    } else {
+      console.log('next');
     }
-
-    console.log('id', geoname.id);
-
-    await prisma.geoname.delete({
-      where: {
-        id: geoname.id,
-      },
-    });
   }
 }
 

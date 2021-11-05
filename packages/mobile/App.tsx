@@ -8,7 +8,6 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import SplashScreen from 'react-native-splash-screen';
 
 import { LoadingOverlay } from '_app/components';
-import { colors } from '_app/constants';
 import '_app/i18n';
 import RootStackNavigation from '_app/navigations';
 import { client } from '_app/services/graphql';

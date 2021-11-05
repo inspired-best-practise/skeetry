@@ -150,7 +150,7 @@ export const LoginScreen = () => {
             theme === 'dark' ? { backgroundColor: colors.gray800 } : darkBg,
           ]}
         >
-          <Text style={[s.btnLoginText, theme === 'dark' ? whiteColor : darkColor]}>
+          <Text style={[s.btnLoginText, theme === 'dark' && whiteColor]}>
             {!loading ? t('utils:login') : t('utils:loading')}
           </Text>
         </TouchableOpacity>

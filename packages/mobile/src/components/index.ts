@@ -22,3 +22,4 @@ export * from './ModalWrapper';
 export * from './Gallery';
 export * from './UserWithRating';
 export * from './Input';
+export * from './Preview';

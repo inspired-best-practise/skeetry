@@ -17,17 +17,19 @@ export const Card = ({ item, size }: TCardProps) => {
   const { images, name, countryCode, alternateName } = item;
   const [active, setActive] = useState(0);
 
-  const ruName = alternateName.find(a => {
-    if (a.isoLang === 'ru' && a.isPreferredName === true) {
-      return a;
-    }
+  const ruName = alternateName
+    ? alternateName.find(a => {
+        if (a.isoLang === 'ru' && a.isPreferredName === true) {
+          return a;
+        }
 
-    if (a.isoLang === 'ru' && !a.isHistoric) {
-      return a;
-    }
+        if (a.isoLang === 'ru' && !a.isHistoric) {
+          return a;
+        }
 
-    return null;
-  });
+        return null;
+      })
+    : null;
 
   const title = languageTag === 'ru' && ruName && ruName.alternateName ? ruName.alternateName : name;
 

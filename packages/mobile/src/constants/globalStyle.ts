@@ -55,6 +55,11 @@ export const colors = {
   gray900: '#111827',
 };
 
+export const colorsDark = {
+  black: '#1E1E1E',
+  white: '#fff',
+};
+
 // {
 //   white: '#000',
 //   black: '#fff',
@@ -93,7 +98,7 @@ export const darkTheme = {
 
 const textBase: TextStyle = {
   fontFamily: fontFamily.regular,
-  color: colors.text,
+  color: colors.black,
 };
 
 export const tSplash: TextStyle = {
