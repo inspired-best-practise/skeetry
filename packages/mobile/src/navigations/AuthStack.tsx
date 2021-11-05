@@ -1,5 +1,7 @@
 import { createStackNavigator, StackNavigationOptions } from '@react-navigation/stack';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { useColorScheme } from 'react-native';
 import { TAuthStackParamList } from 'types';
 
 import { colors } from '_app/constants';
@@ -14,6 +16,9 @@ import {
 
 const Stack = createStackNavigator<TAuthStackParamList>();
 const AuthStack = () => {
+  const theme = useColorScheme();
+  const { t } = useTranslation();
+
   const navigationOptions: StackNavigationOptions = {
     headerShown: false,
     gestureEnabled: false,
@@ -27,7 +32,9 @@ const AuthStack = () => {
         name="Phone"
         options={{
           headerShown: true,
-          headerTintColor: colors.black,
+          headerTintColor: theme === 'dark' ? colors.white : colors.black,
+          headerBackTitle: t('utils:back'),
+          headerTitle: t('auth:phone'),
         }}
       />
       <Stack.Screen
@@ -35,7 +42,9 @@ const AuthStack = () => {
         name="Code"
         options={{
           headerShown: true,
-          headerTintColor: colors.black,
+          headerTintColor: theme === 'dark' ? colors.white : colors.black,
+          headerBackTitle: t('utils:back'),
+          headerTitle: t('auth:code'),
         }}
       />
       <Stack.Screen
@@ -43,6 +52,9 @@ const AuthStack = () => {
         name="Credentials"
         options={{
           headerShown: false,
+          headerTintColor: theme === 'dark' ? colors.white : colors.black,
+          headerBackTitle: t('utils:back'),
+          headerTitle: t('auth:сredentials'),
         }}
       />
       <Stack.Screen
@@ -50,8 +62,9 @@ const AuthStack = () => {
         name="ForgotPassword"
         options={{
           headerShown: true,
-          headerTintColor: colors.black,
-          headerTitle: 'Forgot Pasword',
+          headerTintColor: theme === 'dark' ? colors.white : colors.black,
+          headerBackTitle: t('utils:back'),
+          headerTitle: t('auth:forgot_password'),
         }}
       />
       <Stack.Screen
@@ -59,6 +72,9 @@ const AuthStack = () => {
         name="Welcome"
         options={{
           headerShown: false,
+          headerTintColor: theme === 'dark' ? colors.white : colors.black,
+          headerBackTitle: t('utils:back'),
+          headerTitle: t('auth:welcome'),
         }}
       />
     </Stack.Navigator>

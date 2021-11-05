@@ -1,4 +1,11 @@
 {
+  "auth": {
+    "phone": "Phone",
+    "code": "Code",
+    "сredentials": "Credentials",
+    "forgot_password": "Forgot password",
+    "welcome": "Welcome"
+  },
   "home": {
     "welcome": "Welcome",
     "categories": "Categories",
