@@ -4,7 +4,8 @@
     "code": "Code",
     "сredentials": "Credentials",
     "forgot_password": "Forgot password",
-    "welcome": "Welcome"
+    "welcome": "Welcome",
+    "code_sent": "Code sent"
   },
   "home": {
     "welcome": "Welcome",

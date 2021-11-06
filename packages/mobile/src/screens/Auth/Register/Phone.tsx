@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { View, Text, TouchableOpacity, useColorScheme } from 'react-native';
+import { Text, TouchableOpacity, useColorScheme } from 'react-native';
 import PhoneInput from 'react-native-phone-number-input';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -19,12 +19,12 @@ export const PhoneScreen = () => {
 
   const [formattedValue, setFormattedValue] = useState('');
   const [valid, setValid] = useState(false);
-  const [showMessage, setShowMessage] = useState(false);
   const phoneInput = useRef<PhoneInput>(null);
 
   const [sendSmsCodeMutation, { data, loading, error }] = useSendSmsCodeMutation();
 
   const setPhone = regStore(state => state.setPhone);
+  const formattedPhone = formattedValue.replace('+', '');
 
   const {
     control,
@@ -34,8 +34,6 @@ export const PhoneScreen = () => {
     setError,
   } = useForm();
   const onSubmit = () => {
-    const formattedPhone = formattedValue.replace('+', '');
-
     if (valid) {
       sendSmsCodeMutation({
         variables: {
@@ -51,13 +49,12 @@ export const PhoneScreen = () => {
 
   useEffect(() => {
     const checkValid = phoneInput.current?.isValidNumber(phone);
-    setShowMessage(true);
     setValid(checkValid ? checkValid : false);
   }, [phone]);
 
   useEffect(() => {
     if (data && data.sendSmsCode === true) {
-      setPhone(phone);
+      setPhone(formattedPhone);
       return navigation.push('Code');
     }
   }, [data]);
@@ -91,8 +88,16 @@ export const PhoneScreen = () => {
               }}
               autoFocus
               // disableArrowIcon
-              containerStyle={{ width: '100%', backgroundColor: colors.gray100, borderRadius: radius.base }}
-              textContainerStyle={{ backgroundColor: colors.gray100, borderRadius: radius.base }}
+              containerStyle={[
+                { width: '100%', backgroundColor: colors.gray100, borderRadius: radius.base },
+                theme === 'dark' && { backgroundColor: colors.gray800 },
+              ]}
+              textContainerStyle={[
+                { backgroundColor: colors.gray100, borderRadius: radius.base },
+                theme === 'dark' && { backgroundColor: colors.gray800 },
+              ]}
+              textInputStyle={[theme === 'dark' && { color: colors.white }]}
+              codeTextStyle={[theme === 'dark' && { color: colors.white }]}
             />
           )}
           name="phone"
@@ -108,10 +113,13 @@ export const PhoneScreen = () => {
           disabled={loading}
           activeOpacity={0.6}
           // eslint-disable-next-line react-native/no-inline-styles
-          style={{
-            ...s.btnLogin,
-            opacity: 1,
-          }}
+          style={[
+            {
+              ...s.btnLogin,
+              opacity: 1,
+            },
+            theme === 'dark' && { backgroundColor: colors.gray800 },
+          ]}
         >
           <Text style={s.btnLoginText}>{!loading ? t('utils:next') : t('utils:loading')}</Text>
         </TouchableOpacity>
