@@ -2,7 +2,7 @@ import { createMaterialTopTabNavigator, MaterialTopTabNavigationOptions } from '
 import React from 'react';
 import { TRootStackParamList } from 'types';
 
-import { authStore } from '_app/stores';
+import { useAuthState } from '_app/states';
 
 import AuthStack from './AuthStack';
 import HomeTab from './HomeTab';
@@ -19,12 +19,12 @@ const Index = (): JSX.Element => {
     },
   };
 
-  const logined = authStore(state => state.isAuthenticated);
+  const { isLogined } = useAuthState();
 
   return (
-    <RootTab.Navigator initialRouteName={logined ? 'HomeTab' : 'AuthStack'} screenOptions={screenOptions}>
-      {!logined && <RootTab.Screen name="AuthStack" component={AuthStack} />}
-      {logined && (
+    <RootTab.Navigator initialRouteName={isLogined ? 'HomeTab' : 'AuthStack'} screenOptions={screenOptions}>
+      {!isLogined && <RootTab.Screen name="AuthStack" component={AuthStack} />}
+      {isLogined && (
         <>
           <RootTab.Screen name="HomeTab" component={HomeTab} />
           {/* <RootTab.Screen name="Direct" component={Direct} /> */}

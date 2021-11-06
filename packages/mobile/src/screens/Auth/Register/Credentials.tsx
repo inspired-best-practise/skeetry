@@ -7,7 +7,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { FormWrapper } from '_app/components';
 import { useSignupMutation } from '_app/generated/graphql';
 import { navigation } from '_app/services/navigations';
-import { authStore, regStore } from '_app/stores';
+import { useAuthState, useRegState } from '_app/states';
 
 import { s } from './styles';
 
@@ -16,11 +16,8 @@ export const CredentialsScreen = () => {
 
   const [signupMutation, { data, loading, error }] = useSignupMutation();
 
-  const setTokens = authStore(state => state.setTokens);
-  const setUser = authStore(state => state.setUser);
-
-  const phone = regStore(state => state.phone);
-  const code = regStore(state => state.code);
+  const { phone, code } = useRegState();
+  const { setAccessToken, setRefreshToken, setMe, setLogin } = useAuthState();
 
   const {
     control,
@@ -28,41 +25,28 @@ export const CredentialsScreen = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = ({ name, username, password }) => {
-    signupMutation({
-      variables: {
-        input: {
-          phone,
-          name,
-          username,
-          password,
-          code,
+    if (phone && code) {
+      signupMutation({
+        variables: {
+          input: {
+            phone,
+            name,
+            username,
+            password,
+            code,
+          },
         },
-      },
-    });
+      });
+    }
   };
 
   useEffect(() => {
     if (data && data.signup) {
-      const { accessToken, refreshToken } = data.signup;
-      const { id, email, name, username, avatar, bio, rating, wantedCount, visitedCount, createdAt, updatedAt } =
-        data.signup.user;
+      const { accessToken, refreshToken, user } = data.signup;
 
-      setTokens(accessToken, refreshToken);
-      setUser(
-        id,
-        phone,
-        email,
-        name,
-        username,
-        avatar,
-        bio,
-        rating,
-        email,
-        wantedCount,
-        visitedCount,
-        createdAt,
-        updatedAt,
-      );
+      setAccessToken(accessToken);
+      setRefreshToken(refreshToken);
+      setMe(user);
 
       return navigation.push('Welcome');
     }

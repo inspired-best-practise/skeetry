@@ -11,6 +11,7 @@ import { LoadingOverlay } from '_app/components';
 import '_app/i18n';
 import RootStackNavigation from '_app/navigations';
 import { client } from '_app/services/graphql';
+import { useThemeState } from '_app/states';
 import CodePushProvider from '_app/utils/CodePushProvider';
 
 LogBox.ignoreLogs(['Require cycle:']);
@@ -37,6 +38,10 @@ const App: React.FC = () => {
   useEffect(() => {
     SplashScreen.hide();
   }, []);
+
+  const themeState = useThemeState();
+
+  console.log(themeState);
 
   return (
     <CodePushProvider>

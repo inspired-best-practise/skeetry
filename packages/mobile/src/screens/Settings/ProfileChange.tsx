@@ -26,15 +26,14 @@ import {
   useUploadPhotoMutation,
 } from '_app/generated/graphql';
 import { navigation } from '_app/services/navigations';
-import { authStore } from '_app/stores';
+import { useAuthState } from '_app/states';
 import { normalize } from '_app/utils/dimensions';
 
 export const ProfileChangeScreen = () => {
   const { t } = useTranslation();
   const theme = useColorScheme();
 
-  const me = authStore(state => state.user);
-  const setUser = authStore(state => state.setUser);
+  const { me, setMe } = useAuthState();
 
   const { loading, data } = useMeQuery();
   const [uploadPhoto] = useUploadPhotoMutation();
@@ -66,9 +65,7 @@ export const ProfileChangeScreen = () => {
     });
 
     if (dataProfile) {
-      const { id, phone, avatar, rating, email, wantedCount, visitedCount, createdAt, updatedAt } = user;
-
-      setUser(id, phone, name, username, avatar, bio, rating, email, wantedCount, visitedCount, createdAt, updatedAt);
+      setMe(user);
     }
   };
   const actionOptions = [

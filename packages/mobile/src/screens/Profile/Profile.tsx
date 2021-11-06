@@ -8,7 +8,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { darkBg, tBase, whiteBg, whiteColor } from '_app/constants';
 import { OrderDirection, useMeQuery, useVisitedQuery, useWantedQuery } from '_app/generated/graphql';
-import { authStore, profileStore } from '_app/stores';
+import { useAuthState, useProfileState } from '_app/states';
 
 import { renderEmpty, renderItem, renderHeader } from './elements';
 import { s } from './styles';
@@ -24,6 +24,9 @@ export const ProfileScreen = () => {
   const [visited, setVisited] = useState([]);
 
   const { loading, data, error, refetch } = useMeQuery();
+
+  const { setLogout } = useAuthState();
+  const { selected, setSelected } = useProfileState();
 
   const {
     data: dataWanted,
@@ -100,10 +103,6 @@ export const ProfileScreen = () => {
       setVisited(prevState => [...prevState, ...newData.data.visited.edges]);
     }
   };
-
-  const selected = profileStore(state => state.selected);
-  const setSelected = profileStore(state => state.setSelected);
-  const setLogout = authStore(state => state.setLogout);
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);

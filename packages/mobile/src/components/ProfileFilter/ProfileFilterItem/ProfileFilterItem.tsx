@@ -2,12 +2,13 @@ import React from 'react';
 import { TouchableHighlight, Text, useColorScheme } from 'react-native';
 
 import { colors } from '_app/constants';
-import { profileStore } from '_app/stores';
+import { useProfileState } from '_app/states';
 
 import { s } from './styles';
 
 export const ProfileFilterItem = ({ selected, name, title, icon }: TListFilterItemProps) => {
-  const setSelected = profileStore(state => state.setSelected);
+  const { setSelected } = useProfileState();
+
   const theme = useColorScheme();
 
   return (

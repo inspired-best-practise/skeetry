@@ -9,7 +9,7 @@ import Icon from 'react-native-vector-icons/Feather';
 import { Gallery } from '_app/components';
 import { colors, darkBg, darkColor, mapGfxStyle, PLATFORM, whiteBg, whiteColor } from '_app/constants';
 import { useAddCityMutation, useCityQuery, useMoveCityMutation, useRemoveCityMutation } from '_app/generated/graphql';
-import { authStore } from '_app/stores';
+import { useAuthState } from '_app/states';
 import { languageTag } from '_app/utils/helpers';
 
 import { s } from './styles';
@@ -23,7 +23,7 @@ export const CardScreen = ({ route, navigation }) => {
   const { showActionSheetWithOptions } = useActionSheet();
   const [currentCity, setCurrentCity] = useState(item);
 
-  const user = authStore(state => state.user);
+  const { me } = useAuthState();
 
   const ruName = item.alternateName
     ? item.alternateName.find(a => {
@@ -139,8 +139,8 @@ export const CardScreen = ({ route, navigation }) => {
     }
   };
 
-  const alreadyWanted = currentCity.userWanted && currentCity.userWanted.find(u => u.id === user.id);
-  const alreadyVisited = currentCity.userVisited && currentCity.userVisited.find(u => u.id === user.id);
+  const alreadyWanted = currentCity.userWanted && currentCity.userWanted.find(u => u.id === me.id);
+  const alreadyVisited = currentCity.userVisited && currentCity.userVisited.find(u => u.id === me.id);
 
   const loading =
     loadingWant ||

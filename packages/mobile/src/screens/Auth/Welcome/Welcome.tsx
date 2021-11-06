@@ -2,14 +2,14 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { View, Text, TouchableOpacity } from 'react-native';
 
-import { authStore } from '_app/stores';
+import { useAuthState } from '_app/states';
 
 import { s } from './styles';
 
 export const WelcomeScreen = () => {
   const { t } = useTranslation();
 
-  const setLogin = authStore(state => state.setLogin);
+  const { setLogin } = useAuthState();
 
   return (
     <View style={s.container}>

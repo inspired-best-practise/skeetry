@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import { ProfileFilterItem } from '_app/components';
-import { profileStore } from '_app/stores';
+import { useProfileState } from '_app/states';
 
 import { s } from './styles';
 
@@ -11,7 +11,7 @@ export const ProfileFilter = () => {
   const ref = useRef(null);
   const { t } = useTranslation();
 
-  const selected = profileStore(state => state.selected);
+  const { selected } = useProfileState();
 
   return (
     <ScrollView ref={ref} horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={s.container}>

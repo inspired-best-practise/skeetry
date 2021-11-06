@@ -5,7 +5,7 @@ import { createUploadLink } from 'apollo-upload-client';
 import fetch from 'isomorphic-unfetch';
 
 import { PLATFORM } from '_app/constants';
-import { getAccessToken } from '_app/stores';
+import { getAccessToken } from '_app/states';
 
 const cache = new InMemoryCache();
 

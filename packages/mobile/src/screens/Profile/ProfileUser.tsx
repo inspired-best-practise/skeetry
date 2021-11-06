@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { FlatList, SafeAreaView, useColorScheme } from 'react-native';
 
 import { useWantedQuery, OrderDirection, useVisitedQuery } from '_app/generated/graphql';
-import { authStore, profileStore } from '_app/stores';
+import { useAuthState, useProfileState } from '_app/states';
 import { SCREEN_WIDTH } from '_app/utils/dimensions';
 
 import { renderEmpty, renderItem, renderHeader } from './elements';
@@ -19,7 +19,7 @@ export const ProfileUserScreen = ({ route }) => {
 
   const { user } = route.params;
 
-  const me = authStore(state => state.user);
+  const { me } = useAuthState();
 
   const isMe = me.id === user.id;
 
@@ -103,8 +103,7 @@ export const ProfileUserScreen = ({ route }) => {
     }
   };
 
-  const selected = profileStore(state => state.selected);
-  const setSelected = profileStore(state => state.setSelected);
+  const { selected, setSelected } = useProfileState();
 
   const getData = () => {
     switch (selected) {

@@ -9,7 +9,7 @@ import { FormWrapper } from '_app/components';
 import { colors, darkBg, darkColor, radius, tLogo, whiteColor } from '_app/constants';
 import { useLoginMutation } from '_app/generated/graphql';
 import { navigation } from '_app/services/navigations';
-import { authStore } from '_app/stores';
+import { useAuthState } from '_app/states';
 
 import { s } from './styles';
 
@@ -20,9 +20,7 @@ export const LoginScreen = () => {
   const [hidePassword, setHidePassword] = useState(true);
   const [errorLogin, setErrorLogin] = useState<ApolloError>();
 
-  const setTokens = authStore(state => state.setTokens);
-  const setUser = authStore(state => state.setUser);
-  const setLogin = authStore(state => state.setLogin);
+  const { setAccessToken, setRefreshToken, setMe, setLogin } = useAuthState();
 
   const [login, { loading, data, error }] = useLoginMutation();
 
@@ -47,12 +45,11 @@ export const LoginScreen = () => {
 
   useEffect(() => {
     if (data) {
-      const { accessToken, refreshToken } = data.login;
-      const { id, phone, name, username, avatar, bio, rating, email, wantedCount, visitedCount, createdAt, updatedAt } =
-        data.login.user;
+      const { accessToken, refreshToken, user } = data.login;
 
-      setTokens(accessToken, refreshToken);
-      setUser(id, phone, name, username, avatar, bio, rating, email, wantedCount, visitedCount, createdAt, updatedAt);
+      setAccessToken(accessToken);
+      setRefreshToken(refreshToken);
+      setMe(user);
       setLogin();
     }
   }, [data]);

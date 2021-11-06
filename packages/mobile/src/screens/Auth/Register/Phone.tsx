@@ -9,7 +9,7 @@ import { FormWrapper } from '_app/components';
 import { colors, radius } from '_app/constants';
 import { useSendSmsCodeMutation } from '_app/generated/graphql';
 import { navigation } from '_app/services/navigations';
-import { regStore } from '_app/stores';
+import { useRegState } from '_app/states';
 
 import { s } from './styles';
 
@@ -23,7 +23,7 @@ export const PhoneScreen = () => {
 
   const [sendSmsCodeMutation, { data, loading, error }] = useSendSmsCodeMutation();
 
-  const setPhone = regStore(state => state.setPhone);
+  const { setPhone } = useRegState();
   const formattedPhone = formattedValue.replace('+', '');
 
   const {
