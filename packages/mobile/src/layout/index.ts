@@ -1,5 +1,5 @@
 import Button from './controls/Button';
-import FormInput from './controls/FormInput';
+import Input from './controls/Input';
 import LoadingIndicator from './misc/LoadingIndicator';
 
-export { Button, FormInput, LoadingIndicator };
+export { Button, Input, LoadingIndicator };

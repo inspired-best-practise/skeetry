@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
-import { Text, Pressable, View, useColorScheme } from 'react-native';
+import React, { useContext, useState } from 'react';
+import { Text, Pressable, View, StyleSheet } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { ScrollView } from 'react-native-gesture-handler';
 
-import { darkColor, whiteColor } from '_app/constants';
+import { AppContext } from '_app/context';
 import { navigation } from '_app/services/navigations';
+import { ThemeColors } from '_app/types/theme';
 import { languageTag } from '_app/utils/helpers';
 
 import ImagePlaceholder from '../ImagePlaceholder/ImagePlaceholder';
@@ -12,8 +13,7 @@ import { s } from './styles';
 
 // TODO: refactor
 export const Card = ({ item, size }: TCardProps) => {
-  const theme = useColorScheme();
-
+  const { theme } = useContext(AppContext);
   const { images, name, countryCode, alternateName } = item;
   const [active, setActive] = useState(0);
 
@@ -166,10 +166,10 @@ export const Card = ({ item, size }: TCardProps) => {
           <Text style={s.ratingCount}>{rating ? rating.count : 0}</Text>
         </View>
       )} */}
-      <Text numberOfLines={1} style={[s.itemTitle, theme === 'dark' ? whiteColor : darkColor]}>
+      <Text numberOfLines={1} style={[s.itemTitle, styles(theme).text]}>
         {title}
       </Text>
-      <Text numberOfLines={1} style={[s.itemDesc, theme === 'dark' ? whiteColor : darkColor]}>
+      <Text numberOfLines={1} style={[s.itemDesc, styles(theme).text]}>
         {countryCode}
         {/* {state
           ? withLocalization('state.country.name', state.country.name, locale, localizations)
@@ -178,3 +178,10 @@ export const Card = ({ item, size }: TCardProps) => {
     </View>
   );
 };
+
+const styles = (theme = {} as ThemeColors) =>
+  StyleSheet.create({
+    text: {
+      color: theme.text01,
+    },
+  });

@@ -1,12 +1,13 @@
 import { useActionSheet } from '@expo/react-native-action-sheet';
 import { useScrollToTop } from '@react-navigation/native';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, Text, FlatList, RefreshControl, useColorScheme } from 'react-native';
+import { Text, FlatList, RefreshControl } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { darkBg, tBase, whiteBg, whiteColor } from '_app/constants';
+import { tBase } from '_app/constants';
+import { AppContext } from '_app/context';
 import { OrderDirection, useMeQuery, useVisitedQuery, useWantedQuery } from '_app/generated/graphql';
 import { navigation } from '_app/services/navigations';
 import { signOut } from '_app/utils/authentication';
@@ -17,7 +18,7 @@ import { s } from './styles';
 export const ProfileScreen = () => {
   const ref = useRef(null);
   const { t } = useTranslation();
-  const theme = useColorScheme();
+  const { theme } = useContext(AppContext);
 
   const { showActionSheetWithOptions } = useActionSheet();
   const [refreshing, setRefreshing] = useState(false);

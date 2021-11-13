@@ -175,14 +175,6 @@ export const tSmallSemibold: TextStyle = {
   fontWeight: '600',
 };
 
-export const darkBg: TextStyle = {
-  backgroundColor: colors.black,
-};
-
-export const whiteBg: TextStyle = {
-  backgroundColor: colors.white,
-};
-
 export const avatarSize = normalize(70);
 
 export const mapGfxStyle: MapStyleElement[] = [

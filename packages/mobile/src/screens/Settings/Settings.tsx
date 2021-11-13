@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity, useColorScheme, SafeAreaView } from 'reac
 
 import { Avatar } from '_app/components';
 import MenuItem from '_app/components/MenuItem/MenuItem';
-import { colors, darkColor, radius, tBase, whiteColor } from '_app/constants';
+import { colors, radius, tBase } from '_app/constants';
 import { useMeQuery } from '_app/generated/graphql';
 import { navigation } from '_app/services/navigations';
 import { normalize } from '_app/utils/dimensions';

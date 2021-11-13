@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { TouchableHighlight, View, Text, Alert, useColorScheme } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 
-import { colors, darkColor, tBase, whiteColor } from '_app/constants';
+import { colors, tBase } from '_app/constants';
 
 import { s } from './styles';
 

@@ -1,12 +1,13 @@
 import React from 'react';
-import { View, Text, ActionSheetIOS } from 'react-native';
+import { View, Text, ActionSheetIOS, StyleSheet } from 'react-native';
 import codePush from 'react-native-code-push';
 import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import * as HeroIcon from 'react-native-heroicons/solid';
 
 import { ProfileStatsItem, Avatar, ProfileFilter, Button } from '_app/components';
-import { colors, darkColor, PLATFORM, whiteColor } from '_app/constants';
+import { colors, PLATFORM } from '_app/constants';
 import { navigation } from '_app/services/navigations';
+import { ThemeColors } from '_app/types/theme';
 import { signOut } from '_app/utils/authentication';
 
 import { s } from '../styles';
@@ -106,15 +107,15 @@ export const renderHeader = (user: TUser, t, isMe, theme, route, showActionSheet
           </TouchableOpacity>
           <View style={{ marginLeft: 10 }}>
             {user.name !== null && user.name.length !== 0 && (
-              <Text numberOfLines={1} style={[s.name, theme === 'dark' && whiteColor]}>
+              <Text numberOfLines={1} style={[s.name, styles(theme).text]}>
                 {user.name}
               </Text>
             )}
-            <Text numberOfLines={1} style={[s.username, theme === 'dark' ? whiteColor : darkColor]}>
+            <Text numberOfLines={1} style={[s.username, styles(theme).text]}>
               @{user.username}
             </Text>
             {user.bio !== null && user.bio.length !== 0 && (
-              <Text numberOfLines={1} style={[s.bio, theme === 'dark' ? whiteColor : darkColor]}>
+              <Text numberOfLines={1} style={[s.bio, styles(theme).text]}>
                 {user.bio}
               </Text>
             )}
@@ -141,3 +142,10 @@ export const renderHeader = (user: TUser, t, isMe, theme, route, showActionSheet
     </View>
   );
 };
+
+const styles = (theme = {} as ThemeColors) =>
+  StyleSheet.create({
+    text: {
+      color: theme.text01,
+    },
+  });

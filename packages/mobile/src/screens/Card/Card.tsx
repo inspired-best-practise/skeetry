@@ -7,7 +7,7 @@ import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import Icon from 'react-native-vector-icons/Feather';
 
 import { Gallery } from '_app/components';
-import { colors, darkBg, darkColor, mapGfxStyle, PLATFORM, whiteBg, whiteColor } from '_app/constants';
+import { colors, mapGfxStyle, PLATFORM } from '_app/constants';
 import { useAddCityMutation, useCityQuery, useMoveCityMutation, useRemoveCityMutation } from '_app/generated/graphql';
 import { languageTag } from '_app/utils/helpers';
 

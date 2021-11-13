@@ -1,33 +1,16 @@
-import MasonryList from '@react-native-seoul/masonry-list';
 import { useScrollToTop } from '@react-navigation/native';
-import React, { // useEffect,
-  useContext,
-  useRef, // useState
-} from 'react';
-import { useTranslation } from 'react-i18next';
-import { Text, View, ScrollView, TouchableOpacity, Alert, useColorScheme, StyleSheet } from 'react-native';
-import FastImage from 'react-native-fast-image';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import React, { useContext, useRef } from 'react';
+import { Text, View, ScrollView, StyleSheet } from 'react-native';
 
 import { Preview } from '_app/components';
-// import { HorizontalCardList } from '_app/components';
-// import { Categories } from '_app/components/Categories';
-import { Stories } from '_app/components/Stories';
-import { darkColor, tTitle, whiteColor } from '_app/constants';
+import { tTitle } from '_app/constants';
 import { AppContext } from '_app/context';
 import { ThemeColors } from '_app/types/theme';
-// import {
-//   OrderDirection, // useNearbyQuery,
-//   usePopularQuery,
-// } from '_app/generated/graphql';
-import { normalize } from '_app/utils/dimensions';
 
 import { s } from './styles';
 
 export const HomeScreen = () => {
-  const { t } = useTranslation();
   const ref = useRef<ScrollView>(null);
-  const scheme = useColorScheme();
   const { theme } = useContext(AppContext);
   // const [nearby, setNearby] = useState();
   // const [popular, setPopular] = useState([]);

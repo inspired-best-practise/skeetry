@@ -9,14 +9,14 @@ import { normalize } from '_app/utils/dimensions';
 
 const { FontWeights } = Typography;
 
-interface FormInputProps {
+interface InputProps {
   ref: React.Ref<any>;
-  label: string;
+  label?: string;
   caption?: string;
   placeholder: string;
-  value: string;
+  value?: string;
   onChangeText: any;
-  onBlur: any;
+  onBlur?: any;
   multiline?: boolean;
   maxLength?: number;
   children?: any;
@@ -25,7 +25,7 @@ interface FormInputProps {
   secureTextEntry?: boolean;
 }
 
-const FormInput: React.FC<FormInputProps> = React.forwardRef(
+const Input: React.FC<InputProps> = React.forwardRef(
   (
     {
       label,
@@ -57,7 +57,7 @@ const FormInput: React.FC<FormInputProps> = React.forwardRef(
             placeholderTextColor={theme.gray02}
             onChangeText={onChangeText}
             onBlur={onBlur}
-            value={value}
+            value={value || undefined}
             multiline={multiline || false}
             maxLength={maxLength}
             editable={editable || true}
@@ -100,4 +100,4 @@ const styles = (theme = {} as ThemeColors) =>
     },
   });
 
-export default FormInput;
+export default Input;

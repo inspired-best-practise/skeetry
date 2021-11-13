@@ -1,19 +1,31 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
-import { colors, darkColor, tBase, tTitle, whiteColor } from '_app/constants';
+import { tBase, tTitle } from '_app/constants';
+import { ThemeColors } from '_app/types/theme';
+import { normalize } from '_app/utils/dimensions';
 
 export const renderEmpty = (t, theme) => {
   return (
-    <View style={{ margin: 20 }}>
-      <Text style={[tTitle, { textAlign: 'center', marginBottom: 5 }, theme === 'dark' ? whiteColor : darkColor]}>
-        {t('profile:empty_list_title')}
-      </Text>
-      <Text
-        style={[tBase, { textAlign: 'center', color: colors.mediumGray }, theme === 'dark' ? whiteColor : darkColor]}
-      >
-        {t('profile:empty_list_desc')}
-      </Text>
+    <View style={styles(theme).container}>
+      <Text style={[tTitle, styles(theme).title]}>{t('profile:empty_list_title')}</Text>
+      <Text style={[tBase, styles(theme).desc]}>{t('profile:empty_list_desc')}</Text>
     </View>
   );
 };
+
+const styles = (theme = {} as ThemeColors) =>
+  StyleSheet.create({
+    container: {
+      margin: normalize(20),
+    },
+    title: {
+      color: theme.text01,
+      textAlign: 'center',
+      marginBottom: normalize(5),
+    },
+    desc: {
+      color: theme.text01,
+      textAlign: 'center',
+    },
+  });

@@ -5,7 +5,7 @@ import { CodeField, Cursor, useBlurOnFulfill, useClearByFocusCell } from 'react-
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { FormWrapper } from '_app/components';
-import { colors, whiteColor } from '_app/constants';
+import { colors } from '_app/constants';
 import { useConfirmSmsCodeMutation, useSendSmsCodeMutation } from '_app/generated/graphql';
 import { navigation } from '_app/services/navigations';
 import { normalize } from '_app/utils/dimensions';

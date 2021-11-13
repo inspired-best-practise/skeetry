@@ -10,7 +10,7 @@ import { FormWrapper } from '_app/components';
 import { IconSizes, tLogo } from '_app/constants';
 import { AppContext } from '_app/context';
 import { useLoginMutation } from '_app/generated/graphql';
-import { Button, FormInput, LoadingIndicator } from '_app/layout';
+import { Button, Input, LoadingIndicator } from '_app/layout';
 import { navigation } from '_app/services/navigations';
 import { Typography } from '_app/theme';
 import { ThemeColors } from '_app/types/theme';
@@ -101,7 +101,7 @@ export const LoginScreen = () => {
               required: true,
             }}
             render={({ field: { onChange, onBlur, value } }) => (
-              <FormInput
+              <Input
                 ref={null}
                 onBlur={onBlur}
                 onChangeText={onChange}
@@ -120,7 +120,7 @@ export const LoginScreen = () => {
               required: true,
             }}
             render={({ field: { onChange, onBlur, value } }) => (
-              <FormInput
+              <Input
                 ref={null}
                 label={t('utils:password')}
                 placeholder={t('utils:password')}

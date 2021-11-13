@@ -17,7 +17,7 @@ import { launchImageLibrary } from 'react-native-image-picker';
 import { v4 as uuidv4 } from 'uuid';
 
 import { Avatar, Input } from '_app/components';
-import { darkColor, PLATFORM, tBase, whiteColor } from '_app/constants';
+import { PLATFORM, tBase } from '_app/constants';
 import { AppContext } from '_app/context';
 import {
   useDeletePhotoMutation,

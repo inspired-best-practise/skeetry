@@ -1,20 +1,16 @@
 import { useScrollToTop } from '@react-navigation/native';
 import React, { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, ScrollView, TextInput, Text, TouchableOpacity, useColorScheme } from 'react-native';
+import { View, ScrollView, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { Avatar, Card, HorizontalListSkeleton } from '_app/components';
-import { colors, darkColor, radius, tBase, whiteColor } from '_app/constants';
+import { Card, HorizontalListSkeleton, UserCard } from '_app/components';
 import { OrderDirection, useCitiesQuery, useUsersQuery } from '_app/generated/graphql';
-import { navigation } from '_app/services/navigations';
+import { Input } from '_app/layout';
 import { normalize } from '_app/utils/dimensions';
-
-import { s } from './styles';
 
 export const SearchScreen = () => {
   const { t } = useTranslation();
-  const theme = useColorScheme();
 
   const ref = useRef<ScrollView>(null);
   const [input, setInput] = useState('');
@@ -53,18 +49,7 @@ export const SearchScreen = () => {
   return (
     <SafeAreaView>
       <View style={{ paddingHorizontal: normalize(20) }}>
-        <View style={s.textInputWrapper}>
-          <TextInput
-            style={[
-              s.input,
-              theme === 'dark' && { backgroundColor: colors.gray800, borderRadius: radius.base, color: colors.white },
-            ]}
-            autoCapitalize="none"
-            placeholder={t('search:search')}
-            spellCheck={false}
-            onChangeText={handleChange}
-          />
-        </View>
+        <Input ref={null} placeholder={t('search:search')} onChangeText={handleChange} />
       </View>
       {searchList?.length === 0 && usersList?.length === 0 && (
         <Text style={[{ alignItems: 'center', padding: 20 }]}>{t('search:not_found')}</Text>
@@ -92,29 +77,11 @@ export const SearchScreen = () => {
               showsHorizontalScrollIndicator={false}
               contentContainerStyle={{ alignItems: 'center', padding: 20 }}
             >
-              {usersList?.map(i => (
-                <TouchableOpacity
-                  key={i.node.id}
-                  activeOpacity={0.7}
-                  onPress={() =>
-                    navigation.push('ProfileUser', {
-                      user: i.node,
-                    })
-                  }
-                >
-                  <View style={{ marginRight: 20, flexDirection: 'row', alignItems: 'center' }}>
-                    <Avatar src={i.node.avatar} username={i.node.username} />
-                    <View>
-                      <Text style={[tBase, { paddingLeft: 10 }, theme === 'dark' ? whiteColor : darkColor]}>
-                        {i.node.name}
-                      </Text>
-                      <Text style={[tBase, { paddingLeft: 10 }, theme === 'dark' ? whiteColor : darkColor]}>
-                        @{i.node.username}
-                      </Text>
-                    </View>
-                  </View>
-                </TouchableOpacity>
-              ))}
+              {usersList?.map(i => {
+                const { id, avatar, username, name } = i.node;
+
+                return <UserCard key={id} node={i.node} avatar={avatar} username={username} name={name} />;
+              })}
             </ScrollView>
           )}
         </View>

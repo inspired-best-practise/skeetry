@@ -3,7 +3,7 @@ import { View, Text, useColorScheme } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import { Avatar } from '_app/components';
-import { tBase, whiteColor } from '_app/constants';
+import { tBase } from '_app/constants';
 import { navigation } from '_app/services/navigations';
 
 import { s } from './styles';

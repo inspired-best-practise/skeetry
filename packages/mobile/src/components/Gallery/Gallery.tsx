@@ -3,8 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { FlatList, View, Text, TouchableOpacity } from 'react-native';
 import FastImage from 'react-native-fast-image';
 
-import { Button } from '_app/components';
-import { tBase, tTitle, whiteColor } from '_app/constants';
+import { tBase, tTitle } from '_app/constants';
 import { navigation } from '_app/services/navigations';
 
 import { s } from './styles';
