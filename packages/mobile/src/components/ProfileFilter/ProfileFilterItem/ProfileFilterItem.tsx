@@ -2,18 +2,15 @@ import React from 'react';
 import { TouchableHighlight, Text, useColorScheme } from 'react-native';
 
 import { colors } from '_app/constants';
-import { useProfileState } from '_app/states';
 
 import { s } from './styles';
 
 export const ProfileFilterItem = ({ selected, name, title, icon }: TListFilterItemProps) => {
-  const { setSelected } = useProfileState();
-
   const theme = useColorScheme();
 
   return (
     <TouchableHighlight
-      onPress={() => setSelected(name)}
+      // onPress={() => setSelected(name)}
       style={[
         s.filterItem,
         theme === 'dark' && { backgroundColor: colors.gray900 },

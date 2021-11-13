@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import { ProfileFilterItem } from '_app/components';
-import { useProfileState } from '_app/states';
 
 import { s } from './styles';
 
@@ -11,12 +10,10 @@ export const ProfileFilter = () => {
   const ref = useRef(null);
   const { t } = useTranslation();
 
-  const { selected } = useProfileState();
-
   return (
     <ScrollView ref={ref} horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={s.container}>
-      <ProfileFilterItem selected={selected} name="want" title={`${t('profile:want')}`} />
-      <ProfileFilterItem selected={selected} name="visited" title={`${t('profile:visited')}`} />
+      <ProfileFilterItem selected={'want'} name="want" title={`${t('profile:want')}`} />
+      <ProfileFilterItem selected={'want'} name="visited" title={`${t('profile:visited')}`} />
       {/* <ProfileFilterItem selected={selected} name="cities" title={`${t('profile:cities')}`} />
       <ProfileFilterItem selected={selected} name="places" title={`${t('profile:places')}`} /> */}
     </ScrollView>

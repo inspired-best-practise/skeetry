@@ -11,7 +11,7 @@ export const ListFilterItem = ({ name, icon }: TListFilterItemProps) => {
     <TouchableHighlight
       style={s.filterItem}
       underlayColor={colors.mainGray}
-      onPress={() => navigation.navigate('AddChooser')}
+      onPress={() => navigation.navigate('Search')}
     >
       {icon ? icon : <Text style={s.filterItemTitle}>{name}</Text>}
     </TouchableHighlight>

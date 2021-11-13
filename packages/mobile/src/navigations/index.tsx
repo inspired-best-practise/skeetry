@@ -2,16 +2,15 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator, StackNavigationOptions, TransitionPresets } from '@react-navigation/stack';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Easing, useColorScheme, View, Text, Alert } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Easing, useColorScheme } from 'react-native';
 import { enableScreens } from 'react-native-screens';
 
 import CloseModal from '_app/components/CloseModal/CloseModal';
-import { colors, darkColor, darkTheme, lightTheme, tBase, whiteColor } from '_app/constants';
+import { colors, darkTheme, lightTheme } from '_app/constants';
 import {
   CardScreen,
   SettingsScreen,
-  AddChooserScreen,
+  SearchScreen,
   ItemsByCategoryScreen,
   OfflineScreen,
   AvatarScreen,
@@ -81,8 +80,8 @@ const Index = (): JSX.Element => {
             title: t('utils:search'),
             presentation: 'card',
           }}
-          name="AddChooser"
-          component={AddChooserScreen}
+          name="Search"
+          component={SearchScreen}
         />
         {/* <RootStack.Screen
           options={({ route }) => ({

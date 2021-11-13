@@ -1,5 +1,5 @@
 export * from './Activity';
-export * from './Add';
+export * from './Search';
 export * from './Auth';
 export * from './Card';
 export * from './Explore';

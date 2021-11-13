@@ -8,7 +8,6 @@ import { FormWrapper } from '_app/components';
 import { colors, whiteColor } from '_app/constants';
 import { useConfirmSmsCodeMutation, useSendSmsCodeMutation } from '_app/generated/graphql';
 import { navigation } from '_app/services/navigations';
-import { useRegState } from '_app/states';
 import { normalize } from '_app/utils/dimensions';
 
 import { s } from './styles';
@@ -33,10 +32,8 @@ export const CodeScreen = () => {
   const [sendSmsCodeMutation, { data: dataResend, loading: loadingResend, error: errorResend }] =
     useSendSmsCodeMutation();
 
-  const { phone, setCode } = useRegState();
-
   const onSubmit = value => {
-    if (phone && value.length === CELL_COUNT) {
+    if (value.length === CELL_COUNT) {
       confirmSmsCodeMutation({
         variables: {
           phone,

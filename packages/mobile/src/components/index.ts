@@ -23,3 +23,5 @@ export * from './Gallery';
 export * from './UserWithRating';
 export * from './Input';
 export * from './Preview';
+export * from './FormGroup';
+export * from './OptionList';

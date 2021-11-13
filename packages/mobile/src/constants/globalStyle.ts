@@ -98,7 +98,6 @@ export const darkTheme = {
 
 const textBase: TextStyle = {
   fontFamily: fontFamily.regular,
-  color: colors.black,
 };
 
 export const tSplash: TextStyle = {
@@ -356,3 +355,37 @@ export const mapGfxStyle: MapStyleElement[] = [
     ],
   },
 ];
+
+export type IconSizesType = {
+  x00: number;
+  x0: number;
+  x1: number;
+  x2: number;
+  x3: number;
+  x4: number;
+  x5: number;
+  x6: number;
+  x7: number;
+  x8: number;
+  x9: number;
+  x10: number;
+  x11: number;
+  x12: number;
+};
+
+export const IconSizes: IconSizesType = {
+  x00: 4,
+  x0: 6,
+  x1: 10,
+  x2: 12,
+  x3: 14,
+  x4: 16,
+  x5: 20,
+  x6: 24,
+  x7: 28,
+  x8: 32,
+  x9: 40,
+  x10: 50,
+  x11: 60,
+  x12: 100,
+};

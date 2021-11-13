@@ -8,7 +8,7 @@ import { THomeTabParamList } from 'types';
 
 import { TabBarComponent } from '_app/components/BottomTabBar';
 import { colors } from '_app/constants';
-import { HomeScreen, ProfileScreen, AddScreen, LocationsScreen, AddChooserScreen } from '_app/screens';
+import { HomeScreen, ProfileScreen, LocationsScreen, SearchScreen } from '_app/screens';
 
 // import { SwipesScreen } from '_app/screens';
 
@@ -105,25 +105,6 @@ const ExploreStack = () => {
 //     </Stack.Navigator>
 //   );
 // };
-
-const AddStack = () => {
-  return (
-    <Stack.Navigator
-      screenOptions={{
-        headerShown: true,
-        gestureEnabled: true,
-      }}
-    >
-      <Stack.Screen
-        options={({ route }) => ({
-          headerShown: true,
-        })}
-        name="Add"
-        component={AddScreen}
-      />
-    </Stack.Navigator>
-  );
-};
 
 const HomeStack = () => {
   return (
@@ -250,8 +231,8 @@ const HomeTab = () => {
             />
           ),
         })}
-        component={AddChooserScreen}
-        name="AddChooser"
+        component={SearchScreen}
+        name="Search"
       />
       {/* <Tab.Screen
         options={({ route }) => ({

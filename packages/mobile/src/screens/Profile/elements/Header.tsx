@@ -7,19 +7,16 @@ import * as HeroIcon from 'react-native-heroicons/solid';
 import { ProfileStatsItem, Avatar, ProfileFilter, Button } from '_app/components';
 import { colors, darkColor, PLATFORM, whiteColor } from '_app/constants';
 import { navigation } from '_app/services/navigations';
+import { signOut } from '_app/utils/authentication';
 
 import { s } from '../styles';
 
-export const renderHeader = (
-  user: TUser,
-  t,
-  setSelected,
-  isMe,
-  theme,
-  route,
-  showActionSheetWithOptions,
-  setLogout,
-) => {
+const logOut = async () => {
+  await signOut();
+  navigation.navigate('AuthStack');
+};
+
+export const renderHeader = (user: TUser, t, isMe, theme, route, showActionSheetWithOptions) => {
   const actionOptions = [
     `${t('utils:cancel')}`,
     `${t('settings:account_settings')}`,
@@ -60,7 +57,7 @@ export const renderHeader = (
             } else if (buttonIndex === 2) {
               onButtonPress();
             } else if (buttonIndex === 3) {
-              setLogout();
+              logOut();
             }
           },
         )
@@ -79,7 +76,7 @@ export const renderHeader = (
             } else if (i === 2) {
               onButtonPress();
             } else if (i === 3) {
-              setLogout();
+              logOut();
             }
           },
         );

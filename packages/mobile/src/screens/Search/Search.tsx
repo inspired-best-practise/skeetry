@@ -12,7 +12,7 @@ import { normalize } from '_app/utils/dimensions';
 
 import { s } from './styles';
 
-export const AddChooserScreen = () => {
+export const SearchScreen = () => {
   const { t } = useTranslation();
   const theme = useColorScheme();
 

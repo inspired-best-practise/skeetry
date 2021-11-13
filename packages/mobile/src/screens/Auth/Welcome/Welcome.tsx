@@ -2,20 +2,16 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { View, Text, TouchableOpacity } from 'react-native';
 
-import { useAuthState } from '_app/states';
-
 import { s } from './styles';
 
 export const WelcomeScreen = () => {
   const { t } = useTranslation();
 
-  const { setLogin } = useAuthState();
-
   return (
     <View style={s.container}>
       <Text style={{ marginVertical: 20, textAlign: 'center' }}>{t('utils:welcome_to')} Skeetry</Text>
       <TouchableOpacity
-        onPress={() => setLogin()}
+        onPress={() => {}}
         activeOpacity={0.6}
         // eslint-disable-next-line react-native/no-inline-styles
         style={{

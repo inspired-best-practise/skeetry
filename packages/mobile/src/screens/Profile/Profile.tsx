@@ -8,7 +8,8 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { darkBg, tBase, whiteBg, whiteColor } from '_app/constants';
 import { OrderDirection, useMeQuery, useVisitedQuery, useWantedQuery } from '_app/generated/graphql';
-import { useAuthState, useProfileState } from '_app/states';
+import { navigation } from '_app/services/navigations';
+import { signOut } from '_app/utils/authentication';
 
 import { renderEmpty, renderItem, renderHeader } from './elements';
 import { s } from './styles';
@@ -24,9 +25,6 @@ export const ProfileScreen = () => {
   const [visited, setVisited] = useState([]);
 
   const { loading, data, error, refetch } = useMeQuery();
-
-  const { setLogout } = useAuthState();
-  const { selected, setSelected } = useProfileState();
 
   const {
     data: dataWanted,
@@ -107,10 +105,10 @@ export const ProfileScreen = () => {
   const onRefresh = useCallback(() => {
     setRefreshing(true);
     refetch();
-    selected === 'want' && refetchWanted();
-    selected === 'visited' && refetchVisited();
+    true && refetchWanted();
+    true && refetchVisited();
     setRefreshing(false);
-  }, [refetch, refetchWanted, refetchVisited, selected]);
+  }, [refetch, refetchWanted, refetchVisited]);
 
   useScrollToTop(ref);
 
@@ -122,11 +120,16 @@ export const ProfileScreen = () => {
     );
   }
 
+  const logOut = async () => {
+    await signOut();
+    navigation.navigate('AuthStack');
+  };
+
   if (error || errorWanted || errorVisited) {
     return (
       <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text>Error. Please try later...</Text>
-        <TouchableWithoutFeedback style={{ margin: 10 }} onPress={() => setLogout()}>
+        <TouchableWithoutFeedback style={{ margin: 10 }} onPress={() => logOut()}>
           <Text style={[tBase, theme === 'dark' && whiteColor]}>Logout</Text>
         </TouchableWithoutFeedback>
       </SafeAreaView>
@@ -138,7 +141,7 @@ export const ProfileScreen = () => {
   const isMe = true;
 
   const getData = () => {
-    switch (selected) {
+    switch ('want') {
       case 'want':
         return wanted;
       case 'visited':
@@ -150,33 +153,21 @@ export const ProfileScreen = () => {
   };
 
   return (
-    <>
-      <View style={[s.headerArea, theme === 'dark' ? darkBg : whiteBg]} />
-      <FlatList
-        ref={ref}
-        ListHeaderComponent={renderHeader(
-          user,
-          t,
-          setSelected,
-          isMe,
-          theme,
-          { route: null },
-          showActionSheetWithOptions,
-          setLogout,
-        )}
-        ListEmptyComponent={renderEmpty(t, theme)}
-        numColumns={2}
-        horizontal={false}
-        data={getData()}
-        columnWrapperStyle={s.listWrapper}
-        contentContainerStyle={{}}
-        renderItem={renderItem}
-        keyExtractor={item => item.node.id}
-        showsVerticalScrollIndicator={false}
-        decelerationRate="fast"
-        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
-        onEndReached={() => (selected === 'want' ? wantedEndReached() : visitedEndReached())}
-      />
-    </>
+    <FlatList
+      ref={ref}
+      ListHeaderComponent={renderHeader(user, t, isMe, theme, { route: null }, showActionSheetWithOptions)}
+      ListEmptyComponent={renderEmpty(t, theme)}
+      numColumns={2}
+      horizontal={false}
+      data={getData()}
+      columnWrapperStyle={s.listWrapper}
+      contentContainerStyle={{}}
+      renderItem={renderItem}
+      keyExtractor={item => item.node.id}
+      showsVerticalScrollIndicator={false}
+      decelerationRate="fast"
+      refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+      onEndReached={() => (true ? wantedEndReached() : visitedEndReached())}
+    />
   );
 };

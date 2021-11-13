@@ -5,7 +5,7 @@ import { createUploadLink } from 'apollo-upload-client';
 import fetch from 'isomorphic-unfetch';
 
 import { PLATFORM } from '_app/constants';
-import { getAccessToken } from '_app/states';
+import { loadToken } from '_app/utils/storage';
 
 const cache = new InMemoryCache();
 
@@ -20,11 +20,13 @@ const httpLink = createUploadLink({
   fetch,
 });
 
-const authLink = setContext((_, { headers }) => {
+const authLink = setContext(async (_, { headers }) => {
+  const token = await loadToken();
+
   return {
     headers: {
       ...headers,
-      authorization: `Bearer ${getAccessToken()}`,
+      authorization: `Bearer ${token}`,
     },
   };
 });

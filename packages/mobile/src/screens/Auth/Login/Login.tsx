@@ -1,26 +1,35 @@
 import { ApolloError } from '@apollo/client';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { View, Text, TouchableOpacity, SafeAreaView, useColorScheme } from 'react-native';
-import { TextInput } from 'react-native-gesture-handler';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import SplashScreen from 'react-native-splash-screen';
+import Icon from 'react-native-vector-icons/Feather';
 
 import { FormWrapper } from '_app/components';
-import { colors, darkBg, darkColor, radius, tLogo, whiteColor } from '_app/constants';
+import { IconSizes, tLogo } from '_app/constants';
+import { AppContext } from '_app/context';
 import { useLoginMutation } from '_app/generated/graphql';
+import { Button, FormInput, LoadingIndicator } from '_app/layout';
 import { navigation } from '_app/services/navigations';
-import { useAuthState } from '_app/states';
+import { Typography } from '_app/theme';
+import { ThemeColors } from '_app/types/theme';
+import { signOut } from '_app/utils/authentication';
+import { normalize } from '_app/utils/dimensions';
+import { loadToken, saveToken } from '_app/utils/storage';
 
 import { s } from './styles';
 
-export const LoginScreen = () => {
-  const { t } = useTranslation();
-  const theme = useColorScheme();
+const { FontWeights } = Typography;
 
+export const LoginScreen = () => {
+  const { theme, updateMe } = useContext(AppContext);
+
+  const { t } = useTranslation();
+
+  const [initializing, setInitializing] = useState(true);
   const [hidePassword, setHidePassword] = useState(true);
   const [errorLogin, setErrorLogin] = useState<ApolloError>();
-
-  const { setAccessToken, setRefreshToken, setMe, setLogin } = useAuthState();
 
   const [login, { loading, data, error }] = useLoginMutation();
 
@@ -29,7 +38,8 @@ export const LoginScreen = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = ({ username, password }) =>
+
+  const onSubmit = ({ username, password }) => {
     login({
       variables: {
         input: {
@@ -38,135 +48,150 @@ export const LoginScreen = () => {
         },
       },
     });
+  };
+
+  useEffect(() => {
+    if (data) {
+      const { accessToken, user } = data.login;
+
+      saveToken(accessToken);
+      updateMe(user);
+      navigation.navigate('HomeTab');
+      setInitializing(false);
+    }
+  }, [data]);
 
   useEffect(() => {
     setErrorLogin(error);
   }, [error]);
 
-  useEffect(() => {
-    if (data) {
-      const { accessToken, refreshToken, user } = data.login;
-
-      setAccessToken(accessToken);
-      setRefreshToken(refreshToken);
-      setMe(user);
-      setLogin();
+  const navigateToApp = async () => {
+    try {
+      // welcomeNotification();
+      navigation.navigate('HomeTab', { screen: 'Home' });
+    } catch {
+      signOut();
     }
-  }, [data]);
+  };
 
-  return (
-    <SafeAreaView>
-      <FormWrapper verticalOffset={-40}>
-        <Text style={[tLogo, s.formTitle, theme === 'dark' ? whiteColor : darkColor]}>Skeetry</Text>
-        <Controller
-          control={control}
-          rules={{
-            required: true,
-          }}
-          render={({ field: { onChange, onBlur, value } }) => (
-            <View style={s.textInputWrapper}>
-              <TextInput
-                style={[
-                  s.input,
-                  theme === 'dark' && {
-                    backgroundColor: colors.gray800,
-                    borderRadius: radius.base,
-                    color: colors.white,
-                  },
-                ]}
+  const initialize = async () => {
+    const token = await loadToken();
+    if (token) {
+      await navigateToApp();
+    }
+
+    setInitializing(false);
+    SplashScreen.hide();
+  };
+
+  useEffect(() => {
+    initialize();
+  }, []);
+
+  let content = <LoadingIndicator color={theme.accent} size={IconSizes.x1} />;
+
+  if (!initializing) {
+    content = (
+      <View>
+        <FormWrapper verticalOffset={-40}>
+          <Text style={[tLogo, styles(theme).formTitle]}>Skeetry</Text>
+          <Controller
+            control={control}
+            rules={{
+              required: true,
+            }}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <FormInput
+                ref={null}
                 onBlur={onBlur}
                 onChangeText={onChange}
-                value={value}
-                autoCapitalize="none"
+                label={t('utils:username')}
                 placeholder={t('utils:username')}
-                spellCheck={false}
-              />
-            </View>
-          )}
-          name="username"
-          defaultValue=""
-        />
-        {errors.username && (
-          <Text style={s.errorLogin}>
-            {t('utils:username')} {t('utils:is_required')}
-          </Text>
-        )}
-        <Controller
-          control={control}
-          rules={{
-            required: true,
-          }}
-          render={({ field: { onChange, onBlur, value } }) => (
-            <View style={s.textInputWrapper}>
-              <TextInput
-                style={[
-                  s.input,
-                  theme === 'dark' && {
-                    backgroundColor: colors.gray800,
-                    borderRadius: radius.base,
-                    color: colors.white,
-                  },
-                ]}
-                onBlur={onBlur}
-                onChangeText={onChange}
                 value={value}
-                autoCapitalize="none"
-                placeholder={t('utils:password')}
-                spellCheck={false}
-                secureTextEntry
+                error={errors.username && t('utils:username') + ' ' + t('utils:is_required')}
               />
-            </View>
-          )}
-          name="password"
-          defaultValue=""
-        />
-        {errors.password && (
-          <Text style={s.errorLogin}>
-            {t('utils:password')} {t('utils:is_required')}
+            )}
+            name="username"
+            defaultValue=""
+          />
+          <Controller
+            control={control}
+            rules={{
+              required: true,
+            }}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <FormInput
+                ref={null}
+                label={t('utils:password')}
+                placeholder={t('utils:password')}
+                value={value}
+                onChangeText={onChange}
+                onBlur={onBlur}
+                error={errors.password && t('utils:password') + ' ' + t('utils:is_required')}
+                secureTextEntry={true}
+              />
+            )}
+            name="password"
+            defaultValue=""
+          />
+          <TouchableOpacity
+            onPress={() => navigation.push('ForgotPassword')}
+            style={[s.forgotPassword]}
+            activeOpacity={1}
+          >
+            <Text style={styles(theme).forgotPasswordText}>{t('utils:forgot_password')}</Text>
+          </TouchableOpacity>
+          <Button
+            Icon={() => <Icon name="log-in" color={theme.white} size={16} />}
+            label={!loading ? t('utils:login') : t('utils:loading')}
+            onPress={handleSubmit(onSubmit)}
+            loading={loading}
+            containerStyle={{}}
+          />
+          <Text style={[s.errorLogin, errorLogin ? { opacity: 1, textAlign: 'center' } : { opacity: 0 }]}>
+            {errorLogin && errorLogin.message}
           </Text>
-        )}
+        </FormWrapper>
         <TouchableOpacity
-          onPress={() => navigation.push('ForgotPassword')}
-          style={[s.forgotPassword]}
+          onPress={() => navigation.push('Phone')}
           activeOpacity={1}
+          style={[s.registerWrapper, styles(theme).registerWrapper]}
         >
-          <Text style={[s.forgotPasswordText, theme === 'dark' ? whiteColor : darkColor]}>
-            {t('utils:forgot_password')}
+          <Text style={[s.registerWrapperText, styles(theme).registerWrapperText]}>
+            <Text style={[s.registerWrapperTextBold, styles(theme).registerWrapperTextBold]}>
+              {t('utils:no_account')}
+            </Text>{' '}
+            {t('utils:register_now')}
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          onPress={handleSubmit(onSubmit)}
-          disabled={loading}
-          activeOpacity={0.6}
-          // eslint-disable-next-line react-native/no-inline-styles
-          style={[
-            {
-              ...s.btnLogin,
-              opacity: 1,
-            },
-            theme === 'dark' ? { backgroundColor: colors.gray800 } : darkBg,
-          ]}
-        >
-          <Text style={[s.btnLoginText, theme === 'dark' && whiteColor]}>
-            {!loading ? t('utils:login') : t('utils:loading')}
-          </Text>
-        </TouchableOpacity>
-        <Text style={[s.errorLogin, errorLogin ? { opacity: 1, textAlign: 'center' } : { opacity: 0 }]}>
-          {errorLogin && errorLogin.message}
-        </Text>
-      </FormWrapper>
-      <TouchableOpacity
-        onPress={() => navigation.push('Phone')}
-        activeOpacity={1}
-        style={[s.registerWrapper, theme === 'dark' && { borderTopColor: colors.gray800 }]}
-      >
-        <Text style={[s.registerWrapperText, theme === 'dark' ? whiteColor : darkColor]}>
-          <Text style={[s.registerWrapperTextBold, theme === 'dark' ? whiteColor : darkColor]}>
-            {t('utils:no_account')}
-          </Text>{' '}
-          {t('utils:register_now')}
-        </Text>
-      </TouchableOpacity>
-    </SafeAreaView>
-  );
+      </View>
+    );
+  }
+
+  return <View style={styles(theme).container}>{content}</View>;
 };
+
+const styles = (theme = {} as ThemeColors) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: theme.base,
+    },
+    formTitle: {
+      marginBottom: normalize(30),
+      color: theme.text01,
+    },
+    forgotPasswordText: {
+      ...FontWeights.Semibold,
+      color: theme.gray03,
+    },
+    registerWrapperText: {
+      color: theme.text01,
+    },
+    registerWrapperTextBold: {
+      color: theme.gray03,
+    },
+    registerWrapper: {
+      borderTopColor: theme.gray01,
+    },
+  });

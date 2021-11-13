@@ -7,7 +7,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { FormWrapper } from '_app/components';
 import { useSignupMutation } from '_app/generated/graphql';
 import { navigation } from '_app/services/navigations';
-import { useAuthState, useRegState } from '_app/states';
 
 import { s } from './styles';
 
@@ -16,28 +15,23 @@ export const CredentialsScreen = () => {
 
   const [signupMutation, { data, loading, error }] = useSignupMutation();
 
-  const { phone, code } = useRegState();
-  const { setAccessToken, setRefreshToken, setMe, setLogin } = useAuthState();
-
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm();
   const onSubmit = ({ name, username, password }) => {
-    if (phone && code) {
-      signupMutation({
-        variables: {
-          input: {
-            phone,
-            name,
-            username,
-            password,
-            code,
-          },
+    signupMutation({
+      variables: {
+        input: {
+          phone,
+          name,
+          username,
+          password,
+          code,
         },
-      });
-    }
+      },
+    });
   };
 
   useEffect(() => {
@@ -46,7 +40,6 @@ export const CredentialsScreen = () => {
 
       setAccessToken(accessToken);
       setRefreshToken(refreshToken);
-      setMe(user);
 
       return navigation.push('Welcome');
     }

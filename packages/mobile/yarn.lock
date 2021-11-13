@@ -2534,6 +2534,14 @@
     "@types/react" "*"
     "@types/react-native" "*"
 
+"@types/react-native-indicators@^0.16.1":
+  version "0.16.1"
+  resolved "https://registry.yarnpkg.com/@types/react-native-indicators/-/react-native-indicators-0.16.1.tgz#9bf7d6d044509f7a4179987a19ceb1603108cd04"
+  integrity sha512-L7SCFjTdDzwNciAYflAdWuSwgj6qP2Zd+uKFcFBkovG/O5qX7P9aKkmzYQz/lXIJtiPWgNEG1xIeJoHLed31Ew==
+  dependencies:
+    "@types/react" "*"
+    "@types/react-native" "*"
+
 "@types/react-native-snap-carousel@^3.8.5":
   version "3.8.5"
   resolved "https://registry.yarnpkg.com/@types/react-native-snap-carousel/-/react-native-snap-carousel-3.8.5.tgz#5b3cb208119e3599d5537b5fc83653a155c6275d"
@@ -9542,6 +9550,13 @@ react-native-image-picker@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-4.1.2.tgz#1b4b4980a6878930675396c23dffbaa802cbbcc6"
   integrity sha512-e4frAekSJkOgEmL9UOLukGhjtPwHSD7qSf3Rmwk+850ofxKqZFfAIfWc9MO3UmCb6G7oB6PkckyTOGOXybrN5A==
+
+react-native-indicators@^0.17.0:
+  version "0.17.0"
+  resolved "https://registry.yarnpkg.com/react-native-indicators/-/react-native-indicators-0.17.0.tgz#92f95efaf5fb53be576dfe4e1980a25655a93f55"
+  integrity sha512-s23em477GHGxWeGczWrixScAZD6tQU4mx1fttlrwhEGKOxhBgp55Kh3RoD9Wj4yna4e5W35xQNoPqoJAT6QW5A==
+  dependencies:
+    prop-types "^15.5.10"
 
 react-native-linear-gradient@^2.5.6:
   version "2.5.6"

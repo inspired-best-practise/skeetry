@@ -12,7 +12,7 @@ export const Collection = ({ item }: TCollectionProps) => {
     <Pressable
       key={item.id}
       onPress={() => {
-        navigation.navigate('AddChooser');
+        navigation.navigate('Search');
       }}
     >
       <View style={s.item}>

@@ -6,9 +6,6 @@ import { normalize } from '_app/utils/dimensions';
 import { tButton, tSmallSemibold } from './../../../constants/globalStyle';
 
 export const s = StyleSheet.create({
-  formTitle: {
-    marginBottom: normalize(30),
-  },
   btnLogin: {
     marginVertical: normalize(10),
     width: '100%',

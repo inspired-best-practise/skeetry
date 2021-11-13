@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlatList, SafeAreaView, useColorScheme } from 'react-native';
+import { FlatList, useColorScheme } from 'react-native';
 
+import { AppContext } from '_app/context';
 import { useWantedQuery, OrderDirection, useVisitedQuery } from '_app/generated/graphql';
-import { useAuthState, useProfileState } from '_app/states';
 import { SCREEN_WIDTH } from '_app/utils/dimensions';
 
 import { renderEmpty, renderItem, renderHeader } from './elements';
@@ -13,13 +13,12 @@ export const ProfileUserScreen = ({ route }) => {
   const ref = useRef(null);
   const { t } = useTranslation();
   const theme = useColorScheme();
+  const { me } = useContext(AppContext);
 
   const [wanted, setWanted] = useState([]);
   const [visited, setVisited] = useState([]);
 
   const { user } = route.params;
-
-  const { me } = useAuthState();
 
   const isMe = me.id === user.id;
 
@@ -103,10 +102,8 @@ export const ProfileUserScreen = ({ route }) => {
     }
   };
 
-  const { selected, setSelected } = useProfileState();
-
   const getData = () => {
-    switch (selected) {
+    switch ('want') {
       case 'want':
         return wanted;
       case 'visited':
@@ -118,21 +115,19 @@ export const ProfileUserScreen = ({ route }) => {
   };
 
   return (
-    <SafeAreaView>
-      <FlatList
-        ref={ref}
-        ListHeaderComponent={renderHeader(user, t, setSelected, isMe, theme, route)}
-        ListEmptyComponent={renderEmpty(t)}
-        numColumns={2}
-        data={getData()}
-        columnWrapperStyle={s.listWrapper}
-        contentContainerStyle={{ width: SCREEN_WIDTH }}
-        renderItem={renderItem}
-        keyExtractor={item => item.node.id}
-        showsVerticalScrollIndicator={false}
-        decelerationRate="fast"
-        onEndReached={() => (selected === 'want' ? wantedEndReached() : visitedEndReached())}
-      />
-    </SafeAreaView>
+    <FlatList
+      ref={ref}
+      ListHeaderComponent={renderHeader(user, t, isMe, theme, route)}
+      ListEmptyComponent={renderEmpty(t)}
+      numColumns={2}
+      data={getData()}
+      columnWrapperStyle={s.listWrapper}
+      contentContainerStyle={{ width: SCREEN_WIDTH }}
+      renderItem={renderItem}
+      keyExtractor={item => item.node.id}
+      showsVerticalScrollIndicator={false}
+      decelerationRate="fast"
+      onEndReached={() => (selected === 'want' ? wantedEndReached() : visitedEndReached())}
+    />
   );
 };

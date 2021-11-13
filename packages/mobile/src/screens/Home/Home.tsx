@@ -1,6 +1,7 @@
 import MasonryList from '@react-native-seoul/masonry-list';
 import { useScrollToTop } from '@react-navigation/native';
 import React, { // useEffect,
+  useContext,
   useRef, // useState
 } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -13,6 +14,7 @@ import { Preview } from '_app/components';
 // import { Categories } from '_app/components/Categories';
 import { Stories } from '_app/components/Stories';
 import { darkColor, tTitle, whiteColor } from '_app/constants';
+import { AppContext } from '_app/context';
 // import {
 //   OrderDirection, // useNearbyQuery,
 //   usePopularQuery,
@@ -27,7 +29,7 @@ export const HomeScreen = () => {
   // const [nearby, setNearby] = useState();
   // const [popular, setPopular] = useState([]);
 
-  const theme = useColorScheme();
+  const scheme = useColorScheme();
 
   useScrollToTop(ref);
 
@@ -129,9 +131,9 @@ export const HomeScreen = () => {
   // ];
 
   return (
-    <SafeAreaView>
+    <View>
       <View style={s.header}>
-        <Text style={[tTitle, theme === 'dark' ? whiteColor : darkColor]}>Skeetry</Text>
+        <Text style={tTitle}>Skeetry</Text>
       </View>
       <ScrollView showsVerticalScrollIndicator={false} ref={ref} scrollsToTop={true} contentContainerStyle={s.main}>
         <Preview />
@@ -179,6 +181,6 @@ export const HomeScreen = () => {
           type="popular"
         /> */}
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 };
