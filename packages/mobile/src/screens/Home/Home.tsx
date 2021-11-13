@@ -5,7 +5,7 @@ import React, { // useEffect,
   useRef, // useState
 } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Text, View, ScrollView, TouchableOpacity, Alert, useColorScheme } from 'react-native';
+import { Text, View, ScrollView, TouchableOpacity, Alert, useColorScheme, StyleSheet } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -15,6 +15,7 @@ import { Preview } from '_app/components';
 import { Stories } from '_app/components/Stories';
 import { darkColor, tTitle, whiteColor } from '_app/constants';
 import { AppContext } from '_app/context';
+import { ThemeColors } from '_app/types/theme';
 // import {
 //   OrderDirection, // useNearbyQuery,
 //   usePopularQuery,
@@ -26,10 +27,10 @@ import { s } from './styles';
 export const HomeScreen = () => {
   const { t } = useTranslation();
   const ref = useRef<ScrollView>(null);
+  const scheme = useColorScheme();
+  const { theme } = useContext(AppContext);
   // const [nearby, setNearby] = useState();
   // const [popular, setPopular] = useState([]);
-
-  const scheme = useColorScheme();
 
   useScrollToTop(ref);
 
@@ -133,7 +134,7 @@ export const HomeScreen = () => {
   return (
     <View>
       <View style={s.header}>
-        <Text style={tTitle}>Skeetry</Text>
+        <Text style={[tTitle, styles(theme).tTitle]}>Skeetry</Text>
       </View>
       <ScrollView showsVerticalScrollIndicator={false} ref={ref} scrollsToTop={true} contentContainerStyle={s.main}>
         <Preview />
@@ -184,3 +185,10 @@ export const HomeScreen = () => {
     </View>
   );
 };
+
+const styles = (theme = {} as ThemeColors) =>
+  StyleSheet.create({
+    tTitle: {
+      color: theme.text01,
+    },
+  });

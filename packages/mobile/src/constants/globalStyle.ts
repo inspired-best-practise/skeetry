@@ -175,14 +175,6 @@ export const tSmallSemibold: TextStyle = {
   fontWeight: '600',
 };
 
-export const darkColor: TextStyle = {
-  color: colors.black,
-};
-
-export const whiteColor: TextStyle = {
-  color: colors.white,
-};
-
 export const darkBg: TextStyle = {
   backgroundColor: colors.black,
 };
