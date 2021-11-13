@@ -4,7 +4,7 @@ import codePush from 'react-native-code-push';
 import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import * as HeroIcon from 'react-native-heroicons/solid';
 
-import { ProfileStatsItem, Avatar, ProfileFilter, Button } from '_app/components';
+import { ProfileStatsItem, Avatar, ProfileFilter } from '_app/components';
 import { colors, PLATFORM } from '_app/constants';
 import { navigation } from '_app/services/navigations';
 import { ThemeColors } from '_app/types/theme';
@@ -17,7 +17,7 @@ const logOut = async () => {
   navigation.navigate('AuthStack');
 };
 
-export const renderHeader = (user: TUser, t, isMe, theme, route, showActionSheetWithOptions) => {
+export const renderHeader = (user: TUser, t, isMe, theme, scheme, route, showActionSheetWithOptions) => {
   const actionOptions = [
     `${t('utils:cancel')}`,
     `${t('settings:account_settings')}`,
@@ -48,7 +48,7 @@ export const renderHeader = (user: TUser, t, isMe, theme, route, showActionSheet
             options: actionOptions,
             destructiveButtonIndex: 3,
             cancelButtonIndex: 0,
-            userInterfaceStyle: theme === 'dark' ? 'dark' : 'light',
+            userInterfaceStyle: scheme === 'dark' ? 'dark' : 'light',
           },
           buttonIndex => {
             if (buttonIndex === 0) {
@@ -65,7 +65,7 @@ export const renderHeader = (user: TUser, t, isMe, theme, route, showActionSheet
       : showActionSheetWithOptions(
           {
             options: actionOptions,
-            userInterfaceStyle: theme === 'dark' ? 'dark' : 'light',
+            userInterfaceStyle: scheme === 'dark' ? 'dark' : 'light',
             cancelButtonIndex: 0,
             destructiveButtonIndex: 3,
           },
@@ -88,7 +88,7 @@ export const renderHeader = (user: TUser, t, isMe, theme, route, showActionSheet
       <View style={[s.profilePanel]}>
         {isMe && route.name !== 'ProfileUser' && (
           <TouchableWithoutFeedback onPress={() => onPressSheet()}>
-            <HeroIcon.DotsHorizontalIcon size={22} color={theme === 'dark' ? colors.white : colors.black} />
+            <HeroIcon.DotsHorizontalIcon size={22} color={theme.text01} />
           </TouchableWithoutFeedback>
         )}
       </View>
@@ -147,5 +147,8 @@ const styles = (theme = {} as ThemeColors) =>
   StyleSheet.create({
     text: {
       color: theme.text01,
+    },
+    icon: {
+      backgroundColor: theme.base,
     },
   });

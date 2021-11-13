@@ -2,7 +2,7 @@ import { useActionSheet } from '@expo/react-native-action-sheet';
 import { useScrollToTop } from '@react-navigation/native';
 import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Text, FlatList, RefreshControl } from 'react-native';
+import { Text, FlatList, RefreshControl, useColorScheme } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -19,6 +19,7 @@ export const ProfileScreen = () => {
   const ref = useRef(null);
   const { t } = useTranslation();
   const { theme } = useContext(AppContext);
+  const scheme = useColorScheme();
 
   const { showActionSheetWithOptions } = useActionSheet();
   const [refreshing, setRefreshing] = useState(false);
@@ -156,7 +157,7 @@ export const ProfileScreen = () => {
   return (
     <FlatList
       ref={ref}
-      ListHeaderComponent={renderHeader(user, t, isMe, theme, { route: null }, showActionSheetWithOptions)}
+      ListHeaderComponent={renderHeader(user, t, isMe, theme, scheme, { route: null }, showActionSheetWithOptions)}
       ListEmptyComponent={renderEmpty(t, theme)}
       numColumns={2}
       horizontal={false}

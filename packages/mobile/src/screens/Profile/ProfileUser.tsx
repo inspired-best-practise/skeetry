@@ -12,7 +12,8 @@ import { s } from './styles';
 export const ProfileUserScreen = ({ route }) => {
   const ref = useRef(null);
   const { t } = useTranslation();
-  const theme = useColorScheme();
+  const { theme } = useContext(AppContext);
+  const scheme = useColorScheme();
   const { me } = useContext(AppContext);
 
   const [wanted, setWanted] = useState([]);
@@ -117,7 +118,7 @@ export const ProfileUserScreen = ({ route }) => {
   return (
     <FlatList
       ref={ref}
-      ListHeaderComponent={renderHeader(user, t, isMe, theme, route)}
+      ListHeaderComponent={renderHeader(user, t, isMe, theme, scheme, route)}
       ListEmptyComponent={renderEmpty(t)}
       numColumns={2}
       data={getData()}
