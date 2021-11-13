@@ -83,8 +83,6 @@ export const CodeScreen = () => {
     }
   }, [dataResend]);
 
-  console.log('phone', phone);
-
   return (
     <SafeAreaView style={s.container}>
       <FormWrapper>

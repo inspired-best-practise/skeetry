@@ -1,14 +1,16 @@
 import { useActionSheet } from '@expo/react-native-action-sheet';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, Text, TouchableHighlight, StatusBar, Pressable, ActionSheetIOS, useColorScheme } from 'react-native';
+import { View, Text, TouchableHighlight, Pressable, ActionSheetIOS, useColorScheme, StyleSheet } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import Icon from 'react-native-vector-icons/Feather';
 
 import { Gallery } from '_app/components';
-import { colors, mapGfxStyle, PLATFORM } from '_app/constants';
+import { mapGfxStyle, PLATFORM } from '_app/constants';
+import { AppContext } from '_app/context';
 import { useAddCityMutation, useCityQuery, useMoveCityMutation, useRemoveCityMutation } from '_app/generated/graphql';
+import { ThemeColors } from '_app/types/theme';
 import { languageTag } from '_app/utils/helpers';
 
 import { s } from './styles';
@@ -16,7 +18,8 @@ import { s } from './styles';
 // TODO: refactor mutations and conditions, split into different components and files
 export const CardScreen = ({ route, navigation }) => {
   const { t } = useTranslation();
-  const theme = useColorScheme();
+  const scheme = useColorScheme();
+  const { me, theme } = useContext(AppContext);
 
   const { item } = route.params;
   const { showActionSheetWithOptions } = useActionSheet();
@@ -159,7 +162,7 @@ export const CardScreen = ({ route, navigation }) => {
             ],
             destructiveButtonIndex: 2,
             cancelButtonIndex: 0,
-            userInterfaceStyle: theme === 'dark' ? 'dark' : 'light',
+            userInterfaceStyle: scheme === 'dark' ? 'dark' : 'light',
           },
           buttonIndex => {
             if (buttonIndex === 0) {
@@ -180,7 +183,7 @@ export const CardScreen = ({ route, navigation }) => {
             ],
             cancelButtonIndex: 0,
             destructiveButtonIndex: 2,
-            userInterfaceStyle: theme === 'dark' ? 'dark' : 'light',
+            userInterfaceStyle: scheme === 'dark' ? 'dark' : 'light',
           },
           i => {
             if (i === 0) {
@@ -195,48 +198,40 @@ export const CardScreen = ({ route, navigation }) => {
   };
 
   return (
-    <ScrollView
-      showsVerticalScrollIndicator={false}
-      contentContainerStyle={[s.container, theme === 'dark' ? darkBg : whiteBg]}
-    >
-      <StatusBar barStyle={theme === 'dark' ? 'light-content' : 'dark-content'} animated translucent />
+    <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={[s.container, styles(theme).container]}>
       <Gallery images={currentCity.images} />
       <View style={s.content}>
-        <View style={[s.section, theme === 'dark' && { borderColor: colors.gray800 }]}>
-          <Text style={[s.name, theme === 'dark' ? whiteColor : darkColor]}>
+        <View style={[s.section, styles(theme).section]}>
+          <Text style={[s.name, styles(theme).text]}>
             {title}
             {/* {currentCity.state
               ? currentCity.state.country.emoji + ' ' + currentCity.name
               : currentCity.country.emoji + ' ' + currentCity.name} */}
           </Text>
         </View>
-        <View style={[s.section, theme === 'dark' && { borderColor: colors.gray800 }]}>
+        <View style={[s.section, styles(theme).section]}>
           <View style={s.cardButtons}>
             {!alreadyWanted && !alreadyVisited && !loading ? (
               <>
                 <TouchableHighlight
-                  underlayColor={theme === 'dark' ? colors.gray700 : colors.mainGray}
-                  style={[s.button, theme === 'dark' && { backgroundColor: colors.gray800 }]}
+                  underlayColor={theme.gray01}
+                  style={[s.button, styles(theme).button]}
                   onPress={() => handlePress('want')}
                 >
-                  <Text style={[s.buttonText, theme === 'dark' ? whiteColor : darkColor]}>{t('utils:want')}</Text>
+                  <Text style={[s.buttonText, styles(theme).text]}>{t('utils:want')}</Text>
                 </TouchableHighlight>
                 <TouchableHighlight
-                  underlayColor={theme === 'dark' ? colors.gray700 : colors.mainGray}
-                  style={[s.button, theme === 'dark' && { backgroundColor: colors.gray800 }]}
+                  underlayColor={theme.gray01}
+                  style={[s.button, styles(theme).button]}
                   onPress={() => handlePress('visited')}
                 >
-                  <Text style={[s.buttonText, theme === 'dark' ? whiteColor : darkColor]}>{t('utils:visited')}</Text>
+                  <Text style={[s.buttonText, styles(theme).text]}>{t('utils:visited')}</Text>
                 </TouchableHighlight>
               </>
             ) : (
               <TouchableHighlight
-                underlayColor={theme === 'dark' ? colors.gray700 : colors.mainGray}
-                style={[
-                  s.button,
-                  (alreadyWanted || alreadyVisited || loading) && s.buttonFull,
-                  theme === 'dark' && { backgroundColor: colors.gray800 },
-                ]}
+                underlayColor={theme.gray01}
+                style={[s.button, (alreadyWanted || alreadyVisited || loading) && s.buttonFull, styles(theme).button]}
                 onPress={() => !loading && onPressSheet()}
               >
                 <View style={[s.buttonWithIcon]}>
@@ -244,24 +239,19 @@ export const CardScreen = ({ route, navigation }) => {
                     style={[
                       s.buttonText,
                       (alreadyWanted || alreadyVisited || loading) && s.buttonWithIconText,
-                      theme === 'dark' ? whiteColor : darkColor,
+                      styles(theme).text,
                     ]}
                   >
                     {loading ? t('utils:loading') : alreadyWanted ? t('utils:want') : t('utils:visited')}
                   </Text>
-                  <Icon
-                    name="more-horizontal"
-                    style={s.buttonIcon}
-                    size={18}
-                    color={theme === 'dark' ? colors.white : colors.black}
-                  />
+                  <Icon name="more-horizontal" style={s.buttonIcon} size={18} color={theme.gray01} />
                 </View>
               </TouchableHighlight>
             )}
           </View>
         </View>
-        <View style={[s.section, theme === 'dark' && { borderColor: colors.gray800 }]}>
-          <Text style={[s.sectionTitle, theme === 'dark' ? whiteColor : darkColor]}>{t('utils:location')}</Text>
+        <View style={[s.section, styles(theme).section]}>
+          <Text style={[s.sectionTitle, styles(theme).text]}>{t('utils:location')}</Text>
           <Pressable
             onPress={() =>
               navigation.navigate('Map', {
@@ -302,3 +292,19 @@ export const CardScreen = ({ route, navigation }) => {
     </ScrollView>
   );
 };
+
+const styles = (theme = {} as ThemeColors) =>
+  StyleSheet.create({
+    container: {
+      backgroundColor: theme.base,
+    },
+    text: {
+      color: theme.text01,
+    },
+    section: {
+      borderColor: theme.gray01,
+    },
+    button: {
+      backgroundColor: theme.gray01,
+    },
+  });

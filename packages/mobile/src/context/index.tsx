@@ -5,7 +5,7 @@ import { IconSizes } from '_app/constants';
 import { LoadingIndicator } from '_app/layout';
 import { Theme, ThemeStatic } from '_app/theme';
 import { ThemeColors } from '_app/types/theme';
-import { loadThemeType, saveThemeType } from '_app/utils/storage';
+import { loadThemeType } from '_app/utils/storage';
 
 type MeType = {
   id: string;

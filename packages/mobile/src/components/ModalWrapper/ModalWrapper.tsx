@@ -10,7 +10,6 @@ export const ModalWrapper = ({ children }) => {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
       <SafeAreaView style={s.container}>
-        <StatusBar barStyle={PLATFORM.IS_IOS ? 'light-content' : 'dark-content'} animated translucent />
         {PLATFORM.IS_IOS && <ModalControl />}
         <View style={s.wrap}>{children}</View>
       </SafeAreaView>

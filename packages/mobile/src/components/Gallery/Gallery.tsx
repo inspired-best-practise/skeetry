@@ -1,15 +1,19 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FlatList, View, Text, TouchableOpacity } from 'react-native';
+import { FlatList, View, Text, TouchableOpacity, Alert, StyleSheet } from 'react-native';
 import FastImage from 'react-native-fast-image';
 
 import { tBase, tTitle } from '_app/constants';
+import { AppContext } from '_app/context';
+import { Button } from '_app/layout';
 import { navigation } from '_app/services/navigations';
+import { ThemeColors } from '_app/types/theme';
 
 import { s } from './styles';
 
 export const Gallery = ({ images }: GalleryProps) => {
   const { t } = useTranslation();
+  const { theme } = useContext(AppContext);
   const [currentPage, setCurrentPage] = useState(1);
 
   const Image = ({ item }) => {
@@ -56,7 +60,12 @@ export const Gallery = ({ images }: GalleryProps) => {
                 </Text>
                 {images.length === 0 && <Text style={[tBase, { marginBottom: 5 }]}>{t('card:contribute')}</Text>}
                 <Text style={[tBase, { marginBottom: 15 }]}>{t('card:add_your_photo')}</Text>
-                <Button title={t('card:submit_photo')} />
+                <Button
+                  label={t('card:submit_photo')}
+                  onPress={() => Alert.alert(t('utils:wip'))}
+                  loading={false}
+                  containerStyle={{}}
+                />
               </View>
             );
           }
@@ -69,10 +78,17 @@ export const Gallery = ({ images }: GalleryProps) => {
       />
 
       <View style={s.pager}>
-        <Text style={whiteColor}>
+        <Text style={styles(theme).text}>
           {currentPage}/{images.length + 1}
         </Text>
       </View>
     </View>
   );
 };
+
+const styles = (theme = {} as ThemeColors) =>
+  StyleSheet.create({
+    text: {
+      color: theme.text02,
+    },
+  });

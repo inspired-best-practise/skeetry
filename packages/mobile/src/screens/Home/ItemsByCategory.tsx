@@ -62,7 +62,6 @@ export const ItemsByCategoryScreen = ({ route }) => {
   // TODO: add wrapper for formSheet screens with StatusBar and ModalControl
   return (
     <SafeAreaView style={s.container}>
-      <StatusBar barStyle={PLATFORM.IS_IOS ? 'light-content' : 'dark-content'} animated translucent />
       {PLATFORM.IS_IOS && <ModalControl />}
       {PLATFORM.IS_IOS && (
         <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginBottom: 20 }}>

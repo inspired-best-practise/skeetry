@@ -12,11 +12,12 @@ import {
   TouchableWithoutFeedback,
   KeyboardAvoidingView,
   Keyboard,
+  StyleSheet,
 } from 'react-native';
 import { launchImageLibrary } from 'react-native-image-picker';
 import { v4 as uuidv4 } from 'uuid';
 
-import { Avatar, Input } from '_app/components';
+import { Avatar } from '_app/components';
 import { PLATFORM, tBase } from '_app/constants';
 import { AppContext } from '_app/context';
 import {
@@ -25,14 +26,17 @@ import {
   useUpdateProfileMutation,
   useUploadPhotoMutation,
 } from '_app/generated/graphql';
+import { Input } from '_app/layout';
 import { navigation } from '_app/services/navigations';
+import { HandleAvailableColor } from '_app/theme';
+import { ThemeColors } from '_app/types/theme';
 import { normalize } from '_app/utils/dimensions';
 
 export const ProfileChangeScreen = () => {
   const { t } = useTranslation();
-  const theme = useColorScheme();
+  const scheme = useColorScheme();
 
-  const { me } = useContext(AppContext);
+  const { me, theme } = useContext(AppContext);
 
   const { loading, data } = useMeQuery();
   const [uploadPhoto] = useUploadPhotoMutation();
@@ -78,7 +82,7 @@ export const ProfileChangeScreen = () => {
             options: actionOptions,
             destructiveButtonIndex: 3,
             cancelButtonIndex: 0,
-            userInterfaceStyle: theme === 'dark' ? 'dark' : 'light',
+            userInterfaceStyle: scheme === 'dark' ? 'dark' : 'light',
           },
           buttonIndex => {
             if (buttonIndex === 0) {
@@ -120,7 +124,7 @@ export const ProfileChangeScreen = () => {
       : showActionSheetWithOptions(
           {
             options: actionOptions,
-            userInterfaceStyle: theme === 'dark' ? 'dark' : 'light',
+            userInterfaceStyle: scheme === 'dark' ? 'dark' : 'light',
             cancelButtonIndex: 0,
             destructiveButtonIndex: 3,
           },
@@ -182,7 +186,7 @@ export const ProfileChangeScreen = () => {
               style={[
                 tBase,
                 { fontWeight: '600', paddingTop: normalize(10), paddingBottom: normalize(20) },
-                theme === 'dark' ? whiteColor : darkColor,
+                scheme === 'dark' ? whiteColor : darkColor,
               ]}
             >
               {t('profile:new_photo')}
@@ -196,7 +200,7 @@ export const ProfileChangeScreen = () => {
                 required: true,
               }}
               render={({ field: { onChange, onBlur, value } }) => (
-                <Input placeholder={t('utils:username')} onChange={onChange} onBlur={onBlur} value={value} />
+                <Input placeholder={t('utils:username')} onChangeText={onChange} onBlur={onBlur} value={value} />
               )}
               name="username"
               defaultValue={me.username}
@@ -209,7 +213,7 @@ export const ProfileChangeScreen = () => {
                 maxLength: 100,
               }}
               render={({ field: { onChange, onBlur, value } }) => (
-                <Input placeholder={t('utils:name')} onChange={onChange} onBlur={onBlur} value={value} />
+                <Input ref={null} placeholder={t('utils:name')} onChangeText={onChange} onBlur={onBlur} value={value} />
               )}
               name="name"
               defaultValue={me.name}
@@ -223,7 +227,7 @@ export const ProfileChangeScreen = () => {
                 maxLength: 100,
               }}
               render={({ field: { onChange, onBlur, value } }) => (
-                <Input placeholder={t('utils:bio')} onChange={onChange} onBlur={onBlur} value={value} />
+                <Input ref={null} placeholder={t('utils:bio')} onChangeText={onChange} onBlur={onBlur} value={value} />
               )}
               name="bio"
               defaultValue={me.bio}
@@ -234,16 +238,29 @@ export const ProfileChangeScreen = () => {
               style={{ width: '100%', alignItems: 'center', marginTop: normalize(10) }}
               onPress={handleSubmit(onSubmit)}
             >
-              <Text style={[tBase, { fontWeight: '600' }, theme === 'dark' && whiteColor]}>
+              <Text style={[tBase, styles(theme).loadingProfile]}>
                 {loadingProfile ? t('utils:loading') : t('profile:done')}
               </Text>
             </TouchableOpacity>
-            {errorProfile && (
-              <Text style={{ color: 'red', marginVertical: normalize(10) }}>{errorProfile.message}</Text>
-            )}
+            {errorProfile && <Text style={styles(theme).error}>{errorProfile.message}</Text>}
           </View>
         </View>
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
   );
 };
+
+const styles = (theme = {} as ThemeColors) =>
+  StyleSheet.create({
+    tTitle: {
+      color: theme.text01,
+    },
+    error: {
+      color: HandleAvailableColor.false,
+      marginVertical: normalize(10),
+    },
+    loadingProfile: {
+      color: theme.text01,
+      fontWeight: '600',
+    },
+  });
