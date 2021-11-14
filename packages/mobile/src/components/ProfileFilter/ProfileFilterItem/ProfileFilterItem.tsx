@@ -1,27 +1,29 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { TouchableHighlight, Text, useColorScheme } from 'react-native';
 
 import { colors } from '_app/constants';
+import { AppContext } from '_app/context';
 
 import { s } from './styles';
 
 export const ProfileFilterItem = ({ selected, name, title, icon }: TListFilterItemProps) => {
-  const theme = useColorScheme();
+  const scheme = useColorScheme();
+  const { selectList } = useContext(AppContext);
 
   return (
     <TouchableHighlight
-      // onPress={() => setSelected(name)}
+      onPress={() => selectList(name)}
       style={[
         s.filterItem,
-        theme === 'dark' && { backgroundColor: colors.gray900 },
-        selected === name && { backgroundColor: theme === 'dark' ? colors.gray700 : colors.gray900 },
+        scheme === 'dark' && { backgroundColor: colors.gray900 },
+        selected === name && { backgroundColor: scheme === 'dark' ? colors.gray700 : colors.gray900 },
       ]}
       underlayColor={
         selected === name
-          ? theme === 'dark'
+          ? scheme === 'dark'
             ? colors.gray700
             : colors.gray900
-          : theme === 'dark'
+          : scheme === 'dark'
           ? colors.gray700
           : colors.gray100
       }
@@ -32,8 +34,8 @@ export const ProfileFilterItem = ({ selected, name, title, icon }: TListFilterIt
         <Text
           style={[
             s.filterItemTitle,
-            theme === 'dark' && { color: colors.white },
-            selected === name && { color: theme === 'dark' ? colors.white : colors.gray50 },
+            scheme === 'dark' && { color: colors.white },
+            selected === name && { color: scheme === 'dark' ? colors.white : colors.gray50 },
           ]}
         >
           {title}

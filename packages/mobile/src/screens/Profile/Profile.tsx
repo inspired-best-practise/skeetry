@@ -19,7 +19,7 @@ import { s } from './styles';
 export const ProfileScreen = () => {
   const ref = useRef(null);
   const { t } = useTranslation();
-  const { theme } = useContext(AppContext);
+  const { theme, selectedList, selectList } = useContext(AppContext);
   const scheme = useColorScheme();
 
   const { showActionSheetWithOptions } = useActionSheet();
@@ -144,21 +144,30 @@ export const ProfileScreen = () => {
   const isMe = true;
 
   const getData = () => {
-    switch ('want') {
+    switch (selectedList) {
       case 'want':
         return wanted;
       case 'visited':
         return visited;
 
       default:
-        break;
+        return 'want';
     }
   };
 
   return (
     <FlatList
       ref={ref}
-      ListHeaderComponent={renderHeader(user, t, isMe, theme, scheme, { route: null }, showActionSheetWithOptions)}
+      ListHeaderComponent={renderHeader({
+        user,
+        t,
+        isMe,
+        theme,
+        scheme,
+        route: null,
+        showActionSheetWithOptions,
+        selectList,
+      })}
       ListEmptyComponent={renderEmpty(t, theme)}
       numColumns={2}
       horizontal={false}

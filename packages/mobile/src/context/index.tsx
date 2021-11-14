@@ -17,6 +17,8 @@ type AppContextType = {
   theme: ThemeColors;
   themeType: string;
   toggleTheme: (type: string) => void;
+  selectedList: string;
+  selectList: (list: string) => void;
 };
 
 export const AppContext = createContext({} as AppContextType);
@@ -31,6 +33,7 @@ export const AppContextProvider = props => {
   const [me, setMe] = useState({
     id: '',
   });
+  const [selectedList, setSelectedList] = useState('visited');
   const [theme, setTheme] = useState(Theme.light.colors);
   const [themeType, setThemeType] = useState(Theme.light.type);
 
@@ -60,6 +63,11 @@ export const AppContextProvider = props => {
     setMe(me);
   };
 
+  const selectList = (list: string) => {
+    console.log('list: ', list);
+    setSelectedList(list);
+  };
+
   const toggleTheme = (type: string) => {
     if (type !== 'auto') {
       setTheme(Theme[type].colors);
@@ -78,6 +86,8 @@ export const AppContextProvider = props => {
     theme,
     themeType,
     toggleTheme,
+    selectedList,
+    selectList,
   };
 
   useEffect(() => {

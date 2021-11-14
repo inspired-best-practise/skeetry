@@ -18,7 +18,9 @@ const logOut = async () => {
   navigation.navigate('AuthStack');
 };
 
-export const renderHeader = (user: TUser, t, isMe, theme, scheme, route, showActionSheetWithOptions) => {
+export const renderHeader = ({ ...props }) => {
+  const { user, t, isMe, theme, scheme, route, showActionSheetWithOptions, selectList } = props;
+
   const actionOptions = [
     `${t('utils:cancel')}`,
     `${t('settings:account_settings')}`,
@@ -87,7 +89,7 @@ export const renderHeader = (user: TUser, t, isMe, theme, scheme, route, showAct
   return (
     <View>
       <View style={[s.profilePanel]}>
-        {isMe && route.name !== 'ProfileUser' && (
+        {isMe && route?.name !== 'ProfileUser' && (
           <TouchableWithoutFeedback onPress={() => onPressSheet()}>
             <HeroIcon.DotsHorizontalIcon size={22} color={theme.text01} />
           </TouchableWithoutFeedback>
@@ -136,11 +138,11 @@ export const renderHeader = (user: TUser, t, isMe, theme, scheme, route, showAct
 
       <View style={[s.profileStats, styles(theme).profileStats]}>
         <ProfileStatsItem name={`${t('profile:place')}`} number={0} action={() => navigation.push('UsersTop')} />
-        <ProfileStatsItem name={`${t('profile:want')}`} number={user.wantedCount} action={() => setSelected('want')} />
+        <ProfileStatsItem name={`${t('profile:want')}`} number={user.wantedCount} action={() => selectList('want')} />
         <ProfileStatsItem
           name={`${t('profile:visited')}`}
           number={user.visitedCount}
-          action={() => setSelected('visited')}
+          action={() => selectList('visited')}
         />
         <ProfileStatsItem name={`${t('profile:trips')}`} number={0} />
       </View>
