@@ -30,6 +30,7 @@ export const AppContextProvider = props => {
   const [type, setType] = useState<string>();
   const [schemeTheme, setSchemeTheme] = useState<ColorSchemeName>();
 
+  // TODO: maybe need save in async storage instead context?
   const [me, setMe] = useState({
     id: '',
   });

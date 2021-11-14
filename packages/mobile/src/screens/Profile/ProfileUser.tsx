@@ -12,9 +12,8 @@ import { s } from './styles';
 export const ProfileUserScreen = ({ route }) => {
   const ref = useRef(null);
   const { t } = useTranslation();
-  const { theme } = useContext(AppContext);
   const scheme = useColorScheme();
-  const { me } = useContext(AppContext);
+  const { me, theme, selectedList, selectList } = useContext(AppContext);
 
   const [wanted, setWanted] = useState([]);
   const [visited, setVisited] = useState([]);
@@ -104,21 +103,29 @@ export const ProfileUserScreen = ({ route }) => {
   };
 
   const getData = () => {
-    switch ('want') {
+    switch (selectedList) {
       case 'want':
         return wanted;
       case 'visited':
         return visited;
 
       default:
-        break;
+        return 'want';
     }
   };
 
   return (
     <FlatList
       ref={ref}
-      ListHeaderComponent={renderHeader(user, t, isMe, theme, scheme, route)}
+      ListHeaderComponent={renderHeader({
+        user,
+        t,
+        isMe,
+        theme,
+        scheme,
+        route: null,
+        selectList,
+      })}
       ListEmptyComponent={renderEmpty(t)}
       numColumns={2}
       data={getData()}
@@ -128,7 +135,7 @@ export const ProfileUserScreen = ({ route }) => {
       keyExtractor={item => item.node.id}
       showsVerticalScrollIndicator={false}
       decelerationRate="fast"
-      onEndReached={() => (selected === 'want' ? wantedEndReached() : visitedEndReached())}
+      onEndReached={() => (selectedList === 'want' ? wantedEndReached() : visitedEndReached())}
     />
   );
 };
