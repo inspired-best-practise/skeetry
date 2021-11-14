@@ -4,9 +4,9 @@ import { useTranslation } from 'react-i18next';
 import { View, ScrollView, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { Card, HorizontalListSkeleton, UserCard } from '_app/components';
+import { Card, UserCard } from '_app/components';
 import { OrderDirection, useCitiesQuery, useUsersQuery } from '_app/generated/graphql';
-import { Input } from '_app/layout';
+import { HorizontalListPlaceholder, Input } from '_app/layout';
 import { normalize } from '_app/utils/dimensions';
 
 export const SearchScreen = () => {
@@ -56,7 +56,7 @@ export const SearchScreen = () => {
       )}
       {input.length !== 0 && (
         <View>
-          {loadingSearch && <HorizontalListSkeleton size="small" />}
+          {loadingSearch && <HorizontalListPlaceholder size="small" />}
           {searchList?.length !== 0 && (
             <ScrollView
               horizontal
@@ -70,7 +70,7 @@ export const SearchScreen = () => {
               ))}
             </ScrollView>
           )}
-          {loadingUsers && <HorizontalListSkeleton size="small" />}
+          {loadingUsers && <HorizontalListPlaceholder size="small" />}
           {usersList?.length !== 0 && (
             <ScrollView
               horizontal

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StatusBar } from 'react-native';
+import { View, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { ModalControl, VerticalListSkeleton, CardList } from '_app/components';
+import { ModalControl, CardList } from '_app/components';
 import { PLATFORM, tTitle } from '_app/constants';
 import { OrderDirection, useCitiesQuery } from '_app/generated/graphql';
+import { VerticalListPlaceholder } from '_app/layout';
 
 import { s } from './styles';
 
@@ -65,7 +66,7 @@ export const CitiesListScreen = ({ route }) => {
         </View>
       )}
       <View>
-        {loadingCounter === 0 && <VerticalListSkeleton />}
+        {loadingCounter === 0 && <VerticalListPlaceholder />}
         {loadingCounter > 0 && <CardList data={cities} onEndReached={handleEndReached} />}
       </View>
     </SafeAreaView>

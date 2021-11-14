@@ -2,7 +2,7 @@ import React from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
 import SkeletonContent from 'react-native-skeleton-content-nonexpo';
 
-export const CategoriesSkeleton = () => {
+export const CategoriesPlaceholder = () => {
   return (
     <ScrollView
       horizontal

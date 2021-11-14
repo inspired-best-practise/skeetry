@@ -3,8 +3,8 @@ import { View, Text, FlatList } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Feather';
 
-import { HorizontalListSkeleton, Card } from '_app/components';
 import { colors, tTitle } from '_app/constants';
+import { HorizontalListPlaceholder } from '_app/layout';
 import { navigation } from '_app/services/navigations';
 import { normalize } from '_app/utils/dimensions';
 
@@ -45,7 +45,7 @@ export const HorizontalCardList = ({ title, data, size, handleEndReached, loadin
           <Icon name="chevron-right" size={22} color={colors.black} />
         </View>
       </TouchableOpacity>
-      {loadingCounter === 0 && <HorizontalListSkeleton size={size} />}
+      {loadingCounter === 0 && <HorizontalListPlaceholder size={size} />}
       {loadingCounter > 0 && (
         <FlatList
           contentContainerStyle={{

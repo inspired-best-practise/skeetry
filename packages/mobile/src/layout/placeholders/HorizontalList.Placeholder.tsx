@@ -2,38 +2,56 @@ import React from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
 import SkeletonContent from 'react-native-skeleton-content-nonexpo';
 
-import { s } from '../Card/styles';
+import { s } from '_app/components/Card/styles';
 
-export const VerticalListSkeleton = () => {
+export const HorizontalListPlaceholder = ({ size }: { size: string }) => {
+  let styleImage = {};
+  let styleText = {};
+
+  // TODO: refactor
+  switch (size) {
+    case 'wide':
+      styleImage = 'wide' ? s.itemSizeWide : {};
+      styleText = 'wide' ? s.itemWide : {};
+      break;
+    case 'small':
+      styleImage = 'small' ? s.itemSizeSmall : {};
+      styleText = 'small' ? s.itemSmall : {};
+      break;
+
+    default:
+      break;
+  }
+
   return (
     <ScrollView
-      showsVerticalScrollIndicator={false}
+      horizontal
       scrollEnabled={false}
       showsHorizontalScrollIndicator={false}
-      contentContainerStyle={{ margin: 20, marginTop: 0 }}
+      contentContainerStyle={{ margin: 20 }}
     >
       {[{}, {}, {}].map((_i, index) => (
         <SkeletonContent
           key={index}
-          containerStyle={{ flex: 1, marginBottom: 20 }}
+          containerStyle={{ flex: 1, marginRight: 20 }}
           isLoading={true}
           layout={[
             {
               key: 'image',
-              borderRadius: 12,
               marginBottom: 10,
-              ...s.itemSizeFull,
+              borderRadius: 12,
+              ...styleImage,
             },
             {
               key: 'city',
               height: 10,
               marginBottom: 10,
-              ...s.itemFull,
+              ...styleText,
             },
             {
               key: 'country',
               height: 10,
-              ...s.itemFull,
+              ...styleText,
             },
           ]}
         />

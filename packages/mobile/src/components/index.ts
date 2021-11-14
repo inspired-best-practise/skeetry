@@ -13,8 +13,6 @@ export * from './ProfileFilter';
 export * from './ProfileFilter/ProfileFilterItem';
 export * from './HorizontalCardList';
 export * from './FormWrapper';
-export * from './HorizontalListSkeleton';
-export * from './VerticalListSkeleton';
 export * from './CloseModal';
 export * from './MenuItem';
 export * from './ModalWrapper';

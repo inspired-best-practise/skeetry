@@ -4,11 +4,11 @@ import FastImage from 'react-native-fast-image';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import { AppContext } from '_app/context';
+import { ImagePlaceholder } from '_app/layout';
 import { navigation } from '_app/services/navigations';
 import { ThemeColors } from '_app/types/theme';
 import { languageTag } from '_app/utils/helpers';
 
-import ImagePlaceholder from '../ImagePlaceholder/ImagePlaceholder';
 import { s } from './styles';
 
 // TODO: refactor

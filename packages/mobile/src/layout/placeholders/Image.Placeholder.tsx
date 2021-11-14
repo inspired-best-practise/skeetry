@@ -1,12 +1,10 @@
 import React from 'react';
-import { useColorScheme, View } from 'react-native';
+import { useColorScheme, View, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 
-import { colors } from '_app/constants';
+import { colors, radius } from '_app/constants';
 
-import { s } from './styles';
-
-const ImagePlaceholder = ({ style, size }) => {
+export const ImagePlaceholder = ({ style, size }) => {
   const theme = useColorScheme();
 
   return (
@@ -23,4 +21,11 @@ const ImagePlaceholder = ({ style, size }) => {
   );
 };
 
-export default ImagePlaceholder;
+export const s = StyleSheet.create({
+  imagePlaceholder: {
+    borderRadius: radius.base,
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
