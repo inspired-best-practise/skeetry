@@ -125,7 +125,7 @@ export const ProfileScreen = () => {
 
   const logOut = async () => {
     await signOut();
-    navigation.navigate('AuthStack');
+    navigation.navigate('Auth');
   };
 
   if (error || errorWanted || errorVisited) {

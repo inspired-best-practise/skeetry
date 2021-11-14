@@ -126,7 +126,7 @@ export const ProfileUserScreen = ({ route }) => {
         route: null,
         selectList,
       })}
-      ListEmptyComponent={renderEmpty(t)}
+      ListEmptyComponent={renderEmpty(t, theme)}
       numColumns={2}
       data={getData()}
       columnWrapperStyle={s.listWrapper}

@@ -29,8 +29,8 @@ import {
 } from '_app/screens';
 import { ProfileChangeScreen } from '_app/screens/Settings/ProfileChange';
 import { navigationRef } from '_app/services/navigations';
-import { normalize } from '_app/utils/dimensions';
 
+import AuthStack from './AuthStack';
 import RootTab from './RootTab';
 
 enableScreens();
@@ -70,8 +70,9 @@ const Index = (): JSX.Element => {
   };
   return (
     <NavigationContainer ref={navigationRef} theme={scheme === 'dark' ? darkTheme : lightTheme}>
-      <RootStack.Navigator initialRouteName="RootTab">
-        <RootStack.Screen name="Root Tab" component={RootTab} options={navigationOptions} />
+      <RootStack.Navigator initialRouteName="Auth">
+        <RootStack.Screen name="Auth" component={AuthStack} options={navigationOptions} />
+        <RootStack.Screen name="RootTab" component={RootTab} options={navigationOptions} />
         <RootStack.Screen
           options={{
             headerShown: true,
@@ -126,7 +127,7 @@ const Index = (): JSX.Element => {
             headerTintColor: scheme === 'dark' ? colors.white : colors.black,
             title: '',
             headerBackTitle: t('utils:back'),
-            presentation: 'transparentModal',
+            presentation: 'modal',
             ...options,
             headerLeft: () => <CloseModal />,
           })}

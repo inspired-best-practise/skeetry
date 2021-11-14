@@ -62,7 +62,7 @@ const styles = (theme = {} as ThemeColors) =>
       ...FontWeights.Semibold,
       ...FontSizes.Caption,
       marginLeft: 5,
-      color: theme.text02,
+      color: theme.white,
     },
   });
 

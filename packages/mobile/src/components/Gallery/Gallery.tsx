@@ -89,6 +89,6 @@ export const Gallery = ({ images }: GalleryProps) => {
 const styles = (theme = {} as ThemeColors) =>
   StyleSheet.create({
     text: {
-      color: theme.text02,
+      color: theme.white,
     },
   });

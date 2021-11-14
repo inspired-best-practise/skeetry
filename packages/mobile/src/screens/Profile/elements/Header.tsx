@@ -15,7 +15,7 @@ import { s } from '../styles';
 
 const logOut = async () => {
   await signOut();
-  navigation.navigate('AuthStack');
+  navigation.navigate('Auth');
 };
 
 export const renderHeader = ({ ...props }) => {

@@ -56,7 +56,7 @@ export const LoginScreen = () => {
 
       saveToken(accessToken);
       updateMe(user);
-      navigation.navigate('HomeTab');
+      navigation.navigate('RootTab');
       setInitializing(false);
     }
   }, [data]);
@@ -68,7 +68,7 @@ export const LoginScreen = () => {
   const navigateToApp = async () => {
     try {
       // welcomeNotification();
-      navigation.navigate('HomeTab', { screen: 'Home' });
+      navigation.navigate('RootTab');
     } catch {
       signOut();
     }
