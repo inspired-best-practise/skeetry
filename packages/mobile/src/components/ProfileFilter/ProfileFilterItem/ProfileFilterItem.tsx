@@ -1,46 +1,37 @@
 import React, { useContext } from 'react';
-import { TouchableHighlight, Text, useColorScheme } from 'react-native';
+import { TouchableHighlight, Text, StyleSheet } from 'react-native';
 
-import { colors } from '_app/constants';
 import { AppContext } from '_app/context';
+import { ThemeColors } from '_app/types/theme';
 
 import { s } from './styles';
 
-export const ProfileFilterItem = ({ selected, name, title, icon }: TListFilterItemProps) => {
-  const scheme = useColorScheme();
-  const { selectList } = useContext(AppContext);
+export const ProfileFilterItem = ({ selected, title, name }: TListFilterItemProps) => {
+  const { theme, selectList } = useContext(AppContext);
 
   return (
     <TouchableHighlight
       onPress={() => selectList(name)}
-      style={[
-        s.filterItem,
-        scheme === 'dark' && { backgroundColor: colors.gray900 },
-        selected === name && { backgroundColor: scheme === 'dark' ? colors.gray700 : colors.gray900 },
-      ]}
-      underlayColor={
-        selected === name
-          ? scheme === 'dark'
-            ? colors.gray700
-            : colors.gray900
-          : scheme === 'dark'
-          ? colors.gray700
-          : colors.gray100
-      }
+      style={[s.filterItem, styles(theme).main, selected === name && styles(theme).accent]}
+      underlayColor={selected === name ? theme.text01 : theme.background}
     >
-      {icon ? (
-        icon
-      ) : (
-        <Text
-          style={[
-            s.filterItemTitle,
-            scheme === 'dark' && { color: colors.white },
-            selected === name && { color: scheme === 'dark' ? colors.white : colors.gray50 },
-          ]}
-        >
-          {title}
-        </Text>
-      )}
+      <Text style={[s.filterItemTitle, styles(theme).text, selected === name && styles(theme).title]}>{title}</Text>
     </TouchableHighlight>
   );
 };
+
+const styles = (theme = {} as ThemeColors) =>
+  StyleSheet.create({
+    text: {
+      color: theme.text01,
+    },
+    title: {
+      color: theme.text02,
+    },
+    main: {
+      backgroundColor: theme.background,
+    },
+    accent: {
+      backgroundColor: theme.text01,
+    },
+  });

@@ -34,7 +34,7 @@ export const AppContextProvider = props => {
   const [me, setMe] = useState({
     id: '',
   });
-  const [selectedList, setSelectedList] = useState('visited');
+  const [selectedList, setSelectedList] = useState('want');
   const [theme, setTheme] = useState(Theme.light.colors);
   const [themeType, setThemeType] = useState(Theme.light.type);
 
@@ -65,7 +65,6 @@ export const AppContextProvider = props => {
   };
 
   const selectList = (list: string) => {
-    console.log('list: ', list);
     setSelectedList(list);
   };
 

@@ -25,6 +25,7 @@ export type ThemeColors = {
   gray01: string;
   gray02: string;
   gray03: string;
+  gray04: string;
 };
 
 export type ThemeVariantType = {

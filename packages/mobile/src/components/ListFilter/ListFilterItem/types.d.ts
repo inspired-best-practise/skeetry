@@ -1,5 +1,5 @@
 type TListFilterItemProps = {
   name: string;
-  icon?: JSX.Element;
+  title: string;
   selected: string;
 };

@@ -57,6 +57,7 @@ export const Theme: {
       gray01: '#F2F2F2',
       gray02: '#C6C6C6',
       gray03: '#595959',
+      gray04: '#1a1e24',
     },
   },
   dark: {
@@ -66,12 +67,13 @@ export const Theme: {
       base: '#000000',
       background: '#21262d',
       text01: '#FFFFFF',
-      text02: '#FFFFFF',
+      text02: '#000000',
       placeholder: '#000000',
       white: '#FFFFFF',
       gray01: '#21262d',
       gray02: '#AAAAAA',
       gray03: '#EEEEEE',
+      gray04: '#1a1e24',
     },
   },
 };
