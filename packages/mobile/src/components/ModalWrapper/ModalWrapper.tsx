@@ -1,5 +1,5 @@
 import React from 'react';
-import { Keyboard, SafeAreaView, StatusBar, TouchableWithoutFeedback, View } from 'react-native';
+import { Keyboard, SafeAreaView, TouchableWithoutFeedback, View } from 'react-native';
 
 import { ModalControl } from '_app/components/ModalControl';
 import { PLATFORM } from '_app/constants';

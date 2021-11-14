@@ -1,31 +1,32 @@
-import React from 'react';
-import { useColorScheme, View, StyleSheet } from 'react-native';
+import React, { useContext } from 'react';
+import { View, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 
-import { colors, radius } from '_app/constants';
+import { radius } from '_app/constants';
+import { AppContext } from '_app/context';
+import { ThemeColors } from '_app/types/theme';
 
 export const ImagePlaceholder = ({ style, size }) => {
-  const theme = useColorScheme();
+  const { theme } = useContext(AppContext);
 
   return (
     <View style={style}>
-      <View
-        style={[
-          s.imagePlaceholder,
-          theme === 'dark' ? { backgroundColor: colors.gray800 } : { backgroundColor: colors.mainGray },
-        ]}
-      >
-        <Icon name="image" color={theme === 'dark' ? colors.gray500 : colors.baseGray} size={size} />
+      <View style={[styles(theme).imagePlaceholder]}>
+        <Icon name="image" color={theme.gray02} size={size} />
       </View>
     </View>
   );
 };
 
-export const s = StyleSheet.create({
-  imagePlaceholder: {
-    borderRadius: radius.base,
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export const s = StyleSheet.create({});
+
+const styles = (theme = {} as ThemeColors) =>
+  StyleSheet.create({
+    imagePlaceholder: {
+      borderRadius: radius.base,
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: theme.gray01,
+    },
+  });
