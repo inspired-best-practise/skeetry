@@ -60,26 +60,6 @@ export const colorsDark = {
   white: '#fff',
 };
 
-// {
-//   white: '#000',
-//   black: '#fff',
-//   text: '#fff',
-//   lineGray: '#0d0d0d',
-//   lightGray: '#080808',
-//   mainGray: '#111111',
-//   mediumGray: '#a6a6a6',
-//   baseGray: '#393939',
-//   gray50: '#060504',
-//   gray100: '#0c0b09',
-//   gray200: '#1a1814',
-//   gray300: '#2e2a24',
-//   gray400: '#635c50',
-//   gray500: '#948d7f',
-//   gray700: '#c8beae',
-//   gray800: '#e0d6c8',
-//   gray900: '#eee7d8',
-// }
-
 export const lightTheme = {
   ...DefaultTheme,
   colors: {

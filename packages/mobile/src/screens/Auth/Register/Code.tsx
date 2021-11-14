@@ -1,20 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Text, TouchableOpacity, useColorScheme } from 'react-native';
+import { Alert, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { CodeField, Cursor, useBlurOnFulfill, useClearByFocusCell } from 'react-native-confirmation-code-field';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { FormWrapper } from '_app/components';
 import { colors } from '_app/constants';
+import { AppContext } from '_app/context';
 import { useConfirmSmsCodeMutation, useSendSmsCodeMutation } from '_app/generated/graphql';
 import { navigation } from '_app/services/navigations';
+import { ThemeColors } from '_app/types/theme';
 import { normalize } from '_app/utils/dimensions';
 
 import { s } from './styles';
 
 export const CodeScreen = () => {
   const { t } = useTranslation();
-  const theme = useColorScheme();
+  const { theme } = useContext(AppContext);
 
   const CELL_COUNT = 4;
   const resendInterval = 60;
@@ -101,7 +103,7 @@ export const CodeScreen = () => {
               key={index}
               style={[
                 s.cell,
-                theme === 'dark' && whiteColor,
+                styles(theme).text,
                 isFocused && s.focusCell,
                 theme === 'dark' && isFocused && { borderColor: colors.white },
               ]}
@@ -112,13 +114,13 @@ export const CodeScreen = () => {
           )}
         />
         {timer !== 0 && (
-          <Text style={[{ padding: normalize(10) }, theme === 'dark' && whiteColor]}>
+          <Text style={[{ padding: normalize(10) }, styles(theme).text]}>
             Запросить код повторно можно через {timer}
           </Text>
         )}
         {timer === 0 && (
           <TouchableOpacity activeOpacity={0.8} style={[{ padding: normalize(10) }]} onPress={() => resendCode()}>
-            <Text style={[theme === 'dark' && whiteColor]}>Отправить код повторно</Text>
+            <Text style={[styles(theme).text]}>Отправить код повторно</Text>
           </TouchableOpacity>
         )}
         {value.length === CELL_COUNT && (
@@ -144,3 +146,10 @@ export const CodeScreen = () => {
     </SafeAreaView>
   );
 };
+
+const styles = (theme = {} as ThemeColors) =>
+  StyleSheet.create({
+    text: {
+      color: theme.text01,
+    },
+  });

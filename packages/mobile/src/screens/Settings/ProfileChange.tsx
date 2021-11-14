@@ -186,7 +186,7 @@ export const ProfileChangeScreen = () => {
               style={[
                 tBase,
                 { fontWeight: '600', paddingTop: normalize(10), paddingBottom: normalize(20) },
-                scheme === 'dark' ? whiteColor : darkColor,
+                styles(theme).text,
               ]}
             >
               {t('profile:new_photo')}
@@ -200,7 +200,13 @@ export const ProfileChangeScreen = () => {
                 required: true,
               }}
               render={({ field: { onChange, onBlur, value } }) => (
-                <Input placeholder={t('utils:username')} onChangeText={onChange} onBlur={onBlur} value={value} />
+                <Input
+                  ref={null}
+                  placeholder={t('utils:username')}
+                  onChangeText={onChange}
+                  onBlur={onBlur}
+                  value={value}
+                />
               )}
               name="username"
               defaultValue={me.username}
@@ -252,7 +258,7 @@ export const ProfileChangeScreen = () => {
 
 const styles = (theme = {} as ThemeColors) =>
   StyleSheet.create({
-    tTitle: {
+    text: {
       color: theme.text01,
     },
     error: {

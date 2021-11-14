@@ -117,9 +117,9 @@ export const HomeScreen = () => {
   return (
     <View>
       <View style={s.header}>
-        <Text style={[tTitle, styles(theme).tTitle]}>Skeetry</Text>
+        <Text style={[tTitle, styles(theme).text]}>Skeetry</Text>
       </View>
-      <ScrollView showsVerticalScrollIndicator={false} ref={ref} scrollsToTop={true} contentContainerStyle={s.main}>
+      <View showsVerticalScrollIndicator={false} ref={ref} scrollsToTop={true} contentContainerStyle={s.main}>
         <Preview />
         {/* <Stories /> */}
         {/* TODO: move categories to explore or search? */}
@@ -164,14 +164,14 @@ export const HomeScreen = () => {
           loading={loadingPopular}
           type="popular"
         /> */}
-      </ScrollView>
+      </View>
     </View>
   );
 };
 
 const styles = (theme = {} as ThemeColors) =>
   StyleSheet.create({
-    tTitle: {
+    text: {
       color: theme.text01,
     },
   });

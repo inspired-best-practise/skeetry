@@ -1,11 +1,12 @@
 import React from 'react';
-import { View, Text, ActionSheetIOS, StyleSheet } from 'react-native';
+import { View, Text, ActionSheetIOS, StyleSheet, Alert } from 'react-native';
 import codePush from 'react-native-code-push';
 import { TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import * as HeroIcon from 'react-native-heroicons/solid';
 
 import { ProfileStatsItem, Avatar, ProfileFilter } from '_app/components';
-import { colors, PLATFORM } from '_app/constants';
+import { PLATFORM } from '_app/constants';
+import { Button } from '_app/layout';
 import { navigation } from '_app/services/navigations';
 import { ThemeColors } from '_app/types/theme';
 import { signOut } from '_app/utils/authentication';
@@ -92,7 +93,7 @@ export const renderHeader = (user: TUser, t, isMe, theme, scheme, route, showAct
           </TouchableWithoutFeedback>
         )}
       </View>
-      <View style={[s.profileHeader, theme === 'dark' && { borderBottomColor: colors.gray800 }]}>
+      <View style={[s.profileHeader, styles(theme).profileHeader]}>
         <View style={s.profileHeaderWrap}>
           <TouchableOpacity
             activeOpacity={user.avatar ? 0.7 : 1}
@@ -123,12 +124,17 @@ export const renderHeader = (user: TUser, t, isMe, theme, scheme, route, showAct
         </View>
         {!isMe && (
           <View style={{ paddingTop: 20 }}>
-            <Button title={t('profile:follow')} primary small />
+            <Button
+              label={t('profile:follow')}
+              onPress={() => Alert.alert(t('utils:wip'))}
+              loading={false}
+              containerStyle={{}}
+            />
           </View>
         )}
       </View>
 
-      <View style={[s.profileStats, theme === 'dark' && { borderBottomColor: colors.gray800 }]}>
+      <View style={[s.profileStats, styles(theme).profileStats]}>
         <ProfileStatsItem name={`${t('profile:place')}`} number={0} action={() => navigation.push('UsersTop')} />
         <ProfileStatsItem name={`${t('profile:want')}`} number={user.wantedCount} action={() => setSelected('want')} />
         <ProfileStatsItem
@@ -150,5 +156,13 @@ const styles = (theme = {} as ThemeColors) =>
     },
     icon: {
       backgroundColor: theme.base,
+    },
+    profileHeader: {
+      backgroundColor: theme.base,
+      borderBottomColor: theme.gray01,
+    },
+    profileStats: {
+      backgroundColor: theme.base,
+      borderBottomColor: theme.gray01,
     },
   });

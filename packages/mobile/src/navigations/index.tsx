@@ -61,7 +61,7 @@ const options = {
 };
 
 const Index = (): JSX.Element => {
-  const theme = useColorScheme();
+  const scheme = useColorScheme();
 
   const { t } = useTranslation();
 
@@ -69,13 +69,13 @@ const Index = (): JSX.Element => {
     headerShown: false,
   };
   return (
-    <NavigationContainer ref={navigationRef} theme={theme === 'dark' ? darkTheme : lightTheme}>
+    <NavigationContainer ref={navigationRef} theme={scheme === 'dark' ? darkTheme : lightTheme}>
       <RootStack.Navigator initialRouteName="RootTab">
         <RootStack.Screen name="Root Tab" component={RootTab} options={navigationOptions} />
         <RootStack.Screen
           options={{
             headerShown: true,
-            headerTintColor: theme === 'dark' ? colors.white : colors.black,
+            headerTintColor: scheme === 'dark' ? colors.white : colors.black,
             headerBackTitle: t('utils:back'),
             title: t('utils:search'),
             presentation: 'card',
@@ -110,7 +110,7 @@ const Index = (): JSX.Element => {
             headerShown: true,
             headerTransparent: true,
             headerShadowVisible: false,
-            headerTintColor: theme === 'dark' ? colors.white : colors.black,
+            headerTintColor: scheme === 'dark' ? colors.white : colors.black,
             title: '',
             headerBackTitle: t('utils:back'),
             ...options,
@@ -123,7 +123,7 @@ const Index = (): JSX.Element => {
           options={({ route }) => ({
             headerTransparent: true,
             headerShadowVisible: false,
-            headerTintColor: theme === 'dark' ? colors.white : colors.black,
+            headerTintColor: scheme === 'dark' ? colors.white : colors.black,
             title: '',
             headerBackTitle: t('utils:back'),
             presentation: 'transparentModal',
@@ -136,7 +136,7 @@ const Index = (): JSX.Element => {
         <RootStack.Screen
           options={{
             headerShown: true,
-            headerTintColor: theme === 'dark' ? colors.white : colors.black,
+            headerTintColor: scheme === 'dark' ? colors.white : colors.black,
             headerBackTitle: t('utils:back'),
             title: t('utils:settings'),
             presentation: 'card',
@@ -147,17 +147,10 @@ const Index = (): JSX.Element => {
         <RootStack.Screen
           options={{
             headerShown: true,
-            headerTintColor: theme === 'dark' ? colors.white : colors.black,
+            headerTintColor: scheme === 'dark' ? colors.white : colors.black,
             headerBackTitle: t('utils:back'),
             title: t('profile:profile_change'),
             presentation: 'card',
-            // headerRight: () => (
-            //   <TouchableOpacity style={{ marginRight: normalize(10) }} onPress={() => Alert.alert(t('utils:wip'))}>
-            //     <Text style={[tBase, { fontSize: 16, fontWeight: '600' }, theme === 'dark' ? whiteColor : darkColor]}>
-            //       {t('profile:done')}
-            //     </Text>
-            //   </TouchableOpacity>
-            // ),
           }}
           name="ProfileChange"
           component={ProfileChangeScreen}
@@ -184,7 +177,7 @@ const Index = (): JSX.Element => {
           options={{
             headerTransparent: true,
             headerShadowVisible: false,
-            headerTintColor: theme === 'dark' ? colors.white : colors.black,
+            headerTintColor: scheme === 'dark' ? colors.white : colors.black,
             title: t('utils:camera'),
             headerBackTitle: t('utils:back'),
             presentation: 'transparentModal',
@@ -198,7 +191,7 @@ const Index = (): JSX.Element => {
           options={({ route }) => ({
             headerShown: true,
             headerTitle: `${route.params.user.username}`,
-            headerTintColor: theme === 'dark' ? colors.white : colors.black,
+            headerTintColor: scheme === 'dark' ? colors.white : colors.black,
             headerBackTitle: t('utils:back'),
             presentation: 'card',
           })}
@@ -210,7 +203,7 @@ const Index = (): JSX.Element => {
             headerShown: true,
             headerTransparent: true,
             headerShadowVisible: false,
-            headerTintColor: theme === 'dark' ? colors.white : colors.black,
+            headerTintColor: scheme === 'dark' ? colors.white : colors.black,
             headerTitle: '',
             headerBackTitle: t('utils:back'),
             presentation: 'transparentModal',
@@ -223,7 +216,7 @@ const Index = (): JSX.Element => {
         <RootStack.Screen
           options={({ route }) => ({
             headerShown: true,
-            headerTintColor: theme === 'dark' ? colors.white : colors.black,
+            headerTintColor: scheme === 'dark' ? colors.white : colors.black,
             headerBackTitle: t('utils:back'),
             title: t('utils:top'),
             presentation: 'card',
@@ -234,7 +227,7 @@ const Index = (): JSX.Element => {
         <RootStack.Screen
           options={({ route }) => ({
             headerShown: true,
-            headerTintColor: theme === 'dark' ? colors.white : colors.black,
+            headerTintColor: scheme === 'dark' ? colors.white : colors.black,
             headerBackTitle: t('utils:back'),
             title: t('settings:notifications'),
             presentation: 'card',
@@ -245,7 +238,7 @@ const Index = (): JSX.Element => {
         <RootStack.Screen
           options={({ route }) => ({
             headerShown: true,
-            headerTintColor: theme === 'dark' ? colors.white : colors.black,
+            headerTintColor: scheme === 'dark' ? colors.white : colors.black,
             headerBackTitle: t('utils:back'),
             title: t('settings:appearance'),
             presentation: 'card',
@@ -256,7 +249,7 @@ const Index = (): JSX.Element => {
         <RootStack.Screen
           options={({ route }) => ({
             headerShown: true,
-            headerTintColor: theme === 'dark' ? colors.white : colors.black,
+            headerTintColor: scheme === 'dark' ? colors.white : colors.black,
             headerBackTitle: t('utils:back'),
             title: t('settings:language'),
             presentation: 'card',
@@ -267,7 +260,7 @@ const Index = (): JSX.Element => {
         <RootStack.Screen
           options={({ route }) => ({
             headerShown: true,
-            headerTintColor: theme === 'dark' ? colors.white : colors.black,
+            headerTintColor: scheme === 'dark' ? colors.white : colors.black,
             headerBackTitle: t('utils:back'),
             title: t('settings:help'),
             presentation: 'card',
@@ -278,7 +271,7 @@ const Index = (): JSX.Element => {
         <RootStack.Screen
           options={({ route }) => ({
             headerShown: true,
-            headerTintColor: theme === 'dark' ? colors.white : colors.black,
+            headerTintColor: scheme === 'dark' ? colors.white : colors.black,
             headerBackTitle: t('utils:back'),
             title: t('settings:help'),
             presentation: 'card',
@@ -291,7 +284,7 @@ const Index = (): JSX.Element => {
             headerShown: true,
             headerTransparent: true,
             headerShadowVisible: false,
-            headerTintColor: theme === 'dark' ? colors.white : colors.black,
+            headerTintColor: scheme === 'dark' ? colors.white : colors.black,
             title: '',
             headerBackTitle: t('utils:back'),
             ...options,
