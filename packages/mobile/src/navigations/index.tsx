@@ -24,8 +24,8 @@ import {
   AppearanceScreen,
   LanguageScreen,
   HelpScreen,
-  InfoScreen,
   GalleryScreen,
+  AboutScreen,
 } from '_app/screens';
 import { ProfileChangeScreen } from '_app/screens/Settings/ProfileChange';
 import { navigationRef } from '_app/services/navigations';
@@ -274,11 +274,11 @@ const Index = (): JSX.Element => {
             headerShown: true,
             headerTintColor: scheme === 'dark' ? colors.white : colors.black,
             headerBackTitle: t('utils:back'),
-            title: t('settings:help'),
+            title: t('settings:about'),
             presentation: 'card',
           })}
-          name="Info"
-          component={InfoScreen}
+          name="About"
+          component={AboutScreen}
         />
         <RootStack.Screen
           options={({ route }) => ({

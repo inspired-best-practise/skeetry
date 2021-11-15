@@ -4,4 +4,4 @@ export * from './Notifications';
 export * from './Appearance';
 export * from './Language';
 export * from './Help';
-export * from './Info';
+export * from './About';

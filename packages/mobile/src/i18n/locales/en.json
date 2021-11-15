@@ -17,7 +17,7 @@
     "place": "Place",
     "want": "Want",
     "visited": "Visited",
-    "trips": "Trips",
+    "moments": "Moments",
     "cities": "Сities",
     "places": "Places",
     "empty_list_title": "The list is empty",
@@ -58,7 +58,7 @@
     "appearance": "Appearance",
     "language": "Language",
     "help": "Help",
-    "info": "Information"
+    "about": "About the app"
   },
   "card": {
     "contribute": "Contribute to Skeetry",
@@ -100,6 +100,7 @@
     "about_early_access_3": "Please report all bugs and errors to me via Telegram: ",
     "enter_country_name": "Enter country name",
     "picker_lang": "common",
-    "wrong_phone": "Wrong phone"
+    "wrong_phone": "Wrong phone",
+    "version": "Version"
   }
 }

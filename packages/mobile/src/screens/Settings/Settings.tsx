@@ -60,11 +60,11 @@ export const SettingsScreen = () => {
         </View>
       </View>
 
-      <MenuItem name="notifications" icon="bell" action={() => navigation.push('Notifications')} />
+      {/* <MenuItem name="notifications" icon="bell" action={() => navigation.push('Notifications')} /> */}
       <MenuItem name="appearance" icon="image" action={() => navigation.push('Appearance')} />
-      <MenuItem name="language" icon="globe" action={() => navigation.push('Language')} />
-      <MenuItem name="help" icon="life-buoy" action={() => navigation.push('Help')} />
-      <MenuItem name="info" icon="info" action={() => navigation.push('Info')} />
+      {/* <MenuItem name="language" icon="globe" action={() => navigation.push('Language')} /> */}
+      {/* <MenuItem name="help" icon="life-buoy" action={() => navigation.push('Help')} /> */}
+      <MenuItem name="about" icon="info" action={() => navigation.push('About')} />
     </SafeAreaView>
   );
 };

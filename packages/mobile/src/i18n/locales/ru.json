@@ -17,7 +17,7 @@
     "place": "Рейтинг",
     "want": "Хочу",
     "visited": "Визиты",
-    "trips": "Трипы",
+    "moments": "Моменты",
     "cities": "Города",
     "places": "Места",
     "empty_list_title": "Список пуст",
@@ -57,7 +57,7 @@
     "appearance": "Оформление",
     "language": "Язык",
     "help": "Помощь",
-    "info": "Информация"
+    "about": "О приложении"
   },
   "card": {
     "contribute": "Сделайте свой вклад в Skeetry",
@@ -99,6 +99,7 @@
     "about_early_access_3": "Прошу сообщать о всех ошибках и недочетах мне в телеграм: ",
     "enter_country_name": "Введите название страны",
     "picker_lang": "rus",
-    "wrong_phone": "Неверный телефон"
+    "wrong_phone": "Неверный телефон",
+    "version": "Версия"
   }
 }
