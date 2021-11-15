@@ -60,12 +60,7 @@ export const Gallery = ({ images }: GalleryProps) => {
                 </Text>
                 {images.length === 0 && <Text style={[tBase, { marginBottom: 5 }]}>{t('card:contribute')}</Text>}
                 <Text style={[tBase, { marginBottom: 15 }]}>{t('card:add_your_photo')}</Text>
-                <Button
-                  label={t('card:submit_photo')}
-                  onPress={() => Alert.alert(t('utils:wip'))}
-                  loading={false}
-                  containerStyle={{}}
-                />
+                <Button label={t('card:submit_photo')} onPress={() => Alert.alert(t('utils:wip'))} loading={false} />
               </View>
             );
           }

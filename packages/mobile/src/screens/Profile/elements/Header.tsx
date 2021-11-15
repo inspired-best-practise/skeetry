@@ -127,12 +127,7 @@ export const renderHeader = ({ ...props }) => {
         </View>
         {!isMe && (
           <View style={{ paddingTop: 20 }}>
-            <Button
-              label={t('profile:follow')}
-              onPress={() => Alert.alert(t('utils:wip'))}
-              loading={false}
-              containerStyle={{}}
-            />
+            <Button label={t('profile:follow')} onPress={() => Alert.alert(t('utils:wip'))} loading={false} />
           </View>
         )}
       </View>

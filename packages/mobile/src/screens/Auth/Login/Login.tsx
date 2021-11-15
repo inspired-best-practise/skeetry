@@ -143,10 +143,9 @@ export const LoginScreen = () => {
           </TouchableOpacity>
           <Button
             Icon={() => <Icon name="log-in" color={theme.white} size={16} />}
-            label={!loading ? t('utils:login') : t('utils:loading')}
+            label={t('utils:login')}
             onPress={handleSubmit(onSubmit)}
             loading={loading}
-            containerStyle={{}}
           />
           <Text style={[s.errorLogin, errorLogin ? { opacity: 1, textAlign: 'center' } : { opacity: 0 }]}>
             {errorLogin && errorLogin.message}

@@ -1,15 +1,17 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { Text, TouchableOpacity, useColorScheme, StyleSheet } from 'react-native';
+import { Text, useColorScheme, StyleSheet } from 'react-native';
 import PhoneInput from 'react-native-phone-number-input';
 
 import { FormWrapper, SafeAreaWrapper } from '_app/components';
-import { colors, radius } from '_app/constants';
+import { radius } from '_app/constants';
 import { AppContext } from '_app/context';
 import { useSendSmsCodeMutation } from '_app/generated/graphql';
+import { Button } from '_app/layout';
 import { navigation } from '_app/services/navigations';
 import { ThemeColors } from '_app/types/theme';
+import { normalize } from '_app/utils/dimensions';
 
 import { s } from './styles';
 
@@ -62,6 +64,7 @@ export const PhoneScreen = () => {
           control={control}
           rules={{ required: true, minLength: 6, maxLength: 12 }}
           render={({ field: { onChange, onBlur, value } }) => (
+            // TODO: change color icon and input line in dark mode
             <PhoneInput
               ref={phoneInput}
               placeholder={t('utils:phone')}
@@ -84,17 +87,10 @@ export const PhoneScreen = () => {
               textInputProps={{
                 onBlur,
               }}
-              // disableArrowIcon
-              containerStyle={[
-                { width: '100%', backgroundColor: colors.gray100, borderRadius: radius.base },
-                scheme === 'dark' && { backgroundColor: colors.gray800 },
-              ]}
-              textContainerStyle={[
-                { backgroundColor: colors.gray100, borderRadius: radius.base },
-                scheme === 'dark' && { backgroundColor: colors.gray800 },
-              ]}
-              textInputStyle={[scheme === 'dark' && { color: colors.white }]}
-              codeTextStyle={[scheme === 'dark' && { color: colors.white }]}
+              containerStyle={styles(theme).inputContainer}
+              textContainerStyle={styles(theme).textContainer}
+              textInputStyle={styles(theme).text}
+              codeTextStyle={styles(theme).text}
             />
           )}
           name="phone"
@@ -105,21 +101,7 @@ export const PhoneScreen = () => {
             {errors.phone.message ? errors.phone.message : `${t('utils:phone')} ${t('utils:is_required')}`}
           </Text>
         )}
-        <TouchableOpacity
-          onPress={handleSubmit(onSubmit)}
-          disabled={loading}
-          activeOpacity={0.6}
-          // eslint-disable-next-line react-native/no-inline-styles
-          style={[
-            {
-              ...s.btnLogin,
-              opacity: 1,
-            },
-            scheme === 'dark' && { backgroundColor: colors.gray800 },
-          ]}
-        >
-          <Text style={s.btnLoginText}>{!loading ? t('utils:next') : t('utils:loading')}</Text>
-        </TouchableOpacity>
+        <Button label={t('utils:next')} onPress={handleSubmit(onSubmit)} loading={loading} />
         {error && <Text style={[s.errorLogin, { textAlign: 'center' }]}>{error.message}</Text>}
       </FormWrapper>
     </SafeAreaWrapper>
@@ -128,6 +110,16 @@ export const PhoneScreen = () => {
 
 const styles = (theme = {} as ThemeColors) =>
   StyleSheet.create({
+    inputContainer: {
+      width: '100%',
+      backgroundColor: theme.gray01,
+      borderRadius: radius.base,
+      marginBottom: normalize(10),
+    },
+    textContainer: {
+      backgroundColor: theme.gray01,
+      borderRadius: radius.base,
+    },
     text: {
       color: theme.text01,
     },
