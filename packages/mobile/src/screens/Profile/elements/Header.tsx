@@ -86,6 +86,7 @@ export const renderHeader = ({ ...props }) => {
         );
   };
 
+  console.log('route?.name', route?.name);
   return (
     <View>
       <View style={[s.profilePanel]}>

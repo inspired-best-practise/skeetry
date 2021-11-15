@@ -6,7 +6,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import Icon from 'react-native-vector-icons/Feather';
 
-import { FormWrapper } from '_app/components';
+import { FormWrapper, SafeAreaWrapper } from '_app/components';
 import { IconSizes, tLogo } from '_app/constants';
 import { AppContext } from '_app/context';
 import { useLoginMutation } from '_app/generated/graphql';
@@ -168,15 +168,11 @@ export const LoginScreen = () => {
     );
   }
 
-  return <View style={styles(theme).container}>{content}</View>;
+  return <SafeAreaWrapper>{content}</SafeAreaWrapper>;
 };
 
 const styles = (theme = {} as ThemeColors) =>
   StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: theme.base,
-    },
     formTitle: {
       marginBottom: normalize(30),
       color: theme.text01,

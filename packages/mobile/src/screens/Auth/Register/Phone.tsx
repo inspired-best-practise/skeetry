@@ -3,9 +3,8 @@ import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { Text, TouchableOpacity, useColorScheme } from 'react-native';
 import PhoneInput from 'react-native-phone-number-input';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { FormWrapper } from '_app/components';
+import { FormWrapper, SafeAreaWrapper } from '_app/components';
 import { colors, radius } from '_app/constants';
 import { useSendSmsCodeMutation } from '_app/generated/graphql';
 import { navigation } from '_app/services/navigations';
@@ -60,7 +59,7 @@ export const PhoneScreen = () => {
   // TODO: handle data.sendSmsCode === false
 
   return (
-    <SafeAreaView style={s.container}>
+    <SafeAreaWrapper>
       <FormWrapper>
         <Controller
           control={control}
@@ -123,6 +122,6 @@ export const PhoneScreen = () => {
         </TouchableOpacity>
         {error && <Text style={[s.errorLogin, { textAlign: 'center' }]}>{error.message}</Text>}
       </FormWrapper>
-    </SafeAreaView>
+    </SafeAreaWrapper>
   );
 };

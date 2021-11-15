@@ -1,10 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Alert, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { Alert, Text, TouchableOpacity, StyleSheet, useColorScheme } from 'react-native';
 import { CodeField, Cursor, useBlurOnFulfill, useClearByFocusCell } from 'react-native-confirmation-code-field';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { FormWrapper } from '_app/components';
+import { FormWrapper, SafeAreaWrapper } from '_app/components';
 import { colors } from '_app/constants';
 import { AppContext } from '_app/context';
 import { useConfirmSmsCodeMutation, useSendSmsCodeMutation } from '_app/generated/graphql';
@@ -16,6 +15,7 @@ import { s } from './styles';
 
 export const CodeScreen = () => {
   const { t } = useTranslation();
+  const scheme = useColorScheme();
   const { theme } = useContext(AppContext);
 
   const CELL_COUNT = 4;
@@ -86,7 +86,7 @@ export const CodeScreen = () => {
   }, [dataResend]);
 
   return (
-    <SafeAreaView style={s.container}>
+    <SafeAreaWrapper>
       <FormWrapper>
         <CodeField
           ref={ref}
@@ -105,7 +105,7 @@ export const CodeScreen = () => {
                 s.cell,
                 styles(theme).text,
                 isFocused && s.focusCell,
-                theme === 'dark' && isFocused && { borderColor: colors.white },
+                scheme === 'dark' && isFocused && { borderColor: colors.white },
               ]}
               onLayout={getCellOnLayoutHandler(index)}
             >
@@ -134,7 +134,7 @@ export const CodeScreen = () => {
                 ...s.btnLogin,
                 opacity: 1,
               },
-              theme === 'dark' && { backgroundColor: colors.gray800 },
+              scheme === 'dark' && { backgroundColor: colors.gray800 },
             ]}
           >
             <Text style={s.btnLoginText}>{!loading ? t('utils:next') : t('utils:loading')}</Text>
@@ -143,7 +143,7 @@ export const CodeScreen = () => {
 
         {error && <Text style={[s.errorLogin, { textAlign: 'center' }]}>{error.message}</Text>}
       </FormWrapper>
-    </SafeAreaView>
+    </SafeAreaWrapper>
   );
 };
 

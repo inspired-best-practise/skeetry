@@ -2,7 +2,7 @@ import { ApolloProvider } from '@apollo/client';
 import { ActionSheetProvider, connectActionSheet } from '@expo/react-native-action-sheet';
 import * as Sentry from '@sentry/react-native';
 import React, { useContext, useEffect, useState } from 'react';
-import { LogBox, SafeAreaView, StatusBar, StyleSheet } from 'react-native';
+import { LogBox } from 'react-native';
 import Config from 'react-native-config';
 
 import { IconSizes } from '_app/constants';
@@ -11,9 +11,7 @@ import '_app/i18n';
 import { LoadingIndicator } from '_app/layout';
 import RootStackNavigation from '_app/navigations';
 import { client } from '_app/services/graphql';
-import { Typography } from '_app/theme';
 import { DynamicStatusBar, ThemeStatic } from '_app/theme/Colors';
-import { ThemeColors } from '_app/types/theme';
 import CodePushProvider from '_app/utils/CodePushProvider';
 import { loadThemeType } from '_app/utils/storage';
 
@@ -30,8 +28,8 @@ if (Config.NODE_ENV !== 'dev') {
 }
 
 const SafeAreaApp = () => {
-  const { theme, themeType, toggleTheme } = useContext(AppContext);
-  const { barStyle, backgroundColor } = DynamicStatusBar[themeType];
+  const { toggleTheme } = useContext(AppContext);
+
   const [initializing, setInitializing] = useState(true);
 
   const initializeTheme = async () => {
@@ -51,12 +49,7 @@ const SafeAreaApp = () => {
     return <LoadingIndicator color={ThemeStatic.accent} size={IconSizes.x1} />;
   }
 
-  return (
-    <SafeAreaView style={styles(theme).container}>
-      <StatusBar animated barStyle={barStyle} backgroundColor={backgroundColor} />
-      <RootStackNavigation />
-    </SafeAreaView>
-  );
+  return <RootStackNavigation />;
 };
 
 const App = () => {
@@ -72,13 +65,5 @@ const App = () => {
     </CodePushProvider>
   );
 };
-
-const styles = (theme = {} as ThemeColors) =>
-  StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: theme.base,
-    },
-  });
 
 export default Sentry.wrap(connectActionSheet(App));

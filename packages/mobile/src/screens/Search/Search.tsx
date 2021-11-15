@@ -2,9 +2,8 @@ import { useScrollToTop } from '@react-navigation/native';
 import React, { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { View, ScrollView, Text } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { Card, UserCard } from '_app/components';
+import { Card, SafeAreaWrapper, UserCard } from '_app/components';
 import { OrderDirection, useCitiesQuery, useUsersQuery } from '_app/generated/graphql';
 import { HorizontalListPlaceholder, Input } from '_app/layout';
 import { normalize } from '_app/utils/dimensions';
@@ -47,7 +46,7 @@ export const SearchScreen = () => {
   const usersList = dataUsers?.users.edges;
 
   return (
-    <SafeAreaView>
+    <SafeAreaWrapper>
       <View style={{ paddingHorizontal: normalize(20) }}>
         <Input ref={null} placeholder={t('search:search')} onChangeText={handleChange} />
       </View>
@@ -86,6 +85,6 @@ export const SearchScreen = () => {
           )}
         </View>
       )}
-    </SafeAreaView>
+    </SafeAreaWrapper>
   );
 };

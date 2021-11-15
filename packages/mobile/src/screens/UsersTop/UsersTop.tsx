@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList, SafeAreaView } from 'react-native';
+import { FlatList } from 'react-native';
 
-import { UserWithRating } from '_app/components';
+import { SafeAreaWrapper, UserWithRating } from '_app/components';
 import { OrderDirection, useUsersQuery } from '_app/generated/graphql';
 
 export const UsersTopScreen = () => {
@@ -50,7 +50,7 @@ export const UsersTopScreen = () => {
   };
 
   return (
-    <SafeAreaView>
+    <SafeAreaWrapper>
       <FlatList
         data={users}
         renderItem={renderItem}
@@ -60,6 +60,6 @@ export const UsersTopScreen = () => {
         onEndReachedThreshold={0.5}
         decelerationRate="fast"
       />
-    </SafeAreaView>
+    </SafeAreaWrapper>
   );
 };

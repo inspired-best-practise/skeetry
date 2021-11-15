@@ -1,16 +1,14 @@
 import React from 'react';
 import FastImage from 'react-native-fast-image';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { SafeAreaWrapper } from '_app/components';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '_app/utils/dimensions';
-
-import { s } from './styles';
 
 export const AvatarScreen = ({ route }) => {
   const { image } = route.params;
 
   return (
-    <SafeAreaView style={s.container}>
+    <SafeAreaWrapper center>
       <FastImage
         source={{
           uri: image,
@@ -22,6 +20,6 @@ export const AvatarScreen = ({ route }) => {
           width: SCREEN_WIDTH,
         }}
       />
-    </SafeAreaView>
+    </SafeAreaWrapper>
   );
 };

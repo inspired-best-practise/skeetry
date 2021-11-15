@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { ModalControl, CardList } from '_app/components';
+import { ModalControl, CardList, SafeAreaWrapper } from '_app/components';
 import { PLATFORM, tTitle } from '_app/constants';
 import { OrderDirection, useCitiesQuery } from '_app/generated/graphql';
 import { VerticalListPlaceholder } from '_app/layout';
-
-import { s } from './styles';
 
 export const CitiesListScreen = ({ route }) => {
   const { name, type } = route.params.item;
@@ -58,7 +55,7 @@ export const CitiesListScreen = ({ route }) => {
   };
 
   return (
-    <SafeAreaView style={s.container}>
+    <SafeAreaWrapper>
       {PLATFORM.IS_IOS && <ModalControl />}
       {PLATFORM.IS_IOS && (
         <View style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginBottom: 20 }}>
@@ -69,6 +66,6 @@ export const CitiesListScreen = ({ route }) => {
         {loadingCounter === 0 && <VerticalListPlaceholder />}
         {loadingCounter > 0 && <CardList data={cities} onEndReached={handleEndReached} />}
       </View>
-    </SafeAreaView>
+    </SafeAreaWrapper>
   );
 };

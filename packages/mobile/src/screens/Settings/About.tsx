@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, Text, StyleSheet } from 'react-native';
+import { Text, StyleSheet } from 'react-native';
 
+import { SafeAreaWrapper } from '_app/components';
 import { AppContext } from '_app/context';
 import { Typography } from '_app/theme';
 import { ThemeColors } from '_app/types/theme';
+import { normalize } from '_app/utils/dimensions';
 
 import { version } from '../../../package.json';
 
@@ -15,28 +17,24 @@ export const AboutScreen = () => {
   const { theme } = useContext(AppContext);
 
   return (
-    <View style={[styles(theme).container]}>
+    <SafeAreaWrapper center>
       <Text style={[styles(theme).logo]}>Skeetry</Text>
       <Text style={[styles(theme).text]}>
         {t('utils:version')}: {version}
       </Text>
-    </View>
+    </SafeAreaWrapper>
   );
 };
 
 const styles = (theme = {} as ThemeColors) =>
   StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
     logo: {
       ...FontSizes.Heading,
       ...FontWeights.Bold,
       color: theme.text01,
     },
     text: {
+      marginTop: normalize(5),
       color: theme.text01,
     },
   });

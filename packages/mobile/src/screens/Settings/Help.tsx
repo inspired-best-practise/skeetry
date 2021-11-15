@@ -1,10 +1,12 @@
 import React from 'react';
-import { SafeAreaView, Text } from 'react-native';
+import { Text } from 'react-native';
+
+import { SafeAreaWrapper } from '_app/components';
 
 export const HelpScreen = () => {
   return (
-    <SafeAreaView>
+    <SafeAreaWrapper>
       <Text>Help</Text>
-    </SafeAreaView>
+    </SafeAreaWrapper>
   );
 };

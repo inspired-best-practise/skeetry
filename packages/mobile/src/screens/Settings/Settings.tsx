@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, Text, TouchableOpacity, SafeAreaView, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
-import { Avatar } from '_app/components';
+import { Avatar, SafeAreaWrapper } from '_app/components';
 import MenuItem from '_app/components/MenuItem/MenuItem';
 import { radius, tBase } from '_app/constants';
 import { AppContext } from '_app/context';
@@ -20,7 +20,7 @@ export const SettingsScreen = () => {
   const user = data!.me;
 
   return (
-    <SafeAreaView>
+    <SafeAreaWrapper>
       <View style={styles(theme).container}>
         <View style={styles(theme).wrap}>
           {!loading && (
@@ -65,7 +65,7 @@ export const SettingsScreen = () => {
       {/* <MenuItem name="language" icon="globe" action={() => navigation.push('Language')} /> */}
       {/* <MenuItem name="help" icon="life-buoy" action={() => navigation.push('Help')} /> */}
       <MenuItem name="about" icon="info" action={() => navigation.push('About')} />
-    </SafeAreaView>
+    </SafeAreaWrapper>
   );
 };
 

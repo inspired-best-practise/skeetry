@@ -1,13 +1,15 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Text } from 'react-native';
+
+import { SafeAreaWrapper } from '_app/components';
 
 import { s } from './styles';
 
 export const OfflineScreen = () => {
   return (
-    <View style={s.container}>
+    <SafeAreaWrapper>
       <Text style={s.title}>You're Offline</Text>
       <Text style={s.description}>Turn off Airplane Mode or connect to Wi-Fi.</Text>
-    </View>
+    </SafeAreaWrapper>
   );
 };

@@ -2,12 +2,10 @@ import { useScrollToTop } from '@react-navigation/native';
 import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ScrollView } from 'react-native-gesture-handler';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { SafeAreaWrapper } from '_app/components';
 // import { HorizontalCardList } from '_app/components';
 import { OrderDirection, useCitiesQuery } from '_app/generated/graphql';
-
-import { s } from './styles';
 
 export const LocationsScreen = () => {
   const { t } = useTranslation();
@@ -256,7 +254,7 @@ export const LocationsScreen = () => {
   };
 
   return (
-    <SafeAreaView edges={['top']} style={s.container}>
+    <SafeAreaWrapper>
       <ScrollView ref={ref} showsVerticalScrollIndicator={false} scrollsToTop={true}>
         {/* <HorizontalCardList
           title={`${t('explore:capital')}`}
@@ -307,6 +305,6 @@ export const LocationsScreen = () => {
           type="africa"
         />*/}
       </ScrollView>
-    </SafeAreaView>
+    </SafeAreaWrapper>
   );
 };

@@ -1,14 +1,12 @@
 import React from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { SafeAreaWrapper } from '_app/components';
 import { Stack } from '_app/components/Stack';
-
-import { s } from './styles';
 
 export const SwipesScreen = () => {
   return (
-    <SafeAreaView style={s.container}>
+    <SafeAreaWrapper>
       <Stack data={{}} />
-    </SafeAreaView>
+    </SafeAreaWrapper>
   );
 };

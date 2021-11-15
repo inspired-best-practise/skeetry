@@ -1,10 +1,12 @@
 import React from 'react';
-import { SafeAreaView, Text } from 'react-native';
+import { Text } from 'react-native';
+
+import { SafeAreaWrapper } from '_app/components';
 
 export const LanguageScreen = () => {
   return (
-    <SafeAreaView>
+    <SafeAreaWrapper>
       <Text>Language</Text>
-    </SafeAreaView>
+    </SafeAreaWrapper>
   );
 };

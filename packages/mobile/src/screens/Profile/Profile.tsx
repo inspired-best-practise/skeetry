@@ -4,8 +4,8 @@ import React, { useCallback, useContext, useEffect, useRef, useState } from 'rea
 import { useTranslation } from 'react-i18next';
 import { Text, FlatList, RefreshControl, useColorScheme, StyleSheet } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
+import { SafeAreaWrapper } from '_app/components';
 import { tBase } from '_app/constants';
 import { AppContext } from '_app/context';
 import { OrderDirection, useMeQuery, useVisitedQuery, useWantedQuery } from '_app/generated/graphql';
@@ -117,9 +117,9 @@ export const ProfileScreen = () => {
 
   if (loading) {
     return (
-      <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <SafeAreaWrapper>
         <Text>Loading...</Text>
-      </SafeAreaView>
+      </SafeAreaWrapper>
     );
   }
 
@@ -130,12 +130,12 @@ export const ProfileScreen = () => {
 
   if (error || errorWanted || errorVisited) {
     return (
-      <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <SafeAreaWrapper>
         <Text>Error. Please try later...</Text>
         <TouchableWithoutFeedback style={{ margin: 10 }} onPress={() => logOut()}>
           <Text style={[tBase, styles(theme).text]}>Logout</Text>
         </TouchableWithoutFeedback>
-      </SafeAreaView>
+      </SafeAreaWrapper>
     );
   }
 
@@ -156,31 +156,33 @@ export const ProfileScreen = () => {
   };
 
   return (
-    <FlatList
-      ref={ref}
-      ListHeaderComponent={renderHeader({
-        user,
-        t,
-        isMe,
-        theme,
-        scheme,
-        route: null,
-        showActionSheetWithOptions,
-        selectList,
-      })}
-      ListEmptyComponent={renderEmpty(t, theme)}
-      numColumns={2}
-      horizontal={false}
-      data={getData()}
-      columnWrapperStyle={s.listWrapper}
-      contentContainerStyle={{}}
-      renderItem={renderItem}
-      keyExtractor={item => item.node.id}
-      showsVerticalScrollIndicator={false}
-      decelerationRate="fast"
-      refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
-      onEndReached={() => (true ? wantedEndReached() : visitedEndReached())}
-    />
+    <SafeAreaWrapper>
+      <FlatList
+        ref={ref}
+        ListHeaderComponent={renderHeader({
+          user,
+          t,
+          isMe,
+          theme,
+          scheme,
+          route: null,
+          showActionSheetWithOptions,
+          selectList,
+        })}
+        ListEmptyComponent={renderEmpty(t, theme)}
+        numColumns={2}
+        horizontal={false}
+        data={getData()}
+        columnWrapperStyle={s.listWrapper}
+        contentContainerStyle={{}}
+        renderItem={renderItem}
+        keyExtractor={item => item.node.id}
+        showsVerticalScrollIndicator={false}
+        decelerationRate="fast"
+        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+        onEndReached={() => (true ? wantedEndReached() : visitedEndReached())}
+      />
+    </SafeAreaWrapper>
   );
 };
 

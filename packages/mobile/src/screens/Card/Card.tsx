@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { View, Text, TouchableHighlight, Pressable, ActionSheetIOS, useColorScheme, StyleSheet } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Feather';
 
 import { Gallery } from '_app/components';
@@ -197,8 +198,13 @@ export const CardScreen = ({ route, navigation }) => {
         );
   };
 
+  const insets = useSafeAreaInsets();
+
   return (
-    <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={[s.container, styles(theme).container]}>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={[s.container, styles(theme).container, { paddingBottom: insets.bottom }]}
+    >
       <Gallery images={currentCity.images} />
       <View style={s.content}>
         <View style={[s.section, styles(theme).section]}>

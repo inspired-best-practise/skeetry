@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FlatList, useColorScheme } from 'react-native';
 
+import { SafeAreaWrapper } from '_app/components';
 import { AppContext } from '_app/context';
 import { useWantedQuery, OrderDirection, useVisitedQuery } from '_app/generated/graphql';
 import { SCREEN_WIDTH } from '_app/utils/dimensions';
@@ -115,27 +116,29 @@ export const ProfileUserScreen = ({ route }) => {
   };
 
   return (
-    <FlatList
-      ref={ref}
-      ListHeaderComponent={renderHeader({
-        user,
-        t,
-        isMe,
-        theme,
-        scheme,
-        route: null,
-        selectList,
-      })}
-      ListEmptyComponent={renderEmpty(t, theme)}
-      numColumns={2}
-      data={getData()}
-      columnWrapperStyle={s.listWrapper}
-      contentContainerStyle={{ width: SCREEN_WIDTH }}
-      renderItem={renderItem}
-      keyExtractor={item => item.node.id}
-      showsVerticalScrollIndicator={false}
-      decelerationRate="fast"
-      onEndReached={() => (selectedList === 'want' ? wantedEndReached() : visitedEndReached())}
-    />
+    <SafeAreaWrapper>
+      <FlatList
+        ref={ref}
+        ListHeaderComponent={renderHeader({
+          user,
+          t,
+          isMe,
+          theme,
+          scheme,
+          route,
+          selectList,
+        })}
+        ListEmptyComponent={renderEmpty(t, theme)}
+        numColumns={2}
+        data={getData()}
+        columnWrapperStyle={s.listWrapper}
+        contentContainerStyle={{ width: SCREEN_WIDTH }}
+        renderItem={renderItem}
+        keyExtractor={item => item.node.id}
+        showsVerticalScrollIndicator={false}
+        decelerationRate="fast"
+        onEndReached={() => (selectedList === 'want' ? wantedEndReached() : visitedEndReached())}
+      />
+    </SafeAreaWrapper>
   );
 };

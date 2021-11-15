@@ -1,6 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
+
+import { SafeAreaWrapper } from '_app/components';
 
 import { s } from './styles';
 
@@ -8,7 +10,7 @@ export const WelcomeScreen = () => {
   const { t } = useTranslation();
 
   return (
-    <View style={s.container}>
+    <SafeAreaWrapper>
       <Text style={{ marginVertical: 20, textAlign: 'center' }}>{t('utils:welcome_to')} Skeetry</Text>
       <TouchableOpacity
         onPress={() => {}}
@@ -21,6 +23,6 @@ export const WelcomeScreen = () => {
       >
         <Text style={s.btnLoginText}>{t('utils:next')}</Text>
       </TouchableOpacity>
-    </View>
+    </SafeAreaWrapper>
   );
 };

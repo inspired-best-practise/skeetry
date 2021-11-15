@@ -1,10 +1,12 @@
 import React from 'react';
-import { SafeAreaView, Text } from 'react-native';
+import { Text } from 'react-native';
+
+import { SafeAreaWrapper } from '_app/components';
 
 export const NotificationsScreen = () => {
   return (
-    <SafeAreaView>
+    <SafeAreaWrapper>
       <Text>Notifications</Text>
-    </SafeAreaView>
+    </SafeAreaWrapper>
   );
 };
