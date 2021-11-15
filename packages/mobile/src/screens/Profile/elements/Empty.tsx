@@ -5,11 +5,13 @@ import { tBase, tTitle } from '_app/constants';
 import { ThemeColors } from '_app/types/theme';
 import { normalize } from '_app/utils/dimensions';
 
-export const renderEmpty = (t, theme) => {
+export const Empty = ({ t, theme, type }) => {
   return (
     <View style={styles(theme).container}>
       <Text style={[tTitle, styles(theme).title]}>{t('profile:empty_list_title')}</Text>
-      <Text style={[tBase, styles(theme).desc]}>{t('profile:empty_list_desc')}</Text>
+      <Text style={[tBase, styles(theme).desc]}>
+        {type === 'moments' ? t('profile:empty_moments_desc') : t('profile:empty_list_desc')}
+      </Text>
     </View>
   );
 };

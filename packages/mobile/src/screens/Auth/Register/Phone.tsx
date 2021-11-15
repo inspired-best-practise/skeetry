@@ -1,3 +1,4 @@
+import { AsYouType } from 'libphonenumber-js';
 import React, { useEffect, useRef, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
@@ -17,6 +18,7 @@ export const PhoneScreen = () => {
 
   const [formattedValue, setFormattedValue] = useState('');
   const [valid, setValid] = useState(false);
+  const [countryCode, setCountryCode] = useState('RU');
   const phoneInput = useRef<PhoneInput>(null);
 
   const [sendSmsCodeMutation, { data, loading, error }] = useSendSmsCodeMutation();
@@ -64,39 +66,46 @@ export const PhoneScreen = () => {
         <Controller
           control={control}
           rules={{ required: true, minLength: 6, maxLength: 12 }}
-          render={({ field: { onChange, onBlur, value } }) => (
-            <PhoneInput
-              ref={phoneInput}
-              placeholder={t('utils:phone')}
-              filterProps={{ placeholder: t('utils:enter_country_name') }}
-              countryPickerProps={{
-                translation: t('utils:picker_lang'),
-              }}
-              withDarkTheme={theme === 'dark' ? true : false}
-              defaultValue={value}
-              defaultCode="RU"
-              layout="first"
-              onChangeText={onChange}
-              textInputProps={{
-                onBlur,
-              }}
-              onChangeFormattedText={text => {
-                setFormattedValue(text);
-              }}
-              autoFocus
-              // disableArrowIcon
-              containerStyle={[
-                { width: '100%', backgroundColor: colors.gray100, borderRadius: radius.base },
-                theme === 'dark' && { backgroundColor: colors.gray800 },
-              ]}
-              textContainerStyle={[
-                { backgroundColor: colors.gray100, borderRadius: radius.base },
-                theme === 'dark' && { backgroundColor: colors.gray800 },
-              ]}
-              textInputStyle={[theme === 'dark' && { color: colors.white }]}
-              codeTextStyle={[theme === 'dark' && { color: colors.white }]}
-            />
-          )}
+          render={({ field: { onChange, onBlur, value } }) => {
+            console.log('value', value);
+            return (
+              <PhoneInput
+                ref={phoneInput}
+                placeholder={t('utils:phone')}
+                filterProps={{ placeholder: t('utils:enter_country_name') }}
+                countryPickerProps={{
+                  translation: t('utils:picker_lang'),
+                }}
+                withDarkTheme={theme === 'dark' ? true : false}
+                defaultValue={value}
+                value={value}
+                defaultCode={countryCode}
+                onChangeCountry={country => {
+                  setCountryCode(country.cca2);
+                }}
+                layout="first"
+                // onChangeText={onChange}
+                onChangeText={text => {
+                  console.log('text', text);
+                  const f = new AsYouType(countryCode).input(text);
+                  console.log('f: ', f);
+                  onChange(f);
+                }}
+                autoFocus
+                // disableArrowIcon
+                containerStyle={[
+                  { width: '100%', backgroundColor: colors.gray100, borderRadius: radius.base },
+                  theme === 'dark' && { backgroundColor: colors.gray800 },
+                ]}
+                textContainerStyle={[
+                  { backgroundColor: colors.gray100, borderRadius: radius.base },
+                  theme === 'dark' && { backgroundColor: colors.gray800 },
+                ]}
+                textInputStyle={[theme === 'dark' && { color: colors.white }]}
+                codeTextStyle={[theme === 'dark' && { color: colors.white }]}
+              />
+            );
+          }}
           name="phone"
           defaultValue=""
         />

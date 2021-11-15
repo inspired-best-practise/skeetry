@@ -45,6 +45,7 @@ Features:
    ✔ Code Push @done(21-09-24 21:09)
    ✔ Android app icon @done(21-09-24 17:13)
    ☐ react-native-confetti-cannon for signup
+   ☐ https://github.com/ivpusic/react-native-image-crop-picker
 
 Auth:
    ✔ Form with yup + react-hook-form / formik @done(21-09-18 20:23)

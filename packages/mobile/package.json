@@ -16,7 +16,8 @@
     "u": "yarn upgrade-interactive --latest",
     "codegen": "DOTENV_CONFIG_PATH=.env.local graphql-codegen --config codegen.yml -r dotenv/config",
     "codegen:prod": "DOTENV_CONFIG_PATH=.env.prod graphql-codegen --config codegen.yml -r dotenv/config",
-    "codepush:android": "appcenter codepush release-react -a kive.dev/travelAndroid -d Production"
+    "codepush:android": "appcenter codepush release-react -a kive.dev/travelAndroid -d Production",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@apollo/client": "^3.4.16",
@@ -53,7 +54,10 @@
     "hookstate-persist": "^1.0.2",
     "i18next": "^21.4.0",
     "isomorphic-unfetch": "^3.1.0",
+    "libphonenumber-js": "^1.9.42",
     "lint-staged": "^11.2.6",
+    "patch-package": "^6.4.7",
+    "postinstall-postinstall": "^2.1.0",
     "react": "17.0.2",
     "react-feather": "^2.0.9",
     "react-hook-form": "^7.19.0",

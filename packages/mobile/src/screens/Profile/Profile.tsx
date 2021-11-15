@@ -2,7 +2,7 @@ import { useActionSheet } from '@expo/react-native-action-sheet';
 import { useScrollToTop } from '@react-navigation/native';
 import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Text, FlatList, RefreshControl, useColorScheme, StyleSheet } from 'react-native';
+import { Text, FlatList, RefreshControl, useColorScheme, StyleSheet, View } from 'react-native';
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 import { SafeAreaWrapper } from '_app/components';
@@ -13,7 +13,7 @@ import { navigation } from '_app/services/navigations';
 import { ThemeColors } from '_app/types/theme';
 import { signOut } from '_app/utils/authentication';
 
-import { renderEmpty, renderItem, renderHeader } from './elements';
+import { renderItem, renderHeader, Empty } from './elements';
 import { s } from './styles';
 
 export const ProfileScreen = () => {
@@ -155,6 +155,8 @@ export const ProfileScreen = () => {
     }
   };
 
+  const type = selectedList === 'moments' ? 'moments' : 'list';
+
   return (
     <SafeAreaWrapper>
       <FlatList
@@ -169,10 +171,10 @@ export const ProfileScreen = () => {
           showActionSheetWithOptions,
           selectList,
         })}
-        ListEmptyComponent={renderEmpty(t, theme)}
+        ListEmptyComponent={() => <Empty t={t} theme={theme} type={type} />}
         numColumns={2}
         horizontal={false}
-        data={getData()}
+        data={selectedList === 'moments' ? null : getData()}
         columnWrapperStyle={s.listWrapper}
         contentContainerStyle={{}}
         renderItem={renderItem}
