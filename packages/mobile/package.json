@@ -54,7 +54,6 @@
     "hookstate-persist": "^1.0.2",
     "i18next": "^21.4.0",
     "isomorphic-unfetch": "^3.1.0",
-    "libphonenumber-js": "^1.9.42",
     "lint-staged": "^11.2.6",
     "patch-package": "^6.4.7",
     "postinstall-postinstall": "^2.1.0",
