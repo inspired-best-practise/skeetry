@@ -8,6 +8,7 @@ import { AppContext } from '_app/context';
 import { Button } from '_app/layout';
 import { navigation } from '_app/services/navigations';
 import { ThemeColors } from '_app/types/theme';
+import { normalize } from '_app/utils/dimensions';
 
 import { s } from './styles';
 
@@ -46,7 +47,7 @@ export const Gallery = ({ images }: GalleryProps) => {
   };
 
   return (
-    <View style={s.container}>
+    <View style={[s.container, styles(theme).container]}>
       <FlatList
         data={[...images, { id: 'plusImage', plusImage: true }]}
         horizontal={true}
@@ -54,13 +55,18 @@ export const Gallery = ({ images }: GalleryProps) => {
         renderItem={({ item }) => {
           if (item.plusImage) {
             return (
-              <View style={s.plusImage}>
-                <Text style={[tTitle, { marginBottom: 10 }]}>
+              <View style={[s.plusImage, styles(theme).plusImage]}>
+                <Text style={[tTitle, styles(theme).title]}>
                   {images.length === 0 ? t('card:no_images') : t('card:contribute')}
                 </Text>
-                {images.length === 0 && <Text style={[tBase, { marginBottom: 5 }]}>{t('card:contribute')}</Text>}
-                <Text style={[tBase, { marginBottom: 15 }]}>{t('card:add_your_photo')}</Text>
-                <Button label={t('card:submit_photo')} onPress={() => Alert.alert(t('utils:wip'))} loading={false} />
+                {images.length === 0 && <Text style={[tBase, styles(theme).desc]}>{t('card:contribute')}</Text>}
+                <Text style={[tBase, styles(theme).secondDesc]}>{t('card:add_your_photo')}</Text>
+                <Button
+                  label={t('card:submit_photo')}
+                  onPress={() => Alert.alert(t('utils:wip'))}
+                  loading={false}
+                  containerStyle={styles(theme).button}
+                />
               </View>
             );
           }
@@ -83,7 +89,29 @@ export const Gallery = ({ images }: GalleryProps) => {
 
 const styles = (theme = {} as ThemeColors) =>
   StyleSheet.create({
+    container: {
+      borderBottomColor: theme.gray01,
+      borderBottomWidth: 1,
+    },
     text: {
       color: theme.white,
+    },
+    title: {
+      marginBottom: normalize(10),
+      color: theme.text01,
+    },
+    desc: {
+      marginBottom: normalize(5),
+      color: theme.text01,
+    },
+    secondDesc: {
+      marginBottom: normalize(15),
+      color: theme.text01,
+    },
+    plusImage: {
+      backgroundColor: theme.gray04,
+    },
+    button: {
+      backgroundColor: theme.placeholder,
     },
   });
