@@ -7,7 +7,7 @@ import { AppContext } from '_app/context';
 import { useWantedQuery, OrderDirection, useVisitedQuery } from '_app/generated/graphql';
 import { SCREEN_WIDTH } from '_app/utils/dimensions';
 
-import { renderEmpty, renderItem, renderHeader } from './elements';
+import { renderItem, renderHeader, Empty } from './elements';
 import { s } from './styles';
 
 export const ProfileUserScreen = ({ route }) => {
@@ -115,6 +115,8 @@ export const ProfileUserScreen = ({ route }) => {
     }
   };
 
+  const type = selectedList === 'moments' ? 'moments' : 'list';
+
   return (
     <SafeAreaWrapper>
       <FlatList
@@ -128,9 +130,9 @@ export const ProfileUserScreen = ({ route }) => {
           route,
           selectList,
         })}
-        ListEmptyComponent={renderEmpty(t, theme)}
+        ListEmptyComponent={() => <Empty t={t} theme={theme} type={type} />}
         numColumns={2}
-        data={getData()}
+        data={selectedList === 'moments' ? null : getData()}
         columnWrapperStyle={s.listWrapper}
         contentContainerStyle={{ width: SCREEN_WIDTH }}
         renderItem={renderItem}
