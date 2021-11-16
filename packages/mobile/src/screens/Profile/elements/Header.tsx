@@ -139,7 +139,7 @@ export const renderHeader = ({ ...props }) => {
           number={user.visitedCount}
           action={() => selectList('visited')}
         />
-        <ProfileStatsItem name={`${t('profile:moments')}`} number={0} />
+        <ProfileStatsItem name={`${t('profile:moments')}`} number={0} action={() => selectList('moments')} />
       </View>
       <ProfileFilter />
     </View>

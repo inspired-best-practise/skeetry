@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
 import SkeletonContent from 'react-native-skeleton-content-nonexpo';
 
 import { s } from '_app/components/Card/styles';
+import { AppContext } from '_app/context';
 
 export const VerticalListPlaceholder = () => {
+  const { theme } = useContext(AppContext);
+
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
@@ -17,6 +20,8 @@ export const VerticalListPlaceholder = () => {
           key={index}
           containerStyle={{ flex: 1, marginBottom: 20 }}
           isLoading={true}
+          highlightColor={theme.gray04}
+          boneColor={theme.gray01}
           layout={[
             {
               key: 'image',

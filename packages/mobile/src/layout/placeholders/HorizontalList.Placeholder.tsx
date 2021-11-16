@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
 import SkeletonContent from 'react-native-skeleton-content-nonexpo';
 
 import { s } from '_app/components/Card/styles';
+import { AppContext } from '_app/context';
 
 export const HorizontalListPlaceholder = ({ size }: { size: string }) => {
+  const { theme } = useContext(AppContext);
+
   let styleImage = {};
   let styleText = {};
 
@@ -35,6 +38,8 @@ export const HorizontalListPlaceholder = ({ size }: { size: string }) => {
           key={index}
           containerStyle={{ flex: 1, marginRight: 20 }}
           isLoading={true}
+          highlightColor={theme.gray04}
+          boneColor={theme.gray01}
           layout={[
             {
               key: 'image',

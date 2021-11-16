@@ -57,7 +57,7 @@ export const Theme: {
       gray01: '#F2F2F2',
       gray02: '#C6C6C6',
       gray03: '#595959',
-      gray04: '#1a1e24',
+      gray04: '#e1e1e1',
     },
   },
   dark: {

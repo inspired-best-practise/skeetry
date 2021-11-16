@@ -2,13 +2,12 @@ import { useActionSheet } from '@expo/react-native-action-sheet';
 import { useScrollToTop } from '@react-navigation/native';
 import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Text, FlatList, RefreshControl, useColorScheme, StyleSheet, View } from 'react-native';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import { Text, FlatList, RefreshControl, useColorScheme, StyleSheet } from 'react-native';
 
 import { SafeAreaWrapper } from '_app/components';
-import { tBase } from '_app/constants';
 import { AppContext } from '_app/context';
 import { OrderDirection, useMeQuery, useVisitedQuery, useWantedQuery } from '_app/generated/graphql';
+import { Button } from '_app/layout';
 import { navigation } from '_app/services/navigations';
 import { ThemeColors } from '_app/types/theme';
 import { signOut } from '_app/utils/authentication';
@@ -117,8 +116,8 @@ export const ProfileScreen = () => {
 
   if (loading) {
     return (
-      <SafeAreaWrapper>
-        <Text>Loading...</Text>
+      <SafeAreaWrapper center>
+        <Text style={styles(theme).text}>Loading...</Text>
       </SafeAreaWrapper>
     );
   }
@@ -130,11 +129,9 @@ export const ProfileScreen = () => {
 
   if (error || errorWanted || errorVisited) {
     return (
-      <SafeAreaWrapper>
-        <Text>Error. Please try later...</Text>
-        <TouchableWithoutFeedback style={{ margin: 10 }} onPress={() => logOut()}>
-          <Text style={[tBase, styles(theme).text]}>Logout</Text>
-        </TouchableWithoutFeedback>
+      <SafeAreaWrapper center>
+        <Text style={styles(theme).text}>Error. Please try later...</Text>
+        <Button label={t('utils:logout')} onPress={() => logOut()} loading={false} />
       </SafeAreaWrapper>
     );
   }
