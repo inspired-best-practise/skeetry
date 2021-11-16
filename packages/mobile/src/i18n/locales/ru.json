@@ -101,6 +101,7 @@
     "enter_country_name": "Введите название страны",
     "picker_lang": "rus",
     "wrong_phone": "Неверный телефон",
-    "version": "Версия"
+    "version": "Версия",
+    "resend": "Отправить код повторно"
   }
 }

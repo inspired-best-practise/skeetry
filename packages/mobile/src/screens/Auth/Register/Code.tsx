@@ -7,6 +7,7 @@ import { FormWrapper, SafeAreaWrapper } from '_app/components';
 import { colors } from '_app/constants';
 import { AppContext } from '_app/context';
 import { useConfirmSmsCodeMutation, useSendSmsCodeMutation } from '_app/generated/graphql';
+import { Button } from '_app/layout';
 import { navigation } from '_app/services/navigations';
 import { ThemeColors } from '_app/types/theme';
 import { normalize } from '_app/utils/dimensions';
@@ -119,26 +120,15 @@ export const CodeScreen = () => {
           </Text>
         )}
         {timer === 0 && (
-          <TouchableOpacity activeOpacity={0.8} style={[{ padding: normalize(10) }]} onPress={() => resendCode()}>
-            <Text style={[styles(theme).text]}>Отправить код повторно</Text>
-          </TouchableOpacity>
+          <Button
+            label={t('utils:resend')}
+            onPress={() => resendCode()}
+            loading={loading}
+            containerStyle={{ marginVertical: normalize(10) }}
+          />
         )}
         {value.length === CELL_COUNT && (
-          <TouchableOpacity
-            onPress={() => onSubmit(value)}
-            activeOpacity={0.6}
-            disabled={loading}
-            // eslint-disable-next-line react-native/no-inline-styles
-            style={[
-              {
-                ...s.btnLogin,
-                opacity: 1,
-              },
-              scheme === 'dark' && { backgroundColor: colors.gray800 },
-            ]}
-          >
-            <Text style={s.btnLoginText}>{!loading ? t('utils:next') : t('utils:loading')}</Text>
-          </TouchableOpacity>
+          <Button label={t('utils:next')} onPress={() => onSubmit(value)} loading={loading} />
         )}
 
         {error && <Text style={[s.errorLogin, { textAlign: 'center' }]}>{error.message}</Text>}

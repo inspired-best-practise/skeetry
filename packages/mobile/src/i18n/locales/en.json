@@ -102,6 +102,7 @@
     "enter_country_name": "Enter country name",
     "picker_lang": "common",
     "wrong_phone": "Wrong phone",
-    "version": "Version"
+    "version": "Version",
+    "resend": "Resend code"
   }
 }

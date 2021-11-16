@@ -5,7 +5,9 @@ import { View, Text, TouchableOpacity, TextInput } from 'react-native';
 
 import { FormWrapper, SafeAreaWrapper } from '_app/components';
 import { useSignupMutation } from '_app/generated/graphql';
+import { Button, Input } from '_app/layout';
 import { navigation } from '_app/services/navigations';
+import { normalize } from '_app/utils/dimensions';
 
 import { s } from './styles';
 
@@ -51,17 +53,15 @@ export const CredentialsScreen = () => {
           control={control}
           rules={{ required: true }}
           render={({ field: { onChange, onBlur, value } }) => (
-            <View style={s.textInputWrapper}>
-              <TextInput
-                style={s.input}
-                onBlur={onBlur}
-                onChangeText={onChange}
-                value={value}
-                autoCapitalize="none"
-                placeholder={t('utils:name')}
-                spellCheck={false}
-              />
-            </View>
+            <Input
+              ref={null}
+              onBlur={onBlur}
+              onChangeText={onChange}
+              label={t('utils:name')}
+              placeholder={t('utils:name')}
+              value={value}
+              error={errors.name && t('utils:name') + ' ' + t('utils:is_required')}
+            />
           )}
           name="name"
           defaultValue=""
@@ -75,17 +75,15 @@ export const CredentialsScreen = () => {
           control={control}
           rules={{ required: true }}
           render={({ field: { onChange, onBlur, value } }) => (
-            <View style={s.textInputWrapper}>
-              <TextInput
-                style={s.input}
-                onBlur={onBlur}
-                onChangeText={onChange}
-                value={value}
-                autoCapitalize="none"
-                placeholder={t('utils:username')}
-                spellCheck={false}
-              />
-            </View>
+            <Input
+              ref={null}
+              onBlur={onBlur}
+              onChangeText={onChange}
+              label={t('utils:username')}
+              placeholder={t('utils:username')}
+              value={value}
+              error={errors.username && t('utils:username') + ' ' + t('utils:is_required')}
+            />
           )}
           name="username"
           defaultValue=""
@@ -99,18 +97,16 @@ export const CredentialsScreen = () => {
           control={control}
           rules={{ required: true }}
           render={({ field: { onChange, onBlur, value } }) => (
-            <View style={s.textInputWrapper}>
-              <TextInput
-                style={s.input}
-                onBlur={onBlur}
-                onChangeText={onChange}
-                value={value}
-                autoCapitalize="none"
-                placeholder={t('utils:password')}
-                spellCheck={false}
-                secureTextEntry
-              />
-            </View>
+            <Input
+              ref={null}
+              onBlur={onBlur}
+              onChangeText={onChange}
+              label={t('utils:password')}
+              placeholder={t('utils:password')}
+              value={value}
+              error={errors.password && t('utils:password') + ' ' + t('utils:is_required')}
+              secureTextEntry={true}
+            />
           )}
           name="password"
           defaultValue=""
@@ -120,18 +116,12 @@ export const CredentialsScreen = () => {
             {t('utils:password')} {t('utils:is_required')}
           </Text>
         )}
-        <TouchableOpacity
+        <Button
+          label={t('utils:next')}
           onPress={handleSubmit(onSubmit)}
-          activeOpacity={0.6}
-          disabled={loading}
-          // eslint-disable-next-line react-native/no-inline-styles
-          style={{
-            ...s.btnLogin,
-            opacity: 1,
-          }}
-        >
-          <Text style={s.btnLoginText}>{!loading ? t('utils:next') : t('utils:loading')}</Text>
-        </TouchableOpacity>
+          loading={loading}
+          containerStyle={{ marginTop: normalize(10) }}
+        />
         {error && <Text style={[s.errorLogin, { textAlign: 'center' }]}>{error.message}</Text>}
       </FormWrapper>
     </SafeAreaWrapper>
