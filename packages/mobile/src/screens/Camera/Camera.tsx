@@ -1,16 +1,19 @@
 import { ReactNativeFile } from 'apollo-upload-client';
-import React, { useRef } from 'react';
-import { View, Alert, TouchableOpacity } from 'react-native';
+import React, { useContext, useRef } from 'react';
+import { View, Alert, TouchableOpacity, StyleSheet } from 'react-native';
 import { RNCamera } from 'react-native-camera';
 import { v4 as uuidv4 } from 'uuid';
 
+import { AppContext } from '_app/context';
 import { useUploadPhotoMutation } from '_app/generated/graphql';
 import { navigation } from '_app/services/navigations';
+import { ThemeColors } from '_app/types/theme';
 import { SCREEN_HEIGHT } from '_app/utils/dimensions';
 
 import { s } from './styles';
 
 export const CameraScreen = () => {
+  const { theme } = useContext(AppContext);
   const cameraRef = useRef(null);
   const [uploadPhoto, { loading, data, error }] = useUploadPhotoMutation();
 
@@ -43,7 +46,7 @@ export const CameraScreen = () => {
   };
 
   return (
-    <View style={s.container}>
+    <View style={[s.container, styles(theme).container]}>
       <View style={{ height: SCREEN_HEIGHT / 2 }}>
         <RNCamera
           ref={cameraRef}
@@ -65,11 +68,33 @@ export const CameraScreen = () => {
           }}
         />
       </View>
-      <View style={{ flex: 2, justifyContent: 'center' }}>
-        <TouchableOpacity activeOpacity={0.7} onPress={takePicture} style={s.capture}>
-          <View style={s.circle} />
+      <View style={styles(theme).section}>
+        <TouchableOpacity activeOpacity={0.7} onPress={takePicture} style={[s.capture, styles(theme).capture]}>
+          <View style={[s.circle, styles(theme).circle]} />
         </TouchableOpacity>
       </View>
     </View>
   );
 };
+
+const styles = (theme = {} as ThemeColors) =>
+  StyleSheet.create({
+    container: {
+      backgroundColor: theme.base,
+    },
+    section: {
+      flex: 2,
+      justifyContent: 'center',
+      borderTopColor: theme.gray01,
+      borderTopWidth: 1,
+    },
+    capture: {
+      backgroundColor: theme.gray04,
+    },
+    circle: {
+      backgroundColor: theme.gray01,
+    },
+    text: {
+      color: theme.text01,
+    },
+  });

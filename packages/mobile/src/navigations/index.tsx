@@ -178,10 +178,10 @@ const Index = (): JSX.Element => {
           options={{
             headerTransparent: true,
             headerShadowVisible: false,
-            headerTintColor: scheme === 'dark' ? colors.white : colors.black,
+            headerTintColor: colors.white,
             title: t('utils:camera'),
             headerBackTitle: t('utils:back'),
-            presentation: 'transparentModal',
+            presentation: 'modal',
             ...options,
             headerLeft: () => <CloseModal />,
           }}
